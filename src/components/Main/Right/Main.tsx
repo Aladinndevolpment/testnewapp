@@ -17,7 +17,6 @@ export default function Main() {
 
   return (
     <div>
-      {" "}
       <Tabs tabs={tabs} />
     </div>
   );
