@@ -11,9 +11,8 @@ module.exports = {
       colors: {
         primary: "#FF0D00",
         secondary: "#2E66F6",
-        accent: "#263238", 
-        blackColor : "#263238",
-        gray : "#78889B", 
+        tertiary : "#263238",
+        darkgray : "#78889B",
       },
       backgroundImage: {
          
