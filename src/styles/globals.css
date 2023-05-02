@@ -5,12 +5,13 @@
 html{
    --mft-height: 816px;
   scroll-behavior: smooth;
+  font-family: 'Poppins', sans-serif;
 }
  
 body {
   overflow-x: hidden;
-   font-family : 'Source Sans Pro', sans-serif;
- }
+  font-family: 'Poppins', sans-serif;
+}
 h1,
 h2,
 h3,
@@ -21,7 +22,7 @@ li,
 a,
 span,
 strong{
-  font-family : 'Source Sans Pro', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
   

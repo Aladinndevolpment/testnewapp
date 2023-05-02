@@ -3,13 +3,12 @@ import React from "react";
 
 export default function Logo() {
   return (
-    <div>
-      {/* <div className="hidden dark:block">
-        <Image src={require("../../../public/images/logo/dark.png")} alt="" />
-      </div>
-      <div className="block dark:hidden">
-        <Image src={require("../../../public/images/logo/light.png")} alt="" />
-      </div> */}
+    <div className=" py-3">
+      <Image
+        src={require("../../../public/images/logo/logo.png")}
+        alt=""
+        className="w-72"
+      />
     </div>
   );
 }

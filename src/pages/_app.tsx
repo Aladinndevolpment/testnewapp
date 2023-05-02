@@ -1,6 +1,8 @@
+import GlobalLayout from "@/layouts/GlobalLayout";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
+import { RecoilRoot } from "recoil";
 
 export default function App({ Component, pageProps }: AppProps) {
   const TopProgressBar = dynamic(
@@ -11,8 +13,12 @@ export default function App({ Component, pageProps }: AppProps) {
   );
   return (
     <>
-      <TopProgressBar />
-      <Component {...pageProps} />
+      <RecoilRoot>
+        <TopProgressBar />
+        <GlobalLayout>
+          <Component {...pageProps} />
+        </GlobalLayout>
+      </RecoilRoot>
     </>
   );
 }
