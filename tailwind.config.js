@@ -18,15 +18,19 @@ module.exports = {
        darkGary :"#F0F0F0",
        mainBg:"#f1f6fb",
        newBlue : "#1258fc",
+       blueHeader : "#3C6EF5",
+       OrangeBuilder : "#ED754B",
        FontGray : "#8a98a2",
-       darkBlack :"#070e0b"
+       darkBlack :"#263238",
+       greenShade : "#58AA43",
+       purpleShade : "#383DD3",
       },
       backgroundImage: {
          
       },
     },
     fontFamily: {
-      main : ['Poppins',' sans-serif'],
+      main : ['Source Sans Pro', 'sans-serif'],
      },
     screens: {
       xs: "500",

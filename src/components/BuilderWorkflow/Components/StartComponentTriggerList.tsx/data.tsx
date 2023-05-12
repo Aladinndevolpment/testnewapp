@@ -1,185 +1,185 @@
 import {
-  ArrowsPointingInIcon,
   ArrowsRightLeftIcon,
   Bars4Icon,
-  BuildingOfficeIcon,
-  ChartBarIcon,
-  IdentificationIcon,
-  InboxStackIcon,
-  MapIcon,
-  SpeakerWaveIcon,
-  Square3Stack3DIcon,
-  TagIcon,
   UserCircleIcon,
-  UsersIcon,
 } from "@heroicons/react/24/outline";
 
 const data = [
   {
-    title: "CRM",
+    title: "Appointments",
     subContent: [
       {
-        title: "Add Contact Tag",
+        title: "Appointment Status",
         icon: <UserCircleIcon className="h-5 w-5 text-white" />,
         link: "#",
       },
       {
-        title: "Remove Contact Tag",
+        title: "Customer Booked Appointment",
         icon: <Bars4Icon className="h-5 w-5 text-white" />,
         link: "#",
-      },
-      {
-        title: "Create/Update Opportunities",
-        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
-        link: "#",
-      },
-
-      {
-        title: "Add to Notes",
-        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
-        link: "#",
-      },
-      {
-        title: "Assign to User",
-        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
-        link: "#",
-      },
-      {
-        title: "Remove Assigned User",
-        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
-        link: "#",
-      },
-      {
-        title: "Set Event Start Date",
-        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
-        link: "#",
-      },
-      {
-        title: "Add to Workflow",
-        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
-        link: "#",
-      },
-      {
-        title: "Remove from Workflow",
-        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
-        link: "#",
-      },
-      {
-        title: "Remove from All Workflow",
-        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
-        link: "#",
-      },
-      {
-        title: "Remove Opportunity",
-        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
-        link: "#",
-      },
-      {
-        title: "Send Internal Notifications",
-        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
-        link: "#",
-      },
-      {
-        title: "Set Contact DND",
-        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
-        link: "#",
-      },
-      {
-        title: "Edit Conversations",
-        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
-        link: "#",
-      },
-      {
-        title: "Send Review Requests",
-        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
-        link: "#",
-      },
-      {
-        title: "Stripe One Time Change",
-        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
-        link: "#",
-      },
-      {
-        title: "Update Appointment Status",
-        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
-        link: "#",
-      },
-      {
-        title: "Add Task",
-        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
-        link: "#",
-      },
-      {
-        title: " ",
-        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
       },
     ],
   },
   {
-    title: "External Communication",
+    title: "Contact",
     subContent: [
       {
-        title: "Send Email",
+        title: "Birthday Reminder",
         icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
         link: "#",
       },
       {
-        title: "Send SMS",
+        title: "Contact Changed",
         icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
         link: "#",
       },
       {
-        title: "Call",
+        title: "Contact Created",
         icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
         link: "#",
       },
       {
-        title: "Voicemail",
+        title: "Contact DND",
         icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
         link: "#",
       },
       {
-        title: "Messenger",
+        title: "Contact Tag",
         icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
         link: "#",
       },
       {
-        title: "Instagram DM",
+        title: "Custom Date Reminder",
         icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
         link: "#",
       },
       {
-        title: "Manual SMS",
+        title: "Note Added",
         icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
         link: "#",
       },
       {
-        title: "Manual Call",
+        title: "Note Changed",
         icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
         link: "#",
       },
       {
-        title: "If / Else",
+        title: "Task Added",
         icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
         link: "#",
       },
       {
-        title: "Wait",
+        title: "Task Reminder",
+        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+        link: "#",
+      },
+    ],
+  },
+  {
+    title: "Contact Actions",
+    subContent: [
+      {
+        title: "Customer Replied",
         icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
         link: "#",
       },
       {
-        title: "Webhook",
+        title: "Form Submitted",
         icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
         link: "#",
       },
       {
-        title: "Go To",
+        title: "Order Form Submission",
         icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
         link: "#",
       },
       {
-        title: "Math Operation",
+        title: "Order Submitted",
+        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+        link: "#",
+      },
+      {
+        title: "Survey Submit",
+        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+        link: "#",
+      },
+      {
+        title: "Trigger Link Clicked",
+        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+        link: "#",
+      },
+      {
+        title: "Twilio Validation Error",
+        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+        link: "#",
+      },
+    ],
+  },
+  {
+    title: "Events",
+    subContent: [
+      {
+        title: "Call Status",
+        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+        link: "#",
+      },
+      {
+        title: "Email Events",
+        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+        link: "#",
+      },
+    ],
+  },
+  {
+    title: "Facebook",
+    subContent: [
+      {
+        title: "Facebook Lead Form Submitted",
+        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+        link: "#",
+      },
+    ],
+  },
+  {
+    title: "Opportunities",
+    subContent: [
+      {
+        title: "Opportunity Status Changed",
+        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+        link: "#",
+      },
+      {
+        title: "Pipeline Stage Changed",
+        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+        link: "#",
+      },
+      {
+        title: "Stale Opportunities",
+        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+        link: "#",
+      },
+    ],
+  },
+  {
+    title: "Payments",
+    subContent: [
+      {
+        title: "Invoice",
+        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+        link: "#",
+      },
+      {
+        title: "Payment Received",
+        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+        link: "#",
+      },
+    ],
+  },
+  {
+    title: "Tiktok",
+    subContent: [
+      {
+        title: "Tikt",
         icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
         link: "#",
       },

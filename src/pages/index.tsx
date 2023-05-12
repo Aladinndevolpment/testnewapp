@@ -8,7 +8,6 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col justify-center items-center h-full">
- 
         <div className="flex justify-end items-end mt-5 lg:mt-0">
           <a
             href="calendar"
@@ -35,7 +34,7 @@ export default function Home() {
             Chat
           </a>
           <a
-            href="workflow/new-workflow"
+            href="workflow/workflow"
             className=" text-xs ml-3 bg-newBlue text-white flex justify-center items-center  px-4 py-2 shadow-md rounded hover:shadow-xl hover:drop-shadow-sm transition-all   font-semibold"
           >
             WorkFLow

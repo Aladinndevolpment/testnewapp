@@ -14,41 +14,6 @@ import {
 export default function TreatmentTimeline() {
   return (
     <div className=" px-6 py-6  ">
-      <div className="mt-5 flex flex-wrap justify-between items-center border-b-2 pb-3">
-        <div className="flex items-center flex-wrap ">
-          <div>
-            <p className="text-xs text-gray-500 font-normal"> Case Name</p>
-            <h4 className="font-semibold text-2xl pt-2 text-dark">
-              {" "}
-              Root Canal
-            </h4>
-          </div>
-        </div>
-
-        <div className="flex items-center flex-wrap">
-          <div>
-            <div>
-              <p className="text-[11px] text-gray-500 font-normal"> Recent</p>
-              <h4 className="font-semibold text-xl pt-2 text-dark">3</h4>
-            </div>
-          </div>
-          <div>
-            <div className="ml-8">
-              <p className="text-[11px] text-gray-500 font-normal"> To go </p>
-              <h4 className="font-semibold text-xl pt-2 text-dark"> 8</h4>
-            </div>
-          </div>
-          <div>
-            <div className="ml-6 mr-4">
-              <p className="text-[11px] text-gray-500 font-normal">
-                {" "}
-                Tooth Case
-              </p>
-              <h4 className="font-semibold text-xl pt-2 text-newBlue"> 3.7</h4>
-            </div>
-          </div>
-        </div>
-      </div>
       <div className="bg-white py-4 px-4 ">
         <div className="flex justify-center items-center">
           <div className="flex justify-center items-center bg-gray-100 px-4 py-2">

@@ -1,3 +1,5 @@
+import EmailMessage from "./EmailMessage";
+import SMSMessage from "./SMSMessage";
 import {
   MapPinIcon,
   EllipsisHorizontalIcon,
@@ -8,8 +10,15 @@ import {
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import ChatMessage from "./ChatMessage";
 import DropDownData from "./DropDownData";
+import AudioPlayer, { RHAP_UI } from "react-h5-audio-player";
+import "react-h5-audio-player/lib/styles.css";
+import { MdFileDownload, MdSms, MdEmail } from "react-icons/md";
+import { IoCall } from "react-icons/io5";
+import Avatar from "@mui/joy/Avatar";
+import Badge from "@mui/joy/Badge";
+import { TfiAngleDown, TfiAngleUp } from "react-icons/tfi";
+import moment from "moment";
 
 interface IChatBodyProps {
   chat: any;
@@ -25,8 +34,68 @@ export default function ChatBody({
   onProfileToggle,
 }: IChatBodyProps) {
   const [chatMailOpen, setChatMailOpen] = useState(false);
+
+  const [messages, setMessages] = useState([
+    {
+      date: "May 11, 2023",
+      messages: [
+        {
+          type: "sms",
+          direction: 0,
+          message: "Sample text from recieved from the contact",
+          time: "05:02 PM",
+        },
+        {
+          type: "call",
+          direction: 0,
+          recordingLink: "",
+          time: "06:02 PM",
+        },
+        {
+          type: "sms",
+          direction: 1,
+          message: `See You Soon at Location Name on Thursday, May 11, 2023 3:00 PM! 
+
+          Our Medical, Regenerative, & Wellness Teams look forward to learning about you! We treat others how we want to be treated—like individuals..not a number or a condition. 
+          
+          Get ready for a Patient Experience that’s like no other.
+          
+          We are located at:
+           Location's location, 1238988 USA
+          
+          See you soon! Location Name`,
+          time: "06:12 PM",
+          userID: "123",
+        },
+        {
+          type: "email",
+          direction: 1,
+          toName: "Front Desk",
+          fromName: "Front Desk",
+          subject:
+            "See You Soon at Location Name on Thursday, May 11, 2023 3:00 PM!",
+          message: "Thanks for booking your appointment with Location Name",
+          time: "06:02 PM",
+          userID: "123",
+        },
+      ],
+    },
+    {
+      date: "May 12, 2023",
+      messages: [
+        {
+          type: "call",
+          direction: 1,
+          recordingLink: "",
+          time: "06:02 PM",
+          userID: "123",
+        },
+      ],
+    },
+  ]);
   const [chatData, setChatData] = useState([
     {
+      type: "sms",
       name: "Angelina Martin",
       image: "",
       time: "2m ago",
@@ -54,62 +123,62 @@ export default function ChatBody({
   </p>`,
       attachment: "pdf",
     },
-    {
-      name: "Angelina Martin",
-      image: "",
-      time: "2m ago",
-      messageCount: "3",
-      designation: "Senior Product Designer",
-      message: `<p>
-      Hey there,
-  </p>
-  <p>
-      <strong class="u-color-shark-2" style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:var(--color-shark-2);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;letter-spacing:normal;margin:0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">Note</strong>
-  </p>
-  <ul>
-      <li style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:rgb(0, 18, 52);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:var(--space-4xs) 0px 0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">
-          Despite so many features showcased above, the demo still does not present 20+ (!) additional features that are available in CKEditor 5. Check the full <a style="box-sizing:border-box;color:var(--a-color,var(--color-tang-5));margin:0px;text-decoration:none;" href="https://ckeditor.com/ckeditor-5/features/" target="_blank" rel="noopener noreferrer">feature overview page</a> and <a style="box-sizing:border-box;color:var(--a-color,var(--color-tang-5));margin:0px;text-decoration:none;" href="https://ckeditor.com/docs/ckeditor5/latest/features/index.html" target="_blank" rel="noopener noreferrer">detailed feature documentation</a>.
-      </li>
-      <li style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:rgb(0, 18, 52);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:var(--space-4xs) 0px 0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">
-          CKEditor can be configured to support additional HTML elements, attributes and styles.
-      </li>
-  </ul>
-  <p style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:rgb(0, 18, 52);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:var(--space-4xs) 0px 0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">
-      Regards,
-  </p>
-  <p style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:rgb(0, 18, 52);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:var(--space-4xs) 0px 0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">
-      Maxwell Max
-  </p>`,
-      attachment: "pdf",
-    },
-    {
-      name: "Angelina Martin",
-      image: "",
-      time: "2m ago",
-      messageCount: "3",
-      designation: "Senior Product Designer",
-      message: `<p>
-      Hey there,
-  </p>
-  <p>
-      <strong class="u-color-shark-2" style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:var(--color-shark-2);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;letter-spacing:normal;margin:0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">Note</strong>
-  </p>
-  <ul>
-      <li style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:rgb(0, 18, 52);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:var(--space-4xs) 0px 0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">
-          Despite so many features showcased above, the demo still does not present 20+ (!) additional features that are available in CKEditor 5. Check the full <a style="box-sizing:border-box;color:var(--a-color,var(--color-tang-5));margin:0px;text-decoration:none;" href="https://ckeditor.com/ckeditor-5/features/" target="_blank" rel="noopener noreferrer">feature overview page</a> and <a style="box-sizing:border-box;color:var(--a-color,var(--color-tang-5));margin:0px;text-decoration:none;" href="https://ckeditor.com/docs/ckeditor5/latest/features/index.html" target="_blank" rel="noopener noreferrer">detailed feature documentation</a>.
-      </li>
-      <li style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:rgb(0, 18, 52);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:var(--space-4xs) 0px 0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">
-          CKEditor can be configured to support additional HTML elements, attributes and styles.
-      </li>
-  </ul>
-  <p style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:rgb(0, 18, 52);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:var(--space-4xs) 0px 0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">
-      Regards,
-  </p>
-  <p style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:rgb(0, 18, 52);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:var(--space-4xs) 0px 0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">
-      Maxwell Max
-  </p>`,
-      attachment: "pdf",
-    },
+    //   {
+    //     name: "Angelina Martin",
+    //     image: "",
+    //     time: "2m ago",
+    //     messageCount: "3",
+    //     designation: "Senior Product Designer",
+    //     message: `<p>
+    //     Hey there,
+    // </p>
+    // <p>
+    //     <strong class="u-color-shark-2" style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:var(--color-shark-2);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;letter-spacing:normal;margin:0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">Note</strong>
+    // </p>
+    // <ul>
+    //     <li style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:rgb(0, 18, 52);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:var(--space-4xs) 0px 0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">
+    //         Despite so many features showcased above, the demo still does not present 20+ (!) additional features that are available in CKEditor 5. Check the full <a style="box-sizing:border-box;color:var(--a-color,var(--color-tang-5));margin:0px;text-decoration:none;" href="https://ckeditor.com/ckeditor-5/features/" target="_blank" rel="noopener noreferrer">feature overview page</a> and <a style="box-sizing:border-box;color:var(--a-color,var(--color-tang-5));margin:0px;text-decoration:none;" href="https://ckeditor.com/docs/ckeditor5/latest/features/index.html" target="_blank" rel="noopener noreferrer">detailed feature documentation</a>.
+    //     </li>
+    //     <li style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:rgb(0, 18, 52);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:var(--space-4xs) 0px 0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">
+    //         CKEditor can be configured to support additional HTML elements, attributes and styles.
+    //     </li>
+    // </ul>
+    // <p style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:rgb(0, 18, 52);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:var(--space-4xs) 0px 0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">
+    //     Regards,
+    // </p>
+    // <p style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:rgb(0, 18, 52);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:var(--space-4xs) 0px 0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">
+    //     Maxwell Max
+    // </p>`,
+    //     attachment: "pdf",
+    //   },
+    //   {
+    //     name: "Angelina Martin",
+    //     image: "",
+    //     time: "2m ago",
+    //     messageCount: "3",
+    //     designation: "Senior Product Designer",
+    //     message: `<p>
+    //     Hey there,
+    // </p>
+    // <p>
+    //     <strong class="u-color-shark-2" style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:var(--color-shark-2);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;letter-spacing:normal;margin:0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">Note</strong>
+    // </p>
+    // <ul>
+    //     <li style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:rgb(0, 18, 52);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:var(--space-4xs) 0px 0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">
+    //         Despite so many features showcased above, the demo still does not present 20+ (!) additional features that are available in CKEditor 5. Check the full <a style="box-sizing:border-box;color:var(--a-color,var(--color-tang-5));margin:0px;text-decoration:none;" href="https://ckeditor.com/ckeditor-5/features/" target="_blank" rel="noopener noreferrer">feature overview page</a> and <a style="box-sizing:border-box;color:var(--a-color,var(--color-tang-5));margin:0px;text-decoration:none;" href="https://ckeditor.com/docs/ckeditor5/latest/features/index.html" target="_blank" rel="noopener noreferrer">detailed feature documentation</a>.
+    //     </li>
+    //     <li style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:rgb(0, 18, 52);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:var(--space-4xs) 0px 0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">
+    //         CKEditor can be configured to support additional HTML elements, attributes and styles.
+    //     </li>
+    // </ul>
+    // <p style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:rgb(0, 18, 52);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:var(--space-4xs) 0px 0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">
+    //     Regards,
+    // </p>
+    // <p style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:rgb(0, 18, 52);  font-family: 'Poppins', sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:var(--space-4xs) 0px 0px;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">
+    //     Maxwell Max
+    // </p>`,
+    //     attachment: "pdf",
+    //   },
   ]);
 
   const messagesEndRef = useRef<any>(null);
@@ -119,21 +188,110 @@ export default function ChatBody({
     }
   }, [chatData, chat, chatOpen]);
 
-  function handleSend(message: string) {
+  function handleSMSSend(message: string) {
     setChatMailOpen(false);
-
-    setChatData([
-      ...chatData,
+    setMessages([
+      ...messages,
       {
-        name: "Angelina Martin",
-        image: "",
-        time: "2m ago",
-        messageCount: "3",
-        designation: "Senior Product Designer",
-        message: message,
-        attachment: "pdf",
+        date: moment().format("dd nn yyyy hh:mm:ss a"),
+        messages: [
+          {
+            type: "sms",
+            direction: 0,
+            message: message,
+            time: moment().format("dd nn yyyy"),
+          },
+        ],
       },
     ]);
+  }
+
+  function handleEmailSend(emailData: any) {
+    console.log(emailData);
+    setChatMailOpen(false);
+    setMessages([
+      ...messages,
+      {
+        date: moment().format("dd nn yyyy hh:mm:ss a"),
+        messages: [
+          {
+            type: "email",
+            direction: 0,
+            fromName: emailData.from,
+            toName: emailData.to,
+            subject: emailData.subject,
+            message: emailData.message,
+            time: moment().format("dd nn yyyy"),
+            userID: "123",
+          },
+        ],
+      },
+    ]);
+  }
+
+  const [messageType, setMessageType] = useState("");
+
+  function Message({ messageData }: any) {
+    return (
+      <div
+        className={
+          messageData.direction === 0
+            ? messageData.type !== "call"
+              ? "bg-gray-200 p-4 rounded-r-lg tracking-wide rounded-bl-lg"
+              : ""
+            : messageData.type !== "call"
+            ? "bg-[#1066cf] text-white p-4 tracking-wide rounded-l-lg rounded-br-lg"
+            : ""
+        }
+      >
+        {(messageData.type === "sms" && (
+          <div
+            style={{ whiteSpace: "pre-line" }}
+            className="smsData"
+            dangerouslySetInnerHTML={{ __html: messageData.message }}
+          ></div>
+        )) ||
+          (messageData.type === "call" && (
+            <div className="w-96">
+              <AudioPlayer
+                className="rounded-lg"
+                src="https://api.twilio.com/cowbell.mp3"
+                customAdditionalControls={[
+                  // eslint-disable-next-line react/jsx-key
+                  <div className="grid grid-cols-2 space-x-3 -mr-16">
+                    <button className="text-white text-sm font-semibold rounded-lg bg-[#868686]">
+                      x1
+                    </button>
+                    <button>
+                      <MdFileDownload className="w-7 h-7 text-[#868686]" />
+                    </button>
+                  </div>,
+                ]}
+              />
+            </div>
+          )) ||
+          (messageData.type === "email" && (
+            <>
+              <div className="flex flex-col text-sm">
+                <span className="font-semibold">
+                  {messageData.fromName + " > " + messageData.toName}
+                </span>
+                <span className="mt-2">
+                  <span>{messageData.subject}</span>
+                </span>
+                <div
+                  style={{ whiteSpace: "pre-line" }}
+                  className="smsData"
+                  dangerouslySetInnerHTML={{ __html: messageData.message }}
+                ></div>
+                <button className="justify-self-end w-14 rounded-lg bg-gray-200 text-black font-semibold text-sm mr-2 h-5 px-2 text-center mt-2">
+                  View
+                </button>
+              </div>
+            </>
+          ))}
+      </div>
+    );
   }
 
   return (
@@ -181,80 +339,206 @@ export default function ChatBody({
         </div>
       </div>
       <div className="h-[74%] md:h-[80%] overflow-y-scroll pb-2 w-full pt-1 scrollbar-hide">
-        {chatData.map((item, index) => (
-          <div
-            key={index}
-            className={`py-4 flex items-start w-full border-b border-gray-300 hover:bg-white hover:shadow transition-all cursor-pointer px-4 rounded-sm `}
-          >
-            <div className="mr-3">
-              <Image
-                src={require("../../../public/dummy/dummy-doc.png")}
-                width={50}
-                height={50}
-                alt={item.name}
-                className="rounded-full"
-              />
-            </div>
-            <div className="w-full">
-              <div className="flex justify-between items-center w-full">
-                <h5 className="font-semibold line-clamp-1">
-                  {item.name}{" "}
-                  <span className="text-[12px] text-dark font-medium ">
-                    send via email
+        <div className="flex-1 overflow-y-auto p-2">
+          {messages.map((message, index) => (
+            <>
+              <div className="flex flex-col">
+                <div className="flex justify-center m-4 sticky top-0 transition">
+                  <span className="text-sm text-gray-600 py-0.5 border px-2 rounded-full bg-white border-gray-100 shadow-sm">
+                    {message.date}
                   </span>
-                </h5>
-                <time className="text-xs text-gray-600 font-medium text-right">
-                  {item.time}
-                </time>
+                </div>
+                {message.messages.map((messageData, index) => (
+                  <>
+                    {messageData.direction === 0 ? (
+                      <>
+                        <div className="flex w-full m-2 space-x-3 max-w-md ">
+                          <Badge
+                            anchorOrigin={{
+                              vertical: "top",
+                              horizontal: "left",
+                            }}
+                            variant="plain"
+                            badgeContent={
+                              <Avatar
+                                className="bg-blue-100"
+                                sx={{ "--Avatar-size": "20px" }}
+                              >
+                                {messageData.type === "call" ? (
+                                  <IoCall className="w-3 h-3 text-[#1066cf]" />
+                                ) : messageData.type == "sms" ? (
+                                  <MdSms className="w-3 h-3 text-[#1066cf]" />
+                                ) : (
+                                  ""
+                                )}
+                              </Avatar>
+                            }
+                            badgeInset="4%"
+                            sx={{ "--Badge-paddingX": "0px" }}
+                          >
+                            <Avatar src="/profile-img4.jpg" size="lg" />
+                          </Badge>
+                          <div>
+                            <Message messageData={messageData} />
+                            <span className="text-xs text-gray-500 leading-none">
+                              {messageData.time}
+                            </span>
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="flex w-full m-2 space-x-3 max-w-xs  ml-auto justify-end">
+                          <div>
+                            <Message messageData={messageData} />
+                            <span className="text-xs text-gray-500 leading-none">
+                              {messageData.time}
+                            </span>
+                          </div>
+                          <Badge
+                            anchorOrigin={{
+                              vertical: "top",
+                              horizontal: "right",
+                            }}
+                            variant="plain"
+                            badgeContent={
+                              <Avatar
+                                className="bg-blue-100"
+                                sx={{ "--Avatar-size": "20px" }}
+                              >
+                                {messageData.type === "call" ? (
+                                  <IoCall className="w-3 h-3 text-[#1066cf]" />
+                                ) : messageData.type == "sms" ? (
+                                  <MdSms className="w-3 h-3 text-[#1066cf]" />
+                                ) : (
+                                  <MdEmail className="w-3 h-3 text-[#1066cf]" />
+                                )}
+                              </Avatar>
+                            }
+                            badgeInset="3%"
+                            sx={{ "--Badge-paddingX": "0px" }}
+                          >
+                            <Avatar
+                              size="lg"
+                              className="pt-1 font-semibold text-white bg-red-600"
+                            >
+                              LU
+                            </Avatar>
+                          </Badge>
+                        </div>
+                      </>
+                    )}
+                  </>
+                ))}
               </div>
-              <div className="flex flex-col justify-between w-full mt-3">
-                <div
-                  className="text-sm editor"
-                  dangerouslySetInnerHTML={{ __html: item.message }}
-                ></div>
-                {item.attachment === "pdf" ? (
-                  <div className="my-5 ring-1 ring-red-400 rounded-lg pt-4 w-40 flex flex-col items-center justify-center">
-                    <ClipboardDocumentCheckIcon className="w-10 h-10 text-red-400" />
-                    <div className="bg-[#fff3f3] p-2 mt-4 w-full rounded-b-lg">
-                      <p className="text-sm line-clamp-1">{item.name} File</p>
-                      <span className="text-sm">
-                        {item.attachment.toUpperCase()}
-                      </span>
-                    </div>
-                  </div>
-                ) : (
-                  <div></div>
-                )}
-              </div>
-              <h6 className="mt-1 text-xs line-clamp-1">{item.designation}</h6>
-            </div>
-          </div>
-        ))}
+            </>
+          ))}
+        </div>
         <div ref={messagesEndRef} />
       </div>
-      <div className="h-[26%] md:h-[8%] scrollbar-hide">
-        <button
-          onClick={() => {
-            setChatMailOpen(true);
-          }}
-          className="w-full py-3  flex  justify-start items-center border-[1px] border-lightGray px-6 "
-        >
-          <p className="font-medium text-md text-lg"> To :</p>
-          <p className="font-normal text-sm  text-gray-400 ml-3"> Type Here </p>
-        </button>
+      <div className="h-[26%] md:h-[8%] flex items-end scrollbar-hide bg-white">
+        <div className="w-full pb-3  flex  justify-start items-center border-[1px] border-lightGray px-6 bg-white">
+          {/* <div className="flex  justify-between items-center px-6 "> */}
+          <div className="w-full pt-4  flex  justify-start items-center  ">
+            <button
+              onClick={() => {
+                setMessageType("sms");
+                setChatMailOpen(true);
+              }}
+              className={` ${
+                messageType == "sms"
+                  ? "font-semibold text-md text-base text-[#3486E2]"
+                  : "font-semibold text-md text-base text-dark"
+              }  `}
+            >
+              SMS
+            </button>
+            <button
+              onClick={() => {
+                setMessageType("email");
+                setChatMailOpen(true);
+              }}
+              className={`ml-5 ${
+                messageType == "email"
+                  ? "font-semibold text-md text-base text-[#3486E2]"
+                  : "font-semibold text-md text-base text-gray-700"
+              }  `}
+            >
+              Email
+            </button>
+          </div>
+          <button
+            className="pt-4  "
+            onClick={() => {
+              setChatMailOpen(true);
+              setMessageType("sms");
+            }}
+          >
+            <TfiAngleUp className="h-4 w-4 text-dark" />
+          </button>
+        </div>
 
         {chatMailOpen && (
           <div
-            className={`h-68  bottom-0 w-full  shadow-md rounded-md  px-2 pt-3 pb-2   overflow-y-scroll scrollbar-hide absolute    z-40  ease-in-out duration-300 ${
+            className={`h-68  bottom-0 w-full  shadow-md rounded-md   pt-3 pb-2   overflow-y-scroll scrollbar-hide absolute    z-40  ease-in-out duration-300 ${
               chatMailOpen
                 ? "translate-y-[0%] opacity-1"
                 : "translate-y-[140%] opacity-0"
             }`}
           >
-            <div className="  w-full ">
-              <ChatMessage
-                handleChange={(message: string) => handleSend(message)}
-              />
+            <div className="  w-full bg-white">
+              <div className="flex  justify-between items-center px-6 ">
+                <div className="w-full pt-4  flex  justify-start items-center  ">
+                  <button
+                    onClick={() => {
+                      setMessageType("sms");
+                      setChatMailOpen(true);
+                    }}
+                    className={` ${
+                      messageType == "sms"
+                        ? "font-semibold text-md text-base text-[#3486E2]"
+                        : "font-semibold text-md text-base text-dark"
+                    }  `}
+                  >
+                    SMS
+                  </button>
+                  <button
+                    onClick={() => {
+                      setMessageType("email");
+                      setChatMailOpen(true);
+                    }}
+                    className={`ml-5 ${
+                      messageType == "email"
+                        ? "font-semibold text-md text-base text-[#3486E2]"
+                        : "font-semibold text-md text-base text-gray-700"
+                    }  `}
+                  >
+                    Email
+                  </button>
+                </div>
+                <button
+                  onClick={() => {
+                    setChatMailOpen(false);
+                    setMessageType("");
+                  }}
+                >
+                  <TfiAngleDown className="h-4 w-4 text-dark" />
+                </button>
+              </div>
+
+              {messageType == "sms" ? (
+                <SMSMessage
+                  onClose={() => setChatMailOpen(false)}
+                  handleChange={(message: string) => handleSMSSend(message)}
+                />
+              ) : (
+                <EmailMessage
+                  onClose={() => setChatMailOpen(false)}
+                  handleChange={(emailData: string) =>
+                    handleEmailSend(emailData)
+                  }
+                />
+              )}
             </div>
           </div>
         )}

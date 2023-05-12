@@ -21,25 +21,30 @@ const ConfigForm: React.FC = () => {
 
   return (
     <div>
-      <Form form={form} initialValues={node.data || { name: node.name }}>
-        <Form.Item name="name" label="Name" rules={[{ required: true }]}>
-          <Input />
-        </Form.Item>
-      </Form>
-      <div className="flex justify-end items-end">
-        <button
-          onClick={cancel}
-          className="text-xs md:text-sm mx-3  text-dark border-[1px] border-FontGray px-5 py-2 rounded-md"
-        >
-          Cancel
-        </button>
+      <div className="flex flex-col justify-between items-start h-[85vh] overflow-y-scroll scrollbar-hide">
+        <div className="w-full">
+          <Form form={form} initialValues={node.data || { name: node.name }}>
+            <Form.Item name="name" label="Name" rules={[{ required: true }]}>
+              <Input />
+            </Form.Item>
+          </Form>
+        </div>
 
-        <button
-          onClick={handleSubmit}
-          className="mr-3 text-xs md:text-sm text-gray-300 font-medium bg-secondary px-5 py-2 rounded-md"
-        >
-          Save
-        </button>
+        <div className="flex justify-end items-end  py-2   w-full">
+          <button
+            onClick={cancel}
+            className="border-2 mr-5 border-OrangeBuilder rounded-md flex justify-center items-center px-8 py-1.5 text-OrangeBuilder"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleSubmit}
+            type="submit"
+            className="bg-OrangeBuilder rounded-md flex justify-center items-center px-8 py-2 text-white"
+          >
+            Submit
+          </button>
+        </div>
       </div>
     </div>
   );

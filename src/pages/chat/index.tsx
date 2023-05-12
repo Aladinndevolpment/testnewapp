@@ -1,7 +1,8 @@
 import ChatBody from "@/components/chat/ChatBody";
 import Profile from "@/components/chat/Profile";
 import ChatSidebar from "@/components/chat/Sidebar";
-import { useState } from "react";
+import { GlobalContext } from "@/layouts/GlobalLayout";
+import { useContext, useState } from "react";
 
 const chatData = [
   {
@@ -569,9 +570,10 @@ export default function Chat() {
   const [chatToOpen, setChatToOpen] = useState<any>(chatData[0]);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-
+  const ctx = useContext(GlobalContext);
+  ctx.setTitle("Chat");
   return (
-    <div className="h-full w-full bg-mainBg overflow-hidden relative">
+    <div className="h-full w-full bg-mainBg overflow-hidden relative pb-2">
       {/* <header className="block w-full h-32 lg:h-16 items-center relative z-10 border-b-[1px] border-lightGray">
         <div className="flex flex-center flex-col h-full justify-center lg:mx-auto relative  text-white z-10">
           <div className="flex flex-wrap lg:flex-nowrap justify-center items-center  relative w-full sm:ml-0 sm:pr-2  ">

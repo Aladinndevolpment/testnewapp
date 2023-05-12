@@ -175,13 +175,13 @@ export default function Integrations() {
   return (
     <>
       <div className="flex flex-wrap justify-center  ">
-        <div className="w-full lg:w-[18%] border-r-[1px]   bg-white    ">
+        <div className="w-full lg:w-[25%] border-r-[1px]   bg-white    ">
           <TeamsSidebar
             handleChange={handleSidebar}
             showSidebar={showSidebar}
           />
         </div>
-        <div className="w-full lg:w-[82%]  bg-white h-[100vh] scrollbar-hide  ">
+        <div className="w-full lg:w-[75%]  bg-white h-[100vh] scrollbar-hide  ">
           <header className="block w-full mb-5 h-32 lg:h-16 items-center relative z-10 border-b-[1px] border-lightGray">
             <div className="flex flex-center flex-col h-full justify-center lg:mx-auto relative  text-white z-10">
               <div className="flex flex-wrap lg:flex-nowrap justify-center items-center  relative w-full sm:ml-0 sm:pr-2  ">

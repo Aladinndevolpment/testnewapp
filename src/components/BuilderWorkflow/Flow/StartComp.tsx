@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import {
-  ClockIcon,
-  LifebuoyIcon,
-  MinusIcon,
-  PlusIcon,
-  TrophyIcon,
-} from "@heroicons/react/24/outline";
+import { ClockIcon } from "@heroicons/react/24/outline";
 import { EllipsisHorizontalIcon } from "@heroicons/react/24/solid";
-import WorkflowFlyout from "@/components/BuilderWorkflow/Workflowflyout";
-import TriggerList from "@/components/BuilderWorkflow/TriggerList";
-import WorkFlowBuilder from "@/components/BuilderWorkflow/WorkFlowBuilder";
+import TriggerList from "@/components/workflow/TriggerList";
+import StartComponentTriggerList from "../Components/StartComponentTriggerList.tsx";
+import WorkflowFlyout from "../WorkflowFlyout";
 
-export default function ComponentOne() {
+export default function StartComp({
+  handleChange,
+}: {
+  handleChange: Function;
+}) {
   function RenderActionData({
     currentIndex,
   }: {
@@ -21,8 +19,6 @@ export default function ComponentOne() {
     return (
       <div>
         <div>{actionComponents[currentIndex].comp}</div>
-        {/* <div>{actionComponents[currentIndex].title}</div>
-        <button onClick={() => handleAddMore(currentIndex)}>add more</button> */}
       </div>
     );
   }
@@ -31,12 +27,12 @@ export default function ComponentOne() {
     return (
       <>
         <div className="bg-white shadow-lg rounded-md w-[100%] lg:w-[100%] mt-5 ">
-          <div className="bg-newBlue py-3 px-5 rounded-t-md flex justify-between items-center">
+          <div className="bg-blueHeader py-3 px-5 rounded-t-md flex justify-between items-center">
             <div className="flex justify-between items-center">
               <div className="bg-white h-7 w-7 rounded-full flex justify-center items-center">
-                <ClockIcon className="h-5 w-5 text-newBlue" />
+                <ClockIcon className="h-5 w-5 text-blueHeader" />
               </div>
-              <p className="ml-2 text-sm text-white font-medium">
+              <p className="ml-2 text-lg text-white font-medium">
                 Execute When
               </p>
             </div>
@@ -53,7 +49,7 @@ export default function ComponentOne() {
 
             <button
               onClick={() => setIsFlyOutVisible(true)}
-              className="py-2 w-full rounded-md text-sm bg-secondary text-white"
+              className="py-2 w-full rounded-md text-sm bg-OrangeBuilder text-white"
             >
               Setup Enrollment Trigger
             </button>
@@ -63,16 +59,22 @@ export default function ComponentOne() {
     );
   }
 
-  function ComponentTwo({ currentIndex }: { currentIndex: number }) {
+  function ComponentTwo({
+    currentIndex,
+    title,
+  }: {
+    currentIndex: number;
+    title: string;
+  }) {
     return (
       <>
         <div className="bg-white shadow-lg rounded-md w-[55%] lg:w-[100%] mt-5 ">
-          <div className="bg-newBlue py-3 px-5 rounded-t-md flex justify-between items-center">
+          <div className="bg-blueHeader py-3 px-5 rounded-t-md flex justify-between items-center">
             <div className="flex justify-between items-center">
               <div className="bg-white h-7 w-7 rounded-full flex justify-center items-center">
-                <ClockIcon className="h-5 w-5 text-newBlue" />
+                <ClockIcon className="h-5 w-5 text-blueHeader" />
               </div>
-              <p className="ml-2 text-sm text-white font-medium">
+              <p className="ml-2 text-lg text-white font-medium">
                 Execute When
               </p>
             </div>
@@ -87,13 +89,13 @@ export default function ComponentOne() {
             <div className="border-[1px] border-lightGray bg-gray-100 rounded-md px-2 py-2 mb-4 ">
               <p className="text-dark text-sm leading-5">
                 Contact has filled out, for
-                <strong className="text-xs pl-2">{triggerTitle}</strong>
+                <strong className="text-xs pl-2">{title}</strong>
               </p>
             </div>
 
             <button
               //   onClick={() => console.log("ok")}
-              className="py-2 w-full rounded-md text-sm border-[2px] border-secondary text-secondary"
+              className="py-2 w-full rounded-md text-sm border-[2px] border-OrangeBuilder text-OrangeBuilder"
             >
               Edit Enrollment Trigger
             </button>
@@ -110,12 +112,12 @@ export default function ComponentOne() {
   //modal1
   const [isFlyOutVisible, setIsFlyOutVisible] = useState(false);
 
-  const handleAddMore = (currentIndex: number) => {
+  const handleAddMore = (currentIndex: number, titleHeading: any) => {
     if (newData == 0) {
       setActionComponents([
         {
-          comp: <ComponentTwo currentIndex={newData} />,
-          title: ` ${currentIndex + 100}`,
+          comp: <ComponentTwo currentIndex={newData} title={titleHeading} />,
+          title: titleHeading,
         },
       ]);
     }
@@ -146,14 +148,15 @@ export default function ComponentOne() {
         visibility={isFlyOutVisible}
         onClose={() => setIsFlyOutVisible(false)}
         renderData={
-          <TriggerList
+          <StartComponentTriggerList
             onClose={() => {
               setIsFlyOutVisible(false);
             }}
             updateData={(item: any) => {
               setTriggerTitle(item);
               setIsFlyOutVisible(false);
-              handleAddMore(newData + 1);
+              handleAddMore(newData + 1, item);
+              handleChange();
             }}
           />
         }

@@ -1,16 +1,8 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import React, { useState } from "react";
-import {
-  ArrowUpLeftIcon,
-  ChevronDownIcon,
-  ChevronLeftIcon,
-  TrophyIcon,
-} from "@heroicons/react/24/outline";
+import { ChevronDownIcon, ChevronLeftIcon } from "@heroicons/react/24/solid";
 import moment from "moment";
-import MainBody from "@/components/workflow/MainBody";
-import Dummy from "@/components/workflow/Dummy";
+import React, { useState } from "react";
 
-export default function newWorkflow() {
+export default function HeaderComponent() {
   const tabs = [
     {
       id: "tab1",
@@ -32,9 +24,10 @@ export default function newWorkflow() {
   const [activeTab, setActiveTab] = useState<any>(tabs[0].id);
 
   return (
-    <div className="relative bg-mainBg overflow-hidden h-full">
+    <div>
+      {" "}
       <div className="bg-darkBlack py-3">
-        <header className="  w-full items-center relative z-10 border-b-[1px] border-lightGray">
+        <header className="  w-full items-center relative z-10">
           <div className="flex flex-center flex-col h-full justify-center lg:mx-auto relative  text-white z-10">
             <div className="flex flex-wrap lg:flex-nowrap justify-between lg:justify-between items-center  relative w-full sm:ml-0 sm:pr-2  ">
               <div className="flex justify-between items-center   md:pl-2 pr-5 py-1.5 rounded-md">
@@ -164,8 +157,6 @@ export default function newWorkflow() {
           </div>
         </div>
       </div>
-      <Dummy />
-      {/* <MainBody /> */}
     </div>
   );
 }

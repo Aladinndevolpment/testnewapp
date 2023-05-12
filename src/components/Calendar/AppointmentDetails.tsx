@@ -35,17 +35,17 @@ export default function AppointmentDetails({
     },
     {
       id: "tab3",
-      label: "Note",
+      label: "Conversations",
       content: <TreatmentTimeline />,
     },
     {
       id: "tab4",
-      label: "Medical Record",
+      label: "Notes",
       content: <TreatmentTimeline />,
     },
     {
       id: "tab5",
-      label: "Document",
+      label: "Documents",
       content: <TreatmentTimeline />,
     },
   ];

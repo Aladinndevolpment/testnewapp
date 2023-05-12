@@ -51,10 +51,9 @@ export default function CalendarItem({
           </div>
         </div>
         <div>
-          <DropDown
-            dropdownComponent={<EllipsisVerticalIcon className="h-5 w-5" />}
-            handleChange={handleChange}
-          />
+          <button onClick={() => handleChange()}>
+            <EllipsisVerticalIcon className="h-5 w-5" />
+          </button>
         </div>
       </div>
       <b>{eventInfo.timeText}</b>

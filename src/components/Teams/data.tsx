@@ -19,20 +19,20 @@ const data = [
     title: "Account",
     subContent: [
       {
-        title: "Profile",
+        title: "My Profile",
         icon: <UserCircleIcon className="h-5 w-5 text-FontGray" />,
         link: "#",
       },
-      {
-        title: "General",
-        icon: <Bars4Icon className="h-5 w-5 text-FontGray" />,
-        link: "#",
-      },
-      {
-        title: "Snippets",
-        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-FontGray" />,
-        link: "#",
-      },
+      // {
+      //   title: "General",
+      //   icon: <Bars4Icon className="h-5 w-5 text-FontGray" />,
+      //   link: "#",
+      // },
+      // {
+      //   title: "Snippets",
+      //   icon: <ArrowsRightLeftIcon className="h-5 w-5 text-FontGray" />,
+      //   link: "#",
+      // },
     ],
   },
   {
@@ -53,11 +53,11 @@ const data = [
         icon: <ArrowsPointingInIcon className="h-5 w-5 text-FontGray" />,
         link: "/integrations",
       },
-      {
-        title: "Analytics",
-        icon: <ChartBarIcon className="h-5 w-5 text-FontGray" />,
-        link: "#",
-      },
+      // {
+      //   title: "Analytics",
+      //   icon: <ChartBarIcon className="h-5 w-5 text-FontGray" />,
+      //   link: "#",
+      // },
     ],
   },
 

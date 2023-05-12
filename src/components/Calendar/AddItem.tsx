@@ -4,6 +4,7 @@ import { MouseEventHandler, useState } from "react";
 import ComboBox from "../controls/ComboBox";
 import moment from "moment";
 import DateTimePicker from "../controls/DateTimePicker";
+import { PlusIcon } from "@heroicons/react/24/outline";
 interface IAddItemProps {
   visibility: boolean;
   onClose: MouseEventHandler;
@@ -97,18 +98,21 @@ export default function AddItem({
   //dateTime modal & array
   const [isDateTimeComboBoxVisible, setIsDateTimeComboBoxVisible] =
     useState(false);
+  const [appointmentTypeComboBoxVisible, setAppointmentTypeComboBoxVisible] =
+    useState(false);
+  const [selectAppointmentType, setSelectAppointmentType] = useState<any>(null);
   const [dateTime, setDateTime] = useState<any>(new Date());
 
   return (
     <div
-      className={`w-full h-screen  scrollbar-hide  fixed right-0 top-0  z-50 transition-all bg-black overflow-hidden ${
+      className={`w-full min-h-screen  scrollbar-hide  fixed right-0 top-0  z-50 transition-all bg-black overflow-hidden ${
         visibility
           ? "translate-x-0 opacity-100 bg-opacity-30"
           : "translate-x-[100%] opacity-0 bg-opacity-0"
       }`}
     >
       <div className="absolute h-full w-full z-40 " onClick={onClose}></div>
-      <div className="bg-mainBg w-full md:w-[40%] absolute right-0 min-h-full h-auto z-50 overflow-y-scroll scrollbar-hide">
+      <div className="bg-mainBg w-full md:w-[40%] absolute right-0 min-h-full h-full z-50 overflow-y-scroll scrollbar-hide">
         <div className="py-4 px-4 md:px-8">
           <h3 className="font-semibold border-b-gray-200 border-b pb-3">
             Add new appointment
@@ -137,45 +141,80 @@ export default function AddItem({
             </div>
           </div>
         </div>
-        <div className="bg-white py-4 px-4 md:px-8 mt-2">
+        <div className="bg-white py-4 px-4 md:px-8 mt-2 h-full pb-10">
           <ol className="relative text-gray-500 border-l border-gray-200 dark:border-gray-700 dark:text-gray-400">
             <li className="mb-16 ml-6">
               <span className="absolute flex items-center justify-center w-8 h-8 bg-green-400 rounded-full -left-4 ring-4 ring-green-500 text-white font-bold">
                 1
               </span>
-              <div className="bg-white ring-1 ring-gray-200 px-2 py-2 ml-2">
+              <div className="bg-white shadow ring-1 ring-gray-200 rounded px-2 py-2 ml-2">
                 <div className="flex justify-between">
                   <h3 className="font-semibold text-sm text-black">
-                    Service Information
+                    Appointment Type
                   </h3>
                   <button className="text-sm font-semibold text-newBlue">
                     EDIT
                   </button>
                 </div>
                 <div className="mt-3"></div>
-                {/* <div className="flex justify-between items-center">
-                  <div>
-                    <p className="text-sm text-black font-medium">
-                      Online Consultancy
-                    </p>
-                    <p className="text-xs">
-                      Video call with to doctor to consult any issue.
-                    </p>
-                  </div>
-                  <button className="bg-primary text-white px-4 py-2 shadow-md rounded hover:shadow-xl hover:drop-shadow-sm transition-all text-xs font-semibold">
-                    Meeting Room
-                  </button>
-                </div> */}
+
                 <div className="bg-white   relative">
                   <div
-                    className="flex items-center mt-3 justify-center ring-2 p-2 cursor-pointer"
+                    className="flex items-center mt-3 justify-center ring-2 ring-gray-100 p-2 cursor-pointer"
+                    onClick={() =>
+                      setAppointmentTypeComboBoxVisible(
+                        !isDoctorComboBoxVisible
+                      )
+                    }
+                  >
+                    <PlusIcon className="h-5 w-5 mr-1 text-primary" />
+                    <span className="text-sm text-black font-semibold">
+                      {selectAppointmentType
+                        ? selectAppointmentType.name
+                        : "Select Appointment Type"}
+                    </span>
+                  </div>
+
+                  <ComboBox
+                    isVisible={appointmentTypeComboBoxVisible}
+                    onClose={() => setAppointmentTypeComboBoxVisible(false)}
+                    data={[
+                      {
+                        name: "Appointment Type A",
+                        id: 1,
+                      },
+                    ]}
+                    onItemSelect={(data: any) => setSelectAppointmentType(data)}
+                  />
+                </div>
+              </div>
+            </li>
+
+            <li className="mb-16 ml-6">
+              <span className="absolute flex items-center justify-center w-8 h-8 bg-green-400 rounded-full -left-4 ring-4 ring-green-500 text-white font-bold">
+                2
+              </span>
+              <div className="bg-white shadow ring-1 ring-gray-200 rounded px-2 py-2 ml-2">
+                <div className="flex justify-between">
+                  <h3 className="font-semibold text-sm text-black">Provider</h3>
+                  <button className="text-sm font-semibold text-newBlue">
+                    EDIT
+                  </button>
+                </div>
+                <div className="mt-3"></div>
+
+                <div className="bg-white   relative">
+                  <div
+                    className="flex items-center mt-3 justify-center ring-2 ring-gray-100 p-2 cursor-pointer"
                     onClick={() =>
                       setIsDoctorComboBoxVisible(!isDoctorComboBoxVisible)
                     }
                   >
-                    <PlusCircleIcon className="h-5 w-5 mr-1 text-primary" />
+                    <PlusIcon className="h-5 w-5 mr-1 text-primary" />
                     <span className="text-sm text-black font-semibold">
-                      {selectedDoctor ? selectedDoctor.name : "Select Doctor"}
+                      {selectedDoctor
+                        ? selectedDoctor.name
+                        : "Select Doctor/Room"}
                     </span>
                   </div>
 
@@ -192,9 +231,9 @@ export default function AddItem({
             {/* Add Services */}
             <li className="mb-16 ml-6">
               <span className="absolute flex items-center justify-center w-8 h-8 bg-green-400 rounded-full -left-4 ring-4 ring-green-500 text-white font-bold">
-                2
+                3
               </span>
-              <div className="bg-white ring-1 ring-gray-200 px-2 py-2 ml-2 relative">
+              <div className="bg-white shadow ring-1 ring-gray-200 rounded px-2 py-2 ml-2">
                 <div className="flex justify-between">
                   <h3 className="font-semibold text-sm text-black">
                     Add Patient
@@ -202,12 +241,12 @@ export default function AddItem({
                 </div>
 
                 <div
-                  className="flex items-center mt-5 justify-center ring-2 p-2 cursor-pointer"
+                  className="flex items-center mt-5 justify-center ring-2 ring-gray-100 p-2 cursor-pointer"
                   onClick={() =>
                     setIsPatientComboBoxVisible(!isPatientComboBoxVisible)
                   }
                 >
-                  <PlusCircleIcon className="h-5 w-5 mr-1 text-primary" />
+                  <PlusIcon className="h-5 w-5 mr-1 text-primary" />
                   <span className="text-sm text-black font-semibold">
                     {selectedPatient ? selectedPatient.name : "Select Patient"}
                   </span>
@@ -224,9 +263,9 @@ export default function AddItem({
 
             <li className="ml-6">
               <span className="absolute flex items-center justify-center w-8 h-8 bg-green-400 rounded-full -left-4 ring-4 ring-green-500 text-white font-bold">
-                3
+                4
               </span>
-              <div className="bg-white ring-1 ring-gray-200 px-2 py-2 ml-2 relative">
+              <div className="bg-white shadow ring-1 ring-gray-200 rounded px-2 py-2 ml-2 relative">
                 <div className="flex justify-between">
                   <h3 className="font-semibold text-sm text-black">
                     Time and Date
@@ -240,12 +279,22 @@ export default function AddItem({
                     EDIT
                   </button>
                 </div>
-                <DateTimePicker
-                  isVisible={isDateTimeComboBoxVisible}
-                  onClose={() => setIsDateTimeComboBoxVisible(false)}
-                  onItemSelect={(data: any) => setDateTime(data)}
-                />
-                <div className="mt-3"></div>
+                <div className="flex flex-wrap justify-between mt-3">
+                  <input
+                    type="date"
+                    className="w-full md:w-[48%] mb-2 ring-1 shadow rounded ring-gray-200 h-10 px-2"
+                  />
+                  <select className="w-full md:w-[48%] ring-1 shadow rounded ring-gray-200 h-10 px-2 mb-2">
+                    <option>Select Time</option>
+                    <option value="9:00 AM">9:00 AM</option>
+                    <option value="10:00 AM">10:00 AM</option>
+                    <option value="11:00 AM">11:00 AM</option>
+                    <option value="12:00 AM">12:00 AM</option>
+                    <option value="13:00 AM">13:00 AM</option>
+                    <option value="14:00 AM">14:00 AM</option>
+                  </select>
+                </div>
+
                 <div className="flex justify-between items-center">
                   <div>
                     <p className="text-sm text-black font-medium">
@@ -260,7 +309,7 @@ export default function AddItem({
             </li>
           </ol>
 
-          <div className="mt-20 flex justify-end">
+          <div className="mt-10 flex justify-end">
             <button
               onClick={onClose}
               className="bg-white font-medium w-32 text-gray-400 px-4 py-2 shadow-md rounded hover:shadow-xl hover:drop-shadow-sm transition-all text-md mr-3"

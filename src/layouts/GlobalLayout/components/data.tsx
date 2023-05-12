@@ -1,6 +1,6 @@
 const data = [
   {
-    title: "Overview",
+    title: "Dashboard",
     icon: require("../../../../public/images/layouts/1.svg"),
     activeIcon: require("../../../../public/images/layouts/11.svg"),
     link: "/",
@@ -12,28 +12,34 @@ const data = [
     link: "/calendar",
   },
   {
-    title: "Patient List",
+    title: "Conversations",
     icon: require("../../../../public/images/layouts/3.svg"),
     activeIcon: require("../../../../public/images/layouts/33.svg"),
-    link: "/patients",
+    link: "/chat",
   },
   {
-    title: "Messages",
+    title: "Contacts",
     icon: require("../../../../public/images/layouts/4.svg"),
     activeIcon: require("../../../../public/images/layouts/44.svg"),
-    link: "/messages",
+    link: "/contact",
   },
   {
-    title: "Payment Information",
+    title: "Pipeline",
     icon: require("../../../../public/images/layouts/5.svg"),
     activeIcon: require("../../../../public/images/layouts/55.svg"),
-    link: "/payments",
+    link: "/workflow/workflow",
   },
   {
-    title: "Setting",
+    title: "Teams",
     icon: require("../../../../public/images/layouts/6.svg"),
     activeIcon: require("../../../../public/images/layouts/66.svg"),
-    link: "/settings",
+    link: "/team",
+  },
+  {
+    title: "Integration",
+    icon: require("../../../../public/images/layouts/6.svg"),
+    activeIcon: require("../../../../public/images/layouts/66.svg"),
+    link: "/integrations",
   },
 ];
 

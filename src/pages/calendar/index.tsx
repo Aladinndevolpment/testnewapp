@@ -17,14 +17,14 @@ import {
   PrinterIcon,
   ArrowPathIcon,
 } from "@heroicons/react/24/solid";
-import Image from "next/image";
 import CalendarItem from "@/components/Calendar/EventItem";
-import { useRouter } from "next/router";
 import Search from "@/layouts/GlobalLayout/components/Search";
 import { UserIcon } from "@heroicons/react/24/outline";
 import AddItem from "@/components/Calendar/AddItem";
 import AppointmentDetails from "@/components/Calendar/AppointmentDetails";
 import Filter from "@/components/Calendar/Filter";
+import resourceTimeGridPlugin from "@fullcalendar/resource-timegrid";
+import resourceTimelinePlugin from "@fullcalendar/resource-timeline";
 
 export default function Calendar() {
   const [title, setTitle] = useRecoilState<any>(titleState);
@@ -57,24 +57,71 @@ export default function Calendar() {
     setTitle(headingData);
   }, []);
 
+  //Resources
+
+  const resources = [
+    {
+      id: "123",
+      title: "Room 1",
+    },
+    {
+      id: "124",
+      title: "Room 2",
+    },
+    {
+      id: "125",
+      title: "Room 3",
+    },
+    {
+      id: "126",
+      title: "Room 4",
+    },
+    {
+      id: "127",
+      title: "Room 5",
+    },
+  ];
+
   // Update this state to change data in calendar
   const [events, setEvents] = useState<any>([
     {
       title: "Willy",
       subtitle: "SCROLLING",
-      start: "2023-05-01T11:00:00",
-      end: "2023-05-01T12:00:00",
+      start: "2023-05-09T11:00:00",
+      end: "2023-05-09T12:00:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 1 },
+      resourceId: "123",
     },
     {
       title: "Willy",
       subtitle: "SCROLLING",
-      start: "2023-04-30T12:00:00",
-      end: "2023-04-30T13:00:00",
+      start: "2023-05-09T12:00:00",
+      end: "2023-05-09T13:00:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 2 },
+      resourceId: "125",
     },
+
+    {
+      title: "Willy",
+      subtitle: "SCROLLING",
+      start: "2023-05-09T11:00:00",
+      end: "2023-05-09T12:00:00",
+      backgroundColor: "#fff",
+      extendedProps: { subtitle: "SCROLLING", category: 1 },
+      resourceId: "126",
+    },
+    {
+      title: "Willy",
+      subtitle: "SCROLLING",
+      start: "2023-05-09T12:00:00",
+      end: "2023-05-09T13:00:00",
+      backgroundColor: "#fff",
+      extendedProps: { subtitle: "SCROLLING", category: 2 },
+      resourceId: "127",
+    },
+
     {
       title: "Willy",
       subtitle: "SCROLLING",
@@ -82,6 +129,7 @@ export default function Calendar() {
       end: "2023-05-02T13:00:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 4 },
+      resourceId: "123",
     },
     {
       title: "Willy",
@@ -90,6 +138,7 @@ export default function Calendar() {
       end: "2023-05-02T11:00:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 3 },
+      resourceId: "123",
     },
     {
       title: "Willy",
@@ -98,6 +147,7 @@ export default function Calendar() {
       end: "2023-05-03T12:00:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 4 },
+      resourceId: "123",
     },
     {
       title: "Willy",
@@ -106,6 +156,7 @@ export default function Calendar() {
       end: "2023-05-05T10:00:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 5 },
+      resourceId: "123",
     },
     {
       title: "Willy",
@@ -114,6 +165,7 @@ export default function Calendar() {
       end: "2023-05-04T11:00:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 6 },
+      resourceId: "123",
     },
     {
       title: "Willy",
@@ -122,6 +174,7 @@ export default function Calendar() {
       end: "2023-05-06T12:00:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 2 },
+      resourceId: "123",
     },
     {
       title: "Willy",
@@ -130,6 +183,7 @@ export default function Calendar() {
       end: "2023-04-30T11:00:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 2 },
+      resourceId: "123",
     },
     {
       title: "Willy",
@@ -138,6 +192,7 @@ export default function Calendar() {
       end: "2023-05-04T13:30:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 3 },
+      resourceId: "123",
     },
     {
       title: "Willy",
@@ -146,6 +201,7 @@ export default function Calendar() {
       end: "2023-05-03T15:30:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 4 },
+      resourceId: "123",
     },
     {
       title: "Willy",
@@ -154,6 +210,7 @@ export default function Calendar() {
       end: "2023-05-04T10:00:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 2 },
+      resourceId: "123",
     },
   ]);
 
@@ -165,7 +222,7 @@ export default function Calendar() {
 
   function handleSelect(arg: any) {
     const title = arg.patient.name;
-    console.log(arg);
+    console.log(arg?.resource?._resource?.id);
     if (title) {
       const newEvent = {
         title: title,
@@ -173,6 +230,9 @@ export default function Calendar() {
         end: arg.endStr,
         backgroundColor: "#fff",
         extendedProps: { subtitle: "SCROLLING", category: 5 },
+        resourceId: arg?.resource?._resource?.id
+          ? arg.resource._resource.id
+          : "123",
       };
       setEvents([...events, newEvent]);
       setIsAddNewEventPopUpVisible(false);
@@ -256,9 +316,17 @@ export default function Calendar() {
 
   // Changing View
   function handleDayView() {
-    setCurrentView("timeGridDay");
+    setCurrentView("resourceTimeGridDay");
     if (calendarRef.current) {
-      calendarRef.current.getApi().changeView("timeGridDay");
+      calendarRef.current.getApi().changeView("resourceTimeGridDay");
+    }
+  }
+
+  // Resource Week timeline
+  function handleWeekResourceTimeline() {
+    setCurrentView("resourceTimeline");
+    if (calendarRef.current) {
+      calendarRef.current.getApi().changeView("resourceTimeline");
     }
   }
 
@@ -322,9 +390,19 @@ export default function Calendar() {
                   </p>
                   <div className="lg:ml-12 flex justify-between items-center  py-1 rounded-md w-full lg:w-[35%]">
                     <button
+                      onClick={handleWeekResourceTimeline}
+                      className={`w-full lg:w-auto ${
+                        currentView == "resourceTimeline"
+                          ? "  text-newBlue"
+                          : "   text-FontGray"
+                      }  px-4 py-3  duration-1000 text-[14px] font-medium text-center`}
+                    >
+                      ListHoriz
+                    </button>
+                    <button
                       onClick={handleDayView}
                       className={`w-full lg:w-auto ${
-                        currentView == "timeGridDay"
+                        currentView == "resourceTimeGridDay"
                           ? "  text-newBlue"
                           : "   text-FontGray"
                       }  px-4 py-3  duration-1000 text-[14px] font-medium text-center`}
@@ -449,7 +527,14 @@ export default function Calendar() {
 
         {currentView && (
           <FullCalendar
-            plugins={[timeGridPlugin, interactionPlugin, dayGridPlugin]}
+            plugins={[
+              timeGridPlugin,
+              interactionPlugin,
+              dayGridPlugin,
+              resourceTimeGridPlugin,
+              resourceTimelinePlugin,
+            ]}
+            resources={resources}
             initialView={currentView}
             ref={calendarRef}
             eventResizableFromStart={true}
@@ -476,6 +561,7 @@ export default function Calendar() {
             nowIndicatorContent={() => (
               <div className="h-1 w-full bg-primary rounded-full -mt-1"></div>
             )}
+            schedulerLicenseKey="CC-Attribution-NonCommercial-NoDerivatives"
           />
         )}
       </div>
@@ -485,15 +571,18 @@ export default function Calendar() {
   function renderDate(e: any) {
     return (
       <div className="flex items-center py-1">
-        <div
-          className={`h-10 w-10 mr-2 ${
-            e.isToday
-              ? "bg-primary text-white drop-shadow-xl"
-              : "  text-black drop-shadow-xl"
-          }  flex items-center justify-center rounded-full`}
-        >
-          {moment(e.date).format("DD")}
-        </div>
+        {currentView != "dayGridMonth" && (
+          <div
+            className={`h-10 w-10 mr-2 ${
+              e.isToday
+                ? "bg-primary text-white drop-shadow-xl"
+                : "  text-black drop-shadow-xl"
+            }  flex items-center justify-center rounded-full`}
+          >
+            {moment(e.date).format("DD")}
+          </div>
+        )}
+
         <div
           className={` ${
             e.isToday ? "text-primary " : "  text-black "
