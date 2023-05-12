@@ -32,7 +32,7 @@ export default function ChatSidebar({
 
   return (
     <>
-      <div className="border-b border-b-gray-300 pb-3 h-[13.6%] px-4">
+      <div className="border-b border-b-gray-300 pb-3 h-[14.5%] px-4">
         <div>
           <TextInput
             placeholder="Search..."

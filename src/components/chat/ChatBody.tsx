@@ -207,7 +207,6 @@ export default function ChatBody({
   }
 
   function handleEmailSend(emailData: any) {
-    console.log(emailData);
     setChatMailOpen(false);
     setMessages([
       ...messages,
@@ -312,7 +311,7 @@ export default function ChatBody({
               Applied a week ago.
             </p>
           </div>
-          <div className="flex gap-3">
+          <div className="flex gap-3 mb-1">
             <MapPinIcon className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all hidden md:block" />
             <CalendarDaysIcon className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all hidden md:block" />
             <PhoneIcon className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all hidden md:block" />

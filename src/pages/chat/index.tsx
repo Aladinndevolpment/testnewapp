@@ -612,7 +612,7 @@ export default function Chat() {
       </header> */}
 
       <div className="w-full h-full flex flex-wrap overflow-x-hidden overflow-hidden">
-        <div className="w-full md:w-[22%] h-full py-8">
+        <div className="w-full md:w-[22%] h-full py-4">
           <ChatSidebar
             chatData={chatData}
             onSelect={(chat) => {
@@ -622,7 +622,7 @@ export default function Chat() {
             selectedChat={chatToOpen}
           />
         </div>
-        <div className="w-full md:w-[56%] h-full bg-white pt-8 md:border-r md:border-r-gray-300">
+        <div className="w-full md:w-[56%] h-full bg-white pt-6 md:border-r md:border-r-gray-300">
           <ChatBody
             chat={chatToOpen}
             chatOpen={isChatOpen}

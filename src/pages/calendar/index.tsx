@@ -87,8 +87,8 @@ export default function Calendar() {
     {
       title: "Willy",
       subtitle: "SCROLLING",
-      start: "2023-05-09T11:00:00",
-      end: "2023-05-09T12:00:00",
+      start: "2023-05-27T11:00:00",
+      end: "2023-05-27T12:00:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 1 },
       resourceId: "123",
@@ -96,8 +96,8 @@ export default function Calendar() {
     {
       title: "Willy",
       subtitle: "SCROLLING",
-      start: "2023-05-09T12:00:00",
-      end: "2023-05-09T13:00:00",
+      start: "2023-05-24T12:00:00",
+      end: "2023-05-24T13:00:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 2 },
       resourceId: "125",
@@ -106,8 +106,8 @@ export default function Calendar() {
     {
       title: "Willy",
       subtitle: "SCROLLING",
-      start: "2023-05-09T11:00:00",
-      end: "2023-05-09T12:00:00",
+      start: "2023-05-11T11:00:00",
+      end: "2023-05-11T12:00:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 1 },
       resourceId: "126",
@@ -125,8 +125,8 @@ export default function Calendar() {
     {
       title: "Willy",
       subtitle: "SCROLLING",
-      start: "2023-05-02T12:00:00",
-      end: "2023-05-02T13:00:00",
+      start: "2023-05-01T12:00:00",
+      end: "2023-05-01T13:00:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 4 },
       resourceId: "123",
@@ -143,8 +143,8 @@ export default function Calendar() {
     {
       title: "Willy",
       subtitle: "SCROLLING",
-      start: "2023-05-03T11:00:00",
-      end: "2023-05-03T12:00:00",
+      start: "2023-05-28T11:00:00",
+      end: "2023-05-28T12:00:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 4 },
       resourceId: "123",
@@ -152,8 +152,8 @@ export default function Calendar() {
     {
       title: "Willy",
       subtitle: "SCROLLING",
-      start: "2023-05-05T10:00:00",
-      end: "2023-05-05T10:00:00",
+      start: "2023-05-22T10:00:00",
+      end: "2023-05-22T10:00:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 5 },
       resourceId: "123",
@@ -161,8 +161,8 @@ export default function Calendar() {
     {
       title: "Willy",
       subtitle: "SCROLLING",
-      start: "2023-05-04T10:00:00",
-      end: "2023-05-04T11:00:00",
+      start: "2023-05-18T10:00:00",
+      end: "2023-05-18T11:00:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 6 },
       resourceId: "123",
@@ -188,8 +188,8 @@ export default function Calendar() {
     {
       title: "Willy",
       subtitle: "SCROLLING",
-      start: "2023-05-04T12:00:00",
-      end: "2023-05-04T13:30:00",
+      start: "2023-05-15T12:00:00",
+      end: "2023-05-15T13:30:00",
       backgroundColor: "#fff",
       extendedProps: { subtitle: "SCROLLING", category: 3 },
       resourceId: "123",
@@ -389,7 +389,7 @@ export default function Calendar() {
                     Calendar
                   </p>
                   <div className="lg:ml-12 flex justify-between items-center  py-1 rounded-md w-full lg:w-[35%]">
-                    <button
+                    {/* <button
                       onClick={handleWeekResourceTimeline}
                       className={`w-full lg:w-auto ${
                         currentView == "resourceTimeline"
@@ -398,7 +398,7 @@ export default function Calendar() {
                       }  px-4 py-3  duration-1000 text-[14px] font-medium text-center`}
                     >
                       ListHoriz
-                    </button>
+                    </button> */}
                     <button
                       onClick={handleDayView}
                       className={`w-full lg:w-auto ${
