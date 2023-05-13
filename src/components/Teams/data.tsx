@@ -13,6 +13,7 @@ import {
   UserCircleIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
+import { MdSpaceDashboard } from "react-icons/md";
 
 const data = [
   {
@@ -64,6 +65,11 @@ const data = [
   {
     title: "Configuration",
     subContent: [
+      {
+        title: "Calendar",
+        icon: <MdSpaceDashboard className="h-5 w-5 text-FontGray" />,
+        link: "/calendar",
+      },
       {
         title: "Fields",
         icon: <Square3Stack3DIcon className="h-5 w-5 text-FontGray" />,

@@ -84,57 +84,12 @@ export default function Integrations() {
     },
     {
       id: 1,
-      value: "Connected",
+      value: "Billing",
       link: "",
     },
     {
       id: 2,
-      value: "Sales Integrations",
-      link: "",
-    },
-    {
-      id: 3,
-      value: "PM",
-      link: "",
-    },
-    {
-      id: 4,
-      value: "Analytics",
-      link: "",
-    },
-    {
-      id: 5,
-      value: "Email",
-      link: "",
-    },
-    {
-      id: 6,
-      value: "Chat",
-      link: "",
-    },
-    {
-      id: 7,
-      value: "Support",
-      link: "",
-    },
-    {
-      id: 8,
-      value: "Data",
-      link: "",
-    },
-    {
-      id: 9,
-      value: "Issue Tracking",
-      link: "",
-    },
-    {
-      id: 10,
-      value: "Finance",
-      link: "",
-    },
-    {
-      id: 11,
-      value: "Survey",
+      value: "Social Media",
       link: "",
     },
   ];
@@ -143,31 +98,31 @@ export default function Integrations() {
   const cardData = [
     {
       title: "Google",
-      logo: require("../../public/images/integrations/google.png"),
+      logo: require("../../../public/images/integrations/google.png"),
       link: "#",
       status: "C",
     },
     {
       title: "Facebook",
-      logo: require("../../public/images/integrations/facebook.png"),
+      logo: require("../../../public/images/integrations/facebook.png"),
       link: "#",
       status: "C",
     },
     {
       title: "Stripe",
-      logo: require("../../public/images/integrations/stripe.png"),
+      logo: require("../../../public/images/integrations/stripe.png"),
       link: "#",
       status: "P",
     },
     {
       title: "Paypal",
-      logo: require("../../public/images/integrations/paypal.png"),
+      logo: require("../../../public/images/integrations/paypal.png"),
       link: "#",
       status: "P",
     },
     {
       title: "Tiktok",
-      logo: require("../../public/images/integrations/tiktok.png"),
+      logo: require("../../../public/images/integrations/tiktok.png"),
       link: "#",
       status: "R",
     },
@@ -233,7 +188,7 @@ export default function Integrations() {
           </header>
 
           <div className="  py-4 px-6">
-            <div className="  py-2 px-2 rounded-md bg-white border-[1px] border-gray-100 shadow-md flex flex-wrap justify-start lg:justify-around items-center">
+            <div className="  py-2 px-2 rounded-md bg-white border-[1px] border-gray-100 shadow-md flex flex-wrap justify-start lg:justify-start lg:gap-4 items-center">
               {headerData.map((item, index) => (
                 <div key={index} className="px-4 lg:px-0 mb-2 lg:mb-0">
                   <a

@@ -4,6 +4,7 @@ import { memo } from "react";
 import AdminSidebar from "./components/AdminSidebar";
 import TopNavigation from "./components/TopNavigation";
 import { TfiAngleLeft, TfiAngleRight } from "react-icons/tfi";
+import { useRouter } from "next/router";
 
 interface IAdminLayoutProps {
   children: React.ReactNode;
@@ -20,27 +21,38 @@ export default memo(function GlobalLayout({ children }: IAdminLayoutProps) {
   const [title, setTitle] = useState("Dashboard");
   const [open, setOpen] = useState(true);
   const value: any = { title, setTitle, open, setOpen };
+  const router = useRouter();
 
   return (
     <>
       <GlobalContext.Provider value={value}>
-        <div className="bg-[#f1f6fb] bg-cover flex flex-wrap justify-center h-[100vh]">
-          <div className="w-full  bg-[#1f2228] py-1.5 border-b-[1px]  border-gray-200   ">
+        <div
+          className={`${
+            router.asPath == "/calendar" ? "h-full" : null
+          } bg-mainBg bg-cover flex flex-wrap justify-center  `}
+        >
+          <div className="w-full  bg-[#1F2228] py-1.5 border-b-[1px]  border-gray-200  lg:sticky top-0 z-50">
             <TopNavigation />
           </div>
           <div
             className={`${
-              open ? "w-full bg-black md:w-[15%]" : "hidden"
+              open ? "hidden md:w-[15%] md:block " : "w-full block md:hidden "
             }    border-r-[1px] bg-white`}
           >
             <AdminSidebar />
           </div>
           <div
-            className={`${
-              value.open ? " w-full  md:w-[85%]" : "w-full "
-            }   flex flex-col  h-[100vh] justify-between items-start`}
+            className={`${value.open ? " w-full  md:w-[85%]" : "w-full "}  ${
+              router.asPath == "/calendar" ? "h-[100vh]" : null
+            } flex flex-col    justify-between items-start`}
           >
-            <main className="relative h-[90vh] overflow-y-scroll bg-bgGray scrollbar-hide w-full overflow-hidden">
+            <main
+              className={` ${
+                router.asPath == "/calendar"
+                  ? "h-[100vh] lg:h-[90vh]"
+                  : "h-[100vh] lg:h-[90vh]"
+              }  relative   overflow-y-scroll bg-bgGray scrollbar-hide w-full overflow-hidden`}
+            >
               {children}
             </main>
           </div>

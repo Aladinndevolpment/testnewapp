@@ -118,8 +118,8 @@ export default function EmailMessage({ handleChange, onClose }: any) {
     <div>
       <div className="bg-[#F9F9FB] h-[58h] w-full px-2 pt-2  ">
         <form onSubmit={handleSubmit}>
-          <div className="bg-white shadow-md  px-2 pt-3.5 pb-0.5 rounded-lg">
-            <div className="mb-1 flex flex-wrap items-center w-full bg-[#f6f6fc] border-[1px] border-gray-300 rounded-md py-2 px-3">
+          <div className="bg-white shadow-md  px-2 pt-1 pb-0.5 rounded-lg">
+            <div className="mb-2 flex flex-wrap items-center w-full bg-[#f6f6fc] border-[1px] border-gray-300 rounded-md py-1 px-3">
               <div className=" w-[12%]">
                 <div className="border-r-[1px] border-gray-200 mr-5">
                   <p className="text-sm text-purpleShade font-semibold pr-5 ">
@@ -161,7 +161,7 @@ export default function EmailMessage({ handleChange, onClose }: any) {
             </div>
 
             {ccVisible && (
-              <div className="mb-3 flex flex-wrap items-center w-full bg-[#f6f6fc] border-[1px] border-gray-300 rounded-md py-2 px-3">
+              <div className="mb-2 flex flex-wrap items-center w-full bg-[#f6f6fc] border-[1px] border-gray-300 rounded-md py-1 px-3">
                 <div className=" w-[12%]">
                   <div className="border-r-[1px] border-gray-200 mr-5">
                     <span className="text-sm text-purpleShade font-semibold pr-5  ">
@@ -183,7 +183,7 @@ export default function EmailMessage({ handleChange, onClose }: any) {
             )}
 
             {bccVisible && (
-              <div className="mb-3 flex flex-wrap items-center w-full bg-[#f6f6fc] border-[1px] border-gray-300 rounded-md py-2 px-3">
+              <div className="mb-2 flex flex-wrap items-center w-full bg-[#f6f6fc] border-[1px] border-gray-300 rounded-md py-1 px-3">
                 <div className=" w-[12%]">
                   <div className="border-r-[1px] border-gray-200 mr-5">
                     <span className="text-sm text-purpleShade font-semibold pr-5  ">
@@ -204,7 +204,7 @@ export default function EmailMessage({ handleChange, onClose }: any) {
               </div>
             )}
 
-            <div className="mb-3 flex flex-wrap items-center w-full bg-[#f6f6fc] border-[1px] border-gray-300 rounded-md py-2 px-3">
+            <div className="mb-2 flex flex-wrap items-center w-full bg-[#f6f6fc] border-[1px] border-gray-300 rounded-md py-1 px-3">
               <div className=" w-[12%]">
                 <div className="border-r-[1px] border-gray-200 mr-5">
                   <span className="text-sm text-purpleShade font-semibold pr-5  ">
@@ -231,7 +231,7 @@ export default function EmailMessage({ handleChange, onClose }: any) {
               </div>
             </div>
 
-            <div className="mb-3 w-full bg-[#f6f6fc] border-[1px] border-gray-300 rounded-md ">
+            <div className="mb-2 w-full bg-[#f6f6fc] border-[1px] border-gray-300 rounded-md ">
               <div className=" flex flex-wrap items-center w-full bg-[#f6f6fc] border-b-[1px] border-gray-300 py-2 px-3">
                 <div className=" w-[12%]">
                   <span className="text-sm text-purpleShade font-semibold border-r-[1px] border-gray-200 pr-5 mr-5">
@@ -266,13 +266,13 @@ export default function EmailMessage({ handleChange, onClose }: any) {
                   onChange={handleQuillChange}
                   //   onBlur={handleBlur("content")}
                   placeholder="message"
-                  className=" h-[30vh] overflow-y-scroll scrollbar-hide "
+                  className=" h-[22vh] overflow-y-scroll scrollbar-hide "
                 />
               </div>
             </div>
           </div>
 
-          <div className="flex justify-between items-center mt-5 px-2">
+          <div className="flex justify-between items-center mt-3 px-2">
             <div className="flex justify-between items-center ">
               <Image
                 src={require("../../../public/images/icons/buffer.png")}
@@ -280,11 +280,10 @@ export default function EmailMessage({ handleChange, onClose }: any) {
                 className="h-6 w-6"
               />
               <p className="text-[#878ab8] font-medium text-sm ml-2">
-                {" "}
-                Saving Draft{" "}
+                Saving Draft
               </p>
             </div>
-            <button className="bg-purpleShade py-2 px-8 rounded-full text-white">
+            <button className="bg-purpleShade py-1 px-8 rounded-full text-white">
               Send
             </button>
           </div>

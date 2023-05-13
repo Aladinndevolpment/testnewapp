@@ -1,14 +1,12 @@
-import {
-  CheckBadgeIcon,
-  ClockIcon,
-  PlusCircleIcon,
-} from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { MouseEventHandler, useState } from "react";
-import ComboBox from "../controls/ComboBox";
-import moment from "moment";
+
 import Tabs from "../UI/Tabs";
 import TreatmentTimeline from "./TreatmentTimeline";
+
+import { TfiAngleDown, TfiAngleUp } from "react-icons/tfi";
+import CustomDropDown, { CustomDropDownData } from "../controls/CustomDropDown";
+
 interface IAppointmentDetailsProps {
   visibility: boolean;
   onClose: MouseEventHandler;
@@ -21,6 +19,45 @@ export default function AppointmentDetails({
   const [isPatientComboBoxVisible, setIsPatientComboBoxVisible] =
     useState(false);
   const [selectedPatient, setSelectedPatient] = useState<any>(null);
+  const [selectedStatusIndex, setSelectedStatusIndex] = useState(0);
+
+  const status = [
+    {
+      label: "Scheduled",
+      value: "Scheduled",
+      color: "#3773FE",
+    },
+    {
+      label: "Showed",
+      value: "Showed",
+      color: "#9758D6",
+    },
+    {
+      label: "Showed Late",
+      value: "Showed Late",
+      color: "#E45F38",
+    },
+    {
+      label: "Completed",
+      value: "Completed",
+      color: "#54BF6B",
+    },
+    {
+      label: "No Show",
+      value: "No Show",
+      color: "#FFC107",
+    },
+    {
+      label: "Canceled",
+      value: "Canceled",
+      color: "#FF0707",
+    },
+    {
+      label: "Rescheduled",
+      value: "Rescheduled",
+      color: "#9C27B0",
+    },
+  ];
 
   const tabs = [
     {
@@ -86,15 +123,16 @@ export default function AppointmentDetails({
                 <p className="text-xs text-gray-500">dimas.rome@gmail.com</p>
               </div>
             </div>
-            <div className="flex justify-end items-end mt-5 lg:mt-0">
-              <button className="text-xs bg-[#49c496] text-white flex justify-center items-center  px-4 py-2 shadow-md rounded hover:shadow-xl hover:drop-shadow-sm transition-all  font-semibold">
-                <CheckBadgeIcon className="h-5 w-5 text-white mr-2" />
-                Arrived
-              </button>
-              <button className="text-xs ml-3 bg-white text-dark flex justify-center items-center  px-4 py-2 shadow-md rounded hover:shadow-xl hover:drop-shadow-sm transition-all   font-semibold">
-                <ClockIcon className="h-5 w-5 text-dark mr-2" />
-                Rescheduled
-              </button>
+
+            <div className="flex justify-end items-end mt-5 lg:mt-0 w-full lg:w-[30%]">
+              <CustomDropDown
+                data={status}
+                onChange={(item: CustomDropDownData, index: number) => {
+                  console.log(item);
+                  setSelectedStatusIndex(index);
+                }}
+                activeIndex={selectedStatusIndex}
+              />
             </div>
           </div>
         </div>

@@ -20,6 +20,8 @@ import Badge from "@mui/joy/Badge";
 import { TfiAngleDown, TfiAngleUp } from "react-icons/tfi";
 import moment from "moment";
 
+import { FaPhoneAlt } from "react-icons/fa";
+
 interface IChatBodyProps {
   chat: any;
   chatOpen: boolean;
@@ -197,9 +199,9 @@ export default function ChatBody({
         messages: [
           {
             type: "sms",
-            direction: 0,
+            direction: 1,
             message: message,
-            time: moment().format("dd nn yyyy"),
+            time: moment().format("hh:mm:ss a"),
           },
         ],
       },
@@ -220,7 +222,7 @@ export default function ChatBody({
             toName: emailData.to,
             subject: emailData.subject,
             message: emailData.message,
-            time: moment().format("dd nn yyyy"),
+            time: moment().format("hh:mm:ss a"),
             userID: "123",
           },
         ],
@@ -271,21 +273,38 @@ export default function ChatBody({
           )) ||
           (messageData.type === "email" && (
             <>
-              <div className="flex flex-col text-sm">
-                <span className="font-semibold">
+              <div className="flex flex-col ">
+                <span
+                  className={`${
+                    messageData.direction == 0 ? "text-dark" : " text-white"
+                  } font-bold   text-sm `}
+                >
                   {messageData.fromName + " > " + messageData.toName}
                 </span>
-                <span className="mt-2">
+                <span
+                  className={`${
+                    messageData.direction == 0 ? "text-dark" : " text-white"
+                  } font-medium mt-1 text-sm `}
+                >
+                  <span> {messageData.time} </span>
+                </span>
+                <span
+                  className={`${
+                    messageData.direction == 0 ? "text-dark" : " text-white"
+                  } font-bold  mt-1  text-sm `}
+                >
                   <span>{messageData.subject}</span>
                 </span>
                 <div
                   style={{ whiteSpace: "pre-line" }}
-                  className="smsData"
+                  className={`${
+                    messageData.direction == 0 ? "text-dark" : " text-white"
+                  } font-medium mt-1 text-sm smsData pt-3 `}
                   dangerouslySetInnerHTML={{ __html: messageData.message }}
                 ></div>
-                <button className="justify-self-end w-14 rounded-lg bg-gray-200 text-black font-semibold text-sm mr-2 h-5 px-2 text-center mt-2">
+                {/* <button className="justify-self-end w-14 rounded-lg bg-gray-200 text-black font-semibold text-sm mr-2 h-5 px-2 text-center mt-2">
                   View
-                </button>
+                </button> */}
               </div>
             </>
           ))}
@@ -312,15 +331,15 @@ export default function ChatBody({
             </p>
           </div>
           <div className="flex gap-3 mb-1">
-            <MapPinIcon className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all hidden md:block" />
-            <CalendarDaysIcon className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all hidden md:block" />
-            <PhoneIcon className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all hidden md:block" />
+            {/* <MapPinIcon className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all hidden md:block" /> */}
+            {/* <CalendarDaysIcon className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all hidden md:block" /> */}
+            <FaPhoneAlt className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all hidden md:block" />
             <XMarkIcon
               onClick={() => onClose()}
               className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all md:hidden"
             />
 
-            <div className="dropdown dropdown-end">
+            <div className="dropdown dropdown-end md:hidden">
               <label tabIndex={0}>
                 <EllipsisHorizontalIcon
                   onClick={() => onProfileToggle()}
@@ -351,8 +370,8 @@ export default function ChatBody({
                   <>
                     {messageData.direction === 0 ? (
                       <>
-                        <div className="flex w-full m-2 space-x-3 max-w-md ">
-                          <Badge
+                        <div className="flex w-full gap-3 justify-start items-start">
+                          {/* <Badge
                             anchorOrigin={{
                               vertical: "top",
                               horizontal: "left",
@@ -376,56 +395,106 @@ export default function ChatBody({
                             sx={{ "--Badge-paddingX": "0px" }}
                           >
                             <Avatar src="/profile-img4.jpg" size="lg" />
-                          </Badge>
+                          </Badge> */}
+                          <div className="avatar-group -space-x-6">
+                            <div className="avatar">
+                              <div className="w-12">
+                                <Image
+                                  src={require("../../../public/dummy/dummy-doc.png")}
+                                  width={80}
+                                  height={80}
+                                  alt=""
+                                  className="rounded-full"
+                                />{" "}
+                              </div>
+                            </div>
+                          </div>
                           <div>
+                            <div className="flex justify-between items-center pt-4">
+                              <p className="text-lg text-darkBlack font-semibold leading-none ">
+                                You
+                              </p>
+                              <p className="text-sm text-FontGray leading-none">
+                                {messageData.time}
+                              </p>
+                              <div></div>
+                            </div>
+                            <div className="pt-3  w-[380px] overflow-x-hidden">
+                              <Message messageData={messageData} />
+                            </div>
+                          </div>
+                          {/* <div>
                             <Message messageData={messageData} />
                             <span className="text-xs text-gray-500 leading-none">
                               {messageData.time}
                             </span>
-                          </div>
+                          </div> */}
                         </div>
                       </>
                     ) : (
-                      <>
-                        <div className="flex w-full m-2 space-x-3 max-w-xs  ml-auto justify-end">
+                      <div className="w-full">
+                        <div className="flex  gap-3 justify-end items-start">
                           <div>
-                            <Message messageData={messageData} />
-                            <span className="text-xs text-gray-500 leading-none">
-                              {messageData.time}
-                            </span>
+                            <div className="flex justify-between items-center pt-4">
+                              <div></div>
+                              <p className="text-sm text-FontGray leading-none">
+                                {messageData.time}
+                              </p>
+                              <p className="text-lg text-darkBlack font-semibold leading-none ">
+                                You
+                              </p>
+                            </div>
+                            <div className="pt-3 w-[380px]  overflow-x-hidden">
+                              <Message messageData={messageData} />
+                            </div>
                           </div>
-                          <Badge
-                            anchorOrigin={{
-                              vertical: "top",
-                              horizontal: "right",
-                            }}
-                            variant="plain"
-                            badgeContent={
-                              <Avatar
-                                className="bg-blue-100"
-                                sx={{ "--Avatar-size": "20px" }}
-                              >
-                                {messageData.type === "call" ? (
-                                  <IoCall className="w-3 h-3 text-[#1066cf]" />
-                                ) : messageData.type == "sms" ? (
-                                  <MdSms className="w-3 h-3 text-[#1066cf]" />
-                                ) : (
-                                  <MdEmail className="w-3 h-3 text-[#1066cf]" />
-                                )}
-                              </Avatar>
-                            }
-                            badgeInset="3%"
-                            sx={{ "--Badge-paddingX": "0px" }}
-                          >
-                            <Avatar
-                              size="lg"
-                              className="pt-1 font-semibold text-white bg-red-600"
+                          <div>
+                            <div className="avatar-group -space-x-6">
+                              <div className="avatar">
+                                <div className="w-12">
+                                  <Image
+                                    src={require("../../../public/dummy/dummy-doc.png")}
+                                    width={80}
+                                    height={80}
+                                    alt=""
+                                    className="rounded-full"
+                                  />{" "}
+                                </div>
+                              </div>
+                            </div>
+                            {/* <Badge
+                              anchorOrigin={{
+                                vertical: "top",
+                                horizontal: "right",
+                              }}
+                              variant="plain"
+                              badgeContent={
+                                <Avatar
+                                  className="bg-blue-100"
+                                  sx={{ "--Avatar-size": "20px" }}
+                                >
+                                  {messageData.type === "call" ? (
+                                    <IoCall className="w-3 h-3 text-[#1066cf]" />
+                                  ) : messageData.type == "sms" ? (
+                                    <MdSms className="w-3 h-3 text-[#1066cf]" />
+                                  ) : (
+                                    <MdEmail className="w-3 h-3 text-[#1066cf]" />
+                                  )}
+                                </Avatar>
+                              }
+                              badgeInset="3%"
+                              sx={{ "--Badge-paddingX": "0px" }}
                             >
-                              LU
-                            </Avatar>
-                          </Badge>
+                              <Avatar
+                                size="lg"
+                                className="pt-1 font-semibold text-white bg-red-600"
+                              >
+                                LU
+                              </Avatar>
+                            </Badge> */}
+                          </div>
                         </div>
-                      </>
+                      </div>
                     )}
                   </>
                 ))}

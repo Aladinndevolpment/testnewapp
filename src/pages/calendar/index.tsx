@@ -25,6 +25,7 @@ import AppointmentDetails from "@/components/Calendar/AppointmentDetails";
 import Filter from "@/components/Calendar/Filter";
 import resourceTimeGridPlugin from "@fullcalendar/resource-timegrid";
 import resourceTimelinePlugin from "@fullcalendar/resource-timeline";
+import Link from "next/link";
 
 export default function Calendar() {
   const [title, setTitle] = useRecoilState<any>(titleState);
@@ -376,11 +377,11 @@ export default function Calendar() {
         onClose={() => setModalOpen(false)}
         visibility={modalOpen}
       />
-      <div className="  h-full md:h-auto bg-mainBg overflow-hidden">
+      <div className="md:h-auto bg-mainBg overflow-hidden relative">
         <header className="block w-full mb-5 h-32 lg:h-16 items-center relative z-10 border-b-[1px] border-lightGray">
           <div className="flex flex-center flex-col h-full justify-center lg:mx-auto relative  text-white z-10">
             <div className="flex flex-wrap lg:flex-nowrap justify-center items-center  relative w-full sm:ml-0 sm:pr-2  ">
-              <div className="flex justify-between items-center  w-full md:w-[35%] pl-2 pr-5 py-1.5 rounded-md">
+              <div className="  flex justify-between items-center  w-full md:w-[45%] pl-2 pr-5 py-1.5 rounded-md">
                 <div className={`flex items-center pl-5  w-full justify-start`}>
                   <CalendarDaysIcon className="h-8 w-8 text-newBlue" />
                   <p
@@ -389,7 +390,7 @@ export default function Calendar() {
                     Calendar
                   </p>
                   <div className="lg:ml-12 flex justify-between items-center  py-1 rounded-md w-full lg:w-[35%]">
-                    {/* <button
+                    <button
                       onClick={handleWeekResourceTimeline}
                       className={`w-full lg:w-auto ${
                         currentView == "resourceTimeline"
@@ -397,8 +398,8 @@ export default function Calendar() {
                           : "   text-FontGray"
                       }  px-4 py-3  duration-1000 text-[14px] font-medium text-center`}
                     >
-                      ListHoriz
-                    </button> */}
+                      List
+                    </button>
                     <button
                       onClick={handleDayView}
                       className={`w-full lg:w-auto ${
@@ -407,7 +408,7 @@ export default function Calendar() {
                           : "   text-FontGray"
                       }  px-4 py-3  duration-1000 text-[14px] font-medium text-center`}
                     >
-                      List
+                      Day
                     </button>
                     <button
                       onClick={handleMonthView}
@@ -515,16 +516,19 @@ export default function Calendar() {
                 </div>
               </div>
 
-              <div className="mt-3 lg:mt-0  ml-2 items-between px-3 py-2 bg-white border-[1px] border-lightGray h-10 rounded-sm shadow-sm flex justify-center items-center">
-                <AdjustmentsHorizontalIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-1000" />
-                <p className={`ml-2 text-FontGray text-[15px] font-medium`}>
-                  Schedule setting
-                </p>
-              </div>
+              <Link href="/integrations">
+                <div className="mt-3 lg:mt-0  ml-2 items-between px-3 py-2 bg-white border-[1px] border-lightGray h-10 rounded-sm shadow-sm flex justify-center items-center">
+                  <AdjustmentsHorizontalIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-1000" />
+                  <p className={`ml-2 text-FontGray text-[15px] font-medium`}>
+                    Schedule setting
+                  </p>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
-
+      </div>
+      <div className="bg-mainBg h-full md:h-auto">
         {currentView && (
           <FullCalendar
             plugins={[

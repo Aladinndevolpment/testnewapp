@@ -44,7 +44,8 @@ export default function HeaderComponent() {
               </div>
 
               <p
-                className={`lg:w-[30%] text-right mr-4 md:mr-0 ml-3 capitalize text-gray-300   text-base font-semibold  tracking-wide  `}
+                contentEditable={true}
+                className={`lg:w-[30%] text-center mr-0 md:mr-0 ml-6 capitalize text-gray-300   text-base font-semibold  tracking-wide  `}
               >
                 Contact based
               </p>

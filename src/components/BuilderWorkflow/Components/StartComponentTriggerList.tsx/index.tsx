@@ -22,7 +22,6 @@ export default function StartComponentTriggerList({
               setIsOpenModal(false);
             }}
             updateData={(item: any) => {
-              console.log(item);
               setIsOpenModal(false);
               updateData(item);
             }}
@@ -31,7 +30,7 @@ export default function StartComponentTriggerList({
         }
       />
 
-      <div className=" py-3  ">
+      <div className={` ${isOpenModal ? "hidden" : "block"}  py-3`}>
         <div className="flex justify-between items-center border-b-[1px] border-gray-300 pb-2 px-3 ">
           <p className="  text-lg text-dark font-medium">Triggers </p>
           <button onClick={onClose}>

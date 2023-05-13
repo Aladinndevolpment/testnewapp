@@ -15,7 +15,7 @@ html{
 }
  
 body {
-  overflow-x: hidden;
+  overflow: hidden;
   font-family: 'Source Sans Pro', sans-serif;
 }
 h1,
@@ -139,7 +139,7 @@ body::-webkit-scrollbar-thumb:hover,
 
 .fc-v-event {
   background-color: var(--fc-event-bg-color);
-  border: 1px solid transparent !important;
+  border: 1px solid #d8d8d8 !important;
   display: block;
 }
 .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
@@ -300,3 +300,40 @@ color: #338aff;
 white-space: pre-line;
 
 }
+
+
+.react-datepicker-wrapper input 
+{
+  background: #ffffff !important;
+  padding: 8px 7px 8px 8px !important;
+  border: 2px solid #38A0DB !important;
+  border-radius: 5px;
+
+} 
+
+
+.react-datepicker-wrapper input:focus
+{
+  border: 2px solid #38A0DB !important; 
+  outline: none !important;
+} 
+
+
+.react-datepicker__header { 
+  background-color: #F1F5F9  !important;
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: #0C2D3F  !important;
+}
+ 
+
+.react-datepicker__current-month {
+   color: #656667  !important;
+   font-size: 15px  !important;
+}
+
+.react-datepicker__day-name{
+  color: #9D9E9F   !important; 
+}
+
