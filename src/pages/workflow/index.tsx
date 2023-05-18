@@ -1,5 +1,7 @@
+import WorkFlowTable from "@/components/Automations/TabsComponents/WorkFlowTable";
 import Link from "next/link";
 import React, { useState } from "react";
+import { BsDiagram2Fill } from "react-icons/bs";
 
 export default function Workflow() {
   const [DropDownRole, SetDropDownRole] = useState("");
@@ -31,20 +33,45 @@ export default function Workflow() {
     },
   ];
 
+  const innerTabs = [
+    {
+      id: "tab1",
+      label: "All Workflow",
+      content: <WorkFlowTable />,
+    },
+    {
+      id: "tab2",
+      label: "Workflow with error",
+      content: " ",
+    },
+    {
+      id: "tab3",
+      label: "Unused Workflow",
+      content: " ",
+    },
+    {
+      id: "tab4",
+      label: "Recently Delete",
+      content: " ",
+    },
+  ];
   const [activeTab, setActiveTab] = useState<any>(tabs[3].id);
+  const [activeInnerTab, setActiveInnerTab] = useState(tabs[0].id);
+
+  const [activeToggle, setActiveToggle] = useState<any>(true);
 
   return (
     <div>
-      <div className="w-full">
-        <div className="border-b border-grey/40 px-9 pt-5">
-          <ul className=" flex  justify-start items-center overflow-auto scrollbar-hide">
+      <div className="bg-white w-full">
+        <div className="border-b border-grey/40 px-1 pt-4">
+          <ul className="lg:px-3 flex  justify-start items-center overflow-auto scrollbar-hide">
             {tabs.map((tab: any) => (
-              <li key={tab.id} className="px-5 ">
+              <li key={tab.id} className="px-3 lg:px-5 ">
                 <button
-                  className={` mt-4 md:pb-4 transition-all duration-1000 text-sm lg:text-sm md:text-base ${
+                  className={`  md:pb-4 transition-all duration-1000 text-sm lg:text-sm md:text-base ${
                     activeTab === tab.id
                       ? "border-b-[4px] border-secondary text-secondary font-medium"
-                      : "text-gray-500 font-medium border-b-[4px] border-transparent"
+                      : "text-gray-600 font-semibold border-b-[4px] border-transparent text-base"
                   }`}
                   onClick={() => setActiveTab(tab.id)}
                 >
@@ -54,254 +81,77 @@ export default function Workflow() {
             ))}
           </ul>
         </div>
-        <div className="px-9 py-5 h-[calc(100vh-165px)] overflow-auto">
-          <div className="flex justify-start items-start">
-            <h1 className="text-[32px] font-medium mb-8"> Automation </h1>
-            <div className="ml-5">
-              <button className="bg-white py-2 px-5 rouned"> Workflow </button>
-              <button> Sequence </button>
-            </div>
-          </div>
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-            <div className="flex flex-wrap gap-4 items-center">
-              <div className="relative text-grey">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="absolute top-3 left-2"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  viewBox="0 0 256 256"
-                >
-                  <path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z"></path>
-                </svg>
-                <select className="form-select pl-8 pr-8 py-[9px] rounded-md focus:ring-0 focus:border-gray-300  text-sm border border-gray-300">
-                  <option>Date created</option>
-                </select>
-              </div>
-              <div className="w-px bg-grey/20 h-10 hidden sm:block"></div>
-              <div className="flex flex-wrap items-center gap-2">
-                <button
-                  type="button"
-                  className="text-base border border-[#FF7043] text-[#FF7043] py-[7px] px-4 rounded-md"
-                >
-                  All
-                </button>
-                <button
-                  type="button"
-                  className="text-base border flex items-center border-grey/40 text-grey py-[7px] px-4 rounded-md hover:border-[#FF7043] hover:text-[#FF7043] transition-all duration-300"
-                >
-                  <div className="h-1 w-1 bg-green-600 rounded-full mr-2"></div>
-                  Active
-                </button>
-                <button
-                  type="button"
-                  className="text-base border flex items-center border-grey/40 text-grey py-[7px] px-4 rounded-md hover:border-[#FF7043] hover:text-[#FF7043] transition-all duration-300"
-                >
-                  <div className="h-1 w-1 bg-grey rounded-full mr-2"></div>
-                  Inactive
-                </button>
-              </div>
-            </div>
-            <button className="btn-gray bg-[#FF7043] border border-[#FF7043] hover:bg-transparent hover:text-[#FF7043] px-2.5 py-[9px] flex items-center gap-3 text-sm text-white">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                viewBox="0 0 256 256"
+        <div className="  h-[calc(100vh-165px)] overflow-y-scroll scrollbar-hide overflow-auto mt-2 lg:mt-5">
+          <div className="pl-3 lg:px-6 py-2 flex justify-start items-start">
+            <p
+              className={`ml-3 capitalize text-dark text-2xl font-semibold  tracking-wide  `}
+            >
+              Automation
+            </p>
+            <div className="mb-4 ml-4  bg-gray-200 rounded-lg mr-4 flex justify-between items-center">
+              <div
+                onClick={() => setActiveToggle(!activeToggle)}
+                className={`py-2 px-4 rounded-md duration-1000 ${
+                  activeToggle
+                    ? "bg-white text-darkBlack shadow-md shadow-gray-400 "
+                    : "bg-gray-200 text-gray-500"
+                }   `}
               >
-                <path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
-              </svg>
-              New Dashboard
-            </button>
-          </div>
-          <div className="border border-b-0 rounded-b-none border-grey/40 rounded-md">
-            <div className="p-5 flex flex-wrap items-center justify-between gap-3">
-              <div className="w-full sm:w-80 relative text-black">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="absolute text-grey top-2.5 left-3"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  viewBox="0 0 256 256"
-                >
-                  <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
-                </svg>
-                <input
-                  type="search"
-                  className="form-input text-sm rounded-md border border-grey/40 focus:border-grey/40 focus:ring-0 pl-10 bg-white/10 w-full"
-                  placeholder="Search blog"
-                ></input>
+                Workflow
               </div>
-              <p>
-                Showing{" "}
-                <select className="form-select py-1 rounded-md focus:ring-0 focus:border-gray-300  text-sm border border-gray-300">
-                  <option>1</option>
-                  <option>2</option>
-                </select>{" "}
-                of 5 results
+              <div
+                onClick={() => setActiveToggle(!activeToggle)}
+                className={`py-2 px-4 rounded-md duration-1000 ${
+                  activeToggle
+                    ? "bg-gray-200 text-gray-500"
+                    : "bg-white text-darkBlack shadow-md shadow-gray-400 "
+                }`}
+              >
+                Sequence
+              </div>
+            </div>
+          </div>
+
+          <div className="px-5 lg:px-8 mb-5 w-full mt-1">
+            <div className="px-5 bg-gradient-to-r from-[#F4B09F]  via-[#f1c0b8] to-[#FBEAE6] rounded-lg flex justify-start items-center py-3 ">
+              <div className="mr-4 bg-white h-8 w-16 lg:h-8 lg:w-8 rounded-full flex justify-center items-center">
+                <BsDiagram2Fill className="h-5 w-5 text-secondary  " />
+              </div>
+              <p className="text-gray-900 font-semibold text-xs md:text-sm">
+                Workflow rules allow you to perform certain automatic actions on
+                specific records based on filter criteria.
               </p>
             </div>
           </div>
-          <div className="grid grid-flow-col border border-grey/40 rounded-md rounded-t-none">
-            <div className="overflow-auto">
-              <table className="text-left text-sm font-normal w-full min-w-[1024px]">
-                <thead>
-                  <tr>
-                    <th className="p-4 bg-grey/5 border-r border-b w-[52px] font-medium border-grey/40">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox h-5 w-5 focus:ring-0 border-grey/40 rounded-md focus:outline-offset-0 focus:shadow-none focus:ring-offset-0"
-                      />
-                    </th>
-                    <th className="p-4 bg-grey/5 border-r border-b font-medium border-grey/40">
-                      Dashboard Name
-                    </th>
-                    <th className="p-4 bg-grey/5 border-r border-b font-medium border-grey/40">
-                      Status
-                    </th>
-                    <th className="p-4 bg-grey/5 border-r border-b font-medium border-grey/40">
-                      Owner
-                    </th>
-                    <th className="p-4 bg-grey/5 border-r border-b font-medium border-grey/40">
-                      Assigned
-                    </th>
-                    <th className="p-4 bg-grey/5 border-r border-b font-medium border-grey/40">
-                      Create Date
-                    </th>
-                    <th className="p-4 bg-grey/5 border-r border-b font-medium border-grey/40">
-                      Last update
-                    </th>
-                    <th className="p-4 bg-grey/5 border-b font-medium border-grey/40"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className="p-4 border-r border-b w-[52px] font-medium border-grey/40">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox h-5 w-5 focus:ring-0 border-grey/40 rounded-md focus:outline-offset-0 focus:shadow-none focus:ring-offset-0"
-                      />
-                    </td>
-                    <td className="p-4 border-r border-b border-grey/40">
-                      Sales
-                    </td>
-                    <td className="p-4 border-r border-b border-grey/40">
-                      <div className="bg-green-100 border border-green-600 text-green-600 py-1 px-3 rounded-full items-center inline-flex">
-                        <div className="h-1 w-1 bg-green-600 rounded-full mr-2"></div>
-                        Published
-                      </div>
-                    </td>
-                    <td className="p-4 border-r border-b border-grey/40">
-                      Darlene Robertson
-                    </td>
-                    <td className="p-4 border-r border-b border-grey/40">
-                      Everyone
-                    </td>
-                    <td className="p-4 border-r border-b border-grey/40">
-                      <div className="flex items-center gap-1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          fill="currentColor"
-                          viewBox="0 0 256 256"
-                        >
-                          <path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z"></path>
-                        </svg>
-                        Jan 9, 2022
-                      </div>
-                    </td>
-                    <td className="p-4 border-r border-b border-grey/40">
-                      <div className="flex items-center gap-1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          fill="currentColor"
-                          viewBox="0 0 256 256"
-                        >
-                          <path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z"></path>
-                        </svg>
-                        Jan 9, 2022
-                      </div>
-                    </td>
-                    <td className="p-4 border-b font-medium border-grey/40">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="mx-auto"
-                        width="20"
-                        height="20"
-                        fill="currentColor"
-                        viewBox="0 0 256 256"
-                      >
-                        <path d="M140,128a12,12,0,1,1-12-12A12,12,0,0,1,140,128Zm56-12a12,12,0,1,0,12,12A12,12,0,0,0,196,116ZM60,116a12,12,0,1,0,12,12A12,12,0,0,0,60,116Z"></path>
-                      </svg>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 border-r w-[52px] font-medium border-grey/40">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox h-5 w-5 focus:ring-0 border-grey/40 rounded-md focus:outline-offset-0 focus:shadow-none focus:ring-offset-0"
-                      />
-                    </td>
-                    <td className="p-4 border-r border-grey/40">Sales</td>
-                    <td className="p-4 border-r border-grey/40">
-                      <div className="bg-green-100 border border-green-600 text-green-600 py-1 px-3 rounded-full items-center inline-flex">
-                        <div className="h-1 w-1 bg-green-600 rounded-full mr-2"></div>
-                        Published
-                      </div>
-                    </td>
-                    <td className="p-4 border-r border-grey/40">
-                      Darlene Robertson
-                    </td>
-                    <td className="p-4 border-r border-grey/40">Everyone</td>
-                    <td className="p-4 border-r border-grey/40">
-                      <div className="flex items-center gap-1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          fill="currentColor"
-                          viewBox="0 0 256 256"
-                        >
-                          <path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z"></path>
-                        </svg>
-                        Jan 9, 2022
-                      </div>
-                    </td>
-                    <td className="p-4 border-r border-grey/40">
-                      <div className="flex items-center gap-1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          fill="currentColor"
-                          viewBox="0 0 256 256"
-                        >
-                          <path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z"></path>
-                        </svg>
-                        Jan 9, 2022
-                      </div>
-                    </td>
-                    <td className="p-4 font-medium border-grey/40">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="mx-auto"
-                        width="20"
-                        height="20"
-                        fill="currentColor"
-                        viewBox="0 0 256 256"
-                      >
-                        <path d="M140,128a12,12,0,1,1-12-12A12,12,0,0,1,140,128Zm56-12a12,12,0,1,0,12,12A12,12,0,0,0,196,116ZM60,116a12,12,0,1,0,12,12A12,12,0,0,0,60,116Z"></path>
-                      </svg>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+
+          <div className="overflow-hidden ">
+            <ul className="  lg:px-8 border-b-[1px] border-[#dfdfdf] pt-4 flex justify-start items-center overflow-auto scrollbar-hide gap-6 bg-white  ">
+              {innerTabs.map((tab: any) => (
+                <li key={tab.id}>
+                  <button
+                    className={`px-3 lg:px-5  transition-all duration-1000 font-semibold text-[11px] md:text-base ${
+                      activeInnerTab === tab.id
+                        ? "border-b-[4px] border-gray-800 text-gray-800 pb-3 "
+                        : "text-gray-500 pb-4"
+                    }`}
+                    onClick={() => setActiveInnerTab(tab.id)}
+                  >
+                    {tab.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <div className="  bg-white">
+              {innerTabs.map((tab: any) => (
+                <div
+                  key={tab.id}
+                  className={`shadow-md transition-all duration-1000 rounded-md  ${
+                    activeInnerTab === tab.id ? "block" : " text-black hidden"
+                  } `}
+                >
+                  {tab.content}
+                </div>
+              ))}
             </div>
           </div>
         </div>

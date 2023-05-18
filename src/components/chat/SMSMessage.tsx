@@ -85,7 +85,7 @@ const SMSMessage = ({ handleChange, onClose }: any) => {
 
   return (
     <div>
-      <div className="bg-white h-[30vh] w-full px-5 pt-2">
+      <div className="bg-white h-[30vh]  xl:h-[28vh] 2xl:h-[18vh] w-full px-5 pt-2">
         <div className="w-full relative ">
           <textarea
             value={content.replace(/<\/?[^>]+(>|$)/g, "")} // Remove HTML tags

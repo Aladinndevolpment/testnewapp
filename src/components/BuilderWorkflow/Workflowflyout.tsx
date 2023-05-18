@@ -19,7 +19,7 @@ export default function WorkflowFlyout({
       }`}
     >
       <div className="absolute h-full w-full z-40 " onClick={onClose}></div>
-      <div className="bg-white w-full md:w-[50%] lg:w-[30%] absolute right-0 min-h-full h-auto z-50 overflow-y-scroll scrollbar-hide">
+      <div className="bg-white w-full md:w-[50%] lg:w-[40%] absolute right-0 min-h-full h-auto z-50 overflow-y-scroll scrollbar-hide">
         {renderData}
       </div>
     </div>

@@ -4,15 +4,18 @@ import {
   Bars4Icon,
   BuildingOfficeIcon,
   ChartBarIcon,
+  GlobeAltIcon,
   IdentificationIcon,
   InboxStackIcon,
   MapIcon,
+  PhoneArrowDownLeftIcon,
   SpeakerWaveIcon,
   Square3Stack3DIcon,
   TagIcon,
   UserCircleIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
+import { BsKanbanFill } from "react-icons/bs";
 import { MdSpaceDashboard } from "react-icons/md";
 
 const data = [
@@ -71,34 +74,13 @@ const data = [
         link: "/calendar",
       },
       {
-        title: "Fields",
+        title: "Custom Fields",
         icon: <Square3Stack3DIcon className="h-5 w-5 text-FontGray" />,
         link: "#",
       },
       {
-        title: "Fields Mapping",
+        title: "Custom Values",
         icon: <InboxStackIcon className="h-5 w-5 text-FontGray" />,
-        link: "#",
-      },
-      {
-        title: "Spotlight templated",
-        icon: <SpeakerWaveIcon className="h-5 w-5 text-FontGray" />,
-        link: "#",
-      },
-
-      {
-        title: "Contact Grade Portal",
-        icon: <IdentificationIcon className="h-5 w-5 text-FontGray" />,
-        link: "#",
-      },
-      {
-        title: "Account Grade Portal",
-        icon: <BuildingOfficeIcon className="h-5 w-5 text-FontGray" />,
-        link: "#",
-      },
-      {
-        title: "Journeys",
-        icon: <MapIcon className="h-5 w-5 text-FontGray" />,
         link: "#",
       },
       {
@@ -107,8 +89,18 @@ const data = [
         link: "#",
       },
       {
-        title: "Triggers",
-        icon: <ArrowsRightLeftIcon className="h-5 w-5 text-FontGray" />,
+        title: "Pipeline",
+        icon: <BsKanbanFill className="h-5 w-5 text-FontGray" />,
+        link: "#",
+      },
+      {
+        title: "Phone Number",
+        icon: <PhoneArrowDownLeftIcon className="h-5 w-5 text-FontGray" />,
+        link: "#",
+      },
+      {
+        title: "Domains",
+        icon: <GlobeAltIcon className="h-5 w-5 text-FontGray" />,
         link: "#",
       },
     ],

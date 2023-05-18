@@ -32,7 +32,7 @@ export default function ChatSidebar({
 
   return (
     <>
-      <div className="border-b border-b-gray-300 pb-3 h-[14.5%] px-4">
+      <div className="border-b border-b-gray-300 pb-3  px-4">
         <div>
           <TextInput
             placeholder="Search..."
@@ -43,7 +43,7 @@ export default function ChatSidebar({
             onChange={(e) => setSearchString(e.target.value)}
           />
         </div>
-        <div className="w-full flex justify-between mt-3">
+        <div className="w-full flex justify-between mt-2.5">
           {/* <div className="font-medium flex items-center gap-2">
             <span className="text-sm">All Status</span>
             <ChevronDownIcon className="w-4 h-4" />

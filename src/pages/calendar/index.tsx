@@ -59,7 +59,6 @@ export default function Calendar() {
   }, []);
 
   //Resources
-
   const resources = [
     {
       id: "123",
@@ -222,8 +221,8 @@ export default function Calendar() {
   }
 
   function handleSelect(arg: any) {
+    console.log("arg", arg);
     const title = arg.patient.name;
-    console.log(arg?.resource?._resource?.id);
     if (title) {
       const newEvent = {
         title: title,
@@ -378,9 +377,9 @@ export default function Calendar() {
         visibility={modalOpen}
       />
       <div className="md:h-auto bg-mainBg overflow-hidden relative">
-        <header className="block w-full mb-5 h-32 lg:h-16 items-center relative z-10 border-b-[1px] border-lightGray">
-          <div className="flex flex-center flex-col h-full justify-center lg:mx-auto relative  text-white z-10">
-            <div className="flex flex-wrap lg:flex-nowrap justify-center items-center  relative w-full sm:ml-0 sm:pr-2  ">
+        <header className="block w-full mb-5 h-16  lg:h-16 items-center relative z-10 border-b-[1px] border-lightGray">
+          <div className="flex flex-center flex-col lg:h-full justify-center lg:mx-auto relative  text-white z-10">
+            <div className="flex  justify-center items-center  relative w-full sm:ml-0 sm:pr-2  ">
               <div className="  flex justify-between items-center  w-full md:w-[45%] pl-2 pr-5 py-1.5 rounded-md">
                 <div className={`flex items-center pl-5  w-full justify-start`}>
                   <CalendarDaysIcon className="h-8 w-8 text-newBlue" />
@@ -435,12 +434,21 @@ export default function Calendar() {
               </div>
 
               <div className=" flex items-center justify-start lg:justify-end pl-5 lg:p-1   w-full md:w-[75%]   ">
-                <Search />
+                {/* <Search /> */}
                 <div className="relative ml-3">
                   <button
-                    // onClick={() =>
-                    //   setIsAddNewEventPopUpVisible(!isAddNewEventPopUpVisible)
-                    // }
+                    onClick={() => {
+                      setIsAddNewEventPopUpVisible(!isAddNewEventPopUpVisible);
+                      setEventArg({
+                        title: "Willy",
+                        subtitle: "SCROLLING",
+                        start: "2023-05-15T11:00:00",
+                        end: "2023-05-15T12:00:00",
+                        backgroundColor: "#fff",
+                        extendedProps: { subtitle: "SCROLLING", category: 1 },
+                        resourceId: "123",
+                      });
+                    }}
                     className="w-8 h-8 mr-2  bg-newBlue font-bold flex justify-center items-center rounded-full  "
                   >
                     <PlusIcon className="h-6 w-6 text-white" />

@@ -480,8 +480,8 @@ export default function AddItem({
                 <div className="flex justify-between items-center pt-3 pb-3 px-2">
                   <div>
                     <p className="text-sm text-black font-medium">
-                      {moment(dateTime.date).format("dddd, DD MMMM")}&nbsp;
-                      {moment(dateTime.time).format("hh:mm A")}
+                      {moment(dateTime.date).format("dddd, DD MMMM")},&nbsp;
+                      {dateTime?.time}
                     </p>
                     <p className="text-xs">
                       Video call with to doctor to consult any issue.
@@ -510,7 +510,19 @@ export default function AddItem({
                   alert("please select a doctor");
                   return false;
                 }
-                onSave({ ...eventArg, patient: selectedPatient });
+                console.log(eventArg);
+                onSave({
+                  ...eventArg,
+                  patient: selectedPatient,
+                  // start: `${moment(dateTime.date).format("yyyy-mm-d")}T${
+                  //   dateTime?.time
+                  // }`,
+                  // end: `${moment(dateTime.date).format("yyyy-mm-d")}T${
+                  //   dateTime?.time
+                  // }`,
+                  start: moment(dateTime.date).format("yyyy-mm-DDThh:mm:ss"),
+                  end: moment(dateTime.date).format("yyyy-mm-DDThh:mm:ss"),
+                });
               }}
             >
               Save

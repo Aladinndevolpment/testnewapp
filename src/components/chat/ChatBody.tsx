@@ -1,12 +1,6 @@
 import EmailMessage from "./EmailMessage";
 import SMSMessage from "./SMSMessage";
-import {
-  MapPinIcon,
-  EllipsisHorizontalIcon,
-  CalendarDaysIcon,
-  PhoneIcon,
-  ClipboardDocumentCheckIcon,
-} from "@heroicons/react/24/outline";
+import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -14,9 +8,7 @@ import DropDownData from "./DropDownData";
 import AudioPlayer, { RHAP_UI } from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import { MdFileDownload, MdSms, MdEmail } from "react-icons/md";
-import { IoCall } from "react-icons/io5";
-import Avatar from "@mui/joy/Avatar";
-import Badge from "@mui/joy/Badge";
+
 import { TfiAngleDown, TfiAngleUp } from "react-icons/tfi";
 import moment from "moment";
 
@@ -321,7 +313,7 @@ export default function ChatBody({
       } md:block`}
     >
       <div
-        className={`border-b border-b-gray-300 h-[18%] md:h-[13%] px-4 flex flex-col justify-center md:justify-start`}
+        className={`border-b border-b-gray-300 pt-2 pb-2 px-4 flex flex-col justify-center md:justify-start`}
       >
         <div className="flex flex-wrap justify-between items-center">
           <div className="mb-1">
@@ -356,7 +348,17 @@ export default function ChatBody({
           </div>
         </div>
       </div>
-      <div className="h-[74%] md:h-[80%] overflow-y-scroll pb-2 w-full pt-1 scrollbar-hide">
+      <div
+        className={`
+       ${
+         messageType == "sms"
+           ? "h-[85%] md:h-[72%] lg:h-[50%]  "
+           : messageType == "email"
+           ? "h-[85%] md:h-[72%] lg:h-[30%]  "
+           : "h-[85%] md:h-[72%] lg:h-[80%]  "
+       }
+        overflow-y-scroll  pb-[10%] w-full pt-1 scrollbar-hide `}
+      >
         <div className="flex-1 overflow-y-auto p-2">
           {messages.map((message, index) => (
             <>
@@ -400,7 +402,7 @@ export default function ChatBody({
                             <div className="avatar">
                               <div className="w-12">
                                 <Image
-                                  src={require("../../../public/dummy/dummy-doc.png")}
+                                  src={require("../../../public/images/avatar/yellowdog.jpg")}
                                   width={80}
                                   height={80}
                                   alt=""
@@ -419,7 +421,7 @@ export default function ChatBody({
                               </p>
                               <div></div>
                             </div>
-                            <div className="pt-3  w-[380px] overflow-x-hidden">
+                            <div className="pt-3  w-[250px] lg:w-[380px] overflow-x-hidden">
                               <Message messageData={messageData} />
                             </div>
                           </div>
@@ -444,7 +446,7 @@ export default function ChatBody({
                                 You
                               </p>
                             </div>
-                            <div className="pt-3 w-[380px]  overflow-x-hidden">
+                            <div className="pt-3  w-[250px] lg:w-[380px] overflow-x-hidden">
                               <Message messageData={messageData} />
                             </div>
                           </div>
@@ -453,7 +455,7 @@ export default function ChatBody({
                               <div className="avatar">
                                 <div className="w-12">
                                   <Image
-                                    src={require("../../../public/dummy/dummy-doc.png")}
+                                    src={require("../../../public/images/avatar/blackdog.jpg")}
                                     width={80}
                                     height={80}
                                     alt=""
@@ -504,7 +506,7 @@ export default function ChatBody({
         </div>
         <div ref={messagesEndRef} />
       </div>
-      <div className="h-[26%] md:h-[8%] flex items-end scrollbar-hide bg-white">
+      <div className="h-[5%]  md:h-[8%] flex items-end scrollbar-hide bg-white">
         <div className="w-full pb-3  flex  justify-start items-center border-[1px] border-lightGray px-6 bg-white">
           {/* <div className="flex  justify-between items-center px-6 "> */}
           <div className="w-full pt-4  flex  justify-start items-center  ">
@@ -548,14 +550,14 @@ export default function ChatBody({
 
         {chatMailOpen && (
           <div
-            className={`h-68  bottom-0 w-full  shadow-md rounded-md   pt-3 pb-2   overflow-y-scroll scrollbar-hide absolute    z-40  ease-in-out duration-300 ${
+            className={`h-68  bottom-0 w-full  shadow-md rounded-md  pt-3 pb-2   overflow-y-scroll scrollbar-hide absolute    z-40  ease-in-out duration-300 ${
               chatMailOpen
                 ? "translate-y-[0%] opacity-1"
                 : "translate-y-[140%] opacity-0"
             }`}
           >
             <div className="  w-full bg-white">
-              <div className="flex  justify-between items-center px-6 ">
+              <div className="flex  justify-between items-center px-6  border-b-[1px] border-lightGray pb-1 mb-2 ">
                 <div className="w-full pt-4  flex  justify-start items-center  ">
                   <button
                     onClick={() => {

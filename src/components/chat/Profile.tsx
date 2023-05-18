@@ -8,6 +8,7 @@ import Image from "next/image";
 import StatusControl from "./StatusControl";
 import TextArea from "../controls/Textarea";
 import DropDownData from "./DropDownData";
+import ContactForm from "./ContactForm";
 
 interface IChatBodyProps {
   chat: any;
@@ -24,7 +25,7 @@ export default function Profile({ chat, visible, onClose }: IChatBodyProps) {
           : "translate-x-[100%] md:translate-x-0"
       } md:block`}
     >
-      <div className="h-full overflow-y-scroll pb-2 w-full pt-1 scrollbar-hide">
+      <div className="h-full overflow-y-scroll pb-2 w-full  scrollbar-hide">
         <div className="flex justify-end px-4">
           <div className="dropdown dropdown-end">
             <label tabIndex={0}>
@@ -43,9 +44,9 @@ export default function Profile({ chat, visible, onClose }: IChatBodyProps) {
         </div>
         <div className="mt-3 flex items-center flex-col">
           <Image
-            src={require("../../../public/dummy/dummy-doc.png")}
-            width={100}
-            height={100}
+            src={require("../../../public/images/avatar/blackdog.jpg")}
+            width={90}
+            height={90}
             alt=""
             className="rounded-full"
           />
@@ -55,7 +56,7 @@ export default function Profile({ chat, visible, onClose }: IChatBodyProps) {
             Applied a week ago.
           </p>
         </div>
-        <div className="px-4 mt-8">
+        {/* <div className="px-4 mt-8">
           <b className="font-medium text-xs text-dark">APPLIED JOBS</b>
           <div className="bg-gray-100 py-2 px-2 rounded-md mt-1">
             <b className="font-semibold text-xs text-dark">
@@ -69,8 +70,8 @@ export default function Profile({ chat, visible, onClose }: IChatBodyProps) {
               </p>
             </div>
           </div>
-        </div>
-        <div className="mt-4 px-4">
+        </div> */}
+        {/* <div className="mt-4 px-4">
           <div className="bg-white py-2 px-2 rounded-md mt-3 ring-1 ring-gray-200">
             <div className="flex justify-between">
               <p className="text-[12px] text-gray-700   font-medium mt-0.5">
@@ -83,10 +84,11 @@ export default function Profile({ chat, visible, onClose }: IChatBodyProps) {
             </div>
             <StatusControl active={2} />
           </div>
-        </div>
-        <div className="border-t border-t-gray-200 mt-8 p-4">
-          <h3 className="text-base font-semibold mt-1">Contact Details</h3>
-          <div className="flex flex-col gap-6 mt-3">
+        </div> */}
+        <div className="border-t border-t-gray-200 mt-4 p-4">
+          <h3 className="text-base font-semibold mt-1 mb-3">Contact Details</h3>
+          <ContactForm />
+          {/* <div className="flex flex-col gap-6 mt-3">
             <div className="flex gap-2 items-center">
               <EnvelopeIcon className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all" />
               <div>
@@ -116,7 +118,7 @@ export default function Profile({ chat, visible, onClose }: IChatBodyProps) {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="border-t border-t-gray-200 mt-4 p-4">
           <h3 className="text-base font-semibold mt-1">Notes</h3>

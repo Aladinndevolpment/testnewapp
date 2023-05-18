@@ -4,7 +4,7 @@ import ChatSidebar from "@/components/chat/Sidebar";
 import { GlobalContext } from "@/layouts/GlobalLayout";
 import { useContext, useState } from "react";
 
-const chatData = [
+export const chatData = [
   {
     name: "Angelina Martin",
     image: "",
@@ -612,7 +612,7 @@ export default function Chat() {
       </header> */}
 
       <div className="w-full h-full flex flex-wrap overflow-x-hidden overflow-hidden">
-        <div className="w-full md:w-[22%] h-full py-4">
+        <div className="w-full md:w-[22%] h-full pt-2 pb-1">
           <ChatSidebar
             chatData={chatData}
             onSelect={(chat) => {
@@ -630,7 +630,7 @@ export default function Chat() {
             onProfileToggle={() => setShowProfile(!showProfile)}
           />
         </div>
-        <div className="w-full md:w-[22%] h-full bg-white py-4">
+        <div className="w-full md:w-[22%] h-full bg-white">
           <Profile
             chat={chatToOpen}
             visible={showProfile}

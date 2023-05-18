@@ -9,10 +9,8 @@ import ConfigForm from "@/components/BuilderWorkflow/ConfigForm";
 import {
   DrawerComponent,
   PopconfirmComponent,
-  PopoverComponent,
 } from "@/components/BuilderWorkflow/antd";
 import StartComponent from "@/components/BuilderWorkflow/Flow/StartComp";
-import TriggerList from "@/components/BuilderWorkflow/Components/TriggerList";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { itemState } from "@/atoms/item";
 import HeaderComponent from "@/components/BuilderWorkflow/Flow/HeaderComponent";
@@ -28,8 +26,6 @@ import {
 import Image from "next/image";
 import ChooseActions from "@/components/BuilderWorkflow/Components/ChooseAction";
 import { startNodeState } from "@/atoms/StartNode";
-import WorkflowFlyout from "@/components/workflow/WorkflowFlyout";
-import { formState } from "@/atoms/form";
 import { offCanvasOpenState } from "@/atoms/offCanvasOpen";
 import { modalItemState } from "@/atoms/modalItem";
 

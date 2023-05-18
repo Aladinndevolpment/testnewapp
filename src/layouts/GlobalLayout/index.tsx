@@ -36,13 +36,13 @@ export default memo(function GlobalLayout({ children }: IAdminLayoutProps) {
           </div>
           <div
             className={`${
-              open ? "hidden md:w-[15%] md:block " : "w-full block md:hidden "
+              open ? "hidden lg:w-[15%] lg:block " : "w-full block lg:hidden "
             }    border-r-[1px] bg-white`}
           >
             <AdminSidebar />
           </div>
           <div
-            className={`${value.open ? " w-full  md:w-[85%]" : "w-full "}  ${
+            className={`${value.open ? " w-full  lg:w-[85%]" : "w-full "}  ${
               router.asPath == "/calendar" ? "h-[100vh]" : null
             } flex flex-col    justify-between items-start`}
           >
