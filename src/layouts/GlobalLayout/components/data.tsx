@@ -52,7 +52,7 @@ const data = [
         iconCustom: <BsKanbanFill className="h-5 w-5" />,
         icon: require("../../../../public/images/layouts/5.svg"),
         activeIcon: require("../../../../public/images/layouts/55.svg"),
-        link: "#",
+        link: "/leads",
       },
       {
         title: "Payments ",

@@ -8,8 +8,18 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import TriggerList from "../TriggerList";
-import AppointmentStatus from "../Forms/Appointments/AppointmentStatus";
-import CustomerBookedAppointment from "../Forms/Appointments/CustomerBookedAppointment";
+import AppointmentStatus from "../Forms/Trigger/Appointments/AppointmentStatus";
+import CustomerBookedAppointment from "../Forms/Trigger/Appointments/CustomerBookedAppointment";
+import BirthdayReminder from "../Forms/Trigger/Contact/BirthdayReminder";
+import ContactChanged from "../Forms/Trigger/Contact/ContactChanged";
+import ContactTag from "../Forms/Trigger/Contact/ContactTag";
+import ContactDND from "../Forms/Trigger/Contact/ContactDND";
+import ContactCreated from "../Forms/Trigger/Contact/ContactCreated";
+import CustomDateReminder from "../Forms/Trigger/Contact/CustomDateReminder";
+import NoteTag from "../Forms/Trigger/Contact/NoteTag";
+import NoteChanged from "../Forms/Trigger/Contact/NoteChanged";
+import TaskReminder from "../Forms/Trigger/Contact/TaskReminder";
+import TaskAdded from "../Forms/Trigger/Contact/TaskAdded";
 
 export default function StartComponentTriggerList({
   onClose,
@@ -65,61 +75,161 @@ export default function StartComponentTriggerList({
           title: "Birthday Reminder",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <BirthdayReminder
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
         {
           title: "Contact Changed",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <ContactChanged
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
         {
           title: "Contact Created",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <ContactCreated
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
         {
           title: "Contact DND",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <ContactDND
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
         {
           title: "Contact Tag",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <ContactTag
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
         {
           title: "Custom Date Reminder",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <CustomDateReminder
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
         {
           title: "Note Added",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <NoteTag
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
         {
           title: "Note Changed",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <NoteChanged
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
         {
           title: "Task Added",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <TaskAdded
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
         {
           title: "Task Reminder",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <TaskReminder
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
       ],
     },
