@@ -20,6 +20,18 @@ import NoteTag from "../Forms/Trigger/Contact/NoteTag";
 import NoteChanged from "../Forms/Trigger/Contact/NoteChanged";
 import TaskReminder from "../Forms/Trigger/Contact/TaskReminder";
 import TaskAdded from "../Forms/Trigger/Contact/TaskAdded";
+import CustomerReplied from "../Forms/Trigger/Contact/CustomerReplied";
+import FormSubmitted from "../Forms/Trigger/Contact/FormSubmitted";
+import OrderFormSubmission from "../Forms/Trigger/Contact/OrderFormSubmission";
+import OrderSubmitted from "../Forms/Trigger/Contact/OrderSubmitted";
+import SurveySubmitted from "../Forms/Trigger/Contact/SurveySubmitted";
+import TriggerValidationError from "../Forms/Trigger/Contact/TriggerValidationError";
+import FacebookLeadForm from "../Forms/Trigger/Facebook/FacebookLeadForm";
+import OpportunityStatusChanged from "../Forms/Trigger/Opportunity/OpportunityStatusChanged";
+import PipelineStatusChanged from "../Forms/Trigger/Opportunity/PipelineStageChanged";
+import StaleOpportunities from "../Forms/Trigger/Opportunity/StaleOpportunities";
+import PaymentReceived from "../Forms/Trigger/Payments/PaymentReceived";
+import Invoice from "../Forms/Trigger/Payments/Invoice";
 
 export default function StartComponentTriggerList({
   onClose,
@@ -240,31 +252,81 @@ export default function StartComponentTriggerList({
           title: "Customer Replied",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <CustomerReplied
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
         {
           title: "Form Submitted",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <FormSubmitted
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
         {
           title: "Order Form Submission",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <OrderFormSubmission
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
         {
           title: "Order Submitted",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <OrderSubmitted
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
         {
           title: "Survey Submit",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <SurveySubmitted
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
         {
           title: "Trigger Link Clicked",
@@ -276,7 +338,17 @@ export default function StartComponentTriggerList({
           title: "Twilio Validation Error",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <TriggerValidationError
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
       ],
     },
@@ -287,13 +359,33 @@ export default function StartComponentTriggerList({
           title: "Call Status",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <TriggerValidationError
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
         {
           title: "Email Events",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <TriggerValidationError
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
       ],
     },
@@ -304,7 +396,17 @@ export default function StartComponentTriggerList({
           title: "Facebook Lead Form Submitted",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <FacebookLeadForm
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
       ],
     },
@@ -315,19 +417,49 @@ export default function StartComponentTriggerList({
           title: "Opportunity Status Changed",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <OpportunityStatusChanged
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
         {
           title: "Pipeline Stage Changed",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <PipelineStatusChanged
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
         {
           title: "Stale Opportunities",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <StaleOpportunities
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
       ],
     },
@@ -338,13 +470,33 @@ export default function StartComponentTriggerList({
           title: "Invoice",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <Invoice
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
         {
           title: "Payment Received",
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
-          form: "",
+          form: (
+            <PaymentReceived
+              onClose={() => {
+                setIsOpenModal(false);
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+              }}
+            />
+          ),
         },
       ],
     },

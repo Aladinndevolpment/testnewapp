@@ -1,31 +1,47 @@
 import GlobalLayout from "@/layouts/GlobalLayout";
 import "@/styles/globals.css";
-import theme from "@/theme";
-import { ThemeProvider } from "@mui/styles";
+import createEmotionCache from "@/utils/createEmotionCache";
 import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import { RecoilRoot } from "recoil";
 
-// import "bootstrap/dist/css/bootstrap.min.css";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { CacheProvider, EmotionCache } from "@emotion/react";
 
-export default function App({ Component, pageProps }: AppProps) {
+const clientSideEmotionCache = createEmotionCache();
+
+const theme = createTheme();
+export interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+}
+
+export default function App({
+  Component,
+  pageProps,
+  emotionCache = clientSideEmotionCache,
+}: MyAppProps) {
   const TopProgressBar = dynamic(
     () => {
       return import("../components/UI/Progress");
     },
     { ssr: false }
   );
+
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <RecoilRoot>
-          <TopProgressBar />
-          <GlobalLayout>
-            <Component {...pageProps} />
-          </GlobalLayout>
-        </RecoilRoot>
-      </ThemeProvider>
+      <CacheProvider value={emotionCache}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <RecoilRoot>
+            <TopProgressBar />
+            <GlobalLayout>
+              <Component {...pageProps} />
+            </GlobalLayout>
+          </RecoilRoot>
+        </ThemeProvider>
+      </CacheProvider>
     </>
   );
 }

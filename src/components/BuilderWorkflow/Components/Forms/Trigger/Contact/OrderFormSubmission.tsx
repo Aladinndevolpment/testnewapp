@@ -26,12 +26,17 @@ const workflowTrigger = [
 
 const appointmentFilter = [
   {
-    title: "Doesn't Have Tag",
-    subContent: [],
+    title: "In/Funnel Website",
+    subContent: [
+      { title: "Bump" },
+      { title: "Optln" },
+      { title: "Sale" },
+      { title: "Upsell" },
+    ],
   },
   {
-    title: "Have Tag",
-    subContent: [],
+    title: "Submission Type",
+    subContent: [{ title: "Form 1" }],
   },
 ];
 
@@ -46,7 +51,7 @@ const MenuProps = {
   },
 };
 
-export default function NoteChanged({ onClose, updateData }: any) {
+export default function OrderFormSubmission({ onClose, updateData }: any) {
   const [state, setState] = useState<any>({
     workflowTrigger: "",
     workflowName: "",
@@ -122,7 +127,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
 
     if (formIsValid) {
       // Form is valid, proceed with submission
-      console.log("Form submitted:", state);
+      console.log("Order Form Submission:", state);
       updateData(state.workflowName);
     }
   };
@@ -139,7 +144,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               Choose a workflow trigger
             </label>
             <Select
-              label="Note Changed"
+              label="Order Form Submission"
               name="workflowTrigger"
               value={state.workflowTrigger}
               onChange={(e) => handleInputChange(e, state.workflowTrigger)}
@@ -148,7 +153,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               className="w-full my-2"
             >
               <MenuItem disabled value="">
-                <em>Note Changed</em>
+                <em>Order Form Submission</em>
               </MenuItem>
               {workflowTrigger.map((option, index) => (
                 <MenuItem key={index} value={option.title}>
@@ -168,7 +173,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               Choose a workflow trigger
             </label>
             <TextField
-              placeholder="Note Changed"
+              placeholder="Order Form Submission"
               variant="outlined"
               type="text"
               id="workflowName"

@@ -5,7 +5,7 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx}',
    ],
   // purge: [],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: "media", // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
@@ -54,7 +54,7 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    require("tailwind-scrollbar-hide"), require('@tailwindcss/line-clamp'),
+    require("tailwind-scrollbar-hide"),
     require("daisyui"),
     
   ],

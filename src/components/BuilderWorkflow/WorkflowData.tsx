@@ -28,6 +28,7 @@ import ChooseActions from "@/components/BuilderWorkflow/Components/ChooseAction"
 import { startNodeState } from "@/atoms/StartNode";
 import { offCanvasOpenState } from "@/atoms/offCanvasOpen";
 import { modalItemState } from "@/atoms/modalItem";
+import { Client, HydrationProvider } from "react-hydration-provider";
 
 const StartNodeDisplay: React.FC = () => {
   const node = useContext(NodeContext);
@@ -140,7 +141,7 @@ const defaultNodes = [
   },
 ];
 
-const NodeForm = () => {
+const WorkflowData = () => {
   const [nodes, setNodes] = useState<INode[]>(defaultNodes);
   const [start, setStart] = useState<string | null>(null);
   const handleChange = (nodes: INode[]) => {
@@ -168,104 +169,90 @@ const NodeForm = () => {
 
   return (
     <>
-      <div className="relative bg-mainBg overflow-hidden  h-full">
-        <HeaderComponent />
-        <div className="relative overflow-hidden scrollbar-hide h-[82%] pb-20 bg-gradient-to-br from-gray-200 to-transparent bg-repeat bg-cover bg-opacity-50 bg-dots overflow-y-scroll">
-          <div className="h-full  w-full mb-52">
-            <div className="px-4 md:px-8 w-full">
-              <div className="bg-gradient-to-r from-[#fdebe8] via-[#fcd4c9] to-[#feece7] rounded-md flex justify-center items-center py-3 mt-5">
-                <TrophyIcon className="h-5 w-5 text-dark mr-2" />
-                <p className="text-dark font-semibold text-xs md:text-sm">
-                  Lets set goal for your workflow first!
-                </p>
-                <p className="text-secondary font-semibold text-xs md:text-sm ml-2">
-                  See your goals
-                </p>
-              </div>
-            </div>
-            <>
-              <div className="flex flex-col fixed top-[38%] md:top-[40%] left-5 lg:left-[21%] z-50">
-                <button
-                  disabled={inDisabled}
-                  onClick={() => ref.current.zoom("in")}
-                  className="bg-gray-200 p-1 rounded shadow"
-                >
-                  <PlusIcon className="w-5 h-5" />
-                </button>
-                <button
-                  disabled={outDisabled}
-                  onClick={() => ref.current.zoom("out")}
-                  className="bg-gray-200 p-1 rounded shadow mt-2"
-                >
-                  <MinusIcon className="w-5 h-5" />
-                </button>
-              </div>
-              <div className="flex flex-col fixed top-[38%] md:top-[40%] right-5 md:right-10 z-50">
-                <button
-                  disabled={undoDisabled}
-                  onClick={() => ref.current.history("undo")}
-                  className={` ${
-                    undoDisabled
-                      ? "bg-gray-100 text-FontGray"
-                      : "bg-gray-300 text-dark"
-                  }   p-1 rounded shadow} `}
-                >
-                  <ArrowUturnLeftIcon className="w-5 h-5" />
-                </button>
-                <button
-                  disabled={redoDisabled}
-                  onClick={() => ref.current.history("redo")}
-                  className={` ${
-                    redoDisabled
-                      ? "bg-gray-100 text-FontGray mt-2"
-                      : "bg-gray-300 text-dark mt-2"
-                  }   p-1 rounded shadow  } `}
-                >
-                  <ArrowPathIcon className="w-5 h-5" />
-                </button>
-              </div>
-            </>
-
-            <div className="  mt-20 lg:mt-0 flex flex-col justify-start items-center">
-              <div className="w-full">
-                <FlowBuilder
-                  ref={ref}
-                  historyTool={{
-                    hidden: true,
-                    max: 5,
-                  }}
-                  nodes={nodes}
-                  onChange={handleChange}
-                  zoomTool={{
-                    hidden: true,
-                    min: 10,
-                    max: 150,
-                    step: 25,
-                  }}
-                  onZoomChange={handleZoomChange}
-                  registerNodes={registerNodes}
-                  DrawerComponent={DrawerComponent}
-                  onHistoryChange={handleHistoryChange}
-                  PopoverComponent={(e) => (
-                    <>
-                      <PopOverComponent event={e} />
-                    </>
-                  )}
-                  PopconfirmComponent={PopconfirmComponent}
-                  //   drawerVisibleWhenAddNode={true}
-                  lineColor="#8f8f8f"
-                  showArrow={true}
-                  arrowIcon={
-                    <Image
-                      src={require("../../../public/images/icons/sortDown.png")}
-                      alt=""
-                    />
-                  }
-                />
-              </div>
-            </div>
-          </div>
+      <>
+        <div className="flex flex-col fixed top-[38%] md:top-[40%] left-5 lg:left-[21%] z-50">
+          <button
+            disabled={inDisabled}
+            onClick={() => ref.current.zoom("in")}
+            className="bg-gray-200 p-1 rounded shadow"
+          >
+            <PlusIcon className="w-5 h-5" />
+          </button>
+          <button
+            disabled={outDisabled}
+            onClick={() => ref.current.zoom("out")}
+            className="bg-gray-200 p-1 rounded shadow mt-2"
+          >
+            <MinusIcon className="w-5 h-5" />
+          </button>
         </div>
+        <div className="flex flex-col fixed top-[38%] md:top-[40%] right-5 md:right-10 z-50">
+          <button
+            disabled={undoDisabled}
+            onClick={() => ref.current.history("undo")}
+            className={` ${
+              undoDisabled
+                ? "bg-gray-100 text-FontGray"
+                : "bg-gray-300 text-dark"
+            }   p-1 rounded shadow} `}
+          >
+            <ArrowUturnLeftIcon className="w-5 h-5" />
+          </button>
+          <button
+            disabled={redoDisabled}
+            onClick={() => ref.current.history("redo")}
+            className={` ${
+              redoDisabled
+                ? "bg-gray-100 text-FontGray mt-2"
+                : "bg-gray-300 text-dark mt-2"
+            }   p-1 rounded shadow  } `}
+          >
+            <ArrowPathIcon className="w-5 h-5" />
+          </button>
+        </div>
+      </>
+
+      <div className="  mt-20 lg:mt-0 flex flex-col justify-start items-center">
+        <HydrationProvider>
+          <Client>
+            <div className="w-full">
+              <FlowBuilder
+                ref={ref}
+                historyTool={{
+                  hidden: true,
+                  max: 5,
+                }}
+                nodes={nodes}
+                onChange={handleChange}
+                zoomTool={{
+                  hidden: true,
+                  min: 10,
+                  max: 150,
+                  step: 25,
+                }}
+                onZoomChange={handleZoomChange}
+                registerNodes={registerNodes}
+                DrawerComponent={DrawerComponent}
+                onHistoryChange={handleHistoryChange}
+                PopoverComponent={(e) => (
+                  <>
+                    <PopOverComponent event={e} />
+                  </>
+                )}
+                PopconfirmComponent={PopconfirmComponent}
+                //   drawerVisibleWhenAddNode={true}
+                lineColor="#8f8f8f"
+                showArrow={true}
+                arrowIcon={
+                  <Image
+                    src={require("../../../public/images/icons/sortDown.png")}
+                    alt=""
+                  />
+                }
+              />
+            </div>
+          </Client>
+        </HydrationProvider>
       </div>
     </>
   );
@@ -325,4 +312,4 @@ function PopOverComponent({ event }: any) {
   );
 }
 
-export default NodeForm;
+export default WorkflowData;

@@ -26,12 +26,46 @@ const workflowTrigger = [
 
 const appointmentFilter = [
   {
-    title: "Doesn't Have Tag",
+    title: "Hash Tag",
     subContent: [],
   },
   {
-    title: "Have Tag",
+    title: "In pipeline",
     subContent: [],
+  },
+  {
+    title: "Moved from status",
+    subContent: [
+      {
+        title: "Abandoned",
+      },
+      {
+        title: "Lost",
+      },
+      {
+        title: "Open",
+      },
+      {
+        title: "Won",
+      },
+    ],
+  },
+  {
+    title: "Moved to status",
+    subContent: [
+      {
+        title: "Abandoned",
+      },
+      {
+        title: "Lost",
+      },
+      {
+        title: "Open",
+      },
+      {
+        title: "Won",
+      },
+    ],
   },
 ];
 
@@ -46,7 +80,7 @@ const MenuProps = {
   },
 };
 
-export default function NoteChanged({ onClose, updateData }: any) {
+export default function OpportunityStatusChanged({ onClose, updateData }: any) {
   const [state, setState] = useState<any>({
     workflowTrigger: "",
     workflowName: "",
@@ -122,7 +156,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
 
     if (formIsValid) {
       // Form is valid, proceed with submission
-      console.log("Form submitted:", state);
+      console.log("Opportunity Status Changed:", state);
       updateData(state.workflowName);
     }
   };
@@ -139,7 +173,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               Choose a workflow trigger
             </label>
             <Select
-              label="Note Changed"
+              label="Opportunity Status Changed"
               name="workflowTrigger"
               value={state.workflowTrigger}
               onChange={(e) => handleInputChange(e, state.workflowTrigger)}
@@ -148,7 +182,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               className="w-full my-2"
             >
               <MenuItem disabled value="">
-                <em>Note Changed</em>
+                <em>Opportunity Status Changed</em>
               </MenuItem>
               {workflowTrigger.map((option, index) => (
                 <MenuItem key={index} value={option.title}>
@@ -168,7 +202,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               Choose a workflow trigger
             </label>
             <TextField
-              placeholder="Note Changed"
+              placeholder="Opportunity Status Changed"
               variant="outlined"
               type="text"
               id="workflowName"

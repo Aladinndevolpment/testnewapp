@@ -26,11 +26,19 @@ const workflowTrigger = [
 
 const appointmentFilter = [
   {
-    title: "Doesn't Have Tag",
+    title: "Doesn't have tag",
     subContent: [],
   },
   {
-    title: "Have Tag",
+    title: "Duration in days",
+    subContent: [],
+  },
+  {
+    title: "Hash Tag",
+    subContent: [],
+  },
+  {
+    title: "In pipeline",
     subContent: [],
   },
 ];
@@ -46,7 +54,7 @@ const MenuProps = {
   },
 };
 
-export default function NoteChanged({ onClose, updateData }: any) {
+export default function StaleOpportunities({ onClose, updateData }: any) {
   const [state, setState] = useState<any>({
     workflowTrigger: "",
     workflowName: "",
@@ -122,7 +130,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
 
     if (formIsValid) {
       // Form is valid, proceed with submission
-      console.log("Form submitted:", state);
+      console.log("Stale Opportunities:", state);
       updateData(state.workflowName);
     }
   };
@@ -139,7 +147,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               Choose a workflow trigger
             </label>
             <Select
-              label="Note Changed"
+              label="Stale Opportunities"
               name="workflowTrigger"
               value={state.workflowTrigger}
               onChange={(e) => handleInputChange(e, state.workflowTrigger)}
@@ -148,7 +156,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               className="w-full my-2"
             >
               <MenuItem disabled value="">
-                <em>Note Changed</em>
+                <em>Stale Opportunities</em>
               </MenuItem>
               {workflowTrigger.map((option, index) => (
                 <MenuItem key={index} value={option.title}>
@@ -168,7 +176,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               Choose a workflow trigger
             </label>
             <TextField
-              placeholder="Note Changed"
+              placeholder="Stale Opportunities"
               variant="outlined"
               type="text"
               id="workflowName"

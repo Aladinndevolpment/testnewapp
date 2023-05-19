@@ -26,12 +26,8 @@ const workflowTrigger = [
 
 const appointmentFilter = [
   {
-    title: "Doesn't Have Tag",
-    subContent: [],
-  },
-  {
-    title: "Have Tag",
-    subContent: [],
+    title: "Form Is",
+    subContent: [{ title: "Form 1" }],
   },
 ];
 
@@ -46,7 +42,7 @@ const MenuProps = {
   },
 };
 
-export default function NoteChanged({ onClose, updateData }: any) {
+export default function FormSubmitted({ onClose, updateData }: any) {
   const [state, setState] = useState<any>({
     workflowTrigger: "",
     workflowName: "",
@@ -139,7 +135,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               Choose a workflow trigger
             </label>
             <Select
-              label="Note Changed"
+              label="Form Submitted"
               name="workflowTrigger"
               value={state.workflowTrigger}
               onChange={(e) => handleInputChange(e, state.workflowTrigger)}
@@ -148,7 +144,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               className="w-full my-2"
             >
               <MenuItem disabled value="">
-                <em>Note Changed</em>
+                <em>Form Submitted</em>
               </MenuItem>
               {workflowTrigger.map((option, index) => (
                 <MenuItem key={index} value={option.title}>
@@ -168,7 +164,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               Choose a workflow trigger
             </label>
             <TextField
-              placeholder="Note Changed"
+              placeholder="Form Submitted"
               variant="outlined"
               type="text"
               id="workflowName"

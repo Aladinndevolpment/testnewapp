@@ -1,5 +1,5 @@
 import { PlusCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { MenuItem, OutlinedInput, Select, TextField } from "@material-ui/core";
+import { MenuItem, OutlinedInput, Select, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 

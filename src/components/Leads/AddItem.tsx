@@ -41,7 +41,6 @@ export default function AddItem({
   const [value, setValue] = useState<any>();
   const handleChange = (event: any) => {
     const { name, value } = event.target;
-    console.log(name);
     if (name == "profile") {
       setFormData({
         ...formData,
@@ -294,14 +293,9 @@ export default function AddItem({
                 )}
               </div>
               <div className="w-full mb-2">
-                {/* <PhoneInputWithCountrySelect
-                  international
-                  countryCallingCodeEditable={false}
-                  defaultCountry="RU"
-                  value={value}
-                  onChange={setValue}
-                /> */}
-                <p className="font-semibold text-gray-800 mb-2">Phone No</p>
+                <p className="font-semibold text-gray-800 mb-2 pl-1">
+                  Phone No
+                </p>
                 <MobileNo name="mobile_phone" type="text" />
                 {errors.phone && (
                   <p className="text-sm text-red-500 mb-2 mt-1">
@@ -367,7 +361,12 @@ export default function AddItem({
                   {statusData.map((item: any, index: any) => (
                     <div key={index} className="mr-1.5">
                       <button
-                        onClick={() => handleStatusChange(item)}
+                        onClick={() => {
+                          setFormData((prevValues: any) => ({
+                            ...prevValues,
+                            leadStatus: item,
+                          }));
+                        }}
                         className={` ${
                           item == "Open"
                             ? " border-newBlue bg-blue-100"

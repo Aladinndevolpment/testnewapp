@@ -26,12 +26,21 @@ const workflowTrigger = [
 
 const appointmentFilter = [
   {
-    title: "Doesn't Have Tag",
-    subContent: [],
+    title: "Event",
+    subContent: [
+      { title: "Bounce - mallgun only" },
+      { title: "Clicked" },
+      { title: "Complain(SPAM)" },
+      { title: "Open" },
+      { title: "Unsubscribe" },
+    ],
   },
   {
-    title: "Have Tag",
-    subContent: [],
+    title: "In Workflow",
+    subContent: [
+      { title: "Eval Emails" },
+      { title: "New Workflow :123456789" },
+    ],
   },
 ];
 
@@ -46,7 +55,7 @@ const MenuProps = {
   },
 };
 
-export default function NoteChanged({ onClose, updateData }: any) {
+export default function TriggerValidationError({ onClose, updateData }: any) {
   const [state, setState] = useState<any>({
     workflowTrigger: "",
     workflowName: "",
@@ -122,7 +131,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
 
     if (formIsValid) {
       // Form is valid, proceed with submission
-      console.log("Form submitted:", state);
+      console.log("Email Events:", state);
       updateData(state.workflowName);
     }
   };
@@ -139,7 +148,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               Choose a workflow trigger
             </label>
             <Select
-              label="Note Changed"
+              label="Email Events"
               name="workflowTrigger"
               value={state.workflowTrigger}
               onChange={(e) => handleInputChange(e, state.workflowTrigger)}
@@ -148,7 +157,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               className="w-full my-2"
             >
               <MenuItem disabled value="">
-                <em>Note Changed</em>
+                <em>Email Events</em>
               </MenuItem>
               {workflowTrigger.map((option, index) => (
                 <MenuItem key={index} value={option.title}>
@@ -168,7 +177,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               Choose a workflow trigger
             </label>
             <TextField
-              placeholder="Note Changed"
+              placeholder="Email Events"
               variant="outlined"
               type="text"
               id="workflowName"

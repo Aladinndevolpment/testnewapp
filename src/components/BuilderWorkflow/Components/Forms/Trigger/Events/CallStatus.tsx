@@ -26,12 +26,25 @@ const workflowTrigger = [
 
 const appointmentFilter = [
   {
-    title: "Doesn't Have Tag",
-    subContent: [],
+    title: "Call Direction",
+    subContent: [{ title: "Incoming" }, { title: "Outgoing" }],
   },
   {
-    title: "Have Tag",
-    subContent: [],
+    title: "Call Status",
+    subContent: [
+      { title: "Busy" },
+      { title: "Cancel" },
+      { title: "Complete" },
+      { title: "No Answer" },
+      { title: "Voicemail" },
+    ],
+  },
+  {
+    title: "In Workflow",
+    subContent: [
+      { title: "Eval Emails" },
+      { title: "New Workflow :123456789" },
+    ],
   },
 ];
 
@@ -46,7 +59,7 @@ const MenuProps = {
   },
 };
 
-export default function NoteChanged({ onClose, updateData }: any) {
+export default function TriggerValidationError({ onClose, updateData }: any) {
   const [state, setState] = useState<any>({
     workflowTrigger: "",
     workflowName: "",
@@ -122,7 +135,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
 
     if (formIsValid) {
       // Form is valid, proceed with submission
-      console.log("Form submitted:", state);
+      console.log("Call Status:", state);
       updateData(state.workflowName);
     }
   };
@@ -139,7 +152,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               Choose a workflow trigger
             </label>
             <Select
-              label="Note Changed"
+              label="Call Status"
               name="workflowTrigger"
               value={state.workflowTrigger}
               onChange={(e) => handleInputChange(e, state.workflowTrigger)}
@@ -148,7 +161,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               className="w-full my-2"
             >
               <MenuItem disabled value="">
-                <em>Note Changed</em>
+                <em>Call Status</em>
               </MenuItem>
               {workflowTrigger.map((option, index) => (
                 <MenuItem key={index} value={option.title}>
@@ -168,7 +181,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               Choose a workflow trigger
             </label>
             <TextField
-              placeholder="Note Changed"
+              placeholder="Call Status"
               variant="outlined"
               type="text"
               id="workflowName"

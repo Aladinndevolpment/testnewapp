@@ -1,4 +1,4 @@
-import WorkFlowTable from "@/components/Automations/TabsComponents/WorkFlowTable";
+import WorkFlowTables from "@/components/Automations/TabsComponents/TemplateSidebar/WorkflowTables";
 import Link from "next/link";
 import React, { useState } from "react";
 import { BsDiagram2Fill } from "react-icons/bs";
@@ -37,7 +37,7 @@ export default function Workflow() {
     {
       id: "tab1",
       label: "All Workflow",
-      content: <WorkFlowTable />,
+      content: <WorkFlowTables />,
     },
     {
       id: "tab2",

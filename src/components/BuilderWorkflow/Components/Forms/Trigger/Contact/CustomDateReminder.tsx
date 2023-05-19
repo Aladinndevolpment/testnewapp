@@ -10,7 +10,7 @@ import {
   OutlinedInput,
   Select,
   TextField,
-} from "@material-ui/core";
+} from "@mui/material";
 import React, { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 

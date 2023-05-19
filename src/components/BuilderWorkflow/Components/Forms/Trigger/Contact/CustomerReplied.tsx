@@ -26,11 +26,39 @@ const workflowTrigger = [
 
 const appointmentFilter = [
   {
-    title: "Doesn't Have Tag",
+    title: "Standard Fields",
     subContent: [],
   },
   {
-    title: "Have Tag",
+    title: "Contains Phrase",
+    subContent: [],
+  },
+  {
+    title: "Doesn't have a tag",
+    subContent: [],
+  },
+  {
+    title: "Exact match phrase",
+    subContent: [],
+  },
+  {
+    title: "Hash tag",
+    subContent: [],
+  },
+  {
+    title: "Intent Type",
+    subContent: [],
+  },
+  {
+    title: "Replied to workflow",
+    subContent: [],
+  },
+  {
+    title: "Reply Channel",
+    subContent: [],
+  },
+  {
+    title: "Custom Fields",
     subContent: [],
   },
 ];
@@ -46,7 +74,7 @@ const MenuProps = {
   },
 };
 
-export default function NoteChanged({ onClose, updateData }: any) {
+export default function CustomerReplied({ onClose, updateData }: any) {
   const [state, setState] = useState<any>({
     workflowTrigger: "",
     workflowName: "",
@@ -139,7 +167,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               Choose a workflow trigger
             </label>
             <Select
-              label="Note Changed"
+              label="Customer Replied"
               name="workflowTrigger"
               value={state.workflowTrigger}
               onChange={(e) => handleInputChange(e, state.workflowTrigger)}
@@ -148,7 +176,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               className="w-full my-2"
             >
               <MenuItem disabled value="">
-                <em>Note Changed</em>
+                <em>Customer Replied</em>
               </MenuItem>
               {workflowTrigger.map((option, index) => (
                 <MenuItem key={index} value={option.title}>
@@ -168,7 +196,7 @@ export default function NoteChanged({ onClose, updateData }: any) {
               Choose a workflow trigger
             </label>
             <TextField
-              placeholder="Note Changed"
+              placeholder="Customer Replied"
               variant="outlined"
               type="text"
               id="workflowName"

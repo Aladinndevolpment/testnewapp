@@ -1,73 +1,75 @@
-import { ServerStyleSheets } from "@material-ui/core";
+// pages/_document.tsx
 import Document, {
   Html,
   Head,
   Main,
   NextScript,
+  DocumentProps,
   DocumentContext,
-  DocumentInitialProps,
 } from "next/document";
-import React from "react";
-import { resetServerContext } from "react-beautiful-dnd";
+import { AppType } from "next/app";
+import { MyAppProps } from "./_app";
+import createEmotionCache from "../utils/createEmotionCache";
+import createEmotionServer from "@emotion/server/create-instance";
 
-type Props = {};
-
-class MyDocument extends Document<Props> {
-  /*
-   * fix the clinet/server error using resetServerContext()
-   */
-
-  static async getInitialProps(
-    ctx: DocumentContext
-  ): Promise<DocumentInitialProps> {
-    const initialProps = await Document.getInitialProps(ctx);
-    resetServerContext();
-    return { ...initialProps };
-  }
-  render() {
-    return (
-      <Html lang="en">
-        <Head>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap"
-            rel="stylesheet"
-          ></link>
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          />
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
-  }
+interface MyDocumentProps extends DocumentProps {
+  emotionStyleTags: JSX.Element[];
 }
 
-MyDocument.getInitialProps = async (ctx) => {
-  // Render app and page and get the context of the page with collected side effects.
-  const sheets = new ServerStyleSheets();
+export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
+  return (
+    <Html lang="en">
+      <Head>
+        <link rel="shortcut icon" href="/favicon.ico" />
+        {/* Insertion point for client. This connects with createEmotionCache.ts */}
+        <meta name="emotion-insertion-point" content="" />
+        {emotionStyleTags}
+      </Head>
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
+}
+
+// `getInitialProps` belongs to `_document` (instead of `_app`),
+// it's compatible with static-site generation (SSG).
+MyDocument.getInitialProps = async (ctx: DocumentContext) => {
   const originalRenderPage = ctx.renderPage;
 
+  // You can consider sharing the same Emotion cache between all the SSR requests to speed up performance.
+  // However, be aware that it can have global side effects.
+  const cache = createEmotionCache();
+  const { extractCriticalToChunks } = createEmotionServer(cache);
+
+  // We're passing `emotionCache` to App component
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
+      enhanceApp: (
+        App: React.ComponentType<React.ComponentProps<AppType> & MyAppProps>
+      ) =>
+        function EnhanceApp(props) {
+          return <App emotionCache={cache} {...props} />;
+        },
     });
 
   const initialProps = await Document.getInitialProps(ctx);
+  // This is important. It prevents Emotion to render invalid HTML.
+  // See https://github.com/mui/material-ui/issues/26561#issuecomment-855286153
+  const emotionStyles = extractCriticalToChunks(initialProps.html);
+  const emotionStyleTags = emotionStyles.styles.map((style: any) => (
+    <style
+      data-emotion={`${style.key} ${style.ids.join(" ")}`}
+      key={style.key}
+      // eslint-disable-next-line react/no-danger
+      dangerouslySetInnerHTML={{ __html: style.css }}
+    />
+  ));
 
   return {
     ...initialProps,
-    // Styles fragment is rendered after the app and page rendering finish.
-    styles: [
-      ...React.Children.toArray(initialProps.styles),
-      sheets.getStyleElement(),
-    ],
+    // return emotionStyleTags as props
+    emotionStyleTags,
   };
 };
-
-export default MyDocument;
