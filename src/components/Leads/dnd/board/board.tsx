@@ -153,7 +153,7 @@ const Board = ({
             <div
               ref={provided.innerRef}
               {...provided.droppableProps}
-              className="flex overflow-x-scroll gap-3 p-2 relative h-full"
+              className="flex overflow-x-scroll gap-3 p-2 relative h-full "
             >
               {ordered.map((key, index) => (
                 <Column

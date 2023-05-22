@@ -121,7 +121,7 @@ export default function CreateWorkflow() {
           <div className="  ml-4  bg-gray-200 rounded-lg mr-4 flex justify-between items-center">
             <div
               onClick={() => setActiveToggle(!activeToggle)}
-              className={`py-2 px-4 rounded-md duration-1000 ${
+              className={`py-2 px-4 rounded-md duration-300 ${
                 activeToggle
                   ? "bg-white text-darkBlack shadow-md shadow-gray-400 "
                   : "bg-gray-200 text-gray-500"
@@ -131,7 +131,7 @@ export default function CreateWorkflow() {
             </div>
             <div
               onClick={() => setActiveToggle(!activeToggle)}
-              className={`py-2 px-4 rounded-md duration-1000 ${
+              className={`py-2 px-4 rounded-md duration-300 ${
                 activeToggle
                   ? "bg-gray-200 text-gray-500"
                   : "bg-white text-darkBlack shadow-md shadow-gray-400 "

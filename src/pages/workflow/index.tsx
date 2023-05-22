@@ -55,20 +55,19 @@ export default function Workflow() {
       content: " ",
     },
   ];
-  const [activeTab, setActiveTab] = useState<any>(tabs[3].id);
+  // const [activeTab, setActiveTab] = useState<any>(tabs[3].id);
   const [activeInnerTab, setActiveInnerTab] = useState(tabs[0].id);
 
   const [activeToggle, setActiveToggle] = useState<any>(true);
 
   return (
     <div>
-      <div className="bg-white w-full">
-        <div className="border-b border-grey/40 px-1 pt-4">
+      {/* <div className="border-b border-grey/40 px-1 pt-4">
           <ul className="lg:px-3 flex  justify-start items-center overflow-auto scrollbar-hide">
             {tabs.map((tab: any) => (
               <li key={tab.id} className="px-3 lg:px-5 ">
                 <button
-                  className={`  md:pb-4 transition-all duration-1000 text-sm lg:text-sm md:text-base ${
+                  className={`  md:pb-4 transition-all duration-300 text-sm lg:text-sm md:text-base ${
                     activeTab === tab.id
                       ? "border-b-[4px] border-secondary text-secondary font-medium"
                       : "text-gray-600 font-semibold border-b-[4px] border-transparent text-base"
@@ -80,79 +79,78 @@ export default function Workflow() {
               </li>
             ))}
           </ul>
-        </div>
-        <div className="  h-[calc(100vh-165px)] overflow-y-scroll scrollbar-hide overflow-auto mt-2 lg:mt-5">
-          <div className="pl-3 lg:px-6 py-2 flex justify-start items-start">
-            <p
-              className={`ml-3 capitalize text-dark text-2xl font-semibold  tracking-wide  `}
+        </div> */}
+      <div className=" bg-white w-full h-[100vh] overflow-y-scroll scrollbar-hide overflow-auto pt-2 lg:pt-5">
+        {/* <div className="pl-3 lg:px-6 py-2 flex justify-start items-start">
+          <p
+            className={`ml-3 capitalize text-dark text-2xl font-semibold  tracking-wide  `}
+          >
+            Automation
+          </p>
+          <div className="mb-4 ml-4  bg-gray-200 rounded-lg mr-4 flex justify-between items-center">
+            <div
+              onClick={() => setActiveToggle(!activeToggle)}
+              className={`py-2 px-4 rounded-md duration-300 ${
+                activeToggle
+                  ? "bg-white text-darkBlack shadow-md shadow-gray-400 "
+                  : "bg-gray-200 text-gray-500"
+              }   `}
             >
-              Automation
+              Workflow
+            </div>
+            <div
+              onClick={() => setActiveToggle(!activeToggle)}
+              className={`py-2 px-4 rounded-md duration-300 ${
+                activeToggle
+                  ? "bg-gray-200 text-gray-500"
+                  : "bg-white text-darkBlack shadow-md shadow-gray-400 "
+              }`}
+            >
+              Sequence
+            </div>
+          </div>
+        </div> */}
+
+        <div className="px-5 lg:px-5 mb-5 w-full mt-1">
+          <div className="px-5 bg-gradient-to-r from-[#F4B09F]  via-[#f1c0b8] to-[#FBEAE6] rounded-lg flex justify-start items-center py-3 ">
+            <div className="mr-4 bg-white h-8 w-16 lg:h-8 lg:w-8 rounded-full flex justify-center items-center">
+              <BsDiagram2Fill className="h-5 w-5 text-secondary  " />
+            </div>
+            <p className="text-gray-900 font-semibold text-xs md:text-sm">
+              Workflow rules allow you to perform certain automatic actions on
+              specific records based on filter criteria.
             </p>
-            <div className="mb-4 ml-4  bg-gray-200 rounded-lg mr-4 flex justify-between items-center">
-              <div
-                onClick={() => setActiveToggle(!activeToggle)}
-                className={`py-2 px-4 rounded-md duration-1000 ${
-                  activeToggle
-                    ? "bg-white text-darkBlack shadow-md shadow-gray-400 "
-                    : "bg-gray-200 text-gray-500"
-                }   `}
-              >
-                Workflow
-              </div>
-              <div
-                onClick={() => setActiveToggle(!activeToggle)}
-                className={`py-2 px-4 rounded-md duration-1000 ${
-                  activeToggle
-                    ? "bg-gray-200 text-gray-500"
-                    : "bg-white text-darkBlack shadow-md shadow-gray-400 "
-                }`}
-              >
-                Sequence
-              </div>
-            </div>
           </div>
+        </div>
 
-          <div className="px-5 lg:px-8 mb-5 w-full mt-1">
-            <div className="px-5 bg-gradient-to-r from-[#F4B09F]  via-[#f1c0b8] to-[#FBEAE6] rounded-lg flex justify-start items-center py-3 ">
-              <div className="mr-4 bg-white h-8 w-16 lg:h-8 lg:w-8 rounded-full flex justify-center items-center">
-                <BsDiagram2Fill className="h-5 w-5 text-secondary  " />
-              </div>
-              <p className="text-gray-900 font-semibold text-xs md:text-sm">
-                Workflow rules allow you to perform certain automatic actions on
-                specific records based on filter criteria.
-              </p>
-            </div>
-          </div>
-
-          <div className="overflow-hidden ">
-            <ul className="  lg:px-8 border-b-[1px] border-[#dfdfdf] pt-4 flex justify-start items-center overflow-auto scrollbar-hide gap-6 bg-white  ">
-              {innerTabs.map((tab: any) => (
-                <li key={tab.id}>
-                  <button
-                    className={`px-3 lg:px-5  transition-all duration-1000 font-semibold text-[11px] md:text-base ${
-                      activeInnerTab === tab.id
-                        ? "border-b-[4px] border-gray-800 text-gray-800 pb-3 "
-                        : "text-gray-500 pb-4"
-                    }`}
-                    onClick={() => setActiveInnerTab(tab.id)}
-                  >
-                    {tab.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-            <div className="  bg-white">
-              {innerTabs.map((tab: any) => (
-                <div
-                  key={tab.id}
-                  className={`shadow-md transition-all duration-1000 rounded-md  ${
-                    activeInnerTab === tab.id ? "block" : " text-black hidden"
-                  } `}
+        <div className="overflow-hidden ">
+          <ul className="  lg:px-5 border-b-[1px] border-[#dfdfdf] pt-4 flex justify-start items-center overflow-auto scrollbar-hide gap-6 bg-white  ">
+            {innerTabs.map((tab: any) => (
+              <li key={tab.id}>
+                <button
+                  className={`px-3 lg:px-5  transition-all duration-300 font-semibold text-[11px] md:text-base ${
+                    activeInnerTab === tab.id
+                      ? "border-b-[4px] border-gray-800 text-gray-800 pb-3 "
+                      : "text-gray-500 pb-4"
+                  }`}
+                  onClick={() => setActiveInnerTab(tab.id)}
                 >
-                  {tab.content}
-                </div>
-              ))}
-            </div>
+                  {tab.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+          <div className="  bg-white">
+            {innerTabs.map((tab: any) => (
+              <div
+                key={tab.id}
+                className={`shadow-md transition-all duration-300 rounded-md  ${
+                  activeInnerTab === tab.id ? "block" : " text-black hidden"
+                } `}
+              >
+                {tab.content}
+              </div>
+            ))}
           </div>
         </div>
       </div>

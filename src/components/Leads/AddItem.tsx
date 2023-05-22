@@ -382,9 +382,9 @@ export default function AddItem({
                         }   ${
                           formData.leadStatus == item
                             ? "border-2"
-                            : " border-[1px]"
+                            : " border-[1px]  "
                         }
-                    flex justify-start items-center   text-center py-1 px-2 rounded-full font-normal text-dark`}
+                    flex justify-start items-center mb-4 text-center py-2 px-2 rounded-full font-normal text-dark`}
                       >
                         <div
                           className={`${

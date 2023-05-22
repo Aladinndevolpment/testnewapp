@@ -74,7 +74,7 @@ export default function HeaderComponent() {
               {tabs.map((tab: any) => (
                 <li key={tab.id} className="px-5 ">
                   <button
-                    className={` mt-4 md:pb-4 transition-all duration-1000 text-sm lg:text-base md:text-base ${
+                    className={` mt-4 md:pb-4 transition-all duration-300 text-sm lg:text-base md:text-base ${
                       activeTab === tab.id
                         ? "border-b-[4px] border-dark text-dark font-semibold"
                         : "text-gray-500 font-medium border-b-[4px] border-transparent"

@@ -68,7 +68,7 @@ export default function Center() {
           </div>
         </div>
 
-        <button className="bg-primary hover:bg-secondary duration-1000 py-2.5 w-[70%] md:w-[40%] lg:w-[85%] mt-4 rounded-lg font-medium text-gray-100">
+        <button className="bg-primary hover:bg-secondary duration-300 py-2.5 w-[70%] md:w-[40%] lg:w-[85%] mt-4 rounded-lg font-medium text-gray-100">
           Convert to contact
         </button>
 

@@ -13,7 +13,7 @@ export default function Tabs2({ tabs }: ITabs) {
         {tabs.map((tab: any) => (
           <li key={tab.id} className="">
             <button
-              className={`text-dark transition-all duration-1000 font-semibold text-[11px] md:text-base ${
+              className={`text-dark transition-all duration-300 font-semibold text-[11px] md:text-base ${
                 activeTab === tab.id ? "border-b-[4px] border-newBlue" : ""
               }`}
               onClick={() => setActiveTab(tab.id)}
@@ -27,7 +27,7 @@ export default function Tabs2({ tabs }: ITabs) {
         {tabs.map((tab: any) => (
           <div
             key={tab.id}
-            className={`shadow-md transition-all duration-1000 rounded-md  ${
+            className={`shadow-md transition-all duration-300 rounded-md  ${
               activeTab === tab.id ? "block" : " text-black hidden"
             } `}
           >

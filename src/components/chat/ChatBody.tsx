@@ -245,13 +245,13 @@ export default function ChatBody({
           ></div>
         )) ||
           (messageData.type === "call" && (
-            <div className="w-96">
+            <div className="border-[1px] border-gray-200 rounded-md">
               <AudioPlayer
                 className="rounded-lg"
                 src="https://api.twilio.com/cowbell.mp3"
                 customAdditionalControls={[
                   // eslint-disable-next-line react/jsx-key
-                  <div className="grid grid-cols-2 space-x-3 -mr-16">
+                  <div className="grid grid-cols-2 space-x-3 -mr-16 py-1.5">
                     <button className="text-white text-sm font-semibold rounded-lg bg-[#868686]">
                       x1
                     </button>
@@ -318,9 +318,6 @@ export default function ChatBody({
         <div className="flex flex-wrap justify-between items-center">
           <div className="mb-1">
             <h1 className="text-xl font-semibold">{chat.name}</h1>
-            <p className="text-[12px] text-gray-700 line-clamp-1 font-medium mt-1.5">
-              Applied a week ago.
-            </p>
           </div>
           <div className="flex gap-3 mb-1">
             {/* <MapPinIcon className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all hidden md:block" /> */}

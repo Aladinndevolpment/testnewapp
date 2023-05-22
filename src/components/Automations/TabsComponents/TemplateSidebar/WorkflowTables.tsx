@@ -273,13 +273,13 @@ export default function WorkFlowTables() {
             <div className="w-full  lg:w-auto flex justify-between items-center mb-2">
               <button
                 onClick={handleExportData}
-                className="mr-3 border-[1px] border-gray-200 text-darkBlack  duration-1000 m-1 py-2 px-4  rounded-md flex flex-wrap justify-between items-center"
+                className="mr-3 border-[1px] border-gray-200 text-darkBlack  duration-300 m-1 py-2 px-4  rounded-md flex flex-wrap justify-between items-center"
               >
                 Export
               </button>
               <Link
                 href="/workflow/create-workflow"
-                className="bg-secondary hover:bg-newBlue duration-1000 m-1 py-2 px-4 text-white rounded-md flex flex-wrap justify-between items-center"
+                className="bg-secondary hover:bg-newBlue duration-300 m-1 py-2 px-4 text-white rounded-md flex flex-wrap justify-between items-center"
               >
                 Create Workflow
               </Link>

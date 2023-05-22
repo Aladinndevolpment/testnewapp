@@ -23,7 +23,7 @@ export default function Bottom() {
         <ul className=" flex flex-wrap justify-start items-center  ">
           {tabs.map((tab: any) => (
             <li
-              className={`w-1/2 text-center px-6 py-1.5 rounded-sm  duration-1000 cursor-pointer ${
+              className={`w-1/2 text-center px-6 py-1.5 rounded-sm  duration-300 cursor-pointer ${
                 activeTab === tab.id
                   ? "  text-tertiary  font-bold  border-b-[3px] rounded-b-md border-tertiary bg-white"
                   : "  text-gray-600  font-semibold  "
@@ -39,7 +39,7 @@ export default function Bottom() {
           {tabs.map((tab: any) => (
             <div
               key={tab.id}
-              className={`py-5  px-4 overflow-hidden bg-white  shadow-md   duration-1000 rounded-md  ${
+              className={`py-5  px-4 overflow-hidden bg-white  shadow-md   duration-300 rounded-md  ${
                 activeTab === tab.id ? "block" : "   hidden"
               } `}
             >

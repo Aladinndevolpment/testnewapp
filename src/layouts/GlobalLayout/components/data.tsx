@@ -59,7 +59,7 @@ const data = [
         iconCustom: <BsFillCreditCard2BackFill className="h-5 w-5" />,
         icon: require("../../../../public/images/layouts/6.svg"),
         activeIcon: require("../../../../public/images/layouts/66.svg"),
-        link: "/payments",
+        link: "/invoice",
       },
     ],
   },

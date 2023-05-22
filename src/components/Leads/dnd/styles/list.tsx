@@ -88,7 +88,7 @@ export default function QuoteList(props: IQuoteList) {
           // isDropDisabled={isDropDisabled}
           // isDraggingFrom={Boolean(dropSnapshot.draggingFromThisWith)}
           {...dropProvided.droppableProps}
-          className={`mt-0 p-4  ${
+          className={`mt-0  pt-4 ${
             dropSnapshot.isDraggingOver && "bg-[#f9d9e7] p-1 transition-all"
           } ${Boolean(dropSnapshot.draggingFromThisWith) && "bg-[#e3fcef]"} ${
             quotes.length === 0 && "h-full"

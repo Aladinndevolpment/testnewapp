@@ -260,8 +260,8 @@ export default function AddItem({
           </div>
         </div>
         <div className="bg-white pt-5   px-4 md:px-8 mt-2 h-full pb-52 overflow-y-scroll scrollbar-hide">
-          <ol className="relative text-gray-500 border-l border-gray-200 dark:border-gray-700 dark:text-gray-400">
-            <li className="mb-16 ml-6">
+          <ol className="relative text-gray-500   ">
+            {/* <li className="mb-5 ml-6">
               <span className="absolute flex items-center justify-center w-8 h-8 bg-green-400 rounded-full -left-4 ring-4 ring-green-500 text-white font-bold">
                 1
               </span>
@@ -307,9 +307,8 @@ export default function AddItem({
                 </div>
               </div>
             </li>
-
-            <li className="mb-16 ml-6">
-              <span className="absolute flex items-center justify-center w-8 h-8 bg-green-400 rounded-full -left-4 ring-4 ring-green-500 text-white font-bold">
+            <li className="mb-5 ml-6">
+              <span className="mt-2 absolute flex items-center justify-center w-8 h-8 bg-green-400 rounded-full -left-4 ring-4 ring-green-500 text-white font-bold">
                 2
               </span>
               <div className="bg-white shadow ring-1 ring-gray-200 rounded px-2 py-2 ml-2">
@@ -345,8 +344,8 @@ export default function AddItem({
                 </div>
               </div>
             </li>
-            <li className="mb-16 ml-6">
-              <span className="absolute flex items-center justify-center w-8 h-8 bg-green-400 rounded-full -left-4 ring-4 ring-green-500 text-white font-bold">
+            <li className="mb-5 ml-6">
+              <span className="mt-2 absolute flex items-center justify-center w-8 h-8 bg-green-400 rounded-full -left-4 ring-4 ring-green-500 text-white font-bold">
                 3
               </span>
               <div className="bg-white shadow ring-1 ring-gray-200 rounded px-2 py-2 ml-2">
@@ -380,9 +379,7 @@ export default function AddItem({
                 </div>
               </div>
             </li>
-
-            {/* Add Services */}
-            <li className="mb-16 ml-6">
+            <li className="mt-2 mb-5 ml-6">
               <span className="absolute flex items-center justify-center w-8 h-8 bg-green-400 rounded-full -left-4 ring-4 ring-green-500 text-white font-bold">
                 4
               </span>
@@ -412,12 +409,12 @@ export default function AddItem({
                   onItemSelect={(data: any) => setSelectedPatient(data)}
                 />
               </div>
-            </li>
+            </li> */}
 
-            <li className="ml-6">
-              <span className="absolute flex items-center justify-center w-8 h-8 bg-green-400 rounded-full -left-4 ring-4 ring-green-500 text-white font-bold">
+            <li className="">
+              {/* <span className="mt-2 absolute flex items-center justify-center w-8 h-8 bg-green-400 rounded-full -left-4 ring-4 ring-green-500 text-white font-bold">
                 5
-              </span>
+              </span> */}
               <div className="bg-white shadow ring-1 ring-gray-200 rounded px-2 py-2 ml-2 relative">
                 <div className="flex justify-between px-1">
                   <h3 className="font-semibold text-sm text-black">
@@ -433,7 +430,7 @@ export default function AddItem({
                   </button>
                 </div>
                 <div className="flex flex-wrap justify-between items-start mt-3  ">
-                  <div className="pt-1">
+                  <div className="pt-1 w-[50%] px-4">
                     <DatePicker
                       selected={dateTime.date}
                       onChange={(e: any) => {
@@ -447,15 +444,15 @@ export default function AddItem({
                     />
                   </div>
 
-                  <div className="relative flex justify-end items-end  w-full lg:w-[50%]  ">
+                  <div className="relative flex justify-end items-end  w-full lg:w-[50%]  px-4">
                     <p
                       onClick={() => setShowSelectBox(!showSelectBox)}
-                      className="select focus:outline-0 items-center bg-white border-[2px] border-[#C3D4F3] w-full max-w-xs "
+                      className="text-xs select focus:outline-0 items-center bg-white border-[2px] border-[#C3D4F3] w-full max-w-xs "
                     >
                       <span>{dateTime.time}</span>
                     </p>
                     {showSelectBox && (
-                      <div className="  absolute w-[100%]  h-[10vh] top-12 overflow-y-scroll scrollbar-hide">
+                      <div className="  absolute w-[85%] left-5 h-[10vh] top-12 overflow-y-scroll scrollbar-hide">
                         {timings.map((item: any, index: any) => (
                           <button
                             key={index}
@@ -467,7 +464,7 @@ export default function AddItem({
                                 time: item.value,
                               }));
                             }}
-                            className="w-full bg-white hover:bg-[#F3F3F5] text-[#4E5153] hover:text-[#3272F0] py-1 px-3"
+                            className="w-full bg-white rounded-md hover:bg-[#F3F3F5] text-[#4E5153] hover:text-[#3272F0] py-1 px-3"
                           >
                             {item.value}
                           </button>
@@ -502,18 +499,9 @@ export default function AddItem({
             <button
               className="bg-primary w-32 text-white px-4 py-2 shadow-md rounded hover:shadow-xl hover:drop-shadow-sm transition-all text-md font-medium"
               onClick={() => {
-                if (selectedPatient == null) {
-                  alert("please select a patient");
-                  return false;
-                }
-                if (selectedDoctor == null) {
-                  alert("please select a doctor");
-                  return false;
-                }
-                console.log(eventArg);
                 onSave({
                   ...eventArg,
-                  patient: selectedPatient,
+                  patient: "Patient",
                   // start: `${moment(dateTime.date).format("yyyy-mm-d")}T${
                   //   dateTime?.time
                   // }`,

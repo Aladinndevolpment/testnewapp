@@ -10,10 +10,11 @@ import { useRouter } from "next/router";
 import Logo from "@/components/UI/Logo";
 import Link from "next/link";
 import Image from "next/image";
+import { AiOutlineLeft } from "react-icons/ai";
 
 export default function TeamsSidebar({ handleChange, showSidebar }: any) {
   const { asPath } = useRouter();
-
+  const router = useRouter();
   return (
     <>
       <div
@@ -25,8 +26,8 @@ export default function TeamsSidebar({ handleChange, showSidebar }: any) {
       >
         <div className="pb-2.5 px-4 flex justify-start items-center w-full ">
           <div className=" h-8  items-between  px-1.5 py-2 bg-white border-[1px] border-lightGray rounded-md shadow-sm flex justify-center items-center">
-            <button onClick={() => handleChange()} className="">
-              <XMarkIcon className="h-5 w-5 text-newBlue hover:text-secondary duration-1000" />
+            <button onClick={() => router.back()} className="">
+              <AiOutlineLeft className="h-5 w-5 text-newBlue hover:text-secondary duration-300" />
             </button>
           </div>
           <p

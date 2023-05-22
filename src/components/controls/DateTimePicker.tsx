@@ -36,7 +36,7 @@ export default function DateTimePicker({
               }}
             />
             <button
-              className="rounded-r-sm bg-newBlue duration-1000 hover:bg-secondary px-4 py-1 text-white capitalize"
+              className="rounded-r-sm bg-newBlue duration-300 hover:bg-secondary px-4 py-1 text-white capitalize"
               onClick={(e) => {
                 onClose();
               }}

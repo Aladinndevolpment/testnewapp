@@ -395,7 +395,7 @@ export default function Calendar() {
                         currentView == "resourceTimeline"
                           ? "  text-newBlue"
                           : "   text-FontGray"
-                      }  px-4 py-3  duration-1000 text-[14px] font-medium text-center`}
+                      }  px-4 py-3  duration-300 text-[14px] font-medium text-center`}
                     >
                       List
                     </button>
@@ -405,7 +405,7 @@ export default function Calendar() {
                         currentView == "resourceTimeGridDay"
                           ? "  text-newBlue"
                           : "   text-FontGray"
-                      }  px-4 py-3  duration-1000 text-[14px] font-medium text-center`}
+                      }  px-4 py-3  duration-300 text-[14px] font-medium text-center`}
                     >
                       Day
                     </button>
@@ -415,7 +415,7 @@ export default function Calendar() {
                         currentView == "dayGridMonth"
                           ? "  text-newBlue"
                           : "   text-FontGray"
-                      }  px-4  py-3   duration-1000  text-[14px] font-medium text-center`}
+                      }  px-4  py-3   duration-300  text-[14px] font-medium text-center`}
                     >
                       Monthly
                     </button>
@@ -425,7 +425,7 @@ export default function Calendar() {
                         currentView == "timeGridWeek"
                           ? "  text-newBlue"
                           : "   text-FontGray"
-                      }   px-4 py-3   duration-1000  text-[14px] font-medium text-center`}
+                      }   px-4 py-3   duration-300  text-[14px] font-medium text-center`}
                     >
                       Weekly
                     </button>
@@ -472,7 +472,7 @@ export default function Calendar() {
                 onClick={handlePrev}
                 className="bg-white border-[1px] border-lightGray h-10 w-10 rounded-sm shadow-sm flex justify-center items-center"
               >
-                <ChevronLeftIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-1000" />
+                <ChevronLeftIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-300" />
               </button>
               <div className=" mx-2 px-4 py-2 bg-white border-[1px] border-lightGray h-10 rounded-sm shadow-sm flex justify-center items-center">
                 <p
@@ -485,13 +485,13 @@ export default function Calendar() {
                 onClick={handleNext}
                 className="bg-white border-[1px] border-lightGray h-10 w-10 rounded-sm shadow-sm flex justify-center items-center"
               >
-                <ChevronRightIcon className="h-5 w-5 text-FontGray hover:text-primary duration-1000" />
+                <ChevronRightIcon className="h-5 w-5 text-FontGray hover:text-primary duration-300" />
               </button>
             </div>
 
             <div className="relative flex flex-wrap lg:flex-nowrap justify-center lg:justify-end items-center w-full  ">
               <div className="mt-3 lg:mt-0 relative mr-2 items-between px-3 py-2 bg-white border-[1px] border-lightGray h-10 rounded-sm shadow-sm flex justify-center items-center">
-                <UserIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-1000" />
+                <UserIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-300" />
                 <p className={`ml-2 text-FontGray text-[15px] font-medium`}>
                   Request Approval
                 </p>
@@ -500,10 +500,10 @@ export default function Calendar() {
                 </div>
               </div>
               <div className="mt-3 lg:mt-0  ml-2 items-between  px-2 py-2 bg-white border-[1px] border-lightGray h-10 rounded-sm shadow-sm flex justify-center items-center">
-                <ArrowPathIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-1000" />
+                <ArrowPathIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-300" />
               </div>
               <div className="mt-3 lg:mt-0  ml-2 items-between  px-2 py-2 bg-white border-[1px] border-lightGray h-10 rounded-sm shadow-sm flex justify-center items-center">
-                <PrinterIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-1000" />
+                <PrinterIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-300" />
               </div>
 
               <div className="dropdown">
@@ -511,7 +511,7 @@ export default function Calendar() {
                   tabIndex={0}
                   className="  mt-3 lg:mt-0  lg:ml-2 items-between  px-3 py-2 bg-white border-[1px] border-lightGray h-10 rounded-sm shadow-sm flex justify-center items-center"
                 >
-                  <FunnelIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-1000" />
+                  <FunnelIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-300" />
                   <p className={`ml-2 text-FontGray text-[15px] font-medium`}>
                     Filter
                   </p>{" "}
@@ -526,7 +526,7 @@ export default function Calendar() {
 
               <Link href="/integrations">
                 <div className="mt-3 lg:mt-0  ml-2 items-between px-3 py-2 bg-white border-[1px] border-lightGray h-10 rounded-sm shadow-sm flex justify-center items-center">
-                  <AdjustmentsHorizontalIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-1000" />
+                  <AdjustmentsHorizontalIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-300" />
                   <p className={`ml-2 text-FontGray text-[15px] font-medium`}>
                     Schedule setting
                   </p>

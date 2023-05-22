@@ -511,7 +511,7 @@ export default function TabLeads() {
               <div className="  bg-gray-200 rounded-md mr-4 flex justify-between items-center">
                 <div
                   onClick={() => setIsGrid(!isGrid)}
-                  className={`py-2 px-2 rounded-sm duration-1000 ${
+                  className={`py-2 px-2 rounded-sm duration-300 ${
                     isGrid
                       ? "bg-gray-200 text-gray-500"
                       : "bg-white text-darkBlack shadow-md shadow-gray-400 "
@@ -521,7 +521,7 @@ export default function TabLeads() {
                 </div>
                 <div
                   onClick={() => setIsGrid(!isGrid)}
-                  className={`py-2 px-2 rounded-sm duration-1000 ${
+                  className={`py-2 px-2 rounded-sm duration-300 ${
                     isGrid
                       ? "bg-white text-darkBlack shadow-md shadow-gray-400 "
                       : "bg-gray-200 text-gray-500"
@@ -532,83 +532,85 @@ export default function TabLeads() {
               </div>
               <button
                 onClick={handleExportData}
-                className="mr-3 border-[1px] border-gray-200 text-darkBlack  duration-1000 m-1 py-2 px-4  rounded-md flex flex-wrap justify-between items-center"
+                className="mr-3 border-[1px] border-gray-200 text-darkBlack  duration-300 m-1 py-2 px-4  rounded-md flex flex-wrap justify-between items-center"
               >
                 Export
               </button>
 
               <button
                 onClick={() => setOpenModal(true)}
-                className="bg-secondary hover:bg-newBlue duration-1000 m-1 py-2 px-4 text-white rounded-md flex flex-wrap justify-between items-center"
+                className="bg-secondary hover:bg-newBlue duration-300 m-1 py-2 px-4 text-white rounded-md flex flex-wrap justify-between items-center"
               >
                 Create Leads
               </button>
             </div>
           </div>
         </div>
-        {data.length > 0 && (
-          <div className="bg-white shadow-md rounded-md mx-4">
-            {!isGrid ? (
-              <div className="bg-white shadow-md lg:px-2 py-5 rounded-lg">
-                <MaterialReactTable
-                  columns={columns}
-                  data={data}
-                  enableStickyHeader
-                  enableColumnOrdering
-                  enableRowSelection
-                  initialState={{
-                    showGlobalFilter: true,
-                  }}
-                  positionToolbarAlertBanner="bottom"
-                  muiSearchTextFieldProps={{
-                    placeholder: `Search ${data.length} rows`,
-                    sx: {
-                      minWidth: "400px",
-                      marginTop: "5px",
-                      marginBottom: "10px",
-                      padding: "5px",
-                    },
-                    variant: "outlined",
-                  }}
-                  positionGlobalFilter="left"
-                  enableSorting={true}
-                  enableGlobalFilterModes
-                  enableColumnActions={false}
-                  muiTableHeadCellProps={{
-                    sx: {
-                      borderRight: "2px solid #e9e9e9",
-                      backgroundColor: "#F5F5F5",
-                      paddingTop: "25x",
-                      paddingBottom: "25x",
-                      borderRadius: "5px",
-                    },
-                  }}
-                  muiTablePaperProps={{
-                    elevation: 0,
-                    sx: {
-                      padding: "5px",
-                    },
-                  }}
-                  muiTableProps={{
-                    sx: { border: "2px solid #f2f2f2", borderRadius: "5px" },
-                  }}
-                  muiTableBodyProps={{
-                    sx: (theme) => ({
-                      "& tr:nth-of-type(odd)": {
-                        backgroundColor: "#ffffff",
+        <div className="mt-4">
+          {data.length > 0 && (
+            <div className="bg-white shadow-md rounded-md mx-4">
+              {!isGrid ? (
+                <div className="bg-white shadow-md lg:px-2 pb-5 rounded-lg">
+                  <MaterialReactTable
+                    columns={columns}
+                    data={data}
+                    enableStickyHeader
+                    enableColumnOrdering
+                    enableRowSelection
+                    initialState={{
+                      showGlobalFilter: true,
+                    }}
+                    positionToolbarAlertBanner="bottom"
+                    muiSearchTextFieldProps={{
+                      placeholder: `Search ${data.length} rows`,
+                      sx: {
+                        minWidth: "400px",
+                        marginTop: "5px",
+                        marginBottom: "10px",
+                        padding: "5px",
                       },
-                      "& tr:nth-of-type(even)": {
-                        backgroundColor: "#f2f2f2",
+                      variant: "outlined",
+                    }}
+                    positionGlobalFilter="left"
+                    enableSorting={true}
+                    enableGlobalFilterModes
+                    enableColumnActions={false}
+                    muiTableHeadCellProps={{
+                      sx: {
+                        borderRight: "2px solid #e9e9e9",
+                        backgroundColor: "#F5F5F5",
+                        paddingTop: "25x",
+                        paddingBottom: "25x",
+                        borderRadius: "5px",
                       },
-                    }),
-                  }}
-                />
-              </div>
-            ) : (
-              <Kanban />
-            )}
-          </div>
-        )}
+                    }}
+                    muiTablePaperProps={{
+                      elevation: 0,
+                      sx: {
+                        padding: "5px",
+                      },
+                    }}
+                    muiTableProps={{
+                      sx: { border: "2px solid #f2f2f2", borderRadius: "5px" },
+                    }}
+                    muiTableBodyProps={{
+                      sx: (theme) => ({
+                        "& tr:nth-of-type(odd)": {
+                          backgroundColor: "#ffffff",
+                        },
+                        "& tr:nth-of-type(even)": {
+                          backgroundColor: "#f2f2f2",
+                        },
+                      }),
+                    }}
+                  />
+                </div>
+              ) : (
+                <Kanban />
+              )}
+            </div>
+          )}
+        </div>
       </StoreLeadContext.Provider>
     </>
   );
