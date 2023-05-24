@@ -51,7 +51,7 @@ export const Card = ({ padding = 20 }) => {
           <Text text="Subtitle" fontSize={15} />
         </Element>
         <Element id="buttons" is={CardBottom} canvas>
-          <Button>Learn more</Button>
+          <Button text="Learn more" />
         </Element>
       </div>
     </Container>
