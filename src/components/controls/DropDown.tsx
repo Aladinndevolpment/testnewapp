@@ -44,8 +44,8 @@ export default function DropDown({
         >
           <div className="flex flex-wrap  py-2 px-3 items-center justify-between  rounded-t-md bg-[#212f49]  ">
             <div>
-              <p className="text-white font-main text-[11px] mb-1 "> Dimas </p>
-              <p className="text-white font-main text-[12px] "> Root Canal </p>
+              <p className="text-white  text-[11px] mb-1 "> Dimas </p>
+              <p className="text-white  text-[12px] "> Root Canal </p>
             </div>
 
             <div className="flex flex-wrap items-center justify-between">
@@ -62,30 +62,23 @@ export default function DropDown({
           </div>
           <div className="bg-[#2a3958]  py-1 px-3   rounded-b-md">
             <div className="border-b-[1px] border-FontGray py-1.5 ">
-              <p className="text-gray-400  font-main  text-[12px] font-medium">
+              <p className="text-gray-400    text-[12px] font-medium">
                 {" "}
                 Last :{" "}
               </p>
-              <p className="text-gray-400  font-main text-xs font-medium">
-                {" "}
-                Dressing{" "}
-              </p>
+              <p className="text-gray-400   text-xs font-medium"> Dressing </p>
             </div>
             <div className="border-b-[1px] border-FontGray py-1.5 mb-1">
-              <p className="text-gray-400  font-main  text-[12px] font-medium">
+              <p className="text-gray-400    text-[12px] font-medium">
                 Ongoing :
               </p>
-              <p className="text-gray-400  font-main text-xs font-medium">
-                Obturation
-              </p>
+              <p className="text-gray-400   text-xs font-medium">Obturation</p>
             </div>
             <div>
-              <p className="text-gray-400  font-main  text-[12px] font-medium">
+              <p className="text-gray-400    text-[12px] font-medium">
                 Tooth Case :{" "}
               </p>
-              <p className="text-gray-400  font-main text-xs font-medium">
-                3.7
-              </p>
+              <p className="text-gray-400   text-xs font-medium">3.7</p>
             </div>
           </div>
         </div>

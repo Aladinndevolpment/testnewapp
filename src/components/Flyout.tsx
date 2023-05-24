@@ -27,10 +27,10 @@ export default function FlyOut({
       <div className="bg-mainBg w-full md:w-[40%] absolute right-0  h-full z-50 ">
         <div className="">
           <div
-            className="absolute top-0 -left-6 bg-[#0e8fc3]  rounded-full p-1 cursor-pointer"
+            className="absolute top-5 -left-5 bg-navyBlue  rounded-md p-1 cursor-pointer"
             onClick={onClose}
           >
-            <XMarkIcon className="text-white w-6 h-6" />
+            <XMarkIcon className="text-white w-5 h-5" />
           </div>
           {children}
         </div>

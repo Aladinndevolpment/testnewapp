@@ -47,12 +47,12 @@ export default function TabLeads() {
                 />
               </div>
               <div>
-                <p className=" font-poppins text-gray-700 font-medium text-sm">
+                <p className="  text-gray-700 font-medium text-sm">
                   {row.original.lead_name.name}
                 </p>
                 <div className="flex flex-wrap justify-between items-center mt-0.5">
                   <BsClock className="h-3 w-3 text-darkBlack mr-1  " />
-                  <span className="font-poppins text-gray-700 font-medium  text-xs">
+                  <span className=" text-gray-700 font-medium  text-xs">
                     Today at {moment().format("hh:mm A")}
                   </span>
                 </div>
@@ -71,13 +71,13 @@ export default function TabLeads() {
           <div className="flex flex-col">
             <div className="flex justify-start items-center mt-0.5">
               <AiOutlineMail className="h-3 w-3 text-darkBlack mr-1" />
-              <span className="font-poppins text-gray-700 font-medium text-[13px]">
+              <span className=" text-gray-700 font-medium text-[13px]">
                 {row.original.contact.email}
               </span>
             </div>
             <div className="flex justify-start items-center mt-0.5">
               <BsTelephone className="h-3 w-3 text-darkBlack mr-1" />
-              <span className="font-poppins text-gray-700 font-medium text-[13px]">
+              <span className=" text-gray-700 font-medium text-[13px]">
                 {row.original.contact.phone}
               </span>
             </div>
@@ -91,7 +91,7 @@ export default function TabLeads() {
         size: 150,
         Cell: ({ row }) => (
           <div className="flex items-center gap-2 w-[130px] bg-[#E8EBF5] py-2 px-4  rounded-full ">
-            <p className=" font-poppins text-gray-700 font-medium text-sm">
+            <p className="  text-gray-700 font-medium text-sm">
               {row.original.lead_source}
             </p>
           </div>
@@ -147,7 +147,7 @@ export default function TabLeads() {
                     : row.original.lead_status == "Bad Timing"
                     ? " text-orange-500"
                     : " text-gray-600"
-                }  pr-3 font-poppins text-gray-700 font-medium `}
+                }  pr-3  text-gray-700 font-medium `}
               >
                 {" "}
                 {row.original.lead_status}
@@ -176,7 +176,7 @@ export default function TabLeads() {
                 </div>
               </div>
             </div>
-            <p className="font-poppins text-gray-700 font-medium">
+            <p className=" text-gray-700 font-medium">
               {row.original.lead_owner.name}
             </p>
           </div>

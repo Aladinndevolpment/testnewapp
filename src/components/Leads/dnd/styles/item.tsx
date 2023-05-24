@@ -59,7 +59,7 @@ function QuoteItem(props: IQuoteItem) {
               </p>
               <div className="text-sm -mt-1 text-gray-600 flex gap-1 items-center">
                 <ClockIcon className="w-4 h-4" />
-                <p className="font-poppins text-gray-700 font-medium text-[13px]">
+                <p className=" text-gray-700 font-medium text-[13px]">
                   {moment().format("DD MMM YYYY")}
                 </p>
               </div>
@@ -69,13 +69,13 @@ function QuoteItem(props: IQuoteItem) {
           <div className="mt-2">
             <div className="flex gap-1 items-center  ">
               <FaPhoneAlt className="w-4 h-4 text-gray-500 mr-1" />
-              <p className="font-poppins text-gray-700 font-medium text-[13px]">
+              <p className=" text-gray-700 font-medium text-[13px]">
                 {quote.contact.phone}
               </p>
             </div>
             <div className="flex gap-1 items-center  pt-0.5">
               <FaEnvelope className="w-4 h-4 text-gray-500 mr-1" />
-              <p className="font-poppins text-gray-700 font-medium text-[13px]">
+              <p className=" text-gray-700 font-medium text-[13px]">
                 {quote.contact.email}
               </p>
             </div>

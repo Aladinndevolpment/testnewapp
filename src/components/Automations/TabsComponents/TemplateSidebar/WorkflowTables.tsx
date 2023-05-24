@@ -14,7 +14,7 @@ export default function WorkFlowTables() {
         size: 200,
         Cell: ({ row }) => (
           <div className=" ">
-            <p className="font-semibold text-gray-800  text-base">
+            <p className="text-gray-700 font-medium text-sm">
               {row.original.workflow_name}
             </p>
           </div>
@@ -69,7 +69,7 @@ export default function WorkFlowTables() {
         header: "Modules",
         size: 150,
         Cell: ({ row }) => (
-          <p className="font-semibold text-gray-800  text-sm">
+          <p className="text-gray-700 font-medium text-sm">
             {row.original.modules}
           </p>
         ),
@@ -79,7 +79,7 @@ export default function WorkFlowTables() {
         header: "Total Enrolled",
         size: 150,
         Cell: ({ row }) => (
-          <p className="font-semibold text-gray-800  text-sm">
+          <p className="text-gray-700 font-medium text-sm">
             {row.original.total_enrolled}
           </p>
         ),
@@ -90,7 +90,7 @@ export default function WorkFlowTables() {
         header: "Active Enrolled",
         size: 150,
         Cell: ({ row }) => (
-          <p className="font-semibold text-gray-800  text-sm">
+          <p className="text-gray-700 font-medium text-sm">
             {row.original.active_enrolled}
           </p>
         ),
@@ -102,10 +102,10 @@ export default function WorkFlowTables() {
         size: 150,
         Cell: ({ row }) => (
           <div>
-            <p className="font-semibold text-gray-800 text-sm">
+            <p className="text-gray-700 font-medium text-sm">
               {row.original.last_activity.dateTime}
             </p>
-            <p className=" text-gray-600 text-xs">
+            <p className="text-gray-500 font-medium text-sm">
               {row.original.last_activity.by_user}
             </p>
           </div>

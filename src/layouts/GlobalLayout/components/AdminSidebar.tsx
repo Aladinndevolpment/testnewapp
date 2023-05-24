@@ -51,7 +51,7 @@ export default function AdminSidebar() {
                               ? " text-[#4375EA] "
                               : "text-[#4B5563]"
                           }
-                    text-[14px] font-semibold tracking-wide font-main ml-3`}
+                    text-[14px] font-semibold tracking-wide  ml-3`}
                         >
                           {mainData.iconCustom}
                         </div>
@@ -62,7 +62,7 @@ export default function AdminSidebar() {
                               ? "text-[#4375EA]"
                               : "text-[#4B5563]"
                           }
-                    text-[14px] font-semibold tracking-wide font-main ml-3`}
+                    text-[14px] font-semibold tracking-wide  ml-3`}
                         >
                           {mainData.title}
                         </span>
@@ -76,7 +76,7 @@ export default function AdminSidebar() {
                               ? " text-[#4375EA] "
                               : "text-[#4B5563]"
                           }
-                    text-[14px] font-semibold tracking-wide font-main ml-3`}
+                    text-[14px] font-semibold tracking-wide  ml-3`}
                         >
                           {mainData.iconCustom}
                         </div>
@@ -87,7 +87,7 @@ export default function AdminSidebar() {
                               ? "text-[#4375EA]"
                               : "text-[#4B5563]"
                           }
-                    text-[14px] font-semibold tracking-wide font-main ml-3`}
+                    text-[14px] font-semibold tracking-wide  ml-3`}
                         >
                           {mainData.title}
                         </span>
@@ -110,7 +110,7 @@ export default function AdminSidebar() {
                     ? " text-[#4375EA] "
                     : "text-[#4B5563]"
                 }
-                    text-[15px] font-semibold tracking-wide font-main ml-3`}
+                    text-[15px] font-semibold tracking-wide  ml-3`}
               >
                 <FiSettings />
               </div>
@@ -121,7 +121,7 @@ export default function AdminSidebar() {
                     ? "text-[#4375EA]"
                     : "text-[#4B5563]"
                 }
-                    text-[15px] font-semibold tracking-wide font-main ml-3`}
+                    text-[15px] font-semibold tracking-wide  ml-3`}
               >
                 Settings
               </span>

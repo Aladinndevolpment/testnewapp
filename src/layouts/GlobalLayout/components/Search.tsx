@@ -6,7 +6,7 @@ export default function Search() {
     <div className="hidden md:block relative  p-1">
       <input
         type="text"
-        className="pl-10 bg-[#35383e] border-[1px] border-lightGray  rounded-full py-2.5 font-main w-[190px] md:w-[260px]  text-sm focus:outline-none focus:border-none   focus:bg-white focus:rounded-full  text-black"
+        className="pl-10 bg-[#35383e] border-[1px] border-lightGray  rounded-full py-2.5  w-[190px] md:w-[260px]  text-sm focus:outline-none focus:border-none   focus:bg-white focus:rounded-full  text-black"
         placeholder="Search lead, contact and more"
         onChange={({ target }) => {}}
       />

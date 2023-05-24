@@ -14,6 +14,10 @@ import FlyOut from "@/components/Flyout";
 import AddInvoiceForm from "@/components/invoice/AddInvoiceForm";
 import LongCard from "@/components/invoice/LongCard";
 import ModalDerived from "@/components/Modal";
+import moment from "moment";
+import PreviewInvoice from "@/components/invoice/PreviewInvoice";
+import PreviewFinalData from "@/components/invoice/PreviewFinalData";
+import InvoicePayment from "@/components/invoice/InvoicePayment";
 
 interface RowData {
   [key: string]: any;
@@ -21,15 +25,78 @@ interface RowData {
 
 export const InvoiceContext = createContext({
   isInvoicePreviewModalVisible: false,
-  setIsInvoicePreviewModalVisible: (array: any) => {},
+  setIsInvoicePreviewModalVisible: (string: string) => {},
+  isInvoiceFinalDataShow: false,
+  setIsInvoiceFinalDataShow: (string: string) => {},
+  isPaymentModalOpen: false,
+  setIsPaymentModalOpen: (string: string) => {},
   invoiceData: null,
   setInvoiceData: (array: Array<any>) => {},
 });
 
 export default function InvoicePage() {
-  const [data, setData] = useState<RowData[]>(getQuotes(30));
-  const [addFlyoutVisibility, setAddFlyoutVisibility] = useState(false);
-
+  const [data, setData] = useState<RowData[]>([
+    {
+      id: "1",
+      invoice_no: "9876543210",
+      customer_name: "Robert Baratheon",
+      status: "paid",
+      date: "5/12/23",
+      dueDate: "5/12/23",
+      amount: "$5000",
+      action: "",
+    },
+    {
+      id: "2",
+      invoice_no: "9876543210",
+      customer_name: "Robert Baratheon",
+      status: "overdue by 1 day",
+      date: "5/12/23",
+      dueDate: "5/12/23",
+      amount: "$5000",
+      action: "",
+    },
+    {
+      id: "3",
+      invoice_no: "9876543210",
+      customer_name: "Robert Baratheon",
+      status: "due in 14 days",
+      date: "5/12/23",
+      dueDate: "5/12/23",
+      amount: "$5000",
+      action: "",
+    },
+    {
+      id: "4",
+      invoice_no: "9876543210",
+      customer_name: "Robert Baratheon",
+      status: "paid",
+      date: "5/12/23",
+      dueDate: "5/12/23",
+      amount: "$5000",
+      action: "",
+    },
+    {
+      id: "5",
+      invoice_no: "9876543210",
+      customer_name: "Robert Baratheon",
+      status: "overdue by 1 day",
+      date: "5/12/23",
+      dueDate: "5/12/23",
+      amount: "$5000",
+      action: "",
+    },
+    {
+      id: "6",
+      invoice_no: "9876543210",
+      customer_name: "Robert Baratheon",
+      status: "due in 14 days",
+      date: "5/12/23",
+      dueDate: "5/12/23",
+      amount: "$5000",
+      action: "",
+    },
+  ]);
   const options = {
     chart: {
       id: "basic-bar",
@@ -38,7 +105,6 @@ export default function InvoicePage() {
       categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
     },
   };
-
   const series = [
     {
       name: "series-1",
@@ -51,26 +117,104 @@ export default function InvoicePage() {
     // },
   ];
 
+  const [invoiceData, setInvoiceData] = useState<any>({});
+  const [addFlyoutVisibility, setAddFlyoutVisibility] = useState(false);
   const [isInvoicePreviewModalVisible, setIsInvoicePreviewModalVisible] =
     useState<any>(false);
-  const [invoiceData, setInvoiceData] = useState<any>({});
+  const [isInvoiceFinalDataShow, setIsInvoiceFinalDataShow] =
+    useState<any>(false);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState<any>(false);
+
   const value: any = {
     invoiceData,
     setInvoiceData,
     isInvoicePreviewModalVisible,
     setIsInvoicePreviewModalVisible,
+    isInvoiceFinalDataShow,
+    setIsInvoiceFinalDataShow,
+    isPaymentModalOpen,
+    setIsPaymentModalOpen,
   };
+
+  function handleStoreInvoice(newInvoice: any, type: any) {
+    if (type == "draft") {
+      setData([
+        ...data,
+        {
+          id: data.length + 1,
+          invoice_no: newInvoice.invoiceNo,
+          customer_name: newInvoice.email,
+          status: type,
+          date: moment(newInvoice.issuedOn).format("dd/mm/yyyy"),
+          dueDate: moment(newInvoice.issuedOn).format("dd/mm/yyyy"),
+          amount: newInvoice.total_amount,
+          action: "",
+        },
+      ]);
+      setIsInvoicePreviewModalVisible(false);
+    } else {
+      setInvoiceData({
+        id: data.length + 1,
+        invoice_no: newInvoice.invoiceNo,
+        customer_name: newInvoice.email,
+        status: type,
+        date: moment(newInvoice.issuedOn).format("dd/mm/yyyy"),
+        dueDate: moment(newInvoice.issuedOn).format("dd/mm/yyyy"),
+        amount: newInvoice.total_amount,
+        action: "",
+      });
+      setIsInvoicePreviewModalVisible(true);
+    }
+    setAddFlyoutVisibility(false);
+  }
 
   return (
     <InvoiceContext.Provider value={value}>
-      <div>{isInvoicePreviewModalVisible && <ModalDerived />}</div>
+      <div>
+        {isInvoicePreviewModalVisible && (
+          <ModalDerived
+            visibility={isInvoicePreviewModalVisible}
+            onClose={() => setIsInvoicePreviewModalVisible(false)}
+          >
+            <PreviewInvoice
+              handleChange={(newInvoice: string, type: string) =>
+                handleStoreInvoice(newInvoice, type)
+              }
+            />
+          </ModalDerived>
+        )}
+      </div>
+      <div>
+        {isInvoiceFinalDataShow && (
+          <ModalDerived
+            visibility={isInvoiceFinalDataShow}
+            onClose={() => setIsInvoiceFinalDataShow(false)}
+          >
+            <PreviewFinalData />
+          </ModalDerived>
+        )}
+      </div>
+      <div>
+        {isPaymentModalOpen && (
+          <ModalDerived
+            visibility={isPaymentModalOpen}
+            onClose={() => setIsPaymentModalOpen(false)}
+          >
+            <InvoicePayment />
+          </ModalDerived>
+        )}
+      </div>
 
       <main className="bg-white h-auto relative">
         <FlyOut
           visibility={addFlyoutVisibility}
           onClose={() => setAddFlyoutVisibility(false)}
         >
-          <AddInvoiceForm />
+          <AddInvoiceForm
+            handleChange={(newInvoice: string, type: string) =>
+              handleStoreInvoice(newInvoice, type)
+            }
+          />
         </FlyOut>
         <header className="bg-white p-4 flex justify-between flex-wrap overflow-x-hidden items-center border-b-2">
           <h1 className="text-2xl font-semibold">Invoice</h1>
@@ -184,7 +328,7 @@ export default function InvoicePage() {
               </div>
               <div className="flex flex-wrap gap-2">
                 <button
-                  className="btn btn-sm capitalize bg-[#7c48d2]"
+                  className=" flex justify-center items-center px-4 py-2 rounded-md text-white capitalize bg-[#7c48d2]"
                   onClick={() => setAddFlyoutVisibility(true)}
                 >
                   <PlusIcon className="h-4 w-4 text-white" /> New Invoice
@@ -195,7 +339,7 @@ export default function InvoicePage() {
               </div>
             </div>
             <div className="mt-3">
-              <BillingTable />
+              <BillingTable data={data} />
             </div>
           </div>
         </div>
