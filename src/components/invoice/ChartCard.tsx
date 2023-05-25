@@ -12,7 +12,7 @@ export default function ChartCard({ data, name }: IChartCard) {
   return (
     <div className="w-full p-4 mixed-chart">
       <div>
-        <h3 className="text-lg font-semibold mb-2">{name}</h3>
+        <p className=" text-xl font-bold mb-2">{name}</p>
       </div>
       <Chart
         options={data.options}

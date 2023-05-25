@@ -7,7 +7,7 @@ interface ITextInputProps extends InputHTMLAttributes<HTMLInputElement> {
 export default function TextInput(props: ITextInputProps) {
   const { lefticon } = props;
   return (
-    <div className="flex items-center shadow px-2 py-3 border-gray-200 border-[1px] bg-white rounded-md">
+    <div className="flex items-center shadow px-2 py-2 border-gray-200 border-[1px] bg-white rounded-md">
       {lefticon}
       <input
         {...props}

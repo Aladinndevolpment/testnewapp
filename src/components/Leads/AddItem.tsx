@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import React, { useState, MouseEventHandler, useContext } from "react";
 import { StoreLeadContext } from "./TabLeads";
@@ -145,12 +146,10 @@ export default function AddItem({
             >
               <div
                 className={` ${
-                  showImage.profile ? "w-6/12" : "w-3/12"
-                } px-2 flex flex-col justify-center items-center mb-3 `}
+                  showImage.profile ? "w-6/12" : "w-2/12"
+                } px-2 flex flex-col justify-start items-start mb-3 `}
               >
-                <p className="font-semibold text-gray-800 mb-2">
-                  Profile Picture
-                </p>
+                <p className="font-semibold text-gray-800 mb-2">Profile Pic</p>
                 {showImage.profile ? (
                   <input
                     name="profile"
@@ -160,18 +159,40 @@ export default function AddItem({
                     className="placeholder:font-semibold placeholder:text-[#3d3c3c] px-2 rounded-md mb-2 py-2 text-sm font-medium bg-transparent focus:bg-[#F6F7FA] w-full  border-[1px] border-[#dbd9d9] text-space focus:outline-none   focus:border-[#dbd9d9] text-black "
                   />
                 ) : (
-                  <div
-                    onClick={() =>
-                      setShowImage((e: any) => ({
-                        ...e,
-                        profile: true,
-                      }))
-                    }
-                    className="bg-gray-200 h-10 w-10 rounded-full flex justify-center items-center"
-                  >
-                    <PlusIcon className="h-6 w-6" />
-                  </div>
+                  <>
+                    {formData?.profile ? (
+                      <div>
+                        <div
+                          onClick={() =>
+                            setShowImage((e: any) => ({
+                              ...e,
+                              profile: true,
+                            }))
+                          }
+                          className="pr-4"
+                        >
+                          <img
+                            src={URL.createObjectURL(formData?.profile)}
+                            alt="Thumb"
+                          />
+                        </div>
+                      </div>
+                    ) : (
+                      <div
+                        onClick={() =>
+                          setShowImage((e: any) => ({
+                            ...e,
+                            profile: true,
+                          }))
+                        }
+                        className="bg-gray-200 h-10 w-10 rounded-full flex justify-center items-center"
+                      >
+                        <PlusIcon className="h-6 w-6" />
+                      </div>
+                    )}
+                  </>
                 )}
+
                 {errors.profile && (
                   <p className="text-sm text-red-500 mb-2 mt-1">
                     {errors.profile}
@@ -181,7 +202,7 @@ export default function AddItem({
 
               <div
                 className={` ${
-                  showImage.profile ? "w-6/12" : "w-9/12"
+                  showImage.profile ? "w-6/12" : "w-10/12"
                 } px-2 flex flex-col justify-start items-start  mb-3  `}
               >
                 <p className="font-semibold text-gray-800 mb-2">Full Name</p>

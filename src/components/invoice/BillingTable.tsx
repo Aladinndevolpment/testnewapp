@@ -17,6 +17,7 @@ import moment from "moment";
 import MaterialReactTable, { type MRT_ColumnDef } from "material-react-table";
 import { ExportToCsv } from "export-to-csv"; //or use your library of choice here
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 
 export const StoreLeadContext = createContext({
   formValue: {},
@@ -36,7 +37,7 @@ export default function BillingTable({ data }: any) {
       {
         accessorKey: "invoice_no",
         id: "invoice_no",
-        header: "Invoice No",
+        header: "Claims",
         size: 100,
         Cell: ({ row }) => (
           <div>
@@ -157,12 +158,6 @@ export default function BillingTable({ data }: any) {
     // Modify the "Lead Name" field based on your requirements
     return {
       ...item,
-      invoice_no: `  ${item.invoice_no}`,
-      customer_name: `  ${item.customer_name}`,
-      status: `  ${item.status}`,
-      date: `  ${item.date}`,
-      dueDate: `  ${item.dueDate}`,
-      amount: `  ${item.amount}`,
     };
   });
 
@@ -174,16 +169,7 @@ export default function BillingTable({ data }: any) {
     showLabels: true,
     useBom: true,
     useKeysAsHeaders: false,
-    headers: [
-      "ID",
-      "Lead Name",
-      "Email",
-      "Lead Status",
-      "Lead Source",
-      "Lead Owner",
-      "Phone",
-    ],
-    filename: "leads",
+    filename: "claim",
   };
 
   const csvExporter = new ExportToCsv(csvOptions);
@@ -195,18 +181,38 @@ export default function BillingTable({ data }: any) {
     csvExporter.generateCsv(modifiedData);
   };
 
+  const [filterValue, setFilterValue] = useState("");
+
+  const handleFilter = (event: any) => {
+    setFilterValue(event.target.value);
+  };
+
+  const filteredData = data.filter((category: any) => {
+    return (
+      category.invoice_no.toLowerCase().includes(filterValue.toLowerCase()) ||
+      category.customer_name
+        .toLowerCase()
+        .includes(filterValue.toLowerCase()) ||
+      category.status.toLowerCase().includes(filterValue.toLowerCase()) ||
+      category.date.toLowerCase().includes(filterValue.toLowerCase()) ||
+      category.dueDate.toLowerCase().includes(filterValue.toLowerCase()) ||
+      category.amount.toLowerCase().includes(filterValue.toLowerCase()) ||
+      category.paymentMode.toLowerCase().includes(filterValue.toLowerCase())
+    );
+  });
+
   return (
     <>
       <div className="bg-white shadow-md lg:px-2  rounded-lg">
         <MaterialReactTable
           columns={columns}
-          data={data}
+          data={filteredData}
           enableStickyHeader
           enableColumnOrdering
           enableRowSelection
-          // initialState={{
-          //   showGlobalFilter: true,
-          // }}
+          initialState={{
+            showGlobalFilter: false,
+          }}
           positionToolbarAlertBanner="bottom"
           // muiSearchTextFieldProps={{
           //   placeholder: `Search ${data.length} rows`,
@@ -214,18 +220,39 @@ export default function BillingTable({ data }: any) {
           //     minWidth: "400px",
           //     marginTop: "5px",
           //     marginBottom: "10px",
-          //     padding: "5px",
+          //     padding: "1px",
+          //     paddingTop: "2px",
+          //     paddingBottom: "2px",
           //   },
           //   variant: "outlined",
           // }}
           // positionGlobalFilter="left"
           enableSorting={true}
-          enableGlobalFilterModes
+          // enableGlobalFilterModes
           enableColumnActions={false}
+          enableGlobalFilter={false}
+          enableFilters={false}
+          enableHiding={false}
+          renderTopToolbarCustomActions={({ table }) => {
+            return (
+              <>
+                <div className="mb-2 w-[300px] flex items-center shadow px-2 py-2 border-gray-200 border-[1px] bg-white rounded-md">
+                  <MagnifyingGlassIcon className="w-6 h-6 text-gray-400 font-bold  " />
+                  <input
+                    placeholder="Search claims..."
+                    value={filterValue}
+                    onChange={handleFilter}
+                    className="w-full bg-transparent outline-none border-none pl-2 font-fontSource font-medium text-sm"
+                  />
+                </div>
+              </>
+            );
+          }}
           muiTableHeadCellProps={{
             sx: {
               borderRight: "2px solid #e9e9e9",
               backgroundColor: "#F5F5F5",
+              paddingTop: "25x",
               paddingBottom: "25x",
               borderRadius: "5px",
             },

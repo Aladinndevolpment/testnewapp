@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Box,
   FormControlLabel,
@@ -7,14 +7,24 @@ import {
   Button as MaterialButton,
 } from "@mui/material";
 import { useEditor } from "@craftjs/core";
+import { CraftContext } from "@/pages/builder/craft";
 
 export const Topbar = () => {
   const { actions, query, enabled } = useEditor((state) => ({
     enabled: state.options.enabled,
   }));
 
+  const { setDevice } = useContext(CraftContext);
+
   return (
-    <Box px={1} py={1} mb={1} bgcolor="#fff">
+    <div className="py-2 border-b bg-white flex">
+      {/* <button className="" onClick={() => setDevice("mobile")}>
+        mobile
+      </button>
+      <button className="" onClick={() => setDevice("desktop")}>
+        desktop
+      </button> */}
+
       <Grid container alignItems="center">
         <Grid item xs>
           <FormControlLabel
@@ -42,6 +52,6 @@ export const Topbar = () => {
           </MaterialButton>
         </Grid>
       </Grid>
-    </Box>
+    </div>
   );
 };

@@ -34,14 +34,15 @@ export default function ChatSidebar({
     <>
       <div className="border-b border-b-gray-300 pb-3  px-4">
         <div>
-          <TextInput
-            placeholder="Search..."
-            lefticon={
-              <MagnifyingGlassIcon className="w-6 h-6 text-gray-400 font-bold  " />
-            }
-            value={searchString}
-            onChange={(e) => setSearchString(e.target.value)}
-          />
+          <div className="flex items-center shadow px-2 py-1 border-gray-200 border-[1px] bg-white rounded-md">
+            <MagnifyingGlassIcon className="w-6 h-6 text-gray-400 font-bold  " />
+            <input
+              placeholder="Search..."
+              value={searchString}
+              onChange={(e) => setSearchString(e.target.value)}
+              className="w-full bg-transparent outline-none border-none pl-2 font-fontSource font-medium text-sm"
+            />
+          </div>
         </div>
         <div className="w-full flex justify-between mt-2.5">
           {/* <div className="font-medium flex items-center gap-2">
@@ -74,7 +75,7 @@ export default function ChatSidebar({
             className={`py-4 flex w-full border-b border-gray-300 ${
               item === selectedChat && "bg-white"
             } hover:bg-white hover:shadow transition-all cursor-pointer px-4 rounded-sm `}
-            onClick={() => onSelect(item)}
+            // onClick={() => onSelect(item)}
           >
             <div className="mr-3">
               <Image

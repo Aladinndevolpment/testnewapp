@@ -48,11 +48,11 @@ interface IGridProps {
 export const Grid = ({ padding = 20, col }: IGridProps) => {
   return (
     <Container>
-      <div className="flex flex-wrap p-1 border border-black mt-2">
+      <div className="flex flex-wrap mt-2 p-2 hover:outline hover:outline-blue-500">
         {[...Array(col)].map((item, index) => (
           <div style={{ width: 100 / col + "%" }} key={index}>
             <Element id={`grid_${index}`} is={GridTop} canvas>
-              <Text text="Title" fontSize={20} />
+              <Text alignment="left" text="Title" fontSize={20} />
               {col}
             </Element>
           </div>

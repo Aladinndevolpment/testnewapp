@@ -2,36 +2,42 @@ import React, { useState } from "react";
 import Container from "./Container";
 import { useNode } from "@craftjs/core";
 import Image from "next/image";
+import TextInput from "@/components/controls/TextInput";
+import { IoContract } from "react-icons/io5";
 
 interface BuilderImageProps {
   imageSrc?: string;
   borderRadius?: number;
+  height?: string;
+  width?: string;
+  type?: "cover" | "contain";
 }
 export const BuilderImage = ({
   imageSrc,
   borderRadius = 10,
+  height = "400px",
+  width = "100%",
+  type = "cover",
 }: BuilderImageProps) => {
   return (
     <Container>
       <div
-        className="w-full relative h-[400px] flex justify-start mt-3 "
-        style={{ borderRadius: borderRadius + "px" }}
+        className={`relative flex justify-start hover:outline-blue-500 hover:outline`}
+        style={{ borderRadius: borderRadius + "px", height, width }}
       >
         {imageSrc ? (
           <Image
             src={imageSrc}
-            className="w-full"
             fill={true}
             alt=""
-            style={{ objectFit: "cover", borderRadius: borderRadius + "px" }}
+            style={{ objectFit: type, borderRadius: borderRadius + "px" }}
           />
         ) : (
           <Image
             src={require("@/../public/images/avatar/blackdog.jpg")}
-            className="w-full"
             fill={true}
             alt=""
-            style={{ objectFit: "cover", borderRadius: borderRadius + "px" }}
+            style={{ objectFit: type, borderRadius: borderRadius + "px" }}
           />
         )}
       </div>
@@ -62,17 +68,19 @@ const BuilderImageSettings = () => {
         }
       />
 
-      <input
-        type="range"
-        min="0"
-        max="100"
-        value={borderRadius}
-        onChange={({ target: { value } }) => {
-          setProp((props: any) => (props.borderRadius = value));
-          //   setBorderRadius(parseInt(value));
-        }}
-        className="range"
-      />
+      <div className="mb-4 mt-2 flex flex-col gap-1">
+        <label className="text-sm text-gray-400 ">Border Radius</label>
+        <TextInput
+          lefticon={<IoContract />}
+          value={borderRadius}
+          placeholder="Border radius in px"
+          onChange={(e) =>
+            setProp((props: any) => (props.borderRadius = e.target.value))
+          }
+          type="number"
+          min={0}
+        />
+      </div>
     </div>
   );
 };
@@ -80,5 +88,11 @@ const BuilderImageSettings = () => {
 BuilderImage.craft = {
   related: {
     settings: BuilderImageSettings,
+  },
+  props: {
+    borderRadius: 10,
+    height: "400px",
+    width: "100%",
+    type: "cover",
   },
 };

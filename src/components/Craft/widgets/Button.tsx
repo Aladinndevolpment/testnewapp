@@ -1,5 +1,4 @@
-import { useNode } from "@craftjs/core";
-import { ReactNode } from "react";
+import { useNode, Element } from "@craftjs/core";
 import {
   FormControl,
   FormLabel,
@@ -7,15 +6,53 @@ import {
   Radio,
   FormControlLabel,
 } from "@mui/material";
+
+import { Text } from "./Text";
+import { MuiColorInput } from "mui-color-input";
 import TextInput from "@/components/controls/TextInput";
 import { IoContract } from "react-icons/io5";
+
+const defaults = {
+  backgroundColor: "#313641",
+  borderColor: "#313641",
+  borderRadius: 10,
+};
 
 interface IButtonProps {
   size?: string;
   text?: string;
+  backgroundColor?: string;
+  borderColor?: string;
+
+  borderRadius?: number;
 }
 
-export const Button = ({ size, text = "Learn More" }: IButtonProps) => {
+export const ButtonText = ({ children }: any) => {
+  const {
+    connectors: { connect },
+  }: any = useNode();
+  return (
+    <div ref={connect} className="text-only">
+      {children}
+    </div>
+  );
+};
+
+ButtonText.craft = {
+  rules: {
+    // Only accept Text
+    canMoveIn: (incomingNodes: any) =>
+      incomingNodes.every((incomingNode: any) => false),
+  },
+};
+
+export const Button = ({
+  size,
+  text = "Learn More",
+  backgroundColor = defaults.backgroundColor,
+  borderRadius = defaults.borderRadius,
+  borderColor = defaults.borderColor,
+}: IButtonProps) => {
   const {
     connectors: { connect, drag },
   } = useNode();
@@ -23,9 +60,22 @@ export const Button = ({ size, text = "Learn More" }: IButtonProps) => {
   return (
     <button
       ref={(ref: any) => connect(drag(ref))}
-      className={`btn ${size} mr-2`}
+      className={`btn ${size} mr-2 hover:outline-blue-500 hover:outline`}
+      style={{
+        backgroundColor: backgroundColor,
+        borderRadius: borderRadius + "px",
+        borderColor: borderColor,
+      }}
     >
-      {text}
+      <Element id="heroTitle" is={ButtonText} canvas>
+        <Text
+          alignment="left"
+          text={text}
+          fontSize={16}
+          bold="font-semibold"
+          color="#ffffff"
+        />
+      </Element>
     </button>
   );
 };
@@ -40,7 +90,7 @@ const ButtonSettings = () => {
 
   return (
     <div>
-      <div className="mb-4">
+      {/* <div className="mb-4">
         <TextInput
           lefticon={<IoContract />}
           value={props.text}
@@ -49,7 +99,49 @@ const ButtonSettings = () => {
             setProp((props: any) => (props.text = e.target.value))
           }
         />
+      </div> */}
+      <div className="mb-4 mt-2 flex flex-col gap-1">
+        <label className="text-sm text-gray-400 ">Background Color</label>
+        <div className="">
+          <MuiColorInput
+            format="hex"
+            value={
+              props.backgroundColor
+                ? props.backgroundColor
+                : defaults.backgroundColor
+            }
+            onChange={(e) =>
+              setProp((props: any) => (props.backgroundColor = e))
+            }
+          />
+        </div>
       </div>
+
+      <div className="mb-4 mt-2 flex flex-col gap-1">
+        <label className="text-sm text-gray-400 ">Border Color</label>
+        <div className="">
+          <MuiColorInput
+            format="hex"
+            value={props.borderColor ? props.borderColor : defaults.borderColor}
+            onChange={(e) => setProp((props: any) => (props.borderColor = e))}
+          />
+        </div>
+      </div>
+
+      <div className="mb-4 mt-2 flex flex-col gap-1">
+        <label className="text-sm text-gray-400 ">Border Radius</label>
+        <TextInput
+          lefticon={<IoContract />}
+          value={props.borderRadius}
+          placeholder="Border radius in px"
+          onChange={(e) =>
+            setProp((props: any) => (props.borderRadius = e.target.value))
+          }
+          type="number"
+          min={0}
+        />
+      </div>
+
       <FormControl size="small" component="fieldset">
         <FormLabel component="legend">Size</FormLabel>
         <RadioGroup
@@ -87,5 +179,10 @@ const ButtonSettings = () => {
 Button.craft = {
   related: {
     settings: ButtonSettings,
+  },
+  props: {
+    background: defaults.backgroundColor,
+    borderRadius: defaults.borderRadius,
+    borderColor: defaults.borderColor,
   },
 };

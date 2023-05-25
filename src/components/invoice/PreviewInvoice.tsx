@@ -14,7 +14,7 @@ export default function PreviewInvoice({ handleChange }: any) {
         <div className="border-b-2 p-4 ">
           <div className="flex justify-between items-center ">
             <h1 className="flex items-center font-bold text-2xl gap-2">
-              Invoice
+              Claims
               <span className="text-slate-500 text-xl">
                 #
                 <span className="text-[#0e8fc3] font-bold ">
@@ -64,7 +64,7 @@ export default function PreviewInvoice({ handleChange }: any) {
           </div>
         </div>
 
-        <div className="px-4 mt-6 mb-1 font-bold">Invoice Items</div>
+        <div className="px-4 mt-6 mb-1 font-bold">Claims Items</div>
 
         <div className="px-4 pt-2">
           <table className="border-[1px] border-slate-300 rounded-lg w-full ">
@@ -105,7 +105,7 @@ export default function PreviewInvoice({ handleChange }: any) {
         <div className="p-4 flex items-start">
           <p className="w-[57%] text-gray-500 font-medium text-sm">
             Here we can write a additional notes for the client to get a better
-            understanding of this invoice.
+            understanding of this claims.
           </p>
           <div className="w-[43%]">
             <div className="flex justify-end items-start  ">
@@ -143,7 +143,10 @@ export default function PreviewInvoice({ handleChange }: any) {
               Close
             </button>
             <button
-              onClick={() => ctx.setIsInvoiceFinalDataShow(true)}
+              onClick={() => {
+                ctx.setIsInvoiceFinalDataShow(true);
+                ctx?.setIsInvoicePreviewModalVisible(false);
+              }}
               className="px-5 py-1 bg-blue-400 rounded-md font-semibold text-base text-white"
             >
               Send

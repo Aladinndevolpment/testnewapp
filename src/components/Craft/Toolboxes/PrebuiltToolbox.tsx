@@ -2,10 +2,14 @@ import { useState } from "react";
 import TextInput from "@/components/controls/TextInput";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import PrebuiltHeroLayoutTool from "./tools/PrebuiltHeroLayoutTool";
+import PrebuiltHeaderLayoutTool from "./tools/PrebuiltHeaderLayoutTool";
 
 export default function PrebuiltToolbox() {
   const [searchString, setSearchString] = useState("");
-  const tools = [{ name: "hero layout", tool: <PrebuiltHeroLayoutTool /> }];
+  const tools = [
+    { name: "Header layout", tool: <PrebuiltHeaderLayoutTool /> },
+    { name: "hero layout", tool: <PrebuiltHeroLayoutTool /> },
+  ];
 
   return (
     <div className="mt-3">
@@ -15,9 +19,12 @@ export default function PrebuiltToolbox() {
           placeholder="Search layout"
         />
       </div>
-      <div className="flex overflow-hidden gap-3 mt-3 w-full">
+      <div className="flex flex-col overflow-hidden gap-3 mt-3 w-full">
         {tools.map((item, index) => (
-          <div key={index} className="w-full">
+          <div
+            key={index}
+            className="w-full hover:border hover:border-blue-500"
+          >
             {item.tool}
           </div>
         ))}

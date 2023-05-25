@@ -2,11 +2,18 @@ import Image from "next/image";
 import { createContext, useEffect, useMemo, useRef, useState } from "react";
 import Kanban from "./Kanban";
 import { FiChevronDown } from "react-icons/fi";
-import { BsFunnel, BsColumns, BsClock, BsTelephone } from "react-icons/bs";
+import {
+  BsFunnel,
+  BsColumns,
+  BsClock,
+  BsTelephone,
+  BsChevronDown,
+} from "react-icons/bs";
 import {
   AiOutlineInsertRowAbove,
   AiOutlineBars,
   AiOutlineMail,
+  AiOutlineDown,
 } from "react-icons/ai";
 import moment from "moment";
 import { boards, getQuotes } from "./dnd/mockData";
@@ -14,6 +21,7 @@ import AddItem from "./AddItem";
 import MaterialReactTable, { type MRT_ColumnDef } from "material-react-table";
 import { ExportToCsv } from "export-to-csv"; //or use your library of choice here
 import { Client, HydrationProvider } from "react-hydration-provider";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 
 export const StoreLeadContext = createContext({
   formValue: {},
@@ -348,16 +356,6 @@ export default function TabLeads() {
       },
     ]);
   }
-  // const csvOptions = {
-  //   fieldSeparator: ",",
-  //   quoteStrings: '"',
-  //   decimalSeparator: ".",
-  //   showLabels: true,
-  //   useBom: true,
-  //   useKeysAsHeaders: false,
-  //   headers: columns.map((c) => c.header),
-  //   filename: "leads",
-  // };
 
   const modifiedData = data.map((item) => {
     // Modify the "Lead Name" field based on your requirements
@@ -403,6 +401,31 @@ export default function TabLeads() {
     csvExporter.generateCsv(modifiedData);
   };
 
+  const [newData, setNewData] = useState(data);
+
+  const [filterValue, setFilterValue] = useState("");
+
+  const handleFilter = (event: any) => {
+    setFilterValue(event.target.value);
+  };
+
+  const filteredData = data.filter((category: any) => {
+    return (
+      category.lead_status.toLowerCase().includes(filterValue.toLowerCase()) ||
+      category.lead_source.toLowerCase().includes(filterValue.toLowerCase()) ||
+      category.lead_name.name
+        .toLowerCase()
+        .includes(filterValue.toLowerCase()) ||
+      category.contact.email
+        .toLowerCase()
+        .includes(filterValue.toLowerCase()) ||
+      category.contact.phone
+        .toLowerCase()
+        .includes(filterValue.toLowerCase()) ||
+      category.lead_owner.name.toLowerCase().includes(filterValue.toLowerCase())
+    );
+  });
+
   return (
     <>
       <AddItem
@@ -424,9 +447,11 @@ export default function TabLeads() {
               <div className="dropdown dropdown-bottom mr-1">
                 <label
                   tabIndex={0}
-                  className="border-[1px] border-gray-200 m-1 py-2 px-2 rounded-md flex flex-wrap justify-between items-center"
+                  className="border-[1px] border-gray-200 m-1 py-2 px-2  2xl:px-4 2xl:py-2  rounded-md flex flex-wrap justify-between items-center"
                 >
-                  <span className="font-semibold text-sm ">All Leads</span>
+                  <span className="text-gray-500 font-semibold text-[12px] 2xl:text-sm">
+                    All Leads
+                  </span>
                   <FiChevronDown className="h-5 w-5 text-darkBlack mt-1 ml-2" />
                 </label>
                 <ul
@@ -444,9 +469,11 @@ export default function TabLeads() {
               <div className="dropdown dropdown-bottom mr-1">
                 <label
                   tabIndex={1}
-                  className="border-[1px] border-gray-200 m-1 py-2 px-2 rounded-md flex flex-wrap justify-between items-center"
+                  className="border-[1px] border-gray-200 m-1 py-2 px-2  2xl:px-4 2xl:py-2 rounded-md flex flex-wrap justify-between items-center"
                 >
-                  <span className="font-semibold text-sm ">Create date</span>
+                  <span className="text-gray-500 font-semibold text-[12px] 2xl:text-sm">
+                    Create date
+                  </span>
                   <FiChevronDown className="h-5 w-5 text-darkBlack mt-1 ml-2" />
                 </label>
                 <ul
@@ -464,9 +491,11 @@ export default function TabLeads() {
               <div className="dropdown dropdown-bottom mr-1">
                 <label
                   tabIndex={2}
-                  className="border-[1px] border-gray-200 m-1 py-2 px-2 rounded-md flex flex-wrap justify-between items-center"
+                  className="border-[1px] border-gray-200 m-1 py-2 px-2  2xl:px-4 2xl:py-2 rounded-md flex flex-wrap justify-between items-center"
                 >
-                  <span className="font-semibold text-sm ">Contact Owner</span>
+                  <span className="text-gray-500 font-semibold text-[12px] 2xl:text-sm">
+                    Contact Owner
+                  </span>
                   <FiChevronDown className="h-5 w-5 text-darkBlack mt-1 ml-2" />
                 </label>
                 <ul
@@ -484,10 +513,13 @@ export default function TabLeads() {
               <div className="dropdown dropdown-bottom">
                 <label
                   tabIndex={2}
-                  className="border-[1px] border-gray-200 m-1 py-2 px-2 rounded-md flex flex-wrap justify-between items-center"
+                  className="border-[1px] border-gray-200 m-1 py-2 px-2  2xl:px-4 2xl:py-2 rounded-md flex flex-wrap justify-between items-center"
                 >
                   <BsFunnel className="h-5 w-5 text-darkBlack mt-1 mr-2" />
-                  <span className="font-semibold text-sm "> More Filter </span>
+                  <span className="text-gray-500 font-semibold text-[12px] 2xl:text-sm">
+                    {" "}
+                    More Filter{" "}
+                  </span>
                 </label>
                 <ul
                   tabIndex={2}
@@ -504,9 +536,11 @@ export default function TabLeads() {
             </div>
 
             <div className="w-full  lg:w-auto flex justify-between items-center mb-2">
-              <div className="m-1 ml-2 py-2 px-2 rounded-md flex flex-wrap justify-between items-center">
+              <div className="m-1 ml-2 py-2 px-2  2xl:px-4 rounded-md flex flex-wrap justify-between items-center">
                 <BsColumns className="h-4 w-4 text-darkBlack   mr-2" />
-                <span className="font-semibold text-sm ">Manage Column</span>
+                <span className="text-gray-700 font-semibold text-sm ">
+                  Manage Column
+                </span>
               </div>
 
               <div className="  bg-gray-200 rounded-md mr-4 flex justify-between items-center">
@@ -515,7 +549,7 @@ export default function TabLeads() {
                   className={`py-2 px-2 rounded-sm duration-300 ${
                     isGrid
                       ? "bg-gray-200 text-gray-500"
-                      : "bg-white text-darkBlack shadow-md shadow-gray-400 "
+                      : "bg-white text-darkBlack shadow shadow-gray-300 "
                   }`}
                 >
                   <AiOutlineBars className={` h-5 w-5 `} />
@@ -524,7 +558,7 @@ export default function TabLeads() {
                   onClick={() => setIsGrid(!isGrid)}
                   className={`py-2 px-2 rounded-sm duration-300 ${
                     isGrid
-                      ? "bg-white text-darkBlack shadow-md shadow-gray-400 "
+                      ? "bg-white text-darkBlack shadow shadow-gray-300 "
                       : "bg-gray-200 text-gray-500"
                   }`}
                 >
@@ -533,17 +567,19 @@ export default function TabLeads() {
               </div>
               <button
                 onClick={handleExportData}
-                className="mr-3 border-[1px] border-gray-200 text-darkBlack  duration-300 m-1 py-2 px-4  rounded-md flex flex-wrap justify-between items-center"
+                className="mr-3 border-[1px] border-gray-300 text-darkBlack  duration-300 m-1 py-1.5 px-4  rounded-md flex flex-wrap justify-between items-center"
               >
                 Export
               </button>
 
-              <button
-                onClick={() => setOpenModal(true)}
-                className="bg-secondary hover:bg-newBlue duration-300 m-1 py-2 px-4 text-white rounded-md flex flex-wrap justify-between items-center"
-              >
-                Create Leads
-              </button>
+              <div className="border-l-[1px] border-gray-200 ">
+                <button
+                  onClick={() => setOpenModal(true)}
+                  className="text-xs flex justify-center items-center ml-3 bg-secondary hover:bg-newBlue duration-300 m-1 py-3 px-5 2xl:px-6 text-white rounded-md "
+                >
+                  Create Leads <BsChevronDown className="ml-2" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -554,28 +590,48 @@ export default function TabLeads() {
                 <div className="bg-white shadow-md lg:px-2 pb-5 rounded-lg">
                   <MaterialReactTable
                     columns={columns}
-                    data={data}
+                    data={filteredData}
                     enableStickyHeader
                     enableColumnOrdering
                     enableRowSelection
                     initialState={{
-                      showGlobalFilter: true,
+                      showGlobalFilter: false,
                     }}
                     positionToolbarAlertBanner="bottom"
-                    muiSearchTextFieldProps={{
-                      placeholder: `Search ${data.length} rows`,
-                      sx: {
-                        minWidth: "400px",
-                        marginTop: "5px",
-                        marginBottom: "10px",
-                        padding: "5px",
-                      },
-                      variant: "outlined",
-                    }}
-                    positionGlobalFilter="left"
+                    // muiSearchTextFieldProps={{
+                    //   placeholder: `Search ${data.length} rows`,
+                    //   sx: {
+                    //     minWidth: "400px",
+                    //     marginTop: "5px",
+                    //     marginBottom: "10px",
+                    //     padding: "1px",
+                    //     paddingTop: "2px",
+                    //     paddingBottom: "2px",
+                    //   },
+                    //   variant: "outlined",
+                    // }}
+                    // positionGlobalFilter="left"
                     enableSorting={true}
-                    enableGlobalFilterModes
+                    // enableGlobalFilterModes
                     enableColumnActions={false}
+                    enableGlobalFilter={false}
+                    enableFilters={false}
+                    enableHiding={false}
+                    renderTopToolbarCustomActions={({ table }) => {
+                      return (
+                        <>
+                          <div className="mb-2 w-[300px] flex items-center shadow px-2 py-2 border-gray-200 border-[1px] bg-white rounded-md">
+                            <MagnifyingGlassIcon className="w-6 h-6 text-gray-400 font-bold  " />
+                            <input
+                              placeholder="Search leads..."
+                              value={filterValue}
+                              onChange={handleFilter}
+                              className="w-full bg-transparent outline-none border-none pl-2 font-fontSource font-medium text-sm"
+                            />
+                          </div>
+                        </>
+                      );
+                    }}
                     muiTableHeadCellProps={{
                       sx: {
                         borderRight: "2px solid #e9e9e9",

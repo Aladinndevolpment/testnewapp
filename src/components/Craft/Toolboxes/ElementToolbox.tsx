@@ -5,6 +5,7 @@ import Container from "../widgets/Container";
 import { Card } from "../widgets/Card";
 import { BuilderImage } from "../widgets/Image";
 import { Grid } from "../widgets/Grid";
+import { Link } from "../widgets/Link";
 
 export default function ElementToolbox() {
   const { connectors, query } = useEditor();
@@ -25,9 +26,24 @@ export default function ElementToolbox() {
         <div>
           <button
             className="btn"
-            ref={(ref: any) => connectors.create(ref, <Text text="Hi world" />)}
+            ref={(ref: any) =>
+              connectors.create(
+                ref,
+                <Text text="Start writing here..." alignment={"left"} />
+              )
+            }
           >
             Text
+          </button>
+        </div>
+        <div>
+          <button
+            className="btn"
+            ref={(ref: any) =>
+              connectors.create(ref, <Link text="Link" href={"#"} />)
+            }
+          >
+            Link
           </button>
         </div>
         <div>
@@ -90,6 +106,14 @@ export default function ElementToolbox() {
               className="btn"
             >
               2
+            </button>
+          </div>
+          <div>
+            <button
+              ref={(ref: any) => connectors.create(ref, <Grid col={1} />)}
+              className="btn"
+            >
+              1
             </button>
           </div>
         </div>

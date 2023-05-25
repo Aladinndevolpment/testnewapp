@@ -47,11 +47,11 @@ export const Card = ({ padding = 20 }) => {
     <Container>
       <div className="bg-white p-4">
         <Element id="text" is={CardTop} canvas>
-          <Text text="Title" fontSize={20} />
-          <Text text="Subtitle" fontSize={15} />
+          <Text alignment="left" text="Title" fontSize={20} />
+          <Text alignment="left" text="Subtitle" fontSize={15} />
         </Element>
         <Element id="buttons" is={CardBottom} canvas>
-          <Button text="Learn more" />
+          <Button text="Learn More" />
         </Element>
       </div>
     </Container>

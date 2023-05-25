@@ -3,6 +3,7 @@ import { FiChevronDown } from "react-icons/fi";
 import MaterialReactTable, { type MRT_ColumnDef } from "material-react-table";
 import Link from "next/link";
 import { ExportToCsv } from "export-to-csv"; //or use your library of choice here
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 
 export default function WorkFlowTables() {
   const columns = useMemo<MRT_ColumnDef<any>[]>(
@@ -201,6 +202,33 @@ export default function WorkFlowTables() {
     csvExporter.generateCsv(modifiedData);
   };
 
+  const [newData, setNewData] = useState(data);
+
+  const [filterValue, setFilterValue] = useState("");
+
+  const handleFilter = (event: any) => {
+    setFilterValue(event.target.value);
+  };
+
+  const filteredData = data.filter((category: any) => {
+    return (
+      category.workflow_name
+        .toLowerCase()
+        .includes(filterValue.toLowerCase()) ||
+      category.status.toLowerCase().includes(filterValue.toLowerCase()) ||
+      category.modules.toLowerCase().includes(filterValue.toLowerCase()) ||
+      category.total_enrolled
+        .toLowerCase()
+        .includes(filterValue.toLowerCase()) ||
+      category.active_enrolled
+        .toLowerCase()
+        .includes(filterValue.toLowerCase()) ||
+      category.last_activity.by_user
+        .toLowerCase()
+        .includes(filterValue.toLowerCase())
+    );
+  });
+
   return (
     <>
       {" "}
@@ -288,28 +316,48 @@ export default function WorkFlowTables() {
           <div className="bg-white shadow-md lg:px-2 py-5 rounded-lg">
             <MaterialReactTable
               columns={columns}
-              data={data}
+              data={filteredData}
               enableStickyHeader
               enableColumnOrdering
               enableRowSelection
               initialState={{
-                showGlobalFilter: true,
+                showGlobalFilter: false,
               }}
               positionToolbarAlertBanner="bottom"
-              muiSearchTextFieldProps={{
-                placeholder: `Search ${data.length} rows`,
-                sx: {
-                  minWidth: "400px",
-                  marginTop: "5px",
-                  marginBottom: "10px",
-                  padding: "5px",
-                },
-                variant: "outlined",
-              }}
-              positionGlobalFilter="left"
+              // muiSearchTextFieldProps={{
+              //   placeholder: `Search ${data.length} rows`,
+              //   sx: {
+              //     minWidth: "400px",
+              //     marginTop: "5px",
+              //     marginBottom: "10px",
+              //     padding: "1px",
+              //     paddingTop: "2px",
+              //     paddingBottom: "2px",
+              //   },
+              //   variant: "outlined",
+              // }}
+              // positionGlobalFilter="left"
               enableSorting={true}
-              enableGlobalFilterModes
+              // enableGlobalFilterModes
               enableColumnActions={false}
+              enableGlobalFilter={false}
+              enableFilters={false}
+              enableHiding={false}
+              renderTopToolbarCustomActions={({ table }) => {
+                return (
+                  <>
+                    <div className="mb-2 w-[300px] flex items-center shadow px-2 py-2 border-gray-200 border-[1px] bg-white rounded-md">
+                      <MagnifyingGlassIcon className="w-6 h-6 text-gray-400 font-bold  " />
+                      <input
+                        placeholder="Search leads..."
+                        value={filterValue}
+                        onChange={handleFilter}
+                        className="w-full bg-transparent outline-none border-none pl-2 font-fontSource font-medium text-sm"
+                      />
+                    </div>
+                  </>
+                );
+              }}
               muiTableHeadCellProps={{
                 sx: {
                   borderRight: "2px solid #e9e9e9",

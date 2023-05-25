@@ -1,32 +1,46 @@
-import { SettingsPanel } from "@/components/Craft/Settings";
-import { Toolbox } from "@/components/Craft/Toolbox";
 import { Card, CardBottom, CardTop } from "@/components/Craft/widgets/Card";
 import Container from "@/components/Craft/widgets/Container";
 
-import { Editor, Frame, Element } from "@craftjs/core";
-import { Button } from "@/components/Craft/widgets/Button";
+import { Editor } from "@craftjs/core";
+import { Button, ButtonText } from "@/components/Craft/widgets/Button";
 import { Text } from "@/components/Craft/widgets/Text";
 import { Grid, GridBottom, GridTop } from "@/components/Craft/widgets/Grid";
 import { BuilderImage } from "@/components/Craft/widgets/Image";
 import { Topbar } from "@/components/Craft/Topbar";
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import {
   HeroLayout,
   HeroText,
   HeroButton,
-} from "@/components/Craft/widgets/HeroLayout";
+} from "@/components/Craft/widgets/prebuilt/HeroLayout";
+import { GlobalContext } from "@/layouts/GlobalLayout";
+import Main from "@/components/Craft/Main";
+import {
+  HeaderLayout,
+  HeaderLogo,
+  HeaderMenu,
+} from "@/components/Craft/widgets/prebuilt/Header";
+import { Link, LinkText } from "@/components/Craft/widgets/Link";
 
 export const CraftContext = createContext({
   tools: "prebuilt",
-  setTools: (array: any) => {},
+  setTools: (tool: string) => {},
+  device: "desktop",
+  setDevice: (device: string) => {},
 });
 
 export default function Craft() {
   const [tools, setTools] = useState("prebuilt");
+  const [device, setDevice] = useState("desktop");
+
+  const ctx = useContext(GlobalContext);
+  ctx.setOpen(false);
 
   const value: any = {
     tools,
     setTools,
+    device,
+    setDevice,
   };
 
   return (
@@ -47,24 +61,16 @@ export default function Craft() {
             HeroLayout,
             HeroText,
             HeroButton,
+            ButtonText,
+            HeaderLayout,
+            HeaderLogo,
+            HeaderMenu,
+            Link,
+            LinkText,
           }}
         >
           <Topbar />
-          <div className="flex h-full">
-            <div className="w-3/12 pr-2 h-screen">
-              <div className="bg-white rounded-md shadow-md h-full overflow-y-scroll pb-40 scrollbar-hide">
-                <Toolbox />
-                <SettingsPanel />
-              </div>
-            </div>
-            <div className="w-9/12 px-4 h-full overflow-y-scroll scrollbar-hide pb-40">
-              <Frame>
-                <Element is={Container} canvas>
-                  <HeroLayout />
-                </Element>
-              </Frame>
-            </div>
-          </div>
+          <Main />
         </Editor>
       </div>
     </CraftContext.Provider>

@@ -38,10 +38,12 @@ export default function LongCard({
   }, [number, timesRun]);
 
   return (
-    <div className="w-full h-full border bg-white shadow rounded-sm pt-4">
+    <div className="w-full h-full border bg-white shadow-md rounded-lg pt-2">
       <div className="px-4">
-        <h4 className="text-lg text-black">{title}</h4>
-        <h6 className="-mt-1 text-sm text-gray-500">{subSpanData}</h6>
+        <h4 className="text-base text-black font-bold pb-1">{title}</h4>
+        <h6 className="text-[12px] text-gray-500 font-semibold">
+          {subSpanData}
+        </h6>
       </div>
       <div className="text-xl font-semibold ml-1 -mt-2 px-4">
         <progress
@@ -50,17 +52,21 @@ export default function LongCard({
           max="100"
         ></progress>
       </div>
-      <div className="flex flex-wrap border-t mt-2 px-4">
+      <div className="flex flex-wrap border-t mt-1 py-2 px-4">
         <div className="w-1/2 border-r">
-          <h6 className="text-[#6863cf] font-medium text-sm">Current</h6>
-          <h4 className="text-black font-medium text-sm">
+          <h6 className="text-[#6863cf] font-medium text-[12px] uppercase">
+            Current
+          </h6>
+          <h4 className="text-black font-bold text-sm">
             {currency}
             {count}
           </h4>
         </div>
-        <div className="w-1/2 pl-3 md:pl-6">
-          <h6 className="text-gray-300 text-sm font-medium">Overdue</h6>
-          <h4 className="text-black font-medium text-sm">
+        <div className="w-1/2 pl-4">
+          <h6 className="text-[#b6b5b5] font-medium text-[12px] uppercase">
+            Overdue
+          </h6>
+          <h4 className="text-black font-bold text-sm">
             {currency}
             {count}
           </h4>

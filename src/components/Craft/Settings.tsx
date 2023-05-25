@@ -1,16 +1,7 @@
 import React from "react";
-import {
-  Box,
-  Chip,
-  Grid,
-  Typography,
-  Button as MaterialButton,
-  FormControl,
-  FormLabel,
-  Slider,
-} from "@mui/material";
 
 import { useEditor } from "@craftjs/core";
+import { Chip } from "@mui/material";
 
 export const SettingsPanel = () => {
   const { actions, selected } = useEditor((state, query) => {
@@ -35,33 +26,34 @@ export const SettingsPanel = () => {
   });
 
   return selected ? (
-    <Box mt={2} px={2} py={2}>
-      <Grid container direction="column" spacing={0}>
-        <Grid item>
-          <Box pb={2}>
-            <Grid container alignItems="center">
-              <Grid item xs>
-                <Typography variant="subtitle1">Selected</Typography>
-              </Grid>
-              <Grid item>
-                <Chip size="small" color="primary" label={selected.name} />
-              </Grid>
-            </Grid>
-          </Box>
-        </Grid>
-        {selected.settings && React.createElement(selected.settings)}
+    <div className="bg-white w-full">
+      <div className="p-4 w-full">
+        <div>
+          <div className="flex flex-wrap justify-between pb-2 border-b mb-3">
+            <div>
+              <p>Selected</p>
+            </div>
+            <div>
+              <Chip size="small" color="primary" label={selected.name} />
+            </div>
+          </div>
+        </div>
+
+        <div className="w-full pb-2 border-b mb-3">
+          {selected.settings && React.createElement(selected.settings)}
+        </div>
 
         {selected.isDeletable ? (
           <button
             onClick={() => {
               actions.delete(selected.id);
             }}
-            className="btn"
+            className="btn absolute bottom-20 bg-red-600 btn-xs capitalize"
           >
             Delete
           </button>
         ) : null}
-      </Grid>
-    </Box>
+      </div>
+    </div>
   ) : null;
 };

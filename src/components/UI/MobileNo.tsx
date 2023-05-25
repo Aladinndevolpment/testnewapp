@@ -11,7 +11,7 @@ const Input = (props: any) => {
       <Box>
         <PhoneInput
           specialLabel={""}
-          country={"th"}
+          country={"us"}
           inputStyle={{
             borderColor: props.touched && props.error && "red",
           }}

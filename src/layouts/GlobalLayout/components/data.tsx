@@ -85,7 +85,7 @@ const data = [
         iconCustom: <BsDropbox className="h-5 w-5" />,
         icon: require("../../../../public/images/layouts/3.svg"),
         activeIcon: require("../../../../public/images/layouts/33.svg"),
-        link: "/builders",
+        link: "/builder/craft",
       },
       {
         title: "Reporting",

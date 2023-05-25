@@ -7,12 +7,12 @@ import { AiFillDelete, AiOutlineLink, AiOutlinePlus } from "react-icons/ai";
 import { HiDotsVertical } from "react-icons/hi";
 
 export default function AddInvoiceForm({ handleChange }: any) {
-  const ctx = useContext(InvoiceContext);
+  const ctx: any = useContext(InvoiceContext);
 
   const [checkBoxStatus, setCheckBoxStatus] = useState<any>();
 
   const [formData, setFormData] = useState<any>({
-    invoiceNo: "98765432109",
+    invoiceNo: ctx.data.length + 1,
     email: "",
     project_desc: "",
     issuedOn: new Date(),
@@ -55,7 +55,7 @@ export default function AddInvoiceForm({ handleChange }: any) {
     const updatedInvoiceItems = newInvoiceItems.map((item: any) => {
       const itemPrice = parseFloat(item.ItemPrice);
       const itemQty = parseFloat(item.ItemQty);
-      const itemTotalPrice = (itemPrice * itemQty).toFixed(2);
+      const itemTotalPrice = (itemPrice * itemQty).toFixed(0);
       return { ...item, ItemTotalPrice: itemTotalPrice };
     });
 
@@ -75,7 +75,7 @@ export default function AddInvoiceForm({ handleChange }: any) {
       // Calculate ItemTotalPrice based on ItemPrice and ItemQty
       const itemPrice = parseFloat(newFormData[index].ItemPrice);
       const itemQty = parseFloat(newFormData[index].ItemQty);
-      newFormData[index].ItemTotalPrice = (itemPrice * itemQty).toFixed(2);
+      newFormData[index].ItemTotalPrice = (itemPrice * itemQty).toFixed(0);
 
       setFormData((prevState: any) => ({
         ...prevState,
@@ -95,7 +95,7 @@ export default function AddInvoiceForm({ handleChange }: any) {
         totalAmount += itemTotalPrice;
       }
     });
-    return totalAmount.toFixed(2);
+    return totalAmount.toFixed(0);
   };
 
   const handleSubmitDraft = (e: any) => {
@@ -228,13 +228,13 @@ export default function AddInvoiceForm({ handleChange }: any) {
     <div className="m-0 pb-6  bg-mainBg pr-3 ">
       <div className="bg-white rounded-tr-[50px] shadow-md h-screen overflow-y-scroll scrollbar-hide ">
         <div className="flex border-b-2 py-4 px-4">
-          <h1 className="font-medium text-2xl">Create New Invoice</h1>
+          <h1 className="font-medium text-2xl">Create New Claims</h1>
         </div>
 
         <div>
           <div className="flex justify-between items-center mt-4 mb-2 px-4">
             <h1 className="font-bold text-xl flex gap-2">
-              Invoice
+              Claims
               <p className="text-[#0e8fc3] font-bold">
                 <span className="text-slate-500 ">#</span> {formData.invoiceNo}
               </p>
@@ -325,7 +325,7 @@ export default function AddInvoiceForm({ handleChange }: any) {
             name="invoiceRecurring"
             onChange={() => setCheckBoxStatus(!checkBoxStatus)}
           />
-          <label htmlFor="">This is a recurring invoice (Monthly)</label>
+          <label htmlFor="">This is a recurring Claims (Monthly)</label>
         </div>
         <div className="font-bold p-4 pb-2">
           <h1>Invoice Items</h1>
