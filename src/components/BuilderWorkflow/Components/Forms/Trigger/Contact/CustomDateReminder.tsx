@@ -145,81 +145,25 @@ export default function CustomDateReminder({ onClose, updateData }: any) {
 
   return (
     <>
-      <div className="h-[83vh] mt-5  overflow-y-scroll scrollbar-hide px-2">
+      <div className="h-[74vh] 2xl:h-[76vh] mt-2 overflow-y-scroll scrollbar-hide px-2">
         <form onSubmit={handleSubmit}>
-          {/* <div className="w-full mb-5 pt-4">
-            
-            <div className="relative ">
-              <label
-                className="w-full mb-2 text-base text-dark font-semibold uppercase"
-                htmlFor="workflowTrigger"
-              >
-                Workflow Trigger Name:
-              </label>
-
-              <div
-                className="flex items-center mt-2 justify-start border-[1px] rounded-[4px] border-[#C4C4C4] px-3 py-3 cursor-pointer"
-                onClick={() => setTriggerOpen(!triggerOpen)}
-              >
-                <span className="text-base text-[#BABABA] font-semibold">
-                  {state.workflowTrigger
-                    ? state.workflowTrigger
-                    : "Choose Date Reminder"}
-                </span>
-              </div>
-              <div
-                className={`absolute  transition-all top-[70%] rounded-md mt-5 w-full shadow-md  scrollbar-hide ${
-                  triggerOpen
-                    ? "translate-y-0 opacity-100 z-50"
-                    : "-translate-y-[2%] opacity-0 -z-50"
-                }`}
-                onBlur={() => console.log("here")}
-              >
-                <ul className="mt-1.5 overflow-y-scroll scrollbar-hide max-h-52  bg-white  ">
-                  {workflowTrigger.map((option, index) => (
-                    <div key={index} className="pb-3">
-                      <p className="bg-newBlue py-2 px-5 text-white">
-                        {option.title}
-                      </p>
-                      <div
-                        className="py-1"
-                        onClick={() => {
-                          setState((prevValues: any) => ({
-                            ...prevValues,
-                            workflowTrigger: option.subContent.title,
-                          }));
-                          setTriggerOpen(!triggerOpen);
-                        }}
-                      >
-                        <div>
-                          <p className="px-2 text-dark font-bold pb-1 pt-2">
-                            {option.subContent.title}
-                          </p>
-                        </div>
-                        <p className="px-2 text-dark">
-                          {option.subContent.subTitle}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div> */}
-          <div className="w-full mb-5">
-            <p className="w-full mb-1 text-base text-dark font-semibold uppercase">
+          <div className="w-full mb-5 mt-4">
+            <label
+              className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase"
+              htmlFor="workflowName"
+            >
               Workflow Trigger Name:
-            </p>
+            </label>
 
             <TextField
-              placeholder="Contact Tag"
+              placeholder="Custom Date Reminder"
               variant="outlined"
               type="text"
               id="workflowName"
               name="workflowName"
               value={state.workflowName}
               onChange={(e) => handleInputChange(e, 0)} // Assuming it's the first field, index is 0
-              className="px-2 rounded-lg mt-2 mb-2 py-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
+              className="px-2 rounded-lg mt-2 mb-2 py-1 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
             />
 
             {errors.workflowName && (
@@ -230,7 +174,7 @@ export default function CustomDateReminder({ onClose, updateData }: any) {
           {state.filters.map((filter: any, index: any) => (
             <div
               key={index}
-              className=" flex flex-wrap justify-between mb-5 items-center "
+              className="pl-2 flex flex-wrap justify-between mb-5 items-center "
             >
               <div className="w-full  md:w-[45%] pr-4">
                 <label
@@ -240,11 +184,12 @@ export default function CustomDateReminder({ onClose, updateData }: any) {
                   Filter Type:
                 </label>
                 <Select
+                  placeholder="Custom Date Reminder"
                   id={`filterstype-${index}`}
                   name="filterstype"
                   value={filter.filterstype}
                   onChange={(e) => handleInputChange(e, index)}
-                  className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
+                  className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
                 >
                   <MenuItem value="">Select</MenuItem>
                   {appointmentFilter.map((option, optionIndex) => (
@@ -268,7 +213,6 @@ export default function CustomDateReminder({ onClose, updateData }: any) {
                   >
                     Filter Subtype:
                   </label>
-
                   <Select
                     id={`filterssubtype-${index}`}
                     name="filterssubtype"
@@ -318,18 +262,6 @@ export default function CustomDateReminder({ onClose, updateData }: any) {
             <button type="button" onClick={handleAddField}>
               Add Filter
             </button>
-          </div>
-
-          <div className="w-full mb-5 mt-4 px-2">
-            <div>
-              <FormControlLabel
-                value="checkbox"
-                control={<Checkbox className="bg-blue-500" />}
-                label="Match on the year along with the day and month"
-                labelPlacement="end"
-                className="w-full text-sm text-gray-600"
-              />
-            </div>
           </div>
         </form>
       </div>

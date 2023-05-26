@@ -181,25 +181,42 @@ export default function BillingTable({ data }: any) {
     csvExporter.generateCsv(modifiedData);
   };
 
-  const [filterValue, setFilterValue] = useState("");
+  // const [filterValue, setFilterValue] = useState("");
 
-  const handleFilter = (event: any) => {
-    setFilterValue(event.target.value);
+  // const handleFilter = (event: any) => {
+  //   setFilterValue(event.target.value);
+  // };
+
+  // const filteredData = data.filter((category: any) => {
+  //   return (
+  //     category.invoice_no.toLowerCase().includes(filterValue.toLowerCase()) ||
+  //     category.customer_name
+  //       .toLowerCase()
+  //       .includes(filterValue.toLowerCase()) ||
+  //     category.status.toLowerCase().includes(filterValue.toLowerCase()) ||
+  //     category.date.toLowerCase().includes(filterValue.toLowerCase()) ||
+  //     category.dueDate.toLowerCase().includes(filterValue.toLowerCase()) ||
+  //     category.amount.toLowerCase().includes(filterValue.toLowerCase()) ||
+  //     category.paymentMode.toLowerCase().includes(filterValue.toLowerCase())
+  //   );
+  // });
+
+  const [filterInput, setFilterInput] = useState("");
+
+  const handleFilterChange = (e: any) => {
+    const value = e.target.value || "";
+    setFilterInput(value);
   };
 
-  const filteredData = data.filter((category: any) => {
-    return (
-      category.invoice_no.toLowerCase().includes(filterValue.toLowerCase()) ||
-      category.customer_name
-        .toLowerCase()
-        .includes(filterValue.toLowerCase()) ||
-      category.status.toLowerCase().includes(filterValue.toLowerCase()) ||
-      category.date.toLowerCase().includes(filterValue.toLowerCase()) ||
-      category.dueDate.toLowerCase().includes(filterValue.toLowerCase()) ||
-      category.amount.toLowerCase().includes(filterValue.toLowerCase()) ||
-      category.paymentMode.toLowerCase().includes(filterValue.toLowerCase())
-    );
-  });
+  const filteredData = data.filter(
+    (row: any) =>
+      row.customer_name.toLowerCase().includes(filterInput.toLowerCase()) ||
+      row.status.toLowerCase().includes(filterInput.toLowerCase()) ||
+      row.amount.toLowerCase().includes(filterInput.toLowerCase()) ||
+      row.dueDate.toLowerCase().includes(filterInput.toLowerCase()) ||
+      row.date.toLowerCase().includes(filterInput.toLowerCase()) ||
+      row.paymentMode.toLowerCase().includes(filterInput.toLowerCase())
+  );
 
   return (
     <>
@@ -240,8 +257,8 @@ export default function BillingTable({ data }: any) {
                   <MagnifyingGlassIcon className="w-6 h-6 text-gray-400 font-bold  " />
                   <input
                     placeholder="Search claims..."
-                    value={filterValue}
-                    onChange={handleFilter}
+                    value={filterInput}
+                    onChange={handleFilterChange}
                     className="w-full bg-transparent outline-none border-none pl-2 font-fontSource font-medium text-sm"
                   />
                 </div>

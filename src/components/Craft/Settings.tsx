@@ -2,6 +2,7 @@ import React from "react";
 
 import { useEditor } from "@craftjs/core";
 import { Chip } from "@mui/material";
+import { MdDeleteForever } from "react-icons/md";
 
 export const SettingsPanel = () => {
   const { actions, selected } = useEditor((state, query) => {
@@ -25,6 +26,7 @@ export const SettingsPanel = () => {
     };
   });
 
+  // console.log(selected?.settings);
   return selected ? (
     <div className="bg-white w-full">
       <div className="p-4 w-full">
@@ -33,8 +35,18 @@ export const SettingsPanel = () => {
             <div>
               <p>Selected</p>
             </div>
-            <div>
+            <div className="gap-1 flex items-center">
               <Chip size="small" color="primary" label={selected.name} />
+              {selected?.name != "App" && selected.isDeletable ? (
+                <button
+                  onClick={() => {
+                    actions.delete(selected.id);
+                  }}
+                  className="btn bg-red-600 btn-xs capitalize"
+                >
+                  <MdDeleteForever />
+                </button>
+              ) : null}
             </div>
           </div>
         </div>
@@ -42,17 +54,6 @@ export const SettingsPanel = () => {
         <div className="w-full pb-2 border-b mb-3">
           {selected.settings && React.createElement(selected.settings)}
         </div>
-
-        {selected.isDeletable ? (
-          <button
-            onClick={() => {
-              actions.delete(selected.id);
-            }}
-            className="btn absolute bottom-20 bg-red-600 btn-xs capitalize"
-          >
-            Delete
-          </button>
-        ) : null}
       </div>
     </div>
   ) : null;

@@ -1,11 +1,12 @@
-import { useNode, Element } from "@craftjs/core";
+import { useNode, Element, useEditor } from "@craftjs/core";
 import { Text } from "./Text";
 import { MuiColorInput } from "mui-color-input";
 import TextInput from "@/components/controls/TextInput";
 import { IoContract } from "react-icons/io5";
+import React from "react";
 
 const defaults = {
-  backgroundColor: "#ffffff",
+  backgroundColor: "transparent",
   borderColor: "#313641",
   borderRadius: 10,
 };
@@ -29,7 +30,7 @@ export const Link = ({
   return (
     <div
       ref={(ref: any) => connect(drag(ref))}
-      className={`mr-2 hover:outline-blue-500 hover:outline p-1 w-fit`}
+      className={`mr-2 hover:outline-newBlue hover:outline p-1 w-fit`}
       style={{
         backgroundColor: backgroundColor,
       }}
@@ -49,13 +50,24 @@ export const Link = ({
   );
 };
 
-const LinkSettings = () => {
+export const LinkSettings = () => {
   const {
     actions: { setProp },
     props,
+    id,
+    data,
   } = useNode((node) => ({
     props: node.data.props,
+    data: node.data,
   }));
+
+  const { state } = useEditor((state) => {
+    return { state };
+  });
+
+  const textNodeSettings =
+    state.nodes[state.nodes[data.linkedNodes["link"]].data.nodes[0]].related
+      .settings;
 
   return (
     <div>
@@ -63,7 +75,7 @@ const LinkSettings = () => {
         <TextInput
           lefticon={<IoContract />}
           value={props.href}
-          placeholder="Button Text"
+          placeholder="Please enter url"
           onChange={(e) =>
             setProp((props: any) => (props.href = e.target.value))
           }
@@ -85,6 +97,8 @@ const LinkSettings = () => {
           />
         </div>
       </div>
+
+      {textNodeSettings && React.createElement(textNodeSettings)}
     </div>
   );
 };

@@ -163,7 +163,7 @@ export default function DebitCard({ handleChange }: any) {
           </button>
           <button
             onClick={() => ctx.setIsPaymentModalOpen(true)}
-            className="px-5 py-.5 bg-purple-500 rounded-md  font-semibold text-base text-white"
+            className="px-5 py-.5 bg-newBlue rounded-md  font-semibold text-base text-white"
           >
             Pay ${ctx?.invoiceData?.total_amount}
           </button>

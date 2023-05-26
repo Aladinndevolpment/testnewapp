@@ -83,13 +83,11 @@ export const Text = ({
     !hasSelectedNode && setEditable(false);
   }, [hasSelectedNode]);
 
-  console.log(font);
-
   return (
     <div
       ref={(ref: any) => connect(drag(ref))}
       onClick={(e) => setEditable(true)}
-      className="hover:outline-blue-500 hover:outline"
+      className="hover:outline-green-500 hover:outline"
     >
       <ContentEditable
         html={text}
@@ -124,6 +122,20 @@ const TextSettings: any = () => {
 
   return (
     <div className="w-full">
+      <div className="mb-4 mt-2 flex flex-col gap-1">
+        <label className="text-sm text-gray-400">Text</label>
+
+        <TextInput
+          lefticon={<IoContract />}
+          value={props.text}
+          placeholder="Start typing here..."
+          onChange={(e) =>
+            setProp((props: any) => (props.text = e.target.value))
+          }
+          isTextArea={props.text.length > 30}
+        />
+      </div>
+
       <div className="mb-4 mt-2 flex flex-col gap-1">
         <label className="text-sm text-gray-400 ">Select Font</label>
         <div className="dropdown">
@@ -194,8 +206,10 @@ const TextSettings: any = () => {
           <div className="dropdown">
             <label
               tabIndex={0}
-              className={`btn btn-sm bg-transparent text-black border-gray-300 hover:text-white capitalize  ${
-                props.bold != defaults.bold && "bg-[#313641] text-white"
+              className={`btn btn-sm border-gray-300 hover:text-white capitalize  ${
+                props.bold != defaults.bold
+                  ? "bg-[#313641] text-white"
+                  : "bg-white text-black"
               }`}
             >
               <BiBold />
@@ -224,8 +238,8 @@ const TextSettings: any = () => {
           </div>
 
           <button
-            className={`btn btn-sm bg-transparent text-black border-gray-300 hover:text-white capitalize ${
-              props.italic && "bg-[#313641] text-white"
+            className={`btn btn-sm  border-gray-300 hover:text-white capitalize ${
+              props.italic ? "bg-[#313641] text-white" : "bg-white text-black"
             }`}
             onClick={() =>
               setProp((props: any) => (props.italic = !props.italic))
@@ -234,8 +248,10 @@ const TextSettings: any = () => {
             <BiItalic />
           </button>
           <button
-            className={`btn btn-sm bg-transparent text-black border-gray-300 hover:text-white capitalize ${
-              props.underline && "bg-[#313641] text-white"
+            className={`btn btn-sm border-gray-300 hover:text-white capitalize ${
+              props.underline
+                ? "bg-[#313641] text-white"
+                : "bg-white text-black"
             }`}
             onClick={() =>
               setProp((props: any) => (props.underline = !props.underline))

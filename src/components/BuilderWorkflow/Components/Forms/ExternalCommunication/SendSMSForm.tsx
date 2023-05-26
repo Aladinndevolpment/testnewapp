@@ -1,10 +1,13 @@
+/* eslint-disable react/jsx-key */
 import { modalItemState } from "@/atoms/modalItem";
 import { offCanvasOpenState } from "@/atoms/offCanvasOpen";
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useRecoilState } from "recoil";
+import { MdUpload } from "react-icons/md"; 
+import { BiPurchaseTag } from "react-icons/bi";
+import { PlusCircleIcon } from "@heroicons/react/24/outline";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
@@ -60,6 +63,8 @@ export default function SendSMSForm({ onDataStore, onClose }: any) {
     message: "",
   });
   const [errors, setErrors] = useState<any>({});
+  const [attachment, setAttachment] = useState(false);
+  const [fileUrls,setFileUrls] = useState<any>([]);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -77,6 +82,11 @@ export default function SendSMSForm({ onDataStore, onClose }: any) {
       message: value,
     }));
   };
+
+  const handleAdd =()=>{
+    setFileUrls([...fileUrls,{url:""}])
+  }
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
@@ -178,19 +188,57 @@ export default function SendSMSForm({ onDataStore, onClose }: any) {
               className="scrollbar-hide"
             />
 
-            {/* <textarea
-              name="message"
-              value={formValues.message}
-              onChange={handleQuillChange}
-              className="px-2 rounded-lg mt-2 mb-2 py-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none   focus:border-gray-300 text-black "
-            ></textarea> */}
+           
             {errors.message && (
               <span className="mb-5 error text-red-500 ">{errors.message}</span>
             )}
           </div>
+              
+              {attachment == false ? <button onClick={()=>{setAttachment(true)}} className="flex items-center justify-center bg-[#ed754b] text-white px-6 py-1 w-2/4 rounded font-bold mt-3 hover:bg-[#ed825c]"> <MdUpload/> Add attachment</button> : <input
+              type="file"
+              name="attachment"
+              onChange={(e: any) =>
+                setFormValues((prevValues: any) => ({
+                  ...prevValues,
+                  attachment: e.target.files[0],
+                }))
+              }
+              className="px-2 rounded-lg mt-2 mb-2 py-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none   focus:border-gray-300 text-black "
+            />
+            }
+
+            {
+              fileUrls.map(()=> <div className="flex space-x-8 w-full my-4 mt-7  ">
+              <input className="p-2 border rounded-lg border-gray-400 w-7/12  bg-transparent focus:bg-transparent" type="url" name="addUrl" placeholder="Add files through URL "/>
+              <button className="bg-transparent text-blue-400 border-2 border-blue-400 px-4  rounded w-32 hover:bg-blue-100 " onClick={handleAdd}>+Add</button>
+            </div>)
+            }
+            
+            <div className="flex space-x-8 w-full my-4 mt-7  ">
+              <input className="p-2 border rounded-lg border-gray-400 w-7/12  bg-transparent focus:bg-transparent" type="url" name="addUrl" placeholder="Add files through URL "/>
+              <button className="bg-transparent text-blue-400 border-2 border-blue-400 px-4  rounded w-32 hover:bg-blue-100 " onClick={handleAdd}>+Add</button>
+            </div>
+
+<div className="w-full mt-4 ">
+            <label className="w-full  text-base text-dark font-semibold uppercase block">
+              Test Phone Number
+            </label>
+            <div className="flex justify-between">
+            <input
+              type="number"
+              className="scroll-hidden px-2 rounded-lg mt-2 mb-2 py-2 text-sm font-medium bg-transparent focus:bg-transparent w-2/3 placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none   focus:border-gray-300 text-black "
+              />
+  
+          <button className="bg-transparent text-blue-400 border-2 border-blue-400 px-4 py-2 rounded my-2 hover:bg-blue-100">Send Test SMS</button>
+          </div>
+            
+          <p className="text-[#e21515]">* Please add country codes along with the numbers.</p>
+        
+
+        </div>
         </form>
       </div>
-      <div className="flex justify-end items-end  py-2 px-4">
+      <div className="flex justify-end items-end  py-2 px-4 ">
         <button
           onClick={onClose}
           className="border-2 mr-5 border-OrangeBuilder rounded-md flex justify-center items-center px-8 py-1.5 text-OrangeBuilder"
@@ -200,9 +248,9 @@ export default function SendSMSForm({ onDataStore, onClose }: any) {
         <button
           onClick={handleSubmit}
           type="submit"
-          className="bg-OrangeBuilder rounded-md flex justify-center items-center px-8 py-2 text-white"
+          className="bg-OrangeBuilder rounded-md flex justify-center items-center px-8 py-2 text-white hover:bg-[#ed825c]"
         >
-          Submit
+          Save Action
         </button>
       </div>
     </div>

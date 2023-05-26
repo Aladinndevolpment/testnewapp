@@ -1,4 +1,4 @@
-import { XMarkIcon } from "@heroicons/react/24/solid";
+import { ChevronLeftIcon, XMarkIcon } from "@heroicons/react/24/solid";
 // import data from "./data";
 import WorkflowFlyout from "@/components/workflow/WorkflowFlyout";
 import { useEffect, useState } from "react";
@@ -32,6 +32,8 @@ import PipelineStatusChanged from "../Forms/Trigger/Opportunity/PipelineStageCha
 import StaleOpportunities from "../Forms/Trigger/Opportunity/StaleOpportunities";
 import PaymentReceived from "../Forms/Trigger/Payments/PaymentReceived";
 import Invoice from "../Forms/Trigger/Payments/Invoice";
+import CallStatus from "../Forms/Trigger/Events/CallStatus";
+import EmailEvents from "../Forms/Trigger/Events/EmailEvents";
 
 export default function StartComponentTriggerList({
   onClose,
@@ -360,7 +362,7 @@ export default function StartComponentTriggerList({
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
           form: (
-            <TriggerValidationError
+            <CallStatus
               onClose={() => {
                 setIsOpenModal(false);
               }}
@@ -376,7 +378,7 @@ export default function StartComponentTriggerList({
           icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
           link: "#",
           form: (
-            <TriggerValidationError
+            <EmailEvents
               onClose={() => {
                 setIsOpenModal(false);
               }}
@@ -539,13 +541,25 @@ export default function StartComponentTriggerList({
         onClose={() => setIsOpenModal(false)}
         renderData={
           <div className="py-3">
-            <div className="flex justify-between items-center border-b-[1px] border-gray-300 pb-2 px-3 ">
+            <div className="pt-3 flex justify-between items-center border-b-[1px] border-gray-300 pb-5 px-5">
               <p className="  text-xl text-dark font-semibold">{actionData}</p>
               <button onClick={() => setIsOpenModal(false)}>
                 <XMarkIcon className="h-5 w-5 text-FontGray" />
               </button>
             </div>
-            <div className="px-2 py-1">{formItem}</div>
+            <div
+              onClick={() => setIsOpenModal(false)}
+              className="flex justify-start pt-5 pl-5"
+            >
+              <div className="h-5 w-5 bg-white rounded-full shadow-md flex justify-center items-center">
+                <ChevronLeftIcon className="h-3 w-3 text-gray-600" />
+              </div>
+              <p className="text-xs pl-2 pt-0.5 text-gray-600 font-semibold">
+                Back to Workflow
+              </p>
+            </div>
+
+            <div className="px-2  ">{formItem}</div>
           </div>
         }
       />
@@ -569,22 +583,22 @@ export default function StartComponentTriggerList({
       /> */}
 
       <div className={` ${isOpenModal ? "hidden" : "block"}  py-3`}>
-        <div className="flex justify-between items-center border-b-[1px] border-gray-300 pb-2 px-3 ">
+        <div className="flex justify-between items-start border-b-[1px] border-gray-300 pb-2 pl-4 pr-4 ">
           <div className="pr-4">
-            <p className="text-lg text-dark font-semibold">
+            <p className="  text-xl text-dark font-semibold">
               Workflow Triggers{" "}
             </p>
-            <p className="text-sm text-dark font-medium">
+            <p className="text-sm text-gray-500 font-medium py-2">
               Adds a workflow trigger, and on execution, the contacts gets added
               to the workflow
             </p>
           </div>
-          <button onClick={onClose}>
-            <XMarkIcon className="h-5 w-5 text-FontGray" />
+          <button onClick={onClose} className="w-10 pt-2">
+            <XMarkIcon className="h-5 w-5 text-secondary" />
           </button>
         </div>
 
-        <div className="px-2 py-4">
+        <div className="px-4 py-4">
           <div className="rounded-md px-2 py-2 flex justify-start items-center w-full  border-[1px] border-gray-300">
             <MagnifyingGlassIcon className="w-5 h-5 text-gray-400 font-bold  " />
 
@@ -594,22 +608,22 @@ export default function StartComponentTriggerList({
               name="subContentTitle"
               value={filterValue}
               onChange={handleFilter}
-              className="w-[60%] bg-transparent outline-none border-[none] pl-4 font-fontSource font-medium text-sm "
+              className="w-[60%] py-2 px-2 bg-transparent outline-none border-[none] pl-4 font-fontSource font-medium text-sm "
             />
           </div>
         </div>
 
-        <ul className="w-full px-2 pt-2">
+        <ul className="w-full  pt-2">
           {filteredData.map((item, index) => (
-            <li key={index} className="  bg-white mb-3">
+            <li key={index} className="  bg-white mb-3 border-b  px-4 pb-3">
               <p
-                className={` capitalize text-dark text-lg font-semibold  tracking-wide  `}
+                className={` capitalize text-dark text-lg font-semibold  tracking-wide mb-2`}
               >
                 {item?.title}
               </p>
-              <ul className="pt-2">
+              <ul className="pt-2 ">
                 {item?.subContent?.map((mainData, mainIndex) => (
-                  <li className=" " key={mainIndex}>
+                  <li className="mb-3" key={mainIndex}>
                     <div className="flex justify-start items-center border-[1px] border-gray-200 mb-3 p-2 rounded-lg">
                       <input
                         type="radio"

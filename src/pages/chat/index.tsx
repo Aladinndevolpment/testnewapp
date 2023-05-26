@@ -572,6 +572,9 @@ export default function Chat() {
   const [showProfile, setShowProfile] = useState(false);
   const ctx = useContext(GlobalContext);
   ctx.setTitle("Chat");
+
+  const [chatIsSelected, setChatIsSelected] = useState(false);
+
   return (
     <div className="h-full w-full bg-mainBg overflow-hidden relative pb-2">
       {/* <header className="block w-full h-32 lg:h-16 items-center relative z-10 border-b-[1px] border-lightGray">
@@ -611,13 +614,18 @@ export default function Chat() {
         </div>
       </header> */}
 
-      <div className="w-full h-full flex flex-wrap overflow-x-hidden overflow-hidden">
+      <div
+        className={` ${
+          chatIsSelected ? " " : ""
+        } w-full h-full flex flex-wrap overflow-x-hidden overflow-hidden`}
+      >
         <div className="w-full md:w-[22%] h-full pt-2 pb-1">
           <ChatSidebar
             chatData={chatData}
             onSelect={(chat) => {
               setChatToOpen(chat);
               setIsChatOpen(true);
+              setChatIsSelected(true);
             }}
             selectedChat={chatToOpen}
           />
@@ -628,6 +636,7 @@ export default function Chat() {
             chatOpen={isChatOpen}
             onClose={() => setIsChatOpen(false)}
             onProfileToggle={() => setShowProfile(!showProfile)}
+            chatSelected={chatIsSelected}
           />
         </div>
         <div className="w-full md:w-[22%] h-full bg-white">

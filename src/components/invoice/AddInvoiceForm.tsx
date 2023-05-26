@@ -491,6 +491,7 @@ export default function AddInvoiceForm({ handleChange }: any) {
           </button>
           <div className="flex gap-4">
             <button
+              onClick={handleSubmitDraft}
               className="border border-gray-300 outline-none rounded-md p-2 font-bold btn bg-transparent hover:bg-transparent text-black"
               type="submit"
             >

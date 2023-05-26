@@ -21,6 +21,7 @@ import {
   HeaderMenu,
 } from "@/components/Craft/widgets/prebuilt/Header";
 import { Link, LinkText } from "@/components/Craft/widgets/Link";
+import App from "@/components/Craft/widgets/App";
 
 export const CraftContext = createContext({
   tools: "prebuilt",
@@ -48,6 +49,7 @@ export default function Craft() {
       <div className="h-full overflow-hidden">
         <Editor
           resolver={{
+            App,
             Card,
             Button,
             Text,

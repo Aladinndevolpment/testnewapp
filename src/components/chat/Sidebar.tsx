@@ -75,7 +75,7 @@ export default function ChatSidebar({
             className={`py-4 flex w-full border-b border-gray-300 ${
               item === selectedChat && "bg-white"
             } hover:bg-white hover:shadow transition-all cursor-pointer px-4 rounded-sm `}
-            // onClick={() => onSelect(item)}
+            onClick={() => onSelect(item)}
           >
             <div className="mr-3">
               <Image

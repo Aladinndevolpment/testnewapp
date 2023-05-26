@@ -163,44 +163,16 @@ export default function OpportunityStatusChanged({ onClose, updateData }: any) {
 
   return (
     <>
-      <div className="h-[83vh] mt-5  overflow-y-scroll scrollbar-hide px-2">
+      <div className="h-[74vh] 2xl:h-[76vh] mt-2 overflow-y-scroll scrollbar-hide px-2">
         <form onSubmit={handleSubmit}>
-          {/* <div className="w-full mb-5 pt-4">
+          <div className="w-full mb-5 mt-4">
             <label
-              className="w-full mb-2 text-base text-dark font-semibold uppercase"
-              htmlFor="workflowTrigger"
-            >
-              Workflow Trigger Name:
-            </label>
-            <Select
-              label="Opportunity Status Changed"
-              name="workflowTrigger"
-              value={state.workflowTrigger}
-              onChange={(e) => handleInputChange(e, state.workflowTrigger)}
-              input={<OutlinedInput />}
-              MenuProps={MenuProps}
-              className="w-full my-2"
-            >
-              <MenuItem disabled value="">
-                <em>Opportunity Status Changed</em>
-              </MenuItem>
-              {workflowTrigger.map((option, index) => (
-                <MenuItem key={index} value={option.title}>
-                  {option.title}
-                </MenuItem>
-              ))}
-            </Select>
-            {errors.workflowTrigger && (
-              <div className="error">{errors.workflowTrigger}</div>
-            )}
-          </div> */}
-          <div className="w-full mb-5">
-            <label
-              className="w-full mb-2 text-base text-dark font-semibold uppercase"
+              className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase"
               htmlFor="workflowName"
             >
               Workflow Trigger Name:
             </label>
+
             <TextField
               placeholder="Opportunity Status Changed"
               variant="outlined"
@@ -209,7 +181,7 @@ export default function OpportunityStatusChanged({ onClose, updateData }: any) {
               name="workflowName"
               value={state.workflowName}
               onChange={(e) => handleInputChange(e, 0)} // Assuming it's the first field, index is 0
-              className="px-2 rounded-lg mt-2 mb-2 py-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
+              className="px-2 rounded-lg mt-2 mb-2 py-1 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
             />
 
             {errors.workflowName && (
@@ -220,7 +192,7 @@ export default function OpportunityStatusChanged({ onClose, updateData }: any) {
           {state.filters.map((filter: any, index: any) => (
             <div
               key={index}
-              className=" flex flex-wrap justify-between mb-5 items-center "
+              className="pl-2 flex flex-wrap justify-between mb-5 items-center "
             >
               <div className="w-full  md:w-[45%] pr-4">
                 <label
@@ -230,11 +202,12 @@ export default function OpportunityStatusChanged({ onClose, updateData }: any) {
                   Filter Type:
                 </label>
                 <Select
+                  placeholder="Opportunity Status Changed"
                   id={`filterstype-${index}`}
                   name="filterstype"
                   value={filter.filterstype}
                   onChange={(e) => handleInputChange(e, index)}
-                  className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
+                  className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
                 >
                   <MenuItem value="">Select</MenuItem>
                   {appointmentFilter.map((option, optionIndex) => (
@@ -258,7 +231,6 @@ export default function OpportunityStatusChanged({ onClose, updateData }: any) {
                   >
                     Filter Subtype:
                   </label>
-
                   <Select
                     id={`filterssubtype-${index}`}
                     name="filterssubtype"

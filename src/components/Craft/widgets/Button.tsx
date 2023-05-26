@@ -1,4 +1,4 @@
-import { useNode, Element } from "@craftjs/core";
+import { useNode, Element, useEditor } from "@craftjs/core";
 import {
   FormControl,
   FormLabel,
@@ -11,6 +11,7 @@ import { Text } from "./Text";
 import { MuiColorInput } from "mui-color-input";
 import TextInput from "@/components/controls/TextInput";
 import { IoContract } from "react-icons/io5";
+import { createElement } from "react";
 
 const defaults = {
   backgroundColor: "#313641",
@@ -60,14 +61,14 @@ export const Button = ({
   return (
     <button
       ref={(ref: any) => connect(drag(ref))}
-      className={`btn ${size} mr-2 hover:outline-blue-500 hover:outline`}
+      className={`btn ${size} mr-2 hover:outline-pink-500 hover:outline`}
       style={{
         backgroundColor: backgroundColor,
         borderRadius: borderRadius + "px",
         borderColor: borderColor,
       }}
     >
-      <Element id="heroTitle" is={ButtonText} canvas>
+      <Element id="buttonText" is={ButtonText} canvas>
         <Text
           alignment="left"
           text={text}
@@ -84,10 +85,20 @@ const ButtonSettings = () => {
   const {
     actions: { setProp },
     props,
+    id,
+    data,
   } = useNode((node) => ({
     props: node.data.props,
+    data: node.data,
   }));
 
+  const { state } = useEditor((state) => {
+    return { state };
+  });
+
+  const textNodeSettings =
+    state.nodes[state.nodes[data.linkedNodes["buttonText"]].data.nodes[0]]
+      .related.settings;
   return (
     <div>
       {/* <div className="mb-4">
@@ -172,6 +183,8 @@ const ButtonSettings = () => {
           />
         </RadioGroup>
       </FormControl>
+
+      {textNodeSettings && createElement(textNodeSettings)}
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { SettingsPanel } from "./Settings";
 import { CraftContext } from "@/pages/builder/craft";
 import { HeaderLayout } from "./widgets/prebuilt/Header";
 import { BuilderImage } from "./widgets/Image";
+import App from "./widgets/App";
 
 export default function Main() {
   const { device } = useContext(CraftContext);
@@ -18,12 +19,14 @@ export default function Main() {
           <Toolbox />
         </div>
       </div>
-      <div className="w-[60%] px-16 h-full overflow-y-scroll scrollbar-hide pb-40 bg-[#f5f7f9]">
+      <div className="w-[60%] h-full overflow-y-scroll scrollbar-hide pb-40 px-16">
         <Frame>
           <Element is={Container} canvas>
+            {/* <App> */}
             <HeaderLayout />
             <BuilderImage borderRadius={0} />
             <HeroLayout />
+            {/* </App> */}
           </Element>
         </Frame>
       </div>

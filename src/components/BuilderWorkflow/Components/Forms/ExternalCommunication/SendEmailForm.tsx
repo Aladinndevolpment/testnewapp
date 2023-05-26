@@ -5,6 +5,8 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useRecoilState } from "recoil";
+import { MdUpload } from "react-icons/md"; 
+
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
@@ -53,7 +55,7 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
   const [isFlyOutVisible, setIsFlyOutVisible] =
     useRecoilState(offCanvasOpenState);
   const [data, setData] = useRecoilState(modalItemState);
-
+  
   const [formValues, setFormValues] = useState<any>({
     actionName: "",
     formName: "",
@@ -64,6 +66,7 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
     attachment: null,
   });
   const [errors, setErrors] = useState<any>({});
+  const [attachment,setAttachment] = useState(false);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -140,7 +143,7 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
         <form onSubmit={handleSubmit} className="flex flex-wrap px-2  ">
           <div className="w-full mt-4">
             <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
-              Action Name:
+              Action Name
             </label>
             <input
               type="text"
@@ -148,6 +151,7 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
               value={formValues.actionName}
               onChange={handleChange}
               className=" px-2 rounded-lg mt-2 mb-2 py-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none   focus:border-gray-300 text-black "
+            
             />
             {errors.actionName && (
               <span className="mb-5 error text-red-500 ">
@@ -157,7 +161,7 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
           </div>
           <div className="w-full mt-4">
             <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
-              Form Name:
+              From Name
             </label>
             <input
               type="text"
@@ -174,7 +178,7 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
           </div>
           <div className="w-full mt-4">
             <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
-              From Email:
+              From Email
             </label>
             <input
               type="email"
@@ -191,7 +195,7 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
           </div>
           <div className="w-full mt-4">
             <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
-              Subject:
+              Subject
             </label>
             <input
               type="text"
@@ -206,7 +210,7 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
           </div>
           <div className="w-full mt-4">
             <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
-              Template:
+              Templates
             </label>
             <select
               name="template"
@@ -227,7 +231,7 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
           </div>
           <div className="w-full mt-4">
             <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
-              Message:
+              Message
             </label>
             <QuillNoSSRWrapper
               modules={modules}
@@ -256,11 +260,10 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
               <span className="mb-5 error text-red-500 ">{errors.message}</span>
             )}
           </div>
-          <div className="w-full mt-4">
-            <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
-              Add Attachment:
-            </label>
-            <input
+          
+
+          
+            {attachment == false ? <button onClick={()=>{setAttachment(true)}} className="flex items-center justify-center bg-[#ed754b] text-white px-6 py-1 w-2/4 rounded font-bold mt-3 hover:bg-[#ed825c]"> <MdUpload/> Add attachment</button> : <input
               type="file"
               name="attachment"
               onChange={(e: any) =>
@@ -271,7 +274,23 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
               }
               className="px-2 rounded-lg mt-2 mb-2 py-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none   focus:border-gray-300 text-black "
             />
+            }
+          
+
+          <div className="w-full mt-4">
+            <label className="w-full  text-base text-dark font-semibold uppercase block">
+              Test Emails
+            </label>
+            <div className="flex justify-between">
+            <input
+              type="email"
+              className="px-2 rounded-lg mt-2 mb-2 py-2 text-sm font-medium bg-transparent focus:bg-transparent w-2/3 placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none   focus:border-gray-300 text-black "
+            />
+  
+          <button className="bg-transparent text-blue-400 border border-2 border-blue-400 px-4 py-2 rounded my-2 hover:bg-blue-100">Send Test Mail</button>
           </div>
+          </div> 
+
         </form>
       </div>
       <div className="flex justify-end items-end  py-2 px-4">
@@ -284,9 +303,9 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
         <button
           onClick={handleSubmit}
           type="submit"
-          className="bg-OrangeBuilder rounded-md flex justify-center items-center px-8 py-2 text-white"
+          className="bg-OrangeBuilder rounded-md flex justify-center items-center px-8 py-2 text-white hover:bg-[#ed825c]"
         >
-          Submit
+          Save Action
         </button>
       </div>
     </div>

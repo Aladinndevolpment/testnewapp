@@ -19,6 +19,7 @@ interface IChatBodyProps {
   chatOpen: boolean;
   onClose: Function;
   onProfileToggle: Function;
+  chatSelected: boolean;
 }
 
 export default function ChatBody({
@@ -26,6 +27,7 @@ export default function ChatBody({
   chatOpen,
   onClose,
   onProfileToggle,
+  chatSelected,
 }: IChatBodyProps) {
   const [chatMailOpen, setChatMailOpen] = useState(false);
 
@@ -176,11 +178,11 @@ export default function ChatBody({
   ]);
 
   const messagesEndRef = useRef<any>(null);
-  useEffect(() => {
-    if (chatOpen) {
-      if (messagesEndRef != null) messagesEndRef?.current?.scrollIntoView({});
-    }
-  }, [chatData, chat, chatOpen]);
+  // useEffect(() => {
+  //   if (chatOpen) {
+  //     if (messagesEndRef != null) messagesEndRef?.current?.scrollIntoView({});
+  //   }
+  // }, [chatData, chat, chatOpen]);
 
   function handleSMSSend(message: string) {
     setChatMailOpen(false);
@@ -305,17 +307,13 @@ export default function ChatBody({
   }
 
   return (
-    <div
-      className={`h-full transition-all ${
-        chatOpen
-          ? "translate-x-0 fixed z-50 top-0 left-0 w-full h-full md:relative bg-white md:bg-transparent opacity-100"
-          : "translate-x-[100%] md:translate-x-0 opacity-0 md:opacity-100"
-      } md:block`}
-    >
+    <div className="relative h-full">
       <div
-        className={`border-b border-b-gray-300 pt-2 pb-2 px-4 flex flex-col justify-center md:justify-start`}
+        className={`${
+          chatSelected ? "h-[95vh]" : "h-full"
+        }   relative flex flex-col justify-start transition-all md:block bg-white `}
       >
-        <div className="flex flex-wrap justify-between items-center">
+        <div className="bg-white flex flex-wrap justify-between items-center px-4 border-b border-b-gray-300 lg:h-[11%] 2xl:h-[9.1%] pb-2">
           <div className="mb-1">
             <h1 className="text-xl font-semibold">{chat.name}</h1>
           </div>
@@ -344,33 +342,31 @@ export default function ChatBody({
             </div>
           </div>
         </div>
-      </div>
-      <div
-        className={`
-       ${
-         messageType == "sms"
-           ? "h-[85%] md:h-[72%] lg:h-[50%]  "
-           : messageType == "email"
-           ? "h-[85%] md:h-[72%] lg:h-[30%]  "
-           : "h-[85%] md:h-[72%] lg:h-[80%] 2xl:h-[73%] "
-       }
-        overflow-y-scroll  pb-[10%] w-full pt-1 scrollbar-hide `}
-      >
-        <div className="flex-1 overflow-y-auto p-2">
-          {messages.map((message, index) => (
-            <>
-              <div className="flex flex-col">
-                <div className="flex justify-center m-4 sticky top-0 transition">
-                  <span className="text-sm text-gray-600 py-0.5 border px-2 rounded-full bg-white border-gray-100 shadow-sm">
-                    {message.date}
-                  </span>
-                </div>
-                {message.messages.map((messageData, index) => (
-                  <>
-                    {messageData.direction === 0 ? (
-                      <>
-                        <div className="flex w-full gap-3 justify-start items-start">
-                          {/* <Badge
+
+        <div
+          className={`  ${
+            messageType == "sms"
+              ? "h-[85%] md:h-[72%] lg:h-[50%]  "
+              : messageType == "email"
+              ? "h-[85%] md:h-[72%] lg:h-[30%]  "
+              : "h-[85%] md:h-[72%] lg:h-[83%] 2xl:h-[74%]"
+          }  bg-white  overflow-y-scroll  pb-[10%] w-full pt-1 scrollbar-hide `}
+        >
+          <div className="flex-1 overflow-y-auto p-2">
+            {messages.map((message, index) => (
+              <>
+                <div className="flex flex-col">
+                  <div className="flex justify-center m-4 sticky top-0 transition">
+                    <span className="text-sm text-gray-600 py-0.5 border px-2 rounded-full bg-white border-gray-100 shadow-sm">
+                      {message.date}
+                    </span>
+                  </div>
+                  {message.messages.map((messageData, index) => (
+                    <>
+                      {messageData.direction === 0 ? (
+                        <>
+                          <div className="flex w-full gap-3 justify-start items-start">
+                            {/* <Badge
                             anchorOrigin={{
                               vertical: "top",
                               horizontal: "left",
@@ -395,64 +391,11 @@ export default function ChatBody({
                           >
                             <Avatar src="/profile-img4.jpg" size="lg" />
                           </Badge> */}
-                          <div className="avatar-group -space-x-6">
-                            <div className="avatar">
-                              <div className="w-12">
-                                <Image
-                                  src={require("../../../public/images/avatar/yellowdog.jpg")}
-                                  width={80}
-                                  height={80}
-                                  alt=""
-                                  className="rounded-full"
-                                />{" "}
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div className="flex justify-between items-center pt-4">
-                              <p className="text-lg text-darkBlack font-semibold leading-none ">
-                                You
-                              </p>
-                              <p className="text-sm text-FontGray leading-none">
-                                {messageData.time}
-                              </p>
-                              <div></div>
-                            </div>
-                            <div className="pt-3  w-[250px] lg:w-[380px] overflow-x-hidden">
-                              <Message messageData={messageData} />
-                            </div>
-                          </div>
-                          {/* <div>
-                            <Message messageData={messageData} />
-                            <span className="text-xs text-gray-500 leading-none">
-                              {messageData.time}
-                            </span>
-                          </div> */}
-                        </div>
-                      </>
-                    ) : (
-                      <div className="w-full">
-                        <div className="flex  gap-3 justify-end items-start">
-                          <div>
-                            <div className="flex justify-between items-center pt-4">
-                              <div></div>
-                              <p className="text-sm text-FontGray leading-none">
-                                {messageData.time}
-                              </p>
-                              <p className="text-lg text-darkBlack font-semibold leading-none ">
-                                You
-                              </p>
-                            </div>
-                            <div className="pt-3  w-[250px] lg:w-[380px] overflow-x-hidden">
-                              <Message messageData={messageData} />
-                            </div>
-                          </div>
-                          <div>
                             <div className="avatar-group -space-x-6">
                               <div className="avatar">
                                 <div className="w-12">
                                   <Image
-                                    src={require("../../../public/images/avatar/blackdog.jpg")}
+                                    src={require("../../../public/images/avatar/yellowdog.jpg")}
                                     width={80}
                                     height={80}
                                     alt=""
@@ -461,7 +404,60 @@ export default function ChatBody({
                                 </div>
                               </div>
                             </div>
-                            {/* <Badge
+                            <div>
+                              <div className="flex justify-between items-center pt-4">
+                                <p className="text-lg text-darkBlack font-semibold leading-none ">
+                                  You
+                                </p>
+                                <p className="text-sm text-FontGray leading-none">
+                                  {messageData.time}
+                                </p>
+                                <div></div>
+                              </div>
+                              <div className="pt-3  w-[250px] lg:w-[380px] overflow-x-hidden">
+                                <Message messageData={messageData} />
+                              </div>
+                            </div>
+                            {/* <div>
+                            <Message messageData={messageData} />
+                            <span className="text-xs text-gray-500 leading-none">
+                              {messageData.time}
+                            </span>
+                          </div> */}
+                          </div>
+                        </>
+                      ) : (
+                        <div className="w-full">
+                          <div className="flex  gap-3 justify-end items-start">
+                            <div>
+                              <div className="flex justify-between items-center pt-4">
+                                <div></div>
+                                <p className="text-sm text-FontGray leading-none">
+                                  {messageData.time}
+                                </p>
+                                <p className="text-lg text-darkBlack font-semibold leading-none ">
+                                  You
+                                </p>
+                              </div>
+                              <div className="pt-3  w-[250px] lg:w-[380px] overflow-x-hidden">
+                                <Message messageData={messageData} />
+                              </div>
+                            </div>
+                            <div>
+                              <div className="avatar-group -space-x-6">
+                                <div className="avatar">
+                                  <div className="w-12">
+                                    <Image
+                                      src={require("../../../public/images/avatar/blackdog.jpg")}
+                                      width={80}
+                                      height={80}
+                                      alt=""
+                                      className="rounded-full"
+                                    />{" "}
+                                  </div>
+                                </div>
+                              </div>
+                              {/* <Badge
                               anchorOrigin={{
                                 vertical: "top",
                                 horizontal: "right",
@@ -491,134 +487,134 @@ export default function ChatBody({
                                 LU
                               </Avatar>
                             </Badge> */}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    )}
-                  </>
-                ))}
-              </div>
-            </>
-          ))}
-        </div>
-        <div ref={messagesEndRef} />
-      </div>
-      <div className="h-[5%]  md:h-[8%] flex items-end scrollbar-hide bg-white">
-        <div className="w-full pb-3  flex  justify-start items-center border-[1px] border-lightGray px-6 bg-white">
-          {/* <div className="flex  justify-between items-center px-6 "> */}
-          <div className="w-full pt-4  flex  justify-start items-center  ">
-            <button
-              onClick={() => {
-                setMessageType("sms");
-                setChatMailOpen(true);
-              }}
-              className={` ${
-                messageType == "sms"
-                  ? "font-semibold text-md text-base text-[#3486E2]"
-                  : "font-semibold text-md text-base text-dark"
-              }  `}
-            >
-              SMS
-            </button>
-            <button
-              onClick={() => {
-                setMessageType("email");
-                setChatMailOpen(true);
-              }}
-              className={`ml-5 ${
-                messageType == "email"
-                  ? "font-semibold text-md text-base text-[#3486E2]"
-                  : "font-semibold text-md text-base text-gray-700"
-              }  `}
-            >
-              Email
-            </button>
+                      )}
+                    </>
+                  ))}
+                </div>
+              </>
+            ))}
           </div>
-          <button
-            className="pt-4  "
-            onClick={() => {
-              setChatMailOpen(true);
-              setMessageType("sms");
-            }}
-          >
-            <TfiAngleUp className="h-4 w-4 text-dark" />
-          </button>
+          <div ref={messagesEndRef} />
         </div>
 
-        {chatMailOpen && (
-          <div
-            className={`    bottom-0 w-full  shadow-md rounded-md  pt-3 pb-2   overflow-y-scroll scrollbar-hide absolute z-40    ${
-              chatMailOpen
-                ? "translate-y-[0%] opacity-1"
-                : "translate-y-[140%] opacity-0"
-            }
+        <div className="h-[5%]  md:h-[8%] flex items-end scrollbar-hide bg-white">
+          <div className="w-full pb-3  flex  justify-start items-center border-[1px] border-lightGray px-6 bg-white">
+            {/* <div className="flex  justify-between items-center px-6 "> */}
+            <div className="w-full pt-4  flex  justify-start items-center  ">
+              <button
+                onClick={() => {
+                  setMessageType("sms");
+                  setChatMailOpen(true);
+                }}
+                className={` ${
+                  messageType == "sms"
+                    ? "font-semibold text-md text-base text-[#3486E2]"
+                    : "font-semibold text-md text-base text-dark"
+                }  `}
+              >
+                SMS
+              </button>
+              <button
+                onClick={() => {
+                  setMessageType("email");
+                  setChatMailOpen(true);
+                }}
+                className={`ml-5 ${
+                  messageType == "email"
+                    ? "font-semibold text-md text-base text-[#3486E2]"
+                    : "font-semibold text-md text-base text-gray-700"
+                }  `}
+              >
+                Email
+              </button>
+            </div>
+            <button
+              className="pt-4  "
+              onClick={() => {
+                setChatMailOpen(true);
+                setMessageType("sms");
+              }}
+            >
+              <TfiAngleUp className="h-4 w-4 text-dark" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {chatMailOpen && (
+        <div
+          className={`bg-white bottom-0 w-full  shadow-md rounded-md  pt-3 pb-2   overflow-y-scroll scrollbar-hide absolute z-40    ${
+            chatMailOpen
+              ? "translate-y-[0%] opacity-1"
+              : "translate-y-[140%] opacity-0"
+          }
             ${
               messageType == "sms"
-                ? "2xl:h-[50%]"
+                ? "2xl:h-[48%]"
                 : messageType == "email"
-                ? "2xl:h-[73%]"
+                ? "2xl:h-[70%]"
                 : "h-68 "
             }
             
             `}
-          >
-            <div className="  w-full bg-white">
-              <div className="flex  justify-between items-center px-6  border-b-[1px] border-lightGray pb-1 mb-2 ">
-                <div className="w-full pt-4  flex  justify-start items-center  ">
-                  <button
-                    onClick={() => {
-                      setMessageType("sms");
-                      setChatMailOpen(true);
-                    }}
-                    className={` ${
-                      messageType == "sms"
-                        ? "font-semibold text-md text-base text-[#3486E2]"
-                        : "font-semibold text-md text-base text-dark"
-                    }  `}
-                  >
-                    SMS
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMessageType("email");
-                      setChatMailOpen(true);
-                    }}
-                    className={`ml-5 ${
-                      messageType == "email"
-                        ? "font-semibold text-md text-base text-[#3486E2]"
-                        : "font-semibold text-md text-base text-gray-700"
-                    }  `}
-                  >
-                    Email
-                  </button>
-                </div>
+        >
+          <div className="  w-full bg-white">
+            <div className="flex  justify-between items-center px-6  border-b-[1px] border-lightGray pb-1 mb-2 ">
+              <div className="w-full pt-4  flex  justify-start items-center  ">
                 <button
                   onClick={() => {
-                    setChatMailOpen(false);
-                    setMessageType("");
+                    setMessageType("sms");
+                    setChatMailOpen(true);
                   }}
+                  className={` ${
+                    messageType == "sms"
+                      ? "font-semibold text-md text-base text-[#3486E2]"
+                      : "font-semibold text-md text-base text-dark"
+                  }  `}
                 >
-                  <TfiAngleDown className="h-4 w-4 text-dark" />
+                  SMS
+                </button>
+                <button
+                  onClick={() => {
+                    setMessageType("email");
+                    setChatMailOpen(true);
+                  }}
+                  className={`ml-5 ${
+                    messageType == "email"
+                      ? "font-semibold text-md text-base text-[#3486E2]"
+                      : "font-semibold text-md text-base text-gray-700"
+                  }  `}
+                >
+                  Email
                 </button>
               </div>
-
-              {messageType == "sms" ? (
-                <SMSMessage
-                  onClose={() => setChatMailOpen(false)}
-                  handleChange={(message: string) => handleSMSSend(message)}
-                />
-              ) : (
-                <EmailMessage
-                  onClose={() => setChatMailOpen(false)}
-                  handleChange={(emailData: string) =>
-                    handleEmailSend(emailData)
-                  }
-                />
-              )}
+              <button
+                onClick={() => {
+                  setChatMailOpen(false);
+                  setMessageType("");
+                }}
+              >
+                <TfiAngleDown className="h-4 w-4 text-dark" />
+              </button>
             </div>
+
+            {messageType == "sms" ? (
+              <SMSMessage
+                onClose={() => setChatMailOpen(false)}
+                handleChange={(message: string) => handleSMSSend(message)}
+              />
+            ) : (
+              <EmailMessage
+                onClose={() => setChatMailOpen(false)}
+                handleChange={(emailData: string) => handleEmailSend(emailData)}
+              />
+            )}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

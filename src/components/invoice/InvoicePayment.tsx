@@ -59,10 +59,10 @@ export default function InvoicePayment({ handleChange }: any) {
               onClick={() => setOpenAccordionBox(true)}
               className="collapse-title flex justify-center items-center   "
             >
-              <span className="text-purple-800 font-semibold text-sm text-center">
+              <span className="text-newBlue font-semibold text-sm text-center">
                 More Claims Details
               </span>
-              <ChevronDownIcon className="h-4 w-4  text-purple-800" />
+              <ChevronDownIcon className="h-4 w-4  text-newBlue" />
             </div>
           )}
 
@@ -142,10 +142,10 @@ export default function InvoicePayment({ handleChange }: any) {
                   onClick={() => setOpenAccordionBox(false)}
                   className="collapse-title flex justify-center items-center   "
                 >
-                  <span className="text-purple-800 font-semibold text-sm text-center">
+                  <span className="text-newBlue font-semibold text-sm text-center">
                     Less Claims Details
                   </span>
-                  <ChevronDownIcon className="h-4 w-4  text-purple-800" />
+                  <ChevronDownIcon className="h-4 w-4  text-newBlue" />
                 </div>
               </div>
             </>
@@ -165,7 +165,7 @@ export default function InvoicePayment({ handleChange }: any) {
               <div
                 className={`flex justify-between items-center px-4 rounded-lg border-[1px] ${
                   paymentType == "debit"
-                    ? "border-purple-600  "
+                    ? "border-newBlue "
                     : "border-gray-200   "
                 }`}
               >
@@ -176,7 +176,7 @@ export default function InvoicePayment({ handleChange }: any) {
                       sx={{
                         color: "#78808A",
                         "&.Mui-checked": {
-                          color: "#9333EA",
+                          color: "#1258fc",
                         },
                       }}
                     />
@@ -190,7 +190,7 @@ export default function InvoicePayment({ handleChange }: any) {
               <div
                 className={`flex justify-between items-center px-4 rounded-lg border-[1px] ${
                   paymentType == "paypal"
-                    ? "border-purple-600  "
+                    ? "border-newBlue  "
                     : "border-gray-200   "
                 }`}
               >
@@ -201,7 +201,7 @@ export default function InvoicePayment({ handleChange }: any) {
                       sx={{
                         color: "#78808A",
                         "&.Mui-checked": {
-                          color: "#9333EA",
+                          color: "#1258fc",
                         },
                       }}
                     />

@@ -27,7 +27,7 @@ export const HeroLayout = ({
   return (
     <Container>
       <div
-        className="p-4 md:py-16 md:px-8 flex flex-wrap items-center hover:outline-blue-500 hover:outline shadow-md"
+        className="p-4 md:py-16 md:px-8 flex flex-wrap items-center hover:outline-purple-500 hover:outline shadow-md"
         style={{
           backgroundColor: backgroundColor,
           borderRadius: borderRadius + "px",

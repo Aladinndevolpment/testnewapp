@@ -59,7 +59,7 @@ export default function CreateUpdateOpportunity({ onDataStore, onClose }: any) {
     inPipeline: "",
     inPipelineStage: "",
     opportunityName: "",
-    opportunityScore: "",
+    opprtunitySource: "",
     leadValue: "",
     status: "",
   });
@@ -94,8 +94,8 @@ export default function CreateUpdateOpportunity({ onDataStore, onClose }: any) {
     if (!formValues.opportunityName.trim()) {
       validationErrors.opportunityName = "Opportunity Name is required";
     }
-    if (!formValues.opportunityScore.trim()) {
-      validationErrors.opportunityScore = "Opportunity Score is required";
+    if (!formValues.opprtunitySource.trim()) {
+      validationErrors.opprtunitySource = "Opportunity Source is required";
     }
     if (!formValues.leadValue.trim()) {
       validationErrors.leadValue = "Lead Value is required";
@@ -118,7 +118,7 @@ export default function CreateUpdateOpportunity({ onDataStore, onClose }: any) {
       inPipeline: "",
       inPipelineStage: "",
       opportunityName: "",
-      opportunityScore: "",
+      opportunitySource: "",
       leadValue: "",
       status: "",
     });
@@ -134,7 +134,7 @@ export default function CreateUpdateOpportunity({ onDataStore, onClose }: any) {
         <form onSubmit={handleSubmit} className="flex flex-wrap px-2  ">
           <div className="w-full mt-4">
             <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
-              Action Name:
+              Action Name
             </label>
             <input
               type="text"
@@ -151,7 +151,7 @@ export default function CreateUpdateOpportunity({ onDataStore, onClose }: any) {
           </div>
           <div className="w-full mt-4">
             <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
-              In Pipeline:
+              In Pipeline
             </label>
             <select
               name="inPipeline"
@@ -172,7 +172,7 @@ export default function CreateUpdateOpportunity({ onDataStore, onClose }: any) {
           </div>
           <div className="w-full mt-4">
             <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
-              In Pipeline Stage:
+              In Pipeline Stage
             </label>
             <select
               name="inPipelineStage"
@@ -193,7 +193,7 @@ export default function CreateUpdateOpportunity({ onDataStore, onClose }: any) {
           </div>
           <div className="w-full mt-4">
             <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
-              Opportunity Name:
+              Opportunity Name
             </label>
             <input
               type="text"
@@ -210,24 +210,24 @@ export default function CreateUpdateOpportunity({ onDataStore, onClose }: any) {
           </div>{" "}
           <div className="w-full mt-4">
             <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
-              Opportunity Score:
+              Opportunity Source
             </label>
             <input
               type="text"
-              name="opportunityScore"
-              value={formValues.opportunityScore}
+              name="opprtunitySource"
+              value={formValues.opprtunitySource}
               onChange={handleChange}
               className="px-2 rounded-lg mt-2 mb-2 py-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none   focus:border-gray-300 text-black "
             />
-            {errors.opportunityScore && (
+            {errors.opprtunitySource && (
               <span className="mb-5 error text-red-500 ">
-                {errors.opportunityScore}
+                {errors.opprtunitySource}
               </span>
             )}
           </div>
           <div className="w-full mt-4">
             <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
-              Lead Value:
+              Lead Value
             </label>
             <input
               type="text"
@@ -244,7 +244,7 @@ export default function CreateUpdateOpportunity({ onDataStore, onClose }: any) {
           </div>
           <div className="w-full mt-4">
             <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
-              Status:
+              Status
             </label>
             <select
               name="status"
@@ -270,7 +270,7 @@ export default function CreateUpdateOpportunity({ onDataStore, onClose }: any) {
                 onChange={handleChange}
               />
               <p
-                className={` capitalize text-gray-600 text-sm font-semibold  tracking-wide ml-2 `}
+                className={`  text-gray-600 text-sm font-semibold  tracking-wide ml-2 uppercase `}
               >
                 Allow Opportunity to move to any previous stage in Pipeline
               </p>
@@ -283,7 +283,7 @@ export default function CreateUpdateOpportunity({ onDataStore, onClose }: any) {
                 onChange={handleChange}
               />
               <p
-                className={` capitalize text-gray-600 text-sm font-semibold  tracking-wide ml-2 `}
+                className={`  text-gray-600 text-sm font-semibold  tracking-wide ml-2 uppercase `}
               >
                 Allow duplicate opportunities
               </p>
@@ -308,7 +308,7 @@ export default function CreateUpdateOpportunity({ onDataStore, onClose }: any) {
           type="submit"
           className="bg-OrangeBuilder rounded-md flex justify-center items-center px-8 py-2 text-white"
         >
-          Submit
+          Save Action
         </button>
       </div>
     </div>

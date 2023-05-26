@@ -3,13 +3,15 @@ import { Text } from "./Text";
 import { Button } from "./Button";
 import { useNode, Element } from "@craftjs/core";
 import Container from "./Container";
+import TextInput from "@/components/controls/TextInput";
+import { IoContract } from "react-icons/io5";
 
 export const GridTop = ({ children }: any) => {
   const {
     connectors: { connect },
   }: any = useNode();
   return (
-    <div ref={connect} className="text-only">
+    <div ref={connect} className="text-only p-2">
       {children}
     </div>
   );
@@ -45,19 +47,52 @@ interface IGridProps {
   padding?: number;
 }
 
-export const Grid = ({ padding = 20, col }: IGridProps) => {
+export const Grid = ({ padding = 20, col = 1 }: IGridProps) => {
   return (
     <Container>
-      <div className="flex flex-wrap mt-2 p-2 hover:outline hover:outline-blue-500">
+      <div className="flex flex-wrap mt-2  hover:outline hover:outline-blue-500">
         {[...Array(col)].map((item, index) => (
-          <div style={{ width: 100 / col + "%" }} key={index}>
-            <Element id={`grid_${index}`} is={GridTop} canvas>
-              <Text alignment="left" text="Title" fontSize={20} />
-              {col}
-            </Element>
+          <div style={{ width: 100 / col + "%" }} key={index} className="p-2">
+            <Element id={`grid_${index}`} is={GridTop} canvas></Element>
           </div>
         ))}
       </div>
     </Container>
   );
+};
+
+const GridSettings = () => {
+  const {
+    actions: { setProp },
+    props,
+  } = useNode((node) => ({
+    props: node.data.props,
+  }));
+
+  return (
+    <div>
+      <div className="mb-4">
+        <TextInput
+          lefticon={<IoContract />}
+          value={props.col}
+          placeholder="Button Text"
+          onChange={(e) =>
+            setProp((props: any) => (props.col = parseInt(e.target.value)))
+          }
+          min={1}
+          type="number"
+          max={12}
+        />
+      </div>
+    </div>
+  );
+};
+
+Grid.craft = {
+  related: {
+    settings: GridSettings,
+  },
+  props: {
+    col: 1,
+  },
 };

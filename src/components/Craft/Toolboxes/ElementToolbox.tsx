@@ -1,122 +1,103 @@
-import { Element, useEditor } from "@craftjs/core";
 import { Button } from "../widgets/Button";
 import { Text } from "../widgets/Text";
-import Container from "../widgets/Container";
 import { Card } from "../widgets/Card";
 import { BuilderImage } from "../widgets/Image";
 import { Grid } from "../widgets/Grid";
 import { Link } from "../widgets/Link";
 
+import { useState } from "react";
+import TextInput from "@/components/controls/TextInput";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import ElementToolsLayout from "./tools/ElementToolsLayout";
+
 export default function ElementToolbox() {
-  const { connectors, query } = useEditor();
+  const [searchString, setSearchString] = useState("");
+
+  const tools = [
+    {
+      name: "Text",
+      tool: (
+        <ElementToolsLayout
+          toolName="Text"
+          tool={<Text text="Start writing here..." alignment={"left"} />}
+          image="@/../public/craft/hero.png"
+        />
+      ),
+    },
+
+    {
+      name: "Button",
+      tool: (
+        <ElementToolsLayout
+          toolName="Button"
+          tool={<Button text="Click Me" />}
+          image="@/../public/craft/hero.png"
+        />
+      ),
+    },
+
+    {
+      name: "Image",
+      tool: (
+        <ElementToolsLayout
+          toolName="Image"
+          tool={<BuilderImage />}
+          image="@/../public/craft/hero.png"
+        />
+      ),
+    },
+
+    {
+      name: "Link",
+      tool: (
+        <ElementToolsLayout
+          toolName="Link"
+          tool={<Link text="Link" href={"#"} />}
+          image="@/../public/craft/hero.png"
+        />
+      ),
+    },
+
+    {
+      name: "Card",
+      tool: (
+        <ElementToolsLayout
+          toolName="Card"
+          tool={<Card />}
+          image="@/../public/craft/hero.png"
+        />
+      ),
+    },
+
+    {
+      name: "Grid 1",
+      tool: (
+        <ElementToolsLayout
+          toolName="Grid 1"
+          tool={<Grid col={1} />}
+          image="@/../public/craft/hero.png"
+        />
+      ),
+    },
+  ];
 
   return (
     <div className="mt-3">
-      <div className="flex flex-wrap gap-3 mb-3">
-        <div>
-          <button
-            className="btn"
-            ref={(ref: any) =>
-              connectors.create(ref, <Button text="Click Me" />)
-            }
-          >
-            Button
-          </button>
-        </div>
-        <div>
-          <button
-            className="btn"
-            ref={(ref: any) =>
-              connectors.create(
-                ref,
-                <Text text="Start writing here..." alignment={"left"} />
-              )
-            }
-          >
-            Text
-          </button>
-        </div>
-        <div>
-          <button
-            className="btn"
-            ref={(ref: any) =>
-              connectors.create(ref, <Link text="Link" href={"#"} />)
-            }
-          >
-            Link
-          </button>
-        </div>
-        <div>
-          <button
-            className="btn"
-            ref={(ref: any) =>
-              connectors.create(
-                ref,
-                <Element is={Container} canvas>
-                  My Container
-                </Element>
-              )
-            }
-          >
-            Container
-          </button>
-        </div>
-        <div>
-          <button
-            className="btn"
-            ref={(ref: any) => connectors.create(ref, <Card />)}
-          >
-            Card
-          </button>
-        </div>
-
-        <div>
-          <button
-            className="btn"
-            ref={(ref: any) => connectors.create(ref, <BuilderImage />)}
-          >
-            Image
-          </button>
-        </div>
+      <div className="mb-2">
+        <TextInput
+          lefticon={<MagnifyingGlassIcon className="h-6 w-6 text-gray-400" />}
+          placeholder="Search layout"
+        />
       </div>
-
-      <div>
-        Grid
-        <div className="flex flex-wrap gap-2">
-          <div>
-            <button
-              ref={(ref: any) => connectors.create(ref, <Grid col={4} />)}
-              className="btn"
-            >
-              4
-            </button>
+      <div className="flex flex-col overflow-hidden gap-3 mt-3 w-full">
+        {tools.map((item, index) => (
+          <div
+            key={index}
+            className="w-full hover:border hover:border-blue-500"
+          >
+            {item.tool}
           </div>
-          <div>
-            <button
-              ref={(ref: any) => connectors.create(ref, <Grid col={3} />)}
-              className="btn"
-            >
-              3
-            </button>
-          </div>
-
-          <div>
-            <button
-              ref={(ref: any) => connectors.create(ref, <Grid col={2} />)}
-              className="btn"
-            >
-              2
-            </button>
-          </div>
-          <div>
-            <button
-              ref={(ref: any) => connectors.create(ref, <Grid col={1} />)}
-              className="btn"
-            >
-              1
-            </button>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

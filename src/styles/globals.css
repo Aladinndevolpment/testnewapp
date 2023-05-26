@@ -1599,7 +1599,7 @@ white-space: pre-line;
 
 .progress-mine::-webkit-progress-value {
   --tw-bg-opacity: 1;
-  background-color: #6863cf;
+  background-color: "#1258fc",
 }
 
 

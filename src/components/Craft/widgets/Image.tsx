@@ -22,7 +22,7 @@ export const BuilderImage = ({
   return (
     <Container>
       <div
-        className={`relative flex justify-start hover:outline-blue-500 hover:outline`}
+        className={`relative flex justify-start hover:outline-orange-500 hover:outline`}
         style={{ borderRadius: borderRadius + "px", height, width }}
       >
         {imageSrc ? (

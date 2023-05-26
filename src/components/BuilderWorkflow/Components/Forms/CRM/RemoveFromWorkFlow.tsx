@@ -115,7 +115,7 @@ export default function RemoveFromWorkFlow({ onDataStore, onClose }: any) {
         <form onSubmit={handleSubmit} className="flex flex-wrap px-2  ">
           <div className="w-full mt-4">
             <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
-              Action Name:
+              Action Name
             </label>
             <input
               type="text"
@@ -133,7 +133,7 @@ export default function RemoveFromWorkFlow({ onDataStore, onClose }: any) {
 
           <div className="w-full mt-4">
             <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
-              Workflow:
+              Workflow
             </label>
             <div className="mt-3 flex justify-start items-center border-[1px] border-gray-200 mb-3 p-2 rounded-lg">
               <input
@@ -203,7 +203,7 @@ export default function RemoveFromWorkFlow({ onDataStore, onClose }: any) {
           type="submit"
           className="bg-OrangeBuilder rounded-md flex justify-center items-center px-8 py-2 text-white"
         >
-          Submit
+          Save Action
         </button>
       </div>
     </div>

@@ -54,7 +54,7 @@ export default function LongCard({
       </div>
       <div className="flex flex-wrap border-t mt-1 py-2 px-4">
         <div className="w-1/2 border-r">
-          <h6 className="text-[#6863cf] font-medium text-[12px] uppercase">
+          <h6 className="text-newBlue font-medium text-[12px] uppercase">
             Current
           </h6>
           <h4 className="text-black font-bold text-sm">

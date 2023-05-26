@@ -128,7 +128,7 @@ export default function PreviewFinalData() {
               ctx?.setIsInvoiceFinalDataShow(false);
               ctx.setIsPaymentModalOpen(true);
             }}
-            className="px-5 py-1 bg-purple-500 rounded-md  font-semibold text-base text-white"
+            className="px-5 py-1 bg-newBlue rounded-md  font-semibold text-base text-white"
           >
             Pay ${ctx?.invoiceData?.total_amount}
           </button>

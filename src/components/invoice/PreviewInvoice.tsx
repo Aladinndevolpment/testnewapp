@@ -147,7 +147,7 @@ export default function PreviewInvoice({ handleChange }: any) {
                 ctx.setIsInvoiceFinalDataShow(true);
                 ctx?.setIsInvoicePreviewModalVisible(false);
               }}
-              className="px-5 py-1 bg-blue-400 rounded-md font-semibold text-base text-white"
+              className="px-5 py-1 bg-newBlue rounded-md font-semibold text-base text-white"
             >
               Send
             </button>

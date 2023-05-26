@@ -105,7 +105,7 @@ export default function InvoicePage() {
     {
       name: "series-1",
       data: [30, 40, 45, 50, 49, 60, 70, 91],
-      color: "#7c48d2",
+      color: "#1258fc",
     },
     // {
     //   name: "series-2",
@@ -251,9 +251,7 @@ export default function InvoicePage() {
                     title="Total Claims"
                     number={152.9}
                     currency="$"
-                    titleIcon={
-                      <FaBookmark className="text-sm text-[#7e49d2]" />
-                    }
+                    titleIcon={<FaBookmark className="text-sm text-newBlue" />}
                     subData={"+1.50"}
                     subSpanData={"/month"}
                     subIcon={<BsArrowUpRight className="text-[10px]" />}
@@ -328,7 +326,7 @@ export default function InvoicePage() {
               </div>
               <div className="w-full py-4 px-2 flex flex-col justify-between h-auto mt-3">
                 <div>
-                  <p className="text-xs font-semibold  pb-2 text-[#6863cf] ">
+                  <p className="text-xs font-semibold  pb-2 text-newBlue ">
                     Cash as on 04/01/2022
                   </p>
                   <p className="text-2xl font-semibold">$487.1k</p>
@@ -360,7 +358,7 @@ export default function InvoicePage() {
               </div>
               <div className="flex flex-wrap gap-2">
                 <button
-                  className=" flex justify-center items-center px-4 py-2 rounded-md text-white capitalize bg-[#7c48d2]"
+                  className=" flex justify-center items-center px-4 py-2 rounded-md text-white capitalize bg-newBlue"
                   onClick={() => {
                     setAddFlyoutVisibility(true);
                     setInvoiceData(null);
