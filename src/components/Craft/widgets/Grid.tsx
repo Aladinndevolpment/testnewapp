@@ -50,9 +50,13 @@ interface IGridProps {
 export const Grid = ({ padding = 20, col = 1 }: IGridProps) => {
   return (
     <Container>
-      <div className="flex flex-wrap mt-2  hover:outline hover:outline-blue-500">
+      <div className="flex flex-wrap mt-2  hover:outline hover:outline-blue-500 outline-dashed outline-1">
         {[...Array(col)].map((item, index) => (
-          <div style={{ width: 100 / col + "%" }} key={index} className="p-2">
+          <div
+            style={{ width: 100 / col + "%" }}
+            key={index}
+            className="p-2 border-1 border-dotted"
+          >
             <Element id={`grid_${index}`} is={GridTop} canvas></Element>
           </div>
         ))}

@@ -2,7 +2,6 @@ import Live from "@/components/Interations/authorize/Live";
 import Sandbox from "@/components/Interations/authorize/Sandbox";
 import Image from "next/image";
 import React from "react";
-import { GrFormNextLink } from "react-icons/Gr";
 export default function index() {
   return (
     <div className="w-full flex justify-center items-center">

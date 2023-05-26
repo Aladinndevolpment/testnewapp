@@ -86,6 +86,7 @@ export default function AppointmentDetails({
             chatOpen={isChatOpen}
             onClose={() => setIsChatOpen(false)}
             onProfileToggle={() => setShowProfile(!showProfile)}
+            chatSelected={false}
           />
         </div>
       ),

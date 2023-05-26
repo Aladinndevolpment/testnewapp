@@ -1,7 +1,6 @@
 import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import React, { useState } from "react";
-import { GrFormNextLink } from "react-icons/Gr";
 
 export default function Stripe() {
   const [showLiveData, setShowLiveData] = useState<any>(false);
