@@ -215,7 +215,7 @@ const WorkflowData = () => {
       <div className="  mt-20 lg:mt-0 flex flex-col justify-start items-center">
         <HydrationProvider>
           <Client>
-            <div className="w-full">
+            <div className="w-full pb-20">
               <FlowBuilder
                 ref={ref}
                 historyTool={{

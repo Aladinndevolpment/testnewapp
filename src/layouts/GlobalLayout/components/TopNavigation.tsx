@@ -41,7 +41,13 @@ export default function TopNavigation() {
                   <XMarkIcon className="h-5 w-5" />
                 )}
               </div>
-              <div className="text-lg font-bold">Logo</div>
+              <div>
+                <Image
+                  src={require("../../../../public/images/logo/logo.png")}
+                  alt="Emerge"
+                  className="w-36 lg:w-44"
+                />
+              </div>
               <div className="w-[90%]">
                 <HeaderTitle />
               </div>

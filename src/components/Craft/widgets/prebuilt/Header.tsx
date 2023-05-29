@@ -69,7 +69,7 @@ export const HeaderLayout = ({
       >
         <div className="">
           <Element id="logoImage" is={HeaderLogo} canvas>
-            <BuilderImage width="70px" height="70px" type="contain" />
+            <BuilderImage width={70} height={70} type="contain" />
           </Element>
         </div>
 

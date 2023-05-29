@@ -12,7 +12,7 @@ export default function PrebuiltToolbox() {
   ];
 
   return (
-    <div className="mt-3">
+    <div className="p-4">
       <div className="mb-2">
         <TextInput
           lefticon={<MagnifyingGlassIcon className="h-6 w-6 text-gray-400" />}

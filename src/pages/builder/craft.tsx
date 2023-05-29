@@ -22,6 +22,8 @@ import {
 } from "@/components/Craft/widgets/prebuilt/Header";
 import { Link, LinkText } from "@/components/Craft/widgets/Link";
 import App from "@/components/Craft/widgets/App";
+import Divider from "@/components/Craft/widgets/Divider";
+import { BuilderVideo } from "@/components/Craft/widgets/Video";
 
 export const CraftContext = createContext({
   tools: "prebuilt",
@@ -69,6 +71,8 @@ export default function Craft() {
             HeaderMenu,
             Link,
             LinkText,
+            Divider,
+            BuilderVideo,
           }}
         >
           <Topbar />

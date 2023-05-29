@@ -109,10 +109,9 @@ export default function CreateWorkflow() {
                 <IoChevronBackOutline className="h-3 w-3 text-gray-900" />
               </div>
               <span className="ml-2 text-xs font-semibold text-gray-700">
-                {" "}
                 Back to workflow
               </span>
-            </div>{" "}
+            </div>
             <p className="mt-2 text-base font-semibold text-gray-700">
               Create New Workflow
             </p>
@@ -197,8 +196,7 @@ export default function CreateWorkflow() {
             </ul>
 
             <p className="text-red-500 text-xs pl-4">
-              {" "}
-              {errors.workFlowTypeError}{" "}
+              {errors.workFlowTypeError}
             </p>
           </div>
         </div>

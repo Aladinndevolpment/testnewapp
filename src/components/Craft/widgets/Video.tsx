@@ -11,8 +11,8 @@ import {
 import TextInput from "@/components/controls/TextInput";
 import { IoContract } from "react-icons/io5";
 
-interface BuilderImageProps extends ICommonSettingsProps {
-  imageSrc?: string;
+interface BuilderVideoProps extends ICommonSettingsProps {
+  videoSrc?: string;
   borderRadius?: number;
   height?: number;
   width?: number;
@@ -21,8 +21,8 @@ interface BuilderImageProps extends ICommonSettingsProps {
 
 const imageTypes = ["cover", "contain"];
 
-export const BuilderImage = ({
-  imageSrc,
+export const BuilderVideo = ({
+  videoSrc: videoSrc,
   height = 400,
   width = 0,
   type = "cover",
@@ -41,7 +41,7 @@ export const BuilderImage = ({
   paddingRight = baseDefaults.paddingRight,
   shadow = "shadow-none",
   shadowColor = "transparent",
-}: BuilderImageProps) => {
+}: BuilderVideoProps) => {
   // console.log(`shadow-[${shadowColor}]`);
   return (
     <Container>
@@ -59,11 +59,8 @@ export const BuilderImage = ({
           marginRight: `${marginRight}px`,
         }}
       >
-        {imageSrc ? (
-          <Image
-            src={imageSrc}
-            fill={true}
-            alt=""
+        {videoSrc ? (
+          <video
             style={{
               objectFit: type,
               borderRadius: borderRadius + "px",
@@ -73,37 +70,26 @@ export const BuilderImage = ({
               paddingLeft: `${paddingLeft}px`,
               paddingRight: `${paddingRight}px`,
             }}
-          />
+            width="100%"
+            controls
+          >
+            <source src={videoSrc} type="video/mp4" />
+            <source src={videoSrc} type="video/ogg" />
+            Your browser does not support HTML video.
+          </video>
         ) : (
-          <Image
-            src={require("@/../public/images/avatar/blackdog.jpg")}
-            fill={true}
-            alt=""
-            style={{
-              objectFit: type,
-              borderRadius: borderRadius + "px",
-              backgroundColor,
-              paddingTop: `${paddingTop}px`,
-              paddingBottom: `${paddingBottom}px`,
-              paddingLeft: `${paddingLeft}px`,
-              paddingRight: `${paddingRight}px`,
-            }}
-          />
+          <div>Video</div>
         )}
       </div>
     </Container>
   );
 };
 
-const BuilderImageSettings = () => {
+const BuilderVideoSettings = () => {
   const {
     actions: { setProp },
-    fontSize,
-    borderRadius,
     props,
   } = useNode((node) => ({
-    fontSize: node.data.props.imageSrc,
-    borderRadius: node.data.props.borderRadius,
     props: node.data.props,
   }));
 
@@ -115,7 +101,7 @@ const BuilderImageSettings = () => {
         onChange={(e) =>
           setProp(
             (props: any) =>
-              (props.imageSrc = URL.createObjectURL(e.target.files![0]))
+              (props.videoSrc = URL.createObjectURL(e.target.files![0]))
           )
         }
       />
@@ -184,9 +170,9 @@ const BuilderImageSettings = () => {
   );
 };
 
-BuilderImage.craft = {
+BuilderVideo.craft = {
   related: {
-    settings: BuilderImageSettings,
+    settings: BuilderVideoSettings,
   },
   props: {
     height: 400,

@@ -6,8 +6,8 @@ export default function Logo() {
     <div className=" py-3">
       <Image
         src={require("../../../public/images/logo/logo.png")}
-        alt=""
-        className="w-72"
+        alt="Emerge"
+        className="w-36 lg:w-44"
       />
     </div>
   );

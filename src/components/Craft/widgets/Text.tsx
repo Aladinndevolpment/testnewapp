@@ -5,6 +5,12 @@ import { useEffect, useState } from "react";
 import ContentEditable from "react-contenteditable";
 import { BiBold, BiItalic, BiUnderline } from "react-icons/bi";
 import { IoContract } from "react-icons/io5";
+import {
+  CommonSettings,
+  ICommonSettingsProps,
+  baseDefaults,
+  getCommonSettingsProps,
+} from "./CommonSettings";
 
 const fonts = ["font-main", "font-poppins", "font-noto"];
 const cases = ["normal-case", "uppercase", "lowercase", "capitalize"];
@@ -32,7 +38,7 @@ const fontWeights = [
   "font-extrabold",
 ];
 
-interface ITextProps {
+interface ITextProps extends ICommonSettingsProps {
   text: string;
   fontSize?: number;
   alignment?: "left" | "right" | "center";
@@ -64,6 +70,20 @@ export const Text = ({
   lineHeight = defaults.lineHeight,
   font = defaults.font,
   textCase = defaults.case,
+
+  backgroundColor = baseDefaults.backgroundColor,
+  borderRadius = baseDefaults.borderRadius,
+  borderColor = baseDefaults.borderColor,
+  borderType = "border-solid",
+  borderWidth = baseDefaults.borderWidth,
+  marginTop = baseDefaults.marginTop,
+  marginBottom = baseDefaults.marginBottom,
+  marginLeft = baseDefaults.marginLeft,
+  marginRight = baseDefaults.marginRight,
+  paddingTop = baseDefaults.paddingTop,
+  paddingBottom = baseDefaults.paddingBottom,
+  paddingLeft = baseDefaults.paddingLeft,
+  paddingRight = baseDefaults.paddingRight,
 }: ITextProps) => {
   const {
     connectors: { connect, drag },
@@ -87,6 +107,15 @@ export const Text = ({
     <div
       ref={(ref: any) => connect(drag(ref))}
       onClick={(e) => setEditable(true)}
+      style={{
+        borderColor,
+        borderWidth: `${borderWidth}px`,
+        borderRadius: `${borderRadius}px`,
+        marginTop: `${marginTop}px`,
+        marginBottom: `${marginBottom}px`,
+        marginLeft: `${marginLeft}px`,
+        marginRight: `${marginRight}px`,
+      }}
       className="hover:outline-green-500 hover:outline"
     >
       <ContentEditable
@@ -103,10 +132,16 @@ export const Text = ({
           fontSize: `${fontSize}px`,
           color: color,
           lineHeight: lineHeight,
+          borderRadius: borderRadius + "px",
+          backgroundColor,
+          paddingTop: `${paddingTop}px`,
+          paddingBottom: `${paddingBottom}px`,
+          paddingLeft: `${paddingLeft}px`,
+          paddingRight: `${paddingRight}px`,
         }}
         className={`text-${alignment}  ${bold} ${underline && "underline"} ${
           italic && "italic"
-        } ${font} ${textCase}`}
+        } ${font} ${textCase} ${borderType}`}
       />
     </div>
   );
@@ -344,6 +379,8 @@ const TextSettings: any = () => {
           />
         </div>
       </div>
+
+      <CommonSettings />
     </div>
   );
 };
@@ -362,5 +399,16 @@ Text.craft = {
     lineHeight: defaults.lineHeight,
     font: defaults.font,
     textCase: defaults.case,
+    ...getCommonSettingsProps(),
+    borderRadius: 10,
+    borderWidth: baseDefaults.borderWidth,
+    marginTop: baseDefaults.marginTop,
+    marginBottom: baseDefaults.marginBottom,
+    marginLeft: baseDefaults.marginLeft,
+    marginRight: baseDefaults.marginRight,
+    paddingTop: baseDefaults.paddingTop,
+    paddingBottom: baseDefaults.paddingBottom,
+    paddingLeft: baseDefaults.paddingLeft,
+    paddingRight: baseDefaults.paddingRight,
   },
 };

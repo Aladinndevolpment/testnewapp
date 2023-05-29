@@ -3,35 +3,48 @@ import { MenuItem, OutlinedInput, Select, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 
-const workflowTrigger = [
-  {
-    title: "A",
-  },
-  {
-    title: "B",
-  },
-  {
-    title: "C",
-  },
-  {
-    title: "D",
-  },
-  {
-    title: "E",
-  },
-  {
-    title: "F",
-  },
-];
-
 const appointmentFilter = [
   {
-    title: "Hash Tag",
-    subContent: [],
+    title: "Standard Fields",
   },
   {
-    title: "In pipeline",
-    subContent: [],
+    title: "Business Name",
+  },
+  {
+    title: "City",
+  },
+  {
+    title: "Contact Source",
+  },
+  {
+    title: "Contact Type",
+  },
+  {
+    title: "Country",
+  },
+  {
+    title: "Date of Birth",
+  },
+  {
+    title: "Last Name",
+  },
+  {
+    title: "Phone No",
+  },
+  {
+    title: "Postal Code",
+  },
+  {
+    title: "State",
+  },
+  {
+    title: "Street Address",
+  },
+  {
+    title: "Time Zone",
+  },
+  {
+    title: "Website",
   },
 ];
 
@@ -46,16 +59,18 @@ const MenuProps = {
   },
 };
 
-export default function PipelineStatusChanged({ onClose, updateData }: any) {
+export default function UpdateContactField({ onClose, onDataStore }: any) {
   const [state, setState] = useState<any>({
     // workflowTrigger: "",
-    workflowName: "",
+    actionName: "",
+    actionType: "",
     filters: [],
   });
 
   const [errors, setErrors] = useState<any>({
     // workflowTrigger: "",
-    workflowName: "",
+    actionName: "",
+    actionType: "",
     filters: [],
   });
 
@@ -89,8 +104,9 @@ export default function PipelineStatusChanged({ onClose, updateData }: any) {
     let formIsValid = true;
     const newErrors = {
       // workflowTrigger: "",
-      workflowName: "",
+      actionName: "",
       filters: [{ filterstype: "", filterssubtype: "" }],
+      actionType: "",
     };
 
     // if (state.workflowTrigger === "") {
@@ -98,11 +114,14 @@ export default function PipelineStatusChanged({ onClose, updateData }: any) {
     //   newErrors.workflowTrigger = "Workflow Trigger is required";
     // }
 
-    if (state.workflowName === "") {
+    if (state.actionName === "") {
       formIsValid = false;
-      newErrors.workflowName = "Workflow Name is required";
+      newErrors.actionName = "Action Name is required";
     }
-
+    if (state.actionType === "") {
+      formIsValid = false;
+      newErrors.actionType = "Action Type is required";
+    }
     const filtersErrors: any = [];
     state.filters.forEach((filter: any, index: any) => {
       const filterErrors: any = {};
@@ -122,8 +141,7 @@ export default function PipelineStatusChanged({ onClose, updateData }: any) {
 
     if (formIsValid) {
       // Form is valid, proceed with submission
-      console.log("Pipeline Stage Changed:", state);
-      updateData(state.workflowName);
+      onDataStore(state.actionName);
     }
   };
 
@@ -133,47 +151,69 @@ export default function PipelineStatusChanged({ onClose, updateData }: any) {
         <form onSubmit={handleSubmit}>
           <div className="w-full mb-5 mt-4">
             <label
-              className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase"
-              htmlFor="workflowName"
+              className="w-full mb-2 text-base pl-3 text-dark font-semibold uppercase"
+              htmlFor="actionName"
             >
-              Workflow Trigger Name:
+              Action Name:
             </label>
 
             <TextField
               placeholder="Pipeline Stage Changed"
               variant="outlined"
               type="text"
-              id="workflowName"
-              name="workflowName"
-              value={state.workflowName}
+              id="actionName"
+              name="actionName"
+              value={state.actionName}
               onChange={(e) => handleInputChange(e, 0)} // Assuming it's the first field, index is 0
               className="px-2 rounded-lg mt-2 mb-2 py-1 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
             />
 
-            {errors.workflowName && (
-              <div className="error">{errors.workflowName}</div>
+            {errors.actionName && (
+              <div className="error">{errors.actionName}</div>
             )}
           </div>
+          <div className="w-full mb-5 mt-4 px-2">
+            <label
+              className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase"
+              htmlFor="actionName"
+            >
+              Action Type :
+            </label>
 
+            <Select
+              name="actionType"
+              value={state.actionType}
+              onChange={(e) => handleInputChange(e, 0)} // Assuming it's the first field, index is 0
+              className="px-3 rounded-md mt-2 mb-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark  text-space focus:outline-none focus:border-gray-300 text-black"
+            >
+              <MenuItem value="">Select</MenuItem>
+              <MenuItem value="currency1">Currency1</MenuItem>
+              <MenuItem value="currency2">Currency2</MenuItem>
+              <MenuItem value="currency3">Currency3</MenuItem>
+            </Select>
+
+            {errors.actionName && (
+              <div className="error">{errors.actionName}</div>
+            )}
+          </div>
           {state.filters.map((filter: any, index: any) => (
             <div
               key={index}
               className="pl-2 flex flex-wrap justify-between mb-5 items-center "
             >
+              <div className="w-full">
+                <p className="w-full  text-base text-dark font-semibold uppercase">
+                  Fields
+                </p>
+              </div>
               <div className="w-full  md:w-[45%] pr-4">
-                <label
-                  htmlFor={`filterstype-${index}`}
-                  className="w-full mb-2 text-base text-dark font-semibold uppercase"
-                >
-                  Filter Type:
-                </label>
                 <Select
                   placeholder="Pipeline Stage Changed"
                   id={`filterstype-${index}`}
                   name="filterstype"
                   value={filter.filterstype}
                   onChange={(e) => handleInputChange(e, index)}
-                  className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
+                  className="px-2 rounded-lg mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
                 >
                   <MenuItem value="">Select</MenuItem>
                   {appointmentFilter.map((option, optionIndex) => (
@@ -190,41 +230,21 @@ export default function PipelineStatusChanged({ onClose, updateData }: any) {
               </div>
 
               {filter.filterstype && (
-                <div className="w-full  md:w-[45%] pr-4">
-                  <label
-                    htmlFor={`filterssubtype-${index}`}
-                    className="w-full mb-2 text-base text-dark font-semibold uppercase"
-                  >
-                    Filter Subtype:
-                  </label>
-                  <Select
+                <div className="w-full md:w-[45%] mb-2 ">
+                  <TextField
                     id={`filterssubtype-${index}`}
                     name="filterssubtype"
                     value={filter.filterssubtype}
                     onChange={(e) => handleInputChange(e, index)}
-                    className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark  text-space focus:outline-none focus:border-gray-300 text-black"
-                  >
-                    <MenuItem value="">Select</MenuItem>
-                    {filter.filterstype &&
-                      appointmentFilter
-                        .find((option) => option.title === filter.filterstype)
-                        ?.subContent.map(
-                          (subOption: any, subOptionIndex: any) => (
-                            <MenuItem
-                              key={subOptionIndex}
-                              value={subOption?.title}
-                            >
-                              {subOption?.title}
-                            </MenuItem>
-                          )
-                        )}
-                  </Select>
-                  {errors.filters[index] &&
-                    errors.filters[index].filterssubtype && (
-                      <div className="error">
-                        {errors.filters[index].filterssubtype}
-                      </div>
-                    )}
+                    variant="outlined"
+                    type="text"
+                    // Assuming it's the first field, index is 0
+                    className="px-2 rounded-lg   mb-2 py-1 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
+                  />
+
+                  {errors.actionName && (
+                    <div className="error">{errors.actionName}</div>
+                  )}
                 </div>
               )}
 

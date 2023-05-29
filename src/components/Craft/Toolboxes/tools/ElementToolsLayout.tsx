@@ -3,8 +3,10 @@ import { DragIndicatorOutlined } from "@mui/icons-material";
 import Image from "next/image";
 import { HeroLayout } from "../../widgets/prebuilt/HeroLayout";
 import { JSXElementConstructor, ReactElement } from "react";
+import { RxDragHandleDots2 } from "react-icons/rx";
 
 interface IElementToolsLayoutProps {
+  icon: any;
   toolName: string;
   image: string;
   tool:
@@ -13,6 +15,7 @@ interface IElementToolsLayoutProps {
 }
 
 export default function ElementToolsLayout({
+  icon,
   toolName,
   tool,
   image,
@@ -20,19 +23,19 @@ export default function ElementToolsLayout({
   const { connectors, query } = useEditor();
 
   return (
-    <div className="w-full shadow px-2 py-3 border-gray-200 border-[1px] bg-white rounded-md">
-      <button
-        ref={(ref: any) => connectors.create(ref, tool)}
-        className="flex items-start gap-1 "
-      >
+    <div
+      className="w-full shadow px-2 py-3 border-gray-200 border-[1px] bg-white rounded-md cursor-pointer"
+      ref={(ref: any) => connectors.create(ref, tool)}
+    >
+      <div className="flex items-center gap-2">
         <div>
-          <DragIndicatorOutlined className="text-gray-400" />
+          <RxDragHandleDots2 className="text-gray-500 h-6 w-6" />
         </div>
-        <div>
-          {/* <Image src={require(image)} alt="hero layout" /> */}
-          <h6 className="text-black font-medium text-center">{toolName}</h6>
-        </div>
-      </button>
+        {icon}
+        <h6 className="text-gray-600 text-lg font-medium text-center pl-2">
+          {toolName}
+        </h6>
+      </div>
     </div>
   );
 }

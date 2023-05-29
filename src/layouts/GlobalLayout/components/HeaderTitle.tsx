@@ -11,7 +11,7 @@ export default function HeaderTitle() {
 
   return (
     <>
-      <div className={`flex items-center pl-3  w-full justify-start`}>
+      <div className={`flex items-center ml-8  w-full justify-start`}>
         <p
           className={`  capitalize text-white text-[20px] font-semibold tracking-wide  `}
         >
