@@ -20,6 +20,7 @@ interface BuilderVideoProps extends ICommonSettingsProps {
 }
 
 const imageTypes = ["cover", "contain"];
+const elementName = "Video";
 
 export const BuilderVideo = ({
   videoSrc: videoSrc,
@@ -43,6 +44,10 @@ export const BuilderVideo = ({
   shadowColor = "transparent",
 }: BuilderVideoProps) => {
   // console.log(`shadow-[${shadowColor}]`);
+  const { hovered } = useNode((state) => ({
+    hovered: state.events.hovered,
+  }));
+
   return (
     <Container>
       <div
@@ -59,6 +64,11 @@ export const BuilderVideo = ({
           marginRight: `${marginRight}px`,
         }}
       >
+        {hovered && (
+          <div className="absolute top-0 right-0 bg-orange-500 text-white text-xs px-1 z-50">
+            {elementName}
+          </div>
+        )}
         {videoSrc ? (
           <video
             style={{
@@ -78,7 +88,9 @@ export const BuilderVideo = ({
             Your browser does not support HTML video.
           </video>
         ) : (
-          <div>Video</div>
+          <div className="w-full h-full flex justify-center items-center text-lg font-main border-dashed border-2 border-orange-500">
+            Choose a video from settings
+          </div>
         )}
       </div>
     </Container>
@@ -104,6 +116,7 @@ const BuilderVideoSettings = () => {
               (props.videoSrc = URL.createObjectURL(e.target.files![0]))
           )
         }
+        accept="video/*"
       />
 
       <div className="flex flex-wrap justify-between">

@@ -1,16 +1,17 @@
-import React, { ReactNode, useState } from "react";
-import { Text } from "../Text";
-import { Button } from "../Button";
+import React, { useState } from "react";
+
 import Container from "../Container";
 import { useNode, Element, useEditor } from "@craftjs/core";
 import { BuilderImage } from "../Image";
 import { MuiColorInput } from "mui-color-input";
 import TextInput from "@/components/controls/TextInput";
 import { IoContract } from "react-icons/io5";
-import { Link, LinkSettings } from "../Link";
+import { Link } from "../Link";
 import { PencilIcon, PlusIcon } from "@heroicons/react/24/solid";
 import FlyOut from "@/components/Flyout";
 import { DeleteForever } from "@mui/icons-material";
+
+const elementName = "Header Layout";
 
 const defaults = {
   backgroundColor: "#ffffff",
@@ -58,15 +59,24 @@ export const HeaderLayout = ({
   borderRadius = defaults.borderRadius,
   menuItems = items,
 }: HeroLayoutProps) => {
+  const { hovered } = useNode((state) => ({
+    hovered: state.events.hovered,
+  }));
+
   return (
     <Container>
       <div
-        className="p-4 md:py-2 md:px-8 flex flex-wrap justify-between items-center hover:outline-yellow-500 hover:outline border-b"
+        className="relative p-4 md:py-2 md:px-8 flex flex-wrap justify-between items-center hover:outline-yellow-500 hover:outline border-b"
         style={{
           backgroundColor: backgroundColor,
           borderRadius: borderRadius + "px",
         }}
       >
+        {hovered && (
+          <div className="absolute top-0 right-0 bg-yellow-500 text-white text-xs px-1">
+            {elementName}
+          </div>
+        )}
         <div className="">
           <Element id="logoImage" is={HeaderLogo} canvas>
             <BuilderImage width={70} height={70} type="contain" />
@@ -82,7 +92,7 @@ export const HeaderLayout = ({
                 key={index}
                 canvas
               >
-                <Link text={item.text} href={item.href} />
+                <Link text={item.text} href={item.href} targetData={false} />
               </Element>
             ))}
           </div>

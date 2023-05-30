@@ -1,38 +1,73 @@
-import React from "react";
 import { Text } from "../Text";
 import { Button } from "../Button";
 import Container from "../Container";
 import { useNode, Element } from "@craftjs/core";
 import { BuilderImage } from "../Image";
-import { MuiColorInput } from "mui-color-input";
-import TextInput from "@/components/controls/TextInput";
-import { IoContract } from "react-icons/io5";
+
+const elementName = "Hero Layout";
+
+import {
+  CommonSettings,
+  ICommonSettingsProps,
+  baseDefaults,
+  getCommonSettingsProps,
+} from "../CommonSettings";
 
 const defaults = {
   backgroundColor: "#ffffff",
   borderRadius: 10,
 };
 
-interface HeroLayoutProps {
-  padding?: number;
+interface HeroLayoutProps extends ICommonSettingsProps {
   backgroundColor?: string;
-  borderRadius?: number;
 }
 
 export const HeroLayout = ({
-  padding = 20,
   backgroundColor = defaults.backgroundColor,
   borderRadius = defaults.borderRadius,
+  borderColor = baseDefaults.borderColor,
+  borderType = "border-solid",
+  borderWidth = baseDefaults.borderWidth,
+  marginTop = baseDefaults.marginTop,
+  marginBottom = baseDefaults.marginBottom,
+  marginLeft = baseDefaults.marginLeft,
+  marginRight = baseDefaults.marginRight,
+  paddingTop = baseDefaults.paddingTop,
+  paddingBottom = baseDefaults.paddingBottom,
+  paddingLeft = baseDefaults.paddingLeft,
+  paddingRight = baseDefaults.paddingRight,
+  shadow = "shadow-none",
+  shadowColor = "transparent",
 }: HeroLayoutProps) => {
+  const { hovered } = useNode((state) => ({
+    hovered: state.events.hovered,
+  }));
+
   return (
     <Container>
       <div
-        className="p-4 md:py-16 md:px-8 flex flex-wrap items-center hover:outline-purple-500 hover:outline shadow-md"
+        className={`flex flex-wrap items-center hover:outline-purple-500 hover:outline ${shadow} ${borderType} relative`}
         style={{
-          backgroundColor: backgroundColor,
           borderRadius: borderRadius + "px",
+          borderColor,
+          borderWidth: `${borderWidth}px`,
+          marginTop: `${marginTop}px`,
+          marginBottom: `${marginBottom}px`,
+          marginLeft: `${marginLeft}px`,
+          marginRight: `${marginRight}px`,
+          backgroundColor,
+          paddingTop: `${paddingTop}px`,
+          paddingBottom: `${paddingBottom}px`,
+          paddingLeft: `${paddingLeft}px`,
+          paddingRight: `${paddingRight}px`,
         }}
       >
+        {hovered && (
+          <div className="absolute top-0 right-0 bg-purple-500 text-white text-xs px-1">
+            {elementName}
+          </div>
+        )}
+
         <div className="w-full md:w-1/2 order-2 md:order-1">
           <Element id="heroTitle" is={HeroText} canvas>
             <Text
@@ -51,7 +86,7 @@ export const HeroLayout = ({
               />
             </Element>
           </div>
-          <div className="pt-4 md:pt-16">
+          <div className="pt-4 md:pt-16 w-fit">
             <Element id="heroButton" is={HeroButton} canvas>
               <Button text="Learn More" />
             </Element>
@@ -77,32 +112,7 @@ const HeroLayoutSettings: any = () => {
 
   return (
     <div className="w-full">
-      <div className="mb-4 mt-2 flex flex-col gap-1">
-        <label className="text-sm text-gray-400 ">Background Color</label>
-        <div className="">
-          <MuiColorInput
-            format="hex"
-            value={props.backgroundColor ? props.backgroundColor : "#ffffff"}
-            onChange={(e) =>
-              setProp((props: any) => (props.backgroundColor = e))
-            }
-          />
-        </div>
-      </div>
-
-      <div className="mb-4 mt-2 flex flex-col gap-1">
-        <label className="text-sm text-gray-400 ">Border Radius</label>
-        <TextInput
-          lefticon={<IoContract />}
-          value={props.borderRadius}
-          placeholder="Border radius in px"
-          onChange={(e) =>
-            setProp((props: any) => (props.borderRadius = e.target.value))
-          }
-          type="number"
-          min={0}
-        />
-      </div>
+      <CommonSettings />
     </div>
   );
 };
@@ -112,8 +122,18 @@ HeroLayout.craft = {
     settings: HeroLayoutSettings,
   },
   props: {
+    ...getCommonSettingsProps(),
     background: defaults.backgroundColor,
     borderRadius: defaults.borderRadius,
+    borderWidth: baseDefaults.borderWidth,
+    marginTop: baseDefaults.marginTop,
+    marginBottom: baseDefaults.marginBottom,
+    marginLeft: baseDefaults.marginLeft,
+    marginRight: baseDefaults.marginRight,
+    paddingTop: 50,
+    paddingBottom: 50,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
 };
 

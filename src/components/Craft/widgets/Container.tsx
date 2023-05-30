@@ -10,5 +10,9 @@ export default function Container({ children }: IContainerProps) {
     connectors: { connect, drag },
   } = useNode();
 
-  return <div ref={(ref: any) => connect(drag(ref))}>{children}</div>;
+  return (
+    <div ref={(ref: any) => connect(drag(ref))} className="border-orange-500">
+      {children}
+    </div>
+  );
 }

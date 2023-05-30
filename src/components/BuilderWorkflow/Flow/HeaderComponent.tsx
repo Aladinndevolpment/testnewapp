@@ -2,7 +2,7 @@ import { ChevronDownIcon, ChevronLeftIcon } from "@heroicons/react/24/solid";
 import moment from "moment";
 import React, { useState } from "react";
 
-export default function HeaderComponent() {
+export default function HeaderComponent({ saveDraft }: any) {
   const tabs = [
     {
       id: "tab1",
@@ -55,7 +55,10 @@ export default function HeaderComponent() {
                 >
                   Last saved : Today at {moment().format("hh:mm a")}
                 </p>
-                <button className="text-xs md:text-sm mx-3  text-gray-300 border-[1px] border-FontGray px-3 py-1.5 rounded-md">
+                <button
+                  onClick={saveDraft}
+                  className="text-xs md:text-sm mx-3  text-gray-300 border-[1px] border-FontGray px-3 py-1.5 rounded-md"
+                >
                   Save as draft
                 </button>
 

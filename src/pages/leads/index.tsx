@@ -12,7 +12,7 @@ export default function AppointmentDetails({
   onClose,
 }: IAppointmentDetailsProps) {
   return (
-    <div className="bg-white">
+    <div className="bg-white md:h-auto pb-24 overflow-hidden ">
       <TabLeads />
     </div>
   );

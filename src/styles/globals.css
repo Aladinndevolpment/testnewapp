@@ -1611,3 +1611,14 @@ white-space: pre-line;
  content: "";
  background-color: #0C2D3F;
 }
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+ input[type=number] {
+  -moz-appearance: textfield;
+}

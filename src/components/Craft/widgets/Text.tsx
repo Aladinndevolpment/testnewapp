@@ -1,5 +1,5 @@
 import TextInput from "@/components/controls/TextInput";
-import { useNode } from "@craftjs/core";
+import { useEditor, useNode } from "@craftjs/core";
 import { MuiColorInput } from "mui-color-input";
 import { useEffect, useState } from "react";
 import ContentEditable from "react-contenteditable";
@@ -11,6 +11,7 @@ import {
   baseDefaults,
   getCommonSettingsProps,
 } from "./CommonSettings";
+const elementName = "Text";
 
 const fonts = ["font-main", "font-poppins", "font-noto"];
 const cases = ["normal-case", "uppercase", "lowercase", "capitalize"];
@@ -70,7 +71,6 @@ export const Text = ({
   lineHeight = defaults.lineHeight,
   font = defaults.font,
   textCase = defaults.case,
-
   backgroundColor = baseDefaults.backgroundColor,
   borderRadius = baseDefaults.borderRadius,
   borderColor = baseDefaults.borderColor,
@@ -90,11 +90,14 @@ export const Text = ({
     hasSelectedNode,
     hasDraggedNode,
     isActive,
+    id,
+    hovered,
     actions: { setProp },
   } = useNode((state) => ({
     hasSelectedNode: state.events.selected,
     hasDraggedNode: state.events.dragged,
     isActive: state.events.selected,
+    hovered: state.events.hovered,
   }));
 
   const [editable, setEditable] = useState(false);
@@ -116,8 +119,13 @@ export const Text = ({
         marginLeft: `${marginLeft}px`,
         marginRight: `${marginRight}px`,
       }}
-      className="hover:outline-green-500 hover:outline"
+      className="hover:outline-green-500 hover:outline relative"
     >
+      {hovered && (
+        <div className="absolute top-0 right-0 bg-green-500 text-white text-[10px] px-1 capitalize">
+          {elementName}
+        </div>
+      )}
       <ContentEditable
         html={text}
         disabled={!editable}

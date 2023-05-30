@@ -3,6 +3,7 @@ import { Text } from "./Text";
 import { Button } from "./Button";
 import Container from "./Container";
 import { useNode, Element } from "@craftjs/core";
+import { BuilderImage } from "./Image";
 
 export const CardTop = ({ children }: any) => {
   const {
@@ -42,18 +43,42 @@ CardBottom.craft = {
   },
 };
 
+export const CardImage = ({ children }: any) => {
+  const {
+    connectors: { connect },
+  }: any = useNode();
+  return <div ref={connect}>{children}</div>;
+};
+
+CardImage.craft = {
+  rules: {
+    // Only accept Buttons
+    canMoveIn: (incomingNodes: any) =>
+      incomingNodes.every(
+        (incomingNode: any) => incomingNode.data.type === BuilderImage
+      ),
+  },
+};
+
 export const Card = ({ padding = 20 }) => {
   return (
-    <Container>
-      <div className="bg-white p-4">
-        <Element id="text" is={CardTop} canvas>
-          <Text alignment="left" text="Title" fontSize={20} />
-          <Text alignment="left" text="Subtitle" fontSize={15} />
-        </Element>
-        <Element id="buttons" is={CardBottom} canvas>
-          <Button text="Learn More" />
-        </Element>
+    <div className="bg-white p-4 w-full">
+      <div className="card card-compact w-full bg-base-100 shadow-xl">
+        <div className="card-body">
+          <Element id="heroImage" is={CardImage} canvas>
+            <BuilderImage />
+          </Element>
+          <Element id="text" is={CardTop} canvas>
+            <Text alignment="left" text="Title" fontSize={20} />
+            <Text alignment="left" text="Subtitle" fontSize={15} />
+          </Element>
+          <div className="card-actions justify-end">
+            <Element id="buttons" is={CardBottom} canvas>
+              <Button text="Learn More" />
+            </Element>
+          </div>
+        </div>
       </div>
-    </Container>
+    </div>
   );
 };

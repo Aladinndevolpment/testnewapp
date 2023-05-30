@@ -22,11 +22,12 @@ export default function Main() {
       <div className="w-[60%] h-full overflow-y-scroll scrollbar-hide pb-40 px-16">
         <Frame>
           <Element is={Container} canvas>
-            {/* <App> */}
             <HeaderLayout />
             <BuilderImage borderRadius={0} />
             <HeroLayout />
-            {/* </App> */}
+            <App>
+              <div></div>
+            </App>
           </Element>
         </Frame>
       </div>

@@ -183,46 +183,7 @@ export default function InvoicePage() {
 
   return (
     <InvoiceContext.Provider value={value}>
-      <div>
-        {isInvoicePreviewModalVisible && (
-          <ModalDerived
-            visibility={isInvoicePreviewModalVisible}
-            onClose={() => setIsInvoicePreviewModalVisible(false)}
-          >
-            <PreviewInvoice
-              handleChange={(newInvoice: string, type: string) =>
-                handleStoreInvoice(newInvoice, type)
-              }
-            />
-          </ModalDerived>
-        )}
-      </div>
-      <div>
-        {isInvoiceFinalDataShow && (
-          <ModalDerived
-            visibility={isInvoiceFinalDataShow}
-            onClose={() => setIsInvoiceFinalDataShow(false)}
-          >
-            <PreviewFinalData />
-          </ModalDerived>
-        )}
-      </div>
-      <div>
-        {isPaymentModalOpen && (
-          <ModalDerived
-            visibility={isPaymentModalOpen}
-            onClose={() => setIsPaymentModalOpen(false)}
-          >
-            <InvoicePayment
-              handleChange={(newInvoice: string) =>
-                handleStoreInvoice(newInvoice, "paid")
-              }
-            />
-          </ModalDerived>
-        )}
-      </div>
-
-      <main className="bg-white h-auto relative">
+      <main className="bg-white md:h-auto pb-24 overflow-hidden  relative">
         <FlyOut
           visibility={addFlyoutVisibility}
           onClose={() => setAddFlyoutVisibility(false)}
@@ -242,7 +203,7 @@ export default function InvoicePage() {
           </select>
         </header>
 
-        <div className="px-4 h-full mt-3">
+        <div className="px-4   mt-3">
           <div className="flex flex-wrap overflow-x-hidden">
             <div className="w-full md:w-7/12">
               <div className="mb-6 lg:mb-0 pb-2 pl-6 shadow-md flex flex-wrap overflow-x-hidden border-[1px] border-gray-200  rounded-lg">
@@ -377,6 +338,45 @@ export default function InvoicePage() {
           </div>
         </div>
       </main>
+
+      <div>
+        {isInvoicePreviewModalVisible && (
+          <ModalDerived
+            visibility={isInvoicePreviewModalVisible}
+            onClose={() => setIsInvoicePreviewModalVisible(false)}
+          >
+            <PreviewInvoice
+              handleChange={(newInvoice: string, type: string) =>
+                handleStoreInvoice(newInvoice, type)
+              }
+            />
+          </ModalDerived>
+        )}
+      </div>
+      <div>
+        {isInvoiceFinalDataShow && (
+          <ModalDerived
+            visibility={isInvoiceFinalDataShow}
+            onClose={() => setIsInvoiceFinalDataShow(false)}
+          >
+            <PreviewFinalData />
+          </ModalDerived>
+        )}
+      </div>
+      <div>
+        {isPaymentModalOpen && (
+          <ModalDerived
+            visibility={isPaymentModalOpen}
+            onClose={() => setIsPaymentModalOpen(false)}
+          >
+            <InvoicePayment
+              handleChange={(newInvoice: string) =>
+                handleStoreInvoice(newInvoice, "paid")
+              }
+            />
+          </ModalDerived>
+        )}
+      </div>
     </InvoiceContext.Provider>
   );
 }

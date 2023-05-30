@@ -11,6 +11,8 @@ import {
 import TextInput from "@/components/controls/TextInput";
 import { IoContract } from "react-icons/io5";
 
+const elementName = "Image";
+
 interface BuilderImageProps extends ICommonSettingsProps {
   imageSrc?: string;
   borderRadius?: number;
@@ -42,7 +44,10 @@ export const BuilderImage = ({
   shadow = "shadow-none",
   shadowColor = "transparent",
 }: BuilderImageProps) => {
-  // console.log(`shadow-[${shadowColor}]`);
+  const { hovered } = useNode((state) => ({
+    hovered: state.events.hovered,
+  }));
+
   return (
     <Container>
       <div
@@ -59,6 +64,11 @@ export const BuilderImage = ({
           marginRight: `${marginRight}px`,
         }}
       >
+        {hovered && (
+          <div className="absolute top-0 right-0 bg-orange-500 text-white text-xs px-1 z-50">
+            {elementName}
+          </div>
+        )}
         {imageSrc ? (
           <Image
             src={imageSrc}
@@ -118,6 +128,7 @@ const BuilderImageSettings = () => {
               (props.imageSrc = URL.createObjectURL(e.target.files![0]))
           )
         }
+        accept="image/*"
       />
 
       <div className="flex flex-wrap justify-between">

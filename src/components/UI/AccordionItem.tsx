@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { BiChevronsDown, BiChevronsUp } from "react-icons/bi";
+import React from "react";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 
 interface IAccordionItem {

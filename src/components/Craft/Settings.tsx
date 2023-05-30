@@ -31,20 +31,19 @@ export const SettingsPanel = () => {
     <div className="bg-white w-full">
       <div className="p-4 w-full">
         <div>
-          <div className="flex flex-wrap justify-between pb-2 border-b mb-3">
+          <div className="flex flex-wrap justify-between items-center pb-2 border-b mb-3">
             <div>
-              <p>Selected</p>
+              <p className="text-lg font-semibold text-dark">{selected.name}</p>
             </div>
             <div className="gap-1 flex items-center">
-              <Chip size="small" color="primary" label={selected.name} />
               {selected?.name != "App" && selected.isDeletable ? (
                 <button
                   onClick={() => {
                     actions.delete(selected.id);
                   }}
-                  className="btn bg-red-600 btn-xs capitalize"
+                  className="bg-secondary hover:bg-newBlue duration-300 py-2 px-2 text-white rounded-[3px] flex flex-wrap justify-between items-center"
                 >
-                  <MdDeleteForever />
+                  <MdDeleteForever className="h-4 w-5" />
                 </button>
               ) : null}
             </div>

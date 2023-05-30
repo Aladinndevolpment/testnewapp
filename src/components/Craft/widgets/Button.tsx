@@ -13,6 +13,8 @@ import TextInput from "@/components/controls/TextInput";
 import { IoContract } from "react-icons/io5";
 import { createElement } from "react";
 
+const elementName = "Button";
+
 const defaults = {
   backgroundColor: "#313641",
   borderColor: "#313641",
@@ -56,18 +58,24 @@ export const Button = ({
 }: IButtonProps) => {
   const {
     connectors: { connect, drag },
-  } = useNode();
+    hovered,
+  } = useNode((state) => ({ hovered: state.events.hovered }));
 
   return (
     <button
       ref={(ref: any) => connect(drag(ref))}
-      className={`btn ${size} mr-2 hover:outline-pink-500 hover:outline`}
+      className={`btn ${size} mr-2 hover:outline-pink-500 hover:outline relative`}
       style={{
         backgroundColor: backgroundColor,
         borderRadius: borderRadius + "px",
         borderColor: borderColor,
       }}
     >
+      {hovered && (
+        <div className="absolute top-0 right-0 bg-purple-500 text-white text-[10px] px-1 capitalize">
+          {elementName}
+        </div>
+      )}
       <Element id="buttonText" is={ButtonText} canvas>
         <Text
           alignment="left"

@@ -66,7 +66,7 @@ export default memo(function GlobalLayout({ children }: IAdminLayoutProps) {
               className={` ${
                 router.asPath == "/calendar"
                   ? "h-[100vh] lg:h-[90vh] 2xl:h-[100vh]"
-                  : "h-[100vh] lg:h-[90vh] 2xl:h-[100vh]"
+                  : "h-[100vh] lg:h-[90vh] 2xl:h-screen"
               }  relative   overflow-y-scroll bg-bgGray scrollbar-hide w-full overflow-hidden`}
             >
               {children}

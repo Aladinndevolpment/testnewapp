@@ -14,14 +14,15 @@ const defaults = {
 interface ILinkProps {
   text?: string;
   backgroundColor?: string;
-
   href: string;
+  targetData: boolean;
 }
 
 export const Link = ({
   href = "#",
   text = "Learn More",
   backgroundColor = defaults.backgroundColor,
+  targetData = false,
 }: ILinkProps) => {
   const {
     connectors: { connect, drag },
@@ -35,7 +36,7 @@ export const Link = ({
         backgroundColor: backgroundColor,
       }}
     >
-      <a href={href}>
+      <a href={href} target={targetData ? "_blank" : ""}>
         <Element id="link" is={LinkText} canvas>
           <Text
             alignment="left"
@@ -72,6 +73,7 @@ export const LinkSettings = () => {
   return (
     <div>
       <div className="mb-4">
+        <label className="text-sm text-gray-400 pb-0.5">URL</label>
         <TextInput
           lefticon={<IoContract />}
           value={props.href}
@@ -81,6 +83,27 @@ export const LinkSettings = () => {
           }
         />
       </div>
+      <div>
+        <label className="text-sm text-gray-400 pb-0.5">Target Blank</label>
+        <div className="flex justify-start items-center border-[1px] border-gray-200 mb-3 p-2 rounded-lg">
+          <input
+            type="checkbox"
+            className="checkbox checked:bg-blue-500"
+            value={props.targetData}
+            placeholder="Please enter url"
+            onChange={(e) =>
+              setProp((props: any) => (props.targetData = !props.targetData))
+            }
+            checked={props.targetData ? true : false}
+          />
+          <p
+            className={` capitalize text-gray-600 text-xs font-semibold  tracking-wide ml-2 `}
+          >
+            Open URL in new window
+          </p>
+        </div>
+      </div>
+
       <div className="mb-4 mt-2 flex flex-col gap-1">
         <label className="text-sm text-gray-400 ">Background Color</label>
         <div className="">

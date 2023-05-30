@@ -1,10 +1,15 @@
-import { Card, CardBottom, CardTop } from "@/components/Craft/widgets/Card";
+import {
+  Card,
+  CardBottom,
+  CardImage,
+  CardTop,
+} from "@/components/Craft/widgets/Card";
 import Container from "@/components/Craft/widgets/Container";
 
 import { Editor } from "@craftjs/core";
 import { Button, ButtonText } from "@/components/Craft/widgets/Button";
 import { Text } from "@/components/Craft/widgets/Text";
-import { Grid, GridBottom, GridTop } from "@/components/Craft/widgets/Grid";
+import { Grid, GridTop } from "@/components/Craft/widgets/Grid";
 import { BuilderImage } from "@/components/Craft/widgets/Image";
 import { Topbar } from "@/components/Craft/Topbar";
 import { createContext, useContext, useState } from "react";
@@ -21,9 +26,10 @@ import {
   HeaderMenu,
 } from "@/components/Craft/widgets/prebuilt/Header";
 import { Link, LinkText } from "@/components/Craft/widgets/Link";
-import App from "@/components/Craft/widgets/App";
+import App, { MainApp } from "@/components/Craft/widgets/App";
 import Divider from "@/components/Craft/widgets/Divider";
 import { BuilderVideo } from "@/components/Craft/widgets/Video";
+import { Social } from "@/components/Craft/widgets/Social";
 
 export const CraftContext = createContext({
   tools: "prebuilt",
@@ -60,7 +66,6 @@ export default function Craft() {
             CardBottom,
             Grid,
             GridTop,
-            GridBottom,
             BuilderImage,
             HeroLayout,
             HeroText,
@@ -73,6 +78,9 @@ export default function Craft() {
             LinkText,
             Divider,
             BuilderVideo,
+            MainApp,
+            Social,
+            CardImage,
           }}
         >
           <Topbar />
