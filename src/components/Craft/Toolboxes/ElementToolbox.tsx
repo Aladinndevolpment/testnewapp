@@ -35,6 +35,7 @@ import {
 } from "react-icons/ai";
 import { BuilderVideo } from "../widgets/Video";
 import { Social } from "../widgets/Social";
+import PrebuiltToolsLayout from "./tools/PrebuiltToolsLayout";
 
 const baseTools = [
   {
@@ -42,13 +43,42 @@ const baseTools = [
     question: "Layout",
     answer: [
       {
-        name: "Grid",
+        name: "Column 1",
         tool: (
-          <ElementToolsLayout
-            toolName="Grid"
+          <PrebuiltToolsLayout
+            toolName="Column 1"
             tool={<Grid col={1} />}
-            image="@/../public/craft/hero.png"
-            icon={<BsFillGrid3X3GapFill className="h-5 w-5 text-gray-500" />}
+            image={require("@/../public/craft/grid/1.png")}
+          />
+        ),
+      },
+      {
+        name: "Column 2",
+        tool: (
+          <PrebuiltToolsLayout
+            toolName="Column 2"
+            tool={<Grid col={2} />}
+            image={require("@/../public/craft/grid/4.png")}
+          />
+        ),
+      },
+      {
+        name: "Column 3",
+        tool: (
+          <PrebuiltToolsLayout
+            toolName="Column 3"
+            tool={<Grid col={3} />}
+            image={require("@/../public/craft/grid/3.png")}
+          />
+        ),
+      },
+      {
+        name: "Column 4",
+        tool: (
+          <PrebuiltToolsLayout
+            toolName="Column 4"
+            tool={<Grid col={4} />}
+            image={require("@/../public/craft/grid/4.png")}
           />
         ),
       },

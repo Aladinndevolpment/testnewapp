@@ -121,7 +121,7 @@ const BuilderImageSettings = () => {
     <div className="flex flex-col gap-4 mb-4">
       <input
         type="file"
-        className="file-input w-full max-w-xs"
+        className="file-input file-input-bordered file-input-warning w-full max-w-xs"
         onChange={(e) =>
           setProp(
             (props: any) =>

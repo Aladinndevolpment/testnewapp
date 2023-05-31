@@ -49,6 +49,7 @@
     "react-datepicker": "^4.11.0",
     "react-dom": "18.2.0",
     "react-draft-wysiwyg": "^1.15.0",
+    "react-dropzone": "^14.2.3",
     "react-flow-builder": "^2.0.0",
     "react-h5-audio-player": "^3.8.6",
     "react-hydration-provider": "^1.0.2",

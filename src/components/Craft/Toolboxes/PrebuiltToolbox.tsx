@@ -13,7 +13,7 @@ const baseTools = [
       <PrebuiltToolsLayout
         toolName="Header Layout"
         tool={<HeaderLayout />}
-        image="@/../public/craft/hero.png"
+        image={require("@/../public/craft/hero.png")}
       />
     ),
   },
@@ -23,7 +23,7 @@ const baseTools = [
       <PrebuiltToolsLayout
         toolName="Hero Layout"
         tool={<HeroLayout />}
-        image="@/../public/craft/hero.png"
+        image={require("@/../public/craft/hero.png")}
       />
     ),
   },

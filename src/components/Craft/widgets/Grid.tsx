@@ -31,7 +31,8 @@ export const GridTop = ({
   shadowColor = "transparent",
 }: any) => {
   const {
-    connectors: { connect },
+    connectors: { connect, drag },
+
     hovered,
   }: any = useNode((state) => ({
     hovered: state.events.hovered,
@@ -39,7 +40,7 @@ export const GridTop = ({
 
   return (
     <div
-      ref={connect}
+      ref={(ref: any) => connect(drag(ref))}
       className={`text-only relative ${borderType} ${shadow} shadow-[${shadowColor}]`}
       style={{
         backgroundColor,
@@ -57,7 +58,7 @@ export const GridTop = ({
       }}
     >
       {hovered && (
-        <div className="absolute top-0 right-0 bg-purple-500 text-white text-xs px-1">
+        <div className="absolute top-0 right-0 bg-purple-500 text-white text-[8px] px-1">
           Grid Column
         </div>
       )}
@@ -140,7 +141,7 @@ export const Grid = ({
         }}
       >
         {hovered && (
-          <div className="absolute top-0 right-0 bg-blue-500 text-white text-xs px-1">
+          <div className="absolute top-0 right-0 bg-blue-500 text-white text-[10px] px-1">
             {elementName}
           </div>
         )}

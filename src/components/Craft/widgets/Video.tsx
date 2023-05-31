@@ -88,7 +88,7 @@ export const BuilderVideo = ({
             Your browser does not support HTML video.
           </video>
         ) : (
-          <div className="w-full h-full flex justify-center items-center text-lg font-main border-dashed border-2 border-orange-500">
+          <div className="w-full h-full text-center flex justify-center items-center text-lg font-main border-dashed border-2 border-orange-500">
             Choose a video from settings
           </div>
         )}
