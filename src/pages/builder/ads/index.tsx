@@ -32,7 +32,7 @@ const baseData: formDataType = {
   adName: "",
   headline: "",
   copywriting: "",
-  cta: { name: "Know More", urlType: "hubSpot", url: "#" },
+  cta: { name: "Know More", urlType: "hubSpot", url: "" },
   audience: {
     category: "Credit",
     audienceType: "New Audience",

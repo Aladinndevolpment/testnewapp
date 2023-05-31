@@ -58,7 +58,9 @@ export default function Preview() {
 
         <div className="flex justify-between p-2 bg-[#eef0f2] items-center flex-wrap">
           <div>
-            <h6 className="text-xs text-gray-600">Link</h6>
+            <h6 className="text-xs text-gray-600">
+              {adsData.cta.url == "" ? "Link" : adsData.cta.url}
+            </h6>
             <h4 className="text-base text-black font-medium line-clamp-1">
               {adsData.headline == "" ? "TITLE" : adsData.headline}
             </h4>

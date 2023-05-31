@@ -348,14 +348,14 @@ export default function MarketingAssets({ marketing }: any) {
                 Delete
               </MenuItem>,
             ]}
-            muiTableBodyRowProps={({ row }) => ({
-              //implement row selection click events manually
-              onClick: () => router.push(`/marketing/${row.original.id}`),
-              selected: rowSelection[row.id],
-              sx: {
-                cursor: "pointer",
-              },
-            })}
+            // muiTableBodyRowProps={({ row }) => ({
+            //   //implement row selection click events manually
+            //   onClick: () => router.push(`/marketing/${row.original.id}`),
+            //   selected: rowSelection[row.id],
+            //   sx: {
+            //     cursor: "pointer",
+            //   },
+            // })}
             muiTableHeadCellProps={{
               sx: {
                 borderRight: "2px solid #e9e9e9",
