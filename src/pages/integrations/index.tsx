@@ -1,8 +1,9 @@
 import TeamsSidebar from "@/components/Teams/TeamsSidebar";
+import { GlobalContext } from "@/layouts/GlobalLayout";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 
 const userData = [
@@ -139,6 +140,9 @@ export default function Integrations() {
   const filteredData = cardData.filter((category: any) => {
     return category.title.toLowerCase().includes(filterValue.toLowerCase());
   });
+
+  const ctx = useContext(GlobalContext);
+  ctx.setTitle("Integrations");
 
   return (
     <>

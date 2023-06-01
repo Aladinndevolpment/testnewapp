@@ -18,11 +18,23 @@ export default function Main() {
     <div className="h-full">
       <div className="mb-5">
         <div className="flex justify-between">
-          <h3 className="text-black font-medium text-sm">
+          <h3 className="text-gray-800 font-medium text-sm">
             Create Post Engagement
           </h3>
-          <p className="text-black font-medium text-sm">Steps {step}/3</p>
-          <h3 className="text-[#f87272] font-medium text-sm">Ad Details</h3>
+          <p
+            className={`${
+              step == 1 ? "text-[#f87272]" : "text-gray-800"
+            }  font-medium text-sm`}
+          >
+            Steps {step}/3
+          </p>
+          <h3
+            className={`${
+              step == 2 ? "text-[#f87272]" : "text-gray-800"
+            }  font-medium text-sm`}
+          >
+            Ad Details
+          </h3>
         </div>
         <progress
           className="progress progress-error w-full"
@@ -31,7 +43,7 @@ export default function Main() {
         ></progress>
       </div>
 
-      <div className="overflow-y-scroll h-[90%] scrollbar-hide pt-5">
+      <div className="overflow-y-scroll h-[90%] scrollbar-hide pt-2">
         {step === 1 && <AdDetails onSubmit={handleAdDetailsSubmit} />}
         {step === 2 && (
           <AudienceDetails

@@ -29,10 +29,10 @@ export default function Preview() {
                 />
               </div>
               <div>
-                <h3 className="text-black text-sm font-medium">
+                <h3 className="text-gray-800 text-sm font-medium">
                   Emerge Studio
                 </h3>
-                <div className="flex items-center text-xs text-gray-400 gap-2">
+                <div className="flex items-center text-[10px] text-gray-400 gap-2">
                   <p>Sponsored</p>
                   <IoEarth />
                 </div>
@@ -58,17 +58,17 @@ export default function Preview() {
 
         <div className="flex justify-between p-2 bg-[#eef0f2] items-center flex-wrap">
           <div>
-            <h6 className="text-xs text-gray-600">
+            <h6 className="text-[11px] text-gray-600">
               {adsData.cta.url == "" ? "Link" : adsData.cta.url}
             </h6>
-            <h4 className="text-base text-black font-medium line-clamp-1">
+            <h4 className="text-base text-gray-800 font-medium line-clamp-1">
               {adsData.headline == "" ? "TITLE" : adsData.headline}
             </h4>
           </div>
           <div>
             <a
               href={adsData.cta.url}
-              className="btn bg-gray-200 border-gray-200 text-black text-xs capitalize btn-xs btn-sm hover:bg-gray-200"
+              className="btn bg-gray-200 border-gray-200 text-gray-800 text-xs capitalize btn-xs btn-sm hover:bg-gray-200"
             >
               {adsData.cta.name == "" ? "Button" : adsData.cta.name}
             </a>
@@ -86,21 +86,21 @@ export default function Preview() {
                 <FaHeart className="text-white text-[8px]" />
               </div>
             </div>
-            <div className="bg-gray-300 w-[100px] h-[10px]"></div>
+            <div className="bg-gray-200 w-[100px] h-[10px] rounded-md"></div>
           </div>
 
-          <div className="flex flex-wrap justify-between items-center mt-3 border-t pt-2">
+          <div className="flex flex-wrap justify-evenly items-center mt-3 border-t pt-2 gap-3">
             <div className="flex items-center gap-1">
               <HandThumbUpIcon className="text-gray-500 w-4 h-4" />
-              <p className="text-gray-500 text-sm">Like</p>
+              <p className="text-gray-500 text-xs">Like</p>
             </div>
             <div className="flex items-center gap-1">
               <BiComment className="text-gray-500" />
-              <p className="text-gray-500 text-sm">Comment</p>
+              <p className="text-gray-500 text-xs">Comment</p>
             </div>
             <div className="flex items-center gap-1">
               <ShareIcon className="text-gray-500 w-4 h-4" />
-              <p className="text-gray-500 text-sm">Share</p>
+              <p className="text-gray-500 text-xs">Share</p>
             </div>
           </div>
         </div>

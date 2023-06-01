@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { CraftContext } from "@/pages/builder/craft";
+import { CraftContext } from "@/pages/builder/website/craft";
 import ElementToolbox from "./Toolboxes/ElementToolbox";
 import PrebuiltToolbox from "./Toolboxes/PrebuiltToolbox";
 

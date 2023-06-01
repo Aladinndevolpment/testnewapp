@@ -313,7 +313,7 @@ export default function ChatBody({
           chatSelected ? "h-[95vh]" : "h-full"
         }   relative flex flex-col justify-start transition-all md:block bg-white `}
       >
-        <div className="bg-white flex flex-wrap justify-between items-center px-4 border-b border-b-gray-300 lg:h-[11%] 2xl:h-[9.1%] pb-2">
+        <div className="bg-white flex flex-wrap justify-between items-center px-4 border-b border-b-gray-300 lg:h-[11%] 2xl:h-[12%] 3xl:h-[9.1%] 3xl:pb-2">
           <div className="mb-1">
             <h1 className="text-xl font-semibold">{chat.name}</h1>
           </div>
@@ -349,7 +349,7 @@ export default function ChatBody({
               ? "h-[85%] md:h-[72%] lg:h-[50%]  "
               : messageType == "email"
               ? "h-[85%] md:h-[72%] lg:h-[30%]  "
-              : "h-[85%] md:h-[72%] lg:h-[83%] 2xl:h-[74%]"
+              : "h-[85%] md:h-[72%] lg:h-[83%] 2xl:h-[74%]  "
           }  bg-white  overflow-y-scroll  pb-[10%] w-full pt-1 scrollbar-hide `}
         >
           <div className="flex-1 overflow-y-auto p-2">
@@ -500,7 +500,7 @@ export default function ChatBody({
           <div ref={messagesEndRef} />
         </div>
 
-        <div className="h-[5%]  md:h-[8%] flex items-end scrollbar-hide bg-white">
+        <div className="h-[5%]  md:h-[8%] lg:h-[6%] 3xl:h-[9%] flex items-end scrollbar-hide bg-white">
           <div className="w-full pb-3  flex  justify-start items-center border-[1px] border-lightGray px-6 bg-white">
             {/* <div className="flex  justify-between items-center px-6 "> */}
             <div className="w-full pt-4  flex  justify-start items-center  ">
@@ -553,9 +553,9 @@ export default function ChatBody({
           }
             ${
               messageType == "sms"
-                ? "2xl:h-[48%]"
+                ? "2xl:h-[48%] 3xl:h-[33%]"
                 : messageType == "email"
-                ? "2xl:h-[70%]"
+                ? "2xl:h-[70%] 3xl:h-[55%]"
                 : "h-68 "
             }
             

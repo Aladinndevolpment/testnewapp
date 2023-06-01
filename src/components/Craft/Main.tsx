@@ -4,7 +4,7 @@ import { Element, Frame } from "@craftjs/core";
 import Container from "./widgets/Container";
 import { HeroLayout } from "./widgets/prebuilt/HeroLayout";
 import { SettingsPanel } from "./Settings";
-import { CraftContext } from "@/pages/builder/craft";
+import { CraftContext } from "@/pages/builder/website/craft";
 import { HeaderLayout } from "./widgets/prebuilt/Header";
 import { BuilderImage } from "./widgets/Image";
 import App from "./widgets/App";

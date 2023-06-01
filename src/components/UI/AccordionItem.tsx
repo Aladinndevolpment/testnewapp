@@ -1,4 +1,5 @@
 import React from "react";
+import { Client, HydrationProvider } from "react-hydration-provider";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 
 interface IAccordionItem {
@@ -21,31 +22,33 @@ export default function AccordionItem({
   const { question, answer } = faq;
 
   return (
-    <div>
-      <div
-        className={` ${titleBoxStyle}   flex flex-row justify-between items-center`}
-        onClick={onToggle}
-      >
-        <p className={`${titleStyle}`}>{question}</p>
-        <div className={`text-gray-600`}>
-          {active ? (
-            <BsChevronDown className="h-4 w-4" />
-          ) : (
-            <BsChevronUp className="h-4 w-4" />
-          )}
-        </div>
-      </div>
-      <div
-        className={`px-4 pb-2 flex flex-col   ${
-          active ? "" : "hidden bg-yellow-500"
-        }`}
-      >
-        {answer.map((control: any, index: any) => (
-          <div key={index} className={`w-full ${contentStyle}`}>
-            <p> {control.tool}</p>
+    <HydrationProvider>
+      <Client>
+        <div
+          className={` ${titleBoxStyle}   flex flex-row justify-between items-center`}
+          onClick={onToggle}
+        >
+          <p className={`${titleStyle}`}>{question}</p>
+          <div className={`text-gray-600`}>
+            {active ? (
+              <BsChevronDown className="h-4 w-4" />
+            ) : (
+              <BsChevronUp className="h-4 w-4" />
+            )}
           </div>
-        ))}
-      </div>
-    </div>
+        </div>
+        <div
+          className={`px-4 pb-2 flex flex-col   ${
+            active ? "" : "hidden bg-yellow-500"
+          }`}
+        >
+          {answer.map((control: any, index: any) => (
+            <div key={index} className={`w-full ${contentStyle}`}>
+              <p> {control.tool}</p>
+            </div>
+          ))}
+        </div>
+      </Client>
+    </HydrationProvider>
   );
 }

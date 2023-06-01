@@ -32,7 +32,7 @@ export default function ChatSidebar({
 
   return (
     <>
-      <div className="border-b border-b-gray-300 pb-3  px-4">
+      <div className="border-b border-b-gray-300 pb-3 3xl:pb-5 px-4">
         <div>
           <div className="flex items-center shadow px-2 py-1 border-gray-200 border-[1px] bg-white rounded-md">
             <MagnifyingGlassIcon className="w-6 h-6 text-gray-400 font-bold  " />

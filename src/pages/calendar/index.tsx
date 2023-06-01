@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import { titleState } from "@/atoms/title";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -26,8 +26,12 @@ import Filter from "@/components/Calendar/Filter";
 import resourceTimeGridPlugin from "@fullcalendar/resource-timegrid";
 import resourceTimelinePlugin from "@fullcalendar/resource-timeline";
 import Link from "next/link";
+import { GlobalContext } from "@/layouts/GlobalLayout";
 
 export default function Calendar() {
+  const ctx = useContext(GlobalContext);
+  ctx.setTitle("Calendar");
+
   const [title, setTitle] = useRecoilState<any>(titleState);
   const headingData = [
     {

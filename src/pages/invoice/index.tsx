@@ -5,7 +5,7 @@ import { IoTimeSharp } from "react-icons/io5";
 
 import ChartCard from "@/components/invoice/ChartCard";
 import { MoreHorizOutlined } from "@mui/icons-material";
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import BillingTable from "@/components/invoice/BillingTable";
 import FlyOut from "@/components/Flyout";
@@ -17,6 +17,7 @@ import PreviewInvoice from "@/components/invoice/PreviewInvoice";
 import PreviewFinalData from "@/components/invoice/PreviewFinalData";
 import InvoicePayment from "@/components/invoice/InvoicePayment";
 import { FiTrendingUp, FiTrendingDown } from "react-icons/fi";
+import { GlobalContext } from "@/layouts/GlobalLayout";
 
 interface RowData {
   [key: string]: any;
@@ -181,6 +182,9 @@ export default function InvoicePage() {
     }
   }
 
+  const ctx = useContext(GlobalContext);
+  ctx.setTitle("Claims");
+
   return (
     <InvoiceContext.Provider value={value}>
       <main className="bg-white md:h-auto pb-24 overflow-hidden  relative">
@@ -205,51 +209,57 @@ export default function InvoicePage() {
 
         <div className="px-4   mt-3">
           <div className="flex flex-wrap overflow-x-hidden">
-            <div className="w-full md:w-7/12">
-              <div className="mb-6 lg:mb-0 pb-2 pl-6 shadow-md flex flex-wrap overflow-x-hidden border-[1px] border-gray-200  rounded-lg">
-                <div className="w-full md:w-4/12 p-2">
+            <div className="w-full md:w-8/12">
+              <div className="mb-6 lg:mb-0 pb-2 gap-3  shadow-md flex  pl-5 overflow-x-hidden border-[1px] border-gray-200  rounded-lg">
+                <div className="w-full md:w-4/12   ">
                   <FactCard
                     title="Total Claims"
-                    number={152.9}
                     currency="$"
                     titleIcon={<FaBookmark className="text-sm text-newBlue" />}
-                    subData={"+1.50"}
                     subSpanData={"/month"}
-                    subIcon={<BsArrowUpRight className="text-[10px]" />}
+                    subIcon={<BsArrowUpRight className="text-[8px]" />}
                     index={1}
+                    moneyValue={152.9}
+                    moneyValueData={"+1.50"}
+                    numberValue={52}
+                    numberValueData={"+1.50"}
                   />
                 </div>
-                <div className="w-full md:w-4/12 p-2">
+                <div className="w-full md:w-4/12  ">
                   <FactCard
                     title="Paid Claims"
-                    number={109.3}
                     currency="$"
                     titleIcon={
                       <BsFillPatchCheckFill className="text-sm text-[#20cc6d]" />
                     }
-                    subData={"+0.47s"}
                     subSpanData={"/month"}
-                    subIcon={<FiTrendingUp className="text-[10px]" />}
+                    subIcon={<FiTrendingUp className="text-[8px]" />}
                     index={2}
+                    moneyValue={109.3}
+                    moneyValueData={"-0.475"}
+                    numberValue={109}
+                    numberValueData={"-0.475"}
                   />
                 </div>
-                <div className="w-full md:w-4/12 p-2">
+                <div className="w-full md:w-4/12  ">
                   <FactCard
                     title="Pending Claims"
-                    number={109.3}
                     currency="$"
                     titleIcon={
                       <IoTimeSharp className="text-sm text-[#ee8f0e]" />
                     }
-                    subData={"+0.75"}
                     subSpanData={"/month"}
-                    subIcon={<FiTrendingDown className="text-[10px]" />}
+                    subIcon={<FiTrendingDown className="text-[8px]" />}
                     index={3}
+                    moneyValue={152.9}
+                    moneyValueData={"+1.75"}
+                    numberValue={152.9}
+                    numberValueData={"+1.75"}
                   />
                 </div>
               </div>
             </div>
-            <div className="w-full md:w-5/12 ">
+            <div className="w-full md:w-4/12 ">
               <div className="pb-2 lg:px-3">
                 <LongCard
                   title="Total Receivables"

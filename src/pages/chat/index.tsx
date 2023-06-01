@@ -630,7 +630,7 @@ export default function Chat() {
             selectedChat={chatToOpen}
           />
         </div>
-        <div className="w-full md:w-[56%] h-full bg-white pt-6 md:border-r md:border-r-gray-300">
+        <div className="w-full md:w-[56%] h-full bg-white pt-6 2xl:pt-0 md:border-r md:border-r-gray-300">
           <ChatBody
             chat={chatToOpen}
             chatOpen={isChatOpen}

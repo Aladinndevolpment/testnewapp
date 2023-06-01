@@ -1,9 +1,13 @@
 import WorkFlowTables from "@/components/Automations/TabsComponents/TemplateSidebar/WorkflowTables";
+import { GlobalContext } from "@/layouts/GlobalLayout";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BsDiagram2Fill } from "react-icons/bs";
 
 export default function Workflow() {
+  const ctx = useContext(GlobalContext);
+  ctx.setTitle("Automation");
+
   const [DropDownRole, SetDropDownRole] = useState("");
   const tabs = [
     {
@@ -58,28 +62,8 @@ export default function Workflow() {
   // const [activeTab, setActiveTab] = useState<any>(tabs[3].id);
   const [activeInnerTab, setActiveInnerTab] = useState(tabs[0].id);
 
-  const [activeToggle, setActiveToggle] = useState<any>(true);
-
   return (
     <div>
-      {/* <div className="border-b border-grey/40 px-1 pt-4">
-          <ul className="lg:px-3 flex  justify-start items-center overflow-auto scrollbar-hide">
-            {tabs.map((tab: any) => (
-              <li key={tab.id} className="px-3 lg:px-5 ">
-                <button
-                  className={`  md:pb-4 transition-all duration-300 text-sm lg:text-sm md:text-base ${
-                    activeTab === tab.id
-                      ? "border-b-[4px] border-secondary text-secondary font-medium"
-                      : "text-gray-600 font-semibold border-b-[4px] border-transparent text-base"
-                  }`}
-                  onClick={() => setActiveTab(tab.id)}
-                >
-                  {tab.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div> */}
       <div className=" bg-white w-full h-[100vh] overflow-y-scroll scrollbar-hide overflow-auto pt-2 lg:pt-5">
         {/* <div className="pl-3 lg:px-6 py-2 flex justify-start items-start">
           <p

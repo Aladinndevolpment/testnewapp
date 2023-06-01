@@ -1628,3 +1628,51 @@ input::-webkit-inner-spin-button {
 }
 
  
+
+
+
+
+
+
+
+
+/* ====================================== */
+
+
+.react-grid-item.react-grid-placeholder {
+  background-color: #FFF;
+  opacity: 1 !important;
+  border: 1px solid #b2b9db;
+  border-radius: 12px;
+  border-style: dashed;
+  color: #000;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.react-grid-placeholder:before{
+  /* content: 'Drop Here'; */
+}
+.list-droppable-item{
+  color: rgb(111, 106, 112);
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  display: flex;
+  padding: 10px 10px 10px 10px;
+}
+.droppable-element{
+  width: 100%;
+}
+.draggable-text{
+  display: flex;
+  gap: 5px;
+  margin-left: 15px;
+}
+.draggable-text svg{
+  transform: translateY(1px);
+}
+.react-grid-layout{
+  min-height: 97vh !important;
+
+}

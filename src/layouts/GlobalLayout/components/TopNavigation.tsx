@@ -29,7 +29,7 @@ export default function TopNavigation() {
       {/* {ctx.open.toString()} */}
       <div className="flex flex-wrap lg:flex-nowrap items-center lg:items-start flex-col h-full justify-center mx-auto relative  text-white z-10">
         <div className="flex flex-wrap  lg:flex-nowrap lg:items-start  relative w-full sm:ml-0 sm:pr-2  ">
-          <div className="flex justify-between items-center w-full md:w-[25%] pl-2 pr-5 py-1.5 rounded-md">
+          <div className="flex justify-between items-center w-full md:w-[45%] pl-2 pr-5 py-1.5 rounded-md">
             <div className={`flex items-center pl-5  w-full justify-start`}>
               <div
                 onClick={() => ctx.setOpen(!ctx.open)}
@@ -54,7 +54,7 @@ export default function TopNavigation() {
             </div>
           </div>
 
-          <div className=" flex items-center justify-start lg:justify-end p-1 w-full lg:w-[75%]   ">
+          <div className=" flex items-center justify-start lg:justify-end p-1 w-full lg:w-[55%]   ">
             <Search />
             <div className="relative ml-3 bg-newBlue p-2 rounded-full shadow-sm mr-3">
               <PlusIcon className="text-white w-4 h-4" />

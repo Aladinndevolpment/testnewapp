@@ -270,7 +270,7 @@ export default function Table({ data }: any) {
 
             <div className="border-l-[1px] border-gray-200 ">
               <Link
-                href="/builder/craft"
+                href="/builder/website/craft"
                 className="text-xs flex justify-center items-center ml-3 bg-secondary hover:bg-newBlue duration-300 m-1 py-3 px-5 2xl:px-6 text-white rounded-md "
               >
                 Create Web Page

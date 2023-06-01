@@ -1,14 +1,19 @@
-import Table from "@/components/Marketing/Main/Table";
-import React, { useState } from "react";
+import AdsTable from "@/components/Marketing/Ads/AdsTable";
+import CampaignTable from "@/components/Marketing/Campaign/Main/CampaignTable";
+import { GlobalContext } from "@/layouts/GlobalLayout";
+import React, { useContext, useState } from "react";
 
 export default function Marketing() {
+  const ctx = useContext(GlobalContext);
+  ctx.setTitle("Marketing");
+
   const [DropDownRole, SetDropDownRole] = useState("");
 
   const innerTabs = [
     {
       id: "tab1",
       label: "Ads",
-      content: "",
+      content: <AdsTable />,
     },
     {
       id: "tab2",
@@ -28,7 +33,7 @@ export default function Marketing() {
     {
       id: "tab5",
       label: "Campaign",
-      content: <Table />,
+      content: <CampaignTable />,
     },
     {
       id: "tab6",
@@ -38,7 +43,7 @@ export default function Marketing() {
   ];
 
   // const [activeTab, setActiveTab] = useState<any>(tabs[3].id);
-  const [activeInnerTab, setActiveInnerTab] = useState(innerTabs[4].id);
+  const [activeInnerTab, setActiveInnerTab] = useState(innerTabs[0].id);
 
   return (
     <div className="overflow-hidden ">
