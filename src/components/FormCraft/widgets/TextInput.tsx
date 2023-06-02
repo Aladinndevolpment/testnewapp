@@ -70,7 +70,9 @@ export const TextInputElement = ({
         marginLeft: `${marginLeft}px`,
         marginRight: `${marginRight}px`,
       }}
-      className="hover:outline-green-500 hover:outline relative"
+      className={`${
+        hovered && "hover:outline-green-500 hover:outline"
+      } relative`}
     >
       {hovered && (
         <div className="absolute top-0 right-0 bg-green-500 text-white text-[10px] px-1 capitalize">
@@ -90,6 +92,12 @@ export const TextInputElement = ({
           paddingRight: `${paddingRight}px`,
         }}
         {...textInputProps}
+        placeholder={`${textInputProps?.placeholder} ${
+          textInputProps?.required ? "*" : ""
+        }`}
+        onChange={(e) =>
+          setProp((props: any) => (props.textInputProps.value = e.target.value))
+        }
       />
     </div>
   );
@@ -110,7 +118,7 @@ const TextSettings: any = () => {
         <TextInput
           lefticon={<IoContract />}
           value={props.textInputProps.name}
-          placeholder="Enter field name"
+          placeholder={"Enter field name"}
           onChange={(e) =>
             setProp(
               (props: any) => (props.textInputProps.name = e.target.value)

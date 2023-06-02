@@ -32,43 +32,7 @@ export default function ChatSidebar({
 
   return (
     <>
-      <div className="border-b border-b-gray-300 pb-3 3xl:pb-5 px-4">
-        <div>
-          <div className="flex items-center shadow px-2 py-1 border-gray-200 border-[1px] bg-white rounded-md">
-            <MagnifyingGlassIcon className="w-6 h-6 text-gray-400 font-bold  " />
-            <input
-              placeholder="Search..."
-              value={searchString}
-              onChange={(e) => setSearchString(e.target.value)}
-              className="w-full bg-transparent outline-none border-none pl-2 font-fontSource font-medium text-sm"
-            />
-          </div>
-        </div>
-        <div className="w-full flex justify-between mt-2.5">
-          {/* <div className="font-medium flex items-center gap-2">
-            <span className="text-sm">All Status</span>
-            <ChevronDownIcon className="w-4 h-4" />
-          </div> */}
-          <select className="text-dark text-sm font-medium bg-transparent  focus-within:bottom-0 focus-within:outline-0 focus-visible:border-0">
-            <option>All Status</option>
-            <option>Active</option>
-            <option>InActive</option>
-          </select>
-
-          <div className="dropdown dropdown-end">
-            <label tabIndex={0}>
-              <Bars3Icon className="h-6 w-6 text-gray-600" />
-            </label>
-            <div
-              tabIndex={0}
-              className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <DropDownData />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="h-[92%] overflow-y-scroll  w-full pt-1 scrollbar-hide">
+      <div className="lg:h-[100vh] pb-40 overflow-y-scroll  w-full pt-1 scrollbar-hide">
         {chats.map((item: any, index: number) => (
           <div
             key={index}

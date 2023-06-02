@@ -1,7 +1,9 @@
+import { nameTrigger } from "@/atoms/nameTrigger";
 import { PlusCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { MenuItem, OutlinedInput, Select, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
+import { useRecoilState } from "recoil";
 
 const appointmentFilter = [
   {
@@ -60,9 +62,11 @@ const MenuProps = {
 };
 
 export default function UpdateContactField({ onClose, onDataStore }: any) {
+  const [actionData, setActionData] = useRecoilState(nameTrigger);
+
   const [state, setState] = useState<any>({
     // workflowTrigger: "",
-    actionName: "",
+    actionName: actionData,
     actionType: "",
     filters: [],
   });
@@ -174,7 +178,7 @@ export default function UpdateContactField({ onClose, onDataStore }: any) {
           </div>
           <div className="w-full mb-5 mt-4 px-2">
             <label
-              className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase"
+              className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold"
               htmlFor="actionName"
             >
               Action Type :

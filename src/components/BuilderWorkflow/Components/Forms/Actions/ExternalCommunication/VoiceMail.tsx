@@ -1,9 +1,13 @@
+import { nameTrigger } from "@/atoms/nameTrigger";
 import React, { useState } from "react";
 import { MdUpload } from "react-icons/md";
+import { useRecoilState } from "recoil";
 
 export default function VoiceMail({ onDataStore, onClose }: any) {
+  const [actionData, setActionData] = useRecoilState(nameTrigger);
+
   const [formValues, setFormValues] = useState<any>({
-    actionName: "",
+    actionName: actionData,
   });
   const [errors, setErrors] = useState<any>({});
   const [attachment, setAttachment] = useState(false);
@@ -50,7 +54,7 @@ export default function VoiceMail({ onDataStore, onClose }: any) {
       <div className=" h-[75vh] overflow-y-scroll scrollbar-hide">
         <form onSubmit={handleSubmit} className="flex flex-wrap px-2  ">
           <div className="w-full mt-4">
-            <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+            <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
               Action Name
             </label>
             <input

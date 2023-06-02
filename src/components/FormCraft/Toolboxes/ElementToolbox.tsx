@@ -12,57 +12,137 @@ import AccordionItem from "../AccordionItem";
 import { TextAreaElement } from "../widgets/TextareaElement";
 import { RadioInputElement } from "../widgets/RadioElement";
 import { Text } from "@/components/Craft/widgets/Text";
+import { CheckboxInputElement } from "../widgets/CheckboxElement";
+import { SelectBoxInputElement } from "../widgets/SelectInputElement";
+import { Link } from "@/components/Craft/widgets/Link";
+import { AttachmentElement } from "../widgets/Attachment";
+import { DatePickerElement } from "../widgets/DatePicker";
+import { Button } from "@/components/Craft/widgets/Button";
+
+export const formControls = [
+  {
+    name: "Text Input",
+    tool: (
+      <ElementToolsLayout
+        toolName="Text Input"
+        tool={<TextInputElement />}
+        image="@/../public/craft/hero.png"
+        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+      />
+    ),
+  },
+  {
+    name: "Paragraph",
+    tool: (
+      <ElementToolsLayout
+        toolName="Paragraph"
+        tool={<Text text="Start typing here..." />}
+        image="@/../public/craft/hero.png"
+        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+      />
+    ),
+  },
+  {
+    name: "Textarea",
+    tool: (
+      <ElementToolsLayout
+        toolName="Textarea"
+        tool={<TextAreaElement />}
+        image="@/../public/craft/hero.png"
+        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+      />
+    ),
+  },
+  {
+    name: "Radio Button",
+    tool: (
+      <ElementToolsLayout
+        toolName="Radio Button"
+        tool={<RadioInputElement />}
+        image="@/../public/craft/hero.png"
+        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+      />
+    ),
+  },
+
+  {
+    name: "Checkbox",
+    tool: (
+      <ElementToolsLayout
+        toolName="Checkbox"
+        tool={<CheckboxInputElement />}
+        image="@/../public/craft/hero.png"
+        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+      />
+    ),
+  },
+
+  {
+    name: "Dropdown",
+    tool: (
+      <ElementToolsLayout
+        toolName="Dropdown"
+        tool={<SelectBoxInputElement />}
+        image="@/../public/craft/hero.png"
+        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+      />
+    ),
+  },
+
+  {
+    name: "Hyperlink",
+    tool: (
+      <ElementToolsLayout
+        toolName="Hyperlink"
+        tool={<Link text="link" href="#" targetData={false} />}
+        image="@/../public/craft/hero.png"
+        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+      />
+    ),
+  },
+
+  {
+    name: "Attachment",
+    tool: (
+      <ElementToolsLayout
+        toolName="Attachment"
+        tool={<AttachmentElement />}
+        image="@/../public/craft/hero.png"
+        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+      />
+    ),
+  },
+
+  {
+    name: "Date Picker",
+    tool: (
+      <ElementToolsLayout
+        toolName="Date Picker"
+        tool={<DatePickerElement />}
+        image="@/../public/craft/hero.png"
+        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+      />
+    ),
+  },
+
+  {
+    name: "Button",
+    tool: (
+      <ElementToolsLayout
+        toolName="Button"
+        tool={<Button />}
+        image="@/../public/craft/hero.png"
+        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+      />
+    ),
+  },
+];
 
 const baseTools = [
   {
     index: 2,
-    question: "Content",
-    answer: [
-      {
-        name: "Text Input",
-        tool: (
-          <ElementToolsLayout
-            toolName="Text Input"
-            tool={<TextInputElement />}
-            image="@/../public/craft/hero.png"
-            icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
-          />
-        ),
-      },
-      {
-        name: "Paragraph",
-        tool: (
-          <ElementToolsLayout
-            toolName="Paragraph"
-            tool={<Text text="Start typing here..." />}
-            image="@/../public/craft/hero.png"
-            icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
-          />
-        ),
-      },
-      {
-        name: "Textarea",
-        tool: (
-          <ElementToolsLayout
-            toolName="Textarea"
-            tool={<TextAreaElement />}
-            image="@/../public/craft/hero.png"
-            icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
-          />
-        ),
-      },
-      {
-        name: "Radio Button",
-        tool: (
-          <ElementToolsLayout
-            toolName="Radio Button"
-            tool={<RadioInputElement />}
-            image="@/../public/craft/hero.png"
-            icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
-          />
-        ),
-      },
-    ],
+    question: "Controls",
+    answer: formControls,
   },
   {
     index: 1,

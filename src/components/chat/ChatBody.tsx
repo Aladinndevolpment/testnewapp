@@ -307,202 +307,95 @@ export default function ChatBody({
   }
 
   return (
-    <div className="relative h-full">
-      <div
-        className={`${
-          chatSelected ? "h-[95vh]" : "h-full"
-        }   relative flex flex-col justify-start transition-all md:block bg-white `}
-      >
-        <div className="bg-white flex flex-wrap justify-between items-center px-4 border-b border-b-gray-300 lg:h-[11%] 2xl:h-[12%] 3xl:h-[9.1%] 3xl:pb-2">
-          <div className="mb-1">
-            <h1 className="text-xl font-semibold">{chat.name}</h1>
-          </div>
-          <div className="flex gap-3 mb-1">
-            {/* <MapPinIcon className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all hidden md:block" /> */}
-            {/* <CalendarDaysIcon className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all hidden md:block" /> */}
-            <FaPhoneAlt className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all hidden md:block" />
-            <XMarkIcon
-              onClick={() => onClose()}
-              className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all md:hidden"
-            />
-
-            <div className="dropdown dropdown-end md:hidden">
-              <label tabIndex={0}>
-                <EllipsisHorizontalIcon
-                  onClick={() => onProfileToggle()}
-                  className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all"
-                />
-              </label>
-              <div
-                tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                <DropDownData />
+    <div>
+      <div className="w-full px-2 h-[90vh] overflow-y-scroll  scrollbar-hide pb-44">
+        {messages.map((message, index) => (
+          <>
+            <div className="flex flex-col">
+              <div className="flex justify-center m-4 sticky top-0 transition">
+                <span className="text-sm text-gray-600 py-0.5 border px-2 rounded-full bg-white border-gray-100 shadow-sm">
+                  {message.date}
+                </span>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          className={`  ${
-            messageType == "sms"
-              ? "h-[85%] md:h-[72%] lg:h-[50%]  "
-              : messageType == "email"
-              ? "h-[85%] md:h-[72%] lg:h-[30%]  "
-              : "h-[85%] md:h-[72%] lg:h-[83%] 2xl:h-[74%]  "
-          }  bg-white  overflow-y-scroll  pb-[10%] w-full pt-1 scrollbar-hide `}
-        >
-          <div className="flex-1 overflow-y-auto p-2">
-            {messages.map((message, index) => (
-              <>
-                <div className="flex flex-col">
-                  <div className="flex justify-center m-4 sticky top-0 transition">
-                    <span className="text-sm text-gray-600 py-0.5 border px-2 rounded-full bg-white border-gray-100 shadow-sm">
-                      {message.date}
-                    </span>
-                  </div>
-                  {message.messages.map((messageData, index) => (
+              {message.messages.map((messageData, index) => (
+                <>
+                  {messageData.direction === 0 ? (
                     <>
-                      {messageData.direction === 0 ? (
-                        <>
-                          <div className="flex w-full gap-3 justify-start items-start">
-                            {/* <Badge
-                            anchorOrigin={{
-                              vertical: "top",
-                              horizontal: "left",
-                            }}
-                            variant="plain"
-                            badgeContent={
-                              <Avatar
-                                className="bg-blue-100"
-                                sx={{ "--Avatar-size": "20px" }}
-                              >
-                                {messageData.type === "call" ? (
-                                  <IoCall className="w-3 h-3 text-[#1066cf]" />
-                                ) : messageData.type == "sms" ? (
-                                  <MdSms className="w-3 h-3 text-[#1066cf]" />
-                                ) : (
-                                  ""
-                                )}
-                              </Avatar>
-                            }
-                            badgeInset="4%"
-                            sx={{ "--Badge-paddingX": "0px" }}
-                          >
-                            <Avatar src="/profile-img4.jpg" size="lg" />
-                          </Badge> */}
-                            <div className="avatar-group -space-x-6">
-                              <div className="avatar">
-                                <div className="w-12">
-                                  <Image
-                                    src={require("../../../public/images/avatar/yellowdog.jpg")}
-                                    width={80}
-                                    height={80}
-                                    alt=""
-                                    className="rounded-full"
-                                  />{" "}
-                                </div>
-                              </div>
-                            </div>
-                            <div>
-                              <div className="flex justify-between items-center pt-4">
-                                <p className="text-lg text-darkBlack font-semibold leading-none ">
-                                  You
-                                </p>
-                                <p className="text-sm text-FontGray leading-none">
-                                  {messageData.time}
-                                </p>
-                                <div></div>
-                              </div>
-                              <div className="pt-3  w-[250px] lg:w-[380px] overflow-x-hidden">
-                                <Message messageData={messageData} />
-                              </div>
-                            </div>
-                            {/* <div>
-                            <Message messageData={messageData} />
-                            <span className="text-xs text-gray-500 leading-none">
-                              {messageData.time}
-                            </span>
-                          </div> */}
-                          </div>
-                        </>
-                      ) : (
-                        <div className="w-full">
-                          <div className="flex  gap-3 justify-end items-start">
-                            <div>
-                              <div className="flex justify-between items-center pt-4">
-                                <div></div>
-                                <p className="text-sm text-FontGray leading-none">
-                                  {messageData.time}
-                                </p>
-                                <p className="text-lg text-darkBlack font-semibold leading-none ">
-                                  You
-                                </p>
-                              </div>
-                              <div className="pt-3  w-[250px] lg:w-[380px] overflow-x-hidden">
-                                <Message messageData={messageData} />
-                              </div>
-                            </div>
-                            <div>
-                              <div className="avatar-group -space-x-6">
-                                <div className="avatar">
-                                  <div className="w-12">
-                                    <Image
-                                      src={require("../../../public/images/avatar/blackdog.jpg")}
-                                      width={80}
-                                      height={80}
-                                      alt=""
-                                      className="rounded-full"
-                                    />{" "}
-                                  </div>
-                                </div>
-                              </div>
-                              {/* <Badge
-                              anchorOrigin={{
-                                vertical: "top",
-                                horizontal: "right",
-                              }}
-                              variant="plain"
-                              badgeContent={
-                                <Avatar
-                                  className="bg-blue-100"
-                                  sx={{ "--Avatar-size": "20px" }}
-                                >
-                                  {messageData.type === "call" ? (
-                                    <IoCall className="w-3 h-3 text-[#1066cf]" />
-                                  ) : messageData.type == "sms" ? (
-                                    <MdSms className="w-3 h-3 text-[#1066cf]" />
-                                  ) : (
-                                    <MdEmail className="w-3 h-3 text-[#1066cf]" />
-                                  )}
-                                </Avatar>
-                              }
-                              badgeInset="3%"
-                              sx={{ "--Badge-paddingX": "0px" }}
-                            >
-                              <Avatar
-                                size="lg"
-                                className="pt-1 font-semibold text-white bg-red-600"
-                              >
-                                LU
-                              </Avatar>
-                            </Badge> */}
+                      <div className="flex w-full gap-3 justify-start items-start">
+                        <div className="avatar-group -space-x-6">
+                          <div className="avatar">
+                            <div className="w-12">
+                              <Image
+                                src={require("../../../public/images/avatar/yellowdog.jpg")}
+                                width={80}
+                                height={80}
+                                alt=""
+                                className="rounded-full"
+                              />{" "}
                             </div>
                           </div>
                         </div>
-                      )}
+                        <div>
+                          <div className="flex justify-between items-center pt-4">
+                            <p className="text-lg text-darkBlack font-semibold leading-none ">
+                              You
+                            </p>
+                            <p className="text-sm text-FontGray leading-none">
+                              {messageData.time}
+                            </p>
+                            <div></div>
+                          </div>
+                          <div className="pt-3  w-[250px] lg:w-[380px] overflow-x-hidden">
+                            <Message messageData={messageData} />
+                          </div>
+                        </div>
+                      </div>
                     </>
-                  ))}
-                </div>
-              </>
-            ))}
-          </div>
-          <div ref={messagesEndRef} />
-        </div>
+                  ) : (
+                    <div className="w-full">
+                      <div className="flex  gap-3 justify-end items-start">
+                        <div>
+                          <div className="flex justify-between items-center pt-4">
+                            <div></div>
+                            <p className="text-sm text-FontGray leading-none">
+                              {messageData.time}
+                            </p>
+                            <p className="text-lg text-darkBlack font-semibold leading-none ">
+                              You
+                            </p>
+                          </div>
+                          <div className="pt-3  w-[250px] lg:w-[380px] overflow-x-hidden">
+                            <Message messageData={messageData} />
+                          </div>
+                        </div>
+                        <div>
+                          <div className="avatar-group -space-x-6">
+                            <div className="avatar">
+                              <div className="w-12">
+                                <Image
+                                  src={require("../../../public/images/avatar/blackdog.jpg")}
+                                  width={80}
+                                  height={80}
+                                  alt=""
+                                  className="rounded-full"
+                                />{" "}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </>
+              ))}
+            </div>
+          </>
+        ))}
+      </div>
 
-        <div className="h-[5%]  md:h-[8%] lg:h-[6%] 3xl:h-[9%] flex items-end scrollbar-hide bg-white">
+      {!chatMailOpen && (
+        <div className="w-full lg:w-[46.4%] fixed bottom-0 ">
           <div className="w-full pb-3  flex  justify-start items-center border-[1px] border-lightGray px-6 bg-white">
-            {/* <div className="flex  justify-between items-center px-6 "> */}
             <div className="w-full pt-4  flex  justify-start items-center  ">
               <button
                 onClick={() => {
@@ -542,24 +435,15 @@ export default function ChatBody({
             </button>
           </div>
         </div>
-      </div>
+      )}
 
       {chatMailOpen && (
         <div
-          className={`bg-white bottom-0 w-full  shadow-md rounded-md  pt-3 pb-2   overflow-y-scroll scrollbar-hide absolute z-40    ${
+          className={`fixed bottom-0 bg-white w-full lg:w-[46.4%]  flex  shadow-md rounded-md  pt-3 pb-2   overflow-y-scroll scrollbar-hide   ${
             chatMailOpen
               ? "translate-y-[0%] opacity-1"
               : "translate-y-[140%] opacity-0"
-          }
-            ${
-              messageType == "sms"
-                ? "2xl:h-[48%] 3xl:h-[33%]"
-                : messageType == "email"
-                ? "2xl:h-[70%] 3xl:h-[55%]"
-                : "h-68 "
-            }
-            
-            `}
+          }   `}
         >
           <div className="  w-full bg-white">
             <div className="flex  justify-between items-center px-6  border-b-[1px] border-lightGray pb-1 mb-2 ">

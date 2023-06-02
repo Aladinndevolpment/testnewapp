@@ -30,6 +30,13 @@ import App, { MainApp } from "@/components/Craft/widgets/App";
 import Divider from "@/components/Craft/widgets/Divider";
 import { BuilderVideo } from "@/components/Craft/widgets/Video";
 import { Social } from "@/components/Craft/widgets/Social";
+import { TextInputElement } from "@/components/FormCraft/widgets/TextInput";
+import { TextAreaElement } from "@/components/FormCraft/widgets/TextareaElement";
+import { RadioInputElement } from "@/components/FormCraft/widgets/RadioElement";
+import { CheckboxInputElement } from "@/components/FormCraft/widgets/CheckboxElement";
+import { SelectBoxInputElement } from "@/components/FormCraft/widgets/SelectInputElement";
+import { AttachmentElement } from "@/components/FormCraft/widgets/Attachment";
+import { DatePickerElement } from "@/components/FormCraft/widgets/DatePicker";
 
 export const CraftContext = createContext({
   tools: "prebuilt",
@@ -81,6 +88,14 @@ export default function Craft() {
             MainApp,
             Social,
             CardImage,
+
+            TextInputElement,
+            TextAreaElement,
+            RadioInputElement,
+            CheckboxInputElement,
+            SelectBoxInputElement,
+            AttachmentElement,
+            DatePickerElement,
           }}
         >
           <Topbar />

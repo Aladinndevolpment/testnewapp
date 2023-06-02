@@ -1,9 +1,10 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import FlowBuilder, {
   NodeContext,
   INode,
   IRegisterNode,
   IFlowBuilderMethod,
+  useDrawer,
 } from "react-flow-builder";
 import ConfigForm from "@/components/BuilderWorkflow/ConfigForm";
 import {
@@ -29,6 +30,8 @@ import { startNodeState } from "@/atoms/StartNode";
 import { offCanvasOpenState } from "@/atoms/offCanvasOpen";
 import { modalItemState } from "@/atoms/modalItem";
 import { Client, HydrationProvider } from "react-hydration-provider";
+import { titleTrigger } from "@/atoms/titleTrigger";
+import { Form } from "antd";
 
 const StartNodeDisplay: React.FC = () => {
   const node = useContext(NodeContext);
@@ -48,13 +51,25 @@ const EndNodeDisplay: React.FC = () => {
 
 const NodeDisplay: React.FC = () => {
   const node = useContext(NodeContext);
+  console.log(node);
+  const { closeDrawer: cancel, saveDrawer: save } = useDrawer();
 
-  // console.log(node);
-
-  const recoilItem = useRecoilValue(itemState);
-  const [item, setItem] = useState<any>(recoilItem);
   const dataItem = useRecoilValue(modalItemState);
   const [data, setData] = useState<any>(dataItem);
+  const titleItem = useRecoilValue(titleTrigger);
+  const [mainTitle, setMainTitle] = useState<any>(titleItem);
+
+  // const values = { name: data, title: titleItem };
+  // useEffect(() => {
+  //   try {
+  //     const values = { name: data, title: titleItem };
+  //     save?.(values);
+  //   } catch (error) {
+  //     const values = form.getFieldsValue();
+  //     save?.(values, !!error);
+  //   }
+  // }, []);
+
   return (
     <div className="overflow-x-hidden scrollbar-hide">
       <div className="bg-white shadow-lg rounded-md w-[55%] lg:w-[100%] mt-5  ">
@@ -63,7 +78,7 @@ const NodeDisplay: React.FC = () => {
             <div className="bg-white h-7 w-7 rounded-full flex justify-center items-center">
               <ClockIcon className="h-5 w-5 text-blueHeader" />
             </div>
-            <p className="ml-2 text-lg text-white font-medium"> {item}</p>
+            <p className="ml-2 text-lg text-white font-medium"> {mainTitle}</p>
           </div>
           <div>
             <EllipsisHorizontalIcon className="h-6 w-6 text-white" />
@@ -72,7 +87,7 @@ const NodeDisplay: React.FC = () => {
         <div className={`opacity-1 px-4 pb-5 pt-5  w-[400px] `}>
           <div className="border-[1px] border-lightGray bg-gray-100 rounded-md px-2 py-2 mb-4 ">
             <p className="text-dark text-sm leading-5">
-              {item}
+              {mainTitle}
               <strong className="text-xs pl-2"> {data}</strong>
             </p>
           </div>

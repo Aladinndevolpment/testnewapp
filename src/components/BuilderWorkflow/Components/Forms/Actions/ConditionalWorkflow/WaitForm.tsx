@@ -6,6 +6,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useRecoilState } from "recoil";
 import { MenuItem, Select } from "@mui/material";
+import { nameTrigger } from "@/atoms/nameTrigger";
 
 export default function WaitForm({ onDataStore, onClose }: any) {
   const radioData = [
@@ -18,8 +19,10 @@ export default function WaitForm({ onDataStore, onClose }: any) {
     useRecoilState(offCanvasOpenState);
   const [data, setData] = useRecoilState(modalItemState);
 
+  const [actionData, setActionData] = useRecoilState(nameTrigger);
+
   const [formValues, setFormValues] = useState<any>({
-    actionName: "wait",
+    actionName: actionData,
     waitFor: "",
     customDay: "",
   });
@@ -74,7 +77,7 @@ export default function WaitForm({ onDataStore, onClose }: any) {
       <div className="h-[75vh] overflow-y-scroll scrollbar-hide">
         <form onSubmit={handleSubmit} className="flex flex-wrap px-2  ">
           <div className="w-full mt-4">
-            <p className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+            <p className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
               Delay Your Action For
             </p>
 

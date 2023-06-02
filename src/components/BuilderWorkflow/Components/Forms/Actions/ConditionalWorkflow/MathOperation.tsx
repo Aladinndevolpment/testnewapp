@@ -6,14 +6,17 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useRecoilState } from "recoil";
 import { MenuItem, Select } from "@mui/material";
+import { nameTrigger } from "@/atoms/nameTrigger";
 
 export default function MathOperation({ onDataStore, onClose }: any) {
   const [isFlyOutVisible, setIsFlyOutVisible] =
     useRecoilState(offCanvasOpenState);
   const [data, setData] = useRecoilState(modalItemState);
 
+  const [actionData, setActionData] = useRecoilState(nameTrigger);
+
   const [formValues, setFormValues] = useState<any>({
-    actionName: "",
+    actionName: actionData,
     waitFor: "",
     checkBox1: "",
     timeNumber: "",
@@ -76,7 +79,7 @@ export default function MathOperation({ onDataStore, onClose }: any) {
       <div className="h-[75vh] overflow-y-scroll scrollbar-hide">
         <form onSubmit={handleSubmit} className="flex flex-wrap px-2  ">
           <div className="w-full mt-4">
-            <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+            <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
               Action Name:
             </label>
             <input
@@ -94,7 +97,7 @@ export default function MathOperation({ onDataStore, onClose }: any) {
           </div>
 
           <div className="w-full mt-4">
-            <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+            <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
               Wait For :
             </label>
 
@@ -115,7 +118,7 @@ export default function MathOperation({ onDataStore, onClose }: any) {
           </div>
 
           <div className="w-full mt-4">
-            <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+            <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
               Custom Data:
             </label>
 

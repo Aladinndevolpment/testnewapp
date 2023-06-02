@@ -25,9 +25,6 @@ export default function Main() {
             <HeaderLayout />
             <BuilderImage borderRadius={0} />
             <HeroLayout />
-            <App>
-              <div></div>
-            </App>
           </Element>
         </Frame>
       </div>

@@ -21,6 +21,7 @@ import Image from "next/image";
 import HeaderTitle from "./HeaderTitle";
 import { GlobalContext } from "..";
 import { TfiAlignJustify, TfiAlignRight, TfiAngleRight } from "react-icons/tfi";
+import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 export default function TopNavigation() {
   const router = useRouter();
   const ctx = useContext(GlobalContext);
@@ -35,11 +36,13 @@ export default function TopNavigation() {
                 onClick={() => ctx.setOpen(!ctx.open)}
                 className="text-lg font-bold mr-3"
               >
-                {ctx.open ? (
-                  <TfiAlignRight className="h-4 w-4" />
-                ) : (
-                  <XMarkIcon className="h-5 w-5" />
-                )}
+                <button className="bg-gray-200 rounded-full h-5 w-5 p-1 flex justify-center items-center">
+                  {ctx.open ? (
+                    <IoChevronForward className="h-4 w-4 text-gray-700" />
+                  ) : (
+                    <IoChevronBack className="h-4 w-4 text-gray-700" />
+                  )}
+                </button>
               </div>
               <div>
                 <Image

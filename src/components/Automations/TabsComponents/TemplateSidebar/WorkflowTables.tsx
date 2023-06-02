@@ -231,7 +231,6 @@ export default function WorkFlowTables() {
 
   return (
     <>
-      {" "}
       <div>
         <div className="px-2 lg:px-8 py-5">
           <div className="flex flex-wrap lg:flex-nowrap justify-start lg:justify-between items-center">

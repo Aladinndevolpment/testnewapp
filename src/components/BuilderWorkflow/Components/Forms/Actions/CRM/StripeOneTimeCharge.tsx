@@ -8,14 +8,17 @@ import "react-quill/dist/quill.snow.css";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { MenuItem, Select } from "@mui/material";
 import { TagIcon } from "@heroicons/react/24/solid";
+import { nameTrigger } from "@/atoms/nameTrigger";
 
 export default function StripeOneTimeCharge({ onDataStore, onClose }: any) {
   const recoilItem = useRecoilValue(itemState);
 
   const [data, setData] = useRecoilState(modalItemState);
 
+  const [actionData, setActionData] = useRecoilState(nameTrigger);
+
   const [formValues, setFormValues] = useState<any>({
-    actionName: "",
+    actionName: actionData,
     customerId: "",
     description: "",
     amount: "",
@@ -92,7 +95,7 @@ export default function StripeOneTimeCharge({ onDataStore, onClose }: any) {
       <div className="h-[75vh] overflow-y-scroll scrollbar-hide">
         <form onSubmit={handleSubmit} className="flex flex-wrap px-2  ">
           <div className="w-full mt-4">
-            <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
+            <label className="w-full mb-2 text-sm   text-gray-700 font-semibold">
               Action Name
             </label>
             <input
@@ -110,7 +113,7 @@ export default function StripeOneTimeCharge({ onDataStore, onClose }: any) {
           </div>
 
           <div className="w-full mt-4 relative">
-            <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
+            <label className="w-full mb-2 text-sm   text-gray-700 font-semibold">
               Customer ID
             </label>
             <input
@@ -132,7 +135,7 @@ export default function StripeOneTimeCharge({ onDataStore, onClose }: any) {
 
           <div className="w-full mt-4 flex justify-between  items-center ">
             <div className="w-[90%]">
-              <label className="w-full mb-2 text-base text-dark font-semibold uppercase block">
+              <label className="w-full mb-2 text-sm   text-gray-700 font-semibold block">
                 Description
               </label>
               <textarea
@@ -149,7 +152,7 @@ export default function StripeOneTimeCharge({ onDataStore, onClose }: any) {
           </div>
 
           <div className="w-full mt-4 relative">
-            <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
+            <label className="w-full mb-2 text-sm   text-gray-700 font-semibold">
               Amount
             </label>
             <input
@@ -168,7 +171,7 @@ export default function StripeOneTimeCharge({ onDataStore, onClose }: any) {
           </div>
 
           <div className="w-full mt-4">
-            <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
+            <label className="w-full mb-2 text-sm   text-gray-700 font-semibold">
               Currency
             </label>
             <Select

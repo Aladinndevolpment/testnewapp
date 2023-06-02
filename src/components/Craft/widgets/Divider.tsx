@@ -61,11 +61,14 @@ export default function Divider({
 }: IDividerProps) {
   const {
     connectors: { connect, drag },
-  } = useNode();
+    hovered,
+  } = useNode((state) => ({ hovered: state.events.hovered }));
 
   return (
     <div
-      className="py-2 hover:outline hover:outline-orange-700"
+      className={`py-2 hover:outline  ${
+        hovered && "hover:outline-orange-500 hover:outline"
+      }`}
       ref={(ref: any) => connect(drag(ref))}
       style={{
         backgroundColor,

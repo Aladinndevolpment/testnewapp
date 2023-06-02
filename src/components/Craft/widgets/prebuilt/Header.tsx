@@ -30,75 +30,54 @@ interface HeroLayoutProps {
   menuItems?: link[];
 }
 
-const items: link[] = [
-  {
-    text: "Home",
-    href: "#",
-  },
-  {
-    text: "About",
-    href: "#",
-  },
-  {
-    text: "Category",
-    href: "#",
-  },
-  {
-    text: "Services",
-    href: "#",
-  },
-  {
-    text: "Contact Us",
-    href: "#",
-  },
-];
-
 export const HeaderLayout = ({
   padding = 20,
   backgroundColor = defaults.backgroundColor,
   borderRadius = defaults.borderRadius,
-  menuItems = items,
+  menuItems = [],
 }: HeroLayoutProps) => {
-  const { hovered } = useNode((state) => ({
+  const {
+    hovered,
+    connectors: { connect, drag },
+  } = useNode((state) => ({
     hovered: state.events.hovered,
   }));
 
   return (
-    <Container>
-      <div
-        className="relative p-4 md:py-2 md:px-8 flex flex-wrap justify-between items-center hover:outline-yellow-500 hover:outline border-b"
-        style={{
-          backgroundColor: backgroundColor,
-          borderRadius: borderRadius + "px",
-        }}
-      >
-        {hovered && (
-          <div className="absolute top-0 right-0 bg-yellow-500 text-white text-xs px-1">
-            {elementName}
-          </div>
-        )}
-        <div className="">
-          <Element id="logoImage" is={HeaderLogo} canvas>
-            <BuilderImage width={70} height={70} type="contain" />
-          </Element>
+    <div
+      ref={(ref: any) => connect(drag(ref))}
+      className="relative p-4 md:py-2 md:px-8 flex flex-wrap justify-between items-center hover:outline-yellow-500 hover:outline border-b"
+      style={{
+        backgroundColor: backgroundColor,
+        borderRadius: borderRadius + "px",
+      }}
+    >
+      {hovered && (
+        <div className="absolute top-0 right-0 bg-yellow-500 text-white text-xs px-1">
+          {elementName}
         </div>
+      )}
+      <div className="">
+        <Element id="logoImage" is={HeaderLogo} canvas>
+          <BuilderImage width={70} height={70} type="contain" />
+        </Element>
+      </div>
 
-        <div className="w-auto ml-auto">
-          <div className="flex gap-2 flex-wrap">
-            {menuItems.map((item, index) => (
-              <Element
-                id={`headerItem_${index}`}
-                is={HeaderMenu}
-                key={index}
-                canvas
-              >
-                <Link text={item.text} href={item.href} targetData={false} />
-              </Element>
-            ))}
-          </div>
+      <div className="w-auto ml-auto">
+        <div className="flex gap-2 flex-wrap">
+          {menuItems.map((item, index) => (
+            <Element
+              id={`headerItem_${index}`}
+              is={HeaderMenu}
+              key={index}
+              canvas
+            >
+              <Link text={item.text} href={item.href} targetData={false} />
+            </Element>
+          ))}
         </div>
       </div>
-    </Container>
+    </div>
   );
 };
 
@@ -219,7 +198,28 @@ HeaderLayout.craft = {
   props: {
     background: defaults.backgroundColor,
     borderRadius: defaults.borderRadius,
-    menuItems: items,
+    menuItems: [
+      {
+        text: "Home",
+        href: "#",
+      },
+      {
+        text: "About",
+        href: "#",
+      },
+      {
+        text: "Category",
+        href: "#",
+      },
+      {
+        text: "Services",
+        href: "#",
+      },
+      {
+        text: "Contact Us",
+        href: "#",
+      },
+    ],
   },
 };
 

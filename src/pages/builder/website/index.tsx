@@ -12,7 +12,7 @@ export default function Builder() {
     {
       id: "tab1",
       label: "Ads",
-      content: <WorkFlowTables />,
+      content: "",
     },
     {
       id: "tab2",

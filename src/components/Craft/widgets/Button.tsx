@@ -62,30 +62,33 @@ export const Button = ({
   } = useNode((state) => ({ hovered: state.events.hovered }));
 
   return (
-    <button
-      ref={(ref: any) => connect(drag(ref))}
-      className={`btn ${size} mr-2 hover:outline-pink-500 hover:outline relative`}
-      style={{
-        backgroundColor: backgroundColor,
-        borderRadius: borderRadius + "px",
-        borderColor: borderColor,
-      }}
-    >
-      {hovered && (
-        <div className="absolute top-0 right-0 bg-purple-500 text-white text-[10px] px-1 capitalize">
-          {elementName}
-        </div>
-      )}
-      <Element id="buttonText" is={ButtonText} canvas>
-        <Text
-          alignment="left"
-          text={text}
-          fontSize={16}
-          bold="font-semibold"
-          color="#ffffff"
-        />
-      </Element>
-    </button>
+    <div ref={(ref: any) => connect(drag(ref))}>
+      <button
+        className={`btn ${size} mr-2 ${
+          hovered && "hover:outline-pink-500 hover:outline"
+        }  relative`}
+        style={{
+          backgroundColor: backgroundColor,
+          borderRadius: borderRadius + "px",
+          borderColor: borderColor,
+        }}
+      >
+        {hovered && (
+          <div className="absolute top-0 right-0 bg-purple-500 text-white text-[10px] px-1 capitalize">
+            {elementName}
+          </div>
+        )}
+        <Element id="buttonText" is={ButtonText} canvas>
+          <Text
+            alignment="left"
+            text={text}
+            fontSize={16}
+            bold="font-semibold"
+            color="#ffffff"
+          />
+        </Element>
+      </button>
+    </div>
   );
 };
 

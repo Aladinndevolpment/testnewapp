@@ -107,7 +107,7 @@ export default function OtherForm({ onDataStore, onClose }: any) {
       <div className="h-[83vh]  overflow-y-scroll scrollbar-hide">
         <form onSubmit={handleSubmit} className="flex flex-wrap px-2  ">
           <div className="w-full mt-4">
-            <label className="w-full mb-2 text-base text-dark font-semibold uppercase">
+            <label className="w-full mb-2 text-sm   text-gray-700 font-semibold">
               Action Name:
             </label>
             <input

@@ -13,6 +13,11 @@ import { TextAreaElement } from "@/components/FormCraft/widgets/TextareaElement"
 import { GlobalContext } from "@/layouts/GlobalLayout";
 import { Editor } from "@craftjs/core";
 import { createContext, useContext, useState } from "react";
+import { CheckboxInputElement } from "@/components/FormCraft/widgets/CheckboxElement";
+import { SelectBoxInputElement } from "@/components/FormCraft/widgets/SelectInputElement";
+import { Link, LinkText } from "@/components/Craft/widgets/Link";
+import { AttachmentElement } from "@/components/FormCraft/widgets/Attachment";
+import { DatePickerElement } from "@/components/FormCraft/widgets/DatePicker";
 
 export const CraftContext = createContext({
   tools: "elements",
@@ -41,17 +46,21 @@ export default function Craft() {
       <div className="h-full overflow-hidden">
         <Editor
           resolver={{
-            App,
             Container,
             Text,
-            MainApp,
             TextInputElement,
             Grid,
             GridTop,
             TextAreaElement,
             RadioInputElement,
+            CheckboxInputElement,
             Button,
             ButtonText,
+            SelectBoxInputElement,
+            Link,
+            LinkText,
+            AttachmentElement,
+            DatePickerElement,
           }}
         >
           <Topbar />

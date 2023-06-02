@@ -36,7 +36,11 @@ export const Link = ({
         backgroundColor: backgroundColor,
       }}
     >
-      <a href={href} target={targetData ? "_blank" : ""}>
+      <a
+        href={href}
+        target={targetData ? "_blank" : ""}
+        onClick={(event) => event.preventDefault()}
+      >
         <Element id="link" is={LinkText} canvas>
           <Text
             alignment="left"

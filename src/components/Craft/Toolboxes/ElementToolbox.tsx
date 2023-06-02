@@ -36,6 +36,7 @@ import {
 import { BuilderVideo } from "../widgets/Video";
 import { Social } from "../widgets/Social";
 import PrebuiltToolsLayout from "./tools/PrebuiltToolsLayout";
+import { formControls } from "@/components/FormCraft/Toolboxes/ElementToolbox";
 
 const baseTools = [
   {
@@ -156,17 +157,6 @@ const baseTools = [
           />
         ),
       },
-      {
-        name: "Form",
-        tool: (
-          <ElementToolsLayout
-            toolName="Form"
-            tool={<Link text="Link" href={"#"} targetData={false} />}
-            image="@/../public/craft/hero.png"
-            icon={<AiOutlineForm className="h-5 w-5 text-gray-500" />}
-          />
-        ),
-      },
 
       {
         name: "Link",
@@ -192,6 +182,12 @@ const baseTools = [
         ),
       },
     ],
+  },
+
+  {
+    index: 1,
+    question: "Form Controls",
+    answer: formControls,
   },
 ];
 

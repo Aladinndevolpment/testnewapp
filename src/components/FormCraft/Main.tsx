@@ -11,6 +11,8 @@ import { Button } from "../Craft/widgets/Button";
 import { Text } from "../Craft/widgets/Text";
 import Container from "../Craft/widgets/Container";
 import App from "../Craft/widgets/App";
+import { CheckboxInputElement } from "./widgets/CheckboxElement";
+import { AttachmentElement } from "./widgets/Attachment";
 
 export default function Main() {
   const { device } = useContext(CraftContext);
@@ -33,43 +35,6 @@ export default function Main() {
                   type: "text",
                 }}
               />
-
-              <TextInputElement
-                textInputProps={{
-                  name: "email",
-                  placeholder: "Enter email address",
-                  type: "email",
-                }}
-              />
-
-              <TextInputElement
-                textInputProps={{
-                  name: "phone",
-                  placeholder: "Enter mobile number",
-                  type: "tel",
-                }}
-              />
-              <Text text="Choose Gender" marginBottom={8} />
-              <RadioInputElement
-                radios={[
-                  { label: "Female", radioProps: { value: "female" } },
-                  { label: "Male", radioProps: { value: "male" } },
-                ]}
-                radiosBasicProps={{ name: "gender800" }}
-              />
-
-              <TextAreaElement
-                textInputProps={{
-                  name: "email",
-                  placeholder: "Bio...",
-                }}
-              />
-
-              <Button text="Submit" />
-
-              <App>
-                <div></div>
-              </App>
             </Element>
           </Frame>
         </div>

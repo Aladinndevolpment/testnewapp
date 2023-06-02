@@ -1,10 +1,20 @@
 import ChatBody from "@/components/chat/ChatBody";
+import DropDownData from "@/components/chat/DropDownData";
 import Profile from "@/components/chat/Profile";
 import ChatSidebar from "@/components/chat/Sidebar";
 import { GlobalContext } from "@/layouts/GlobalLayout";
-import { useContext, useState } from "react";
+import {
+  Bars3Icon,
+  MagnifyingGlassIcon,
+  FunnelIcon,
+  XMarkIcon,
+  EllipsisHorizontalIcon,
+} from "@heroicons/react/24/solid";
+import { useContext, useEffect, useState } from "react";
+import { FaPhoneAlt } from "react-icons/fa";
+import { IoChevronBackOutline } from "react-icons/io5";
 
-export const chatData = [
+export const chatDataItems = [
   {
     name: "Angelina Martin",
     image: "",
@@ -35,7 +45,6 @@ export const chatData = [
     email: "emily@gmail.com",
     phone: "+919929607416",
   },
-  // more dummy data objects can be added here...
   {
     name: "Jane Smith",
     image: "",
@@ -96,7 +105,6 @@ export const chatData = [
     email: "emily@gmail.com",
     phone: "+919929607416",
   },
-  // more dummy data objects can be added here...
   {
     name: "Jane Smith",
     image: "",
@@ -157,7 +165,6 @@ export const chatData = [
     email: "emily@gmail.com",
     phone: "+919929607416",
   },
-  // more dummy data objects can be added here...
   {
     name: "Jane Smith",
     image: "",
@@ -218,7 +225,6 @@ export const chatData = [
     email: "emily@gmail.com",
     phone: "+919929607416",
   },
-  // more dummy data objects can be added here...
   {
     name: "Jane Smith",
     image: "",
@@ -567,6 +573,7 @@ export const chatData = [
 ];
 
 export default function Chat() {
+  const [chatData, setChatData] = useState(chatDataItems);
   const [chatToOpen, setChatToOpen] = useState<any>(chatData[0]);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
@@ -574,52 +581,166 @@ export default function Chat() {
   ctx.setTitle("Chat");
 
   const [chatIsSelected, setChatIsSelected] = useState(false);
+  const [searchString, setSearchString] = useState("");
 
+  useEffect(() => {
+    if (searchString == "") {
+      setChatData(chatData);
+      return;
+    }
+
+    setChatData(
+      chatData.filter((item: any) =>
+        item.name.toLowerCase().includes(searchString)
+      )
+    );
+  }, [searchString, chatData]);
+
+  console.log(showProfile);
   return (
-    <div className="h-full w-full bg-mainBg overflow-hidden relative pb-2">
-      {/* <header className="block w-full h-32 lg:h-16 items-center relative z-10 border-b-[1px] border-lightGray">
-        <div className="flex flex-center flex-col h-full justify-center lg:mx-auto relative  text-white z-10">
-          <div className="flex flex-wrap lg:flex-nowrap justify-center items-center  relative w-full sm:ml-0 sm:pr-2  ">
-            <div className="flex justify-between items-center  w-full md:w-[35%] pl-2 pr-5 py-1.5 rounded-md">
-              <div className={`flex items-center pl-5  w-full justify-start`}>
-                <ChatBubbleLeftIcon className="h-8 w-8 text-newBlue" />
-                <p
-                  className={`ml-3 capitalize text-dark   text-[20px] font-semibold  tracking-wide  `}
-                >
-                  Chat
-                </p>
+    <div className="lg:h-full w-full bg-mainBg overflow-hidden relative pb-2">
+      <div
+        className={` w-full lg:h-full flex flex-wrap overflow-x-hidden overflow-hidden`}
+      >
+        <div
+          className={` ${
+            showProfile ? "hidden lg:block" : "block lg:block"
+          } w-full lg:w-[78%] bg-white`}
+        >
+          <div className="border border-b-gray-300  flex flex-wrap justify-between">
+            <div
+              className={`${
+                chatIsSelected ? "hidden lg:block" : "block lg:block"
+              } w-full lg:w-[30%]`}
+            >
+              <div className="pt-1 bg-blue-50 pb-2 px-4 border-b-gray-300 border-r-[1px]   ">
+                <div>
+                  <div className="flex items-center shadow px-2 py-1 border-gray-200 border-[1px] bg-white rounded-md">
+                    <MagnifyingGlassIcon className="w-6 h-6 text-gray-400 font-bold  " />
+                    <input
+                      placeholder="Search..."
+                      value={searchString}
+                      onChange={(e) => setSearchString(e.target.value)}
+                      className="w-full bg-transparent outline-none border-none pl-2 font-fontSource font-medium text-sm"
+                    />
+                  </div>
+                </div>
+                <div className="w-full flex justify-between mt-2.5">
+                  <select className="text-dark text-sm font-medium bg-transparent  focus-within:bottom-0 focus-within:outline-0 focus-visible:border-0">
+                    <option>All Status</option>
+                    <option>Active</option>
+                    <option>InActive</option>
+                  </select>
+
+                  <div className="dropdown dropdown-end">
+                    <label tabIndex={0}>
+                      <Bars3Icon className="h-6 w-6 text-gray-600" />
+                    </label>
+                    <div
+                      tabIndex={0}
+                      className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+                    >
+                      <DropDownData />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className=" flex items-center justify-start lg:justify-end pl-5 lg:p-1   w-full md:w-[75%]   ">
-              <Search />
-              <div className="relative ml-3">
-                <button
-                  // onClick={() =>
-                  //   setIsAddNewEventPopUpVisible(!isAddNewEventPopUpVisible)
-                  // }
-                  className="w-8 h-8 mr-2  bg-newBlue font-bold flex justify-center items-center rounded-full  "
-                >
-                  <PlusIcon className="h-6 w-6 text-white" />
-                </button>
-              </div>
-              <div className="relative ml-1 mr-5">
-                <a className="w-10 h-10 mr-2  bg-white font-bold flex justify-center items-center rounded-full  ">
-                  <BellIcon className="h-6 w-6 text-FontGray" />
-                </a>
-                <div className="h-2 w-2 rounded-full bg-secondary top-1 absolute right-2" />
+            <div
+              className={`${
+                chatIsSelected ? "block lg:block" : "hidden lg:block"
+              }  w-full lg:w-[70%]  `}
+            >
+              <div className="flex flex-col justify-end items-start h-full pb-2 pl-2">
+                <div className="w-full flex flex-wrap justify-between items-center px-4 3xl:pb-2">
+                  <div className="flex justify-start items-center">
+                    <div
+                      onClick={() => setChatIsSelected(false)}
+                      className="mr-2 bg-white h-5 w-5 shadow-md rounded-full flex justify-center items-center"
+                    >
+                      <IoChevronBackOutline className="h-3 w-3 text-gray-900" />
+                    </div>
+                    <div
+                      onClick={() => setShowProfile(true)}
+                      className="mb-1 mr-2"
+                    >
+                      <h1 className="text-xl font-semibold">
+                        {chatToOpen.name}
+                      </h1>
+                    </div>
+                  </div>
+                  <div className="flex gap-3 mb-1">
+                    <FaPhoneAlt className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all hidden md:block" />
+                    <XMarkIcon
+                      onClick={() => setShowProfile(false)}
+                      className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all md:hidden"
+                    />
+
+                    <div className="dropdown dropdown-end md:hidden">
+                      <label tabIndex={0}>
+                        <EllipsisHorizontalIcon
+                          onClick={() => setShowProfile(!showProfile)}
+                          className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all"
+                        />
+                      </label>
+                      <div
+                        tabIndex={0}
+                        className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+                      >
+                        <DropDownData />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </header> */}
+          <div className="flex flex-wrap justify-between">
+            <div
+              className={`${
+                chatIsSelected ? "hidden lg:block" : "block lg:block"
+              } w-full lg:w-[30%] border-r-[1px] border-b-gray-300`}
+            >
+              <ChatSidebar
+                chatData={chatData}
+                onSelect={(chat) => {
+                  setChatToOpen(chat);
+                  setIsChatOpen(true);
+                  setChatIsSelected(true);
+                }}
+                selectedChat={chatToOpen}
+              />
+            </div>
 
-      <div
-        className={` ${
-          chatIsSelected ? " " : ""
-        } w-full h-full flex flex-wrap overflow-x-hidden overflow-hidden`}
-      >
-        <div className="w-full md:w-[22%] h-full pt-2 pb-1">
+            <div
+              className={`${
+                chatIsSelected ? "block lg:block" : "hidden lg:block"
+              } w-full lg:w-[70%] border-r-[1px] border-gray-300`}
+            >
+              <ChatBody
+                chat={chatToOpen}
+                chatOpen={isChatOpen}
+                onClose={() => setIsChatOpen(false)}
+                onProfileToggle={() => setShowProfile(!showProfile)}
+                chatSelected={chatIsSelected}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div
+          className={` ${
+            showProfile ? "block lg:block" : "hidden lg:block"
+          } w-full lg:w-[22%] h-full bg-white `}
+        >
+          <Profile
+            chat={chatToOpen}
+            visible={showProfile}
+            onClose={() => setShowProfile(false)}
+          />
+        </div>
+        {/* <div className="w-full md:w-[22%] h-full pt-2 pb-1">
           <ChatSidebar
             chatData={chatData}
             onSelect={(chat) => {
@@ -638,14 +759,7 @@ export default function Chat() {
             onProfileToggle={() => setShowProfile(!showProfile)}
             chatSelected={chatIsSelected}
           />
-        </div>
-        <div className="w-full md:w-[22%] h-full bg-white">
-          <Profile
-            chat={chatToOpen}
-            visible={showProfile}
-            onClose={() => setShowProfile(false)}
-          />
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -61,8 +61,8 @@ export default function AdminSidebar() {
                             asPath == mainData.link
                               ? "text-[#4375EA]"
                               : "text-[#4B5563]"
-                          }
-                    text-[14px] font-semibold tracking-wide  ml-3`}
+                          }  
+                    text-[14px] font-semibold tracking-wide  ml-5`}
                         >
                           {mainData.title}
                         </span>
@@ -80,14 +80,13 @@ export default function AdminSidebar() {
                         >
                           {mainData.iconCustom}
                         </div>
-
                         <span
                           className={` ${
                             asPath == mainData.link
                               ? "text-[#4375EA]"
                               : "text-[#4B5563]"
-                          }
-                    text-[14px] font-semibold tracking-wide  ml-3`}
+                          } ${ctx?.open ? "block" : " block lg:hidden"}
+                    text-[14px] font-semibold tracking-wide  ml-5`}
                         >
                           {mainData.title}
                         </span>
@@ -120,8 +119,8 @@ export default function AdminSidebar() {
                   asPath == "/integrations"
                     ? "text-[#4375EA]"
                     : "text-[#4B5563]"
-                }
-                    text-[15px] font-semibold tracking-wide  ml-3`}
+                } ${ctx?.open ? "block" : " block lg:hidden"}
+                    text-[15px] font-semibold tracking-wide  ml-5`}
               >
                 Settings
               </span>

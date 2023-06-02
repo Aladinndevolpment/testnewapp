@@ -8,6 +8,7 @@ import "react-quill/dist/quill.snow.css";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { MdUpload } from "react-icons/md";
 import { MenuItem, Select } from "@mui/material";
+import { nameTrigger } from "@/atoms/nameTrigger";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
@@ -61,8 +62,10 @@ export default function SendInternalNotification({
   const [data, setData] = useRecoilState(modalItemState);
   const [attachment, setAttachment] = useState(false);
 
+  const [actionData, setActionData] = useRecoilState(nameTrigger);
+
   const [formValues, setFormValues] = useState<any>({
-    actionName: "",
+    actionName: actionData,
     fromName: "",
     fromEmail: "",
     redirectPage: "",
@@ -139,7 +142,7 @@ export default function SendInternalNotification({
       <div className="h-[75vh] overflow-y-scroll scrollbar-hide">
         <form onSubmit={handleSubmit} className="flex flex-wrap px-2  ">
           <div className="w-full mt-4">
-            <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+            <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
               Action Name
             </label>
             <input
@@ -157,7 +160,7 @@ export default function SendInternalNotification({
           </div>
 
           <div className="w-full mt-4">
-            <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+            <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
               Type of Notification
             </label>
             <Select
@@ -182,7 +185,7 @@ export default function SendInternalNotification({
           {formValues.type == "email" && (
             <div className="w-full ">
               <div className="w-full mt-4">
-                <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+                <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
                   From Name
                 </label>
                 <input
@@ -195,7 +198,7 @@ export default function SendInternalNotification({
               </div>
 
               <div className="w-full mt-4">
-                <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+                <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
                   From Email
                 </label>
                 <input
@@ -208,7 +211,7 @@ export default function SendInternalNotification({
               </div>
 
               <div className="mt-4">
-                <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+                <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
                   Template
                 </label>
                 <Select
@@ -225,7 +228,7 @@ export default function SendInternalNotification({
               </div>
 
               <div className="w-full mt-4">
-                <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+                <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
                   Message
                 </label>
                 <QuillNoSSRWrapper
@@ -292,7 +295,7 @@ export default function SendInternalNotification({
           {formValues?.type == "notification" && (
             <div className="w-full ">
               <div className="w-full mt-4">
-                <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+                <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
                   Title
                 </label>
                 <input
@@ -305,7 +308,7 @@ export default function SendInternalNotification({
               </div>
 
               <div className="w-full mt-4">
-                <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+                <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
                   Message
                 </label>
                 <QuillNoSSRWrapper
@@ -327,7 +330,7 @@ export default function SendInternalNotification({
               </div>
 
               <div className="mt-4">
-                <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+                <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
                   Redirect Page
                 </label>
 
@@ -345,7 +348,7 @@ export default function SendInternalNotification({
               </div>
 
               <div className="w-full mt-4">
-                <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+                <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
                   To user type
                 </label>
                 <Select
@@ -369,7 +372,7 @@ export default function SendInternalNotification({
 
           {formValues?.type == "sms" && (
             <div className="w-full mt-4">
-              <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+              <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
                 To user type
               </label>
               <Select
@@ -385,7 +388,7 @@ export default function SendInternalNotification({
               </Select>
 
               <div className="mt-4">
-                <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+                <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
                   Template
                 </label>
                 <Select
@@ -402,7 +405,7 @@ export default function SendInternalNotification({
               </div>
 
               <div className="w-full mt-4">
-                <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+                <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
                   Message
                 </label>
                 <QuillNoSSRWrapper

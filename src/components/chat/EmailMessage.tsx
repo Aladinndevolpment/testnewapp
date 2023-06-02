@@ -116,7 +116,7 @@ export default function EmailMessage({ handleChange, onClose }: any) {
 
   return (
     <div>
-      <div className="bg-[#F9F9FB] h-[58h] w-full px-2 pt-2  ">
+      <div className="bg-[#F9F9FB]  w-full px-2 pt-2  ">
         <form onSubmit={handleSubmit}>
           <div className="bg-white shadow-md  px-2 pt-1 pb-0.5 rounded-lg">
             <div className="mb-2 flex flex-wrap items-center w-full bg-[#f6f6fc] border-[1px] border-gray-300 rounded-md py-1 px-3">

@@ -44,64 +44,68 @@ export const BuilderImage = ({
   shadow = "shadow-none",
   shadowColor = "transparent",
 }: BuilderImageProps) => {
-  const { hovered } = useNode((state) => ({
+  const {
+    hovered,
+    connectors: { connect, drag },
+  } = useNode((state) => ({
     hovered: state.events.hovered,
   }));
 
   return (
-    <Container>
-      <div
-        className={`relative flex justify-start hover:outline-orange-500 hover:outline ${borderType} ${shadow} shadow-[${shadowColor}]`}
-        style={{
-          height: height + "px",
-          width: width == 0 ? "100%" : height + "px",
-          borderColor,
-          borderWidth: `${borderWidth}px`,
-          borderRadius: `${borderRadius}px`,
-          marginTop: `${marginTop}px`,
-          marginBottom: `${marginBottom}px`,
-          marginLeft: `${marginLeft}px`,
-          marginRight: `${marginRight}px`,
-        }}
-      >
-        {hovered && (
-          <div className="absolute top-0 right-0 bg-orange-500 text-white text-xs px-1 z-50">
-            {elementName}
-          </div>
-        )}
-        {imageSrc ? (
-          <Image
-            src={imageSrc}
-            fill={true}
-            alt=""
-            style={{
-              objectFit: type,
-              borderRadius: borderRadius + "px",
-              backgroundColor,
-              paddingTop: `${paddingTop}px`,
-              paddingBottom: `${paddingBottom}px`,
-              paddingLeft: `${paddingLeft}px`,
-              paddingRight: `${paddingRight}px`,
-            }}
-          />
-        ) : (
-          <Image
-            src={require("@/../public/images/avatar/blackdog.jpg")}
-            fill={true}
-            alt=""
-            style={{
-              objectFit: type,
-              borderRadius: borderRadius + "px",
-              backgroundColor,
-              paddingTop: `${paddingTop}px`,
-              paddingBottom: `${paddingBottom}px`,
-              paddingLeft: `${paddingLeft}px`,
-              paddingRight: `${paddingRight}px`,
-            }}
-          />
-        )}
-      </div>
-    </Container>
+    <div
+      className={`relative flex justify-start ${
+        hovered && "hover:outline-orange-500 hover:outline"
+      }   ${borderType} ${shadow} shadow-[${shadowColor}]`}
+      ref={(ref: any) => connect(drag(ref))}
+      style={{
+        height: height + "px",
+        width: width == 0 ? "100%" : height + "px",
+        borderColor,
+        borderWidth: `${borderWidth}px`,
+        borderRadius: `${borderRadius}px`,
+        marginTop: `${marginTop}px`,
+        marginBottom: `${marginBottom}px`,
+        marginLeft: `${marginLeft}px`,
+        marginRight: `${marginRight}px`,
+      }}
+    >
+      {hovered && (
+        <div className="absolute top-0 right-0 bg-orange-500 text-white text-xs px-1 z-50">
+          {elementName}
+        </div>
+      )}
+      {imageSrc ? (
+        <Image
+          src={imageSrc}
+          fill={true}
+          alt=""
+          style={{
+            objectFit: type,
+            borderRadius: borderRadius + "px",
+            backgroundColor,
+            paddingTop: `${paddingTop}px`,
+            paddingBottom: `${paddingBottom}px`,
+            paddingLeft: `${paddingLeft}px`,
+            paddingRight: `${paddingRight}px`,
+          }}
+        />
+      ) : (
+        <Image
+          src={require("@/../public/images/avatar/blackdog.jpg")}
+          fill={true}
+          alt=""
+          style={{
+            objectFit: type,
+            borderRadius: borderRadius + "px",
+            backgroundColor,
+            paddingTop: `${paddingTop}px`,
+            paddingBottom: `${paddingBottom}px`,
+            paddingLeft: `${paddingLeft}px`,
+            paddingRight: `${paddingRight}px`,
+          }}
+        />
+      )}
+    </div>
   );
 };
 

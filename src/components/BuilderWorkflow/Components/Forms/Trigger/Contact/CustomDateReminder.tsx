@@ -1,3 +1,4 @@
+import { nameTrigger } from "@/atoms/nameTrigger";
 import {
   PlusCircleIcon,
   PlusIcon,
@@ -13,6 +14,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
+import { useRecoilState } from "recoil";
 
 const workflowTrigger = [
   {
@@ -61,9 +63,10 @@ const MenuProps = {
 };
 
 export default function CustomDateReminder({ onClose, updateData }: any) {
+  const [actionData, setActionData] = useRecoilState(nameTrigger);
   const [state, setState] = useState<any>({
     // workflowTrigger: "",
-    workflowName: "",
+    workflowName: actionData,
     filters: [],
   });
 
@@ -149,7 +152,7 @@ export default function CustomDateReminder({ onClose, updateData }: any) {
         <form onSubmit={handleSubmit}>
           <div className="w-full mb-5 mt-4">
             <label
-              className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase"
+              className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold"
               htmlFor="workflowName"
             >
               Workflow Trigger Name:
@@ -179,7 +182,7 @@ export default function CustomDateReminder({ onClose, updateData }: any) {
               <div className="w-full  md:w-[45%] pr-4">
                 <label
                   htmlFor={`filterstype-${index}`}
-                  className="w-full mb-2 text-base text-dark font-semibold uppercase"
+                  className="w-full mb-2 text-sm   text-gray-700 font-semibold"
                 >
                   Filter Type:
                 </label>
@@ -209,7 +212,7 @@ export default function CustomDateReminder({ onClose, updateData }: any) {
                 <div className="w-full  md:w-[45%] pr-4">
                   <label
                     htmlFor={`filterssubtype-${index}`}
-                    className="w-full mb-2 text-base text-dark font-semibold uppercase"
+                    className="w-full mb-2 text-sm   text-gray-700 font-semibold"
                   >
                     Filter Subtype:
                   </label>

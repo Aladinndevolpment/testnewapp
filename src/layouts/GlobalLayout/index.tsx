@@ -42,12 +42,12 @@ export default memo(function GlobalLayout({ children }: IAdminLayoutProps) {
                 ? `${
                     open
                       ? "hidden lg:w-[15%] lg:hidden "
-                      : "w-full block lg:hidden "
+                      : "w-full block lg:w-[5%]  2xl:w-[4%]"
                   }`
                 : `${
                     open
                       ? "hidden lg:w-[15%] lg:block "
-                      : "w-full block lg:hidden "
+                      : "w-full block lg:w-[5%] 2xl:w-[4%]"
                   }`
             }   border-r-[1px] bg-white`}
           >
@@ -58,8 +58,12 @@ export default memo(function GlobalLayout({ children }: IAdminLayoutProps) {
               router.asPath == "/calendar" ? "h-[100vh]" : null
             } ${
               router.asPath == "/integrations"
-                ? `${value.open ? " w-full" : "w-full "}`
-                : `${value.open ? " w-full  lg:w-[85%]" : "w-full "}`
+                ? `${value.open ? " w-full" : "lg:w-[95%]  2xl:w-[96%]"}`
+                : `${
+                    value.open
+                      ? " w-full  lg:w-[85%]"
+                      : "w-full lg:w-[95%]  2xl:w-[96%]"
+                  }`
             } flex flex-col    justify-between items-start`}
           >
             <main

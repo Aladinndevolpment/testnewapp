@@ -24,12 +24,11 @@ export default function PrebuiltToolsLayout({
         ref={(ref: any) => connectors.create(ref, tool)}
         className="flex items-start gap-1 w-full"
       >
-        <div className="">
-          <DragIndicatorOutlined className="text-gray-400" />
-        </div>
         <div className="flex flex-col items-center w-full">
           <Image src={image} alt="hero layout" />
-          <h6 className="text-black font-medium text-center"> {toolName}</h6>
+          <h6 className="text-black font-medium text-center text-sm">
+            {toolName}
+          </h6>
         </div>
       </button>
     </div>

@@ -9,6 +9,7 @@ import { MdUpload } from "react-icons/md";
 import { BiPurchaseTag } from "react-icons/bi";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import { MenuItem, Select } from "@mui/material";
+import { nameTrigger } from "@/atoms/nameTrigger";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
@@ -58,8 +59,10 @@ export default function ManualSMS({ onDataStore, onClose }: any) {
     useRecoilState(offCanvasOpenState);
   const [data, setData] = useRecoilState(modalItemState);
 
+  const [actionData, setActionData] = useRecoilState(nameTrigger);
+
   const [formValues, setFormValues] = useState<any>({
-    actionName: "",
+    actionName: actionData,
     template: "",
     message: "",
   });
@@ -130,7 +133,7 @@ export default function ManualSMS({ onDataStore, onClose }: any) {
       <div className=" h-[75vh] overflow-y-scroll scrollbar-hide">
         <form onSubmit={handleSubmit} className="flex flex-wrap px-2  ">
           <div className="w-full mt-4">
-            <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+            <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
               Action Name:
             </label>
             <input
@@ -149,7 +152,7 @@ export default function ManualSMS({ onDataStore, onClose }: any) {
           </div>
 
           <div className="w-full mt-4">
-            <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+            <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
               Template:
             </label>
             <Select

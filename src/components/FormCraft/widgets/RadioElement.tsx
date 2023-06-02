@@ -76,7 +76,9 @@ export const RadioInputElement = ({
         marginLeft: `${marginLeft}px`,
         marginRight: `${marginRight}px`,
       }}
-      className="hover:outline-green-500 hover:outline relative"
+      className={`${
+        hovered && "hover:outline-green-500 hover:outline"
+      }  relative`}
     >
       {hovered && (
         <div className="absolute top-0 right-0 bg-green-500 text-white text-[10px] px-1 capitalize">
@@ -109,7 +111,9 @@ export const RadioInputElement = ({
                 required={radiosBasicProps?.required}
                 value={item.radioProps.value}
               />
-              <span className="label-text">{item.label}</span>
+              <span className="label-text">
+                {item.label} {radiosBasicProps?.required && "*"}
+              </span>
             </label>
           </div>
         ))}

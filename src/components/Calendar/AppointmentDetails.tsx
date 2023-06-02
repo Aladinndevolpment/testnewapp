@@ -7,7 +7,7 @@ import TreatmentTimeline from "./TreatmentTimeline";
 import { TfiAngleDown, TfiAngleUp } from "react-icons/tfi";
 import CustomDropDown, { CustomDropDownData } from "../controls/CustomDropDown";
 import ChatBody from "../chat/ChatBody";
-import { chatData } from "@/pages/chat";
+import { chatDataItems } from "@/pages/chat";
 
 interface IAppointmentDetailsProps {
   visibility: boolean;
@@ -23,7 +23,7 @@ export default function AppointmentDetails({
   const [selectedPatient, setSelectedPatient] = useState<any>(null);
   const [selectedStatusIndex, setSelectedStatusIndex] = useState(0);
 
-  const [chatToOpen, setChatToOpen] = useState<any>(chatData[0]);
+  const [chatToOpen, setChatToOpen] = useState<any>(chatDataItems[0]);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
 
@@ -82,7 +82,7 @@ export default function AppointmentDetails({
       content: (
         <div className="overflow-y-hidden h-[550px]">
           <ChatBody
-            chat={chatData[0]}
+            chat={chatDataItems[0]}
             chatOpen={isChatOpen}
             onClose={() => setIsChatOpen(false)}
             onProfileToggle={() => setShowProfile(!showProfile)}

@@ -1,11 +1,11 @@
 import moment from "moment";
 import React, { useState } from "react";
 
-const ContactForm = () => {
+const ContactForm = ({ user }: any) => {
   const [formData, setFormData] = useState<any>({
-    fullName: "",
-    email: "",
-    phone: "",
+    fullName: user?.name,
+    email: user?.email,
+    phone: user?.phone,
     dob: "",
     ssn: "",
     dateOfInjury: "",

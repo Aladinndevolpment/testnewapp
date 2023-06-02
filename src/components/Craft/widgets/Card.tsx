@@ -45,7 +45,7 @@ CardBottom.craft = {
 
 export const CardImage = ({ children }: any) => {
   const {
-    connectors: { connect },
+    connectors: { connect, drag },
   }: any = useNode();
   return <div ref={connect}>{children}</div>;
 };
@@ -61,8 +61,11 @@ CardImage.craft = {
 };
 
 export const Card = ({ padding = 20 }) => {
+  const {
+    connectors: { connect, drag },
+  }: any = useNode();
   return (
-    <div className="bg-white p-4 w-full">
+    <div className="bg-white p-4 w-full" ref={(ref: any) => connect(drag(ref))}>
       <div className="card card-compact w-full bg-base-100 shadow-xl">
         <div className="card-body">
           <Element id="heroImage" is={CardImage} canvas>

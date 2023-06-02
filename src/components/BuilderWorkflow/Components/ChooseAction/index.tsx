@@ -83,6 +83,9 @@ import { RxDashboard, RxMagnifyingGlass } from "react-icons/rx";
 import { FaNetworkWired, FaPencilRuler, FaTasks } from "react-icons/fa";
 import { CgRemove } from "react-icons/cg";
 import { TbBrandStripe } from "react-icons/tb";
+import { nameTrigger } from "@/atoms/nameTrigger";
+import GoTo from "../Forms/Actions/ConditionalWorkflow/GoTo";
+import { titleTrigger } from "@/atoms/titleTrigger";
 // import SendInternalNotification from "../Forms/CRM/SendInternalNotification";
 
 export default function ChooseActions({
@@ -95,6 +98,9 @@ export default function ChooseActions({
   const [modalData, setModalData] = useState("");
   const setItem = useSetRecoilState(itemState);
   const [formItem, setFormItem] = useState("");
+  const [actionDataState, setActionDataState] = useRecoilState(nameTrigger);
+  const [titleTriggerState, setTitleTriggerState] =
+    useRecoilState(titleTrigger);
 
   const actionData = [
     {
@@ -722,7 +728,7 @@ export default function ChooseActions({
           icon: <BsArrow90DegRight className="h-6 w-6 mr-1" />,
           link: "#",
           form: (
-            <OtherForm
+            <GoTo
               onClose={(item: any) => {
                 setIsFlyOutVisible(false);
               }}
@@ -773,25 +779,25 @@ export default function ChooseActions({
             />
           ),
         },
-        {
-          title: "Loop",
-          description: "Loop",
-          icon: <MdLoop className="h-6 w-6 mr-1" />,
-          link: "#",
-          form: (
-            <OtherForm
-              onClose={(item: any) => {
-                setIsFlyOutVisible(false);
-              }}
-              onDataStore={(item: any) => {
-                setModalData(item);
-                setIsFlyOutVisible(false);
-                updateActionData(actionTitle);
-                updateForm(item);
-              }}
-            />
-          ),
-        },
+        // {
+        //   title: "Loop",
+        //   description: "Loop",
+        //   icon: <MdLoop className="h-6 w-6 mr-1" />,
+        //   link: "#",
+        //   form: (
+        //     <OtherForm
+        //       onClose={(item: any) => {
+        //         setIsFlyOutVisible(false);
+        //       }}
+        //       onDataStore={(item: any) => {
+        //         setModalData(item);
+        //         setIsFlyOutVisible(false);
+        //         updateActionData(actionTitle);
+        //         updateForm(item);
+        //       }}
+        //     />
+        //   ),
+        // },
       ],
     },
   ];
@@ -839,6 +845,8 @@ export default function ChooseActions({
                       setActionTitle(mainData?.title);
                       setItem(mainData?.title);
                     }
+                    setTitleTriggerState(item?.title);
+                    setActionDataState(mainData?.title);
                   }}
                   key={mainIndex}
                   className="cursor-pointer w-full md:w-1/2 lg:w-1/3  pr-4 mb-3"

@@ -1,8 +1,10 @@
+import { nameTrigger } from "@/atoms/nameTrigger";
 import { PlusCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 import { MenuItem, OutlinedInput, Select, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
+import { useRecoilState } from "recoil";
 
 const workflowTrigger = [
   {
@@ -99,9 +101,10 @@ const MenuProps = {
 };
 
 const AppointmentStatus = ({ onClose, updateData }: any) => {
+  const [actionData, setActionData] = useRecoilState(nameTrigger);
   const [state, setState] = useState<any>({
     // workflowTrigger: "",
-    workflowName: "",
+    workflowName: actionData,
     filters: [{ filterstype: "", filterssubtype: "" }],
   });
 
@@ -185,7 +188,7 @@ const AppointmentStatus = ({ onClose, updateData }: any) => {
         <form onSubmit={handleSubmit}>
           {/* <div className="w-full mb-5 pt-4">
             <label
-              className="w-full mb-2 text-base text-dark font-semibold uppercase"
+              className="w-full mb-2 text-sm   text-gray-700 font-semibold"
               htmlFor="workflowTrigger"
             >
               Choose a workflow trigger
@@ -217,7 +220,7 @@ const AppointmentStatus = ({ onClose, updateData }: any) => {
 
           <div className="w-full mb-5 mt-4">
             <label
-              className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase"
+              className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold  "
               htmlFor="workflowName"
             >
               Workflow Trigger Name:
@@ -231,7 +234,7 @@ const AppointmentStatus = ({ onClose, updateData }: any) => {
               name="workflowName"
               value={state.workflowName}
               onChange={(e) => handleInputChange(e, 0)} // Assuming it's the first field, index is 0
-              className="px-2 rounded-lg mt-2 mb-2 py-1 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
+              className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-100 text-space focus:outline-none focus:border-gray-100 text-black"
             />
 
             {errors.workflowName && (
@@ -247,7 +250,7 @@ const AppointmentStatus = ({ onClose, updateData }: any) => {
               <div className="w-full  md:w-[45%] pr-4">
                 <label
                   htmlFor={`filterstype-${index}`}
-                  className="w-full mb-2 text-base text-dark font-semibold uppercase"
+                  className="w-full mb-2 text-sm   text-gray-700 font-semibold"
                 >
                   Filter Type:
                 </label>
@@ -276,7 +279,7 @@ const AppointmentStatus = ({ onClose, updateData }: any) => {
               <div className="w-full  md:w-[45%] pr-4">
                 <label
                   htmlFor={`filterssubtype-${index}`}
-                  className="w-full mb-2 text-base text-dark font-semibold uppercase"
+                  className="w-full mb-2 text-sm   text-gray-700 font-semibold"
                 >
                   Filter Subtype:
                 </label>

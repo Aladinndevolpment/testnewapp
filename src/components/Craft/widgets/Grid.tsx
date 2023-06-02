@@ -118,44 +118,48 @@ export const Grid = ({
   shadow = "shadow-none",
   shadowColor = "transparent",
 }: IGridProps) => {
-  const { hovered } = useNode((state) => ({
+  const {
+    hovered,
+    connectors: { connect, drag },
+  } = useNode((state) => ({
     hovered: state.events.hovered,
   }));
   return (
-    <Container>
-      <div
-        className={`flex flex-wrap   hover:outline hover:outline-blue-500 outline-dashed outline-1 relative ${borderType} ${shadow} shadow-[${shadowColor}]`}
-        style={{
-          backgroundColor,
-          borderColor,
-          borderWidth: `${borderWidth}px`,
-          borderRadius: `${borderRadius}px`,
-          marginTop: `${marginTop}px`,
-          marginBottom: `${marginBottom}px`,
-          marginLeft: `${marginLeft}px`,
-          marginRight: `${marginRight}px`,
-          paddingTop: `${paddingTop}px`,
-          paddingBottom: `${paddingBottom}px`,
-          paddingLeft: `${paddingLeft}px`,
-          paddingRight: `${paddingRight}px`,
-        }}
-      >
-        {hovered && (
-          <div className="absolute top-0 right-0 bg-blue-500 text-white text-[10px] px-1">
-            {elementName}
-          </div>
-        )}
-        {[...Array(col)].map((item, index) => (
-          <div
-            style={{ width: 100 / col + "%" }}
-            key={index}
-            className="border-2 border-dotted border-green-400"
-          >
-            <Element id={`grid_${index}`} is={GridTop} canvas></Element>
-          </div>
-        ))}
-      </div>
-    </Container>
+    <div
+      ref={(ref: any) => connect(drag(ref))}
+      className={`flex flex-wrap   hover:outline ${
+        hovered && "hover:outline-blue-500 hover:outline"
+      }  outline-dashed outline-1 relative ${borderType} ${shadow} shadow-[${shadowColor}]`}
+      style={{
+        backgroundColor,
+        borderColor,
+        borderWidth: `${borderWidth}px`,
+        borderRadius: `${borderRadius}px`,
+        marginTop: `${marginTop}px`,
+        marginBottom: `${marginBottom}px`,
+        marginLeft: `${marginLeft}px`,
+        marginRight: `${marginRight}px`,
+        paddingTop: `${paddingTop}px`,
+        paddingBottom: `${paddingBottom}px`,
+        paddingLeft: `${paddingLeft}px`,
+        paddingRight: `${paddingRight}px`,
+      }}
+    >
+      {hovered && (
+        <div className="absolute top-0 right-0 bg-blue-500 text-white text-[10px] px-1">
+          {elementName}
+        </div>
+      )}
+      {[...Array(col)].map((item, index) => (
+        <div
+          style={{ width: 100 / col + "%" }}
+          key={index}
+          className="border-2 border-dotted border-green-400"
+        >
+          <Element id={`grid_${index}`} is={GridTop} canvas></Element>
+        </div>
+      ))}
+    </div>
   );
 };
 

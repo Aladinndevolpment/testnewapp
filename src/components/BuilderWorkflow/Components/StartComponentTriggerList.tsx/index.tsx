@@ -34,13 +34,17 @@ import PaymentReceived from "../Forms/Trigger/Payments/PaymentReceived";
 import Invoice from "../Forms/Trigger/Payments/Invoice";
 import CallStatus from "../Forms/Trigger/Events/CallStatus";
 import EmailEvents from "../Forms/Trigger/Events/EmailEvents";
+import { useRecoilState } from "recoil";
+import { nameTrigger } from "@/atoms/nameTrigger";
+import moment from "moment";
+import { HiOutlineExternalLink } from "react-icons/hi";
 
 export default function StartComponentTriggerList({
   onClose,
   updateData,
 }: any) {
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [actionData, setActionData] = useState("");
+  const [actionData, setActionData] = useRecoilState(nameTrigger);
   const [formItem, setFormItem] = useState<any>(null);
 
   const data = [
@@ -564,24 +568,6 @@ export default function StartComponentTriggerList({
         }
       />
 
-      {/* <WorkflowFlyout
-        visibility={isOpenModal}
-        onClose={() => setIsOpenModal(false)}
-        renderData={
-          <FormData
-            components={formItem}
-            onClose={() => {
-              setIsOpenModal(false);
-            }}
-            updateData={(item: any) => {
-              setIsOpenModal(false);
-              updateData(item);
-            }}
-            actionData={actionData}
-          />
-        }
-      /> */}
-
       <div className={` ${isOpenModal ? "hidden" : "block"}  py-3`}>
         <div className="flex justify-between items-start border-b-[1px] border-gray-300 pb-2 pl-4 pr-4 ">
           <div className="pr-4">
@@ -599,7 +585,7 @@ export default function StartComponentTriggerList({
         </div>
 
         <div className="px-4 py-4">
-          <div className="rounded-md px-2 py-2 flex justify-start items-center w-full  border-[1px] border-gray-300">
+          <div className="rounded-md px-2 py-2 flex justify-start items-center w-full  border-[1px] border-gray-200">
             <MagnifyingGlassIcon className="w-5 h-5 text-gray-400 font-bold  " />
 
             <input
@@ -608,7 +594,7 @@ export default function StartComponentTriggerList({
               name="subContentTitle"
               value={filterValue}
               onChange={handleFilter}
-              className="w-[60%] py-2 px-2 bg-transparent outline-none border-[none] pl-4 font-fontSource font-medium text-sm "
+              className="w-[60%] py-1 px-2  bg-transparent outline-none border-[none] pl-4 font-fontSource font-medium text-sm "
             />
           </div>
         </div>
@@ -624,22 +610,34 @@ export default function StartComponentTriggerList({
               <ul className="pt-2 ">
                 {item?.subContent?.map((mainData, mainIndex) => (
                   <li className="mb-3" key={mainIndex}>
-                    <div className="flex justify-start items-center border-[1px] border-gray-200 mb-3 p-2 rounded-lg">
+                    <div className="relative py-3 hover:border-[1px] hover:border-newBlue flex justify-start items-center border-[1px] border-gray-200 mb-3 p-2 rounded-lg">
                       <input
                         type="radio"
                         name="radio"
-                        className="radio checked:bg-blue-500"
+                        className="radio checked:bg-blue-500 ml-2 mt-1"
                         onChange={() => {
                           setFormItem(mainData?.form);
                           setActionData(mainData?.title);
                           setIsOpenModal(true);
                         }}
                       />
-                      <p
-                        className={` capitalize text-gray-600 text-base font-semibold  tracking-wide ml-2 `}
-                      >
-                        {mainData?.title}
-                      </p>
+                      <div className="pl-2">
+                        <p
+                          className={` capitalize text-gray-600 text-base font-semibold  tracking-wide ml-2 `}
+                        >
+                          {mainData?.title}
+                        </p>
+                        <p
+                          className={`mt-1 capitalize text-gray-400 text-xs font-normal  tracking-wide ml-2 `}
+                        >
+                          Updated at {moment().format("MMM DD, YYYY")} by John
+                          Kuy
+                        </p>
+                      </div>
+
+                      <div className="absolute top-2 right-2">
+                        <HiOutlineExternalLink className="h-4 w-4 text-gray-400" />
+                      </div>
                     </div>
                   </li>
                 ))}

@@ -19,13 +19,9 @@ interface IChatBodyProps {
 export default function Profile({ chat, visible, onClose }: IChatBodyProps) {
   return (
     <div
-      className={`h-full transition-all ${
-        visible
-          ? "translate-x-0 fixed z-50 top-0 left-0 w-full h-full md:relative bg-white md:bg-transparent"
-          : "translate-x-[100%] md:translate-x-0"
-      } md:block`}
+      className={`  transition-all  md:block lg:h-[100vh] pb-40 lg:pb-20 overflow-y-scroll  w-full   scrollbar-hide`}
     >
-      <div className="h-full overflow-y-scroll pb-2 w-full  scrollbar-hide">
+      <div className="  overflow-y-scroll pb-2 w-full  scrollbar-hide">
         <div className="flex justify-end px-4">
           <div className="dropdown dropdown-end">
             <label tabIndex={0}>
@@ -87,7 +83,7 @@ export default function Profile({ chat, visible, onClose }: IChatBodyProps) {
         </div> */}
         <div className="border-t border-t-gray-200 mt-4 p-4">
           <h3 className="text-base font-semibold mt-1 mb-3">Contact Details</h3>
-          <ContactForm />
+          <ContactForm user={chat} />
           {/* <div className="flex flex-col gap-6 mt-3">
             <div className="flex gap-2 items-center">
               <EnvelopeIcon className="h-11 w-11 bg-[#f1f3f4] p-3 rounded-full cursor-pointer hover:bg-white hover:shadow-md transition-all" />

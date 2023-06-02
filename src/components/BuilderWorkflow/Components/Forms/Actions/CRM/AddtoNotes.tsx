@@ -1,5 +1,6 @@
 import { itemState } from "@/atoms/item";
 import { modalItemState } from "@/atoms/modalItem";
+import { nameTrigger } from "@/atoms/nameTrigger";
 import { offCanvasOpenState } from "@/atoms/offCanvasOpen";
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
@@ -55,8 +56,10 @@ export default function AddToNotes({ onDataStore, onClose }: any) {
 
   const [data, setData] = useRecoilState(modalItemState);
 
+  const [actionData, setActionData] = useRecoilState(nameTrigger);
+
   const [formValues, setFormValues] = useState<any>({
-    actionName: "",
+    actionName: actionData,
     message: "",
   });
   const [errors, setErrors] = useState<any>({});
@@ -112,7 +115,7 @@ export default function AddToNotes({ onDataStore, onClose }: any) {
       <div className="h-[75vh]  overflow-y-scroll scrollbar-hide">
         <form onSubmit={handleSubmit} className="flex flex-wrap px-2  ">
           <div className="w-full mt-4">
-            <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+            <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
               Action Name
             </label>
             <input
@@ -130,7 +133,7 @@ export default function AddToNotes({ onDataStore, onClose }: any) {
           </div>
 
           <div className="w-full mt-4">
-            <label className="w-full mb-2 text-base pl-1 text-dark font-semibold uppercase">
+            <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
               Message
             </label>
             <QuillNoSSRWrapper
