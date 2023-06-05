@@ -11,7 +11,9 @@ export default function TriggerList({ onClose, updateData, components }: any) {
     <>
       <div className="py-3 h-full ">
         <div className="h-12 pt-3 flex justify-between items-center border-b-[1px] border-gray-300 pb-5 px-5">
-          <p className="  text-xl text-dark font-semibold">{recoilItem}</p>
+          <p className="  text-xl text-dark font-semibold fontStrawFord ">
+            {recoilItem}
+          </p>
           <button onClick={onClose}>
             <XMarkIcon className="h-5 w-5 text-FontGray" />
           </button>
@@ -21,7 +23,7 @@ export default function TriggerList({ onClose, updateData, components }: any) {
             <div className="h-5 w-5 bg-white rounded-full shadow-md flex justify-center items-center">
               <ChevronLeftIcon className="h-3 w-3 text-gray-600" />
             </div>
-            <p className="text-xs pl-2 pt-0.5 text-gray-600 font-semibold">
+            <p className="text-xs pl-2 pt-0.5 text-gray-600 font-semibold mt-1 fontStrawFord">
               Back to Workflow
             </p>
           </div>

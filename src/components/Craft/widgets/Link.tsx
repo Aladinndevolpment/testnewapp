@@ -1,5 +1,5 @@
 import { useNode, Element, useEditor } from "@craftjs/core";
-import { Text } from "./Text";
+import { Text } from "./Text/Text";
 import { MuiColorInput } from "mui-color-input";
 import TextInput from "@/components/controls/TextInput";
 import { IoContract } from "react-icons/io5";

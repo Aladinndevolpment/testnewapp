@@ -2,6 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @import url('../../public/newFonts/fonts.css'); */
+
+
+@font-face {
+  font-family: 'Strawford';
+  src: url('../../public/newFonts/strawford-black-webfont.woff') format('truetype');  
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Strawford';
+  src: url('../../public/newFonts/strawford-bold-webfont.woff') format('truetype');  
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Add additional font weights as needed */
+
+@font-face {
+  font-family: 'Strawford';
+  src: url('../../public/newFonts/strawford-medium-webfont.woff') format('truetype');  
+
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Strawford';
+  src: url('../../public/newFonts/strawford-regular-webfont.woff') format('truetype');  
+
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Strawford';
+  src: url('../../public/newFonts/strawford-thin-webfont.woff') format('truetype');  
+
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Strawford';
+  src: url('../../public/newFonts/strawford-light-webfont.woff') format('truetype');  
+
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Strawford';
+  src: url('../../public/newFonts/strawford-extralight-webfont.woff') format('truetype');  
+
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+.fontStrawFord{
+  font-family: 'Strawford' ;
+  /* font-weight: ; */
+}
 
 .bg-dots {
   background-size: 20px 20px;
@@ -1727,11 +1798,41 @@ input::-webkit-inner-spin-button {
 
 
 .mui-style-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
-  border-radius: 5px !important;
-  border: 2px solid #fff !important;
+  border-radius: 5px !important; 
 }
 
 .mui-style-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-     padding: 12.5px 14px !important;
-  border: 1px solid #fff !important;
+   padding: 10px 14px !important; 
+   box-sizing: inherit !important;
+   height: auto !important;
  }
+
+ .mui-style-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 13px 14px !important;
+}
+
+
+.MuiInputBase-input{
+  border: 1px solid #fff !important;
+  color: #575555;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'Strawford';
+}
+.MuiInputBase-input:focus{
+  border: 1px solid #fff !important;
+}
+
+
+.mui-style-1d3z3hw-MuiOutlinedInput-notchedOutline {
+   border-color: #e2e2e2 !important;
+}
+
+
+.mui-style-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+   color: #575555 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  font-family: 'Strawford' !important;
+  width: 100% !important;
+}

@@ -544,9 +544,11 @@ export default function StartComponentTriggerList({
         visibility={isOpenModal}
         onClose={() => setIsOpenModal(false)}
         renderData={
-          <div className="py-3">
+          <div className="py-3  ">
             <div className="pt-3 flex justify-between items-center border-b-[1px] border-gray-300 pb-5 px-5">
-              <p className="  text-xl text-dark font-semibold">{actionData}</p>
+              <p className="  text-xl text-dark font-semibold fontStrawFord ">
+                {actionData}
+              </p>
               <button onClick={() => setIsOpenModal(false)}>
                 <XMarkIcon className="h-5 w-5 text-FontGray" />
               </button>
@@ -558,7 +560,7 @@ export default function StartComponentTriggerList({
               <div className="h-5 w-5 bg-white rounded-full shadow-md flex justify-center items-center">
                 <ChevronLeftIcon className="h-3 w-3 text-gray-600" />
               </div>
-              <p className="text-xs pl-2 pt-0.5 text-gray-600 font-semibold">
+              <p className="text-xs pl-2 pt-0.5 text-gray-600 fontStrawFord  font-semibold">
                 Back to Workflow
               </p>
             </div>
@@ -571,11 +573,11 @@ export default function StartComponentTriggerList({
       <div className={` ${isOpenModal ? "hidden" : "block"}  py-3`}>
         <div className="flex justify-between items-start border-b-[1px] border-gray-300 pb-2 pl-4 pr-4 ">
           <div className="pr-4">
-            <p className="  text-xl text-dark font-semibold">
-              Workflow Triggers{" "}
+            <p className="fontStrawFord text-xl text-dark font-semibold">
+              Workflow Triggers
             </p>
-            <p className="text-sm text-gray-500 font-medium py-2">
-              Adds a workflow trigger, and on execution, the contacts gets added
+            <p className="fontStrawFord text-sm text-gray-500 font-medium py-2">
+              Adds a workflow trigger, and on execution, the contacts get added
               to the workflow
             </p>
           </div>
@@ -594,7 +596,7 @@ export default function StartComponentTriggerList({
               name="subContentTitle"
               value={filterValue}
               onChange={handleFilter}
-              className="w-[60%] py-1 px-2  bg-transparent outline-none border-[none] pl-4 font-fontSource font-medium text-sm "
+              className="fontStrawFord font-medium   w-[60%] py-1 px-2  bg-transparent outline-none border-[none] pl-4  text-sm "
             />
           </div>
         </div>
@@ -603,7 +605,7 @@ export default function StartComponentTriggerList({
           {filteredData.map((item, index) => (
             <li key={index} className="  bg-white mb-3 border-b  px-4 pb-3">
               <p
-                className={` capitalize text-dark text-lg font-semibold  tracking-wide mb-2`}
+                className={`fontStrawFord   capitalize text-dark text-lg font-semibold  tracking-wide mb-2`}
               >
                 {item?.title}
               </p>
@@ -623,12 +625,12 @@ export default function StartComponentTriggerList({
                       />
                       <div className="pl-2">
                         <p
-                          className={` capitalize text-gray-600 text-base font-semibold  tracking-wide ml-2 `}
+                          className={`fontStrawFord   capitalize text-gray-600 text-base font-semibold  tracking-wide ml-2 `}
                         >
                           {mainData?.title}
                         </p>
                         <p
-                          className={`mt-1 capitalize text-gray-400 text-xs font-normal  tracking-wide ml-2 `}
+                          className={`fontStrawFord  mt-1 capitalize text-gray-500 text-xs font-normal  tracking-wide ml-2 `}
                         >
                           Updated at {moment().format("MMM DD, YYYY")} by John
                           Kuy

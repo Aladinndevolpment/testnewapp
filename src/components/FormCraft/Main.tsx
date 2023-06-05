@@ -8,7 +8,7 @@ import { RadioInputElement } from "./widgets/RadioElement";
 import { TextAreaElement } from "./widgets/TextareaElement";
 import { Grid } from "../Craft/widgets/Grid";
 import { Button } from "../Craft/widgets/Button";
-import { Text } from "../Craft/widgets/Text";
+import { Text } from "../Craft/widgets/Text/Text";
 import Container from "../Craft/widgets/Container";
 import App from "../Craft/widgets/App";
 import { CheckboxInputElement } from "./widgets/CheckboxElement";

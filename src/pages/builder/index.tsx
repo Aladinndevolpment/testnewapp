@@ -4,6 +4,7 @@ import { GlobalContext } from "@/layouts/GlobalLayout";
 import Link from "next/link";
 import React, { useContext, useState } from "react";
 import { BsDiagram2Fill } from "react-icons/bs";
+import Craft from "./form/craft";
 
 export default function Builder() {
   const [DropDownRole, SetDropDownRole] = useState("");
@@ -11,38 +12,28 @@ export default function Builder() {
   const innerTabs = [
     {
       id: "tab1",
-      label: "Ads",
+      label: "Dashbaord",
       content: "",
     },
     {
       id: "tab2",
-      label: "Email",
-      content: " ",
-    },
-    {
-      id: "tab3",
-      label: "Social Media",
-      content: " ",
-    },
-    {
-      id: "tab4",
-      label: "Website",
+      label: "Sites",
       content: <WebsiteBuilder />,
     },
     {
-      id: "tab5",
-      label: "Campaign",
-      content: " ",
+      id: "tab3",
+      label: "Forms",
+      content: <Craft />,
     },
     {
-      id: "tab6",
-      label: "Lead Capture",
-      content: " ",
+      id: "tab4",
+      label: "Surveys",
+      content: "",
     },
   ];
 
   // const [activeTab, setActiveTab] = useState<any>(tabs[3].id);
-  const [activeInnerTab, setActiveInnerTab] = useState(innerTabs[3].id);
+  const [activeInnerTab, setActiveInnerTab] = useState(innerTabs[1].id);
 
   const ctx = useContext(GlobalContext);
   ctx.setTitle("Website Builder");

@@ -2,6 +2,7 @@ import DashboardData from "@/components/Dashboard/DashboardData";
 import AdsTable from "@/components/Marketing/Ads/AdsTable";
 import CampaignTable from "@/components/Marketing/Campaign/Main/CampaignTable";
 import { GlobalContext } from "@/layouts/GlobalLayout";
+import Link from "next/link";
 import React, { useContext, useState } from "react";
 import { FiSettings } from "react-icons/fi";
 
@@ -47,12 +48,15 @@ export default function Marketing() {
           ))}
         </ul>
 
-        <div className="m-1 ml-2 py-2 px-2  2xl:px-4 rounded-md flex flex-wrap justify-between items-center">
+        <Link
+          href="/builder/dashboard"
+          className="m-1 ml-2 py-2 px-2  2xl:px-4 rounded-md flex flex-wrap justify-between items-center"
+        >
           <FiSettings className="h-4 w-4 text-gray-500   mr-2" />
           <span className="text-gray-500 font-semibold text-sm ">
             Manage Dashboards
           </span>
-        </div>
+        </Link>
       </div>
       <div className="  bg-white">
         {innerTabs.map((tab: any) => (

@@ -596,7 +596,6 @@ export default function Chat() {
     );
   }, [searchString, chatData]);
 
-  console.log(showProfile);
   return (
     <div className="lg:h-full w-full bg-mainBg overflow-hidden relative pb-2">
       <div
@@ -627,9 +626,9 @@ export default function Chat() {
                 </div>
                 <div className="w-full flex justify-between mt-2.5">
                   <select className="text-dark text-sm font-medium bg-transparent  focus-within:bottom-0 focus-within:outline-0 focus-visible:border-0">
-                    <option>All Status</option>
-                    <option>Active</option>
-                    <option>InActive</option>
+                    <option>All</option>
+                    <option>Unread</option>
+                    <option>Recent</option>
                   </select>
 
                   <div className="dropdown dropdown-end">

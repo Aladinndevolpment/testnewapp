@@ -43,7 +43,7 @@ export default function FactCard({
   }, [numberValue, timesRun]);
 
   return (
-    <div className="  w-full h-full  bg-white pt-4 pb-2 relative pr-3">
+    <div className="  w-full h-full  bg-white pt-4 pb-4 relative pr-3">
       <div className="flex items-center gap-2">
         <div className="p-2 border rounded-full">{titleIcon}</div>
         <h4 className="text-[12px] text-gray-500 font-semibold">{title}</h4>
@@ -51,7 +51,7 @@ export default function FactCard({
 
       <div className="flex justify-between items-center">
         <div className="w-1/2 flex justify-center flex-col items-center ">
-          <div className="mt-2 text-3xl font-bold ml-1">{count}</div>
+          <div className="mt-2 text-2xl font-bold ml-1">{count}</div>
           <div
             className={` ${
               index == 1
@@ -65,13 +65,13 @@ export default function FactCard({
           >
             {subIcon}
             <div>
-              {numberValueData}{" "}
+              {numberValueData}
               <span className="text-gray-600 text-[12px]">{subSpanData}</span>
             </div>
           </div>
         </div>
         <div className="w-1/2 flex justify-center flex-col items-center pr-5">
-          <div className="mt-2 text-xl font-bold ml-1">
+          <div className="mt-2 text-2xl font-bold ml-1">
             {currency}
             {moneyValue}
           </div>
@@ -96,7 +96,7 @@ export default function FactCard({
       </div>
 
       {index == 3 ? null : (
-        <div className="h-28 w-[2px] bg-gray-200 absolute right-0 top-2 hidden lg:block"></div>
+        <div className="h-24 w-[2px] bg-gray-200 absolute right-0 top-5 hidden lg:block"></div>
       )}
     </div>
   );

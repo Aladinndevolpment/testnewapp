@@ -31,9 +31,12 @@ export default function DashboardData() {
         </div>
 
         <div className="w-full  lg:w-auto flex justify-between items-center mb-2 gap-1">
-          <button className="text-xs flex justify-center items-center ml-3 bg-secondary hover:bg-newBlue duration-300 m-1 py-3 px-5 2xl:px-6 text-white rounded-md ">
-            <AiOutlinePlus className="mr-2" /> Add Widgets
-          </button>
+          <Link
+            href="/builder/dashboard/create"
+            className="text-xs flex justify-center items-center ml-3 bg-secondary hover:bg-newBlue duration-300 m-1 py-3 px-5 2xl:px-6 text-white rounded-md "
+          >
+            <AiOutlinePlus className="mr-2" /> Create Dashboard
+          </Link>
 
           <button className="text-xs flex justify-center items-center ml-3 border-[1px] border-gray-300 duration-300 m-1 py-3 px-4 2xl:px-6 text-gray-700 rounded-md font-semibold">
             <BsPencil className="mr-2" /> Edit Widgets

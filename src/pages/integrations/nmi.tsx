@@ -5,7 +5,7 @@ import React from "react";
 export default function index() {
   return (
     <div className="w-full flex justify-center items-center">
-      <div className="w-[50%] bg-white border-[1px] border-gray-200 rounded-xl ml-2 text-center shadow-md h-full mt-3 mb-5 pb-5 ">
+      <div className="  text-center  h-full mt-3 mb-5 pb-5 ">
         <div className="pb-6 border-b border-gray-200">
           <div className="items-center space-y-4  ">
             <Image

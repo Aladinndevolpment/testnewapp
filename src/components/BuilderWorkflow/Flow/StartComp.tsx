@@ -87,9 +87,9 @@ export default function StartComp({
               Enrollment Trigger
             </p>
             <div className="border-[1px] border-lightGray bg-gray-100 rounded-md px-2 py-2 mb-4 ">
-              <p className="text-dark text-sm leading-5">
+              <p className="text-dark text-sm leading-5 text-center">
                 Contact has filled out, for
-                <strong className="text-xs pl-2">{title}</strong>
+                <strong className="text-xs">{title}</strong>
               </p>
             </div>
 

@@ -49,7 +49,7 @@ export default function AudienceDetails({
           Tailor your ad to the right audience
         </h3>
       </div>
-      <div className=" md:max-w-[500px] flex flex-col gap-5">
+      <div className="mt-5 md:max-w-[800px] lg:max-w-[600px] 2xl:w-[1100px] flex flex-col gap-5">
         <div className="mt-3">
           <div className="mb-4 mt-2 flex flex-col gap-1">
             <label className="font-semibold text-gray-600 text-sm">

@@ -155,7 +155,7 @@ export default function UpdateContactField({ onClose, onDataStore }: any) {
         <form onSubmit={handleSubmit}>
           <div className="w-full mb-5 mt-4">
             <label
-              className="w-full mb-2 text-base pl-3 text-dark font-semibold uppercase"
+              className="w-full mb-2 text-sm text-gray-600 font-semibold fontStrawFord"
               htmlFor="actionName"
             >
               Action Name:
@@ -169,7 +169,7 @@ export default function UpdateContactField({ onClose, onDataStore }: any) {
               name="actionName"
               value={state.actionName}
               onChange={(e) => handleInputChange(e, 0)} // Assuming it's the first field, index is 0
-              className="px-2 rounded-lg mt-2 mb-2 py-1 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
+              className=" rounded-lg mt-2 mb-2 py-1 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
             />
 
             {errors.actionName && (
@@ -178,7 +178,7 @@ export default function UpdateContactField({ onClose, onDataStore }: any) {
           </div>
           <div className="w-full mb-5 mt-4 px-2">
             <label
-              className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold"
+              className="w-full mb-2 text-sm text-gray-600 font-semibold fontStrawFord"
               htmlFor="actionName"
             >
               Action Type :
@@ -267,7 +267,11 @@ export default function UpdateContactField({ onClose, onDataStore }: any) {
           ))}
           <div className="flex justify-start items-center pl-2 text-base text-dark font-semibold ">
             <PlusCircleIcon className="h-5 w-5 mr-1" />
-            <button type="button" onClick={handleAddField}>
+            <button
+              type="button"
+              className="text-sm text-gray-600 font-semibold fontStrawFord"
+              onClick={handleAddField}
+            >
               Add Filter
             </button>
           </div>
@@ -276,14 +280,14 @@ export default function UpdateContactField({ onClose, onDataStore }: any) {
       <div className="flex justify-end items-end py-2 px-4">
         <button
           onClick={onClose}
-          className="border-2 mr-5 border-OrangeBuilder rounded-md flex justify-center items-center px-8 py-1.5 text-OrangeBuilder"
+          className="border-2 mr-5 fontStrawFord border-OrangeBuilder rounded-md flex justify-center items-center px-8 py-1.5 text-OrangeBuilder"
         >
           Cancel
         </button>
         <button
           onClick={handleSubmit}
           type="submit"
-          className="bg-OrangeBuilder rounded-md flex justify-center items-center px-8 py-2 text-white"
+          className="bg-OrangeBuilder fontStrawFord rounded-md flex justify-center items-center px-8 py-2 text-white"
         >
           Submit
         </button>

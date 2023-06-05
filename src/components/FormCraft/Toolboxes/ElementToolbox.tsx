@@ -11,7 +11,7 @@ import { Grid } from "@/components/Craft/widgets/Grid";
 import AccordionItem from "../AccordionItem";
 import { TextAreaElement } from "../widgets/TextareaElement";
 import { RadioInputElement } from "../widgets/RadioElement";
-import { Text } from "@/components/Craft/widgets/Text";
+import { Text } from "@/components/Craft/widgets/Text/Text";
 import { CheckboxInputElement } from "../widgets/CheckboxElement";
 import { SelectBoxInputElement } from "../widgets/SelectInputElement";
 import { Link } from "@/components/Craft/widgets/Link";

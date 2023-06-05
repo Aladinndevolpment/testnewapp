@@ -1,6 +1,5 @@
-import { Text } from "../Text";
+import { Text } from "../Text/Text";
 import { Button } from "../Button";
-import Container from "../Container";
 import { useNode, Element } from "@craftjs/core";
 import { BuilderImage } from "../Image";
 
@@ -12,6 +11,7 @@ import {
   baseDefaults,
   getCommonSettingsProps,
 } from "../CommonSettings";
+import { Headline } from "../Text/Headline";
 
 const defaults = {
   backgroundColor: "#ffffff",
@@ -73,8 +73,9 @@ export const HeroLayout = ({
 
       <div className="w-full md:w-1/2 order-2 md:order-1">
         <Element id="heroTitle" is={HeroText} canvas>
-          <Text
+          <Headline
             alignment="left"
+            tagName="h2"
             text="Hero Title"
             fontSize={26}
             bold="font-semibold"

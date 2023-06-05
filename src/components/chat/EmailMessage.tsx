@@ -133,7 +133,7 @@ export default function EmailMessage({ handleChange, onClose }: any) {
                   name="to"
                   value={formValues.to}
                   onChange={handleInputChange}
-                  placeholder="Obinathaniel@gmail.com"
+                  // placeholder="Obinathaniel@gmail.com"
                   className="w-full text-sm placeholder:text-purpleShade text-purpleShade font-semibold bg-transparent focus:bg-transparent focus:outline-none  "
                 />
                 <div className="absolute right-5 top-0  mb-3">
@@ -175,7 +175,7 @@ export default function EmailMessage({ handleChange, onClose }: any) {
                     name="cc"
                     value={formValues.cc}
                     onChange={handleInputChange}
-                    placeholder="Cc"
+                    // placeholder="Cc"
                     className="w-full text-sm placeholder:text-purpleShade text-purpleShade font-semibold bg-transparent focus:bg-transparent focus:outline-none  "
                   />
                 </div>
@@ -197,7 +197,7 @@ export default function EmailMessage({ handleChange, onClose }: any) {
                     name="bcc"
                     value={formValues.bcc}
                     onChange={handleInputChange}
-                    placeholder="Bcc"
+                    // placeholder="Bcc"
                     className="w-full text-sm placeholder:text-purpleShade text-purpleShade font-semibold bg-transparent focus:bg-transparent focus:outline-none  "
                   />
                 </div>
@@ -218,7 +218,7 @@ export default function EmailMessage({ handleChange, onClose }: any) {
                   name="from"
                   value={formValues.from}
                   onChange={handleInputChange}
-                  placeholder="From"
+                  // placeholder="From"
                   className="w-full text-sm placeholder:text-purpleShade text-purpleShade font-semibold bg-transparent focus:bg-transparent focus:outline-none  "
                 />
                 <div className="absolute right-0 top-0  mb-3">
@@ -244,7 +244,7 @@ export default function EmailMessage({ handleChange, onClose }: any) {
                     name="subject"
                     value={formValues.subject}
                     onChange={handleInputChange}
-                    placeholder="Subject"
+                    // placeholder="Subject"
                     className="w-full text-sm placeholder:text-purpleShade text-purpleShade font-semibold bg-transparent focus:bg-transparent focus:outline-none  "
                   />
                   <div className="absolute right-0 top-0  mb-3">

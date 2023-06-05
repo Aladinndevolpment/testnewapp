@@ -7,6 +7,13 @@ module.exports = {
   // purge: [],
   darkMode: "media", // or 'media' or 'class'
   theme: {
+    listStyleType: {
+      none: 'none',
+      disc: 'disc',
+      decimal: 'decimal',
+      square: 'square',
+      roman: 'upper-roman',
+    },
     extend: {
       colors: {
         primary: "#26388a",
@@ -24,7 +31,8 @@ module.exports = {
        darkBlack :"#263238",
        greenShade : "#58AA43",
        purpleShade : "#383DD3",
-       navyBlue : "#8055D9"
+       navyBlue : "#8055D9",
+       logoRed : "#DC4B35", 
       },
       backgroundImage: {
          
@@ -34,7 +42,7 @@ module.exports = {
       main : ['Source Sans Pro', 'sans-serif'],
       poppins : ['Poppins', 'sans-serif'],
       noto : ['Noto Sans', 'sans-serif'],
-
+      strawford: ['Strawford', 'sans-serif'],
      },
     screens: {
       xs: "500",

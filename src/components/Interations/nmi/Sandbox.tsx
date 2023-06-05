@@ -70,7 +70,7 @@ const Sandbox = () => {
           value={formData.gatewayId}
           onChange={handleChange}
           placeholder="Live Gateway Id"
-          className="text-gray-500 text-sm font-semibold w-full rounded-md p-2 pl-4 border border-gray-400"
+          className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md  font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-300 text-space focus:outline-none focus:border-gray-300  "
         />
         {errors.gatewayId && (
           <p className="text-red-500 text-xs mt-1">{errors.gatewayId}</p>
@@ -86,7 +86,7 @@ const Sandbox = () => {
           value={formData.securityKey}
           onChange={handleChange}
           placeholder="Live Security Key"
-          className="text-gray-500 text-sm font-semibold w-full rounded-md p-2 pl-4 border border-gray-400"
+          className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md  font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-300 text-space focus:outline-none focus:border-gray-300  "
         />
         {errors.securityKey && (
           <p className="text-red-500 text-xs mt-1">{errors.securityKey}</p>
@@ -102,7 +102,7 @@ const Sandbox = () => {
           value={formData.publicKey}
           onChange={handleChange}
           placeholder="Live Public Key"
-          className="text-gray-500 text-sm font-semibold w-full rounded-md p-2 pl-4 border border-gray-400"
+          className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md  font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-300 text-space focus:outline-none focus:border-gray-300  "
         />
         {errors.publicKey && (
           <p className="text-red-500 text-xs mt-1">{errors.publicKey}</p>

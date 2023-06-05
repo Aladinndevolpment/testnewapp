@@ -1,5 +1,5 @@
 import { Button } from "../widgets/Button";
-import { Text } from "../widgets/Text";
+import { Text } from "../widgets/Text/Text";
 import { Card } from "../widgets/Card";
 import { BuilderImage } from "../widgets/Image";
 import { Grid } from "../widgets/Grid";
@@ -9,34 +9,24 @@ import { useEffect, useState } from "react";
 import TextInput from "@/components/controls/TextInput";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import ElementToolsLayout from "./tools/ElementToolsLayout";
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Typography,
-} from "@mui/material";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
+
 import Divider from "../widgets/Divider";
 import AccordionItem from "@/components/UI/AccordionItem";
-import {
-  BsBoundingBox,
-  BsCardText,
-  BsFillGrid3X3GapFill,
-  BsImage,
-  BsMenuButtonWide,
-} from "react-icons/bs";
+import { BsCardText, BsImage, BsMenuButtonWide } from "react-icons/bs";
 import { TbTextSize } from "react-icons/tb";
 import { RxDividerHorizontal } from "react-icons/rx";
 import { IoShareSocialOutline } from "react-icons/io5";
-import {
-  AiOutlineForm,
-  AiOutlineLink,
-  AiOutlineVideoCameraAdd,
-} from "react-icons/ai";
+import { AiOutlineLink, AiOutlineVideoCameraAdd } from "react-icons/ai";
 import { BuilderVideo } from "../widgets/Video";
 import { Social } from "../widgets/Social";
 import PrebuiltToolsLayout from "./tools/PrebuiltToolsLayout";
 import { formControls } from "@/components/FormCraft/Toolboxes/ElementToolbox";
+import { Headline } from "../widgets/Text/Headline";
+import { List } from "../widgets/List";
+import CustomHTML from "../widgets/CustomHTML";
+import MapElement from "../widgets/Map";
+import Countdown from "../widgets/Countdown";
+import Progress from "../widgets/Progress";
 
 const baseTools = [
   {
@@ -101,11 +91,61 @@ const baseTools = [
         ),
       },
       {
-        name: "Text",
+        name: "Headline",
         tool: (
           <ElementToolsLayout
-            toolName="Text"
+            toolName="Headline"
+            tool={
+              <Headline
+                text="Headline"
+                fontSize={26}
+                color="#000000"
+                bold="font-medium"
+                alignment={"left"}
+                tagName="h1"
+              />
+            }
+            image="@/../public/craft/hero.png"
+            icon={<TbTextSize className="h-5 w-5 text-gray-500" />}
+          />
+        ),
+      },
+      {
+        name: "Sub headline",
+        tool: (
+          <ElementToolsLayout
+            toolName="Sub headline"
+            tool={
+              <Headline
+                text="Sub headline"
+                fontSize={20}
+                color="#a4a4a4"
+                alignment={"left"}
+                tagName="h3"
+              />
+            }
+            image="@/../public/craft/hero.png"
+            icon={<TbTextSize className="h-5 w-5 text-gray-500" />}
+          />
+        ),
+      },
+      {
+        name: "Paragraph",
+        tool: (
+          <ElementToolsLayout
+            toolName="Paragraph"
             tool={<Text text="Start writing here..." alignment={"left"} />}
+            image="@/../public/craft/hero.png"
+            icon={<TbTextSize className="h-5 w-5 text-gray-500" />}
+          />
+        ),
+      },
+      {
+        name: "List",
+        tool: (
+          <ElementToolsLayout
+            toolName="List"
+            tool={<List alignment="left" text="New List" />}
             image="@/../public/craft/hero.png"
             icon={<TbTextSize className="h-5 w-5 text-gray-500" />}
           />
@@ -176,6 +216,50 @@ const baseTools = [
           <ElementToolsLayout
             toolName="Card"
             tool={<Card />}
+            image="@/../public/craft/hero.png"
+            icon={<BsCardText className="h-5 w-5 text-gray-500" />}
+          />
+        ),
+      },
+      {
+        name: "Custom HTML",
+        tool: (
+          <ElementToolsLayout
+            toolName="Custom HTML"
+            tool={<CustomHTML />}
+            image="@/../public/craft/hero.png"
+            icon={<BsCardText className="h-5 w-5 text-gray-500" />}
+          />
+        ),
+      },
+      {
+        name: "Map",
+        tool: (
+          <ElementToolsLayout
+            toolName="Map"
+            tool={<MapElement />}
+            image="@/../public/craft/hero.png"
+            icon={<BsCardText className="h-5 w-5 text-gray-500" />}
+          />
+        ),
+      },
+      {
+        name: "Countdown",
+        tool: (
+          <ElementToolsLayout
+            toolName="Countdown"
+            tool={<Countdown />}
+            image="@/../public/craft/hero.png"
+            icon={<BsCardText className="h-5 w-5 text-gray-500" />}
+          />
+        ),
+      },
+      {
+        name: "Progress",
+        tool: (
+          <ElementToolsLayout
+            toolName="Progress"
+            tool={<Progress />}
             image="@/../public/craft/hero.png"
             icon={<BsCardText className="h-5 w-5 text-gray-500" />}
           />

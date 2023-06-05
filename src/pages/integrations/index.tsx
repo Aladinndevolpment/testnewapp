@@ -1,6 +1,11 @@
+import FlyOut from "@/components/Flyout";
+import Stripe from "@/components/Interations/Stripe";
+import Authorize from "@/components/Interations/authorize";
+import NMI from "@/components/Interations/nmi";
+import ModalDerived from "@/components/Modal";
 import TeamsSidebar from "@/components/Teams/TeamsSidebar";
 import { GlobalContext } from "@/layouts/GlobalLayout";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext, useState } from "react";
@@ -86,6 +91,7 @@ export default function Integrations() {
       link: "/integrations/add-integration",
       status: "C",
       slug: "/integrations/google",
+      component: "",
     },
     {
       title: "Facebook",
@@ -93,6 +99,7 @@ export default function Integrations() {
       link: "/integrations/add-integration",
       status: "C",
       slug: "/integrations/facebook",
+      component: "",
     },
     {
       title: "Stripe",
@@ -100,6 +107,7 @@ export default function Integrations() {
       link: "/integrations/add-integration",
       status: "P",
       slug: "/integrations/stripe",
+      component: <Stripe />,
     },
     {
       title: "Paypal",
@@ -107,6 +115,7 @@ export default function Integrations() {
       link: "/integrations/add-integration",
       status: "P",
       slug: "/integrations/paypal",
+      component: "",
     },
     {
       title: "Tiktok",
@@ -114,6 +123,7 @@ export default function Integrations() {
       link: "/integrations/add-integration",
       status: "R",
       slug: "/integrations/tiktok",
+      component: "",
     },
     {
       title: "NMI",
@@ -121,6 +131,7 @@ export default function Integrations() {
       link: "/integrations/add-integration",
       status: "R",
       slug: "/integrations/nmi",
+      component: <NMI />,
     },
     {
       title: "Authorize.Net",
@@ -128,8 +139,13 @@ export default function Integrations() {
       link: "/integrations/add-integration",
       status: "R",
       slug: "/integrations/authorize-net",
+      component: <Authorize />,
     },
   ];
+
+  const [selectedIntegration, setSelectedIntegration] = useState("");
+  const [selectedComponent, setSelectedComponent] = useState(null);
+  const [showSelectedComponent, SetShowSelectedComponent] = useState(false);
 
   const [filterValue, setFilterValue] = useState("");
 
@@ -146,13 +162,39 @@ export default function Integrations() {
 
   return (
     <>
+      <div
+        className={`transition-all fixed ${
+          showSelectedComponent
+            ? "bottom-0 opacity-100 z-50"
+            : "-bottom-[20px] opacity-0 -z-10"
+        }  left-0 bg-black backdrop-blur-[5px] bg-opacity-20   h-screen w-full overflow-x-hidden flex items-center justify-center scrollbar-hide `}
+      >
+        <div
+          className={`relative z-50 bg-white  shadow-md rounded-xl w-[600px] `}
+        >
+          <div className=" scrollbar-hide overflow-y-scroll h-96 md:h-auto md:max-h-[40rem] ">
+            <div className="flex justify-between items-center px-5 py-2 border-b">
+              <p className="text-gray-600  font-semibold fontStrawFord text-lg pb-2 pt-3 leading-5">
+                {selectedIntegration}
+              </p>
+              <button onClick={() => SetShowSelectedComponent(false)}>
+                <XMarkIcon className="h-5 w-5 text-gray-600" />
+              </button>
+            </div>
+            <div> {selectedComponent}</div>
+          </div>
+        </div>
+        <div
+          className="w-full h-full opacity-30 absolute top-0 left-0 z-40 bg-popup bg-cover bg-bottom"
+          onClick={() => SetShowSelectedComponent(false)}
+        ></div>
+      </div>
+
       <div className="flex flex-wrap justify-center  ">
         <div className="w-full lg:w-[25%] border-r-[1px]   bg-white    ">
-          <TeamsSidebar
-            handleChange={handleSidebar}
-            showSidebar={showSidebar}
-          />
+          <TeamsSidebar />
         </div>
+
         <div className="w-full lg:w-[75%]  bg-white h-[100vh] scrollbar-hide  ">
           <header className="block w-full mb-5 h-32 lg:h-16 items-center relative z-10 border-b-[1px] border-lightGray">
             <div className="flex flex-center flex-col h-full justify-center lg:mx-auto relative  text-white z-10">
@@ -226,7 +268,7 @@ export default function Integrations() {
                         : "text-dark"
                     }   text-sm font-medium  tracking-wide`}
                   >
-                    {item?.value}{" "}
+                    {item?.value}
                   </a>
                 </div>
               ))}
@@ -267,7 +309,13 @@ export default function Integrations() {
                       </p>
                     </div>
                   </div>
-                  <Link href={item?.slug}>
+                  <div
+                    onClick={() => {
+                      setSelectedComponent(item?.component);
+                      SetShowSelectedComponent(true);
+                      setSelectedIntegration(item?.title);
+                    }}
+                  >
                     <div className="px-4 pt-3 pb-1 flex justify-between items-center">
                       <p
                         className={` capitalize text-newBlue text-[14px] font-semibold  tracking-wide  `}
@@ -279,7 +327,7 @@ export default function Integrations() {
                         <AiOutlineArrowRight className="text-dark h-5 w-5" />
                       </button>
                     </div>
-                  </Link>
+                  </div>
                 </div>
               </div>
             ))}

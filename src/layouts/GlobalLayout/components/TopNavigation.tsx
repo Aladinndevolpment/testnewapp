@@ -59,7 +59,7 @@ export default function TopNavigation() {
 
           <div className=" flex items-center justify-start lg:justify-end p-1 w-full lg:w-[55%]   ">
             <Search />
-            <div className="relative ml-3 bg-newBlue p-2 rounded-full shadow-sm mr-3">
+            <div className="relative ml-3 bg-logoRed p-2 rounded-full shadow-sm mr-3">
               <PlusIcon className="text-white w-4 h-4" />
             </div>
 
@@ -73,7 +73,7 @@ export default function TopNavigation() {
 
             <div className="border-l border-l-[#a0a0a0]">
               <div className="relative ml-3  shadow-sm flex gap-2 items-center">
-                <div className="relative  bg-newBlue p-2 rounded-full shadow-sm">
+                <div className="relative  bg-logoRed p-2 rounded-full shadow-sm">
                   <UserIcon className="text-white w-6 h-6" />
                 </div>
                 <div>

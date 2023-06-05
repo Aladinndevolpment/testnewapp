@@ -142,10 +142,10 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
 
   return (
     <div>
-      <div className=" h-[75vh] overflow-y-scroll scrollbar-hide">
+      <div className=" h-[75vh] 2xl:h-[80vh] overflow-y-scroll scrollbar-hide">
         <form onSubmit={handleSubmit} className="flex flex-wrap px-2  ">
-          <div className="w-full mt-4">
-            <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
+          <div className="w-full mt-1.5">
+            <label className="w-full mb-2 text-sm text-gray-600 font-semibold fontStrawFord">
               Action Name
             </label>
             <input
@@ -154,7 +154,7 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
               value={formValues.actionName}
               onChange={handleChange}
               placeholder="Send Email"
-              className="px-3 rounded-md mt-2 mb-2 py-3 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
+              className="placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-2  font-medium bg-transparent focus:bg-transparent w-full  border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
             />
             {errors.actionName && (
               <span className="mb-5 error text-red-500 ">
@@ -162,8 +162,8 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
               </span>
             )}
           </div>
-          <div className="w-full mt-4">
-            <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
+          <div className="w-full mt-1.5">
+            <label className="w-full mb-2 text-sm text-gray-600 font-semibold fontStrawFord">
               From Name
             </label>
             <input
@@ -171,7 +171,7 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
               name="formName"
               value={formValues.formName}
               onChange={handleChange}
-              className="px-3 rounded-md mt-2 mb-2 py-3 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
+              className="placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-2  font-medium bg-transparent focus:bg-transparent w-full  border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
             />
             {errors.formName && (
               <span className="mb-5 error text-red-500 ">
@@ -179,8 +179,8 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
               </span>
             )}
           </div>
-          <div className="w-full mt-4">
-            <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
+          <div className="w-full mt-1.5">
+            <label className="w-full mb-2 text-sm text-gray-600 font-semibold fontStrawFord">
               From Email
             </label>
             <input
@@ -188,7 +188,7 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
               name="fromEmail"
               value={formValues.fromEmail}
               onChange={handleChange}
-              className="px-3 rounded-md mt-2 mb-2 py-3 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
+              className="placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-2  font-medium bg-transparent focus:bg-transparent w-full  border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
             />
             {errors.fromEmail && (
               <span className="mb-5 error text-red-500 ">
@@ -196,8 +196,8 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
               </span>
             )}
           </div>
-          <div className="w-full mt-4">
-            <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
+          <div className="w-full mt-1.5">
+            <label className="w-full mb-2 text-sm text-gray-600 font-semibold fontStrawFord">
               Subject
             </label>
             <input
@@ -205,14 +205,14 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
               name="subject"
               value={formValues.subject}
               onChange={handleChange}
-              className="px-3 rounded-md mt-2 mb-2 py-3 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
+              className="placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-2  font-medium bg-transparent focus:bg-transparent w-full  border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
             />
             {errors.subject && (
               <span className="mb-5 error text-red-500 ">{errors.subject}</span>
             )}
           </div>
-          <div className="w-full mt-4">
-            <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
+          <div className="w-full mt-1.5">
+            <label className="w-full mb-2 text-sm text-gray-600 font-semibold fontStrawFord">
               Templates
             </label>
             <Select
@@ -231,8 +231,8 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
               </span>
             )}
           </div>
-          <div className="w-full mt-4">
-            <label className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
+          <div className="w-full mt-1.5">
+            <label className="w-full mb-2 text-sm text-gray-600 font-semibold fontStrawFord">
               Message
             </label>
             <QuillNoSSRWrapper
@@ -268,9 +268,8 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
               onClick={() => {
                 setAttachment(true);
               }}
-              className="flex items-center justify-center bg-[#ed754b] text-white px-6 py-1 w-2/4 rounded font-bold mt-3 hover:bg-[#ed825c]"
+              className="fontStrawFord flex items-center justify-center bg-[#ed754b] text-white px-6 py-1 w-2/4 rounded font-bold mt-3 hover:bg-[#ed825c]"
             >
-              {" "}
               <MdUpload /> Add attachment
             </button>
           ) : (
@@ -283,21 +282,21 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
                   attachment: e.target.files[0],
                 }))
               }
-              className="px-3 rounded-md mt-2 mb-2 py-3 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
+              className="placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-2  font-medium bg-transparent focus:bg-transparent w-full  border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
             />
           )}
 
-          <div className="w-full mt-4">
-            <label className="w-full  text-base text-dark font-semibold uppercase block">
+          <div className="w-full mt-1.5">
+            <label className="w-full mb-2 text-sm text-gray-600 font-semibold fontStrawFord">
               Test Emails
             </label>
             <div className="flex justify-between">
               <input
                 type="email"
-                className="px-3 rounded-md mt-2 mb-2 py-2 text-sm font-medium bg-transparent focus:bg-transparent w-[70%] placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
+                className="w-[70%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-2  font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
               />
 
-              <button className="bg-transparent text-blue-400  border-2 border-blue-400 px-4 py-2 rounded my-2 hover:bg-blue-100">
+              <button className="fontStrawFord bg-transparent text-blue-400  border-2 border-blue-400 px-4 py-2 rounded my-2 hover:bg-blue-100">
                 Send Test Mail
               </button>
             </div>
@@ -307,16 +306,16 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
       <div className="flex justify-end items-end  py-2 px-4">
         <button
           onClick={onClose}
-          className="border-2 mr-5 border-OrangeBuilder rounded-md flex justify-center items-center px-8 py-1.5 text-OrangeBuilder"
+          className="border-2 mr-5 fontStrawFord border-OrangeBuilder rounded-md flex justify-center items-center px-8 py-1.5 text-OrangeBuilder"
         >
           Cancel
         </button>
         <button
           onClick={handleSubmit}
           type="submit"
-          className="bg-OrangeBuilder rounded-md flex justify-center items-center px-8 py-2 text-white hover:bg-[#ed825c]"
+          className="bg-OrangeBuilder fontStrawFord rounded-md flex justify-center items-center px-8 py-2 text-white"
         >
-          Save Action
+          Submit
         </button>
       </div>
     </div>

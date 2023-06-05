@@ -70,7 +70,7 @@ const Sandbox = () => {
           name="loginId"
           value={formData.loginId}
           placeholder="Login Gateway Id"
-          className="text-gray-500 text-sm font-semibold w-full rounded-md p-2 pl-4 border border-gray-400"
+          className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md  font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-300 text-space focus:outline-none focus:border-gray-300  "
           onChange={handleChange}
         />
         {errors.loginId && (
@@ -86,7 +86,7 @@ const Sandbox = () => {
           name="transactionKey"
           value={formData.transactionKey}
           placeholder="Live Transaction Key"
-          className="text-gray-500 text-sm font-semibold w-full rounded-md p-2 pl-4 border border-gray-400"
+          className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md  font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-300 text-space focus:outline-none focus:border-gray-300  "
           onChange={handleChange}
         />
         {errors.transactionKey && (
@@ -102,7 +102,7 @@ const Sandbox = () => {
           name="signatureKey"
           value={formData.signatureKey}
           placeholder="Live Signature Key"
-          className="text-gray-500 text-sm font-semibold w-full rounded-md p-2 pl-4 border border-gray-400"
+          className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md  font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-300 text-space focus:outline-none focus:border-gray-300  "
           onChange={handleChange}
         />
         {errors.signatureKey && (

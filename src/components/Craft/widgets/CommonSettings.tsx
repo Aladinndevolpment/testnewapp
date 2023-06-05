@@ -1,9 +1,6 @@
 import TextInput from "@/components/controls/TextInput";
 import { useNode } from "@craftjs/core";
-import { PlusIcon } from "@heroicons/react/24/solid";
-import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { MuiColorInput } from "mui-color-input";
-import { ReactNode } from "react";
 import { IoContract } from "react-icons/io5";
 
 export const baseDefaults = {
@@ -100,9 +97,10 @@ export const CommonSettings = () => {
           <div>
             <div className="mb-4 flex flex-col gap-1">
               <label className="text-sm text-gray-400 ">Background Color</label>
-              <div className="">
+              <div className="w-full">
                 <MuiColorInput
-                  format="hex"
+                  className="w-full"
+                  // format="hex"
                   value={
                     props.backgroundColor
                       ? props.backgroundColor
@@ -148,9 +146,9 @@ export const CommonSettings = () => {
             </div>
             <div className="mb-4 mt-2 flex flex-col gap-1">
               <label className="text-sm text-gray-400 ">Shadow Color</label>
-              <div className="">
+              <div className="w-full">
                 <MuiColorInput
-                  format="hex"
+                  // format="hex"
                   value={
                     props.shadowColor
                       ? props.shadowColor
@@ -159,14 +157,15 @@ export const CommonSettings = () => {
                   onChange={(e) =>
                     setProp((props: any) => (props.shadowColor = e))
                   }
+                  className="w-full"
                 />
               </div>
             </div>
             <div className="mb-4 mt-2 flex flex-col gap-1">
               <label className="text-sm text-gray-400 ">Border Color</label>
-              <div className="">
+              <div className="w-full">
                 <MuiColorInput
-                  format="hex"
+                  // format="hex"
                   value={
                     props.borderColor
                       ? props.borderColor
@@ -175,6 +174,7 @@ export const CommonSettings = () => {
                   onChange={(e) =>
                     setProp((props: any) => (props.borderColor = e))
                   }
+                  className="w-full"
                 />
               </div>
             </div>

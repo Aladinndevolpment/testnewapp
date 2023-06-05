@@ -8,7 +8,7 @@ import Container from "@/components/Craft/widgets/Container";
 
 import { Editor } from "@craftjs/core";
 import { Button, ButtonText } from "@/components/Craft/widgets/Button";
-import { Text } from "@/components/Craft/widgets/Text";
+import { Text } from "@/components/Craft/widgets/Text/Text";
 import { Grid, GridTop } from "@/components/Craft/widgets/Grid";
 import { BuilderImage } from "@/components/Craft/widgets/Image";
 import { Topbar } from "@/components/Craft/Topbar";
@@ -37,6 +37,13 @@ import { CheckboxInputElement } from "@/components/FormCraft/widgets/CheckboxEle
 import { SelectBoxInputElement } from "@/components/FormCraft/widgets/SelectInputElement";
 import { AttachmentElement } from "@/components/FormCraft/widgets/Attachment";
 import { DatePickerElement } from "@/components/FormCraft/widgets/DatePicker";
+import { Headline } from "@/components/Craft/widgets/Text/Headline";
+import { List } from "@/components/Craft/widgets/List";
+import ListItem from "@/components/Craft/widgets/ListItem";
+import CustomHTML from "@/components/Craft/widgets/CustomHTML";
+import MapElement from "@/components/Craft/widgets/Map";
+import Countdown from "@/components/Craft/widgets/Countdown";
+import Progress from "@/components/Craft/widgets/Progress";
 
 export const CraftContext = createContext({
   tools: "prebuilt",
@@ -68,6 +75,9 @@ export default function Craft() {
             Card,
             Button,
             Text,
+            List,
+            ListItem,
+            Headline,
             Container,
             CardTop,
             CardBottom,
@@ -88,6 +98,10 @@ export default function Craft() {
             MainApp,
             Social,
             CardImage,
+            CustomHTML,
+            MapElement,
+            Countdown,
+            Progress,
 
             TextInputElement,
             TextAreaElement,

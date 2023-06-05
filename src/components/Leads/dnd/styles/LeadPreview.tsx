@@ -116,23 +116,23 @@ export default function LeadPreview({ lead }: any) {
             </div>
             <div className="border-r-[1px] border-gray-300 px-5 py-3 w-1/4">
               <p className="text-xs text-gray-600 font-semibold tracking-wider font-noto ">
-                Company
+                Source
               </p>
               <h4 className="font-bold  tracking-wider text-[#353535] text-sm pt-1.5 font-noto">
-                Google
+                Ads
               </h4>
             </div>
             <div className="border-r-[1px] border-gray-300 px-5 py-3 w-1/4">
               <p className="text-xs text-gray-600 font-semibold tracking-wider font-noto ">
-                Job Title
+                Payer{" "}
               </p>
               <h4 className="font-bold  tracking-wider text-[#353535] text-sm pt-1.5 font-noto">
-                Content Writer
+                Online
               </h4>
             </div>
             <div className="border-r-[1px] border-gray-300 px-5 py-3 w-1/4">
               <p className="text-xs text-gray-600 font-semibold tracking-wider font-noto ">
-                Annual Revenuew
+                Patient Value
               </p>
               <h4 className="font-bold  tracking-wider text-[#353535] text-sm pt-1.5 font-noto">
                 $ 5,000

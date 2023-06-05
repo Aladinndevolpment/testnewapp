@@ -275,7 +275,7 @@ export default function InvoicePage() {
           </div>
         </div>
 
-        <div className="py-4 px-6">
+        <div className="py-4 px-4 mb-2.5">
           <div className="flex flex-wrap overflow-hidden border shadow-md rounded-lg relative h-auto">
             <div className="w-full md:w-10/12 flex flex-wrap">
               <ChartCard
@@ -321,8 +321,8 @@ export default function InvoicePage() {
           </div>
         </div>
 
-        <div className="px-6">
-          <div className="w-full border bg-white p-4 shadow rounded-sm">
+        <div className="px-4">
+          <div className="w-full border bg-white p-4 shadow-md rounded-lg">
             <div className="flex flex-wrap justify-between items-center">
               <div>
                 <h3 className="font-semibold text-2xl">All Claims </h3>

@@ -147,7 +147,7 @@ export default function ContactCreated({ onClose, updateData }: any) {
         <form onSubmit={handleSubmit}>
           <div className="w-full mb-5 mt-4">
             <label
-              className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold"
+              className="w-full mb-2 text-sm pl-2 text-gray-600 font-semibold fontStrawFord"
               htmlFor="workflowName"
             >
               Workflow Trigger Name:
@@ -177,7 +177,7 @@ export default function ContactCreated({ onClose, updateData }: any) {
               <div className="w-full  md:w-[45%] pr-4">
                 <label
                   htmlFor={`filterstype-${index}`}
-                  className="w-full mb-2 text-sm   text-gray-700 font-semibold"
+                  className="w-full mb-2 text-sm   text-gray-500 font-semibold fontStrawFord"
                 >
                   Filter Type:
                 </label>
@@ -207,7 +207,7 @@ export default function ContactCreated({ onClose, updateData }: any) {
                 <div className="w-full  md:w-[45%] pr-4">
                   <label
                     htmlFor={`filterssubtype-${index}`}
-                    className="w-full mb-2 text-sm   text-gray-700 font-semibold"
+                    className="w-full mb-2 text-sm   text-gray-500 font-semibold fontStrawFord"
                   >
                     Filter Subtype:
                   </label>
@@ -216,7 +216,7 @@ export default function ContactCreated({ onClose, updateData }: any) {
                     name="filterssubtype"
                     value={filter.filterssubtype}
                     onChange={(e) => handleInputChange(e, index)}
-                    className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
+                    className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
                   >
                     <MenuItem value="">Select</MenuItem>
                     {filter.filterstype &&
@@ -257,7 +257,11 @@ export default function ContactCreated({ onClose, updateData }: any) {
           ))}
           <div className="flex justify-start items-center pl-2 text-base text-dark font-semibold ">
             <PlusCircleIcon className="h-5 w-5 mr-1" />
-            <button type="button" onClick={handleAddField}>
+            <button
+              type="button"
+              className="text-sm text-gray-500 font-semibold fontStrawFord"
+              onClick={handleAddField}
+            >
               Add Filter
             </button>
           </div>
@@ -266,14 +270,14 @@ export default function ContactCreated({ onClose, updateData }: any) {
       <div className="flex justify-end items-end py-2 px-4">
         <button
           onClick={onClose}
-          className="border-2 mr-5 border-OrangeBuilder rounded-md flex justify-center items-center px-8 py-1.5 text-OrangeBuilder"
+          className="border-2 mr-5 fontStrawFord border-OrangeBuilder rounded-md flex justify-center items-center px-8 py-1.5 text-OrangeBuilder"
         >
           Cancel
         </button>
         <button
           onClick={handleSubmit}
           type="submit"
-          className="bg-OrangeBuilder rounded-md flex justify-center items-center px-8 py-2 text-white"
+          className="bg-OrangeBuilder fontStrawFord rounded-md flex justify-center items-center px-8 py-2 text-white"
         >
           Submit
         </button>

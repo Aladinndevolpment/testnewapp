@@ -33,7 +33,7 @@ export default function Budgeting({
           Set your ad schedule and total amount to spent on the ad
         </h3>
       </div>
-      <div className="mt-5 md:max-w-[500px] flex flex-col gap-5">
+      <div className="mt-5 md:max-w-[800px] lg:max-w-[600px] 2xl:w-[1100px] flex flex-col gap-5">
         <div className="mt-3">
           <div className="flex flex-col gap-1">
             <label className="font-semibold text-gray-600 text-sm">

@@ -13,6 +13,7 @@ import { TfiAngleDown, TfiAngleUp } from "react-icons/tfi";
 import moment from "moment";
 
 import { FaPhoneAlt } from "react-icons/fa";
+import { useRouter } from "next/router";
 
 interface IChatBodyProps {
   chat: any;
@@ -306,9 +307,23 @@ export default function ChatBody({
     );
   }
 
+  const router = useRouter();
+  // console.log(router);
   return (
     <div>
-      <div className="w-full px-2 h-[90vh] overflow-y-scroll  scrollbar-hide pb-44">
+      <div
+        className={`${
+          router.asPath == "/calendar"
+            ? `${
+                messageType == "email"
+                  ? "pb-[70%]"
+                  : messageType == "sms"
+                  ? "pb-[50%]"
+                  : "pb-[25%]"
+              }`
+            : `${messageType == "email" ? "pb-[80%]" : "pb-52"}`
+        }  w-full px-2 h-[90vh] overflow-y-scroll  scrollbar-hide `}
+      >
         {messages.map((message, index) => (
           <>
             <div className="flex flex-col">
@@ -394,7 +409,13 @@ export default function ChatBody({
       </div>
 
       {!chatMailOpen && (
-        <div className="w-full lg:w-[46.4%] fixed bottom-0 ">
+        <div
+          className={`fixed ${
+            router.asPath == "/calendar"
+              ? "lg:w-[55%] bottom-[-8%] 2xl:bottom-[-1%]"
+              : "w-full lg:w-[46.4%] fixed bottom-0"
+          } `}
+        >
           <div className="w-full pb-3  flex  justify-start items-center border-[1px] border-lightGray px-6 bg-white">
             <div className="w-full pt-4  flex  justify-start items-center  ">
               <button
@@ -439,11 +460,15 @@ export default function ChatBody({
 
       {chatMailOpen && (
         <div
-          className={`fixed bottom-0 bg-white w-full lg:w-[46.4%]  flex  shadow-md rounded-md  pt-3 pb-2   overflow-y-scroll scrollbar-hide   ${
+          className={`fixed   bg-white w-full   flex  shadow-md rounded-md  pt-3 pb-2   overflow-y-scroll scrollbar-hide   ${
             chatMailOpen
               ? "translate-y-[0%] opacity-1"
               : "translate-y-[140%] opacity-0"
-          }   `}
+          }   ${
+            router.asPath == "/calendar"
+              ? "lg:w-[55%] bottom-[-7%] 2xl:bottom-[-1%]"
+              : "w-full lg:w-[46.4%] fixed bottom-0"
+          } `}
         >
           <div className="  w-full bg-white">
             <div className="flex  justify-between items-center px-6  border-b-[1px] border-lightGray pb-1 mb-2 ">

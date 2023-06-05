@@ -13,10 +13,10 @@ export default function Custom404() {
         </p>
         <Link
           href="/"
-          className={` border-2 border-[#313131] bg-[#313131] rounded-full w-40 mb-6   py-2  mt-3 `}
+          className={` border-2 border-[#313131] bg-[#313131] rounded-full w-52 mb-6   py-2  mt-3 `}
         >
           <p className={` text-center text-xl text-[#fff]  tracking-wide`}>
-            Go To Home
+            Go To Dashboard
           </p>
         </Link>
       </div>

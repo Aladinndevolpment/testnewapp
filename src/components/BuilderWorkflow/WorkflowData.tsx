@@ -86,9 +86,9 @@ const NodeDisplay: React.FC = () => {
         </div>
         <div className={`opacity-1 px-4 pb-5 pt-5  w-[400px] `}>
           <div className="border-[1px] border-lightGray bg-gray-100 rounded-md px-2 py-2 mb-4 ">
-            <p className="text-dark text-sm leading-5">
+            <p className="text-dark text-sm leading-5 text-center">
               {mainTitle}
-              <strong className="text-xs pl-2"> {data}</strong>
+              <strong className="text-xs"> {data}</strong>
             </p>
           </div>
         </div>

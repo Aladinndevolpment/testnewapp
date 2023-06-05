@@ -10,6 +10,7 @@ import {
 } from "./CommonSettings";
 import TextInput from "@/components/controls/TextInput";
 import { IoContract } from "react-icons/io5";
+import ImageAttachment from "@/components/controls/ImageAttachment";
 
 const elementName = "Image";
 
@@ -47,13 +48,14 @@ export const BuilderImage = ({
   const {
     hovered,
     connectors: { connect, drag },
+    actions: { setProp },
   } = useNode((state) => ({
     hovered: state.events.hovered,
   }));
 
   return (
     <div
-      className={`relative flex justify-start ${
+      className={`relative flex justify-center ${
         hovered && "hover:outline-orange-500 hover:outline"
       }   ${borderType} ${shadow} shadow-[${shadowColor}]`}
       ref={(ref: any) => connect(drag(ref))}
@@ -90,19 +92,11 @@ export const BuilderImage = ({
           }}
         />
       ) : (
-        <Image
-          src={require("@/../public/images/avatar/blackdog.jpg")}
-          fill={true}
-          alt=""
-          style={{
-            objectFit: type,
-            borderRadius: borderRadius + "px",
-            backgroundColor,
-            paddingTop: `${paddingTop}px`,
-            paddingBottom: `${paddingBottom}px`,
-            paddingLeft: `${paddingLeft}px`,
-            paddingRight: `${paddingRight}px`,
-          }}
+        <ImageAttachment
+          onChange={(e: any) =>
+            setProp((props: any) => (props.imageSrc = URL.createObjectURL(e)))
+          }
+          onDelete={() => setProp((props: any) => (props.imageSrc = null))}
         />
       )}
     </div>

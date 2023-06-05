@@ -10,7 +10,7 @@ import {
   ICommonSettingsProps,
   baseDefaults,
   getCommonSettingsProps,
-} from "./CommonSettings";
+} from "../CommonSettings";
 const elementName = "Text";
 
 const fonts = ["font-main", "font-poppins", "font-noto"];
@@ -39,7 +39,7 @@ const fontWeights = [
   "font-extrabold",
 ];
 
-interface ITextProps extends ICommonSettingsProps {
+export interface ITextProps extends ICommonSettingsProps {
   text: string;
   fontSize?: number;
   alignment?: "left" | "right" | "center";
@@ -58,6 +58,7 @@ interface ITextProps extends ICommonSettingsProps {
   lineHeight?: number;
   font?: string;
   textCase?: string;
+  tagName?: string;
 }
 
 export const Text = ({
@@ -84,22 +85,23 @@ export const Text = ({
   paddingBottom = baseDefaults.paddingBottom,
   paddingLeft = baseDefaults.paddingLeft,
   paddingRight = baseDefaults.paddingRight,
+  tagName = "p",
 }: ITextProps) => {
   const {
     connectors: { connect, drag },
     hasSelectedNode,
-    hasDraggedNode,
-    isActive,
-    id,
     hovered,
+    id,
     actions: { setProp },
   } = useNode((state) => ({
     hasSelectedNode: state.events.selected,
     hasDraggedNode: state.events.dragged,
     isActive: state.events.selected,
     hovered: state.events.hovered,
+    selected: state.related,
   }));
 
+  const { actions } = useEditor();
   const [editable, setEditable] = useState(false);
 
   useEffect(() => {
@@ -128,6 +130,7 @@ export const Text = ({
           {elementName}
         </div>
       )}
+
       <ContentEditable
         html={text}
         disabled={!editable}
@@ -137,7 +140,7 @@ export const Text = ({
               (props.text = e.target.value.replace(/<\/?[^>]+(>|$)/g, ""))
           )
         }
-        tagName="p"
+        tagName={tagName}
         style={{
           fontSize: `${fontSize}px`,
           color: color,
@@ -157,7 +160,7 @@ export const Text = ({
   );
 };
 
-const TextSettings: any = () => {
+export const TextSettings: any = () => {
   const {
     actions: { setProp },
     props,
@@ -381,9 +384,10 @@ const TextSettings: any = () => {
 
       <div className="mb-4 mt-2 flex flex-col gap-1">
         <label className="text-sm text-gray-400 ">Text Color</label>
-        <div className="">
+        <div className="w-full">
           <MuiColorInput
-            format="hex"
+            className="w-full"
+            // format="hex"
             value={props.color ? props.color : "#000000"}
             onChange={(e) => setProp((props: any) => (props.color = e))}
           />
@@ -395,30 +399,34 @@ const TextSettings: any = () => {
   );
 };
 
+export const textProps = {
+  text: "Start writing here...",
+  fontSize: defaults.fontSize,
+  underline: defaults.underline,
+  bold: defaults.bold,
+  italic: defaults.italic,
+  alignment: defaults.alignment,
+  lineHeight: defaults.lineHeight,
+  font: defaults.font,
+  textCase: defaults.case,
+  ...getCommonSettingsProps(),
+  borderRadius: 10,
+  borderWidth: baseDefaults.borderWidth,
+  marginTop: baseDefaults.marginTop,
+  marginBottom: baseDefaults.marginBottom,
+  marginLeft: baseDefaults.marginLeft,
+  marginRight: baseDefaults.marginRight,
+  paddingTop: baseDefaults.paddingTop,
+  paddingBottom: baseDefaults.paddingBottom,
+  paddingLeft: baseDefaults.paddingLeft,
+  paddingRight: baseDefaults.paddingRight,
+  tagName: "p",
+};
+
 Text.craft = {
   related: {
     settings: TextSettings,
   },
-  props: {
-    text: "Start writing here...",
-    fontSize: defaults.fontSize,
-    underline: defaults.underline,
-    bold: defaults.bold,
-    italic: defaults.italic,
-    alignment: defaults.alignment,
-    lineHeight: defaults.lineHeight,
-    font: defaults.font,
-    textCase: defaults.case,
-    ...getCommonSettingsProps(),
-    borderRadius: 10,
-    borderWidth: baseDefaults.borderWidth,
-    marginTop: baseDefaults.marginTop,
-    marginBottom: baseDefaults.marginBottom,
-    marginLeft: baseDefaults.marginLeft,
-    marginRight: baseDefaults.marginRight,
-    paddingTop: baseDefaults.paddingTop,
-    paddingBottom: baseDefaults.paddingBottom,
-    paddingLeft: baseDefaults.paddingLeft,
-    paddingRight: baseDefaults.paddingRight,
-  },
+  props: textProps,
+  displayName: "Text",
 };

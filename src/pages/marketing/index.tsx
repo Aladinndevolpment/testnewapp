@@ -18,7 +18,7 @@ export default function Marketing() {
     {
       id: "tab2",
       label: "Email",
-      content: " ",
+      content: <CampaignTable />,
     },
     {
       id: "tab3",
@@ -30,16 +30,16 @@ export default function Marketing() {
       label: "Website",
       content: "",
     },
-    {
-      id: "tab5",
-      label: "Campaign",
-      content: <CampaignTable />,
-    },
-    {
-      id: "tab6",
-      label: "Lead Capture",
-      content: " ",
-    },
+    // {
+    //   id: "tab5",
+    //   label: "Campaign",
+    //   content: <CampaignTable />,
+    // },
+    // {
+    //   id: "tab6",
+    //   label: "Lead Capture",
+    //   content: " ",
+    // },
   ];
 
   // const [activeTab, setActiveTab] = useState<any>(tabs[3].id);

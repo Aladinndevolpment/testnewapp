@@ -64,19 +64,11 @@ const secondUserData = [
 ];
 
 export default function Team() {
-  const [showSidebar, setShowSidebar] = useState(false);
-  const handleSidebar = () => {
-    setShowSidebar(!showSidebar);
-  };
-
   return (
     <>
       <div className="flex flex-wrap justify-center ">
         <div className="w-full lg:w-[25%] border-r-[1px]   bg-white    ">
-          <TeamsSidebar
-            handleChange={handleSidebar}
-            showSidebar={showSidebar}
-          />
+          <TeamsSidebar />
         </div>
         <div className="w-full lg:w-[75%]  bg-white h-[100vh] scrollbar-hide  ">
           <header className="block w-full mb-5 h-32 lg:h-16 items-center relative z-10 border-b-[1px] border-lightGray">
@@ -85,10 +77,7 @@ export default function Team() {
                 <div className="flex justify-between items-center  w-full md:w-[25%] pl-2 pr-5 py-1.5 rounded-md">
                   <div className={`flex items-center w-full justify-start`}>
                     <div className="flex lg:hidden justify-between items-center">
-                      <button
-                        onClick={() => setShowSidebar(!showSidebar)}
-                        className=" font-space tracking-wider ml-6 block lg:hidden  "
-                      >
+                      <button className=" font-space tracking-wider ml-6 block lg:hidden  ">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"

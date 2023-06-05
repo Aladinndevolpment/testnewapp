@@ -58,7 +58,7 @@ export default function AdDetails({ onSubmit }: { onSubmit: Function }) {
           Complete your ads details, to engage with your audience.
         </h3>
       </div>
-      <div className="mt-5 md:max-w-[500px] flex flex-col gap-5">
+      <div className="mt-5 md:max-w-[800px] lg:max-w-[600px] 2xl:w-[1100px] flex flex-col gap-5">
         <p className="font-semibold text-gray-600 text-sm">Ad Image or Video</p>
         <div className="border-dashed border-2 border-newBlue rounded-md bg-[#f5f6fd]">
           {adsData.image ? (

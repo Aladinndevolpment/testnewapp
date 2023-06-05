@@ -1,6 +1,6 @@
 import { Button, ButtonText } from "@/components/Craft/widgets/Button";
 import Container from "@/components/Craft/widgets/Container";
-import { Text } from "@/components/Craft/widgets/Text";
+import { Text } from "@/components/Craft/widgets/Text/Text";
 
 import { Grid, GridTop } from "@/components/Craft/widgets/Grid";
 import Main from "@/components/FormCraft/Main";

@@ -62,7 +62,7 @@ export default function Ads() {
     <AdsContext.Provider value={value}>
       <div className="h-full overflow-hidden">
         <div className="flex flex-wrap h-full">
-          <div className="w-full md:w-3/12 p-4 h-full bg-gray-100">
+          <div className="w-full md:w-4/12 p-4 h-full bg-gray-100">
             <Link href="/marketing">
               <div className="flex justify-start items-center mb-2">
                 <div className="bg-white h-5 w-5 shadow-md rounded-full flex justify-center items-center">
@@ -75,7 +75,7 @@ export default function Ads() {
             </Link>
             <Preview />
           </div>
-          <div className="w-full md:w-9/12 bg-white px-6 py-5 h-[90%]">
+          <div className="w-full md:w-8/12 bg-white px-6 py-5 h-[90%]">
             <Main />
           </div>
         </div>

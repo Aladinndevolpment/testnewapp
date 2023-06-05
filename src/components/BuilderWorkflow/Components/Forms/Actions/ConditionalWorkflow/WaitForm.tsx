@@ -9,12 +9,6 @@ import { MenuItem, Select } from "@mui/material";
 import { nameTrigger } from "@/atoms/nameTrigger";
 
 export default function WaitForm({ onDataStore, onClose }: any) {
-  const radioData = [
-    { title: "1 Day", value: "1 Day" },
-    { title: "3 Days", value: "3 Days" },
-    { title: "1 Week", value: "1 Week" },
-    { title: "Custom Day", value: "Custom Day" },
-  ];
   const [isFlyOutVisible, setIsFlyOutVisible] =
     useRecoilState(offCanvasOpenState);
   const [data, setData] = useRecoilState(modalItemState);
@@ -24,8 +18,42 @@ export default function WaitForm({ onDataStore, onClose }: any) {
   const [formValues, setFormValues] = useState<any>({
     actionName: actionData,
     waitFor: "",
-    customDay: "",
+    checkBox1: "",
+    timeNumber: "",
+    timeMinutes: "",
+    days: "",
+    type: "",
+    start: "",
+    end: "",
+    filter1: "",
+    filter2: "",
+    filter3: "",
   });
+
+  const daysData = [
+    {
+      title: "Sun",
+    },
+    {
+      title: "Mon",
+    },
+    {
+      title: "Tue",
+    },
+    {
+      title: "Wed",
+    },
+    {
+      title: "Thu",
+    },
+    {
+      title: "Fri",
+    },
+    {
+      title: "Sat",
+    },
+  ];
+
   const [errors, setErrors] = useState<any>({});
 
   const handleChange = (e: any) => {
@@ -46,10 +74,34 @@ export default function WaitForm({ onDataStore, onClose }: any) {
     const validationErrors: any = {};
 
     if (!formValues.actionName.trim()) {
-      validationErrors.actionName = "Action name is required";
+      validationErrors.actionName = "required";
     }
     if (!formValues.waitFor.trim()) {
-      validationErrors.waitFor = "waitFor is required";
+      validationErrors.waitFor = "required";
+    }
+    if (!formValues.timeNumber.trim()) {
+      validationErrors.timeNumber = "required";
+    }
+    if (!formValues.days.trim()) {
+      validationErrors.days = "required";
+    }
+    if (!formValues.type.trim()) {
+      validationErrors.type = "required";
+    }
+    if (!formValues.start.trim()) {
+      validationErrors.start = "required";
+    }
+    if (!formValues.end.trim()) {
+      validationErrors.end = "required";
+    }
+    if (!formValues.filter1.trim()) {
+      validationErrors.filter1 = "required";
+    }
+    if (!formValues.filter2.trim()) {
+      validationErrors.filter2 = "required";
+    }
+    if (!formValues.filter3.trim()) {
+      validationErrors.filter3 = "required";
     }
 
     if (Object.keys(validationErrors).length > 0) {
@@ -64,72 +116,290 @@ export default function WaitForm({ onDataStore, onClose }: any) {
     setFormValues({
       actionName: "",
       waitFor: "",
-      customDay: "",
+      timeNumber: "",
+      timeMinutes: "",
     });
     setErrors({});
-    onDataStore(formValues.waitFor);
+    onDataStore(formValues.actionName);
 
     setIsFlyOutVisible(false);
   };
 
   return (
     <div>
-      <div className="h-[75vh] overflow-y-scroll scrollbar-hide">
+      <div className="h-[75vh] 2xl:h-[80vh] overflow-y-scroll scrollbar-hide">
         <form onSubmit={handleSubmit} className="flex flex-wrap px-2  ">
           <div className="w-full mt-4">
-            <p className="w-full mb-2 text-sm pl-2 text-gray-700 font-semibold">
-              Delay Your Action For
-            </p>
-
-            <ul className="pt-2 ">
-              {radioData?.map((mainData: any, mainIndex: any) => (
-                <li className="mb-3" key={mainIndex}>
-                  <div className="flex justify-start items-center pb-3">
-                    <input
-                      type="radio"
-                      name="waitFor"
-                      className="radio checked:bg-blue-500"
-                      onChange={() =>
-                        setFormValues((prevValues: any) => ({
-                          ...prevValues,
-                          waitFor: mainData?.value,
-                        }))
-                      }
-                    />
-                    <p
-                      className={` capitalize text-gray-600 text-base font-semibold  tracking-wide ml-2 `}
-                    >
-                      {mainData?.title}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-
-            {formValues?.waitFor == "Custom Day" && (
-              <input
-                type="text"
-                name="customDay"
-                value={formValues.customDay}
-                onChange={handleChange}
-                placeholder="xx days"
-                className="px-3 rounded-md mt-2 mb-2 py-3 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
-              />
+            <label className="w-full mb-2 text-sm text-gray-600 font-semibold fontStrawFord">
+              Action Name:
+            </label>
+            <input
+              type="text"
+              name="actionName"
+              value={formValues.actionName}
+              onChange={handleChange}
+              className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+            />
+            {errors.actionName && (
+              <span className="mb-5 error text-red-500 text-xs ">
+                {errors.actionName}
+              </span>
             )}
+          </div>
+
+          <div className="w-full mt-2">
+            <label className="w-full mb-2 text-sm text-gray-600 font-semibold fontStrawFord">
+              Wait For :
+            </label>
+
+            <Select
+              name="waitFor"
+              value={formValues.waitFor}
+              onChange={handleChange}
+              className="px-3 rounded-md mt-2 mb-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark  text-space focus:outline-none focus:border-gray-300 text-black"
+            >
+              <MenuItem value="">Time Delay </MenuItem>
+              <MenuItem value=" 1.  "> 1. </MenuItem>
+              <MenuItem value=" 2.  "> 2. </MenuItem>{" "}
+            </Select>
+
+            {errors.waitFor && (
+              <span className="mb-5 error text-red-500 text-xs ">
+                {errors.waitFor}
+              </span>
+            )}
+          </div>
+
+          <div className="w-full mt-2">
+            <label className="w-full mb-2 text-sm text-gray-600 font-semibold fontStrawFord">
+              Custom Data:
+            </label>
+
+            <div className="flex flex-wrap">
+              <div className="w-4/12">
+                <input
+                  type="number"
+                  name="timeNumber"
+                  value={formValues.timeNumber}
+                  onChange={handleChange}
+                  placeholder="timeNumber"
+                  className="mt-2 w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3.5 rounded-md  mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+                />
+                {errors.timeNumber && (
+                  <span className="mb-5 error text-red-500 text-xs ">
+                    {errors.timeNumber}
+                  </span>
+                )}
+              </div>
+              <div className="w-8/12 pl-4">
+                <Select
+                  name="timeMinutes"
+                  value={formValues.timeMinutes}
+                  onChange={handleChange}
+                  className="px-3 rounded-md mt-2 mb-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark  text-space focus:outline-none focus:border-gray-300 text-black"
+                >
+                  <MenuItem value="Minutes">Minutes</MenuItem>
+                  <MenuItem value="Hours"> Hours </MenuItem>
+                  <MenuItem value="Seconds"> Seconds. </MenuItem>
+                </Select>
+
+                {errors.timeMinutes && (
+                  <span className="mb-5 error text-red-500 text-xs ">
+                    {errors.timeMinutes}
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="w-full mt-2">
+            <div className="flex justify-start items-center   mb-3   rounded-lg">
+              <input
+                type="checkbox"
+                className="toggle toggle-md toggle-success"
+                name="checkBox1"
+                onChange={handleChange}
+              />
+              <p
+                className={` text-sm text-gray-600 font-semibold fontStrawFord ml-2 `}
+              >
+                Advance Window
+              </p>
+            </div>
+          </div>
+          <div className="w-full mt-2">
+            <label className="w-full mb-2 text-sm text-gray-600 font-semibold fontStrawFord">
+              Resume On
+            </label>
+
+            <div className=" flex-wrap md:flex-nowrap flex justify-start gap-2 pt-3 pb-4 items-center">
+              {daysData.map((item: any, index: number) => (
+                <div key={index} className="w-[12.5%]">
+                  <div
+                    onClick={() => {
+                      setFormValues((prevValues: any) => ({
+                        ...prevValues,
+                        days: item?.title,
+                      }));
+                    }}
+                    className={` ${
+                      formValues.days == item.title
+                        ? "border-secondary px-4 text-secondary"
+                        : "border-newBlue px-4 text-newBlue"
+                    }  cursor-pointer w-full text-center border-[1px] text-sm   font-medium fontStrawFord py-1 rounded-md focus:outline-none focus:border-blue-500 focus:bg-transparent`}
+                  >
+                    {item?.title}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="w-full">
+              {errors.days && (
+                <span className="mb-5 error text-red-500 text-xs ">
+                  {errors.days}
+                </span>
+              )}
+            </div>
+            <p className="w-full mb-2 mt-4 text-sm text-gray-600 font-semibold fontStrawFord">
+              Resume Between Hours
+            </p>
+          </div>
+
+          <div className="w-full flex justify-between items-center gap-3">
+            <div className="w-1/3 mt-5 ">
+              <Select
+                name="type"
+                value={formValues.type}
+                onChange={handleChange}
+                className="px-3 rounded-md mt-2 mb-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark  text-space focus:outline-none focus:border-gray-300 text-black"
+              >
+                <MenuItem value="Window">Window</MenuItem>
+              </Select>
+
+              {errors.type && (
+                <span className="mb-5 error text-red-500 text-xs ">
+                  {errors.type}
+                </span>
+              )}
+            </div>
+
+            <div className="w-1/3 ">
+              <p className="w-full text-sm text-gray-600 font-semibold fontStrawFord">
+                Start From
+              </p>
+              <Select
+                name="start"
+                value={formValues.start}
+                onChange={handleChange}
+                className="px-3 rounded-md mt-1 mb-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark  text-space focus:outline-none focus:border-gray-300 text-black"
+              >
+                <MenuItem value="08:00 AM">08:00 AM</MenuItem>
+                <MenuItem value="08:05 AM">08:05 AM</MenuItem>
+                <MenuItem value="08:10 AM">08:10 AM</MenuItem>
+                <MenuItem value="08:05 AM">08:05 AM</MenuItem>
+              </Select>
+
+              {errors.start && (
+                <span className="mb-5 error text-red-500 text-xs ">
+                  {errors.start}
+                </span>
+              )}
+            </div>
+
+            <div className="w-1/3 ">
+              <p className="w-full text-sm text-gray-600 font-semibold fontStrawFord">
+                End at
+              </p>
+              <Select
+                name="end"
+                value={formValues.end}
+                onChange={handleChange}
+                className="px-3 rounded-md mt-1 mb-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark  text-space focus:outline-none focus:border-gray-300 text-black"
+              >
+                <MenuItem value="08:00 PM">08:00 PM</MenuItem>
+                <MenuItem value="08:05 PM">08:05 PM</MenuItem>
+                <MenuItem value="08:10 PM">08:10 PM</MenuItem>
+                <MenuItem value="08:05 PM">08:05 PM</MenuItem>
+              </Select>
+
+              {errors.end && (
+                <span className="mb-5 error text-red-500 text-xs ">
+                  {errors.end}
+                </span>
+              )}
+            </div>
+          </div>
+          <div className="w-full mt-2">
+            <label className="w-full mb-1 text-sm text-gray-600 font-semibold fontStrawFord">
+              Additional Filter
+            </label>
+
+            <div className="w-full flex justify-between items-center gap-3">
+              <div className="w-1/3 mt-1">
+                <Select
+                  name="filter1"
+                  value={formValues.filter1}
+                  onChange={handleChange}
+                  className="px-3 rounded-md mt-2 mb-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark  text-space focus:outline-none focus:border-gray-300 text-black"
+                >
+                  <MenuItem value="Filter 1">Filter 1</MenuItem>
+                  <MenuItem value="Filter 2">Filter 2</MenuItem>
+                </Select>
+
+                {errors.filter1 && (
+                  <span className="mb-5 error text-red-500 text-xs ">
+                    {errors.filter1}
+                  </span>
+                )}
+              </div>
+              <div className="w-1/3 mt-1">
+                <Select
+                  name="filter2"
+                  value={formValues.filter2}
+                  onChange={handleChange}
+                  className="px-3 rounded-md mt-2 mb-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark  text-space focus:outline-none focus:border-gray-300 text-black"
+                >
+                  <MenuItem value="Filter 2">Filter 2</MenuItem>
+                  <MenuItem value="Filter 3">Filter 3</MenuItem>
+                </Select>
+
+                {errors.filter2 && (
+                  <span className="mb-5 error text-red-500 text-xs ">
+                    {errors.filter2}
+                  </span>
+                )}
+              </div>
+              <div className="w-1/3 mt-1">
+                <Select
+                  name="filter3"
+                  value={formValues.filter3}
+                  onChange={handleChange}
+                  className="px-3 rounded-md mt-2 mb-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark  text-space focus:outline-none focus:border-gray-300 text-black"
+                >
+                  <MenuItem value="Filter 3">Filter 3</MenuItem>
+                  <MenuItem value="Filter 4">Filter 4</MenuItem>
+                </Select>
+
+                {errors.filter3 && (
+                  <span className="mb-5 error text-red-500 text-xs ">
+                    {errors.filter3}
+                  </span>
+                )}
+              </div>
+            </div>
           </div>
         </form>
       </div>
       <div className="flex justify-end items-end  py-2 px-4">
         <button
           onClick={onClose}
-          className="border-2 mr-5 border-OrangeBuilder rounded-md flex justify-center items-center px-8 py-1.5 text-OrangeBuilder"
+          className="border-2 mr-5 fontStrawFord border-OrangeBuilder rounded-md flex justify-center items-center px-8 py-1.5 text-OrangeBuilder"
         >
           Cancel
         </button>
         <button
           onClick={handleSubmit}
           type="submit"
-          className="bg-OrangeBuilder rounded-md flex justify-center items-center px-8 py-2 text-white"
+          className="bg-OrangeBuilder fontStrawFord rounded-md flex justify-center items-center px-8 py-2 text-white"
         >
           Submit
         </button>
