@@ -4,48 +4,36 @@ import {
   ICommonSettingsProps,
   getCommonSettingsProps,
 } from "./CommonSettings";
-import { ReactNode } from "react";
+import { useState } from "react";
+import TextArea from "@/components/controls/Textarea";
+import TextInput from "@/components/controls/TextInput";
+import { IoContract } from "react-icons/io5";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 
-export interface IListItemsProps extends ICommonSettingsProps {
-  backgroundColor?: string;
-  borderColor?: string;
-  borderRadius?: number;
-  borderType?:
-    | "border-solid"
-    | "border-dashed"
-    | "border-dotted"
-    | "border-double"
-    | "border-hidden"
-    | "border-none";
-  borderWidth?: number;
-  marginTop?: number;
-  marginBottom?: number;
-  marginLeft?: number;
-  marginRight?: number;
-  paddingTop?: number;
-  paddingBottom?: number;
-  paddingLeft?: number;
-  paddingRight?: number;
-  children: ReactNode;
+const elementName = "Calendar";
+
+export interface IProps extends ICommonSettingsProps {
+  height?: number;
 }
 
 const defaults = {
-  backgroundColor: "transparent",
+  backgroundColor: "#ffffff",
   borderColor: "#313641",
   borderRadius: 10,
   borderType: "border-solid",
-  borderWidth: 1,
-  marginTop: 5,
-  marginBottom: 5,
+  borderWidth: 0.5,
+  marginTop: 0,
+  marginBottom: 0,
   marginLeft: 0,
   marginRight: 0,
-  paddingTop: 5,
-  paddingBottom: 5,
-  paddingLeft: 0,
-  paddingRight: 0,
+  paddingTop: 16,
+  paddingBottom: 16,
+  paddingLeft: 16,
+  paddingRight: 16,
 };
 
-export default function ListItem({
+export default function CalendarElement({
   backgroundColor = defaults.backgroundColor,
   marginTop = defaults.marginTop,
   marginBottom = defaults.marginBottom,
@@ -55,16 +43,23 @@ export default function ListItem({
   paddingBottom = defaults.paddingBottom,
   paddingLeft = defaults.paddingLeft,
   paddingRight = defaults.paddingRight,
-  children,
-}: IListItemsProps) {
+  height = 570,
+}: IProps) {
   const {
     connectors: { connect, drag },
     hovered,
-  } = useNode((state) => ({ hovered: state.events.hovered }));
+    actions: { setProp },
+  } = useNode((state) => ({
+    hovered: state.events.hovered,
+  }));
+
+  const [selected, setSelected] = useState(false);
 
   return (
-    <li
-      className={`py-2 ${hovered && "hover:outline-orange-500 hover:outline"}`}
+    <div
+      className={`py-2 ${
+        hovered && "hover:outline-orange-500 hover:outline"
+      } relative overflow-y-scroll`}
       ref={(ref: any) => connect(drag(ref))}
       style={{
         backgroundColor,
@@ -76,19 +71,24 @@ export default function ListItem({
         paddingBottom: `${paddingBottom}px`,
         paddingLeft: `${paddingLeft}px`,
         paddingRight: `${paddingRight}px`,
+        height: `${height}px`,
       }}
+      onDoubleClick={() => setSelected(true)}
+      contentEditable={selected}
+      onBlur={() => setSelected(false)}
     >
       {hovered && (
         <div className="absolute top-0 right-0 bg-orange-500 text-white text-xs px-1 z-50">
-          List Item
+          {elementName}
         </div>
       )}
-      {children}
-    </li>
+
+      <FullCalendar plugins={[dayGridPlugin]} initialView="dayGridMonth" />
+    </div>
   );
 }
 
-const DividerSettings = () => {
+const Settings = () => {
   const {
     actions: { setProp },
     props,
@@ -100,14 +100,28 @@ const DividerSettings = () => {
   }));
   return (
     <div>
+      <div className="mb-4 mt-2 flex flex-col gap-1">
+        <label className="text-sm text-gray-400">Height</label>
+
+        <TextInput
+          lefticon={<IoContract />}
+          value={props.height}
+          placeholder="Enter height"
+          onChange={(e) =>
+            setProp((props: any) => (props.height = e.target.value))
+          }
+          type="number"
+        />
+      </div>
+
       <CommonSettings />
     </div>
   );
 };
 
-ListItem.craft = {
+CalendarElement.craft = {
   related: {
-    settings: DividerSettings,
+    settings: Settings,
   },
   props: {
     ...getCommonSettingsProps(),
@@ -123,6 +137,7 @@ ListItem.craft = {
     paddingBottom: defaults.paddingBottom,
     paddingLeft: defaults.paddingLeft,
     paddingRight: defaults.paddingRight,
+    height: 570,
   },
-  displayName: "List Item",
+  displayName: elementName,
 };

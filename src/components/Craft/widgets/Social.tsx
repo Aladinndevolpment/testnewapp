@@ -365,4 +365,5 @@ Social.craft = {
     justifyContent: defaults.justifyContent,
     alignItems: defaults.alignItems,
   },
+  displayName: "Social",
 };

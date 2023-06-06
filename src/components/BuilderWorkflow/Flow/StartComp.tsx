@@ -26,7 +26,7 @@ export default function StartComp({
   function ComponentFirst({ currentIndex }: { currentIndex: number }) {
     return (
       <>
-        <div className="bg-white shadow-lg rounded-md w-[100%] lg:w-[100%] mt-5 ">
+        <div className="bg-white shadow-lg rounded-md w-[100%] mt-5 ">
           <div className="bg-blueHeader py-3 px-5 rounded-t-md flex justify-between items-center">
             <div className="flex justify-between items-center">
               <div className="bg-white h-7 w-7 rounded-full flex justify-center items-center">
@@ -42,7 +42,7 @@ export default function StartComp({
           </div>
           <div className={`opacity-1 px-4 pb-5 pt-5 `}>
             <p
-              className={`text-dark text-sm pb-5 w-[100%] lg:w-[70%] leading-5`}
+              className={`text-dark text-sm pb-5 w-full leading-5  text-center px-4`}
             >
               Choose the trigger that decides how a contacts enters this flow
             </p>
@@ -83,7 +83,7 @@ export default function StartComp({
             </div>
           </div>
           <div className={`opacity-1 px-4 pb-5 pt-5 w-[400px]`}>
-            <p className="text-dark font-semibold text-sm pb-3   leading-5">
+            <p className="text-dark font-semibold text-sm pb-3  text-center  leading-5">
               Enrollment Trigger
             </p>
             <div className="border-[1px] border-lightGray bg-gray-100 rounded-md px-2 py-2 mb-4 ">

@@ -82,4 +82,5 @@ Container.craft = {
     paddingLeft: 10,
     paddingRight: 10,
   },
+  displayName: "Container",
 };

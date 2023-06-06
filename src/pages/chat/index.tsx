@@ -656,7 +656,7 @@ export default function Chat() {
                   <div className="flex justify-start items-center">
                     <div
                       onClick={() => setChatIsSelected(false)}
-                      className="mr-2 bg-white h-5 w-5 shadow-md rounded-full flex justify-center items-center"
+                      className="mr-2 bg-white h-5 w-5 shadow-md rounded-full flex lg:hidden justify-center items-center"
                     >
                       <IoChevronBackOutline className="h-3 w-3 text-gray-900" />
                     </div>

@@ -14,12 +14,12 @@ export default function Main() {
 
   return (
     <div className="flex h-full">
-      <div className="w-[20%] pr-2 h-screen">
+      <div className="w-[22%] pr-2 h-screen">
         <div className="bg-white rounded-md shadow-md h-full overflow-y-scroll pb-40 scrollbar-hide">
           <Toolbox />
         </div>
       </div>
-      <div className="w-[60%] h-full overflow-y-scroll scrollbar-hide pb-40 px-16">
+      <div className="w-[56%] h-full overflow-y-scroll scrollbar-hide pb-40 px-16">
         <Frame>
           <Element is={Container} canvas>
             <HeaderLayout />
@@ -28,7 +28,7 @@ export default function Main() {
           </Element>
         </Frame>
       </div>
-      <div className="w-[20%] pr-2 h-screen">
+      <div className="w-[22%] pr-2 h-screen">
         <div className="bg-white rounded-md shadow-md h-full overflow-y-scroll pb-40 scrollbar-hide">
           <SettingsPanel />
         </div>

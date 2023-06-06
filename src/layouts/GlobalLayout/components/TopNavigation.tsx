@@ -32,7 +32,7 @@ export default function TopNavigation() {
         <div className="flex flex-wrap  lg:flex-nowrap lg:items-start  relative w-full sm:ml-0 sm:pr-2  ">
           <div className="flex justify-between items-center w-full md:w-[45%] pl-2 pr-5 py-1.5 rounded-md">
             <div className={`flex items-center pl-5  w-full justify-start`}>
-              <div
+              {/* <div
                 onClick={() => ctx.setOpen(!ctx.open)}
                 className="text-lg font-bold mr-3"
               >
@@ -43,17 +43,17 @@ export default function TopNavigation() {
                     <IoChevronBack className="h-4 w-4 text-gray-700" />
                   )}
                 </button>
-              </div>
+              </div> */}
               <div>
                 <Image
                   src={require("../../../../public/images/logo/logo.png")}
                   alt="Emerge"
-                  className="w-36 lg:w-44"
+                  className="w-36 lg:w-40"
                 />
               </div>
-              <div className="w-[90%]">
+              {/* <div className="w-[90%]">
                 <HeaderTitle />
-              </div>
+              </div> */}
             </div>
           </div>
 

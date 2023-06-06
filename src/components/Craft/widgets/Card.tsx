@@ -1,7 +1,5 @@
-import React from "react";
 import { Text } from "./Text/Text";
 import { Button } from "./Button";
-import Container from "./Container";
 import { useNode, Element } from "@craftjs/core";
 import { BuilderImage } from "./Image";
 
@@ -84,4 +82,8 @@ export const Card = ({ padding = 20 }) => {
       </div>
     </div>
   );
+};
+
+Card.craft = {
+  displayName: "Card",
 };

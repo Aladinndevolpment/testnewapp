@@ -56,7 +56,7 @@ export default function PrebuiltToolbox() {
           onChange={({ target: { value } }) => setSearchString(value)}
         />
       </div>
-      <div className="flex flex-col overflow-hidden gap-3 mt-3 w-full">
+      <div className="flex flex-col overflow-hidden gap-3 mt-1 w-full">
         {tools.map((item, index) => (
           <div
             key={index}

@@ -44,6 +44,7 @@ import CustomHTML from "@/components/Craft/widgets/CustomHTML";
 import MapElement from "@/components/Craft/widgets/Map";
 import Countdown from "@/components/Craft/widgets/Countdown";
 import Progress from "@/components/Craft/widgets/Progress";
+import Calendar from "@/components/Craft/widgets/Calendar";
 
 export const CraftContext = createContext({
   tools: "prebuilt",
@@ -102,6 +103,7 @@ export default function Craft() {
             MapElement,
             Countdown,
             Progress,
+            Calendar,
 
             TextInputElement,
             TextAreaElement,

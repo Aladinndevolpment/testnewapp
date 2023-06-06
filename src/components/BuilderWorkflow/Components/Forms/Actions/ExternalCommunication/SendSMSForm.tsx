@@ -169,9 +169,9 @@ export default function SendSMSForm({ onDataStore, onClose }: any) {
               </span>
             )}
           </div>
-          <div className="w-full mt-4">
+          <div className="w-full mt-1.5 mb-12">
             <label className="w-full mb-2 text-sm text-gray-600 font-semibold fontStrawFord">
-              Message:
+              Message
             </label>
             <QuillNoSSRWrapper
               modules={modules}
@@ -182,25 +182,30 @@ export default function SendSMSForm({ onDataStore, onClose }: any) {
               //   onBlur={handleBlur("content")}
               placeholder="message"
               style={{
-                height: 200,
+                height: 100,
                 marginBottom: 20,
-                overflowY: "scroll",
-                resize: "vertical",
+                // overflowY: "scroll",
+                // resize: "vertical",
               }}
               className="scrollbar-hide"
             />
 
+            {/* <textarea
+              name="message"
+              value={formValues.message}
+              onChange={handleQuillChange}
+              className="px-2 rounded-lg mt-2 mb-2 py-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none   focus:border-gray-300 text-black "
+            ></textarea> */}
             {errors.message && (
               <span className="mb-5 error text-red-500 ">{errors.message}</span>
             )}
           </div>
-
           {attachment == false ? (
             <button
               onClick={() => {
                 setAttachment(true);
               }}
-              className="w-2/4 placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-2  font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+              className="fontStrawFord flex items-center justify-center bg-[#ed754b] text-white px-6 py-1 w-2/4 rounded font-bold mt-3 hover:bg-[#ed825c]"
             >
               {" "}
               <MdUpload /> Add attachment

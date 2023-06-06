@@ -321,7 +321,13 @@ export default function ChatBody({
                   ? "pb-[50%]"
                   : "pb-[25%]"
               }`
-            : `${messageType == "email" ? "pb-[80%]" : "pb-52"}`
+            : `${
+                messageType == "email"
+                  ? "pb-[85%]"
+                  : messageType == "sms"
+                  ? "pb-[60%]"
+                  : "pb-[30%]"
+              }`
         }  w-full px-2 h-[90vh] overflow-y-scroll  scrollbar-hide `}
       >
         {messages.map((message, index) => (

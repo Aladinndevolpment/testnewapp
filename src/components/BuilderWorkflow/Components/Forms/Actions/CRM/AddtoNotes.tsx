@@ -132,7 +132,7 @@ export default function AddToNotes({ onDataStore, onClose }: any) {
             )}
           </div>
 
-          <div className="w-full mt-4">
+          <div className="w-full mt-1.5 mb-12">
             <label className="w-full mb-2 text-sm text-gray-600 font-semibold fontStrawFord">
               Message
             </label>
@@ -145,12 +145,23 @@ export default function AddToNotes({ onDataStore, onClose }: any) {
               //   onBlur={handleBlur("content")}
               placeholder="message"
               style={{
-                height: 200,
-                marginBottom: 80,
-                resize: "vertical",
+                height: 100,
+                marginBottom: 20,
+                // overflowY: "scroll",
+                // resize: "vertical",
               }}
               className="scrollbar-hide"
             />
+
+            {/* <textarea
+              name="message"
+              value={formValues.message}
+              onChange={handleQuillChange}
+              className="px-2 rounded-lg mt-2 mb-2 py-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none   focus:border-gray-300 text-black "
+            ></textarea> */}
+            {errors.message && (
+              <span className="mb-5 error text-red-500 ">{errors.message}</span>
+            )}
           </div>
 
           {errors.message && (

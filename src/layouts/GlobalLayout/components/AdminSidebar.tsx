@@ -21,7 +21,7 @@ export default function AdminSidebar() {
     <div className="w-full relative overflow-hidden flex justify-between items-center flex-col">
       <div
         className={`${
-          router.asPath == "/calendar" ? "h-[100vh]" : "h-[90vh]"
+          router.asPath == "/calendar" ? "h-[90vh]" : "h-[90vh]"
         }  fixed top-28 lg:top-0 left-0 pt-10 lg:pt-2 flex bg-white overflow-y-scroll scrollbar-hide flex-col justify-between   pl-0 w-[50%] md:w-[30%] lg:w-full  bg-auth shadow-md    lg:relative   z-40  ease-in-out duration-300 `}
       >
         {/* <div className="absolute block lg:hidden top-10 lg:top-5 right-10">
@@ -99,15 +99,13 @@ export default function AdminSidebar() {
           ))}
         </div>
         <div className={`mb-4  pl-1 w-full py-1 `}>
-          <Link href="/integrations">
+          <Link href="/settings">
             <div
               className={`flex   items-center   py-1 px-3 w-full justify-start`}
             >
               <div
                 className={` ${
-                  asPath == "/integrations"
-                    ? " text-[#4375EA] "
-                    : "text-[#4B5563]"
+                  asPath == "/settings" ? " text-[#4375EA] " : "text-[#4B5563]"
                 }
                     text-[15px] font-semibold tracking-wide  ml-3`}
               >
@@ -116,9 +114,7 @@ export default function AdminSidebar() {
 
               <span
                 className={` ${
-                  asPath == "/integrations"
-                    ? "text-[#4375EA]"
-                    : "text-[#4B5563]"
+                  asPath == "/settings" ? "text-[#4375EA]" : "text-[#4B5563]"
                 } ${ctx?.open ? "block" : " block lg:hidden"}
                     text-[15px] font-semibold tracking-wide  ml-5`}
               >

@@ -13,7 +13,7 @@ export const SettingsPanel = () => {
     if (currentNodeId) {
       selected = {
         id: currentNodeId,
-        name: state.nodes[currentNodeId].data.name,
+        name: state.nodes[currentNodeId].data.displayName,
         settings:
           state.nodes[currentNodeId].related &&
           state.nodes[currentNodeId].related.settings,
@@ -50,7 +50,7 @@ export const SettingsPanel = () => {
           </div>
         </div>
 
-        <div className="w-full pb-2 border-b mb-3">
+        <div className="w-full pb-2 mb-3">
           {selected.settings && React.createElement(selected.settings)}
         </div>
       </div>

@@ -7,7 +7,14 @@ import { Link } from "../widgets/Link";
 
 import { useEffect, useState } from "react";
 import TextInput from "@/components/controls/TextInput";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import {
+  MagnifyingGlassIcon,
+  ClockIcon,
+  CodeBracketIcon,
+  ListBulletIcon,
+  MapIcon,
+  CalendarDaysIcon,
+} from "@heroicons/react/24/outline";
 import ElementToolsLayout from "./tools/ElementToolsLayout";
 
 import Divider from "../widgets/Divider";
@@ -27,6 +34,9 @@ import CustomHTML from "../widgets/CustomHTML";
 import MapElement from "../widgets/Map";
 import Countdown from "../widgets/Countdown";
 import Progress from "../widgets/Progress";
+
+import { SiProgress } from "react-icons/si";
+import Calendar from "../widgets/Calendar";
 
 const baseTools = [
   {
@@ -49,7 +59,7 @@ const baseTools = [
           <PrebuiltToolsLayout
             toolName="Column 2"
             tool={<Grid col={2} />}
-            image={require("@/../public/craft/grid/4.png")}
+            image={require("@/../public/craft/grid/2.png")}
           />
         ),
       },
@@ -147,7 +157,7 @@ const baseTools = [
             toolName="List"
             tool={<List alignment="left" text="New List" />}
             image="@/../public/craft/hero.png"
-            icon={<TbTextSize className="h-5 w-5 text-gray-500" />}
+            icon={<ListBulletIcon className="h-5 w-5 text-gray-500" />}
           />
         ),
       },
@@ -228,7 +238,7 @@ const baseTools = [
             toolName="Custom HTML"
             tool={<CustomHTML />}
             image="@/../public/craft/hero.png"
-            icon={<BsCardText className="h-5 w-5 text-gray-500" />}
+            icon={<CodeBracketIcon className="h-5 w-5 text-gray-500" />}
           />
         ),
       },
@@ -239,7 +249,7 @@ const baseTools = [
             toolName="Map"
             tool={<MapElement />}
             image="@/../public/craft/hero.png"
-            icon={<BsCardText className="h-5 w-5 text-gray-500" />}
+            icon={<MapIcon className="h-5 w-5 text-gray-500" />}
           />
         ),
       },
@@ -250,7 +260,7 @@ const baseTools = [
             toolName="Countdown"
             tool={<Countdown />}
             image="@/../public/craft/hero.png"
-            icon={<BsCardText className="h-5 w-5 text-gray-500" />}
+            icon={<ClockIcon className="h-5 w-5 text-gray-500" />}
           />
         ),
       },
@@ -261,7 +271,18 @@ const baseTools = [
             toolName="Progress"
             tool={<Progress />}
             image="@/../public/craft/hero.png"
-            icon={<BsCardText className="h-5 w-5 text-gray-500" />}
+            icon={<SiProgress className="h-5 w-5 text-gray-500" />}
+          />
+        ),
+      },
+      {
+        name: "Calendar",
+        tool: (
+          <ElementToolsLayout
+            toolName="Calendar"
+            tool={<Calendar />}
+            image="@/../public/craft/hero.png"
+            icon={<CalendarDaysIcon className="h-5 w-5 text-gray-500" />}
           />
         ),
       },
@@ -309,7 +330,7 @@ export default function ElementToolbox() {
 
   return (
     <div className="mt-3">
-      <div className="mb-8 px-4">
+      <div className="mb-2 px-4">
         <TextInput
           lefticon={<MagnifyingGlassIcon className="h-6 w-6 text-gray-400" />}
           placeholder="Search layout"
@@ -318,7 +339,7 @@ export default function ElementToolbox() {
         />
       </div>
 
-      <div className="h-[60vh] overflow-y-scroll scrollbar-hide  ">
+      <div className="h-[60vh] overflow-y-scroll scrollbar-hide ">
         {tools.map((item, index) => (
           <AccordionItem
             faq={item}

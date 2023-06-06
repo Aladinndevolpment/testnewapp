@@ -138,6 +138,7 @@ HeroLayout.craft = {
     paddingLeft: 20,
     paddingRight: 20,
   },
+  displayName: elementName,
 };
 
 export const HeroText = ({ children }: any) => {

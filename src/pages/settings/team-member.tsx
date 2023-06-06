@@ -1,3 +1,4 @@
+import SettingsSidebar from "@/components/SettingsSidebar/TeamsSidebar";
 import TeamsSidebar from "@/components/SettingsSidebar/TeamsSidebar";
 import Search from "@/layouts/GlobalLayout/components/Search";
 import {
@@ -63,12 +64,12 @@ const secondUserData = [
   },
 ];
 
-export default function Team() {
+export default function TeamMember() {
   return (
     <>
       <div className="flex flex-wrap justify-center ">
         <div className="w-full lg:w-[25%] border-r-[1px]   bg-white    ">
-          <TeamsSidebar />
+          <SettingsSidebar />
         </div>
         <div className="w-full lg:w-[75%]  bg-white h-[100vh] scrollbar-hide  ">
           <header className="block w-full mb-5 h-32 lg:h-16 items-center relative z-10 border-b-[1px] border-lightGray">
@@ -116,10 +117,10 @@ export default function Team() {
           </header>
 
           <div className="overflow-x-auto p-4">
-            <table className="table w-full shadow-md rounded-lg border">
+            <table className="table w-full shadow-md rounded-[20px] border">
               {/* head */}
               <thead>
-                <tr className="border-b border-b-gray-200">
+                <tr className="border-b border-b-gray-200 ">
                   <th className="bg-white">
                     <div className="flex items-center">
                       <div className="mr-2">Name</div>
@@ -153,7 +154,10 @@ export default function Team() {
                 {/* row 1 */}
 
                 {userData.map((item, index) => (
-                  <tr key={index} className="border-b border-b-gray-200">
+                  <tr
+                    key={index}
+                    className="border-b border-b-gray-200 rounded-[20px]"
+                  >
                     <td className=" w-[70%]">
                       <p className="text-black font-medium">{item.name}</p>
                       <span className="text-sm text-gray-500">

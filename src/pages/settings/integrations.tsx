@@ -3,7 +3,8 @@ import Stripe from "@/components/Interations/Stripe";
 import Authorize from "@/components/Interations/authorize";
 import NMI from "@/components/Interations/nmi";
 import ModalDerived from "@/components/Modal";
-import TeamsSidebar from "@/components/Teams/TeamsSidebar";
+import SettingsSidebar from "@/components/SettingsSidebar/TeamsSidebar";
+import TeamsSidebar from "@/components/SettingsSidebar/TeamsSidebar";
 import { GlobalContext } from "@/layouts/GlobalLayout";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
@@ -192,7 +193,7 @@ export default function Integrations() {
 
       <div className="flex flex-wrap justify-center  ">
         <div className="w-full lg:w-[25%] border-r-[1px]   bg-white    ">
-          <TeamsSidebar />
+          <SettingsSidebar />
         </div>
 
         <div className="w-full lg:w-[75%]  bg-white h-[100vh] scrollbar-hide  ">

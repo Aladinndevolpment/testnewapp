@@ -27,7 +27,7 @@ export default function Marketing() {
     },
     {
       id: "tab4",
-      label: "Website",
+      label: "Site",
       content: "",
     },
     // {

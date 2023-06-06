@@ -21,7 +21,7 @@ interface RowData {
 export default function MarketingAssets({ marketing }: any) {
   const [data, setData] = useState<any[]>([
     {
-      pages_url: "Fikri Studio Website",
+      pages_url: "Fikri Studio Site",
       status: "Published",
       created_by: {
         name: "Darlene Robertson",
@@ -30,7 +30,7 @@ export default function MarketingAssets({ marketing }: any) {
       published_date: new Date(),
     },
     {
-      pages_url: "Fikri Studio Website",
+      pages_url: "Fikri Studio Site",
       status: "Scheduled",
       created_by: {
         name: "Darlene Robertson",
@@ -39,7 +39,7 @@ export default function MarketingAssets({ marketing }: any) {
       published_date: new Date(),
     },
     {
-      pages_url: "Fikri Studio Website",
+      pages_url: "Fikri Studio Site",
       status: "Published",
       created_by: {
         name: "Darlene Robertson",
@@ -48,7 +48,7 @@ export default function MarketingAssets({ marketing }: any) {
       published_date: new Date(),
     },
     {
-      pages_url: "Fikri Studio Website",
+      pages_url: "Fikri Studio Site",
       status: "Scheduled",
       created_by: {
         name: "Darlene Robertson",
@@ -57,7 +57,7 @@ export default function MarketingAssets({ marketing }: any) {
       published_date: new Date(),
     },
     {
-      pages_url: "Fikri Studio Website",
+      pages_url: "Fikri Studio Site",
       status: "Published",
       created_by: {
         name: "Darlene Robertson",
@@ -214,7 +214,7 @@ export default function MarketingAssets({ marketing }: any) {
       ...data,
       {
         id: data?.length + 1,
-        pages_url: "Fikri Studio Website",
+        pages_url: "Fikri Studio Site",
         status: "Published",
         created_by: {
           name: "Darlene Robertson",

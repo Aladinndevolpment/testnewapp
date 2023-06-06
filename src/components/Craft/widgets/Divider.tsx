@@ -130,4 +130,5 @@ Divider.craft = {
     paddingLeft: defaults.paddingLeft,
     paddingRight: defaults.paddingRight,
   },
+  displayName: "Divider",
 };

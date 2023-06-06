@@ -46,7 +46,7 @@ const appointmentFilter = [
     title: "Time Zone",
   },
   {
-    title: "Website",
+    title: "Site",
   },
 ];
 

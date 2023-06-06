@@ -43,7 +43,7 @@ export default function Preview() {
             <FiMoreHorizontal className="text-gray-600" />
           </div>
         </div>
-        <div className="relative h-52">
+        <div className="relative h-96 2xl:h-[58vh]">
           <Image
             fill={true}
             src={

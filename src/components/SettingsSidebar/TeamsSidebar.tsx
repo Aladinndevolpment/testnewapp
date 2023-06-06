@@ -13,7 +13,7 @@ import Image from "next/image";
 import { AiOutlineLeft } from "react-icons/ai";
 import { GlobalContext } from "@/layouts/GlobalLayout";
 
-export default function TeamsSidebar() {
+export default function SettingsSidebar() {
   const { asPath } = useRouter();
   const router = useRouter();
 

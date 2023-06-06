@@ -80,7 +80,7 @@ export default function AppointmentDetails({
       id: "tab3",
       label: "Conversations",
       content: (
-        <div className="overflow-y-hidden h-[550px]">
+        <div className="overflow-y-hidden h-[80vh]">
           <ChatBody
             chat={chatDataItems[0]}
             chatOpen={isChatOpen}

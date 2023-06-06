@@ -88,14 +88,160 @@ export const CommonSettings = () => {
     <div>
       <div className="collapse collapse-arrow">
         <input type="checkbox" />
-        <div className="collapse-title px-2">
+        <div className="collapse-title px-0">
           <p className="text-[14px] text-gray-500 font-semibold">
             Common Settings
           </p>
         </div>
-        <div className="collapse-content px-2">
+        <div className="collapse-content px-0">
           <div>
-            <div className="mb-4 flex flex-col gap-1">
+            <div className="py-3 border-t">
+              Margin
+              <div className="flex flex-wrap justify-between">
+                <div className="mb-2 mt-2 flex flex-col gap-1 w-1/2 pr-1">
+                  <label className="text-sm text-gray-400 line-clamp-1">
+                    Margin Top
+                  </label>
+                  <TextInput
+                    lefticon={<IoContract />}
+                    value={props.marginTop == "" ? 0 : props.marginTop}
+                    placeholder="Margin Top"
+                    onChange={(e) =>
+                      setProp(
+                        (props: any) => (props.marginTop = e.target.value)
+                      )
+                    }
+                    type="number"
+                  />
+                </div>
+
+                <div className="mb-2 mt-2 flex flex-col gap-1 w-1/2 pl-1">
+                  <label className="text-sm text-gray-400 line-clamp-1">
+                    Margin Bottom
+                  </label>
+                  <TextInput
+                    lefticon={<IoContract />}
+                    value={props.marginBottom == "" ? 0 : props.marginBottom}
+                    placeholder="Margin Bottom"
+                    onChange={(e) =>
+                      setProp(
+                        (props: any) => (props.marginBottom = e.target.value)
+                      )
+                    }
+                    type="number"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-wrap justify-between">
+                <div className="mb-2 mt-2 flex flex-col gap-1 pr-1 w-1/2">
+                  <label className="text-sm text-gray-400 line-clamp-1">
+                    Margin Left
+                  </label>
+                  <TextInput
+                    lefticon={<IoContract />}
+                    value={props.marginLeft == "" ? 0 : props.marginLeft}
+                    placeholder="Margin Left"
+                    onChange={(e) =>
+                      setProp(
+                        (props: any) => (props.marginLeft = e.target.value)
+                      )
+                    }
+                    type="number"
+                  />
+                </div>
+
+                <div className="mb-2 mt-2 flex flex-col gap-1 pl-1 w-1/2">
+                  <label className="text-sm text-gray-400 line-clamp-1">
+                    Margin Right
+                  </label>
+                  <TextInput
+                    lefticon={<IoContract />}
+                    value={props.marginRight == "" ? 0 : props.marginRight}
+                    placeholder="Margin Right"
+                    onChange={(e) =>
+                      setProp(
+                        (props: any) => (props.marginRight = e.target.value)
+                      )
+                    }
+                    type="number"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="py-3 border-t border-b my-3">
+              Padding
+              <div className="flex flex-wrap justify-between">
+                <div className="mb-2 mt-2 flex flex-col gap-1 w-1/2 pr-1">
+                  <label className="text-sm text-gray-400 line-clamp-1">
+                    Padding Top
+                  </label>
+                  <TextInput
+                    lefticon={<IoContract />}
+                    value={props.paddingTop == "" ? 0 : props.paddingTop}
+                    placeholder="Padding Top"
+                    onChange={(e) =>
+                      setProp(
+                        (props: any) => (props.paddingTop = e.target.value)
+                      )
+                    }
+                    type="number"
+                  />
+                </div>
+
+                <div className="mb-2 mt-2 flex flex-col gap-1 w-1/2 pl-1">
+                  <label className="text-sm text-gray-400 line-clamp-1">
+                    Padding Bottom
+                  </label>
+                  <TextInput
+                    lefticon={<IoContract />}
+                    value={props.paddingBottom == "" ? 0 : props.paddingBottom}
+                    placeholder="Padding Bottom"
+                    onChange={(e) =>
+                      setProp(
+                        (props: any) => (props.paddingBottom = e.target.value)
+                      )
+                    }
+                    type="number"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-wrap justify-between">
+                <div className="mb-2 mt-2 flex flex-col gap-1 pr-1 w-1/2">
+                  <label className="text-sm text-gray-400 line-clamp-1">
+                    Padding Left
+                  </label>
+                  <TextInput
+                    lefticon={<IoContract />}
+                    value={props.paddingLeft == "" ? 0 : props.paddingLeft}
+                    placeholder="Padding Right"
+                    onChange={(e) =>
+                      setProp(
+                        (props: any) => (props.paddingLeft = e.target.value)
+                      )
+                    }
+                    type="number"
+                  />
+                </div>
+
+                <div className="mb-2 mt-2 flex flex-col gap-1 pl-1 w-1/2">
+                  <label className="text-sm text-gray-400 line-clamp-1">
+                    Padding Right
+                  </label>
+                  <TextInput
+                    lefticon={<IoContract />}
+                    value={props.paddingRight == "" ? 0 : props.paddingRight}
+                    placeholder="Padding Right"
+                    onChange={(e) =>
+                      setProp(
+                        (props: any) => (props.paddingRight = e.target.value)
+                      )
+                    }
+                    type="number"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="mb-2 flex flex-col gap-1">
               <label className="text-sm text-gray-400 ">Background Color</label>
               <div className="w-full">
                 <MuiColorInput
@@ -112,7 +258,7 @@ export const CommonSettings = () => {
                 />
               </div>
             </div>
-            <div className="mb-4 mt-2 flex flex-col gap-1">
+            <div className="mb-2 mt-2 flex flex-col gap-1">
               <label className="text-sm text-gray-400 ">Shadow Type</label>
               <div className="dropdown">
                 <label
@@ -144,7 +290,7 @@ export const CommonSettings = () => {
                 </div>
               </div>
             </div>
-            <div className="mb-4 mt-2 flex flex-col gap-1">
+            <div className="mb-2 mt-2 flex flex-col gap-1">
               <label className="text-sm text-gray-400 ">Shadow Color</label>
               <div className="w-full">
                 <MuiColorInput
@@ -161,7 +307,7 @@ export const CommonSettings = () => {
                 />
               </div>
             </div>
-            <div className="mb-4 mt-2 flex flex-col gap-1">
+            <div className="mb-2 mt-2 flex flex-col gap-1">
               <label className="text-sm text-gray-400 ">Border Color</label>
               <div className="w-full">
                 <MuiColorInput
@@ -178,7 +324,7 @@ export const CommonSettings = () => {
                 />
               </div>
             </div>
-            <div className="mb-4 mt-2 flex flex-col gap-1">
+            <div className="mb-2 mt-2 flex flex-col gap-1">
               <label className="text-sm text-gray-400 ">Border Type</label>
               <div className="dropdown">
                 <label
@@ -212,7 +358,7 @@ export const CommonSettings = () => {
                 </div>
               </div>
             </div>
-            <div className="mb-4 mt-2 flex flex-col gap-1">
+            <div className="mb-2 mt-2 flex flex-col gap-1">
               <label className="text-sm text-gray-400 ">Border Radius</label>
               <TextInput
                 lefticon={<IoContract />}
@@ -225,7 +371,7 @@ export const CommonSettings = () => {
                 min={0}
               />
             </div>
-            <div className="mb-4 mt-2 flex flex-col gap-1">
+            <div className="mb-2 mt-2 flex flex-col gap-1">
               <label className="text-sm text-gray-400 ">Border Width</label>
               <TextInput
                 lefticon={<IoContract />}
@@ -240,143 +386,6 @@ export const CommonSettings = () => {
                 step={0.05}
               />
             </div>
-            {/* MARGIN */}
-            {/* <div className="flex flex-wrap justify-between">
-              <div className="mb-4 mt-2 flex flex-col gap-1 w-1/2 pr-1">
-                <label className="text-sm text-gray-400 line-clamp-1">
-                  Margin Top
-                </label>
-                <TextInput
-                  lefticon={<IoContract />}
-                  value={props.marginTop == "" ? 0 : props.marginTop}
-                  placeholder="Margin Top"
-                  onChange={(e) =>
-                    setProp((props: any) => (props.marginTop = e.target.value))
-                  }
-                  type="number"
-                />
-              </div>
-
-              <div className="mb-4 mt-2 flex flex-col gap-1 w-1/2 pl-1">
-                <label className="text-sm text-gray-400 line-clamp-1">
-                  Margin Bottom
-                </label>
-                <TextInput
-                  lefticon={<IoContract />}
-                  value={props.marginBottom == "" ? 0 : props.marginBottom}
-                  placeholder="Margin Bottom"
-                  onChange={(e) =>
-                    setProp(
-                      (props: any) => (props.marginBottom = e.target.value)
-                    )
-                  }
-                  type="number"
-                />
-              </div>
-            </div>
-            <div className="flex flex-wrap justify-between">
-              <div className="mb-4 mt-2 flex flex-col gap-1 pr-1 w-1/2">
-                <label className="text-sm text-gray-400 line-clamp-1">
-                  Margin Left
-                </label>
-                <TextInput
-                  lefticon={<IoContract />}
-                  value={props.marginLeft == "" ? 0 : props.marginLeft}
-                  placeholder="Margin Left"
-                  onChange={(e) =>
-                    setProp((props: any) => (props.marginLeft = e.target.value))
-                  }
-                  type="number"
-                />
-              </div>
-
-              <div className="mb-4 mt-2 flex flex-col gap-1 pl-1 w-1/2">
-                <label className="text-sm text-gray-400 line-clamp-1">
-                  Margin Right
-                </label>
-                <TextInput
-                  lefticon={<IoContract />}
-                  value={props.marginRight == "" ? 0 : props.marginRight}
-                  placeholder="Margin Right"
-                  onChange={(e) =>
-                    setProp(
-                      (props: any) => (props.marginRight = e.target.value)
-                    )
-                  }
-                  type="number"
-                />
-              </div>
-            </div>
-            <div className="flex flex-wrap justify-between">
-              <div className="mb-4 mt-2 flex flex-col gap-1 w-1/2 pr-1">
-                <label className="text-sm text-gray-400 line-clamp-1">
-                  Padding Top
-                </label>
-                <TextInput
-                  lefticon={<IoContract />}
-                  value={props.paddingTop == "" ? 0 : props.paddingTop}
-                  placeholder="Padding Top"
-                  onChange={(e) =>
-                    setProp((props: any) => (props.paddingTop = e.target.value))
-                  }
-                  type="number"
-                />
-              </div>
-
-              <div className="mb-4 mt-2 flex flex-col gap-1 w-1/2 pl-1">
-                <label className="text-sm text-gray-400 line-clamp-1">
-                  Padding Bottom
-                </label>
-                <TextInput
-                  lefticon={<IoContract />}
-                  value={props.paddingBottom == "" ? 0 : props.paddingBottom}
-                  placeholder="Padding Bottom"
-                  onChange={(e) =>
-                    setProp(
-                      (props: any) => (props.paddingBottom = e.target.value)
-                    )
-                  }
-                  type="number"
-                />
-              </div>
-            </div>
-            <div className="flex flex-wrap justify-between">
-              <div className="mb-4 mt-2 flex flex-col gap-1 pr-1 w-1/2">
-                <label className="text-sm text-gray-400 line-clamp-1">
-                  Padding Left
-                </label>
-                <TextInput
-                  lefticon={<IoContract />}
-                  value={props.paddingRight == "" ? 0 : props.paddingRight}
-                  placeholder="Padding Right"
-                  onChange={(e) =>
-                    setProp(
-                      (props: any) => (props.paddingRight = e.target.value)
-                    )
-                  }
-                  type="number"
-                />
-              </div>
-
-              <div className="mb-4 mt-2 flex flex-col gap-1 pl-1 w-1/2">
-                <label className="text-sm text-gray-400 line-clamp-1">
-                  Padding Right
-                </label>
-                <TextInput
-                  lefticon={<IoContract />}
-                  value={props.paddingRight == "" ? 0 : props.paddingRight}
-                  placeholder="Padding Right"
-                  onChange={(e) =>
-                    setProp(
-                      (props: any) => (props.paddingRight = e.target.value)
-                    )
-                  }
-                  type="number"
-                />
-              </div>
-            </div> */}
-            {/* MARGIN */}
-
             <label className="text-sm text-gray-400 pb-1">Box Layout</label>
             <div className="border-[1px] border-[#3a3939] bg-[#fff2ed] px-0 py-1 rounded-md">
               <div className="flex justify-center items-center pl-3 relative">

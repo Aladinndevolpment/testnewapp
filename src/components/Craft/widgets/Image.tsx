@@ -1,5 +1,4 @@
-import React from "react";
-import Container from "./Container";
+import React, { useRef } from "react";
 import { useNode } from "@craftjs/core";
 import Image from "next/image";
 import {
@@ -11,6 +10,8 @@ import {
 import TextInput from "@/components/controls/TextInput";
 import { IoContract } from "react-icons/io5";
 import ImageAttachment from "@/components/controls/ImageAttachment";
+import { DeleteForever } from "@mui/icons-material";
+import Link from "next/link";
 
 const elementName = "Image";
 
@@ -20,13 +21,14 @@ interface BuilderImageProps extends ICommonSettingsProps {
   height?: number;
   width?: number;
   type?: "cover" | "contain";
+  link?: string;
 }
 
 const imageTypes = ["cover", "contain"];
 
 export const BuilderImage = ({
   imageSrc,
-  height = 400,
+  height = 300,
   width = 0,
   type = "cover",
   backgroundColor = baseDefaults.backgroundColor,
@@ -44,6 +46,7 @@ export const BuilderImage = ({
   paddingRight = baseDefaults.paddingRight,
   shadow = "shadow-none",
   shadowColor = "transparent",
+  link = "#",
 }: BuilderImageProps) => {
   const {
     hovered,
@@ -54,52 +57,55 @@ export const BuilderImage = ({
   }));
 
   return (
-    <div
-      className={`relative flex justify-center ${
-        hovered && "hover:outline-orange-500 hover:outline"
-      }   ${borderType} ${shadow} shadow-[${shadowColor}]`}
-      ref={(ref: any) => connect(drag(ref))}
-      style={{
-        height: height + "px",
-        width: width == 0 ? "100%" : height + "px",
-        borderColor,
-        borderWidth: `${borderWidth}px`,
-        borderRadius: `${borderRadius}px`,
-        marginTop: `${marginTop}px`,
-        marginBottom: `${marginBottom}px`,
-        marginLeft: `${marginLeft}px`,
-        marginRight: `${marginRight}px`,
-      }}
-    >
-      {hovered && (
-        <div className="absolute top-0 right-0 bg-orange-500 text-white text-xs px-1 z-50">
-          {elementName}
-        </div>
-      )}
-      {imageSrc ? (
-        <Image
-          src={imageSrc}
-          fill={true}
-          alt=""
-          style={{
-            objectFit: type,
-            borderRadius: borderRadius + "px",
-            backgroundColor,
-            paddingTop: `${paddingTop}px`,
-            paddingBottom: `${paddingBottom}px`,
-            paddingLeft: `${paddingLeft}px`,
-            paddingRight: `${paddingRight}px`,
-          }}
-        />
-      ) : (
-        <ImageAttachment
-          onChange={(e: any) =>
-            setProp((props: any) => (props.imageSrc = URL.createObjectURL(e)))
-          }
-          onDelete={() => setProp((props: any) => (props.imageSrc = null))}
-        />
-      )}
-    </div>
+    <Link href={link} onClick={(e) => e.preventDefault()}>
+      <div
+        className={`relative flex justify-center ${
+          hovered && "hover:outline-orange-500 hover:outline"
+        }   ${borderType} ${shadow} shadow-[${shadowColor}]`}
+        ref={(ref: any) => connect(drag(ref))}
+        style={{
+          height: height + "px",
+          width: width == 0 ? "100%" : width + "px",
+          borderColor,
+          borderWidth: `${borderWidth}px`,
+          borderRadius: `${borderRadius}px`,
+          marginTop: `${marginTop}px`,
+          marginBottom: `${marginBottom}px`,
+          marginLeft: `${marginLeft}px`,
+          marginRight: `${marginRight}px`,
+        }}
+      >
+        {hovered && (
+          <div className="absolute top-0 right-0 bg-orange-500 text-white text-xs px-1 z-50">
+            {elementName}
+          </div>
+        )}
+
+        {imageSrc ? (
+          <Image
+            src={imageSrc}
+            fill={true}
+            alt=""
+            style={{
+              objectFit: type,
+              borderRadius: borderRadius + "px",
+              backgroundColor,
+              paddingTop: `${paddingTop}px`,
+              paddingBottom: `${paddingBottom}px`,
+              paddingLeft: `${paddingLeft}px`,
+              paddingRight: `${paddingRight}px`,
+            }}
+          />
+        ) : (
+          <ImageAttachment
+            onChange={(e: any) =>
+              setProp((props: any) => (props.imageSrc = URL.createObjectURL(e)))
+            }
+            onDelete={() => setProp((props: any) => (props.imageSrc = null))}
+          />
+        )}
+      </div>
+    </Link>
   );
 };
 
@@ -115,11 +121,35 @@ const BuilderImageSettings = () => {
     props: node.data.props,
   }));
 
+  const inputFile: any = useRef(null);
+
   return (
-    <div className="flex flex-col gap-4 mb-4">
+    <div className="flex flex-col gap-2 mb-4">
+      <div className="relative">
+        {props.imageSrc && (
+          <div className="h-28 w-full p-5 relative">
+            <Image
+              src={props.imageSrc}
+              fill={true}
+              alt=""
+              style={{
+                objectFit: "cover",
+              }}
+            />
+          </div>
+        )}
+
+        {props.imageSrc && (
+          <DeleteForever
+            onClick={() => setProp((props: any) => (props.imageSrc = null))}
+            className="absolute top-2 bottom bg-white p-1 text-red-500 shadow-md right-0"
+          />
+        )}
+      </div>
+
       <input
         type="file"
-        className="file-input file-input-bordered file-input-warning w-full max-w-xs"
+        className="file-input file-input-bordered file-input-warning w-full max-w-xs hidden"
         onChange={(e) =>
           setProp(
             (props: any) =>
@@ -127,10 +157,18 @@ const BuilderImageSettings = () => {
           )
         }
         accept="image/*"
+        ref={inputFile}
       />
 
+      <button
+        onClick={() => inputFile?.current!.click()}
+        className="bg-white w-48 px-4 py-2 shadow-md rounded hover:shadow-xl hover:drop-shadow-sm transition-all text-xs font-semibold"
+      >
+        Select Image
+      </button>
+
       <div className="flex flex-wrap justify-between">
-        <div className="mb-4 mt-2 flex flex-col gap-1 w-1/2 pr-1">
+        <div className="mb-1 mt-2 flex flex-col gap-1 w-1/2 pr-1">
           <label className="text-sm text-gray-400 ">Width</label>
           <TextInput
             lefticon={<IoContract />}
@@ -143,7 +181,7 @@ const BuilderImageSettings = () => {
           />
         </div>
 
-        <div className="mb-4 mt-2 flex flex-col gap-1 w-1/2 pl-1">
+        <div className="mb-1 mt-2 flex flex-col gap-1 w-1/2 pl-1">
           <label className="text-sm text-gray-400 ">Height</label>
           <TextInput
             lefticon={<IoContract />}
@@ -157,7 +195,7 @@ const BuilderImageSettings = () => {
         </div>
       </div>
 
-      <div className="mb-4 mt-2 flex flex-col gap-1">
+      <div className="mb-1 mt-2 flex flex-col gap-1">
         <label className="text-sm text-gray-400 ">Image Type</label>
         <div className="dropdown">
           <label
@@ -188,6 +226,19 @@ const BuilderImageSettings = () => {
         </div>
       </div>
 
+      <div className="mb-1 mt-2 flex flex-col gap-1  pl-1">
+        <label className="text-sm text-gray-400 ">Image Link (Optional)</label>
+        <TextInput
+          lefticon={<IoContract />}
+          value={props.link == "" ? "#" : props.link}
+          placeholder="Enter URL"
+          onChange={(e) =>
+            setProp((props: any) => (props.link = e.target.value))
+          }
+          type="text"
+        />
+      </div>
+
       <CommonSettings />
     </div>
   );
@@ -198,7 +249,7 @@ BuilderImage.craft = {
     settings: BuilderImageSettings,
   },
   props: {
-    height: 400,
+    height: 300,
     width: 0,
     type: "cover",
     ...getCommonSettingsProps(),
@@ -212,5 +263,7 @@ BuilderImage.craft = {
     paddingBottom: baseDefaults.paddingBottom,
     paddingLeft: baseDefaults.paddingLeft,
     paddingRight: baseDefaults.paddingRight,
+    link: "#",
   },
+  displayName: "Image",
 };

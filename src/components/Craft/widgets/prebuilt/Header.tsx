@@ -221,6 +221,7 @@ HeaderLayout.craft = {
       },
     ],
   },
+  displayName: elementName,
 };
 
 export const HeaderLogo = ({ children }: any) => {

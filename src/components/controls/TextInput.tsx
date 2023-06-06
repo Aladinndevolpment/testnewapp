@@ -9,10 +9,11 @@ import {
 interface ITextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   lefticon?: ReactNode;
   isTextArea?: boolean;
+  defaultRows?: number;
 }
 
 export default function TextInput(props: ITextInputProps) {
-  const { lefticon, isTextArea = false, value } = props;
+  const { lefticon, isTextArea = false, value, defaultRows = 5 } = props;
   const [isActive, setIsActive] = useState(false);
   return (
     <div
@@ -34,7 +35,7 @@ export default function TextInput(props: ITextInputProps) {
         // @ts-ignore
         <textarea
           {...props}
-          rows={5}
+          rows={defaultRows}
           onFocus={() => setIsActive(true)}
           onBlur={() => setIsActive(false)}
           className="w-full bg-transparent  focus:outline-none outline-none border-none pl-2 font-fontSource font-medium text-sm"

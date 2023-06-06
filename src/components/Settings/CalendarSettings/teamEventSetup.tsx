@@ -3,8 +3,10 @@ import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { BsQuestionCircleFill } from "react-icons/bs";
 import { GoPlus } from "react-icons/go";
+import { MenuItem, OutlinedInput, Select, TextField } from "@mui/material";
+import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 
-const colorPallete = [
+const colorPalette = [
   { color: "bg-red-500", title: "Red" },
   { color: "bg-blue-500", title: "Blue" },
   { color: "bg-green-500", title: "Green" },
@@ -16,21 +18,24 @@ const colorPallete = [
   { color: "bg-pink-500", title: "Pink" },
 ];
 
-const TeamEventSetup = () => {
+export default function TeamEventSetup({
+  onClose,
+  handleNewTab,
+  handleStoreFormData,
+}: any) {
   const [errors, setErrors] = useState<any>({});
   const [formValues, setFormValues] = useState<any>({
     name: "",
     description: "",
     calendarUrl: "",
     widgetTyp: "",
-    square: "",
-    circle: "",
+    widgetShape: "square",
     appointmentTitle: "",
     meetingLocation: "",
     linkToCalendar: "",
     googleCalendar: "",
     syncOption: "",
-
+    eventColor: "",
     image: null,
   });
 
@@ -69,28 +74,64 @@ const TeamEventSetup = () => {
     const validationErrors: any = {};
 
     if (!formValues.name.trim()) {
-      validationErrors.name = "Action name is required";
+      validationErrors.name = "required";
     }
-
+    if (!formValues.description.trim()) {
+      validationErrors.description = "required";
+    }
+    if (!formValues.calendarUrl.trim()) {
+      validationErrors.calendarUrl = "required";
+    }
+    if (!formValues.widgetTyp.trim()) {
+      validationErrors.widgetTyp = "required";
+    }
+    if (!formValues.widgetShape.trim()) {
+      validationErrors.widgetShape = "required";
+    }
+    if (!formValues.appointmentTitle.trim()) {
+      validationErrors.appointmentTitle = "required";
+    }
+    if (!formValues.meetingLocation.trim()) {
+      validationErrors.meetingLocation = "required";
+    }
+    if (!formValues.linkToCalendar.trim()) {
+      validationErrors.linkToCalendar = "required";
+    }
+    if (!formValues.syncOption.trim()) {
+      validationErrors.syncOption = "required";
+    }
+    if (!formValues.eventColor.trim()) {
+      validationErrors.eventColor = "required";
+    }
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
 
-    // Form submission logic goes here
-    // You can access the form field values and attachment in the formValues state
-
-    // Reset form after successful submission
     setFormValues({
       name: "",
+      description: "",
+      calendarUrl: "",
+      widgetTyp: "",
+      widgetShape: "",
+      appointmentTitle: "",
+      meetingLocation: "",
+      linkToCalendar: "",
+      googleCalendar: "",
+      syncOption: "",
+      eventColor: "",
+      image: null,
     });
 
     setErrors({});
+
+    handleStoreFormData(formValues);
+    handleNewTab();
   };
 
   return (
     <div>
-      <div className="mx-6 ">
+      <div className="px-2 ">
         <div className="px-4 pt-5">
           <h1 className="text-[#47494b] text-md font-semibold">Calendar</h1>
           <p className="text-gray-400 text-sm">
@@ -114,10 +155,12 @@ const TeamEventSetup = () => {
                 value={formValues.name}
                 onChange={handleChange}
                 placeholder="Add Calendar Name"
-                className="border-2 rounded-md w-10/12 p-2 placeholder:text-sm font-semibold"
+                className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
               />
               {errors.name && (
-                <div className="mb-5 error text-red-500 ">{errors.name}</div>
+                <div className="mb-2 text-red-500 text-[12px]">
+                  {errors.name}
+                </div>
               )}
             </div>
 
@@ -134,8 +177,13 @@ const TeamEventSetup = () => {
                 name="description"
                 value={formValues.description}
                 placeholder="Add Calendar Description"
-                className="border-2 rounded-md w-10/12 p-2 placeholder:text-sm font-semibold"
+                className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
               />
+              {errors.description && (
+                <div className="mb-2 text-red-500 text-[12px]">
+                  {errors.description}
+                </div>
+              )}
             </div>
 
             {/* Calendar URL */}
@@ -146,14 +194,26 @@ const TeamEventSetup = () => {
               >
                 Calendar URL
               </label>
-              <input
-                type="url"
-                name="calendarUrl"
-                value={formValues.calendarUrl}
-                onChange={handleChange}
-                placeholder="Enter Calendar Slug"
-                className="border-2 rounded-md w-10/12 p-2 placeholder:text-sm font-semibold"
-              />
+              <div className="form-control">
+                <div className="flex justify-start items-center">
+                  <p className=" rounded-md text-sm bg-gray-100 border-[1px] border-gray-200 w-[15%] px-3 py-3">
+                    /widget/bookins/
+                  </p>
+                  <input
+                    type="url"
+                    name="calendarUrl"
+                    value={formValues.calendarUrl}
+                    onChange={handleChange}
+                    placeholder="Enter Calendar Slug"
+                    className="w-[85%]  placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+                  />
+                </div>
+              </div>
+              {errors.calendarUrl && (
+                <div className="mb-2 text-red-500 text-[12px]">
+                  {errors.calendarUrl}
+                </div>
+              )}
             </div>
 
             {/* Add LOGO */}
@@ -163,7 +223,7 @@ const TeamEventSetup = () => {
             >
               Add Logo
             </label>
-            <div className="border-2 flex gap-4 rounded-md w-10/12 p-2 ">
+            <div className="border-[1px] border-gray-200  flex gap-4 rounded-md w-full p-2 ">
               {formValues.image ? (
                 <div className="bg-gray-200 w-32 h-32 flex items-center justify-center relative">
                   <div {...getRootProps()}>
@@ -191,7 +251,7 @@ const TeamEventSetup = () => {
                 </div>
               )}
 
-              <div>
+              <div className="w-[40%]">
                 <div className="px-5 py-4 text-xs text-gray-400 font-semibold">
                   <p>The proposed size is 180*180px</p>
                   <p>Supported formats .jpeg, .gif, .png </p>
@@ -214,8 +274,54 @@ const TeamEventSetup = () => {
               </div>
 
               <div className="flex items-center gap-4 px-5 py-4 text-xs text-gray-600 font-semibold">
-                <span>Widget Type:</span>
-                <div className="flex  gap-3">
+                <label className="block text-[#47494b] text-sm py-2 font-semibold">
+                  Widget Shape:
+                </label>
+                <div className="px-2 py-3">
+                  <RadioGroup
+                    row
+                    name="widgetShape"
+                    value={formValues.widgetShape}
+                    onChange={handleChange}
+                  >
+                    <div className="w-1/2 pr-2">
+                      <FormControlLabel
+                        value="square"
+                        control={
+                          <Radio
+                            sx={{
+                              color: "#8a9191",
+                              fontWeight: "medium",
+                              "&.Mui-checked": {
+                                color: "#1258fc",
+                              },
+                            }}
+                          />
+                        }
+                        label="Square"
+                      />
+                    </div>
+                    <div className="w-1/2 pr-2">
+                      <FormControlLabel
+                        value="circle"
+                        control={
+                          <Radio
+                            sx={{
+                              color: "#8a9191",
+                              fontWeight: "medium",
+                              "&.Mui-checked": {
+                                color: "#1258fc",
+                              },
+                            }}
+                          />
+                        }
+                        label="Circle"
+                      />
+                    </div>
+                  </RadioGroup>
+                </div>
+
+                {/* <div className="flex  gap-3">
                   <div className="form-control">
                     <label className="label cursor-pointer flex gap-2">
                       <input
@@ -240,7 +346,7 @@ const TeamEventSetup = () => {
                       <span className="label-text text-xs"> Circle </span>
                     </label>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -252,16 +358,27 @@ const TeamEventSetup = () => {
               >
                 Widget Type
               </label>
-              <select
+              <Select
+                placeholder="Contact Changed"
                 onChange={handleChange}
                 name="widgetTyp"
                 value={formValues.widgetTyp}
-                className="border-2 rounded-md w-10/12 p-2 text-sm font-semibold"
+                className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
               >
-                <option value="">Select</option>
-                <option value="neo">Neo</option>
-                <option value="type2">Type2</option>
-              </select>
+                <MenuItem value="">Select</MenuItem>
+
+                <MenuItem key="Neo" value="Neo">
+                  Neo
+                </MenuItem>
+                <MenuItem key="Type2" value="Type2">
+                  Type2
+                </MenuItem>
+              </Select>
+              {errors.widgetTyp && (
+                <div className="mb-2 text-red-500 text-[12px]">
+                  {errors.widgetTyp}
+                </div>
+              )}
             </div>
 
             {/* Appointment Title */}
@@ -278,8 +395,13 @@ const TeamEventSetup = () => {
                 name="appointmentTitle"
                 value={formValues.appointmentTitle}
                 placeholder="{{contact.name}}"
-                className="border-2 rounded-md w-10/12 p-2 placeholder:text-sm font-semibold"
+                className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
               />
+              {errors.appointmentTitle && (
+                <div className="mb-2 text-red-500 text-[12px]">
+                  {errors.appointmentTitle}
+                </div>
+              )}
               <p className="text-gray-400 text-sm">
                 It will be used while creating appointment table, you can use
                 template parameters.
@@ -290,7 +412,7 @@ const TeamEventSetup = () => {
             <div className="py-2">
               <label
                 htmlFor=""
-                className="block flex items-center gap-2 text-[#47494b] text-sm py-2 font-semibold"
+                className="  flex items-center gap-2 text-[#47494b] text-sm py-2 font-semibold"
               >
                 Meeting Location <BsQuestionCircleFill className="text-xs " />
               </label>
@@ -300,27 +422,43 @@ const TeamEventSetup = () => {
                 name="meetingLocation"
                 value={formValues.meetingLocation}
                 placeholder="Enter Location"
-                className="border-2 rounded-md w-10/12 p-2 placeholder:text-sm font-semibold"
+                className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
               />
+              {errors.meetingLocation && (
+                <div className="mb-2 text-red-500 text-[12px]">
+                  {errors.meetingLocation}
+                </div>
+              )}
             </div>
 
             {/* Event Color */}
             <div className="py-2">
               <label
                 htmlFor=""
-                className="block flex items-center gap-2 text-[#47494b] text-sm py-2 font-semibold"
+                className="  flex items-center gap-2 text-[#47494b] text-sm py-2 font-semibold"
               >
                 Event Color <BsQuestionCircleFill className="text-xs " />
               </label>
               <div className="flex gap-1">
-                {colorPallete.map((item: any, index: number) => (
+                {colorPalette.map((item: any, index: number) => (
                   <div key={index} className="tooltip" data-tip={item.title}>
-                    <button className={`rounded-full w-8 h-8 ${item.color}  `}>
-                      {" "}
-                    </button>
+                    <button
+                      onClick={() => {
+                        setFormValues((prevValues: any) => ({
+                          ...prevValues,
+                          eventColor: item?.title,
+                        }));
+                      }}
+                      className={`rounded-full w-8 h-8 ${item.color}  `}
+                    ></button>
                   </div>
                 ))}
               </div>
+              {errors.eventColor && (
+                <div className="mb-2 text-red-500 text-[12px]">
+                  {errors.eventColor}
+                </div>
+              )}
             </div>
 
             {/* Link to Calendar */}
@@ -332,18 +470,30 @@ const TeamEventSetup = () => {
                 Link to Calendar
               </label>
               <div className="flex items-center gap-2">
-                <select
+                <Select
+                  placeholder="Contact Changed"
                   onChange={handleChange}
                   name="linkToCalendar"
                   value={formValues.linkToCalendar}
-                  className="border-2 rounded-md w-1/3 p-2 text-sm font-semibold"
+                  className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
                 >
-                  <option value="">Select linked calendar</option>
-                  <option value="none">None</option>
-                  <option value="google">Google</option>
-                </select>
+                  <MenuItem value="">Select</MenuItem>
+
+                  <MenuItem key="None" value="None">
+                    None
+                  </MenuItem>
+                  <MenuItem key="Google" value="Google">
+                    Google
+                  </MenuItem>
+                </Select>
+
                 <BsQuestionCircleFill className="text-xs " />
               </div>
+              {errors.linkToCalendar && (
+                <div className="mb-2 text-red-500 text-[12px]">
+                  {errors.linkToCalendar}
+                </div>
+              )}
             </div>
 
             {formValues.linkToCalendar == "google" ? (
@@ -354,17 +504,30 @@ const TeamEventSetup = () => {
                 >
                   Google Calendar
                 </label>
-                <select
+                <Select
+                  placeholder="Contact Changed"
                   onChange={handleChange}
                   name="googleCalendar"
                   value={formValues.googleCalendar}
-                  className="border-2 rounded-md w-10/12 p-2 text-sm font-semibold"
+                  className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
                 >
-                  <option value="">Select Calendar</option>
-                  <option value="neo">Holidays in US</option>
-                  <option value="birthay">Birthdays</option>
-                  <option value="family">Family</option>
-                </select>
+                  <MenuItem value="">Select</MenuItem>
+
+                  <MenuItem key="Holidays in US" value="Holidays in US">
+                    Holidays in US
+                  </MenuItem>
+                  <MenuItem key="Birthdays" value="Birthdays">
+                    Birthdays
+                  </MenuItem>
+                  <MenuItem key="Family" value="Family">
+                    Family
+                  </MenuItem>
+                </Select>
+                {errors.googleCalendar && (
+                  <div className="mb-2 text-red-500 text-[12px]">
+                    {errors.googleCalendar}
+                  </div>
+                )}
               </div>
             ) : (
               ""
@@ -378,20 +541,33 @@ const TeamEventSetup = () => {
               >
                 Sync Option
               </label>
-              <select
+              <Select
+                placeholder="Contact Changed"
                 onChange={handleChange}
                 name="syncOption"
                 value={formValues.syncOption}
-                className="border-2 rounded-md w-1/3 p-2 text-sm font-semibold"
+                className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
               >
-                <option value="">Select</option>
-                <option value="oneWay">One way</option>
-                <option value="twoWay">Two way</option>
-              </select>
-            </div>
+                <MenuItem value="">Select</MenuItem>
 
+                <MenuItem key="One way" value="One wayS">
+                  One way
+                </MenuItem>
+                <MenuItem key="Two way" value="Two way">
+                  Two way
+                </MenuItem>
+              </Select>
+              {errors.syncOption && (
+                <div className="mb-2 text-red-500 text-[12px]">
+                  {errors.syncOption}
+                </div>
+              )}
+            </div>
             <div className="flex justify-end gap-3 p-4 mt-2 border-t ">
-              <button className="border text-[#47494b] rounded-md px-3 py-2">
+              <button
+                onClick={onClose()}
+                className="border text-[#47494b] rounded-md px-3 py-2"
+              >
                 Close
               </button>
               <button
@@ -406,6 +582,4 @@ const TeamEventSetup = () => {
       </div>
     </div>
   );
-};
-
-export default TeamEventSetup;
+}

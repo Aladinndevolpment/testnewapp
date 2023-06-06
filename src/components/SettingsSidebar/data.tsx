@@ -45,17 +45,17 @@ const data = [
       {
         title: "Company Profile",
         icon: <BuildingOfficeIcon className="h-5 w-5 text-FontGray" />,
-        link: "#",
+        link: "/settings/company-profile",
       },
       {
         title: "Team Members",
         icon: <UsersIcon className="h-5 w-5 text-FontGray" />,
-        link: "/team",
+        link: "/settings/team-member",
       },
       {
         title: "Integrations",
         icon: <ArrowsPointingInIcon className="h-5 w-5 text-FontGray" />,
-        link: "/integrations",
+        link: "/settings/integrations",
       },
       // {
       //   title: "Analytics",
@@ -71,7 +71,7 @@ const data = [
       {
         title: "Calendar",
         icon: <MdSpaceDashboard className="h-5 w-5 text-FontGray" />,
-        link: "/calendar/settings",
+        link: "/settings/calendar/",
       },
       {
         title: "Custom Fields",

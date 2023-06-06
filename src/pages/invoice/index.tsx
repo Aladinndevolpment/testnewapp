@@ -260,7 +260,7 @@ export default function InvoicePage() {
               </div>
             </div>
             <div className="w-full md:w-4/12 ">
-              <div className="pb-2 lg:px-3">
+              <div className="pb-2 lg:pl-3">
                 <LongCard
                   title="Total Receivables"
                   number={109.3}

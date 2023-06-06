@@ -129,7 +129,7 @@ export default function UpdateCustomValue({ onDataStore, onClose }: any) {
               </MenuItem>
               <MenuItem value="cpv-6-Practice Website">
                 {" "}
-                cpv-6-Practice Website{" "}
+                cpv-6-Practice Site{" "}
               </MenuItem>
               <MenuItem value="cpv-7-Buddy Campaign">
                 {" "}

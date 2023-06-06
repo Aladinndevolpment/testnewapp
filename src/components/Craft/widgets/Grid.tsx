@@ -215,4 +215,5 @@ Grid.craft = {
     paddingLeft: 16,
     paddingRight: 16,
   },
+  displayName: elementName,
 };

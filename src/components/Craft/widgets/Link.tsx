@@ -138,6 +138,7 @@ Link.craft = {
     background: defaults.backgroundColor,
     href: "#",
   },
+  displayName: "Link",
 };
 
 export const LinkText = ({ children }: any) => {

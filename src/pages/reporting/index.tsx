@@ -122,7 +122,7 @@ export default function Reporting() {
     },
     {
       id: "tab6",
-      label: "Website",
+      label: "Site",
       content: <ReportingWebsiteTable data={data} />,
     },
     {

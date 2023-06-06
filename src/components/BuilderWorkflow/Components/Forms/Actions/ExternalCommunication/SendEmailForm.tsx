@@ -231,7 +231,7 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
               </span>
             )}
           </div>
-          <div className="w-full mt-1.5">
+          <div className="w-full mt-1.5 mb-12">
             <label className="w-full mb-2 text-sm text-gray-600 font-semibold fontStrawFord">
               Message
             </label>
@@ -244,10 +244,10 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
               //   onBlur={handleBlur("content")}
               placeholder="message"
               style={{
-                height: 200,
+                height: 100,
                 marginBottom: 20,
-                overflowY: "scroll",
-                resize: "vertical",
+                // overflowY: "scroll",
+                // resize: "vertical",
               }}
               className="scrollbar-hide"
             />

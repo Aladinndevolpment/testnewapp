@@ -32,7 +32,7 @@ export default function Header() {
         <div className="flex justify-start  items-center">
           <div className="mr-5">
             <p className="mt-2 text-xl font-semibold text-gray-700">
-              Website Builder
+              Site Builder
             </p>
           </div>
           <div className="bg-gray-200 flex items-center my-2 rounded-lg">

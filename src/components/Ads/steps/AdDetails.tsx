@@ -232,7 +232,7 @@ export default function AdDetails({ onSubmit }: { onSubmit: Function }) {
         <div className=" ">
           <div className="flex flex-col gap-1">
             <label className="font-semibold text-gray-600 text-sm">
-              Website URL
+              Site URL
             </label>
             <div>
               <div className="flex gap-3 flex-wrap shadow px-2 border-gray-200 border-[1px]  rounded-md">

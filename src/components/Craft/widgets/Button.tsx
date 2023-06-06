@@ -1,17 +1,12 @@
 import { useNode, Element, useEditor } from "@craftjs/core";
-import {
-  FormControl,
-  FormLabel,
-  RadioGroup,
-  Radio,
-  FormControlLabel,
-} from "@mui/material";
-
 import { Text } from "./Text/Text";
-import { MuiColorInput } from "mui-color-input";
-import TextInput from "@/components/controls/TextInput";
-import { IoContract } from "react-icons/io5";
 import { createElement } from "react";
+import {
+  CommonSettings,
+  ICommonSettingsProps,
+  baseDefaults,
+  getCommonSettingsProps,
+} from "./CommonSettings";
 
 const elementName = "Button";
 
@@ -21,12 +16,30 @@ const defaults = {
   borderRadius: 10,
 };
 
-interface IButtonProps {
+const btnSizes = [
+  {
+    value: "btn-xs",
+    label: "Tiny",
+  },
+  {
+    value: "btn-sm",
+    label: "Small",
+  },
+  {
+    value: "btn",
+    label: "Normal",
+  },
+  {
+    value: "btn-lg",
+    label: "Large",
+  },
+];
+
+interface IButtonProps extends ICommonSettingsProps {
   size?: string;
   text?: string;
   backgroundColor?: string;
   borderColor?: string;
-
   borderRadius?: number;
 }
 
@@ -55,6 +68,18 @@ export const Button = ({
   backgroundColor = defaults.backgroundColor,
   borderRadius = defaults.borderRadius,
   borderColor = defaults.borderColor,
+  borderType = "border-solid",
+  borderWidth = baseDefaults.borderWidth,
+  marginTop = baseDefaults.marginTop,
+  marginBottom = baseDefaults.marginBottom,
+  marginLeft = baseDefaults.marginLeft,
+  marginRight = baseDefaults.marginRight,
+  paddingTop = baseDefaults.paddingTop,
+  paddingBottom = baseDefaults.paddingBottom,
+  paddingLeft = baseDefaults.paddingLeft,
+  paddingRight = baseDefaults.paddingRight,
+  shadow,
+  shadowColor,
 }: IButtonProps) => {
   const {
     connectors: { connect, drag },
@@ -66,11 +91,20 @@ export const Button = ({
       <button
         className={`btn ${size} mr-2 ${
           hovered && "hover:outline-pink-500 hover:outline"
-        }  relative`}
+        }  relative ${shadowColor} ${shadow} ${borderType}`}
         style={{
-          backgroundColor: backgroundColor,
-          borderRadius: borderRadius + "px",
-          borderColor: borderColor,
+          backgroundColor,
+          marginTop: `${marginTop}px`,
+          marginBottom: `${marginBottom}px`,
+          marginLeft: `${marginLeft}px`,
+          marginRight: `${marginRight}px`,
+          paddingTop: `${paddingTop}px`,
+          paddingBottom: `${paddingBottom}px`,
+          paddingLeft: `${paddingLeft}px`,
+          paddingRight: `${paddingRight}px`,
+          borderWidth: `${borderWidth}px`,
+          borderRadius: `${borderRadius}px`,
+          borderColor,
         }}
       >
         {hovered && (
@@ -122,78 +156,29 @@ const ButtonSettings = () => {
           }
         />
       </div> */}
-      <div className="mb-4 mt-2 flex flex-col gap-1">
-        <label className="text-sm text-gray-400 ">Background Color</label>
-        <div className="">
-          <MuiColorInput
-            format="hex"
-            value={
-              props.backgroundColor
-                ? props.backgroundColor
-                : defaults.backgroundColor
-            }
-            onChange={(e) =>
-              setProp((props: any) => (props.backgroundColor = e))
-            }
-          />
-        </div>
+
+      <div className={`flex gap-3 flex-wrap w-full`}>
+        {btnSizes?.map((item, index) => (
+          <div className="form-control" key={index}>
+            <label className="cursor-pointer flex items-center gap-2">
+              <input
+                type="radio"
+                name="btn_size"
+                className="radio checked:bg-green-500"
+                checked={item.value === props.size}
+                required={true}
+                value={item.value}
+                onChange={(e) =>
+                  setProp((props: any) => (props.size = e.target.value))
+                }
+              />
+              <span className="label-text">{item.label}</span>
+            </label>
+          </div>
+        ))}
       </div>
 
-      <div className="mb-4 mt-2 flex flex-col gap-1">
-        <label className="text-sm text-gray-400 ">Border Color</label>
-        <div className="">
-          <MuiColorInput
-            format="hex"
-            value={props.borderColor ? props.borderColor : defaults.borderColor}
-            onChange={(e) => setProp((props: any) => (props.borderColor = e))}
-          />
-        </div>
-      </div>
-
-      <div className="mb-4 mt-2 flex flex-col gap-1">
-        <label className="text-sm text-gray-400 ">Border Radius</label>
-        <TextInput
-          lefticon={<IoContract />}
-          value={props.borderRadius}
-          placeholder="Border radius in px"
-          onChange={(e) =>
-            setProp((props: any) => (props.borderRadius = e.target.value))
-          }
-          type="number"
-          min={0}
-        />
-      </div>
-
-      <FormControl size="small" component="fieldset">
-        <FormLabel component="legend">Size</FormLabel>
-        <RadioGroup
-          defaultValue={props.size}
-          onChange={(e) =>
-            setProp((props: any) => (props.size = e.target.value))
-          }
-        >
-          <FormControlLabel
-            label="Tiny"
-            value="btn-xs"
-            control={<Radio size="small" color="primary" />}
-          />
-          <FormControlLabel
-            label="Small"
-            value="btn-sm"
-            control={<Radio size="small" color="primary" />}
-          />
-          <FormControlLabel
-            label="Normal"
-            value="normal"
-            control={<Radio size="small" color="primary" />}
-          />
-          <FormControlLabel
-            label="Large"
-            value="btn-lg"
-            control={<Radio size="small" color="primary" />}
-          />
-        </RadioGroup>
-      </FormControl>
+      <CommonSettings />
 
       {textNodeSettings && createElement(textNodeSettings)}
     </div>
@@ -205,8 +190,13 @@ Button.craft = {
     settings: ButtonSettings,
   },
   props: {
+    ...getCommonSettingsProps(),
     background: defaults.backgroundColor,
     borderRadius: defaults.borderRadius,
     borderColor: defaults.borderColor,
+    paddingRight: 10,
+    paddingLeft: 10,
+    size: "btn",
   },
+  displayName: elementName,
 };

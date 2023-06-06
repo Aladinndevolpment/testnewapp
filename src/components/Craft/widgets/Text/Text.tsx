@@ -3,8 +3,16 @@ import { useEditor, useNode } from "@craftjs/core";
 import { MuiColorInput } from "mui-color-input";
 import { useEffect, useState } from "react";
 import ContentEditable from "react-contenteditable";
-import { BiBold, BiItalic, BiUnderline } from "react-icons/bi";
-import { IoContract } from "react-icons/io5";
+import {
+  BiAlignJustify,
+  BiAlignLeft,
+  BiAlignMiddle,
+  BiAlignRight,
+  BiBold,
+  BiItalic,
+  BiStrikethrough,
+  BiUnderline,
+} from "react-icons/bi";
 import {
   CommonSettings,
   ICommonSettingsProps,
@@ -42,7 +50,7 @@ const fontWeights = [
 export interface ITextProps extends ICommonSettingsProps {
   text: string;
   fontSize?: number;
-  alignment?: "left" | "right" | "center";
+  alignment?: "left" | "right" | "center" | "justify";
   color?: string;
   bold?:
     | "font-thin"
@@ -59,6 +67,7 @@ export interface ITextProps extends ICommonSettingsProps {
   font?: string;
   textCase?: string;
   tagName?: string;
+  lineThrough?: boolean;
 }
 
 export const Text = ({
@@ -86,6 +95,7 @@ export const Text = ({
   paddingLeft = baseDefaults.paddingLeft,
   paddingRight = baseDefaults.paddingRight,
   tagName = "p",
+  lineThrough,
 }: ITextProps) => {
   const {
     connectors: { connect, drag },
@@ -152,9 +162,9 @@ export const Text = ({
           paddingLeft: `${paddingLeft}px`,
           paddingRight: `${paddingRight}px`,
         }}
-        className={`text-${alignment}  ${bold} ${underline && "underline"} ${
+        className={`text-${alignment}   ${bold} ${underline && "underline"} ${
           italic && "italic"
-        } ${font} ${textCase} ${borderType}`}
+        } ${font} ${textCase} ${borderType} ${lineThrough && "line-through"}`}
       />
     </div>
   );
@@ -174,18 +184,20 @@ export const TextSettings: any = () => {
         <label className="text-sm text-gray-400">Text</label>
 
         <TextInput
-          lefticon={<IoContract />}
           value={props.text}
           placeholder="Start typing here..."
           onChange={(e) =>
             setProp((props: any) => (props.text = e.target.value))
           }
           isTextArea={props.text.length > 30}
+          defaultRows={8}
         />
       </div>
 
-      <div className="mb-4 mt-2 flex flex-col gap-1">
-        <label className="text-sm text-gray-400 ">Select Font</label>
+      <h3 className="mt-3 font-poppins font-medium text-lg">Typography</h3>
+
+      <div className="mb-2 mt-2 flex flex-col gap-1">
+        <label className="text-sm text-gray-400 ">Font</label>
         <div className="dropdown">
           <label
             tabIndex={0}
@@ -217,44 +229,43 @@ export const TextSettings: any = () => {
         </div>
       </div>
 
-      <div className="mb-4 mt-2 flex flex-col gap-1">
-        <label className="text-sm text-gray-400">Font Size</label>
-        <TextInput
-          lefticon={<IoContract />}
-          value={props.fontSize}
-          placeholder="Font size in px"
-          onChange={(e) =>
-            setProp((props: any) => (props.fontSize = e.target.value))
-          }
-          type="number"
-          max={90}
-          min={10}
-        />
-      </div>
+      <div className="flex">
+        <div className="mb-2 mt-2 flex flex-col gap-1 w-1/2 pr-1">
+          <label className="text-sm text-gray-400">Font Size (PX)</label>
+          <TextInput
+            value={props.fontSize}
+            placeholder="Font size in px"
+            onChange={(e) =>
+              setProp((props: any) => (props.fontSize = e.target.value))
+            }
+            type="number"
+            max={90}
+            min={10}
+          />
+        </div>
 
-      <div className="mb-4 mt-2 flex flex-col gap-1">
-        <label className="text-sm text-gray-400">Line Height</label>
-        <TextInput
-          lefticon={<IoContract />}
-          value={props.lineHeight}
-          placeholder="Font size in px"
-          onChange={(e) =>
-            setProp((props: any) => (props.lineHeight = e.target.value))
-          }
-          type="number"
-          max={8}
-          min={0.5}
-          step=".05"
-        />
+        <div className="mb-2 mt-2 flex flex-col gap-1 w-1/2 pl-1">
+          <label className="text-sm text-gray-400">Line Height</label>
+          <TextInput
+            value={props.lineHeight}
+            placeholder="Font size in px"
+            onChange={(e) =>
+              setProp((props: any) => (props.lineHeight = e.target.value))
+            }
+            type="number"
+            max={8}
+            min={0.5}
+            step=".05"
+          />
+        </div>
       </div>
-
-      <div className="mb-4 mt-2 flex flex-col gap-1">
+      <div className="mb-2 mt-2 flex flex-col gap-1">
         <label className="text-sm text-gray-400 ">Text Style</label>
         <div className="btn-group w-full">
-          <div className="dropdown">
+          <div className="dropdown w-1/4">
             <label
               tabIndex={0}
-              className={`btn btn-sm border-gray-300 hover:text-white capitalize  ${
+              className={`btn btn-sm border-gray-300 hover:text-white capitalize w-full ${
                 props.bold != defaults.bold
                   ? "bg-[#313641] text-white"
                   : "bg-white text-black"
@@ -286,7 +297,7 @@ export const TextSettings: any = () => {
           </div>
 
           <button
-            className={`btn btn-sm  border-gray-300 hover:text-white capitalize ${
+            className={`btn btn-sm  border-gray-300 hover:text-white capitalize w-1/4 ${
               props.italic ? "bg-[#313641] text-white" : "bg-white text-black"
             }`}
             onClick={() =>
@@ -296,7 +307,7 @@ export const TextSettings: any = () => {
             <BiItalic />
           </button>
           <button
-            className={`btn btn-sm border-gray-300 hover:text-white capitalize ${
+            className={`btn btn-sm border-gray-300 hover:text-white capitalize w-1/4 ${
               props.underline
                 ? "bg-[#313641] text-white"
                 : "bg-white text-black"
@@ -307,49 +318,84 @@ export const TextSettings: any = () => {
           >
             <BiUnderline />
           </button>
+
+          <button
+            className={`btn btn-sm border-gray-300 hover:text-white capitalize w-1/4 ${
+              props.lineThrough
+                ? "bg-[#313641] text-white"
+                : "bg-white text-black"
+            }`}
+            onClick={() =>
+              setProp((props: any) => (props.lineThrough = !props.lineThrough))
+            }
+          >
+            <BiStrikethrough />
+          </button>
         </div>
       </div>
 
-      <div className="mb-4 mt-2 flex flex-col gap-1">
+      <div className="mb-2 mt-2 flex flex-col gap-1">
         <label className="text-sm text-gray-400 ">Text Alignment</label>
         <div className="btn-group w-full">
-          <input
-            type="radio"
-            name="options"
-            data-title="Left"
-            className="btn btn-sm bg-transparent text-black border-gray-300 hover:text-white capitalize w-1/3"
-            value="left"
-            onChange={({ target: { value } }) =>
-              setProp((props: any) => (props.alignment = value))
+          <button
+            className={`btn btn-sm border-gray-300 hover:text-white capitalize w-1/4 ${
+              props.alignment == "left"
+                ? "bg-[#313641] text-white"
+                : "bg-white text-black"
+            }`}
+            onClick={() => setProp((props: any) => (props.alignment = "left"))}
+            aria-label="Left"
+            title="Left"
+          >
+            <BiAlignLeft />
+          </button>
+
+          <button
+            className={`btn btn-sm border-gray-300 hover:text-white capitalize w-1/4 ${
+              props.alignment == "center"
+                ? "bg-[#313641] text-white"
+                : "bg-white text-black"
+            }`}
+            onClick={() =>
+              setProp((props: any) => (props.alignment = "center"))
             }
-            checked={props.alignment === "left"}
-          />
-          <input
-            type="radio"
-            name="options"
-            data-title="Center"
-            className="btn btn-sm bg-transparent text-black border-gray-300 hover:text-white capitalize w-1/3"
-            value="center"
-            onChange={({ target: { value } }) =>
-              setProp((props: any) => (props.alignment = value))
+            aria-label="Center"
+            title="Center"
+          >
+            <BiAlignMiddle />
+          </button>
+
+          <button
+            className={`btn btn-sm border-gray-300 hover:text-white capitalize w-1/4 ${
+              props.alignment == "right"
+                ? "bg-[#313641] text-white"
+                : "bg-white text-black"
+            }`}
+            onClick={() => setProp((props: any) => (props.alignment = "right"))}
+            aria-label="right"
+            title="right"
+          >
+            <BiAlignRight />
+          </button>
+
+          <button
+            className={`btn btn-sm border-gray-300 hover:text-white capitalize w-1/4 ${
+              props.alignment == "justify"
+                ? "bg-[#313641] text-white"
+                : "bg-white text-black"
+            }`}
+            onClick={() =>
+              setProp((props: any) => (props.alignment = "justify"))
             }
-            checked={props.alignment === "center"}
-          />
-          <input
-            type="radio"
-            name="options"
-            data-title="Right"
-            className="btn btn-sm bg-transparent text-black border-gray-300 hover:text-white capitalize w-1/3"
-            value="right"
-            onChange={({ target: { value } }) =>
-              setProp((props: any) => (props.alignment = value))
-            }
-            checked={props.alignment === "right"}
-          />
+            aria-label="justify"
+            title="justify"
+          >
+            <BiAlignJustify />
+          </button>
         </div>
       </div>
 
-      <div className="mb-4 mt-2 flex flex-col gap-1">
+      <div className="mb-2 mt-2 flex flex-col gap-1">
         <label className="text-sm text-gray-400 ">Select Text Case</label>
         <div className="dropdown">
           <label
@@ -382,7 +428,7 @@ export const TextSettings: any = () => {
         </div>
       </div>
 
-      <div className="mb-4 mt-2 flex flex-col gap-1">
+      <div className="mb-2 mt-2 flex flex-col gap-1">
         <label className="text-sm text-gray-400 ">Text Color</label>
         <div className="w-full">
           <MuiColorInput
@@ -421,6 +467,7 @@ export const textProps = {
   paddingLeft: baseDefaults.paddingLeft,
   paddingRight: baseDefaults.paddingRight,
   tagName: "p",
+  lineThrough: false,
 };
 
 Text.craft = {

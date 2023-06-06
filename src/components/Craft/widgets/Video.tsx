@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Container from "./Container";
 import { useNode } from "@craftjs/core";
 import Image from "next/image";
@@ -10,6 +10,7 @@ import {
 } from "./CommonSettings";
 import TextInput from "@/components/controls/TextInput";
 import { IoContract } from "react-icons/io5";
+import { DeleteForever } from "@mui/icons-material";
 
 interface BuilderVideoProps extends ICommonSettingsProps {
   videoSrc?: string;
@@ -91,7 +92,7 @@ export const BuilderVideo = ({
           Your browser does not support HTML video.
         </video>
       ) : (
-        <div className="w-full h-full text-center flex justify-center items-center text-lg font-main border-dashed border-2 border-orange-500">
+        <div className="w-full text-center h-full text-center flex justify-center items-center text-lg font-main border-dashed border-2 border-orange-500">
           Choose a video from settings
         </div>
       )}
@@ -107,11 +108,39 @@ const BuilderVideoSettings = () => {
     props: node.data.props,
   }));
 
+  const inputFile: any = useRef(null);
+
   return (
     <div className="flex flex-col gap-4 mb-4">
+      <div className="relative">
+        {props.videoSrc && (
+          <div className="h-28 w-full p-5 relative">
+            <video
+              style={{
+                objectFit: "contain",
+              }}
+              width="100%"
+              height="300px"
+              controls
+            >
+              <source src={props.videoSrc} type="video/mp4" />
+              <source src={props.videoSrc} type="video/ogg" />
+              Your browser does not support HTML video.
+            </video>
+          </div>
+        )}
+
+        {props.videoSrc && (
+          <DeleteForever
+            onClick={() => setProp((props: any) => (props.videoSrc = null))}
+            className="absolute top-2 bottom bg-white p-1 text-red-500 shadow-md right-0"
+          />
+        )}
+      </div>
+
       <input
         type="file"
-        className="file-input w-full max-w-xs"
+        className="file-input w-full max-w-xs hidden"
         onChange={(e) =>
           setProp(
             (props: any) =>
@@ -119,10 +148,18 @@ const BuilderVideoSettings = () => {
           )
         }
         accept="video/*"
+        ref={inputFile}
       />
 
+      <button
+        onClick={() => inputFile?.current!.click()}
+        className="bg-white w-48 px-4 py-2 shadow-md rounded hover:shadow-xl hover:drop-shadow-sm transition-all text-xs font-semibold"
+      >
+        Select Video
+      </button>
+
       <div className="flex flex-wrap justify-between">
-        <div className="mb-4 mt-2 flex flex-col gap-1 w-1/2 pr-1">
+        <div className="mb-2 mt-2 flex flex-col gap-1 w-1/2 pr-1">
           <label className="text-sm text-gray-400 ">Width</label>
           <TextInput
             lefticon={<IoContract />}
@@ -135,7 +172,7 @@ const BuilderVideoSettings = () => {
           />
         </div>
 
-        <div className="mb-4 mt-2 flex flex-col gap-1 w-1/2 pl-1">
+        <div className="mb-2 mt-2 flex flex-col gap-1 w-1/2 pl-1">
           <label className="text-sm text-gray-400 ">Height</label>
           <TextInput
             lefticon={<IoContract />}
@@ -149,7 +186,7 @@ const BuilderVideoSettings = () => {
         </div>
       </div>
 
-      <div className="mb-4 mt-2 flex flex-col gap-1">
+      <div className="mb-2 mt-2 flex flex-col gap-1">
         <label className="text-sm text-gray-400 ">Image Type</label>
         <div className="dropdown">
           <label
@@ -205,4 +242,5 @@ BuilderVideo.craft = {
     paddingLeft: baseDefaults.paddingLeft,
     paddingRight: baseDefaults.paddingRight,
   },
+  displayName: elementName,
 };
