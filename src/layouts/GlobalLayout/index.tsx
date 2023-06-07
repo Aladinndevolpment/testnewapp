@@ -23,7 +23,6 @@ export default memo(function GlobalLayout({ children }: IAdminLayoutProps) {
   const [open, setOpen] = useState(true);
   const value: any = { title, setTitle, open, setOpen };
   const router = useRouter();
-  console.log(router);
   return (
     <>
       <GlobalContext.Provider value={value}>

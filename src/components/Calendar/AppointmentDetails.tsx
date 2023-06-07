@@ -6,7 +6,7 @@ import TreatmentTimeline from "./TreatmentTimeline";
 
 import { TfiAngleDown, TfiAngleUp } from "react-icons/tfi";
 import CustomDropDown, { CustomDropDownData } from "../controls/CustomDropDown";
-import ChatBody from "../chat/ChatBody";
+import ChatBody from "../Conversations/ChatBody";
 import { chatDataItems } from "@/pages/chat";
 
 interface IAppointmentDetailsProps {

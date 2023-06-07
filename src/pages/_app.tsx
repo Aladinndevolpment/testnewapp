@@ -9,6 +9,8 @@ import { RecoilRoot } from "recoil";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider, EmotionCache } from "@emotion/react";
+import { useRouter } from "next/router";
+import ConversationLayout from "@/layouts/ConversationLayout";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -28,6 +30,7 @@ export default function App({
     },
     { ssr: false }
   );
+  const router = useRouter();
 
   return (
     <>
@@ -36,9 +39,15 @@ export default function App({
           <CssBaseline />
           <RecoilRoot>
             <TopProgressBar />
-            <GlobalLayout>
-              <Component {...pageProps} />
-            </GlobalLayout>
+            {router.pathname.startsWith("/conversations") ? (
+              <ConversationLayout>
+                <Component {...pageProps} />
+              </ConversationLayout>
+            ) : (
+              <GlobalLayout>
+                <Component {...pageProps} />
+              </GlobalLayout>
+            )}
           </RecoilRoot>
         </ThemeProvider>
       </CacheProvider>
