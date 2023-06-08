@@ -36,7 +36,26 @@ export default function ChatSidebar({
           <h2 className="text-black font-medium text-lg">Messages</h2>
         </div>
         <div className="flex gap-2 p-4 items-center">
-          <BsArrowDownUp className="text-lg" />
+          <div className="dropdown">
+            <label tabIndex={0} className="">
+              <BsArrowDownUp className="text-lg" />
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a>Sort by timezone</a>
+              </li>
+              <li>
+                <a>Most Recent</a>
+              </li>
+              <li>
+                <a>Longest Wait</a>
+              </li>
+            </ul>
+          </div>
+
           <FiFilter className="text-lg" />
           <BiMessageDetail className="text-lg" />
           <div className="text-sm bg-[#e3e3e5] px-3 py-1 rounded-2xl font-medium">

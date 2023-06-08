@@ -37,6 +37,10 @@ import Progress from "../widgets/Progress";
 
 import { SiProgress } from "react-icons/si";
 import Calendar from "../widgets/Calendar";
+import { Review } from "../widgets/Reviews";
+import { UsersIcon } from "@heroicons/react/24/solid";
+import { OrderConfirmation } from "../widgets/prebuilt/OrderConfirmation";
+import { OrderOneStep } from "../widgets/prebuilt/OrderOneStep";
 
 const baseTools = [
   {
@@ -283,6 +287,39 @@ const baseTools = [
             tool={<Calendar />}
             image="@/../public/craft/hero.png"
             icon={<CalendarDaysIcon className="h-5 w-5 text-gray-500" />}
+          />
+        ),
+      },
+      {
+        name: "Review",
+        tool: (
+          <ElementToolsLayout
+            toolName="Review"
+            tool={<Review />}
+            image="@/../public/craft/hero.png"
+            icon={<UsersIcon className="h-5 w-5 text-gray-500" />}
+          />
+        ),
+      },
+      {
+        name: "Order Confirmation",
+        tool: (
+          <ElementToolsLayout
+            toolName="Order Confirmation"
+            tool={<OrderConfirmation />}
+            image="@/../public/craft/hero.png"
+            icon={<UsersIcon className="h-5 w-5 text-gray-500" />}
+          />
+        ),
+      },
+      {
+        name: "One Step Order",
+        tool: (
+          <ElementToolsLayout
+            toolName="One Step Order"
+            tool={<OrderOneStep />}
+            image="@/../public/craft/hero.png"
+            icon={<UsersIcon className="h-5 w-5 text-gray-500" />}
           />
         ),
       },

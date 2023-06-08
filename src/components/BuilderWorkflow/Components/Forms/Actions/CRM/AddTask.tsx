@@ -97,7 +97,7 @@ export default function AddTask({ onDataStore, onClose }: any) {
               name="actionName"
               value={formValues.actionName}
               onChange={handleChange}
-              className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+              className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3.5 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
             />
             {errors.actionName && (
               <span className="mb-5 error text-red-500 ">
@@ -115,7 +115,7 @@ export default function AddTask({ onDataStore, onClose }: any) {
               name="title"
               value={formValues.title}
               onChange={handleChange}
-              className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+              className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3  py-3.5  rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
             />
             {errors.title && (
               <span className="mb-5 error text-red-500 ">{errors.title}</span>
@@ -131,7 +131,7 @@ export default function AddTask({ onDataStore, onClose }: any) {
                   name="description"
                   value={formValues.description}
                   onChange={handleChange}
-                  className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+                  className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3  py-3.5  rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
                 ></textarea>
               </div>
             </div>

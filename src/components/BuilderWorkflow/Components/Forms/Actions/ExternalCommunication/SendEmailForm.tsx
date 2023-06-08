@@ -154,7 +154,7 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
               value={formValues.actionName}
               onChange={handleChange}
               placeholder="Send Email"
-              className="placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-2  font-medium bg-transparent focus:bg-transparent w-full  border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+              className="placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-3.5 font-medium bg-transparent focus:bg-transparent w-full  border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
             />
             {errors.actionName && (
               <span className="mb-5 error text-red-500 ">
@@ -171,7 +171,7 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
               name="formName"
               value={formValues.formName}
               onChange={handleChange}
-              className="placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-2  font-medium bg-transparent focus:bg-transparent w-full  border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+              className="placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-3.5  font-medium bg-transparent focus:bg-transparent w-full  border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
             />
             {errors.formName && (
               <span className="mb-5 error text-red-500 ">
@@ -188,7 +188,7 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
               name="fromEmail"
               value={formValues.fromEmail}
               onChange={handleChange}
-              className="placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-2  font-medium bg-transparent focus:bg-transparent w-full  border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+              className="placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-3.5  font-medium bg-transparent focus:bg-transparent w-full  border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
             />
             {errors.fromEmail && (
               <span className="mb-5 error text-red-500 ">
@@ -205,7 +205,7 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
               name="subject"
               value={formValues.subject}
               onChange={handleChange}
-              className="placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-2  font-medium bg-transparent focus:bg-transparent w-full  border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+              className="placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-3.5 font-medium bg-transparent focus:bg-transparent w-full  border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
             />
             {errors.subject && (
               <span className="mb-5 error text-red-500 ">{errors.subject}</span>
@@ -282,7 +282,7 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
                   attachment: e.target.files[0],
                 }))
               }
-              className="placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-2  font-medium bg-transparent focus:bg-transparent w-full  border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+              className="placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-3.5 font-medium bg-transparent focus:bg-transparent w-full  border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
             />
           )}
 
@@ -293,7 +293,7 @@ export default function SendEmailForm({ onDataStore, onClose }: any) {
             <div className="flex justify-between">
               <input
                 type="email"
-                className="w-[70%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-2  font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+                className="w-[70%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-3.5  font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
               />
 
               <button className="fontStrawFord bg-transparent text-blue-400  border-2 border-blue-400 px-4 py-2 rounded my-2 hover:bg-blue-100">

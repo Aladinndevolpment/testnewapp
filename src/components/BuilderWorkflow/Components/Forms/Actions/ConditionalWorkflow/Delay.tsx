@@ -113,7 +113,7 @@ export default function Delay({ onDataStore, onClose }: any) {
                 value={formValues.customDay}
                 onChange={handleChange}
                 placeholder="xx days"
-                className="px-3 rounded-md mt-2 mb-2 py-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300 text-black"
+                className="px-3 rounded-md mt-2 mb-2  py-3.5  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300 text-black"
               />
             )}
           </div>

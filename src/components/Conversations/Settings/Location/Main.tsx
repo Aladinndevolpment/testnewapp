@@ -4,6 +4,8 @@ import { AiOutlineEdit, AiOutlinePlus } from "react-icons/ai";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import TextInput from "../../Components/TextInput";
 import Select from "react-select";
+import ConversationModalDerived from "../../UI/ConversationModalDerived";
+import LocationModal from "./LocationModal";
 
 const locationData = [
   {
@@ -129,12 +131,23 @@ export default function Main() {
     );
   }, [searchAddress]);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div>
-      <div className="flex justify-between flex-wrap items-center border-b border-gray-300 pb-4">
+      {isModalOpen && (
+        <ConversationModalDerived
+          visibility={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        >
+          <LocationModal onClose={() => setIsModalOpen(false)} />
+        </ConversationModalDerived>
+      )}
+
+      <div className="flex justify-between flex-wrap items-center border-b border-gray-300 pb-4 px-4 pt-2">
         <h1 className="text-lg font-medium">Locations</h1>
         <button
-          // onClick={() => setEndChatModelVisibility(true)}
+          onClick={() => setIsModalOpen(true)}
           className="bg-newBlue px-3 py-1.5 rounded-md w-36 flex justify-center items-center"
         >
           <AiOutlinePlus className="text-white mr-1" />
@@ -142,7 +155,7 @@ export default function Main() {
         </button>
       </div>
 
-      <div className="flex justify-between w-1/2">
+      <div className="flex justify-between w-1/2 px-3">
         <div className="w-[49%] mt-2">
           <TextInput
             placeholder="Search Agency"

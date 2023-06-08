@@ -268,12 +268,12 @@ const SMSMessage = ({ handleChange, onClose }: any) => {
               >
                 <span className="text-white text-base">End Chat</span>
               </button>
-              <button
+              {/* <button
                 // onClick={() => setEndChatModelVisibility(true)}
                 className="bg-newBlue px-3 py-1.5 rounded-md w-28 flex justify-center"
               >
                 <span className="text-white text-base">Transfer</span>
-              </button>
+              </button> */}
             </div>
           </div>
           <div className="flex flex-wrap justify-between items-center">

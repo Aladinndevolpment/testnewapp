@@ -5,6 +5,7 @@ import Link from "next/link";
 import React, { useContext, useState } from "react";
 import { BsDiagram2Fill } from "react-icons/bs";
 import Craft from "./form/craft";
+import DashboardData from "@/components/Dashboard/DashboardData";
 
 export default function Builder() {
   const [DropDownRole, SetDropDownRole] = useState("");
@@ -13,7 +14,7 @@ export default function Builder() {
     {
       id: "tab1",
       label: "Dashbaord",
-      content: "",
+      content: <DashboardData />,
     },
     {
       id: "tab2",
@@ -57,7 +58,7 @@ export default function Builder() {
             </li>
           ))}
         </ul>
-        <div className="  bg-white">
+        <div className="  bg-white w-full  overflow-hidden">
           {innerTabs.map((tab: any) => (
             <div
               key={tab.id}

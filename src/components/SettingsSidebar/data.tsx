@@ -25,7 +25,7 @@ const data = [
       {
         title: "My Profile",
         icon: <UserCircleIcon className="h-5 w-5 text-FontGray" />,
-        link: "#",
+        link: "/settings/my-profile",
       },
       // {
       //   title: "General",

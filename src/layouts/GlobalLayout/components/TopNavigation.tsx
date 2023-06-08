@@ -22,6 +22,7 @@ import HeaderTitle from "./HeaderTitle";
 import { GlobalContext } from "..";
 import { TfiAlignJustify, TfiAlignRight, TfiAngleRight } from "react-icons/tfi";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+import Link from "next/link";
 export default function TopNavigation() {
   const router = useRouter();
   const ctx = useContext(GlobalContext);
@@ -45,11 +46,13 @@ export default function TopNavigation() {
                 </button>
               </div> */}
               <div>
-                <Image
-                  src={require("../../../../public/images/logo/logo.png")}
-                  alt="Emerge"
-                  className="w-36 lg:w-40"
-                />
+                <Link href="/">
+                  <Image
+                    src={require("../../../../public/images/logo/logo.png")}
+                    alt="Emerge"
+                    className="w-36 lg:w-40"
+                  />
+                </Link>
               </div>
               {/* <div className="w-[90%]">
                 <HeaderTitle />

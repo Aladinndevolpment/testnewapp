@@ -29,7 +29,6 @@ export const CraftContext = createContext({
 export default function Craft() {
   const ctx = useContext(GlobalContext);
   ctx.setTitle("Form Builder");
-  ctx.setOpen(false);
 
   const [tools, setTools] = useState("elements");
   const [device, setDevice] = useState("desktop");
@@ -43,7 +42,7 @@ export default function Craft() {
 
   return (
     <CraftContext.Provider value={value}>
-      <div className="h-full overflow-hidden">
+      <div className="h-full overflow-hidden w-full">
         <Editor
           resolver={{
             Container,

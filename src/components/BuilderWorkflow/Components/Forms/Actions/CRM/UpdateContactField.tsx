@@ -161,14 +161,13 @@ export default function UpdateContactField({ onClose, onDataStore }: any) {
               Action Name:
             </label>
 
-            <TextField
-              placeholder="Pipeline Stage Changed"
-              variant="outlined"
+            <input
               type="text"
-              id="actionName"
-              name="actionName"
+              name="currentValue"
               value={state.actionName}
-              onChange={(e) => handleInputChange(e, 0)} // Assuming it's the first field, index is 0
+              onChange={(e) => handleInputChange(e, 0)}
+              placeholder="Pipeline Stage Changed"
+              id="actionName"
               className=" rounded-lg mt-2 mb-2 py-1 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
             />
 
@@ -235,13 +234,13 @@ export default function UpdateContactField({ onClose, onDataStore }: any) {
 
               {filter.filterstype && (
                 <div className="w-full md:w-[45%] mb-2 ">
-                  <TextField
-                    id={`filterssubtype-${index}`}
+                  <input
+                    type="text"
                     name="filterssubtype"
                     value={filter.filterssubtype}
                     onChange={(e) => handleInputChange(e, index)}
-                    variant="outlined"
-                    type="text"
+                    placeholder="Pipeline Stage Changed"
+                    id={`filterssubtype-${index}`}
                     // Assuming it's the first field, index is 0
                     className="px-2 rounded-lg   mb-2 py-1 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
                   />

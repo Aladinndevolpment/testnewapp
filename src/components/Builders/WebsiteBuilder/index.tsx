@@ -62,7 +62,7 @@ export default function WebsiteBuilder() {
   ]);
 
   return (
-    <div>
+    <div className="w-full ">
       <Header />
       <Table data={data} />
     </div>

@@ -21,6 +21,7 @@ import { TfiReload } from "react-icons/tfi";
 import ActiveCampaignWorkflow from "./ActiveCampaignWorkflow";
 import PastCampaignWorkflow from "./PastCampaignWorkflow";
 import Opportunity from "./Opportunity";
+import PersonalInformation from "./PersonalInformation";
 
 export default function Contact({ chat }: any) {
   const [currentTime, setCurrentTime] = useState(
@@ -92,62 +93,8 @@ export default function Contact({ chat }: any) {
           </div>
         </div>
       </div>
-      <div className="bg-gray-100 my-4 rounded-md py-3 px-2 ">
-        <div className="flex justify-between items-center mb-4 px-2">
-          <div className="flex justify-start items-center w-[90%]">
-            <div className="w-[8%]">
-              <FaRegUserCircle />
-            </div>
-            <p className="text-gray-700 font-medium md:text-[12px]">
-              Chase Buckner
-            </p>
-          </div>
-          <button
-            onClick={() => {
-              navigator.clipboard.writeText(
-                "555 Chase St, philadelphia, PA, US, 18901"
-              );
-              alert("address copied successfully");
-            }}
-          >
-            <MdOutlineEdit className="h-3 w-3" />
-          </button>
-        </div>
-        <div className="flex justify-start items-center mb-1.5 px-2">
-          <div className="w-[8%]">
-            <IoCallOutline />
-          </div>
-          <p className="text-gray-700 font-medium md:text-[12px]">
-            +1234567890
-          </p>
-        </div>
-        <div className="flex justify-start items-center mb-3 px-2">
-          <div className="w-[8%]">
-            <BsEnvelope />
-          </div>
-          <p className="text-gray-700 font-medium md:text-[12px]">
-            chase@gohighlevel.com
-          </p>
-        </div>
-        <div className="bg-gray-200  rounded-md py-3 px-2">
-          <div className="flex justify-start items-center mb-1.5">
-            <div className="w-[12%]">
-              <p className="text-gray-700 font-medium md:text-[12px]">
-                Source:
-              </p>
-            </div>
-            <p className="text-gray-700 font-medium md:text-[12px] ml-1">
-              chat widget
-            </p>
-          </div>
-          <div className="flex justify-start items-center">
-            <p className="text-gray-700 font-medium md:text-[12px]">Type:</p>
-            <p className="text-gray-700 font-medium md:text-[12px] ml-1">
-              lead
-            </p>
-          </div>
-        </div>
-      </div>
+      <PersonalInformation />
+
       <div className="bg-gray-100 my-4 rounded-md py-3 px-2 ">
         <p className="text-gray-700 font-medium md:text-[14px] px-2">
           Add Tags

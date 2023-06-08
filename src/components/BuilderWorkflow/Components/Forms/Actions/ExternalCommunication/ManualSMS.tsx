@@ -142,7 +142,7 @@ export default function ManualSMS({ onDataStore, onClose }: any) {
               value={formValues.actionName}
               onChange={handleChange}
               placeholder="Manual SMS"
-              className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-2  font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+              className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-3.5 font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
             />
             {errors.actionName && (
               <span className="mb-5 error text-red-500 ">
@@ -222,7 +222,7 @@ export default function ManualSMS({ onDataStore, onClose }: any) {
                   attachment: e.target.files[0],
                 }))
               }
-              className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-2  font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+              className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-3.5 font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
             />
           )}
 
@@ -266,7 +266,7 @@ export default function ManualSMS({ onDataStore, onClose }: any) {
               <input
                 type="number"
                 placeholder="Add Phone No"
-                className="w-2/3 placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-2  font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+                className="w-2/3 placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-3.5 font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
               />
 
               <button className="bg-transparent text-blue-400 border-2 border-blue-400 px-4 py-2 rounded my-2 hover:bg-blue-100">

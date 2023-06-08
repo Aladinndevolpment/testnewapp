@@ -11,6 +11,7 @@ import BusinessPhysicalAddress from "@/components/Settings/CompanyProfile/Busine
 import AuthorizeRepresentative from "@/components/Settings/CompanyProfile/AuthorizeRepresentative";
 import BusinessInformation from "@/components/Settings/CompanyProfile/BusinessInformation";
 import General from "@/components/Settings/CompanyProfile/General";
+import Voicemail from "@/components/Settings/CompanyProfile/Voicemail";
 
 export default function CompanyProfile() {
   return (
@@ -30,10 +31,10 @@ export default function CompanyProfile() {
             <div className="w-1/2 pl-4 pr-2">
               <GeneralInformation />
               <BusinessInformation />
+              <Voicemail />
             </div>
             <div className="w-1/2 pl-2 pr-4">
               <BusinessPhysicalAddress />
-
               <AuthorizeRepresentative />
               <General />
             </div>

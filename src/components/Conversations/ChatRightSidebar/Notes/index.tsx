@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ConversationModalDerived from "../../UI/ConversationModalDerived";
 import { AiOutlinePlus } from "react-icons/ai";
 import moment from "moment";
+import TextInput from "../../Components/TextInput";
 
 export default function Notes() {
   const [notes, setNotes] = useState<any>([]);
@@ -35,7 +36,6 @@ export default function Notes() {
 
     if (validateForm()) {
       // Perform any desired actions with the form data
-      console.log("Notes:", formData.notes);
       setNotes([
         ...notes,
         {
@@ -43,15 +43,66 @@ export default function Notes() {
           createdAt: formData.createdAt,
         },
       ]);
-
+      setFormData({
+        notes: "",
+        createdAt: "",
+      });
       setIsModalOpen(false);
     }
   };
-  console.log(notes);
 
   return (
-    <div>
-      <div>
+    <div className="px-4 py-4 h-[100vh] pb-[30%]  overflow-y-scroll w-full scrollbar-hide ">
+      <form onSubmit={handleSubmit}>
+        <div className="flex flex-wrap gap-5 justify-between">
+          <div className="w-full">
+            <TextInput
+              isTextArea={true}
+              placeholder="Enter Note"
+              id="notes"
+              name="notes"
+              value={formData.notes}
+              onChange={handleInputChange}
+            />
+            {errors.notes && (
+              <span className="mb-8 text-xs text-red-500 ">{errors.notes}</span>
+            )}
+          </div>
+        </div>
+
+        <div className="mt-5 flex justify-between">
+          <div className="bg-white px-3 py-1.5 rounded-md w-24 flex justify-center border border-gray-300">
+            <span className="text-black text-base">Cancel</span>
+          </div>
+          <button
+            type="submit"
+            className="bg-green-600 px-3 py-1.5 rounded-md w-24 flex justify-center items-center"
+          >
+            {/* <AiOutlinePlus className="text-white mr-1" /> */}
+            <span className="text-white text-sm">Save</span>
+          </button>
+        </div>
+      </form>
+
+      <div className="px-2 py-6 flex flex-warp ">
+        {notes.length == 0 ? null : (
+          <div className="w-full flex flex-wrap mb-4 justify-between items-center ">
+            {notes.map((item: any, index: number) => (
+              <div
+                className="w-full px-2 py-2 bg-[#f2f3f6] mb-2 rounded-lg"
+                key={index}
+              >
+                <div className="font-semibold text-sm">{item?.note}</div>
+                <div className="text-xs font-medium mt-1">
+                  {moment(item?.createdAt).format("DD-MM-YYYY,")}{" "}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* <div>
         {isModalOpen && (
           <ConversationModalDerived
             visibility={isModalOpen}
@@ -140,7 +191,7 @@ export default function Notes() {
             ))}
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

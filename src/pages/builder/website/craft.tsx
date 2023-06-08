@@ -45,6 +45,12 @@ import MapElement from "@/components/Craft/widgets/Map";
 import Countdown from "@/components/Craft/widgets/Countdown";
 import Progress from "@/components/Craft/widgets/Progress";
 import Calendar from "@/components/Craft/widgets/Calendar";
+import { Review, ReviewTitle } from "@/components/Craft/widgets/Reviews";
+import {
+  OrderConfirmation,
+  OrderText,
+} from "@/components/Craft/widgets/prebuilt/OrderConfirmation";
+import { OrderOneStep } from "@/components/Craft/widgets/prebuilt/OrderOneStep";
 
 export const CraftContext = createContext({
   tools: "prebuilt",
@@ -58,7 +64,6 @@ export default function Craft() {
   const [device, setDevice] = useState("desktop");
 
   const ctx = useContext(GlobalContext);
-  ctx.setOpen(false);
 
   const value: any = {
     tools,
@@ -104,6 +109,11 @@ export default function Craft() {
             Countdown,
             Progress,
             Calendar,
+            Review,
+            ReviewTitle,
+            OrderConfirmation,
+            OrderText,
+            OrderOneStep,
 
             TextInputElement,
             TextAreaElement,
