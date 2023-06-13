@@ -6,6 +6,7 @@ import FAQs from "./FAQs";
 import Appts from "./Appts";
 import Notes from "./Notes";
 import Tasks from "./Tasks";
+import PatientInfo from "./PatientInfo";
 
 export default function ChatRightSidebar({ chat }: any) {
   const innerTabs = [
@@ -14,15 +15,15 @@ export default function ChatRightSidebar({ chat }: any) {
       label: "Contact",
       content: <Contact chat={chat} />,
     },
-    {
-      id: "tab2",
-      label: "General Info",
-      content: <GeneralInfo />,
-    },
+    // {
+    //   id: "tab2",
+    //   label: "General Info",
+    //   content: <GeneralInfo />,
+    // },
     {
       id: "tab3",
-      label: "Additional Info",
-      content: <AdditionalInfo />,
+      label: "Patient Info",
+      content: <PatientInfo />,
     },
     {
       id: "tab4",
@@ -31,7 +32,7 @@ export default function ChatRightSidebar({ chat }: any) {
     },
     {
       id: "tab5",
-      label: "Appts",
+      label: "Appointments",
       content: <Appts />,
     },
     {
@@ -57,8 +58,8 @@ export default function ChatRightSidebar({ chat }: any) {
             <button
               className={`px-3 lg:px-1 transition-all duration-300 font-medium text-xs   ${
                 activeInnerTab === tab.id
-                  ? "border-b-[1px] border-newBlue text-newBlue pb-3.5 font-semibold md:text-[10px]"
-                  : "text-gray-600 pb-4 font-semibold md:text-[10px]"
+                  ? "border-b-[1px] border-newBlue text-newBlue pb-3.5 font-semibold md:text-[12px]"
+                  : "text-gray-600 pb-4 font-semibold md:text-[12px]"
               }`}
               onClick={() => setActiveInnerTab(tab.id)}
             >

@@ -11,6 +11,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import { useRouter } from "next/router";
 import ConversationLayout from "@/layouts/ConversationLayout";
+import AdminLayout from "@/layouts/AdminLayout";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -43,6 +44,10 @@ export default function App({
               <ConversationLayout>
                 <Component {...pageProps} />
               </ConversationLayout>
+            ) : router.pathname.startsWith("/superadmin") ? (
+              <AdminLayout>
+                <Component {...pageProps} />
+              </AdminLayout>
             ) : (
               <GlobalLayout>
                 <Component {...pageProps} />

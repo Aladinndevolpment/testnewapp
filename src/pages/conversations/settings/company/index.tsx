@@ -10,8 +10,8 @@ const Profile = () => {
         <SettingsSidebar />
       </div>
       <div className="px-2 lg:w-[80%] my-5 h-[100vh] overflow-y-scroll scrollbar-hide pb-[5%] ">
-        <WebHook />
-        <DispositionManage />
+        {/* <WebHook />
+        <DispositionManage /> */}
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ export default function Voicemail() {
   return (
     <div className="border rounded-lg mt-5">
       <div className="flex justify-between items-center border-b px-3 py-3">
-        <p className="text-[#47494b] text-sm font-semibold">
+        <p className="text-[#47494b] text-base font-semibold">
           Call and Voicemail Settings
         </p>
       </div>

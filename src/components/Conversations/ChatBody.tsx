@@ -23,12 +23,15 @@ import { BiMessageDetail } from "react-icons/bi";
 import { FiMail } from "react-icons/fi";
 import { SlCallOut } from "react-icons/sl";
 import { BsThreeDots } from "react-icons/bs";
+import AppointmentForm from "./ChatRightSidebar/Appts/AppointmentForm";
 
 export const ChatBodyContext = createContext({
   endChatModelVisibility: false,
   setEndChatModelVisibility: (e: boolean) => {},
   templateModalVisibility: false,
   setTemplateModalVisibility: (e: boolean) => {},
+  isModalOpen: false,
+  setIsModalOpen: (e: boolean) => {},
 });
 
 interface IChatBodyProps {
@@ -139,6 +142,9 @@ export default function ChatBody({
       ],
     },
   ]);
+
+  const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const messagesEndRef = useRef<any>(null);
   // useEffect(() => {
@@ -285,8 +291,8 @@ export default function ChatBody({
     );
   }
 
-  const router = useRouter();
-  // console.log(router);
+  console.log(chat);
+
   return (
     <ChatBodyContext.Provider
       value={{
@@ -294,6 +300,8 @@ export default function ChatBody({
         endChatModelVisibility,
         templateModalVisibility,
         setTemplateModalVisibility,
+        isModalOpen,
+        setIsModalOpen,
       }}
     >
       <div
@@ -314,7 +322,9 @@ export default function ChatBody({
                 onClick={() => onProfileToggle()}
                 className="mb-1 mr-2 flex items-center gap-2"
               >
-                <h1 className="text-lg font-semibold">{chat.name}</h1>
+                <h1 className="text-lg font-semibold capitalize">
+                  {chat.email}
+                </h1>
                 <HiPhoneOutgoing className="text-lg" />
               </div>
             </div>
@@ -490,7 +500,7 @@ export default function ChatBody({
 
       {chatMailOpen && (
         <div
-          className={`fixed   bg-white w-full   flex flex-col  shadow-md rounded-md  pb-2   overflow-y-scroll scrollbar-hide   ${
+          className={`fixed  border-[1px] bg-white w-full   flex flex-col  shadow-md rounded-b-md  pb-2   overflow-y-scroll scrollbar-hide   ${
             chatMailOpen
               ? "translate-y-[0%] opacity-1"
               : "translate-y-[140%] opacity-0"
@@ -502,7 +512,7 @@ export default function ChatBody({
         >
           <div className="  w-full bg-white">
             <div className="flex  justify-between items-center px-6  border-b-[1px] border-lightGray pb-1 mb-2 ">
-              <div className="w-full pt-4  flex  justify-start items-center  ">
+              <div className="w-full pt-3.5 pb-2  flex  justify-start items-center  ">
                 <button
                   onClick={() => {
                     setMessageType("sms");
@@ -567,6 +577,16 @@ export default function ChatBody({
         onClose={() => setTemplateModalVisibility(false)}
       >
         <Template onClose={() => setTemplateModalVisibility(false)} />
+      </ConversationModalDerived>
+
+      <ConversationModalDerived
+        visibility={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      >
+        <AppointmentForm
+          onClose={() => setIsModalOpen(false)}
+          handleStoreAppointment={(item: any) => console.log(item)}
+        />
       </ConversationModalDerived>
     </ChatBodyContext.Provider>
   );

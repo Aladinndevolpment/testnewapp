@@ -8,18 +8,14 @@ import {
   HiOutlineOfficeBuilding,
   HiOutlineTemplate,
 } from "react-icons/hi";
+import { IoLocationOutline } from "react-icons/io5";
 import { TfiAnnouncement } from "react-icons/tfi";
 
 const data = [
   {
-    title: "Announcements",
-    icon: <TfiAnnouncement className="h-5 w-5 text-FontGray" />,
-    link: "",
-  },
-  {
     title: "Locations",
-    icon: <BsHouseDoor className="h-5 w-5 text-FontGray" />,
-    link: "",
+    icon: <IoLocationOutline className="h-5 w-5 text-FontGray" />,
+    link: "/conversations/settings/location",
   },
   {
     title: "Teams",
@@ -32,20 +28,20 @@ const data = [
     link: "",
   },
   {
-    title: "Disposition Comments",
+    title: "Ticket Status",
     icon: <BiMessageDetail className="h-5 w-5 text-FontGray" />,
-    link: "",
+    link: "/conversations/settings/ticket-status",
   },
-  {
-    title: "FAQ Template",
-    icon: <HiOutlineTemplate className="h-5 w-5 text-FontGray" />,
-    link: "",
-  },
-  {
-    title: "FAQ - Location",
-    icon: <AiOutlineQuestionCircle className="h-5 w-5 text-FontGray" />,
-    link: "/conversations/settings/location",
-  },
+  // {
+  //   title: "FAQ Template",
+  //   icon: <HiOutlineTemplate className="h-5 w-5 text-FontGray" />,
+  //   link: "",
+  // },
+  // {
+  //   title: "FAQ - Location",
+  //   icon: <AiOutlineQuestionCircle className="h-5 w-5 text-FontGray" />,
+  //   link: "/conversations/settings/location",
+  // },
   {
     title: "Company",
     icon: <HiOutlineOfficeBuilding className="h-5 w-5 text-FontGray" />,

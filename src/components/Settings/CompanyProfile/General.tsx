@@ -44,7 +44,7 @@ export default function General() {
   return (
     <div className="border rounded-lg mt-5">
       <div className="flex justify-between items-center border-b px-3 py-3">
-        <p className="text-[#47494b] text-sm font-semibold">General</p>
+        <p className="text-[#47494b] text-base font-semibold">General</p>
       </div>
       <form onSubmit={handleSubmit} className=" pt-5 pb-3">
         <div className="px-4 flex flex-wrap pb-6">

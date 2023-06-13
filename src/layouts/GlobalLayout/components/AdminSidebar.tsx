@@ -68,7 +68,7 @@ export default function AdminSidebar() {
                         </span>
                       </div>
                       <div
-                        className={`hidden md:flex   items-center   py-1 px-3 w-full justify-start`}
+                        className={`hidden md:flex  relative items-center   py-1 px-3 w-full justify-start`}
                       >
                         <div
                           className={` ${
@@ -80,6 +80,7 @@ export default function AdminSidebar() {
                         >
                           {mainData.iconCustom}
                         </div>
+
                         <span
                           className={` ${
                             asPath == mainData.link

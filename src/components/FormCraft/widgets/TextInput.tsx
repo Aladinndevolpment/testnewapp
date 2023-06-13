@@ -13,7 +13,7 @@ const elementName = "Text Input";
 
 const textInputTypes = ["text", "number", "email"];
 
-interface ITextProps extends ICommonSettingsProps {
+export interface ITextProps extends ICommonSettingsProps {
   color?: string;
   textInputProps?: InputHTMLAttributes<HTMLInputElement>;
 }

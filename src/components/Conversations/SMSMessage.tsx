@@ -13,6 +13,8 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 import { ChatBodyContext } from "./ChatBody";
 import { BsFileEarmarkText } from "react-icons/bs";
+import ConversationModalDerived from "./UI/ConversationModalDerived";
+import AppointmentForm from "./ChatRightSidebar/Appts/AppointmentForm";
 
 const SMSMessage = ({ handleChange, onClose }: any) => {
   //textarea data
@@ -27,6 +29,8 @@ const SMSMessage = ({ handleChange, onClose }: any) => {
     setEndChatModelVisibility,
     setTemplateModalVisibility,
     templateModalVisibility,
+    isModalOpen,
+    setIsModalOpen,
   } = useContext(ChatBodyContext);
 
   //active Button
@@ -100,7 +104,6 @@ const SMSMessage = ({ handleChange, onClose }: any) => {
       setTagInputValue("");
     }
   };
-
   return (
     <div>
       <div className="bg-white w-full px-5 pt-2">
@@ -278,7 +281,7 @@ const SMSMessage = ({ handleChange, onClose }: any) => {
           </div>
           <div className="flex flex-wrap justify-between items-center">
             <button
-              // onClick={() => handleChange(content)}
+              onClick={() => setIsModalOpen(true)}
               className="ml-4 bg-newBlue px-3 py-1.5 rounded-md flex justify-between items-center"
             >
               <span className="text-white  text-base">Schedule</span>

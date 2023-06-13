@@ -5,7 +5,7 @@ import { MenuItem, Select } from "@mui/material";
 import { FiEdit } from "react-icons/fi";
 import { BsChevronRight } from "react-icons/bs";
 export default function Opportunity() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpenOpportunity, setIsModalOpenOpportunity] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const [data, setData] = useState<any>([
@@ -96,7 +96,7 @@ export default function Opportunity() {
     if (validateForm()) {
       const newData = { ...formData };
       setData([...data, newData]);
-      setIsModalOpen(false);
+      setIsModalOpenOpportunity(false);
       // Reset the form
       //   setFormData({
       //     name: "",
@@ -178,14 +178,14 @@ export default function Opportunity() {
   return (
     <div>
       <div>
-        {isModalOpen && (
+        {isModalOpenOpportunity && (
           <ConversationModalDerived
-            visibility={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
+            visibility={isModalOpenOpportunity}
+            onClose={() => setIsModalOpenOpportunity(false)}
           >
             <div className="bg-white px-5 rounded-lg py-5 pb-[5%] w-screen md:w-[70vh]">
               <p className="text-gray-800 font-medium md:text-lg mb-3">
-                Select Campaign / Workflow
+                Add New Opportunity
               </p>
 
               <form onSubmit={handleSubmit} className="flex flex-wrap">
@@ -279,7 +279,7 @@ export default function Opportunity() {
                     name="leadValue"
                     value={formData.leadValue}
                     onChange={handleInputChange}
-                    className="w-full placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-2  font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+                    className="w-full placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-3 font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
                   />
                   {errors.leadValue && (
                     <span className="mb-8 text-xs text-red-500 ">
@@ -317,7 +317,7 @@ export default function Opportunity() {
                     name="source"
                     value={formData.source}
                     onChange={handleInputChange}
-                    className="w-full placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-2  font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+                    className="w-full placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2 py-3  font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
                   />
                   {errors.source && (
                     <span className="mb-8 text-xs text-red-500 ">
@@ -328,7 +328,7 @@ export default function Opportunity() {
 
                 <div className="w-full flex justify-end items-center gap-2 border-t mt-4 pt-4">
                   <button
-                    onClick={() => setIsModalOpen(false)}
+                    onClick={() => setIsModalOpenOpportunity(false)}
                     className="text-sm text-gray-600 font-medium flex justify-start items-center border-[1px] border-gray-300 py-1.5 px-5 rounded-md  "
                   >
                     Cancel
@@ -433,7 +433,7 @@ export default function Opportunity() {
                     name="leadValue"
                     value={formData.leadValue}
                     onChange={handleEditInputChange}
-                    className="w-full placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2  py-3 font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+                    className="w-full placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2  py-3.5 font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
                   />
                 </div>
 
@@ -461,7 +461,7 @@ export default function Opportunity() {
                     name="source"
                     value={formData.source}
                     onChange={handleEditInputChange}
-                    className="w-full placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2  py-3 font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+                    className="w-full placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2 mb-2  py-3.5 font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
                   />
                 </div>
                 <div className="flex justify-between items-center w-full border-t mt-4 pt-4">
@@ -514,7 +514,7 @@ export default function Opportunity() {
           ))}{" "}
         </div>
         <button
-          onClick={() => setIsModalOpen(true)}
+          onClick={() => setIsModalOpenOpportunity(true)}
           className="flex justify-start items-center bg-newBlue py-1 px-3 mb-2 rounded-md  "
         >
           <span className="text-[12px]   text-white font-semibold">Add</span>

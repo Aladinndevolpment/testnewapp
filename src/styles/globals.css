@@ -1679,17 +1679,17 @@ input::-webkit-inner-spin-button {
 /* //date Picker  */
 .react-datepicker-wrapper input 
 {
-  background: #ffffff !important;
-  padding: 8px 7px 8px 8px !important;
-  border: 2px solid #38A0DB !important;
-  border-radius: 5px;
+  background: transparent !important;
+  padding: 10.5px 7px 10.5px 8px !important;
+  border: 1px solid #e2e2e2 !important;
+  border-radius: 6px;
   width :100%
 } 
 
 
 .react-datepicker-wrapper input:focus
 {
-  border: 2px solid #38A0DB !important; 
+  border: 1px solid #e2e2e2 !important;
   outline: none !important;
 } 
 

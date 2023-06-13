@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BsQuestionCircleFill } from "react-icons/bs";
 import { MdOutlineClose } from "react-icons/md";
 
+import { MenuItem, Select } from "@mui/material";
 const days = [
   { div: "S", day: "Sunday" },
   { div: "M", day: "Monday" },
@@ -63,13 +64,31 @@ const UserAvailability = () => {
     });
     setErrors({});
   };
+
+  const toggleDaySelection = (dayIndex: any) => {
+    if (selectedDays.includes(dayIndex)) {
+      setSelectedDays(selectedDays.filter((index) => index !== dayIndex));
+    } else {
+      setSelectedDays([...selectedDays, dayIndex]);
+    }
+
+    setFormValues((prevValues: any) => ({
+      ...prevValues,
+      selectedDays: selectedDays,
+    }));
+  };
+
   return (
     <div className=" border rounded-md  mb-5  bg-white  shadow-md">
       {/* first section */}
-      <div className="text-[#47494b] text-lg font-semibold p-4 border-b flex items-center justify-between">
-        <h1>User Availability</h1>
+
+      <div className="  p-4 border-b flex items-center justify-between">
+        <p className="text-[#47494b] text-base font-semibold">
+          User Availability
+        </p>
       </div>
-      <form action="" className="py-5" onSubmit={handleSubmit}>
+
+      <form action="" className="pb-3" onSubmit={handleSubmit}>
         {/* Meeting Location */}
         <div className="py-2 px-4 ">
           <label
@@ -78,33 +97,35 @@ const UserAvailability = () => {
           >
             Meeting Location
           </label>
-          <select
+          <Select
             name="meetingLocation"
             value={formValues.meetingLocation}
             onChange={handleChange}
-            className="border-2 rounded-md w-full p-2 placeholder:text-sm font-semibold"
+            className="rounded-md mt-2 mb-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark  text-space focus:outline-none focus:border-gray-300 text-black"
           >
-            <option value="">Select</option>
-            <option value="L1">Location 1</option>
-            <option value="L2">Location 2</option>
-          </select>
+            <MenuItem value="">Select</MenuItem>
+            <MenuItem value="L1">Location 1</MenuItem>
+            <MenuItem value="L2">Location 2</MenuItem>
+          </Select>
           {errors.meetingLocation && (
-            <div className=" error text-red-500 ">{errors.meetingLocation}</div>
+            <div className="mb-3 text-red-500 text-xs">
+              {errors.meetingLocation}
+            </div>
           )}
         </div>
 
         {formValues.meetingLocation ? (
-          <div className="py-2 px-4 ">
+          <div className="px-4 ">
             <input
               type="text"
               name="location"
               value={formValues.location}
               onChange={handleChange}
               placeholder="Meeting Location"
-              className="border-2 rounded-md w-full p-2 placeholder:text-sm font-semibold"
+              className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-0.5   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300"
             />
             {errors.location && (
-              <div className=" error text-red-500 ">{errors.location}</div>
+              <div className="mb-3 text-red-500 text-xs">{errors.location}</div>
             )}
           </div>
         ) : (
@@ -119,18 +140,18 @@ const UserAvailability = () => {
           >
             Time Zone
           </label>
-          <select
+          <Select
             name="timeZone"
             value={formValues.timeZone}
             onChange={handleChange}
-            className="border-2 rounded-md w-full p-2 placeholder:text-sm font-semibold"
+            className="rounded-md mt-2 mb-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark  text-space focus:outline-none focus:border-gray-300 text-black"
           >
-            <option value="">Select</option>
-            <option value="TZ">TZ 1</option>
-            <option value="TZ">TZ 2</option>
-          </select>
+            <MenuItem value="">Select</MenuItem>
+            <MenuItem value="TZ">TZ 1</MenuItem>
+            <MenuItem value="TZ">TZ 2</MenuItem>
+          </Select>
           {errors.timeZone && (
-            <div className=" error text-red-500 ">{errors.timeZone}</div>
+            <div className="mb-3 text-red-500 text-xs">{errors.timeZone}</div>
           )}
         </div>
 
@@ -139,78 +160,70 @@ const UserAvailability = () => {
           Available Hours
         </h1>
         <div className=" px-4 flex gap-3">
-          {days.map((item: any, index: number) => (
+          {days.map((item, index) => (
             <div
               key={index}
-              className={`w-10 h-10 hover: cursor-pointer flex items-center justify-center font-semibold rounded ${
-                selectedDays.includes(index) ? "bg-blue-400" : "bg-gray-300"
+              className={`w-10 h-10 flex items-center justify-center font-semibold rounded ${
+                selectedDays.includes(index)
+                  ? "bg-newBlue text-white"
+                  : "bg-gray-200"
               }`}
-              onClick={() => {
-                if (selectedDays.includes(index)) {
-                  const newData = selectedDays.filter((item) => item != index);
-                  setSelectedDays(newData);
-                  return;
-                } else {
-                  setSelectedDays(
-                    Array.from(new Set([...selectedDays, index]))
-                  );
-                  setCurrentDay(index);
-                }
-              }}
+              onClick={() => toggleDaySelection(index)}
+              style={{ cursor: "pointer" }}
             >
               {item.div}
             </div>
           ))}
         </div>
 
-        <div className="flex flex-wrap ">
-          {days?.map((item: any, index: any) => (
-            <div
-              key={index}
-              className={` ${
-                selectedDays.includes(index) ? "block" : "hidden"
-              } px-4 pt-5 `}
-            >
-              <div className="flex p-3 w-72 gap-2 border items-center ">
-                <div className="w-1/2">
-                  <label
-                    htmlFor=""
-                    className=" text-[#47494b] text-xs  font-semibold flex justify-between items-center"
-                  >
-                    {item?.day}
-                    <span className="text-blue-400">+ hours</span>
-                  </label>
-                  <input
-                    type="time"
-                    onChange={handleChange}
-                    name="fromTime"
-                    value={formValues.fromTime}
-                    className="border-2  rounded w-full bg-gray-100 "
-                  />
+        <div className=" px-4 pt-5 w-full">
+          {selectedDays.length > 0 && (
+            <div className="flex justify-start items-center flex-wrap">
+              {selectedDays.map((dayIndex, index) => (
+                <div
+                  className="flex py-1 pl-1 pr-4 border-b border-r w-full gap-2"
+                  key={index}
+                >
+                  <div className="w-1/2">
+                    <label
+                      htmlFor=""
+                      className="  text-[#47494b] text-xs py-2 font-semibold flex justify-between"
+                    >
+                      {days[dayIndex].day}
+                      <span className="text-blue-400">+ hours</span>
+                    </label>
+                    <input
+                      type="time"
+                      onChange={handleChange}
+                      name="fromTime"
+                      value={formValues.fromTime}
+                      className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-2 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+                    />
+                  </div>
+                  <div className="w-1/2">
+                    <label
+                      htmlFor=""
+                      className="  text-blue-400 text-xs py-2 font-semibold flex justify-end"
+                    >
+                      Apply All
+                    </label>
+                    <input
+                      type="time"
+                      onChange={handleChange}
+                      name="toTime"
+                      value={formValues.toTime}
+                      className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-2 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+                    />
+                  </div>
                 </div>
-                <div className="w-1/2">
-                  <label
-                    htmlFor=""
-                    className=" flex text-blue-400 text-xs  font-semibold  justify-end"
-                  >
-                    Apply All
-                  </label>
-                  <input
-                    type="time"
-                    onChange={handleChange}
-                    name="toTime"
-                    value={formValues.toTime}
-                    className=" rounded w-full border-2  bg-gray-100"
-                  />
-                </div>
-              </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
 
         <button
           onSubmit={handleSubmit}
-          className="border bg-[#25992a]  text-white rounded-md text-sm px-8 py-2 mt-5 mx-4"
+          className="border bg-[#25992a]  text-white rounded-md text-sm px-8 py-2 mx-4"
         >
           Submit
         </button>

@@ -1,10 +1,17 @@
 import Image from "next/image";
 import { MouseEventHandler, useEffect, useState } from "react";
 import { FiFilter } from "react-icons/fi";
-import { BsArrowDownUp } from "react-icons/bs";
+import {
+  BsArrowDownUp,
+  BsArrowUp,
+  BsSortAlphaDown,
+  BsSortAlphaDownAlt,
+} from "react-icons/bs";
 import { BiMessageDetail } from "react-icons/bi";
 import { GoSearch } from "react-icons/go";
 import { RxCross1 } from "react-icons/rx";
+import moment from "moment";
+import { FaSortAlphaDown, FaSortAlphaUpAlt } from "react-icons/fa";
 
 export default function ChatSidebar({
   chatData,
@@ -15,293 +22,92 @@ export default function ChatSidebar({
   onSelect: MouseEventHandler;
   selectedChat: any;
 }) {
-  // const chatData = [
-  //   {
-  //     name: "Angelina Martin",
-  //     image: "",
-  //     message: "Please let me know if you need anything else.",
-  //     time: "2m ago",
-  //     messageCount: "3",
-  //     designation: "Senior Product Designer",
-  //     email: "angelinamartin@gmail.com",
-  //     phone: "+919929607416",
-  //     locationId: "1",
-  //     date: "09-06-23",
-  //   },
-  //   {
-  //     name: "John Doe",
-  //     image: "",
-  //     message: "Hey, how's it going?",
-  //     time: "1m ago",
-  //     messageCount: "7",
-  //     designation: "Software Engineer",
-  //     email: "johndoe@gmail.com",
-  //     phone: "+919929607416",
-  //     date: "4-4-23",
-  //     locationId: "2",
-  //   },
-  //   {
-  //     name: "Emily Brown",
-  //     image: "",
-  //     message: "Can you send me that file you mentioned?",
-  //     time: "2w ago",
-  //     messageCount: "4",
-  //     designation: "Marketing Manager",
-  //     email: "emily@gmail.com",
-  //     phone: "+919929607416",
-  //     date: "2-1-22",
-  //     locationId: "3",
-  //   },
-  //   {
-  //     name: "Jane Smith",
-  //     image: "",
-  //     message: "Thanks for getting back to me!",
-  //     time: "2d ago",
-  //     messageCount: "1",
-  //     designation: "Customer Support Representative",
-  //     email: "janesmith@gmail.com",
-  //     phone: "+919929607416",
-  //     date: "22-5-24",
-  //     locationId: "4",
-  //   },
-  //   {
-  //     name: "Mike Johnson",
-  //     image: "",
-  //     message: "Have you had a chance to review the latest design?",
-  //     time: "1d ago",
-  //     messageCount: "2",
-  //     designation: "Product Manager",
-  //     email: "mikejohnson@gmail.com",
-  //     phone: "+919929607416",
-  //     date: "10-7-19",
-  //     locationId: "5",
-  //   },
-  //   {
-  //     name: "Olivia Taylor",
-  //     image: "",
-  //     message: "I'm running late for the meeting, can we reschedule?",
-  //     time: "1d ago",
-  //     messageCount: "1",
-  //     designation: "Sales Representative",
-  //     email: "Olivia@gmail.com",
-  //     phone: "+919929607416",
-  //     date: "3-11-11",
-  //     locationId: "6",
-  //   },
-  //   {
-  //     name: "Angelina Martin",
-  //     image: "",
-  //     message: "Please let me know if you need anything else.",
-  //     time: "2m ago",
-  //     messageCount: "3",
-  //     designation: "Senior Product Designer",
-  //     email: "angelinamartin@gmail.com",
-  //     phone: "+919929607416",
-  //     locationId: "7",
-  //     date: "7-7-23",
-  //   },
-  //   {
-  //     name: "John Doe",
-  //     image: "",
-  //     message: "Hey, how's it going?",
-  //     time: "1m ago",
-  //     messageCount: "7",
-  //     designation: "Software Engineer",
-  //     email: "johndoe@gmail.com",
-  //     phone: "+919929607416",
-  //     date: "8-8-23",
-  //     locationId: "8",
-  //   },
-  //   {
-  //     name: "Emily Brown",
-  //     image: "",
-  //     message: "Can you send me that file you mentioned?",
-  //     time: "2w ago",
-  //     messageCount: "4",
-  //     designation: "Marketing Manager",
-  //     email: "emily@gmail.com",
-  //     phone: "+919929607416",
-  //     date: "12-12-22",
-  //     locationId: "9",
-  //   },
-  //   {
-  //     name: "Jane Smith",
-  //     image: "",
-  //     message: "Thanks for getting back to me!",
-  //     time: "2d ago",
-  //     messageCount: "1",
-  //     designation: "Customer Support Representative",
-  //     email: "janesmith@gmail.com",
-  //     phone: "+919929607416",
-  //     date: "22-2-24",
-  //     locationId: "10",
-  //   },
-  //   {
-  //     name: "Mike Johnson",
-  //     image: "",
-  //     message: "Have you had a chance to review the latest design?",
-  //     time: "1d ago",
-  //     messageCount: "2",
-  //     designation: "Product Manager",
-  //     email: "mikejohnson@gmail.com",
-  //     phone: "+919929607416",
-  //     date: "15-4-19",
-  //     locationId: "11",
-  //   },
-  //   {
-  //     name: "Olivia Taylor",
-  //     image: "",
-  //     message: "I'm running late for the meeting, can we reschedule?",
-  //     time: "1d ago",
-  //     messageCount: "1",
-  //     designation: "Sales Representative",
-  //     email: "Olivia@gmail.com",
-  //     phone: "+919929607416",
-  //     date: "4-4-89",
-  //     locationId: "12",
-  //   },
-  //   {
-  //     name: "Angelina Martin",
-  //     image: "",
-  //     message: "Please let me know if you need anything else.",
-  //     time: "2m ago",
-  //     messageCount: "3",
-  //     designation: "Senior Product Designer",
-  //     email: "angelinamartin@gmail.com",
-  //     phone: "+919929607416",
-  //     date: "7-4-23",
-  //     locationId: "13",
-  //   },
-  //   {
-  //     name: "John Doe",
-  //     image: "",
-  //     message: "Hey, how's it going?",
-  //     time: "1m ago",
-  //     messageCount: "7",
-  //     designation: "Software Engineer",
-  //     email: "johndoe@gmail.com",
-  //     phone: "+919929607416",
-  //     date: "9-9-23",
-  //     locationId: "14",
-  //   },
-  //   {
-  //     name: "Emily Brown",
-  //     image: "",
-  //     message: "Can you send me that file you mentioned?",
-  //     time: "2w ago",
-  //     messageCount: "4",
-  //     designation: "Marketing Manager",
-  //     email: "emily@gmail.com",
-  //     phone: "+919929607416",
-  //     date: "11-11-22",
-  //     locationId: "15",
-  //   },
-  //   {
-  //     name: "Jane Smith",
-  //     image: "",
-  //     message: "Thanks for getting back to me!",
-  //     time: "2d ago",
-  //     messageCount: "1",
-  //     designation: "Customer Support Representative",
-  //     email: "janesmith@gmail.com",
-  //     phone: "+919929607416",
-  //     date: "30-1-24",
-  //     locationId: "16",
-  //   },
-  //   {
-  //     name: "Mike Johnson",
-  //     image: "",
-  //     message: "Have you had a chance to review the latest design?",
-  //     time: "1d ago",
-  //     messageCount: "2",
-  //     designation: "Product Manager",
-  //     email: "mikejohnson@gmail.com",
-  //     phone: "+919929607416",
-  //     date: "29-2-19",
-  //     locationId: "17",
-  //   },
-  //   {
-  //     name: "Olivia Taylor",
-  //     image: "",
-  //     message: "I'm running late for the meeting, can we reschedule?",
-  //     time: "1d ago",
-  //     messageCount: "1",
-  //     designation: "Sales Representative",
-  //     email: "Olivia@gmail.com",
-  //     phone: "+919929607416",
-  //     date: "27-3-11",
-  //     locationId: "18",
-  //   },
-  // ];
-
   const locations = [
     {
-      id: 1,
+      id: "C2QujeCh8ZnC7al2InWR1",
       title: "New York City",
     },
     {
-      id: 2,
+      id: "C2QujeCh8ZnC7al2InWR2",
       title: "Los Angeles",
     },
     {
-      id: 3,
+      id: "C2QujeCh8ZnC7al2InWR3",
       title: "San Francisco",
     },
     {
-      id: 4,
+      id: "C2QujeCh8ZnC7al2InWR4",
       title: "Chicago",
     },
     {
-      id: 5,
+      id: "C2QujeCh8ZnC7al2InWR5",
       title: "Las Vegas",
     },
     {
-      id: 6,
+      id: "C2QujeCh8ZnC7al2InWR6",
       title: "Grand Canyon",
     },
     {
-      id: 7,
+      id: "C2QujeCh8ZnC7al2InWR7",
       title: "Yellowstone National Park",
     },
     {
-      id: 8,
+      id: "C2QujeCh8ZnC7al2InWR8",
       title: "Miami",
     },
     {
-      id: 9,
+      id: "C2QujeCh8ZnC7al2InWR9",
       title: "New Orleans",
     },
     {
-      id: 10,
+      id: "C2QujeCh8ZnC7al2InWR10",
       title: "Seattle",
     },
 
     // Add more options as needed
   ];
-
-  const [searchTerm, setSearchTerm] = useState("");
-  const [sortOrder, setSortOrder] = useState("asc");
   const [openSearchBox, setOpenSearchBox] = useState(false);
   const [selectedLocations, setSelectedLocations] = useState<number[]>([]);
+  const [searchEmail, setSearchEmail] = useState("");
+  const [sortAscending, setSortAscending] = useState(true);
+  const [sortOrder, setSortOrder] = useState("asc");
 
-  // const filteredChatDataItems = chatData.filter((item: any) =>
-  //   item.name.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
+  // Function to handle search input change
+  const handleSearchInputChange = (e: any) => {
+    setSearchEmail(e.target.value);
+  };
 
-  const filteredChatDataItems = chatData.filter(
+  // Function to handle sort button click
+  const handleSortButtonClick = () => {
+    setSortAscending(!sortAscending);
+  };
+
+  // Filter conversations by email
+  const filteredConversations = chatData.filter(
     (item: any) =>
-      item.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      item.email &&
+      item.email.toLowerCase().includes(searchEmail.toLowerCase()) &&
       (selectedLocations.length === 0 ||
         selectedLocations.includes(item.locationId))
   );
 
-  const sortedChatDataItems = filteredChatDataItems.sort((a: any, b: any) => {
-    if (sortOrder === "asc") {
-      return a.date.localeCompare(b.date);
-    } else {
-      return b.date.localeCompare(a.date);
+  // Create a copy of the filtered conversations array before sorting\
+
+  const sortedConversations = [...filteredConversations].sort(
+    (a: any, b: any) => {
+      const emailA = a.email.toLowerCase();
+      const emailB = b.email.toLowerCase();
+      if (sortOrder === "asc") {
+        return emailA.localeCompare(emailB);
+      } else {
+        return emailB.localeCompare(emailA);
+      }
     }
-  });
+  );
+
+  const toggleSortOrder = () => {
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+  };
 
   const handleLocationCheckboxChange = (
     locationId: number,
@@ -314,21 +120,9 @@ export default function ChatSidebar({
     }
   };
 
-  const handleSearchChange = (event: any) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const toggleSortOrder = () => {
-    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-  };
-
-  let unreadCount = 0;
-
-  for (const item of chatData) {
-    if (item.status === "unread") {
-      unreadCount++;
-    }
-  }
+  // Display all conversations by default
+  const conversationsToDisplay =
+    searchEmail === "" ? chatData : filteredConversations;
 
   return (
     <>
@@ -377,11 +171,15 @@ export default function ChatSidebar({
             </div>
           </div>
           <button onClick={toggleSortOrder} className="">
-            <BsArrowDownUp className="text-lg" />
+            {sortAscending ? (
+              <BsSortAlphaDownAlt className="text-lg" />
+            ) : (
+              <BsSortAlphaDown className="text-lg" />
+            )}
           </button>
           {/* <BiMessageDetail className="text-lg" /> */}
           <div className="text-sm bg-[#e3e3e5] px-2 py-1 rounded-2xl font-medium">
-            {chatData?.length} ({unreadCount})
+            {sortedConversations?.length} (05)
           </div>
         </div>
       </div>
@@ -389,9 +187,9 @@ export default function ChatSidebar({
         <div className="px-2 relative">
           <input
             type="text"
-            value={searchTerm}
-            onChange={handleSearchChange}
-            placeholder="Search by contact name..."
+            placeholder="Search by email"
+            value={searchEmail}
+            onChange={handleSearchInputChange}
             className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3  py-3.5  rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
           />
           <button
@@ -404,7 +202,7 @@ export default function ChatSidebar({
       )}
 
       <div className="lg:h-[100vh] pb-40 overflow-y-scroll border-b  w-full pt-1 scrollbar-hide">
-        {sortedChatDataItems.map((item: any, index: number) => (
+        {sortedConversations.map((item: any, index: number) => (
           <div key={index} className="px-2">
             <div
               className={`py-2 flex w-full border-b border-gray-200 rounded-xl ${
@@ -423,25 +221,23 @@ export default function ChatSidebar({
               </div>
               <div className="w-full">
                 <div className="flex justify-between items-center w-full">
-                  <h5 className="font-semibold line-clamp-1">{item.name}</h5>
-                  <time className="line-clamp-1 text-[11px] font-semibold text-gray-600 text-right">
-                    {item.time}
-                  </time>
-                </div>
-
-                <div className="flex justify-between items-center w-full">
-                  <h6 className="line-clamp-1 text-[12px] mb-1 font-medium text-gray-600">
-                    {item.designation}
-                  </h6>
-
-                  {item === selectedChat || item?.status === "unread" ? (
+                  <h5 className="font-semibold  text-sm line-clamp-1">
+                    {item.email}
+                  </h5>
+                  {item === selectedChat ? (
                     <div className="bg-newBlue h-2 w-2 mb-1 rounded-full"></div>
                   ) : null}
                 </div>
 
+                <div className="flex justify-between items-center w-full">
+                  <p className="line-clamp-1 text-[12px] mb-1 font-medium text-gray-600">
+                    {item?.source}
+                  </p>
+                </div>
+
                 <div className="flex justify-between items-center w-full -mt-1">
                   <p className="text-[11px] line-clamp-1 font-medium w[100%]">
-                    {item.message}
+                    {moment(item?.date).fromNow()}
                   </p>
                   {/* <div className="w-5 h-5 bg-green-500 text-xs flex items-center justify-center rounded-full text-white ml-2">
                   <span>{item.messageCount}</span>

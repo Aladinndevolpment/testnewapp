@@ -16,10 +16,10 @@ function ModalDerived({ visibility, onClose, children }: IFlyoutProps) {
         visibility
           ? "bottom-0 opacity-100 z-50"
           : "-bottom-[20px] opacity-0 -z-10"
-      }  left-0 bg-white backdrop-blur-[15px] bg-opacity-40 h-screen w-full overflow-x-hidden flex items-center justify-center scrollbar-hide `}
+      }  left-0 bg-black backdrop-blur-[5px] bg-opacity-20 h-screen w-full overflow-x-hidden flex items-center justify-center scrollbar-hide `}
     >
-      <div className={`relative z-50 bg-white  shadow-md  `}>
-        <div className=" scrollbar-hide overflow-y-scroll h-96 md:h-auto md:max-h-[40rem] ">
+      <div className={`relative z-50 bg-white  shadow-md  rounded-lg `}>
+        <div className=" scrollbar-hide overflow-y-hidden h-96 md:h-auto md:max-h-[40rem] ">
           {children}
         </div>
       </div>

@@ -62,12 +62,12 @@ const ChangePassword = () => {
         <h1>Change Password</h1>
       </div>
 
-      <form action="" onSubmit={handleSubmit} className="py-5">
+      <form action="" onSubmit={handleSubmit} className="py-3">
         {/* Existing Password */}
-        <div className="py-2 px-4 ">
+        <div className="pb-2 px-4 ">
           <label
             htmlFor=""
-            className="block text-[#47494b] text-sm py-1 font-semibold"
+            className="block text-[#47494b] text-sm pt-1 font-semibold"
           >
             Existing Password
           </label>
@@ -77,18 +77,20 @@ const ChangePassword = () => {
             value={formValues.currentPassword}
             onChange={handleChange}
             placeholder="Current Password"
-            className="border-2 rounded-md w-full p-2 placeholder:text-sm font-semibold"
+            className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2  py-3.5  font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300"
           />
           {errors.currentPassword && (
-            <div className=" error text-red-500 ">{errors.currentPassword}</div>
+            <div className=" mb-3 text-red-500 text-xs  ">
+              {errors.currentPassword}
+            </div>
           )}
         </div>
 
         {/* New Password */}
-        <div className="py-2 px-4 ">
+        <div className="px-4 ">
           <label
             htmlFor=""
-            className="block text-[#47494b] text-sm py-1 font-semibold"
+            className="block text-[#47494b] text-sm pt-1 font-semibold"
           >
             Password
           </label>
@@ -98,18 +100,20 @@ const ChangePassword = () => {
             value={formValues.newPassword}
             onChange={handleChange}
             placeholder="New Password"
-            className="border-2 rounded-md w-full p-2 placeholder:text-sm font-semibold"
+            className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2  py-3.5  font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300"
           />
           {errors.newPassword && (
-            <div className=" error text-red-500 ">{errors.newPassword}</div>
+            <div className=" mb-3 text-red-500 text-xs  ">
+              {errors.newPassword}
+            </div>
           )}
         </div>
 
         {/* Confirm Password */}
-        <div className="py-2 px-4 ">
+        <div className="px-4 ">
           <label
             htmlFor=""
-            className="block text-[#47494b] text-sm py-1 font-semibold"
+            className="block text-[#47494b] text-sm pt-1 font-semibold"
           >
             Confirm Password
           </label>
@@ -119,10 +123,12 @@ const ChangePassword = () => {
             value={formValues.confirmPassword}
             onChange={handleChange}
             placeholder="Confirm Password"
-            className="border-2 rounded-md w-full p-2 placeholder:text-sm font-semibold"
+            className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2  py-3.5  font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300"
           />
           {errors.confirmPassword && (
-            <div className=" error text-red-500 ">{errors.confirmPassword}</div>
+            <div className=" mb-3 text-red-500 text-xs  ">
+              {errors.confirmPassword}
+            </div>
           )}
         </div>
 

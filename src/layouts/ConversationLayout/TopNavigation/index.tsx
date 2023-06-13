@@ -14,6 +14,7 @@ import React, { useState } from "react";
 import { BiLogInCircle, BiNotepad } from "react-icons/bi";
 import { BsCupHot } from "react-icons/bs";
 import { IoCallOutline } from "react-icons/io5";
+
 export default function TopNavigation() {
   const router = useRouter();
   const [buttonActive, setButtonActive] = useState(true);
@@ -83,7 +84,7 @@ export default function TopNavigation() {
                           Conversations
                         </li>
                       </a>
-                      <a href="">
+                      <a href="/conversations/manual-call">
                         <li
                           className={`${
                             router.asPath == "/conversations/manual-calls"
@@ -94,7 +95,7 @@ export default function TopNavigation() {
                           Manual Calls
                         </li>
                       </a>
-                      <a href="">
+                      <a href="/conversations/24hr-reminder">
                         <li
                           className={`${
                             router.asPath == "/conversations/24hr-reminder"
@@ -105,7 +106,7 @@ export default function TopNavigation() {
                           24hr reminder
                         </li>
                       </a>
-                      <a href="">
+                      <a href="/conversations/action-required">
                         <li
                           className={`${
                             router.asPath == "/conversations/action-required"

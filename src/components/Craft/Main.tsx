@@ -8,6 +8,8 @@ import { CraftContext } from "@/pages/builder/website/craft";
 import { HeaderLayout } from "./widgets/prebuilt/Header";
 import { BuilderImage } from "./widgets/Image";
 import App from "./widgets/App";
+import { OrderOneStep } from "./widgets/prebuilt/OrderOneStep";
+import { OrderTwoStep } from "./widgets/prebuilt/OrderTwoStep";
 
 export default function Main() {
   const { device } = useContext(CraftContext);
@@ -19,12 +21,13 @@ export default function Main() {
           <Toolbox />
         </div>
       </div>
-      <div className="w-[56%] h-full overflow-y-scroll scrollbar-hide pb-40 px-16">
+      <div className="w-[56%] h-full overflow-y-scroll scrollbar-hide pb-40 px-5">
         <Frame>
           <Element is={Container} canvas>
             <HeaderLayout />
             <BuilderImage borderRadius={0} />
             <HeroLayout />
+            {/* <OrderOneStep /> */}
           </Element>
         </Frame>
       </div>

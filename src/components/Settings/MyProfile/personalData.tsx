@@ -4,6 +4,7 @@ import { GoPlus } from "react-icons/go";
 import { MdOutlineClose } from "react-icons/md";
 import { useDropzone } from "react-dropzone";
 import { BsQuestionCircleFill } from "react-icons/bs";
+import { MenuItem, Select } from "@mui/material";
 
 const PersonalData = () => {
   const [errors, setErrors] = useState<any>({});
@@ -89,58 +90,64 @@ const PersonalData = () => {
   return (
     <div className=" border rounded-md  mb-5  bg-white  shadow-md">
       {/* first section */}
-      <div className="text-[#47494b] text-lg font-semibold p-4 border-b flex items-center justify-between">
-        <h1>Personal Data</h1>
+      <div className="  p-4 border-b flex items-center justify-between">
+        <p className="text-[#47494b] text-base font-semibold">Personal Data</p>
       </div>
 
       {/* Add profile photo */}
-      <div className="  gap-4 flex  px-8 pt-6 ">
-        {formValues.image ? (
-          <div className="bg-gray-200 w-40 h-40 flex items-center justify-center relative">
-            <div {...getRootProps()}>
-              <input {...getInputProps()} />
-              <Image
-                fill={true}
-                src={
-                  formValues.image
-                    ? URL.createObjectURL(formValues.image)
-                    : require("@/../public/images/avatar/blackdog.jpg")
-                }
-                style={{ objectFit: "cover" }}
-                alt="image"
-              />
+      <div className=" flex gap-4 rounded-md w-full mb-4 pl-8 pr-2 pt-4">
+        <div className="w-[20%]">
+          {formValues.image ? (
+            <div className="bg-gray-200 w-32 h-32 flex items-center justify-center relative">
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                <Image
+                  fill={true}
+                  src={
+                    formValues.image
+                      ? URL.createObjectURL(formValues.image)
+                      : require("@/../public/images/avatar/blackdog.jpg")
+                  }
+                  style={{ objectFit: "cover" }}
+                  alt="image"
+                  className="rounded-md"
+                />
+              </div>
             </div>
-          </div>
-        ) : (
-          <div className="bg-gray-200 w-40 h-40  flex items-center justify-center">
-            <div {...getRootProps()}>
-              <input {...getInputProps()} />
-              <span>
-                <GoPlus />
-              </span>
+          ) : (
+            <div className="bg-gray-200 w-32 rounded-md  h-32 flex items-center justify-center">
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                <span>
+                  <GoPlus />
+                </span>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
 
-        <div>
-          <div className="p-5 text-xs text-gray-400 font-semibold">
-            <h1 className="text-[#47494b] text-lg font-semibold">
-              Personal Logo
-            </h1>
-            <p>The proposed size is 512px * 512px</p>
-            <p>Supported formats .jpeg, .gif, .png </p>
-            <p>Not bigger than 2.5MB</p>
+        <div className="w-[60%] pl-4">
+          <div className="px-5 pb-3 pt-4 text-xs text-gray-400 font-semibold">
+            <p className="text-[#47494b] text-[12px] font-semibold">
+              Business Logo
+            </p>
+            <p className="text-[#47494b] text-[11px] font-medium py-0.5">
+              The proposed size is 350px * 180px.
+            </p>
+            <p className="text-[#47494b] text-[11px] font-medium ">
+              Not bigger than 2.5MB
+            </p>
           </div>
           <div className="px-5  gap-2 flex text-sm">
             <div
               {...getRootProps()}
-              className="border-2 rounded-md px-4 pt-1 cursor-pointer border-blue-400 text-blue-400"
+              className="border-[1px] rounded-md px-4 pt-1 cursor-pointer border-gray-300 text-blue-400"
             >
-              Change
+              Upload
             </div>
             <div
               onClick={handleImageDelete}
-              className="border-2 rounded-md px-4 py-1 cursor-pointer"
+              className="border-[1px]  border-gray-300 rounded-md px-4 py-1 cursor-pointer"
             >
               Remove
             </div>
@@ -148,7 +155,7 @@ const PersonalData = () => {
         </div>
       </div>
       {errors.image && (
-        <div className="px-8  error text-red-500 ">{errors.image}</div>
+        <div className="mb-3 text-red-500 text-xs px-8 ">{errors.image}</div>
       )}
 
       <div className="px-8 ">
@@ -158,7 +165,7 @@ const PersonalData = () => {
             <div className="w-1/2">
               <label
                 htmlFor=""
-                className=" block text-[#47494b] text-sm py-1 font-semibold"
+                className="block text-[#47494b] text-sm pt-1 font-semibold"
               >
                 First Name
               </label>
@@ -168,17 +175,19 @@ const PersonalData = () => {
                 value={formValues.firstName}
                 onChange={handleChange}
                 placeholder="Enter First Name"
-                className="border-2 rounded-md w-full  p-2 placeholder:text-sm font-semibold"
+                className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-0.5   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300"
               />
               {errors.firstName && (
-                <div className=" error text-red-500 ">{errors.firstName}</div>
+                <div className="mb-3 text-red-500 text-xs  ">
+                  {errors.firstName}
+                </div>
               )}
             </div>
 
             <div className="w-1/2">
               <label
                 htmlFor=""
-                className="block text-[#47494b] text-sm py-1 font-semibold"
+                className="block text-[#47494b] text-sm pt-1 font-semibold"
               >
                 Last Name
               </label>
@@ -188,10 +197,12 @@ const PersonalData = () => {
                 value={formValues.lastName}
                 onChange={handleChange}
                 placeholder="Enter Last Name"
-                className="border-2 rounded-md w-full  p-2 placeholder:text-sm font-semibold"
+                className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-0.5   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300"
               />
               {errors.lastName && (
-                <div className="  error text-red-500 ">{errors.lastName}</div>
+                <div className=" mb-3 text-red-500 text-xs  ">
+                  {errors.lastName}
+                </div>
               )}
             </div>
           </div>
@@ -200,7 +211,7 @@ const PersonalData = () => {
           <div className="py-2  ">
             <label
               htmlFor=""
-              className="block text-[#47494b] text-sm py-1 font-semibold"
+              className="block text-[#47494b] text-sm pt-1 font-semibold"
             >
               Email
             </label>
@@ -210,19 +221,19 @@ const PersonalData = () => {
               value={formValues.email}
               onChange={handleChange}
               placeholder="Enter Email"
-              className="border-2 rounded-md w-full p-2 placeholder:text-sm font-semibold"
+              className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-0.5   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300"
             />
             {errors.email && (
-              <div className=" error text-red-500 ">{errors.email}</div>
+              <div className="mb-3 text-red-500 text-xs  ">{errors.email}</div>
             )}
           </div>
 
           {/* Phone and Extention */}
-          <div className="py-2 w-full flex gap-12 items-center">
-            <div className="w-8/12">
+          <div className="py-2 w-full flex gap-4 items-center">
+            <div className="lg:w-8/12">
               <label
                 htmlFor=""
-                className=" block text-[#47494b] text-sm py-1 font-semibold"
+                className="block text-[#47494b] text-sm pt-1 font-semibold"
               >
                 Phone
               </label>
@@ -232,17 +243,19 @@ const PersonalData = () => {
                 value={formValues.phone}
                 onChange={handleChange}
                 placeholder="Enter Phone Number"
-                className="border-2 rounded-md w-full  p-2 placeholder:text-sm font-semibold"
+                className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-0.5   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300"
               />
               {errors.phone && (
-                <div className=" error text-red-500 ">{errors.phone}</div>
+                <div className="mb-3 text-red-500 text-xs  ">
+                  {errors.phone}
+                </div>
               )}
             </div>
 
-            <div>
+            <div className="lg:w-4/12">
               <label
                 htmlFor=""
-                className="block text-[#47494b] text-sm py-1 font-semibold"
+                className="block text-[#47494b] text-sm pt-1 font-semibold"
               >
                 Extention
               </label>
@@ -252,10 +265,12 @@ const PersonalData = () => {
                 value={formValues.extention}
                 onChange={handleChange}
                 placeholder="Enter Extention"
-                className="border-2 rounded-md w-full  p-2 placeholder:text-sm font-semibold"
+                className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-0.5   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300"
               />
               {errors.extention && (
-                <div className=" error text-red-500 ">{errors.extention}</div>
+                <div className="mb-3 text-red-500 text-xs  ">
+                  {errors.extention}
+                </div>
               )}
             </div>
           </div>
@@ -264,28 +279,30 @@ const PersonalData = () => {
           <div className="py-2  ">
             <label
               htmlFor=""
-              className="flex text-[#47494b] text-sm py-1 font-semibold  gap-2 items-center"
+              className="  text-[#47494b] text-sm pt-1 font-semibold flex justify-start pb-0.5 items-center gap-2"
             >
               Platform Language <BsQuestionCircleFill className="text-xs " />
             </label>
-            <select
+            <Select
               name="language"
               value={formValues.language}
               onChange={handleChange}
-              className="border-2 rounded-md w-full p-2 placeholder:text-sm font-semibold"
+              className="rounded-md mt-2 mb-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark  text-space focus:outline-none focus:border-gray-300 text-black"
             >
-              <option value="">Select</option>
-              <option value="us">English (United States)</option>
-              <option value="uk">English (United KingDom)</option>
-            </select>
+              <MenuItem value="">Select</MenuItem>
+              <MenuItem value="us">English (United States)</MenuItem>
+              <MenuItem value="uk">English (United KingDom)</MenuItem>
+            </Select>
             {errors.language && (
-              <div className=" error text-red-500 ">{errors.language}</div>
+              <div className="mb-3 text-red-500 text-xs  ">
+                {errors.language}
+              </div>
             )}
           </div>
 
           <button
             onSubmit={handleSubmit}
-            className="border bg-[#25992a] my-4  text-white rounded-md text-sm px-3 py-2"
+            className="border bg-[#25992a] mb-4 mt-2  text-white rounded-md text-sm px-3 py-2"
           >
             Update Profile
           </button>

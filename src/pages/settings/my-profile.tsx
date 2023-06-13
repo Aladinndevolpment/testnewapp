@@ -12,11 +12,11 @@ export default function MyProfile() {
       </div>
       <div className="w-full lg:w-[75%]  bg-gray-50 h-[100vh] scrollbar-hide  overflow-y-scroll pb-20">
         <div className="flex flex-wrap px-4 py-4">
-          <div className="w-full lg:w-1/2 px-2">
+          <div className="w-full lg:w-[60%] px-2">
             <PersonalData />
             <EmailSignature />
           </div>
-          <div className="w-full lg:w-1/2  px-2">
+          <div className="w-full lg:w-[40%]  px-2">
             <ChangePassword />
             <UserAvailability />
           </div>

@@ -91,26 +91,39 @@ export default function EmailSignature() {
     <div>
       <div className=" border rounded-md  mb-5  bg-white  shadow-md">
         {/* first section */}
-        <div className="text-[#47494b] text-lg font-semibold p-4 border-b flex items-center justify-between">
-          <h1>Email Signature</h1>
+
+        <div className="  p-4 border-b flex items-center justify-between">
+          <p className="text-[#47494b] text-base font-semibold">
+            Email Signature
+          </p>
         </div>
-
         {/* checkboxes */}
-        <div className="p-4 ">
-          <div className="form-control">
-            <label className=" flex items-center gap-1 cursor-pointer">
-              <input type="checkbox" className="checkbox scale-75" />
-              <span className="label-text text-[#47494b] text-sm font-semibold">
-                Enable Signature On All Outgoing Messages
-              </span>
-            </label>
+        <div className="pt-3 px-4">
+          <div className="flex justify-start items-center mb-3 rounded-lg">
+            <input
+              type="checkbox"
+              className="checkbox"
+              onChange={handleChange}
+            />
 
-            <label className=" flex items-center gap-1 cursor-pointer">
-              <input type="checkbox" className="checkbox scale-75" />
-              <span className="label-text text-[#47494b] text-sm font-semibold">
-                Include This Signature Before Quoted Text In Replies
-              </span>
-            </label>
+            <p
+              className={` fontStrawFord text-gray-600 text-xs font-semibold  tracking-wide ml-2   `}
+            >
+              Enable Signature On All Outgoing Messages
+            </p>
+          </div>
+          <div className="flex justify-start items-center mb-1 rounded-lg">
+            <input
+              type="checkbox"
+              className="checkbox"
+              onChange={handleChange}
+            />
+
+            <p
+              className={` fontStrawFord text-gray-600 text-xs font-semibold  tracking-wide ml-2   `}
+            >
+              Include This Signature Before Quoted Text In Replies
+            </p>
           </div>
         </div>
         <form onSubmit={handleSubmit} className=" flex-wrap  p-4 ">
@@ -130,14 +143,16 @@ export default function EmailSignature() {
             />
           </div>
           {errors.message && (
-            <span className="mb-5 error text-red-500 ">{errors.message}</span>
+            <span className="mb-3 text-red-500 text-xs ">{errors.message}</span>
           )}
-          <button
-            onSubmit={handleSubmit}
-            className="border bg-[#25992a]  text-white rounded-md text-sm px-8 py-2 mt-5"
-          >
-            Submit
-          </button>
+          <div className="w-full flex justify-start items-center">
+            <button
+              onSubmit={handleSubmit}
+              className="border bg-[#25992a]  text-white rounded-md text-sm px-8 py-2 mt-2"
+            >
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     </div>

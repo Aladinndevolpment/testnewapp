@@ -7,7 +7,7 @@ import { MdOutlineCampaign } from "react-icons/md";
 import moment from "moment";
 import { RxCross1 } from "react-icons/rx";
 export default function PastCampaignWorkflow() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpenPast, setIsModalOpenPast] = useState(false);
   const [formData, setFormData] = useState<any>({
     campaign: "",
     dateTime: "",
@@ -48,21 +48,21 @@ export default function PastCampaignWorkflow() {
       //   dateTime: "",
       //   errors: {},
       // });
-      setIsModalOpen(false);
+      setIsModalOpenPast(false);
     }
   };
 
   return (
     <div>
       <div>
-        {isModalOpen && (
+        {isModalOpenPast && (
           <ConversationModalDerived
-            visibility={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
+            visibility={isModalOpenPast}
+            onClose={() => setIsModalOpenPast(false)}
           >
             <div className="bg-white px-5 rounded-lg py-5 pb-[40%] w-screen md:w-[65vh]">
               <p className="text-gray-800 font-medium md:text-lg mb-3">
-                Select Campaign / Workflow
+                Select Past Campaign / Workflow
               </p>
 
               <form onSubmit={handleSubmit}>
@@ -110,7 +110,7 @@ export default function PastCampaignWorkflow() {
 
                 <div className="w-full flex justify-end items-center gap-2 border-t mt-4 pt-4">
                   <button
-                    onClick={() => setIsModalOpen(false)}
+                    onClick={() => setIsModalOpenPast(false)}
                     className="text-sm text-gray-600 font-medium flex justify-start items-center border-[1px] border-gray-300 py-1.5 px-5 rounded-md  "
                   >
                     Cancel
@@ -130,7 +130,7 @@ export default function PastCampaignWorkflow() {
 
       <div className="flex flex-wrap items-center justify-between mt-1 px-2">
         <button
-          onClick={() => setIsModalOpen(true)}
+          onClick={() => setIsModalOpenPast(true)}
           className="flex justify-start items-center bg-newBlue py-2 px-3 rounded-md  "
         >
           <span className="text-[12px]   text-white font-semibold">Add</span>

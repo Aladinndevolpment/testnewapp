@@ -250,9 +250,212 @@ export const chatDataItems = [
 
 export default function Chat() {
   const [chatData, setChatData] = useState(chatDataItems);
-  const [conversations, setConversations] = useState([]);
-
-  const [chatToOpen, setChatToOpen] = useState<any>(chatData[0]);
+  const [conversations, setConversations] = useState([
+    {
+      id: "ocQHyuzHvysMo5N5VsXc",
+      locationId: "C2QujeCh8ZnC7al2InWR1",
+      email: "JohnDeo@gmail.com",
+      timezone: "Asia/Calcutta",
+      country: "DE",
+      source: "xyz form",
+      dateAdded: "2020-10-5T09:34:30.255Z",
+      customFields: [
+        {
+          id: "MgobCB14YMVKuE4Ka8p1",
+          value: "name",
+        },
+      ],
+      tags: ["nisi sint commodo amet", "consequat"],
+      businessId: "641c094001436dbc2081e642",
+      attributions: [
+        {
+          url: "Trigger Link",
+          campaign: "string",
+          utmSource: "string",
+          utmMedium: "string",
+          utmContent: "string",
+          referrer: "https: //www.google.com",
+          campaignId: "string",
+          fbclid: "string",
+          gclid:
+            "CjOKCQjwnNyUBhCZARISAI9AYIFtNnIcWcYGIOQINz_ZoFI5SSLRRugSoPZoiEu27IZBY£1-MAIWmEaAo2VEALW_WCB",
+          msclikid: "string",
+          dclid: "string",
+          fbc: "string",
+          fbp: "fb. 1.1674748390986.1171287961",
+          fbEventId: "Mozilla/5.0",
+          userAgent: "Mozilla/5.0",
+          ip: "58.111.106.198",
+          medium: "survey",
+          mediumId: "FglfHAn30PRwsZVyQlKp",
+        },
+      ],
+    },
+    {
+      id: "ocQHyuzHvysMo5N5VsXc",
+      locationId: "C2QujeCh8ZnC7al2InWR3",
+      email: "frhnDeo@gmail.com",
+      timezone: "Asia/Calcutta",
+      country: "DE",
+      source: "xyz form",
+      dateAdded: "2020-2-22T09:44:30.255Z",
+      customFields: [
+        {
+          id: "MgobCB14YMVKuE4Ka8p1",
+          value: "name",
+        },
+      ],
+      tags: ["nisi sint commodo amet", "consequat"],
+      businessId: "641c094001436dbc2081e642",
+      attributions: [
+        {
+          url: "Trigger Link",
+          campaign: "string",
+          utmSource: "string",
+          utmMedium: "string",
+          utmContent: "string",
+          referrer: "https: //www.google.com",
+          campaignId: "string",
+          fbclid: "string",
+          gclid:
+            "CjOKCQjwnNyUBhCZARISAI9AYIFtNnIcWcYGIOQINz_ZoFI5SSLRRugSoPZoiEu27IZBY£1-MAIWmEaAo2VEALW_WCB",
+          msclikid: "string",
+          dclid: "string",
+          fbc: "string",
+          fbp: "fb. 1.1674748390986.1171287961",
+          fbEventId: "Mozilla/5.0",
+          userAgent: "Mozilla/5.0",
+          ip: "58.111.106.198",
+          medium: "survey",
+          mediumId: "FglfHAn30PRwsZVyQlKp",
+        },
+      ],
+    },
+    {
+      id: "ocQHyuzHvysMo5N5VsXc",
+      locationId: "C2QujeCh8ZnC7al2InWR5",
+      email: "drgfdgnDeo@gmail.com",
+      timezone: "Asia/Calcutta",
+      country: "DE",
+      source: "xyz form",
+      dateAdded: "2020-5-13T09:09:30.255Z",
+      customFields: [
+        {
+          id: "MgobCB14YMVKuE4Ka8p1",
+          value: "name",
+        },
+      ],
+      tags: ["nisi sint commodo amet", "consequat"],
+      businessId: "641c094001436dbc2081e642",
+      attributions: [
+        {
+          url: "Trigger Link",
+          campaign: "string",
+          utmSource: "string",
+          utmMedium: "string",
+          utmContent: "string",
+          referrer: "https: //www.google.com",
+          campaignId: "string",
+          fbclid: "string",
+          gclid:
+            "CjOKCQjwnNyUBhCZARISAI9AYIFtNnIcWcYGIOQINz_ZoFI5SSLRRugSoPZoiEu27IZBY£1-MAIWmEaAo2VEALW_WCB",
+          msclikid: "string",
+          dclid: "string",
+          fbc: "string",
+          fbp: "fb. 1.1674748390986.1171287961",
+          fbEventId: "Mozilla/5.0",
+          userAgent: "Mozilla/5.0",
+          ip: "58.111.106.198",
+          medium: "survey",
+          mediumId: "FglfHAn30PRwsZVyQlKp",
+        },
+      ],
+    },
+    {
+      id: "ocQHyuzHvysMo5N5VsXc",
+      locationId: "C2QujeCh8ZnC7al2InWR7",
+      email: "4435nDeo@gmail.com",
+      timezone: "Asia/Calcutta",
+      country: "DE",
+      source: "xyz form",
+      dateAdded: "2020-1-7T09:20:30.255Z",
+      customFields: [
+        {
+          id: "MgobCB14YMVKuE4Ka8p1",
+          value: "name",
+        },
+      ],
+      tags: ["nisi sint commodo amet", "consequat"],
+      businessId: "641c094001436dbc2081e642",
+      attributions: [
+        {
+          url: "Trigger Link",
+          campaign: "string",
+          utmSource: "string",
+          utmMedium: "string",
+          utmContent: "string",
+          referrer: "https: //www.google.com",
+          campaignId: "string",
+          fbclid: "string",
+          gclid:
+            "CjOKCQjwnNyUBhCZARISAI9AYIFtNnIcWcYGIOQINz_ZoFI5SSLRRugSoPZoiEu27IZBY£1-MAIWmEaAo2VEALW_WCB",
+          msclikid: "string",
+          dclid: "string",
+          fbc: "string",
+          fbp: "fb. 1.1674748390986.1171287961",
+          fbEventId: "Mozilla/5.0",
+          userAgent: "Mozilla/5.0",
+          ip: "58.111.106.198",
+          medium: "survey",
+          mediumId: "FglfHAn30PRwsZVyQlKp",
+        },
+      ],
+    },
+    {
+      id: "ocQHyuzHvysMo5N5VsXc",
+      locationId: "C2QujeCh8ZnC7al2InWR9",
+      email: "rsdfrgnDeo@gmail.com",
+      timezone: "Asia/Calcutta",
+      country: "DE",
+      source: "xyz form",
+      dateAdded: "2020-20-18T09:9:30.255Z",
+      customFields: [
+        {
+          id: "MgobCB14YMVKuE4Ka8p1",
+          value: "name",
+        },
+      ],
+      tags: ["nisi sint commodo amet", "consequat"],
+      businessId: "641c094001436dbc2081e642",
+      attributions: [
+        {
+          url: "Trigger Link",
+          campaign: "string",
+          utmSource: "string",
+          utmMedium: "string",
+          utmContent: "string",
+          referrer: "https: //www.google.com",
+          campaignId: "string",
+          fbclid: "string",
+          gclid:
+            "CjOKCQjwnNyUBhCZARISAI9AYIFtNnIcWcYGIOQINz_ZoFI5SSLRRugSoPZoiEu27IZBY£1-MAIWmEaAo2VEALW_WCB",
+          msclikid: "string",
+          dclid: "string",
+          fbc: "string",
+          fbp: "fb. 1.1674748390986.1171287961",
+          fbEventId: "Mozilla/5.0",
+          userAgent: "Mozilla/5.0",
+          ip: "58.111.106.198",
+          medium: "survey",
+          mediumId: "FglfHAn30PRwsZVyQlKp",
+        },
+      ],
+    },
+  ]);
+  const [data, setData] = useState<any>(null);
+  const [chatToOpen, setChatToOpen] = useState<any>(
+    data ? data[0] : chatData[0]
+  );
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [messageText, setMessageText] = useState("");
@@ -275,15 +478,16 @@ export default function Chat() {
     );
   }, [searchString, chatData]);
 
-  const [data, setData] = useState<any>(null);
   useEffect(() => {
     const fetchCalendar = async () => {
       try {
         const response = await axios.get(
-          `${contactBaseUrl}ve9EPM428h8vShlRW1KT`
+          `${contactBaseUrl}?locationId=ve9EPM428h8vShlRW1KT`
         );
-        setConversations(response.data.contact);
-        console.log(response.data);
+        setConversations((prevData: any) => [
+          ...conversations,
+          response.data.contacts,
+        ]);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -303,7 +507,7 @@ export default function Chat() {
             } w-full lg:w-[22%] border-r-[1px] border-b-gray-300`}
           >
             <ChatSidebar
-              chatData={chatData}
+              chatData={conversations}
               onSelect={(chat) => {
                 setChatToOpen(chat);
                 setIsChatOpen(true);

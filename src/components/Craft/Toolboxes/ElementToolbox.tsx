@@ -155,6 +155,19 @@ const baseTools = [
         ),
       },
       {
+        name: "Label",
+        tool: (
+          <ElementToolsLayout
+            toolName="Label"
+            tool={
+              <Text text="Enter Label..." alignment={"left"} tagName="label" />
+            }
+            image="@/../public/craft/hero.png"
+            icon={<TbTextSize className="h-5 w-5 text-gray-500" />}
+          />
+        ),
+      },
+      {
         name: "List",
         tool: (
           <ElementToolsLayout
@@ -317,6 +330,17 @@ const baseTools = [
         tool: (
           <ElementToolsLayout
             toolName="One Step Order"
+            tool={<OrderOneStep />}
+            image="@/../public/craft/hero.png"
+            icon={<UsersIcon className="h-5 w-5 text-gray-500" />}
+          />
+        ),
+      },
+      {
+        name: "Two Step Order",
+        tool: (
+          <ElementToolsLayout
+            toolName="Two Step Order"
             tool={<OrderOneStep />}
             image="@/../public/craft/hero.png"
             icon={<UsersIcon className="h-5 w-5 text-gray-500" />}

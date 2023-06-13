@@ -50,7 +50,11 @@ import {
   OrderConfirmation,
   OrderText,
 } from "@/components/Craft/widgets/prebuilt/OrderConfirmation";
-import { OrderOneStep } from "@/components/Craft/widgets/prebuilt/OrderOneStep";
+import {
+  FormElements,
+  OrderOneStep,
+} from "@/components/Craft/widgets/prebuilt/OrderOneStep";
+import { OrderTwoStep } from "@/components/Craft/widgets/prebuilt/OrderTwoStep";
 
 export const CraftContext = createContext({
   tools: "prebuilt",
@@ -114,7 +118,9 @@ export default function Craft() {
             OrderConfirmation,
             OrderText,
             OrderOneStep,
-
+            OrderTwoStep,
+            FormElements,
+            //Form
             TextInputElement,
             TextAreaElement,
             RadioInputElement,
