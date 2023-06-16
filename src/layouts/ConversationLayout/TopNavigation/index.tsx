@@ -148,7 +148,7 @@ export default function TopNavigation() {
                       >
                         <BiLogInCircle className="h-4 w-4 text-white" />
                         <span className="text-[12px] ml-2 text-white font-semibold">
-                          Login In
+                          Log In
                         </span>
                       </button>
                     ) : (

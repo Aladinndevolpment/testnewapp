@@ -3,7 +3,6 @@ import { ClockIcon } from "@heroicons/react/24/outline";
 import { EllipsisHorizontalIcon } from "@heroicons/react/24/solid";
 import TriggerList from "@/components/workflow/TriggerList";
 import StartComponentTriggerList from "../Components/StartComponentTriggerList.tsx";
-import WorkflowFlyout from "../WorkflowFlyout";
 
 export default function StartComp({
   handleChange,
@@ -144,10 +143,18 @@ export default function StartComp({
 
   return (
     <>
-      <WorkflowFlyout
-        visibility={isFlyOutVisible}
-        onClose={() => setIsFlyOutVisible(false)}
-        renderData={
+      <div
+        className={`w-full h-screen overflow-y-scroll  scrollbar-hide fixed right-0 top-0  z-50 transition-all bg-black overflow-hidden ${
+          isFlyOutVisible
+            ? "translate-x-0 opacity-100 bg-opacity-30"
+            : "translate-x-[100%] opacity-0 bg-opacity-0"
+        }`}
+      >
+        <div
+          className="absolute h-full w-full z-40 "
+          onClick={() => setIsFlyOutVisible(false)}
+        ></div>
+        <div className="bg-white w-full md:w-[50%] lg:w-[40%] absolute right-0 min-h-full h-auto z-50 overflow-y-scroll scrollbar-hide">
           <StartComponentTriggerList
             onClose={() => {
               setIsFlyOutVisible(false);
@@ -159,8 +166,9 @@ export default function StartComp({
               handleChange();
             }}
           />
-        }
-      />
+        </div>
+      </div>
+
       <div>
         {actionComponents.map((item: any, index: any) => (
           <div key={index}>

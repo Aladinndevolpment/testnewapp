@@ -8,6 +8,7 @@ import {
   ChevronDownIcon,
   PlusSmallIcon,
   ChevronUpIcon,
+  MagnifyingGlassIcon,
 } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { BsPencilSquare } from "react-icons/bs";
@@ -15,6 +16,8 @@ import { RiDeleteBin2Line } from "react-icons/ri";
 import { createContext } from "react";
 import ModalDerived from "@/components/Modal";
 import EditProfile from "@/components/Settings/TeamMember/EditProfile";
+import { AiOutlineClose } from "react-icons/ai";
+import { MenuItem, Select } from "@mui/material";
 
 export const TeamMemberContext = createContext({
   editProfile: false,
@@ -22,8 +25,9 @@ export const TeamMemberContext = createContext({
 });
 
 export default function TeamMember() {
+  const [addProfile, setAddProfile] = useState(false);
   const [editProfile, setEditProfile] = useState(false);
-  const userData = [
+  const [userData, setUserData] = useState<any>([
     {
       name: "Cy Ganderton",
       email: "cyganderton@gmail.com",
@@ -52,7 +56,7 @@ export default function TeamMember() {
       role: "Admin",
       status: "pending",
     },
-  ];
+  ]);
 
   const secondUserData = [
     {
@@ -70,6 +74,78 @@ export default function TeamMember() {
       status: "pending",
     },
   ];
+
+  const [errors, setErrors] = useState<any>({});
+  const [formValues, setFormValues] = useState<any>({
+    name: "",
+    email: "",
+    date: "",
+    role: "",
+    status: "",
+  });
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+
+    setFormValues((prevValues: any) => ({
+      ...prevValues,
+      [name]: value,
+    }));
+  };
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    //validate errors
+    const validationErrors: any = {};
+    if (!formValues.name) {
+      validationErrors.name = "Required";
+    }
+    if (!formValues.email) {
+      validationErrors.email = "Required";
+    }
+    if (!formValues.role) {
+      validationErrors.role = "Required";
+    }
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    setUserData((prevValues: any) => [
+      ...userData,
+      {
+        name: formValues?.name,
+        email: formValues?.email,
+        date: new Date(),
+        role: formValues?.role,
+        status: "pending",
+      },
+    ]);
+    setFormValues({
+      name: "",
+      email: "",
+      date: "",
+      role: "",
+      status: "",
+    });
+    setErrors({});
+
+    setAddProfile(false);
+  };
+
+  const [filterValue, setFilterValue] = useState("");
+
+  const handleFilter = (event: any) => {
+    setFilterValue(event.target.value);
+  };
+
+  const filteredData = userData.filter((item: any) => {
+    return (
+      item.name.toLowerCase().includes(filterValue.toLowerCase()) ||
+      item.email.toLowerCase().includes(filterValue.toLowerCase()) ||
+      item.date.toLowerCase().includes(filterValue.toLowerCase()) ||
+      item.role.toLowerCase().includes(filterValue.toLowerCase()) ||
+      item.status.toLowerCase().includes(filterValue.toLowerCase())
+    );
+  });
+
   return (
     <>
       <TeamMemberContext.Provider value={{ editProfile, setEditProfile }}>
@@ -80,10 +156,130 @@ export default function TeamMember() {
           <EditProfile />
         </ModalDerived>
 
+        <ModalDerived
+          visibility={addProfile}
+          onClose={() => setAddProfile(false)}
+        >
+          <div className=" bg-white rounded-lg  h-[85vh] pb-[5%]  overflow-y-hidden w-full scrollbar-hide ">
+            <form
+              className=" h-[100vh]  pt-5 pb-3 w-screen md:w-[100vh]"
+              onSubmit={handleSubmit}
+            >
+              <div className="h-[10vh] flex justify-between items-start border-b-[1px] pb-4 px-5">
+                <div>
+                  <p className="text-gray-800 font-medium md:text-lg ">
+                    Add Domain
+                  </p>
+                </div>
+                <button onClick={() => setAddProfile(false)}>
+                  <AiOutlineClose className="text-gray-800 h-6 w-6" />
+                </button>
+              </div>
+              <div className="overflow-hidden ">
+                <div className="h-[60vh]">
+                  {/*  Add Domain */}
+                  <div className="mx-5 py-2">
+                    <div className="flex items-center  justify-between ">
+                      <label
+                        className="block text-[#47494b] text-sm pt-1 font-semibold"
+                        htmlFor=""
+                      >
+                        Name
+                      </label>
+                    </div>
+                    <input
+                      type="text"
+                      id=""
+                      name="name"
+                      value={formValues.name}
+                      onChange={handleChange}
+                      placeholder="Enter Name"
+                      className=" w-full placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300   "
+                    />
+                    {errors.name && (
+                      <div className=" text-red-500 text-xs pt-1">
+                        {errors.name}
+                      </div>
+                    )}
+                  </div>
+                  <div className="mx-5 py-2">
+                    <div className="flex items-center  justify-between ">
+                      <label
+                        className="block text-[#47494b] text-sm pt-1 font-semibold"
+                        htmlFor=""
+                      >
+                        Email
+                      </label>
+                    </div>
+                    <input
+                      type="email"
+                      id=""
+                      name="email"
+                      value={formValues.email}
+                      onChange={handleChange}
+                      placeholder="Enter Email"
+                      className=" w-full placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300   "
+                    />
+                    {errors.email && (
+                      <div className=" text-red-500 text-xs pt-1">
+                        {errors.email}
+                      </div>
+                    )}
+                  </div>
+                  <div className="mx-5 py-2">
+                    <div className="flex items-center  justify-between ">
+                      <label
+                        className="block text-[#47494b] text-sm pt-1 font-semibold"
+                        htmlFor=""
+                      >
+                        Role
+                      </label>
+                    </div>
+                    <Select
+                      name="role"
+                      value={formValues.role}
+                      onChange={handleChange}
+                      className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
+                    >
+                      <MenuItem value="Admin">Admin</MenuItem>
+                      <MenuItem value="Basic">Basic</MenuItem>
+                      <MenuItem value="Read only">Read only</MenuItem>
+                    </Select>
+
+                    {errors.role && (
+                      <div className=" text-red-500 text-xs pt-1">
+                        {errors.role}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="h-[10vh] flex justify-end items-center border-t-[1px] pt-3 pb-2 px-5">
+                <div className=" flex justify-end items-center gap-3">
+                  <button
+                    onClick={() => setAddProfile(false)}
+                    className="text-base text-gray-600 font-medium flex justify-start items-center border-[1px] border-gray-300 py-2 px-5 rounded-md  "
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onSubmit={handleSubmit}
+                    type="submit"
+                    className="text-base flex justify-start items-center bg-secondary py-2 px-5 text-white rounded-md  "
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </ModalDerived>
+
         <div className="flex flex-wrap justify-center ">
           <div className="w-full lg:w-[25%] border-r-[1px]   bg-white    ">
             <SettingsSidebar />
           </div>
+
           <div className="w-full lg:w-[75%]  bg-white h-[100vh] scrollbar-hide  ">
             <header className="block w-full mb-5 h-32 lg:h-16 items-center relative z-10 border-b-[1px] border-lightGray">
               <div className="flex flex-center flex-col h-full justify-center lg:mx-auto relative  text-white z-10">
@@ -117,12 +313,26 @@ export default function TeamMember() {
                   </div>
 
                   <div className=" flex items-center justify-start lg:justify-end pl-5 lg:p-1   w-full md:w-[75%]   ">
-                    <Search />
+                    <div className="hidden md:block relative  p-1">
+                      <input
+                        type="text"
+                        className="pl-10 bg-[#35383e] border-[1px] border-lightGray  rounded-full py-2.5  w-[190px] md:w-[260px]  text-sm focus:outline-none focus:border-none   focus:bg-white focus:rounded-full  text-black"
+                        placeholder="Search lead, contact and more"
+                        value={filterValue}
+                        onChange={handleFilter}
+                      />
+                      <div className="   absolute top-2 left-2 font-bold h-[30px] w-[30px] p-1.5 rounded-full">
+                        <MagnifyingGlassIcon className="  text-FontGray" />
+                      </div>
+                    </div>
                     <div className="relative ml-3">
-                      <a className="h-8 mr-2  bg-newBlue font-medium py-2 text-sm flex justify-center items-center rounded-lg px-3">
+                      <button
+                        onClick={() => setAddProfile(true)}
+                        className="h-8 mr-2  bg-newBlue font-medium py-2 text-sm flex justify-center items-center rounded-lg px-3"
+                      >
                         <PlusSmallIcon className="h-6 w-6 text-white mr-1" />
                         <span>Add Member</span>
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -166,7 +376,7 @@ export default function TeamMember() {
                 <tbody>
                   {/* row 1 */}
 
-                  {userData.map((item, index) => (
+                  {filteredData.map((item: any, index: number) => (
                     <tr
                       key={index}
                       className="border-b border-b-gray-200 rounded-[20px]"

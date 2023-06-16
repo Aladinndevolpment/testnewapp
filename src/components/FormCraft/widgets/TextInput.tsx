@@ -11,7 +11,7 @@ import {
 } from "./CommonSettings";
 const elementName = "Text Input";
 
-const textInputTypes = ["text", "number", "email"];
+const textInputTypes = ["text", "number", "email", "url"];
 
 export interface ITextProps extends ICommonSettingsProps {
   color?: string;

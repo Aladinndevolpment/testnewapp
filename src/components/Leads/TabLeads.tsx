@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { createContext, useEffect, useMemo, useRef, useState } from "react";
 import Kanban from "./Kanban";
-import { FiChevronDown } from "react-icons/fi";
+import { FiChevronDown, FiSettings } from "react-icons/fi";
 import {
   BsFunnel,
   BsColumns,
@@ -22,6 +22,9 @@ import MaterialReactTable, { type MRT_ColumnDef } from "material-react-table";
 import { ExportToCsv } from "export-to-csv"; //or use your library of choice here
 import { Client, HydrationProvider } from "react-hydration-provider";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import ModalDerived from "../Modal";
+import ManageColumns from "./ManageColumns";
+import Link from "next/link";
 
 export const StoreLeadContext = createContext({
   formValue: {},
@@ -426,8 +429,17 @@ export default function TabLeads() {
     );
   });
 
+  const [openManageColumnModal, setOpenManageColumnModal] = useState(false);
+
   return (
     <>
+      <ModalDerived
+        visibility={openManageColumnModal}
+        onClose={() => setOpenManageColumnModal(false)}
+      >
+        <ManageColumns onClose={() => setOpenManageColumnModal(false)} />
+      </ModalDerived>
+
       <AddItem
         onClose={() => setOpenModal(false)}
         visibility={openModal}
@@ -517,8 +529,7 @@ export default function TabLeads() {
                 >
                   <BsFunnel className="h-5 w-5 text-darkBlack mt-1 mr-2" />
                   <span className="text-gray-500 font-semibold text-[12px] 2xl:text-sm">
-                    {" "}
-                    More Filter{" "}
+                    More Filter
                   </span>
                 </label>
                 <ul
@@ -536,9 +547,14 @@ export default function TabLeads() {
             </div>
 
             <div className="w-full  lg:w-auto flex justify-between items-center mb-2">
-              <div className="m-1 ml-2 py-2 px-2  2xl:px-4 rounded-md flex flex-wrap justify-between items-center">
-                <BsColumns className="h-4 w-4 text-darkBlack   mr-2" />
-                <span className="text-gray-700 font-semibold text-sm ">
+              <div className="cursor-pointer m-1 ml-2 py-2 px-2  2xl:px-4 rounded-md flex flex-wrap justify-between items-center">
+                <Link href="/settings/pipeline">
+                  <FiSettings className="h-4 w-4 text-darkBlack   mr-2" />
+                </Link>
+                <span
+                  onClick={() => setOpenManageColumnModal(true)}
+                  className="text-gray-700 font-semibold text-sm "
+                >
                   Manage Column
                 </span>
               </div>

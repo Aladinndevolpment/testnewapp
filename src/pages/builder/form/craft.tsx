@@ -7,7 +7,6 @@ import Main from "@/components/FormCraft/Main";
 import { Topbar } from "@/components/FormCraft/Topbar";
 import App, { MainApp } from "@/components/Craft/widgets/App";
 import { RadioInputElement } from "@/components/FormCraft/widgets/RadioElement";
-import { TextInputElement } from "@/components/FormCraft/widgets/TextInput";
 import { TextAreaElement } from "@/components/FormCraft/widgets/TextareaElement";
 
 import { GlobalContext } from "@/layouts/GlobalLayout";
@@ -18,6 +17,7 @@ import { SelectBoxInputElement } from "@/components/FormCraft/widgets/SelectInpu
 import { Link, LinkText } from "@/components/Craft/widgets/Link";
 import { AttachmentElement } from "@/components/FormCraft/widgets/Attachment";
 import { DatePickerElement } from "@/components/FormCraft/widgets/DatePicker";
+import { TextInputElement } from "@/components/FormCraft/widgets/TextInput";
 
 export const CraftContext = createContext({
   tools: "elements",

@@ -41,8 +41,8 @@ export default function EditProfile() {
 
   return (
     <div>
-      <div className=" h-[85vh] pb-[5%]  overflow-y-hidden w-full scrollbar-hide ">
-        <div className="bg-white h-[100vh] rounded-lg pt-5 pb-3 w-screen md:w-[100vh]">
+      <div className=" h-[85vh] pb-[5%] rounded-lg  bg-white overflow-y-hidden w-full scrollbar-hide ">
+        <div className="  h-[100vh] pt-5 pb-3 w-screen md:w-[100vh]">
           <div className="h-[6vh] flex justify-between items-center  pb-4 px-5">
             <p className="text-gray-800 font-medium md:text-lg ">
               Team Management

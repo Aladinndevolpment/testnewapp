@@ -76,32 +76,32 @@ const data = [
       {
         title: "Custom Fields",
         icon: <Square3Stack3DIcon className="h-5 w-5 text-FontGray" />,
-        link: "#",
+        link: "/settings/custom-fields",
       },
       {
         title: "Custom Values",
         icon: <InboxStackIcon className="h-5 w-5 text-FontGray" />,
-        link: "#",
+        link: "/settings/custom-value",
       },
       {
         title: "Tags",
         icon: <TagIcon className="h-5 w-5 text-FontGray" />,
-        link: "#",
+        link: "/settings/tags",
       },
       {
         title: "Pipeline",
         icon: <BsKanbanFill className="h-5 w-5 text-FontGray" />,
-        link: "#",
+        link: "/settings/pipeline",
       },
       {
         title: "Phone Number",
         icon: <PhoneArrowDownLeftIcon className="h-5 w-5 text-FontGray" />,
-        link: "#",
+        link: "/settings/phone-number",
       },
       {
         title: "Domains",
         icon: <GlobeAltIcon className="h-5 w-5 text-FontGray" />,
-        link: "#",
+        link: "/settings/domain",
       },
     ],
   },

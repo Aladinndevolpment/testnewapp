@@ -291,8 +291,6 @@ export default function ChatBody({
     );
   }
 
-  console.log(chat);
-
   return (
     <ChatBodyContext.Provider
       value={{

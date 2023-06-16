@@ -4,15 +4,7 @@ import { Element, Frame } from "@craftjs/core";
 import { SettingsPanel } from "./Settings";
 import { CraftContext } from "@/pages/builder/website/craft";
 import { TextInputElement } from "./widgets/TextInput";
-import { RadioInputElement } from "./widgets/RadioElement";
-import { TextAreaElement } from "./widgets/TextareaElement";
-import { Grid } from "../Craft/widgets/Grid";
-import { Button } from "../Craft/widgets/Button";
-import { Text } from "../Craft/widgets/Text/Text";
 import Container from "../Craft/widgets/Container";
-import App from "../Craft/widgets/App";
-import { CheckboxInputElement } from "./widgets/CheckboxElement";
-import { AttachmentElement } from "./widgets/Attachment";
 
 export default function Main() {
   const { device } = useContext(CraftContext);

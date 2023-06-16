@@ -4,8 +4,11 @@ import { GlobalContext } from "@/layouts/GlobalLayout";
 import Link from "next/link";
 import React, { useContext, useState } from "react";
 import { BsDiagram2Fill } from "react-icons/bs";
-import Craft from "./form/craft";
 import DashboardData from "@/components/Dashboard/DashboardData";
+import Craft from "./form/craft";
+import SurveyCraft from "./survey/craft";
+import FormsBuilder from "@/components/Builders/FormsBuilder";
+import SurveyBuilders from "@/components/Builders/SurveyBuilders";
 
 export default function Builder() {
   const [DropDownRole, SetDropDownRole] = useState("");
@@ -24,12 +27,12 @@ export default function Builder() {
     {
       id: "tab3",
       label: "Forms",
-      content: <Craft />,
+      content: <FormsBuilder />,
     },
     {
       id: "tab4",
       label: "Surveys",
-      content: "",
+      content: <SurveyBuilders />,
     },
   ];
 

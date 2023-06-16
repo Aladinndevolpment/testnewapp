@@ -43,7 +43,7 @@ export default function AccordionItem({
           }`}
         >
           {answer.map((control: any, index: any) => (
-            <div key={index} className={`w-1/2 px-1 mb-2`}>
+            <div key={index} className={`w-full px-1 mb-2`}>
               {control.tool}
             </div>
           ))}

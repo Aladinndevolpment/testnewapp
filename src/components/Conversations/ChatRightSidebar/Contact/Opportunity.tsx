@@ -97,17 +97,6 @@ export default function Opportunity() {
       const newData = { ...formData };
       setData([...data, newData]);
       setIsModalOpenOpportunity(false);
-      // Reset the form
-      //   setFormData({
-      //     name: "",
-      //     pipeline: "",
-      //     stage: "",
-      //     status: "",
-      //     leadValue: "",
-      //     owner: "",
-      //     source: "",
-      //   });
-
       setErrors({});
     }
   };

@@ -3,7 +3,13 @@ import TextInput from "@/components/controls/TextInput";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import ElementToolsLayout from "./tools/ElementToolsLayout";
 
-import { BsMenuButtonWide } from "react-icons/bs";
+import {
+  BsCalendarDate,
+  BsCardText,
+  BsMenuButtonWide,
+  BsTextParagraph,
+  BsTextareaResize,
+} from "react-icons/bs";
 
 import PrebuiltToolsLayout from "./tools/PrebuiltToolsLayout";
 import { TextInputElement } from "../widgets/TextInput";
@@ -18,6 +24,11 @@ import { Link } from "@/components/Craft/widgets/Link";
 import { AttachmentElement } from "../widgets/Attachment";
 import { DatePickerElement } from "../widgets/DatePicker";
 import { Button } from "@/components/Craft/widgets/Button";
+import { MdRadioButtonChecked } from "react-icons/md";
+import { TbCheckbox, TbSelect } from "react-icons/tb";
+import { AiOutlineLink } from "react-icons/ai";
+import ImageAttachment from "@/components/controls/ImageAttachment";
+import { IoDocumentAttachOutline } from "react-icons/io5";
 
 export const formControls = [
   {
@@ -27,7 +38,7 @@ export const formControls = [
         toolName="Text Input"
         tool={<TextInputElement />}
         image="@/../public/craft/hero.png"
-        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+        icon={<BsCardText className="h-4 w-4 text-gray-500" />}
       />
     ),
   },
@@ -38,7 +49,7 @@ export const formControls = [
         toolName="Paragraph"
         tool={<Text text="Start typing here..." />}
         image="@/../public/craft/hero.png"
-        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+        icon={<BsTextParagraph className="h-4 w-4 text-gray-500" />}
       />
     ),
   },
@@ -49,18 +60,18 @@ export const formControls = [
         toolName="Textarea"
         tool={<TextAreaElement />}
         image="@/../public/craft/hero.png"
-        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+        icon={<BsTextareaResize className="h-4 w-4 text-gray-500" />}
       />
     ),
   },
   {
-    name: "Radio Button",
+    name: "Radio",
     tool: (
       <ElementToolsLayout
-        toolName="Radio Button"
+        toolName="Radio"
         tool={<RadioInputElement />}
         image="@/../public/craft/hero.png"
-        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+        icon={<MdRadioButtonChecked className="h-4 w-4 text-gray-500" />}
       />
     ),
   },
@@ -72,7 +83,7 @@ export const formControls = [
         toolName="Checkbox"
         tool={<CheckboxInputElement />}
         image="@/../public/craft/hero.png"
-        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+        icon={<TbCheckbox className="h-4 w-4 text-gray-500" />}
       />
     ),
   },
@@ -84,7 +95,7 @@ export const formControls = [
         toolName="Dropdown"
         tool={<SelectBoxInputElement />}
         image="@/../public/craft/hero.png"
-        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+        icon={<TbSelect className="h-4 w-4 text-gray-500" />}
       />
     ),
   },
@@ -96,7 +107,7 @@ export const formControls = [
         toolName="Hyperlink"
         tool={<Link text="link" href="#" targetData={false} />}
         image="@/../public/craft/hero.png"
-        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+        icon={<AiOutlineLink className="h-4 w-4 text-gray-500" />}
       />
     ),
   },
@@ -108,7 +119,7 @@ export const formControls = [
         toolName="Attachment"
         tool={<AttachmentElement />}
         image="@/../public/craft/hero.png"
-        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+        icon={<IoDocumentAttachOutline className="h-4 w-4 text-gray-500" />}
       />
     ),
   },
@@ -120,7 +131,7 @@ export const formControls = [
         toolName="Date Picker"
         tool={<DatePickerElement />}
         image="@/../public/craft/hero.png"
-        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+        icon={<BsCalendarDate className="h-4 w-4 text-gray-500" />}
       />
     ),
   },
@@ -132,7 +143,7 @@ export const formControls = [
         toolName="Button"
         tool={<Button />}
         image="@/../public/craft/hero.png"
-        icon={<BsMenuButtonWide className="h-3 w-3 text-gray-500" />}
+        icon={<BsMenuButtonWide className="h-4 w-4 text-gray-500" />}
       />
     ),
   },
