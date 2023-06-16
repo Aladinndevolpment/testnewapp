@@ -1,64 +1,13 @@
-import FlyOut from "@/components/Flyout";
-import Stripe from "@/components/Interations/Stripe";
-import Authorize from "@/components/Interations/authorize";
-import NMI from "@/components/Interations/nmi";
-import ModalDerived from "@/components/Modal";
+import Stripe from "@/components/Settings/Integrations/Stripe";
+import Authorize from "@/components/Settings/Integrations/authorize";
+import NMI from "@/components/Settings/Integrations/nmi";
 import SettingsSidebar from "@/components/SettingsSidebar/TeamsSidebar";
-import TeamsSidebar from "@/components/SettingsSidebar/TeamsSidebar";
 import { GlobalContext } from "@/layouts/GlobalLayout";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
-
-const userData = [
-  {
-    name: "Cy Ganderton",
-    email: "cyganderton@gmail.com",
-    date: "23 Dec 2022",
-    role: "Admin",
-    status: "complete",
-  },
-  {
-    name: "Guy Hawkins",
-    email: "guyhawk@gmail.com",
-    date: "28 Dec 2022",
-    role: "Read Only",
-    status: "pending",
-  },
-  {
-    name: "Jhon Doe",
-    email: "jhondoe@gmail.com",
-    date: "29 Dec 2022",
-    role: "Basic",
-    status: "pending",
-  },
-  {
-    name: "Sarah Doe",
-    email: "cyganderton@gmail.com",
-    date: "23 Dec 2022",
-    role: "Admin",
-    status: "pending",
-  },
-];
-
-const secondUserData = [
-  {
-    name: "Cy Ganderton",
-    email: "cyganderton@gmail.com",
-    date: "23 Dec 2022",
-    role: "Admin",
-    status: "pending",
-  },
-  {
-    name: "Guy Hawkins",
-    email: "guyhawk@gmail.com",
-    date: "28 Dec 2022",
-    role: "Read Only",
-    status: "pending",
-  },
-];
 
 export default function Integrations() {
   const [showSidebar, setShowSidebar] = useState(false);

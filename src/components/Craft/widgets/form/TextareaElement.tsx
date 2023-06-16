@@ -1,7 +1,7 @@
 import TextInput from "@/components/controls/TextInput";
 import { useNode } from "@craftjs/core";
 import { MuiColorInput } from "mui-color-input";
-import { InputHTMLAttributes, useContext, useEffect, useState } from "react";
+import { InputHTMLAttributes, useEffect, useState } from "react";
 import { IoContract } from "react-icons/io5";
 import {
   CommonSettings,
@@ -9,17 +9,16 @@ import {
   baseDefaults,
   getCommonSettingsProps,
 } from "./CommonSettings";
-import { CraftContext } from "@/pages/builder/survey/craft";
-const elementName = "Text Input";
+const elementName = "Textarea Input";
 
-const textInputTypes = ["text", "number", "email", "url"];
+const textInputTypes = ["text", "number", "email"];
 
-export interface ITextProps extends ICommonSettingsProps {
+interface ITextAreaProps extends ICommonSettingsProps {
   color?: string;
-  textInputProps?: InputHTMLAttributes<HTMLInputElement>;
+  textInputProps?: InputHTMLAttributes<HTMLTextAreaElement>;
 }
 
-export const TextInputElement = ({
+export const TextAreaElement = ({
   color = "#000000",
   textInputProps,
   backgroundColor = baseDefaults.backgroundColor,
@@ -36,7 +35,7 @@ export const TextInputElement = ({
   paddingLeft = baseDefaults.paddingLeft,
   paddingRight = baseDefaults.paddingRight,
   shadow = "shadow-none",
-}: ITextProps) => {
+}: ITextAreaProps) => {
   const {
     connectors: { connect, drag },
     hasSelectedNode,
@@ -57,7 +56,7 @@ export const TextInputElement = ({
   useEffect(() => {
     !hasSelectedNode && setEditable(false);
   }, [hasSelectedNode]);
-  const ctx = useContext(CraftContext);
+
   return (
     <div
       ref={(ref: any) => connect(drag(ref))}
@@ -73,37 +72,30 @@ export const TextInputElement = ({
       }}
       className={`${
         hovered && "hover:outline-green-500 hover:outline"
-      } relative`}
+      }  relative`}
     >
       {hovered && (
         <div className="absolute top-0 right-0 bg-green-500 text-white text-[10px] px-1 capitalize">
           {elementName}
         </div>
       )}
-      <div onClick={() => ctx.setOpenSettings(!ctx.openSettings)}>
-        <input
-          disabled={!editable}
-          className={`flex shadow px-2 py-2  rounded-md w-full focus-within:outline-2 focus-within:outline-blue-400 ${shadow} ${borderType} ${borderColor}`}
-          style={{
-            color: color,
-            borderRadius: borderRadius + "px",
-            backgroundColor,
-            paddingTop: `${paddingTop}px`,
-            paddingBottom: `${paddingBottom}px`,
-            paddingLeft: `${paddingLeft}px`,
-            paddingRight: `${paddingRight}px`,
-          }}
-          {...textInputProps}
-          placeholder={`${textInputProps?.placeholder} ${
-            textInputProps?.required ? "*" : ""
-          }`}
-          onChange={(e) =>
-            setProp(
-              (props: any) => (props.textInputProps.value = e.target.value)
-            )
-          }
-        />
-      </div>
+      <textarea
+        disabled={!editable}
+        className={`flex shadow px-2 py-2  rounded-md w-full focus-within:outline-2 focus-within:outline-blue-400 ${shadow} ${borderType} ${borderColor}`}
+        style={{
+          color: color,
+          borderRadius: borderRadius + "px",
+          backgroundColor,
+          paddingTop: `${paddingTop}px`,
+          paddingBottom: `${paddingBottom}px`,
+          paddingLeft: `${paddingLeft}px`,
+          paddingRight: `${paddingRight}px`,
+        }}
+        {...textInputProps}
+        onChange={(e) =>
+          setProp((props: any) => (props.textInputProps.value = e.target.value))
+        }
+      ></textarea>
     </div>
   );
 };
@@ -123,42 +115,13 @@ const TextSettings: any = () => {
         <TextInput
           lefticon={<IoContract />}
           value={props.textInputProps.name}
-          placeholder={"Enter field name"}
+          placeholder="Enter field name"
           onChange={(e) =>
             setProp(
               (props: any) => (props.textInputProps.name = e.target.value)
             )
           }
         />
-      </div>
-
-      <div className="mb-4 mt-2 flex flex-col gap-1">
-        <label className="text-sm text-gray-400 ">Input Type</label>
-        <div className="dropdown">
-          <label
-            tabIndex={0}
-            className={`btn hover:bg-transparent hover:text-black rounded-md py-2 btn-sm bg-transparent border-gray-300 capitalize w-full text-left justify-start text-gray-500`}
-          >
-            {props.textInputProps.type}
-          </label>
-          <div
-            tabIndex={0}
-            className="dropdown-content card card-compact w-64 p-2 shadow bg-white text-gray-700 max-h-80 overflow-y-scroll scrollbar-hide"
-          >
-            <ul tabIndex={0} className="menu w-full bg-transparent">
-              {textInputTypes.map((item, index) => (
-                <li
-                  key={index}
-                  onClick={() =>
-                    setProp((props: any) => (props.textInputProps.type = item))
-                  }
-                >
-                  <a className={`capitalize ${item} text-sm`}>{item}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
       </div>
 
       <div className="mb-4 mt-2 flex flex-col gap-1">
@@ -225,7 +188,7 @@ const TextSettings: any = () => {
   );
 };
 
-TextInputElement.craft = {
+TextAreaElement.craft = {
   related: {
     settings: TextSettings,
   },

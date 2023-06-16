@@ -134,7 +134,7 @@ const ChangePassword = () => {
 
         <button
           onSubmit={handleSubmit}
-          className="border bg-[#25992a]  text-white rounded-md text-sm px-8 py-2 mt-5 mx-4"
+          className="border bg-newBlue  text-white rounded-md text-sm px-8 py-2 mt-5 mx-4"
         >
           Update Password
         </button>

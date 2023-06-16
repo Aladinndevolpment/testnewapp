@@ -97,6 +97,8 @@ const FieldTableData = ({ data }: any) => {
           initialState={{
             showGlobalFilter: false,
           }}
+          positionPagination="top"
+          enableToolbarInternalActions={false}
           positionToolbarAlertBanner="bottom"
           muiSearchTextFieldProps={{
             placeholder: `Search ${data?.length} rows`,

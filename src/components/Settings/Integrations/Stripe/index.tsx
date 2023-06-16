@@ -11,7 +11,7 @@ export default function Stripe() {
         <div className="pb-6 border-b border-gray-200">
           <div className="items-center space-y-4  ">
             <Image
-              src={require("../../../../public/images/integrations/stripeFull.png")}
+              src={require("../../../../../public/images/integrations/stripeFull.png")}
               alt=""
               className="w-40 m-auto"
             />

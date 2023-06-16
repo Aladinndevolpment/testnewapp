@@ -1,7 +1,7 @@
 import TextInput from "@/components/controls/TextInput";
 import { useNode } from "@craftjs/core";
 import { MuiColorInput } from "mui-color-input";
-import { InputHTMLAttributes, useContext, useEffect, useState } from "react";
+import { InputHTMLAttributes, useEffect, useState } from "react";
 import { IoContract } from "react-icons/io5";
 import {
   CommonSettings,
@@ -9,7 +9,6 @@ import {
   baseDefaults,
   getCommonSettingsProps,
 } from "./CommonSettings";
-import { CraftContext } from "@/pages/builder/survey/craft";
 const elementName = "Date Input";
 
 const textInputTypes = ["date", "time", "week"];
@@ -57,7 +56,6 @@ export const DatePickerElement = ({
   useEffect(() => {
     !hasSelectedNode && setEditable(false);
   }, [hasSelectedNode]);
-  const ctx = useContext(CraftContext);
 
   return (
     <div
@@ -81,30 +79,26 @@ export const DatePickerElement = ({
           {elementName}
         </div>
       )}
-      <div onClick={() => ctx.setOpenSettings(!ctx.openSettings)}>
-        <input
-          disabled={!editable}
-          className={`flex shadow px-2 py-2  rounded-md w-full focus-within:outline-2 focus-within:outline-blue-400 ${shadow} ${borderType} ${borderColor}`}
-          style={{
-            color: color,
-            borderRadius: borderRadius + "px",
-            backgroundColor,
-            paddingTop: `${paddingTop}px`,
-            paddingBottom: `${paddingBottom}px`,
-            paddingLeft: `${paddingLeft}px`,
-            paddingRight: `${paddingRight}px`,
-          }}
-          {...textInputProps}
-          placeholder={`${textInputProps?.placeholder} ${
-            textInputProps?.required ? "*" : ""
-          }`}
-          onChange={(e) =>
-            setProp(
-              (props: any) => (props.textInputProps.value = e.target.value)
-            )
-          }
-        />
-      </div>
+      <input
+        disabled={!editable}
+        className={`flex shadow px-2 py-2  rounded-md w-full focus-within:outline-2 focus-within:outline-blue-400 ${shadow} ${borderType} ${borderColor}`}
+        style={{
+          color: color,
+          borderRadius: borderRadius + "px",
+          backgroundColor,
+          paddingTop: `${paddingTop}px`,
+          paddingBottom: `${paddingBottom}px`,
+          paddingLeft: `${paddingLeft}px`,
+          paddingRight: `${paddingRight}px`,
+        }}
+        {...textInputProps}
+        placeholder={`${textInputProps?.placeholder} ${
+          textInputProps?.required ? "*" : ""
+        }`}
+        onChange={(e) =>
+          setProp((props: any) => (props.textInputProps.value = e.target.value))
+        }
+      />
     </div>
   );
 };

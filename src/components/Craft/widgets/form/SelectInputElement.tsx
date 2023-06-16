@@ -1,7 +1,7 @@
 import TextInput from "@/components/controls/TextInput";
 import { useNode } from "@craftjs/core";
 import { MuiColorInput } from "mui-color-input";
-import { InputHTMLAttributes, useContext, useEffect, useState } from "react";
+import { InputHTMLAttributes, useEffect, useState } from "react";
 import { IoContract } from "react-icons/io5";
 import {
   CommonSettings,
@@ -9,19 +9,22 @@ import {
   baseDefaults,
   getCommonSettingsProps,
 } from "./CommonSettings";
-import { CraftContext } from "@/pages/builder/survey/craft";
-const elementName = "Textarea Input";
+import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
+const elementName = "Checkbox Input";
 
-const textInputTypes = ["text", "number", "email"];
-
-interface ITextAreaProps extends ICommonSettingsProps {
+interface ISelectBoxProps extends ICommonSettingsProps {
   color?: string;
-  textInputProps?: InputHTMLAttributes<HTMLTextAreaElement>;
+  selectBoxBasicProps?: InputHTMLAttributes<HTMLSelectElement>;
+  options?: {
+    optionProps: InputHTMLAttributes<HTMLInputElement>;
+    label: string;
+  }[];
+  column?: boolean;
 }
 
-export const TextAreaElement = ({
+export const SelectBoxInputElement = ({
   color = "#000000",
-  textInputProps,
+  selectBoxBasicProps,
   backgroundColor = baseDefaults.backgroundColor,
   borderRadius = baseDefaults.borderRadius,
   borderColor = baseDefaults.borderColor,
@@ -36,7 +39,9 @@ export const TextAreaElement = ({
   paddingLeft = baseDefaults.paddingLeft,
   paddingRight = baseDefaults.paddingRight,
   shadow = "shadow-none",
-}: ITextAreaProps) => {
+  options = [],
+  column = false,
+}: ISelectBoxProps) => {
   const {
     connectors: { connect, drag },
     hasSelectedNode,
@@ -53,7 +58,6 @@ export const TextAreaElement = ({
   }));
 
   const [editable, setEditable] = useState(false);
-  const ctx = useContext(CraftContext);
 
   useEffect(() => {
     !hasSelectedNode && setEditable(false);
@@ -81,27 +85,27 @@ export const TextAreaElement = ({
           {elementName}
         </div>
       )}
-      <div onClick={() => ctx.setOpenSettings(!ctx.openSettings)}>
-        <textarea
-          disabled={!editable}
-          className={`flex shadow px-2 py-2  rounded-md w-full focus-within:outline-2 focus-within:outline-blue-400 ${shadow} ${borderType} ${borderColor}`}
-          style={{
-            color: color,
-            borderRadius: borderRadius + "px",
-            backgroundColor,
-            paddingTop: `${paddingTop}px`,
-            paddingBottom: `${paddingBottom}px`,
-            paddingLeft: `${paddingLeft}px`,
-            paddingRight: `${paddingRight}px`,
-          }}
-          {...textInputProps}
-          onChange={(e) =>
-            setProp(
-              (props: any) => (props.textInputProps.value = e.target.value)
-            )
-          }
-        ></textarea>
-      </div>
+
+      <select
+        {...selectBoxBasicProps}
+        className={`flex gap-3 flex-wrap shadow px-2 py-2  rounded-md w-full focus-within:outline-2 focus-within:outline-blue-400 ${shadow} ${borderType} ${borderColor}`}
+        style={{
+          color: color,
+          borderRadius: borderRadius + "px",
+          backgroundColor,
+          paddingTop: `${paddingTop}px`,
+          paddingBottom: `${paddingBottom}px`,
+          paddingLeft: `${paddingLeft}px`,
+          paddingRight: `${paddingRight}px`,
+        }}
+        placeholder="hrere"
+      >
+        {options?.map((item, index) => (
+          <option value={item.optionProps.value} key={index}>
+            {item.label}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };
@@ -120,57 +124,80 @@ const TextSettings: any = () => {
         <label className="text-sm text-gray-400">Name</label>
         <TextInput
           lefticon={<IoContract />}
-          value={props.textInputProps.name}
+          value={props.selectBoxBasicProps.name}
           placeholder="Enter field name"
           onChange={(e) =>
             setProp(
-              (props: any) => (props.textInputProps.name = e.target.value)
+              (props: any) => (props.selectBoxBasicProps.name = e.target.value)
             )
           }
         />
       </div>
 
       <div className="mb-4 mt-2 flex flex-col gap-1">
-        <label className="text-sm text-gray-400">Placeholder</label>
-        <TextInput
-          lefticon={<IoContract />}
-          value={props.textInputProps.placeholder}
-          placeholder="Enter placeholder"
-          onChange={(e) =>
-            setProp(
-              (props: any) =>
-                (props.textInputProps.placeholder = e.target.value)
-            )
-          }
-        />
-      </div>
+        <div className="flex justify-between items-center">
+          <label className="text-sm text-gray-400">Items</label>
+          <button
+            className="btn bg-transparent btn-xs border-none hover:border-none hover:bg-transparent"
+            onClick={() =>
+              setProp(
+                (props: any) =>
+                  (props.options = [
+                    ...props.options,
+                    {
+                      optionProps: {
+                        value: "new item",
+                        required: true,
+                      },
+                      label: "New Item",
+                    },
+                  ])
+              )
+            }
+          >
+            <PlusIcon className="h-4 w-4 text-black" />
+          </button>
+        </div>
+        {props.options.map((item: any, index: number) => (
+          <div key={index} className="flex items-center">
+            <TextInput
+              lefticon={<IoContract />}
+              value={item.label}
+              placeholder="Enter field name"
+              onChange={(e) => {
+                setProp(
+                  (props: any) => (props.options[index].label = e.target.value)
+                );
+                setProp(
+                  (props: any) =>
+                    (props.options[index].optionProps.value = e.target.value)
+                );
+              }}
+            />
 
-      <div className="mb-4 mt-2 flex flex-col gap-1">
-        <label className="text-sm text-gray-400">Value</label>
-        <TextInput
-          lefticon={<IoContract />}
-          value={props.textInputProps.value}
-          placeholder="Field Default value"
-          onChange={(e) =>
-            setProp(
-              (props: any) => (props.textInputProps.value = e.target.value)
-            )
-          }
-          type={props.textInputProps.type}
-        />
+            <button
+              className="btn bg-transparent btn-xs border-none hover:border-none hover:bg-transparent"
+              onClick={() =>
+                setProp((props: any) => props.options.splice(index, 1))
+              }
+            >
+              <TrashIcon className="h-4 w-4 text-red-500" />
+            </button>
+          </div>
+        ))}
       </div>
 
       <div className="form-control">
         <label className=" flex items-center gap-3 cursor-pointer">
           <input
             type="checkbox"
-            checked={props.textInputProps.required}
+            checked={props.selectBoxBasicProps.required}
             className="checkbox"
             onChange={({ target: { value } }) =>
               setProp(
                 (props: any) =>
-                  (props.textInputProps.required =
-                    !props.textInputProps.required)
+                  (props.selectBoxBasicProps.required =
+                    !props.selectBoxBasicProps.required)
               )
             }
           />
@@ -194,18 +221,15 @@ const TextSettings: any = () => {
   );
 };
 
-TextAreaElement.craft = {
+SelectBoxInputElement.craft = {
   related: {
     settings: TextSettings,
   },
   props: {
     value: "",
-    textInputProps: {
-      placeholder: "placeholder",
-      value: "",
-      name: "",
+    selectBoxBasicProps: {
+      name: "option-10",
       required: true,
-      type: "text",
     },
     ...getCommonSettingsProps(),
     borderRadius: 5,
@@ -219,5 +243,33 @@ TextAreaElement.craft = {
     paddingLeft: 10,
     paddingRight: 10,
     backgroundColor: "#f6f6fc",
+
+    options: [
+      {
+        optionProps: {
+          checked: true,
+          value: "Option 1",
+          required: true,
+        },
+        label: "Option 1",
+      },
+      {
+        optionProps: {
+          checked: true,
+          value: "Option 2",
+          required: true,
+        },
+        label: "Option 2",
+      },
+      {
+        optionProps: {
+          checked: true,
+          value: "Option 3",
+          required: true,
+        },
+        label: "Option 3",
+      },
+    ],
   },
+  column: false,
 };

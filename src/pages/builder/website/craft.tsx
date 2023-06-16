@@ -55,6 +55,7 @@ import { CheckboxInputElement } from "@/components/FormCraft/widgets/CheckboxEle
 import { SelectBoxInputElement } from "@/components/FormCraft/widgets/SelectInputElement";
 import { AttachmentElement } from "@/components/FormCraft/widgets/Attachment";
 import { DatePickerElement } from "@/components/FormCraft/widgets/DatePicker";
+import { FAQs, FAQsText } from "@/components/Craft/widgets/FAQs";
 
 export const CraftContext = createContext({
   tools: "prebuilt",
@@ -75,13 +76,14 @@ export default function Craft() {
     device,
     setDevice,
   };
-
   return (
     <CraftContext.Provider value={value}>
       <div className="h-full overflow-hidden">
         <Editor
           resolver={{
             App,
+            FAQs,
+            FAQsText,
             Card,
             Button,
             Text,

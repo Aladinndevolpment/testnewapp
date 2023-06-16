@@ -371,6 +371,8 @@ const CampaignTable = () => {
             initialState={{
               showGlobalFilter: false,
             }}
+            positionPagination="top"
+            enableToolbarInternalActions={false}
             positionToolbarAlertBanner="bottom"
             muiSearchTextFieldProps={{
               placeholder: `Search ${tableData?.length} rows`,

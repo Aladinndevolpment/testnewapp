@@ -46,19 +46,54 @@ export const Slide = ({ padding = 20 }) => {
     connectors: { connect, drag },
   }: any = useNode();
 
+  const tbStyles = {
+    backgroundColor: "#fff",
+    borderColor: "#d9d6d6",
+    borderWidth: 1,
+  };
+
   return (
-    <div className="bg-white p-4 w-full" ref={(ref: any) => connect(drag(ref))}>
-      <div className="card card-compact w-full bg-base-100 shadow-md rounded-md">
-        <div className="card-body">
-          <Element id="text" is={SlideTop} canvas>
-            <Text
-              alignment="center"
-              text="Slides"
-              fontSize={20}
-              marginBottom={40}
-            />
-          </Element>
-        </div>
+    <div
+      className="bg-[#ffffff] py-5 w-full"
+      ref={(ref: any) => connect(drag(ref))}
+    >
+      <div className=" ">
+        <Element id="text" is={SlideTop} canvas>
+          <div className="flex justify-between pb-5 gap-4">
+            <div className="w-[15%] relative">
+              <Text
+                alignment="center"
+                text="Steep"
+                fontSize={20}
+                marginBottom={20}
+                color="#fff"
+                backgroundColor="#262222"
+                bold="font-medium"
+                paddingTop={5}
+                paddingBottom={5}
+              />
+              <div className="absolute top-10 bg-gray-300 h-32 w-[1.5px] left-12"></div>
+            </div>
+            <div className="w-[85%] bg-gray-100 rounded-md px-4 py-4">
+              <TextInputElement
+                textInputProps={{
+                  name: "question",
+                  placeholder: "Question",
+                  type: "text",
+                }}
+                {...tbStyles}
+              />
+
+              <TextAreaElement
+                textInputProps={{
+                  name: "answer",
+                  placeholder: "Answer",
+                }}
+                {...tbStyles}
+              />
+            </div>
+          </div>
+        </Element>
       </div>
     </div>
   );

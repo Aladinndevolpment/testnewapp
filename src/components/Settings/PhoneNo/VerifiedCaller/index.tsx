@@ -326,7 +326,7 @@ const VerifiedCaller = () => {
       <div className=" flex justify-end mx-4">
         <button
           onClick={() => setOpenVerifiCaller(true)}
-          className="border bg-[#25992a] mb-4 mt-2   text-white rounded-md text-sm px-3 py-2"
+          className="border bg-newBlue mb-4 mt-2   text-white rounded-md text-sm px-3 py-2"
         >
           + Add New Caller ID
         </button>

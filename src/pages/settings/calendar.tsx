@@ -21,10 +21,8 @@ export default function CalendarSettings() {
       </div>
       <div className="w-full lg:w-[75%]  bg-white h-[100vh] scrollbar-hide  overflow-y-scroll pb-20">
         <div className="w-full bg-white  ">
-          {/* first section */}
-          <div className="text-[#47494b] text-lg font-semibold p-4 border-b flex items-center justify-between">
-            <h1>Add New Calendar</h1>
-            <MdOutlineClose className="text-gray-400 cursor-pointer" />
+          <div className="  border-b flex items-center justify-between pt-4 px-4 pb-3">
+            <p className="text-[#47494b] text-lg font-semibold">Calendar</p>
           </div>
 
           {/* Second Section */}

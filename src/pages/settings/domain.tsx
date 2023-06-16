@@ -171,9 +171,12 @@ export default function Domain() {
         </div>
         <div className="w-full lg:w-[75%]  bg-gray-50 h-[100vh] scrollbar-hide  overflow-y-scroll pb-20">
           <div className=" bg-white border rounded-md ">
+            <div className="  border-b flex items-center justify-between pt-4 px-4 pb-3">
+              <p className="text-[#47494b] text-lg font-semibold">Domains</p>
+            </div>
             <div className="flex items-center justify-between  border-b">
-              <div className="text-[#47494b] text-lg font-semibold  px-5 ">
-                Domains
+              <div className="text-[#47494b] text-base font-semibold  px-5 ">
+                All Domains
               </div>
               <div className="text-[#47494b] text-sm font-semibold flex items-center justify-center gap-3 px-5 py-1">
                 <button className="text-blue-400 ">
@@ -181,16 +184,12 @@ export default function Domain() {
                 </button>
                 <button
                   onClick={() => setOpenDomainModel(true)}
-                  className="border bg-[#25992a] mb-4 mt-2   text-white rounded-md text-sm px-3 py-2"
+                  className="border bg-newBlue mb-4 mt-2   text-white rounded-md text-sm px-3 py-2"
                 >
                   + Add New Domain
                 </button>
               </div>
             </div>
-
-            <p className="text-[#47494b]   text-sm font-semibold px-5 py-2  border-b mb-3">
-              Domain
-            </p>
 
             {domainData?.map((item: any, index: number) => (
               <div

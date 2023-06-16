@@ -266,6 +266,8 @@ export default function Table({ data }: any) {
             enableStickyHeader
             enableColumnOrdering
             enableRowSelection
+            positionPagination="top"
+            enableToolbarInternalActions={false}
             initialState={{
               showGlobalFilter: false,
             }}

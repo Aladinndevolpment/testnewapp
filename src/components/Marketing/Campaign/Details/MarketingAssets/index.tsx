@@ -301,6 +301,8 @@ export default function MarketingAssets({ marketing }: any) {
             initialState={{
               showGlobalFilter: false,
             }}
+            positionPagination="top"
+            enableToolbarInternalActions={false}
             positionToolbarAlertBanner="bottom"
             muiSearchTextFieldProps={{
               placeholder: `Search ${data?.length} rows`,

@@ -25,6 +25,12 @@ import { SelectBoxInputElement } from "../widgets/form/SelectInputElement";
 import { AttachmentElement } from "../widgets/form/Attachment";
 import { DatePickerElement } from "../widgets/form/DatePicker";
 
+const tbStyles = {
+  backgroundColor: "#fff",
+  borderColor: "#d9d6d6",
+  borderWidth: 1,
+};
+
 const baseTools = [
   {
     index: 1,
@@ -35,7 +41,7 @@ const baseTools = [
         tool: (
           <ElementToolsLayout
             toolName="Text Input"
-            tool={<TextInputElement />}
+            tool={<TextInputElement {...tbStyles} />}
             image="@/../public/craft/hero.png"
             icon={<BsCardText className="h-4 w-4 text-gray-500" />}
           />
@@ -57,7 +63,7 @@ const baseTools = [
         tool: (
           <ElementToolsLayout
             toolName="Textarea"
-            tool={<TextAreaElement />}
+            tool={<TextAreaElement {...tbStyles} />}
             image="@/../public/craft/hero.png"
             icon={<BsTextareaResize className="h-4 w-4 text-gray-500" />}
           />
@@ -80,7 +86,7 @@ const baseTools = [
         tool: (
           <ElementToolsLayout
             toolName="Checkbox"
-            tool={<CheckboxInputElement />}
+            tool={<CheckboxInputElement {...tbStyles} />}
             image="@/../public/craft/hero.png"
             icon={<TbCheckbox className="h-4 w-4 text-gray-500" />}
           />
@@ -92,7 +98,7 @@ const baseTools = [
         tool: (
           <ElementToolsLayout
             toolName="Dropdown"
-            tool={<SelectBoxInputElement />}
+            tool={<SelectBoxInputElement {...tbStyles} />}
             image="@/../public/craft/hero.png"
             icon={<TbSelect className="h-4 w-4 text-gray-500" />}
           />

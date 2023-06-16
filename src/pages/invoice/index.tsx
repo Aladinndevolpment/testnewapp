@@ -18,6 +18,7 @@ import PreviewFinalData from "@/components/invoice/PreviewFinalData";
 import InvoicePayment from "@/components/invoice/InvoicePayment";
 import { FiTrendingUp, FiTrendingDown } from "react-icons/fi";
 import { GlobalContext } from "@/layouts/GlobalLayout";
+import Link from "next/link";
 
 interface RowData {
   [key: string]: any;
@@ -328,6 +329,11 @@ export default function InvoicePage() {
                 <h3 className="font-semibold text-2xl">All Claims </h3>
               </div>
               <div className="flex flex-wrap gap-2">
+                <Link href="/invoice/new-claim">
+                  <div className=" flex justify-center items-center px-4 py-2 rounded-md text-white capitalize bg-newBlue">
+                    Claims Info
+                  </div>
+                </Link>
                 <button
                   className=" flex justify-center items-center px-4 py-2 rounded-md text-white capitalize bg-newBlue"
                   onClick={() => {

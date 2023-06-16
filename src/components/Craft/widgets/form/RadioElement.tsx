@@ -1,7 +1,7 @@
 import TextInput from "@/components/controls/TextInput";
 import { useNode } from "@craftjs/core";
 import { MuiColorInput } from "mui-color-input";
-import { InputHTMLAttributes, useContext, useEffect, useState } from "react";
+import { InputHTMLAttributes, useEffect, useState } from "react";
 import { IoContract } from "react-icons/io5";
 import {
   CommonSettings,
@@ -10,22 +10,21 @@ import {
   getCommonSettingsProps,
 } from "./CommonSettings";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
-import { CraftContext } from "@/pages/builder/survey/craft";
-const elementName = "Checkbox Input";
+const elementName = "Radio Input";
 
-interface ICheckboxProps extends ICommonSettingsProps {
+interface IRadioProps extends ICommonSettingsProps {
   color?: string;
-  checkboxBasicProps?: InputHTMLAttributes<HTMLInputElement>;
-  checks?: {
-    checkProps: InputHTMLAttributes<HTMLInputElement>;
+  radiosBasicProps?: InputHTMLAttributes<HTMLInputElement>;
+  radios?: {
+    radioProps: InputHTMLAttributes<HTMLInputElement>;
     label: string;
   }[];
   column?: boolean;
 }
 
-export const CheckboxInputElement = ({
+export const RadioInputElement = ({
   color = "#000000",
-  checkboxBasicProps,
+  radiosBasicProps,
   backgroundColor = baseDefaults.backgroundColor,
   borderRadius = baseDefaults.borderRadius,
   borderColor = baseDefaults.borderColor,
@@ -40,9 +39,9 @@ export const CheckboxInputElement = ({
   paddingLeft = baseDefaults.paddingLeft,
   paddingRight = baseDefaults.paddingRight,
   shadow = "shadow-none",
-  checks = [],
+  radios = [],
   column = false,
-}: ICheckboxProps) => {
+}: IRadioProps) => {
   const {
     connectors: { connect, drag },
     hasSelectedNode,
@@ -63,7 +62,6 @@ export const CheckboxInputElement = ({
   useEffect(() => {
     !hasSelectedNode && setEditable(false);
   }, [hasSelectedNode]);
-  const ctx = useContext(CraftContext);
 
   return (
     <div
@@ -88,39 +86,37 @@ export const CheckboxInputElement = ({
         </div>
       )}
 
-      <div onClick={() => ctx.setOpenSettings(!ctx.openSettings)}>
-        <div
-          className={`flex ${
-            column && "flex-col"
-          } gap-3 flex-wrap shadow px-2 py-2  rounded-md w-full focus-within:outline-2 focus-within:outline-blue-400 ${shadow} ${borderType} ${borderColor}`}
-          style={{
-            color: color,
-            borderRadius: borderRadius + "px",
-            backgroundColor,
-            paddingTop: `${paddingTop}px`,
-            paddingBottom: `${paddingBottom}px`,
-            paddingLeft: `${paddingLeft}px`,
-            paddingRight: `${paddingRight}px`,
-          }}
-        >
-          {checks?.map((item, index) => (
-            <div className="form-control" key={index}>
-              <label className="cursor-pointer flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  name={checkboxBasicProps?.name}
-                  className="checkbox checked:bg-green-500"
-                  // checked={item.checkProps.checked}
-                  required={checkboxBasicProps?.required}
-                  value={item.checkProps.value}
-                />
-                <span className="label-text">
-                  {item.label} {checkboxBasicProps?.required && "*"}
-                </span>
-              </label>
-            </div>
-          ))}
-        </div>
+      <div
+        className={`flex ${
+          column && "flex-col"
+        } gap-3 flex-wrap shadow px-2 py-2  rounded-md w-full focus-within:outline-2 focus-within:outline-blue-400 ${shadow} ${borderType} ${borderColor}`}
+        style={{
+          color: color,
+          borderRadius: borderRadius + "px",
+          backgroundColor,
+          paddingTop: `${paddingTop}px`,
+          paddingBottom: `${paddingBottom}px`,
+          paddingLeft: `${paddingLeft}px`,
+          paddingRight: `${paddingRight}px`,
+        }}
+      >
+        {radios?.map((item, index) => (
+          <div className="form-control" key={index}>
+            <label className="cursor-pointer flex items-center gap-2">
+              <input
+                type="radio"
+                name={radiosBasicProps?.name}
+                className="radio checked:bg-green-500"
+                // checked={item.radioProps.checked}
+                required={radiosBasicProps?.required}
+                value={item.radioProps.value}
+              />
+              <span className="label-text">
+                {item.label} {radiosBasicProps?.required && "*"}
+              </span>
+            </label>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -140,11 +136,11 @@ const TextSettings: any = () => {
         <label className="text-sm text-gray-400">Name</label>
         <TextInput
           lefticon={<IoContract />}
-          value={props.checkboxBasicProps.name}
+          value={props.radiosBasicProps.name}
           placeholder="Enter field name"
           onChange={(e) =>
             setProp(
-              (props: any) => (props.checkboxBasicProps.name = e.target.value)
+              (props: any) => (props.radiosBasicProps.name = e.target.value)
             )
           }
         />
@@ -158,10 +154,10 @@ const TextSettings: any = () => {
             onClick={() =>
               setProp(
                 (props: any) =>
-                  (props.checks = [
-                    ...props.checks,
+                  (props.radios = [
+                    ...props.radios,
                     {
-                      checkProps: {
+                      radioProps: {
                         value: "new item",
                         required: true,
                       },
@@ -174,7 +170,7 @@ const TextSettings: any = () => {
             <PlusIcon className="h-4 w-4 text-black" />
           </button>
         </div>
-        {props.checks.map((item: any, index: number) => (
+        {props.radios.map((item: any, index: number) => (
           <div key={index} className="flex items-center">
             <TextInput
               lefticon={<IoContract />}
@@ -182,11 +178,11 @@ const TextSettings: any = () => {
               placeholder="Enter field name"
               onChange={(e) => {
                 setProp(
-                  (props: any) => (props.checks[index].label = e.target.value)
+                  (props: any) => (props.radios[index].label = e.target.value)
                 );
                 setProp(
                   (props: any) =>
-                    (props.checks[index].checkProps.value = e.target.value)
+                    (props.radios[index].radioProps.value = e.target.value)
                 );
               }}
             />
@@ -194,7 +190,7 @@ const TextSettings: any = () => {
             <button
               className="btn bg-transparent btn-xs border-none hover:border-none hover:bg-transparent"
               onClick={() =>
-                setProp((props: any) => props.checks.splice(index, 1))
+                setProp((props: any) => props.radios.splice(index, 1))
               }
             >
               <TrashIcon className="h-4 w-4 text-red-500" />
@@ -207,13 +203,13 @@ const TextSettings: any = () => {
         <label className=" flex items-center gap-3 cursor-pointer">
           <input
             type="checkbox"
-            checked={props.checkboxBasicProps.required}
+            checked={props.radiosBasicProps.required}
             className="checkbox"
             onChange={({ target: { value } }) =>
               setProp(
                 (props: any) =>
-                  (props.checkboxBasicProps.required =
-                    !props.checkboxBasicProps.required)
+                  (props.radiosBasicProps.required =
+                    !props.radiosBasicProps.required)
               )
             }
           />
@@ -251,14 +247,14 @@ const TextSettings: any = () => {
   );
 };
 
-CheckboxInputElement.craft = {
+RadioInputElement.craft = {
   related: {
     settings: TextSettings,
   },
   props: {
     value: "",
-    checkboxBasicProps: {
-      name: "chk-10",
+    radiosBasicProps: {
+      name: "radio-10",
       required: true,
     },
     ...getCommonSettingsProps(),
@@ -274,14 +270,21 @@ CheckboxInputElement.craft = {
     paddingRight: 10,
     backgroundColor: "#f6f6fc",
 
-    checks: [
+    radios: [
       {
-        checkProps: {
+        radioProps: {
           checked: true,
-          value: "yes",
+          value: "red pill",
           required: true,
         },
-        label: "I accept the terms & conditions.",
+        label: "Red pill",
+      },
+      {
+        radioProps: {
+          value: "blue pill",
+          required: true,
+        },
+        label: "Blue pill",
       },
     ],
   },

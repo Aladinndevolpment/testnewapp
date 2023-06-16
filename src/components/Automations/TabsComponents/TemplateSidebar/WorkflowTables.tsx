@@ -314,6 +314,8 @@ export default function WorkFlowTables() {
           </div>
           <div className="bg-white shadow-md lg:px-2 py-5 rounded-lg">
             <MaterialReactTable
+              positionPagination="top"
+              enableToolbarInternalActions={false}
               columns={columns}
               data={filteredData}
               enableStickyHeader

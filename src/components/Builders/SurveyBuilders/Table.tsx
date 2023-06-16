@@ -261,6 +261,8 @@ export default function Table({ data }: any) {
         </div>
         <div className="bg-white shadow-md lg:px-2 rounded-lg">
           <MaterialReactTable
+            positionPagination="top"
+            enableToolbarInternalActions={false}
             columns={columns}
             data={filteredData}
             enableStickyHeader

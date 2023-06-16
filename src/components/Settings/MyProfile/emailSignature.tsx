@@ -148,7 +148,7 @@ export default function EmailSignature() {
           <div className="w-full flex justify-start items-center">
             <button
               onSubmit={handleSubmit}
-              className="border bg-[#25992a]  text-white rounded-md text-sm px-8 py-2 mt-2"
+              className="border bg-newBlue  text-white rounded-md text-sm px-8 py-2 mt-2"
             >
               Submit
             </button>

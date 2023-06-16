@@ -41,6 +41,8 @@ import { Review } from "../widgets/Reviews";
 import { UsersIcon } from "@heroicons/react/24/solid";
 import { OrderConfirmation } from "../widgets/prebuilt/OrderConfirmation";
 import { OrderOneStep } from "../widgets/prebuilt/OrderOneStep";
+import { FaQq } from "react-icons/fa";
+import { FAQs } from "../widgets/FAQs";
 
 const baseTools = [
   {
@@ -344,6 +346,17 @@ const baseTools = [
             tool={<OrderOneStep />}
             image="@/../public/craft/hero.png"
             icon={<UsersIcon className="h-5 w-5 text-gray-500" />}
+          />
+        ),
+      },
+      {
+        name: "FAQs",
+        tool: (
+          <ElementToolsLayout
+            toolName="FAQs"
+            tool={<FAQs />}
+            image="@/../public/craft/hero.png"
+            icon={<FaQq className="h-5 w-5 text-gray-500" />}
           />
         ),
       },

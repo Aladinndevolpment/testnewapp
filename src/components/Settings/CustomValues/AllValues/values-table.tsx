@@ -15,13 +15,13 @@ const ValueTableData = ({ data }: any) => {
   const columns = useMemo<MRT_ColumnDef<any>[]>(
     () => [
       {
-        accessorKey: "field_name",
-        id: "field_name",
-        header: "Field Name",
+        accessorKey: "value_Name",
+        id: "value_Name",
+        header: "Value Name",
         size: 250,
         Cell: ({ row }) => (
           <p className="  text-gray-700 font-medium text-[15px]">
-            {row.original.field_name}
+            {row.original.value_Name}
           </p>
         ),
         enableColumnFilter: true,
@@ -82,7 +82,7 @@ const ValueTableData = ({ data }: any) => {
   };
 
   const filteredData = data.filter((row: any) =>
-    row.field_name.toLowerCase().includes(filterInput.toLowerCase())
+    row.value_Name.toLowerCase().includes(filterInput.toLowerCase())
   );
 
   return (
@@ -97,6 +97,8 @@ const ValueTableData = ({ data }: any) => {
           initialState={{
             showGlobalFilter: false,
           }}
+          positionPagination="top"
+          enableToolbarInternalActions={false}
           positionToolbarAlertBanner="bottom"
           muiSearchTextFieldProps={{
             placeholder: `Search ${data?.length} rows`,

@@ -67,6 +67,14 @@ function NumberOperations() {
     const value = e.target.value;
     setFormData(value);
 
+    // Remove any existing commas from the input
+    const numberWithoutCommas = value.replace(/,/g, "");
+
+    // Add commas to the number every three digits
+    const formattedNumber = Number(numberWithoutCommas).toLocaleString();
+    console.log(formattedNumber);
+    //  setInputNumber(formattedNumber);
+
     const totalData: any = Array.from(String(value), Number);
     setTotalData(totalData);
     setTotalDataCount(totalData.length);
@@ -89,6 +97,7 @@ function NumberOperations() {
     }
     return true;
   };
+  console.log(totaldata);
 
   return (
     <div>

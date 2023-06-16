@@ -11,6 +11,9 @@ export default function MyProfile() {
         <SettingsSidebar />
       </div>
       <div className="w-full lg:w-[75%]  bg-gray-50 h-[100vh] scrollbar-hide  overflow-y-scroll pb-20">
+        <div className="  border-b flex items-center justify-between  px-4 pb-3 pt-4">
+          <p className="text-[#47494b] text-lg font-semibold">My Profile</p>
+        </div>
         <div className="flex flex-wrap px-4 py-4">
           <div className="w-full lg:w-[60%] px-2">
             <PersonalData />

@@ -34,7 +34,7 @@ export default function App({ children }: IAppProps) {
     <Container>
       <div
         ref={(ref: any) => connect(drag(ref))}
-        className="bg-[#f5f7f9] min-h-16 h-auto"
+        className="bg-[#F5F5F5] min-h-16 h-auto"
       >
         <Element id={`main`} is={MainApp} canvas></Element>
       </div>

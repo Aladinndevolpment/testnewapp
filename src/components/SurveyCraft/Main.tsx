@@ -18,6 +18,24 @@ export default function Main() {
           <div className="bg-white p-2">
             <Frame>
               <Element is={Container} canvas>
+                <div>
+                  <p className="text-[16px] text-gray-700 mb-3 font-semibold">
+                    {" "}
+                    A contact will be unenrolled from this sequence in any of
+                    these cases.
+                  </p>
+
+                  <div className="flex justify-start items-center gap-3 ">
+                    <p className="text-[14px] text-gray-500 mb-5 font-medium">
+                      {" "}
+                      All Steps
+                    </p>
+                    <div className="bg-gray-300 h-1 w-1 rounded-full mb-5"></div>
+                    <p className="text-[14px] text-gray-500 mb-5 font-medium">
+                      6 business days to complete
+                    </p>
+                  </div>
+                </div>
                 <Slide />
               </Element>
             </Frame>
