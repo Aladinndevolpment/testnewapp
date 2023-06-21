@@ -105,103 +105,217 @@ export const Footers = ({
               <div className="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
                 <div>
                   <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                    Company
+                    <Text
+                      alignment="left"
+                      text="Company"
+                      fontSize={14}
+                      bold="font-semibold"
+                      color="#000000"
+                    />
                   </h2>
                   <ul className="text-gray-500 dark:text-gray-400 font-medium">
                     <li className="mb-4">
                       <a href="#" className=" hover:underline">
-                        About
+                        <Text
+                          alignment="left"
+                          text="About"
+                          fontSize={14}
+                          bold="font-semibold"
+                          color="#000000"
+                        />
                       </a>
                     </li>
                     <li className="mb-4">
                       <a href="#" className="hover:underline">
-                        Careers
+                        <Text
+                          alignment="left"
+                          text="Careers"
+                          fontSize={14}
+                          bold="font-semibold"
+                          color="#000000"
+                        />
                       </a>
                     </li>
                     <li className="mb-4">
                       <a href="#" className="hover:underline">
-                        Brand Center
+                        <Text
+                          alignment="left"
+                          text="Brand Center"
+                          fontSize={14}
+                          bold="font-semibold"
+                          color="#000000"
+                        />
                       </a>
                     </li>
                     <li className="mb-4">
                       <a href="#" className="hover:underline">
-                        Blog
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                    Help center
-                  </h2>
-                  <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                    <li className="mb-4">
-                      <a href="#" className="hover:underline">
-                        Discord Server
-                      </a>
-                    </li>
-                    <li className="mb-4">
-                      <a href="#" className="hover:underline">
-                        Twitter
-                      </a>
-                    </li>
-                    <li className="mb-4">
-                      <a href="#" className="hover:underline">
-                        Facebook
-                      </a>
-                    </li>
-                    <li className="mb-4">
-                      <a href="#" className="hover:underline">
-                        Contact Us
+                        <Text
+                          alignment="left"
+                          text="Blog"
+                          fontSize={14}
+                          bold="font-semibold"
+                          color="#000000"
+                        />
                       </a>
                     </li>
                   </ul>
                 </div>
                 <div>
                   <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                    Legal
+                    <Text
+                      alignment="left"
+                      text="Help center"
+                      fontSize={14}
+                      bold="font-semibold"
+                      color="#000000"
+                    />
                   </h2>
                   <ul className="text-gray-500 dark:text-gray-400 font-medium">
                     <li className="mb-4">
                       <a href="#" className="hover:underline">
-                        Privacy Policy
+                        <Text
+                          alignment="left"
+                          text="Discord Server"
+                          fontSize={14}
+                          bold="font-semibold"
+                          color="#000000"
+                        />
                       </a>
                     </li>
                     <li className="mb-4">
                       <a href="#" className="hover:underline">
-                        Licensing
+                        <Text
+                          alignment="left"
+                          text="Twitter"
+                          fontSize={14}
+                          bold="font-semibold"
+                          color="#000000"
+                        />
                       </a>
                     </li>
                     <li className="mb-4">
                       <a href="#" className="hover:underline">
-                        Terms &amp; Conditions
+                        <Text
+                          alignment="left"
+                          text="Facebook"
+                          fontSize={14}
+                          bold="font-semibold"
+                          color="#000000"
+                        />
+                      </a>
+                    </li>
+                    <li className="mb-4">
+                      <a href="#" className="hover:underline">
+                        <Text
+                          alignment="left"
+                          text="Contact Us"
+                          fontSize={14}
+                          bold="font-semibold"
+                          color="#000000"
+                        />
                       </a>
                     </li>
                   </ul>
                 </div>
                 <div>
                   <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                    Download
+                    <Text
+                      alignment="left"
+                      text="Legal"
+                      fontSize={14}
+                      bold="font-semibold"
+                      color="#000000"
+                    />
                   </h2>
                   <ul className="text-gray-500 dark:text-gray-400 font-medium">
                     <li className="mb-4">
                       <a href="#" className="hover:underline">
-                        iOS
+                        <Text
+                          alignment="left"
+                          text="Privacy Policy"
+                          fontSize={14}
+                          bold="font-semibold"
+                          color="#000000"
+                        />
                       </a>
                     </li>
                     <li className="mb-4">
                       <a href="#" className="hover:underline">
-                        Android
+                        <Text
+                          alignment="left"
+                          text="Licensing"
+                          fontSize={14}
+                          bold="font-semibold"
+                          color="#000000"
+                        />
                       </a>
                     </li>
                     <li className="mb-4">
                       <a href="#" className="hover:underline">
-                        Windows
+                        <Text
+                          alignment="left"
+                          text="Terms &amp; Conditions"
+                          fontSize={14}
+                          bold="font-semibold"
+                          color="#000000"
+                        />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                    <Text
+                      alignment="left"
+                      text="Download"
+                      fontSize={14}
+                      bold="font-semibold"
+                      color="#000000"
+                    />
+                  </h2>
+                  <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                    <li className="mb-4">
+                      <a href="#" className="hover:underline">
+                        <Text
+                          alignment="left"
+                          text="iOS"
+                          fontSize={14}
+                          bold="font-semibold"
+                          color="#000000"
+                        />
                       </a>
                     </li>
                     <li className="mb-4">
                       <a href="#" className="hover:underline">
-                        MacOS
+                        <Text
+                          alignment="left"
+                          text="Android"
+                          fontSize={14}
+                          bold="font-semibold"
+                          color="#000000"
+                        />
+                      </a>
+                    </li>
+                    <li className="mb-4">
+                      <a href="#" className="hover:underline">
+                        <Text
+                          alignment="left"
+                          text="Windows"
+                          fontSize={14}
+                          bold="font-semibold"
+                          color="#000000"
+                        />
+                      </a>
+                    </li>
+                    <li className="mb-4">
+                      <a href="#" className="hover:underline">
+                        <Text
+                          alignment="left"
+                          text="MacOS"
+                          fontSize={14}
+                          bold="font-semibold"
+                          color="#000000"
+                        />
                       </a>
                     </li>
                   </ul>
@@ -225,7 +339,15 @@ export const Footers = ({
                         clip-rule="evenodd"
                       />
                     </svg>
-                    <span className="sr-only">Facebook page</span>
+                    <span className="sr-only">
+                      <Text
+                        alignment="left"
+                        text="Facebook page"
+                        fontSize={14}
+                        bold="font-semibold"
+                        color="#000000"
+                      />
+                    </span>
                   </a>
                   <a
                     href="#"
@@ -243,7 +365,15 @@ export const Footers = ({
                         clip-rule="evenodd"
                       />
                     </svg>
-                    <span className="sr-only">Instagram page</span>
+                    <span className="sr-only">
+                      <Text
+                        alignment="left"
+                        text="Instagram page"
+                        fontSize={14}
+                        bold="font-semibold"
+                        color="#000000"
+                      />
+                    </span>
                   </a>
                   <a
                     href="#"
@@ -257,7 +387,15 @@ export const Footers = ({
                     >
                       <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
                     </svg>
-                    <span className="sr-only">Twitter page</span>
+                    <span className="sr-only">
+                      <Text
+                        alignment="left"
+                        text="Twitter page"
+                        fontSize={14}
+                        bold="font-semibold"
+                        color="#000000"
+                      />
+                    </span>
                   </a>
                   <a
                     href="#"
@@ -275,7 +413,15 @@ export const Footers = ({
                         clip-rule="evenodd"
                       />
                     </svg>
-                    <span className="sr-only">GitHub account</span>
+                    <span className="sr-only">
+                      <Text
+                        alignment="left"
+                        text="GitHub account"
+                        fontSize={14}
+                        bold="font-semibold"
+                        color="#000000"
+                      />
+                    </span>
                   </a>
                   <a
                     href="#"
@@ -293,7 +439,15 @@ export const Footers = ({
                         clip-rule="evenodd"
                       />
                     </svg>
-                    <span className="sr-only">Dribbble account</span>
+                    <span className="sr-only">
+                      <Text
+                        alignment="left"
+                        text="Dribbble account"
+                        fontSize={14}
+                        bold="font-semibold"
+                        color="#000000"
+                      />
+                    </span>
                   </a>
                 </div>
               </div>

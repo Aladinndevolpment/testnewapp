@@ -102,6 +102,7 @@ export default function AdminSidebar() {
         <div className={`mb-4  pl-1 w-full py-1 `}>
           <Link href="/settings">
             <div
+              onClick={() => ctx?.setOpen(false)}
               className={`flex   items-center   py-1 px-3 w-full justify-start`}
             >
               <div

@@ -19,10 +19,24 @@ import InvoicePayment from "@/components/invoice/InvoicePayment";
 import { FiTrendingUp, FiTrendingDown } from "react-icons/fi";
 import { GlobalContext } from "@/layouts/GlobalLayout";
 import Link from "next/link";
+import PatientClaimInfo from "@/components/invoice/NewClaim/PatientClaimInfo";
+import Insurance from "@/components/invoice/NewClaim/Insurance";
+import PatientCondition from "@/components/invoice/NewClaim/PatientCondition";
+import ReferPhysicianData from "@/components/invoice/NewClaim/ReferingPhysician";
+import PatientOtherDetails from "@/components/invoice/NewClaim/PatientOtherDetails";
+import PaidClaimTable from "@/components/invoice/PaidClaimTable";
+import PendingClaimTable from "@/components/invoice/PendingClaimTable";
+import AllClaimTable from "@/components/invoice/AllClaimTable";
 
 interface RowData {
   [key: string]: any;
 }
+
+const FieldType = [
+  { title: "All Claims" },
+  { title: "Paid Claims" },
+  { title: "Pending Claims" },
+];
 
 export const InvoiceContext = createContext({
   isInvoicePreviewModalVisible: false,
@@ -38,6 +52,7 @@ export const InvoiceContext = createContext({
 });
 
 export default function InvoicePage() {
+  const [select, setSelect] = useState<any>(0);
   const [data, setData] = useState<RowData[]>([
     {
       id: "1",
@@ -193,11 +208,20 @@ export default function InvoicePage() {
           visibility={addFlyoutVisibility}
           onClose={() => setAddFlyoutVisibility(false)}
         >
-          <AddInvoiceForm
+          {/* <AddInvoiceForm
             handleChange={(newInvoice: string, type: string) =>
               handleStoreInvoice(newInvoice, type)
             }
-          />
+          /> */}
+          <div className="bg-white  pb-10 h-[100vh] scrollbar-hide  overflow-y-scroll ">
+            <div className="flex justify-start items-start gap-5 flex-col">
+              <PatientClaimInfo />
+              <Insurance />
+              <PatientCondition />
+              <ReferPhysicianData />
+              <PatientOtherDetails />
+            </div>
+          </div>
         </FlyOut>
         <header className="bg-white p-4 flex justify-between flex-wrap overflow-x-hidden items-center border-b-2">
           <h1 className="text-2xl font-semibold">Claims</h1>
@@ -324,17 +348,17 @@ export default function InvoicePage() {
 
         <div className="px-4">
           <div className="w-full border bg-white p-4 shadow-md rounded-lg">
-            <div className="flex flex-wrap justify-between items-center">
+            <div className="flex flex-wrap justify-between items-center pb-3">
               <div>
                 <h3 className="font-semibold text-2xl">All Claims </h3>
               </div>
               <div className="flex flex-wrap gap-2">
-                <Link href="/invoice/new-claim">
+                {/* <Link href="/invoice/new-claim">
                   <div className=" flex justify-center items-center px-4 py-2 rounded-md text-white capitalize bg-newBlue">
                     <PlusIcon className="h-4 w-4 text-white" /> New Claims
                   </div>
-                </Link>
-                {/* <button
+                </Link> */}
+                <button
                   className=" flex justify-center items-center px-4 py-2 rounded-md text-white capitalize bg-newBlue"
                   onClick={() => {
                     setAddFlyoutVisibility(true);
@@ -342,14 +366,35 @@ export default function InvoicePage() {
                   }}
                 >
                   <PlusIcon className="h-4 w-4 text-white" /> New Claims
-                </button> */}
+                </button>
                 <button className="px-1 shadow border rounded">
                   <MoreHorizOutlined />
                 </button>
               </div>
             </div>
-            <div className="mt-3">
-              <BillingTable data={data} />
+            <div className="text-[#34373a] font-semibold bg-gray-100 text-xs border-t border-x rounded-t-md w-[19.6rem] flex ">
+              {FieldType.map((item: any, index: number) => (
+                <button
+                  key={index}
+                  onClick={() => setSelect(index)}
+                  className={`px-4 py-2.5 ${
+                    select == index ? "bg-white rounded-t-md" : ""
+                  } `}
+                >
+                  {item.title}
+                </button>
+              ))}
+            </div>
+            <div className="border-t border-gray-100 rounded-r-md ">
+              {select === 0 ? (
+                <AllClaimTable data={data} />
+              ) : select === 1 ? (
+                <PaidClaimTable data={data} />
+              ) : select === 2 ? (
+                <PendingClaimTable data={data} />
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>

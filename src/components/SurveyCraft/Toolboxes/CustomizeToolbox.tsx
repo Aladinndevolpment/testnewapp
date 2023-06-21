@@ -1,5 +1,4 @@
 import { Button } from "../widgets/Button";
-import { Text } from "../widgets/Text/Text";
 import { Link } from "../widgets/Link";
 import { useEffect, useState } from "react";
 import TextInput from "@/components/controls/TextInput";
@@ -47,17 +46,17 @@ const baseTools = [
           />
         ),
       },
-      {
-        name: "Paragraph",
-        tool: (
-          <ElementToolsLayout
-            toolName="Paragraph"
-            tool={<Text text="Start typing here..." />}
-            image="@/../public/craft/hero.png"
-            icon={<BsTextParagraph className="h-4 w-4 text-gray-500" />}
-          />
-        ),
-      },
+      // {
+      //   name: "Paragraph",
+      //   tool: (
+      //     <ElementToolsLayout
+      //       toolName="Paragraph"
+      //       tool={<Text text="Start typing here..." />}
+      //       image="@/../public/craft/hero.png"
+      //       icon={<BsTextParagraph className="h-4 w-4 text-gray-500" />}
+      //     />
+      //   ),
+      // },
       {
         name: "Textarea",
         tool: (

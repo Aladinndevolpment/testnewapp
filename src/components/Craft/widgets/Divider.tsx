@@ -67,7 +67,8 @@ export default function Divider({
   return (
     <div
       className={`py-2 hover:outline  ${
-        hovered && "hover:outline-orange-500 hover:outline"
+        hovered &&
+        "hover:outline-1 hover:outline-dashed p-4 outline-gray-400 border-gray-400 "
       }`}
       ref={(ref: any) => connect(drag(ref))}
       style={{

@@ -25,17 +25,17 @@ export default function TeamEventSetup({
 }: any) {
   const [errors, setErrors] = useState<any>({});
   const [formValues, setFormValues] = useState<any>({
-    calendarName: "name",
-    description: "description",
-    calendarUrl: "calendarUrl",
-    widgetTyp: "widgetTyp",
+    calendarName: "calendarName",
+    description: "calendarName",
+    calendarUrl: "calendarName",
+    widgetTyp: "calendarName",
     widgetShape: "square",
-    appointmentTitle: "appointmentTitle",
-    meetingLocation: "meetingLocation",
-    linkToCalendar: "linkToCalendar",
-    googleCalendar: "googleCalendar",
-    syncOption: "syncOption",
-    eventColor: "eventColor",
+    appointmentTitle: "calendarName",
+    meetingLocation: "calendarName",
+    linkToCalendar: "calendarName",
+    googleCalendar: "calendarName",
+    syncOption: "calendarName",
+    eventColor: "calendarName",
     image: null,
   });
 
@@ -111,7 +111,7 @@ export default function TeamEventSetup({
       description: "",
       calendarUrl: "",
       widgetTyp: "",
-      widgetShape: "",
+      widgetShape: "square",
       appointmentTitle: "",
       meetingLocation: "",
       linkToCalendar: "",
@@ -132,7 +132,7 @@ export default function TeamEventSetup({
       <div className="px-2 ">
         {/* form */}
         <div className=" h-full overflow-hidden px-4">
-          <div className="lg:h-[50vh] overflow-y-scroll scrollbar-hide">
+          <div className="lg:h-[55vh] overflow-y-scroll scrollbar-hide">
             <div className=" pb-4 pt-5">
               <h1 className="text-[#47494b] text-md font-semibold">Calendar</h1>
               <p className="text-gray-400 text-sm">
@@ -554,18 +554,18 @@ export default function TeamEventSetup({
           </div>
           <div className="lg:h-[20vh]">
             <div className="flex justify-end gap-3 p-4 mt-2 border-t ">
-              <div
+              <button
                 onClick={onClose}
                 className="border text-[#47494b] rounded-md px-3 py-2"
               >
                 Close
-              </div>
-              <div
+              </button>
+              <button
                 onClick={() => handleSubmit()}
-                className="border bg-[#25992a] text-white rounded-md px-3 py-2"
+                className="border bg-newBlue text-white rounded-md px-3 py-2"
               >
                 Save & continue
-              </div>
+              </button>
             </div>
           </div>
         </div>

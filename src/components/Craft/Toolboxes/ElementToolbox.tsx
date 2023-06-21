@@ -40,7 +40,7 @@ import { Review } from "../widgets/Reviews";
 import { UsersIcon } from "@heroicons/react/24/solid";
 import { OrderConfirmation } from "../widgets/prebuilt/OrderConfirmation";
 import { OrderOneStep } from "../widgets/prebuilt/OrderOneStep";
-import { FaQq } from "react-icons/fa";
+import { FaQq, FaWpforms } from "react-icons/fa";
 import { FAQs } from "../widgets/FAQs";
 import { TextInputElement } from "../widgets/form/TextInput";
 import { TextAreaElement } from "../widgets/form/TextareaElement";
@@ -58,6 +58,7 @@ import { MdRadioButtonChecked } from "react-icons/md";
 import { TbCheckbox, TbSelect } from "react-icons/tb";
 import { AiOutlineLink, AiOutlineVideoCameraAdd } from "react-icons/ai";
 import { IoDocumentAttachOutline } from "react-icons/io5";
+import { MainForm } from "../widgets/form/MainForm";
 
 const tbStyles = {
   backgroundColor: "#fff",
@@ -359,119 +360,119 @@ const baseTools = [
         ),
       },
       {
-        name: "FAQs",
+        name: "Forms",
         tool: (
           <ElementToolsLayout
-            toolName="FAQs"
-            tool={<FAQs />}
+            toolName="Forms"
+            tool={<MainForm />}
             image="@/../public/craft/hero.png"
-            icon={<FaQq className="h-5 w-5 text-gray-500" />}
+            icon={<FaWpforms className="h-5 w-5 text-gray-500" />}
           />
         ),
       },
     ],
   },
-  {
-    index: 3,
-    question: "Forms",
-    answer: [
-      {
-        name: "Label",
-        tool: (
-          <ElementToolsLayout
-            toolName="Label"
-            tool={
-              <Text text="Enter Label..." alignment={"left"} tagName="label" />
-            }
-            image="@/../public/craft/hero.png"
-            icon={<TbTextSize className="h-5 w-5 text-gray-500" />}
-          />
-        ),
-      },
-      {
-        name: "Text Input",
-        tool: (
-          <ElementToolsLayout
-            toolName="Text Input"
-            tool={<TextInputElement {...tbStyles} />}
-            image="@/../public/craft/hero.png"
-            icon={<BsCardText className="h-4 w-4 text-gray-500" />}
-          />
-        ),
-      },
+  // {
+  //   index: 3,
+  //   question: "Forms",
+  //   answer: [
+  //     {
+  //       name: "Label",
+  //       tool: (
+  //         <ElementToolsLayout
+  //           toolName="Label"
+  //           tool={
+  //             <Text text="Enter Label..." alignment={"left"} tagName="label" />
+  //           }
+  //           image="@/../public/craft/hero.png"
+  //           icon={<TbTextSize className="h-5 w-5 text-gray-500" />}
+  //         />
+  //       ),
+  //     },
+  //     {
+  //       name: "Text Input",
+  //       tool: (
+  //         <ElementToolsLayout
+  //           toolName="Text Input"
+  //           tool={<TextInputElement {...tbStyles} />}
+  //           image="@/../public/craft/hero.png"
+  //           icon={<BsCardText className="h-4 w-4 text-gray-500" />}
+  //         />
+  //       ),
+  //     },
 
-      {
-        name: "Textarea",
-        tool: (
-          <ElementToolsLayout
-            toolName="Textarea"
-            tool={<TextAreaElement {...tbStyles} />}
-            image="@/../public/craft/hero.png"
-            icon={<BsTextareaResize className="h-4 w-4 text-gray-500" />}
-          />
-        ),
-      },
-      {
-        name: "Radio",
-        tool: (
-          <ElementToolsLayout
-            toolName="Radio"
-            tool={<RadioInputElement />}
-            image="@/../public/craft/hero.png"
-            icon={<MdRadioButtonChecked className="h-4 w-4 text-gray-500" />}
-          />
-        ),
-      },
+  //     {
+  //       name: "Textarea",
+  //       tool: (
+  //         <ElementToolsLayout
+  //           toolName="Textarea"
+  //           tool={<TextAreaElement {...tbStyles} />}
+  //           image="@/../public/craft/hero.png"
+  //           icon={<BsTextareaResize className="h-4 w-4 text-gray-500" />}
+  //         />
+  //       ),
+  //     },
+  //     {
+  //       name: "Radio",
+  //       tool: (
+  //         <ElementToolsLayout
+  //           toolName="Radio"
+  //           tool={<RadioInputElement />}
+  //           image="@/../public/craft/hero.png"
+  //           icon={<MdRadioButtonChecked className="h-4 w-4 text-gray-500" />}
+  //         />
+  //       ),
+  //     },
 
-      {
-        name: "Checkbox",
-        tool: (
-          <ElementToolsLayout
-            toolName="Checkbox"
-            tool={<CheckboxInputElement {...tbStyles} />}
-            image="@/../public/craft/hero.png"
-            icon={<TbCheckbox className="h-4 w-4 text-gray-500" />}
-          />
-        ),
-      },
+  //     {
+  //       name: "Checkbox",
+  //       tool: (
+  //         <ElementToolsLayout
+  //           toolName="Checkbox"
+  //           tool={<CheckboxInputElement {...tbStyles} />}
+  //           image="@/../public/craft/hero.png"
+  //           icon={<TbCheckbox className="h-4 w-4 text-gray-500" />}
+  //         />
+  //       ),
+  //     },
 
-      {
-        name: "Select",
-        tool: (
-          <ElementToolsLayout
-            toolName="Dropdown"
-            tool={<SelectBoxInputElement {...tbStyles} />}
-            image="@/../public/craft/hero.png"
-            icon={<TbSelect className="h-4 w-4 text-gray-500" />}
-          />
-        ),
-      },
+  //     {
+  //       name: "Select",
+  //       tool: (
+  //         <ElementToolsLayout
+  //           toolName="Dropdown"
+  //           tool={<SelectBoxInputElement {...tbStyles} />}
+  //           image="@/../public/craft/hero.png"
+  //           icon={<TbSelect className="h-4 w-4 text-gray-500" />}
+  //         />
+  //       ),
+  //     },
 
-      {
-        name: "Attachment",
-        tool: (
-          <ElementToolsLayout
-            toolName="Attachment"
-            tool={<AttachmentElement />}
-            image="@/../public/craft/hero.png"
-            icon={<IoDocumentAttachOutline className="h-4 w-4 text-gray-500" />}
-          />
-        ),
-      },
+  //     {
+  //       name: "Attachment",
+  //       tool: (
+  //         <ElementToolsLayout
+  //           toolName="Attachment"
+  //           tool={<AttachmentElement />}
+  //           image="@/../public/craft/hero.png"
+  //           icon={<IoDocumentAttachOutline className="h-4 w-4 text-gray-500" />}
+  //         />
+  //       ),
+  //     },
 
-      {
-        name: "Date Picker",
-        tool: (
-          <ElementToolsLayout
-            toolName="Date Picker"
-            tool={<DatePickerElement />}
-            image="@/../public/craft/hero.png"
-            icon={<BsCalendarDate className="h-4 w-4 text-gray-500" />}
-          />
-        ),
-      },
-    ],
-  },
+  //     {
+  //       name: "Date Picker",
+  //       tool: (
+  //         <ElementToolsLayout
+  //           toolName="Date Picker"
+  //           tool={<DatePickerElement />}
+  //           image="@/../public/craft/hero.png"
+  //           icon={<BsCalendarDate className="h-4 w-4 text-gray-500" />}
+  //         />
+  //       ),
+  //     },
+  //   ],
+  // },
 ];
 
 export default function ElementToolbox() {

@@ -43,8 +43,8 @@ export default memo(function GlobalLayout({ children }: IAdminLayoutProps) {
               router.pathname.startsWith("/settings")
                 ? `${
                     open
-                      ? "hidden lg:w-[15%] lg:hidden "
-                      : "w-full block lg:w-[5%]  2xl:w-[4%]"
+                      ? "w-full block lg:w-[5%]  2xl:w-[4%]"
+                      : "hidden lg:w-[15%] lg:hidden "
                   }`
                 : `${
                     open
@@ -77,7 +77,7 @@ export default memo(function GlobalLayout({ children }: IAdminLayoutProps) {
               router.asPath == "/calendar" ? "h-[100vh]" : null
             } ${
               router.pathname.startsWith("/settings")
-                ? `${value.open ? " w-full" : "lg:w-[95%]  2xl:w-[96%]"}`
+                ? `${value.open ? "lg:w-[95%]  2xl:w-[96%]" : " w-full"}`
                 : `${
                     value.open
                       ? " w-full  lg:w-[85%]"

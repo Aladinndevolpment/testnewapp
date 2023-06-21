@@ -53,7 +53,6 @@ const socialIcons = [
   { icon: FaTwitch, name: "Facebook" },
   { icon: FaTwitter, name: "Facebook" },
   { icon: FaInstagram, name: "Facebook" },
-
   { icon: FaWhatsapp, name: "Facebook" },
   { icon: FaYoutube, name: "Facebook" },
   { icon: FaFacebook, name: "Facebook" },
@@ -170,9 +169,9 @@ export const Social = ({
         justifyContent: `${justifyContent}`,
         alignItems: `${alignItems}`,
       }}
-      className={`flex hover:outline-green-500 hover:outline ${borderType} ${shadow} shadow-[${shadowColor}]`}
+      className={`flex  hover:outline-gray-500 hover:outline outline-1 hover:outline-dashed   ${borderType} ${shadow} shadow-[${shadowColor}]`}
     >
-      <a href={href}>
+      <a className="p-4" href={href}>
         <Icon
           className="text-red-500"
           style={{
@@ -340,7 +339,7 @@ Social.craft = {
     settings: TextSettings,
   },
   props: {
-    text: "Start writing here...",
+    text: "Start writing hersssse...",
     fontSize: defaults.fontSize,
     underline: defaults.underline,
     bold: defaults.bold,

@@ -91,12 +91,13 @@ export const List = ({
         marginRight: `${marginRight}px`,
       }}
       className={`${borderType} ${shadow} shadow-[${shadowColor}] ${listStyle} ${
-        hovered && "hover:outline-green-500 hover:outline"
+        hovered &&
+        "outline-2 outline-dotted p-2 outline-gray-400 border-gray-400 "
       } relative`}
       ref={(ref: any) => connect(drag(ref))}
     >
       {hovered && (
-        <div className="absolute top-0 right-0 bg-orange-500 text-white text-xs px-1 z-50">
+        <div className="absolute top-0 left-0 bg-blue-500 text-white text-xs px-1 z-50">
           {elementName}
         </div>
       )}

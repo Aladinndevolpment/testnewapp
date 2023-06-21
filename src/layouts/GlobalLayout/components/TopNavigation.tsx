@@ -72,10 +72,10 @@ export default function TopNavigation() {
 
             <div className="border-l border-l-[#a0a0a0] mr-3 h-full">
               <div className="relative ml-3  shadow-sm flex gap-2  py-2">
-                <Link href="">
+                <Link href="/chat">
                   <ChatBubbleBottomCenterIcon className="text-[#a0a0a0] w-6 h-6" />
                 </Link>
-                <Link href="">
+                <Link href="/notifications">
                   <BellIcon className="text-[#a0a0a0] w-6 h-6" />{" "}
                 </Link>
                 <Link href="/calendar">

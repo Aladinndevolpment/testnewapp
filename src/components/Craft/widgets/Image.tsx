@@ -60,7 +60,8 @@ export const BuilderImage = ({
     <Link href={link} onClick={(e) => e.preventDefault()}>
       <div
         className={`relative flex justify-center ${
-          hovered && "hover:outline-orange-500 hover:outline"
+          hovered &&
+          "hover:outline-gray-500 hover:outline-1 hover:outline-dashed"
         }   ${borderType} ${shadow} shadow-[${shadowColor}]`}
         ref={(ref: any) => connect(drag(ref))}
         style={{
@@ -76,7 +77,7 @@ export const BuilderImage = ({
         }}
       >
         {hovered && (
-          <div className="absolute top-0 right-0 bg-orange-500 text-white text-xs px-1 z-50">
+          <div className="absolute top-0 left-0 bg-blue-500 text-white text-xs px-2 z-50">
             {elementName}
           </div>
         )}

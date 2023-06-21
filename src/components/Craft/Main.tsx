@@ -10,6 +10,7 @@ import { BuilderImage } from "./widgets/Image";
 import App from "./widgets/App";
 import { OrderOneStep } from "./widgets/prebuilt/OrderOneStep";
 import { OrderTwoStep } from "./widgets/prebuilt/OrderTwoStep";
+import { TemplateOne } from "./Templates/template1";
 
 export default function Main() {
   const { device } = useContext(CraftContext);
@@ -24,10 +25,7 @@ export default function Main() {
       <div className="w-[56%] h-full overflow-y-scroll scrollbar-hide pb-40 px-5">
         <Frame>
           <Element is={Container} canvas>
-            <HeaderLayout />
-            <BuilderImage borderRadius={0} />
-            <HeroLayout />
-            {/* <OrderOneStep /> */}
+            <TemplateOne />
           </Element>
         </Frame>
       </div>

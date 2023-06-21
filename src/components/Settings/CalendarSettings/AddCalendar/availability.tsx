@@ -17,24 +17,25 @@ export default function Availability({
   onClose,
   handleNewTab,
   handleStoreFormData,
+  handleBack,
 }: any) {
   const [select, setSelect] = useState(0);
   const [selectedDays, setSelectedDays] = useState<any[]>([]);
   const [currentDay, setCurrentDay] = useState<number | null>(null);
   const [formValues, setFormValues] = useState<any>({
-    slotDuration: "slotDuration",
-    slotInterval: "slotInterval",
-    buffer: "buffer",
-    appointmentsPerSlot: "appointmentsPerSlot",
-    appointmentsPerDay: "appointmentsPerDay",
-    minScheduleNotice: "minScheduleNotice",
-    duration: "duration",
-    dateRange: "dateRange",
-    dateDuration: "dateDuration",
+    slotDuration: "calendarName",
+    slotInterval: "calendarName",
+    buffer: "calendarName",
+    appointmentsPerSlot: "",
+    appointmentsPerDay: "",
+    minScheduleNotice: "",
+    duration: "",
+    dateRange: "",
+    dateDuration: "",
     officeHour: "standard",
-    fromTime: "fromTime",
-    toTime: "toTime",
-    recAppointment: "recAppointment",
+    fromTime: "",
+    toTime: "",
+    recAppointment: "",
     image: null,
   });
   const [errors, setErrors] = useState<any>({});
@@ -510,17 +511,23 @@ export default function Availability({
           <div className="lg:h-[20vh]">
             <div className="flex justify-end gap-3 p-4 mt-2 border-t ">
               <button
-                onClick={onClose()}
+                onClick={onClose}
                 className="border text-[#47494b] rounded-md px-3 py-2"
               >
                 Close
               </button>
-              <div
+              <button
+                onClick={handleBack}
+                className="border text-[#47494b] rounded-md px-3 py-2"
+              >
+                Back
+              </button>
+              <button
                 onClick={() => handleSubmit()}
-                className="border bg-[#25992a] text-white rounded-md px-3 py-2"
+                className="border bg-newBlue text-white rounded-md px-3 py-2"
               >
                 Save & continue
-              </div>
+              </button>
             </div>
           </div>
         </div>

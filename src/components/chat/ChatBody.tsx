@@ -426,7 +426,7 @@ export default function ChatBody({
               : ` ${
                   ctx?.open == true
                     ? "w-full lg:w-[46.4%] fixed bottom-0"
-                    : "w-full lg:w-[51.8%] fixed bottom-0"
+                    : "w-full lg:w-[51.8%] 2xl:w-[52.4%] fixed bottom-0"
                 } `
           } `}
         >
@@ -484,7 +484,7 @@ export default function ChatBody({
               : ` ${
                   ctx?.open == true
                     ? "w-full lg:w-[46.4%] fixed bottom-0"
-                    : "w-full lg:w-[51.6%] fixed bottom-0"
+                    : "w-full lg:w-[51.6%] 2xl:w-[52.4%] fixed bottom-0"
                 } `
           } `}
         >

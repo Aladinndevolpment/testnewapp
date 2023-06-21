@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import ContentEditable from "react-contenteditable";
 
 import { baseDefaults } from "../CommonSettings";
-import { ITextProps, TextSettings, textProps } from "./Text";
+import { ITextProps } from "./Text";
+import {
+  TextSettings,
+  textProps,
+} from "@/components/SurveyCraft/widgets/Text/Text";
 const elementName = "Headline";
 
 const tagTypes = ["h1", "h2", "h3", "h4", "h5", "h6"];

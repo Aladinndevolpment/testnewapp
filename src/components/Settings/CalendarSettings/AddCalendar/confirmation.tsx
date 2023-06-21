@@ -7,22 +7,23 @@ export default function Confirmation({
   onClose,
   handleNewTab,
   handleStoreFormData,
+  handleBack,
 }: any) {
   const [formValues, setFormValues] = useState<any>({
-    customForm: "redirectUrl",
-    stickyContact: "redirectUrl",
-    contact: "redirectUrl",
-    emails: "redirectUrl",
-    autoConfirm: "redirectUrl",
-    allowGoogleCalendar: "redirectUrl",
-    allowReschdule: "redirectUrl",
-    allowCancellation: "redirectUrl",
-    additionalNotes: "redirectUrl",
-    faceBookID: "redirectUrl",
-    customCode: "redirectUrl",
-    formSubmit: "redirectUrl",
-    customMessage: "redirectUrl",
-    thankMessage: "redirectUrl",
+    customForm: "calendarName",
+    stickyContact: "calendarName",
+    contact: "calendarName",
+    emails: "calendarName",
+    autoConfirm: "calendarName",
+    allowGoogleCalendar: "calendarName",
+    allowReschdule: "calendarName",
+    allowCancellation: "calendarName",
+    additionalNotes: "calendarName",
+    faceBookID: "calendarName",
+    customCode: "calendarName",
+    formSubmit: "calendarName",
+    customMessage: "calendarName",
+    thankMessage: "calendarName",
   });
   const [errors, setErrors] = useState<any>({});
 
@@ -410,24 +411,24 @@ export default function Confirmation({
         </div>
         <div className="lg:h-[20vh]">
           <div className="flex justify-end gap-3 p-4 mt-2 border-t ">
-            <div
+            <button
               onClick={onClose}
               className="border text-[#47494b] rounded-md px-3 py-2"
             >
               Close
-            </div>
-            <div
-              onClick={onClose}
+            </button>
+            <button
+              onClick={handleBack}
               className="border text-[#47494b] rounded-md px-3 py-2"
             >
               Back
-            </div>
-            <div
+            </button>
+            <button
               onClick={() => handleSubmit()}
-              className="border bg-[#25992a] text-white rounded-md px-3 py-2"
+              className="border bg-newBlue text-white rounded-md px-3 py-2"
             >
               Save & continue
-            </div>
+            </button>
           </div>
         </div>
       </div>

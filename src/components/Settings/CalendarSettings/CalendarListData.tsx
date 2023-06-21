@@ -1,102 +1,104 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import ModalDerived from "@/components/Modal";
 import { AiOutlineClose } from "react-icons/ai";
-import SettingsSidebar from "@/components/SettingsSidebar/TeamsSidebar";
 import CalendarListTable from "./calendarListTable";
-import AddCalendar from "./AddCalendar/AddCalendar";
-
+import RoomsListTable from "./RoomsListTable";
+import ProviderListTable from "./ProvidersListTable";
+import AptTypeListTable from "./AptTypeListTable";
 interface RowData {
   [key: string]: any;
 }
-
+const FieldType = [
+  { title: "Calendars" },
+  { title: "Rooms" },
+  { title: "Providers" },
+  { title: "Apt Type" },
+];
+export const CalendarSettingsContext = createContext({
+  openModal1: false,
+  setOpenModal1: (string: string) => {},
+  openModal2: false,
+  setOpenModal2: (string: string) => {},
+  openModal3: false,
+  setOpenModal3: (string: string) => {},
+  openModal4: false,
+  setOpenModal4: (string: string) => {},
+});
 export default function CalendarListData() {
-  const [data, setData] = useState<RowData[]>([
-    {
-      id: "1",
-      calendar_Name: "Calendar 1",
-      createdOn: "2023-06-14T09:00:00.000Z",
-      upDatedOn: "2023-06-14T09:00:00.000Z",
-    },
-    {
-      id: "2",
-      calendar_Name: "Calendar 2",
-      createdOn: "2023-06-14T09:00:00.000Z",
-      upDatedOn: "2023-06-14T09:00:00.000Z",
-    },
-    {
-      id: "3",
-      calendar_Name: "Calendar 3",
-      createdOn: "2023-06-14T09:00:00.000Z",
-      upDatedOn: "2023-06-14T09:00:00.000Z",
-    },
-    {
-      id: "4",
-      calendar_Name: "Calendar 4",
-      createdOn: "2023-06-14T09:00:00.000Z",
-      upDatedOn: "2023-06-14T09:00:00.000Z",
-    },
-  ]);
-
   const [openAddTagModel, setAddTagModel] = useState<any>(false);
-
-  const handleStoreCalendar = (item: any) => {
-    const newData = item;
-    setData((prevValues: any) => [
-      ...data,
-      {
-        id: "1",
-        calendar_Name: item[0]?.calendarName,
-        createdOn: new Date(),
-        upDatedOn: new Date(),
-      },
-    ]);
+  const [select, setSelect] = useState<any>(0);
+  const [openModal1, setOpenModal1] = useState(false);
+  const [openModal2, setOpenModal2] = useState(false);
+  const [openModal3, setOpenModal3] = useState(false);
+  const [openModal4, setOpenModal4] = useState(false);
+  const value: any = {
+    openModal1,
+    setOpenModal1,
+    openModal2,
+    setOpenModal2,
+    openModal3,
+    setOpenModal3,
+    openModal4,
+    setOpenModal4,
   };
-
   return (
     <>
-      <ModalDerived
-        visibility={openAddTagModel}
-        onClose={() => setAddTagModel(false)}
-      >
-        <div className=" bg-white rounded-lg  lg:h-[85vh] pb-[5%]  overflow-y-hidden w-[100%]  md:w-[125vh] scrollbar-hide ">
-          <div className=" h-[100vh]  pt-5 pb-3">
-            <div className="h-[10vh] flex justify-between items-start border-b-[1px] pb-4 px-5">
-              <div>
-                <p className="text-gray-800 font-medium md:text-lg ">
-                  Calendar
-                </p>
-                <p className="text-gray-500 font-normal md:text-sm pt-1">
-                  Add New Calendar
-                </p>
-              </div>
-              <button onClick={() => setAddTagModel(false)}>
-                <AiOutlineClose className="text-gray-800 h-6 w-6" />
-              </button>
-            </div>
-            <div className="overflow-hidden ">
-              <div className="w-full   bg-white  ">
-                <AddCalendar
-                  handleChange={(item: any) => handleStoreCalendar(item)}
-                  onClose={() => setAddTagModel(false)}
-                />
-              </div>
-            </div>
+      <CalendarSettingsContext.Provider value={value}>
+        <div className="w-full px-2 py-2">
+          <div className="flex  items-center justify-between">
+            <p className="text-[#47494b] text-base font-semibold  ">
+              {select == 0 && "Calendars"}
+              {select == 1 && "Rooms"}
+              {select == 2 && "Providers"}
+              {select == 3 && "Apt Type"}
+            </p>
+            ​
+            <button
+              onClick={() => {
+                if (select == 0) {
+                  setOpenModal1(true);
+                }
+                if (select == 1) {
+                  setOpenModal2(true);
+                }
+                if (select == 2) {
+                  setOpenModal3(true);
+                }
+                if (select == 3) {
+                  setOpenModal4(true);
+                }
+              }}
+              className="text-xs flex justify-center items-center   bg-newBlue hover:bg-secondary duration-300 m-1 py-2.5 px-5 2xl:px-6 text-white rounded-md "
+            >
+              {select == 0 && "Add Calendars"}
+              {select == 1 && "Add Rooms"}
+              {select == 2 && "Add Providers"}
+              {select == 3 && "Add Apt Type"}
+            </button>
           </div>
         </div>
-      </ModalDerived>
-      <div className="w-full">
-        <div className="flex gap-4 items-center justify-end">
-          <button
-            onClick={() => setAddTagModel(true)}
-            className="text-xs flex justify-center items-center   bg-newBlue hover:bg-secondary duration-300 m-1 py-2.5 px-5 2xl:px-6 text-white rounded-md "
-          >
-            Add Tags
-          </button>
+        ​
+        <div className="text-[#34373a] font-semibold bg-gray-100 text-xs border-t border-x rounded-t-md  flex ">
+          {FieldType.map((item: any, index: number) => (
+            <button
+              key={index}
+              onClick={() => setSelect(index)}
+              className={`px-4 py-2.5 ${
+                select == index ? "bg-white rounded-t-md" : ""
+              } `}
+            >
+              {item.title}
+            </button>
+          ))}
         </div>
-        <div className="  pt-5 pb-10">
-          <CalendarListTable data={data} />
+        ​
+        <div className="  pb-10 w-full">
+          {select == 0 && <CalendarListTable />}
+          {select == 1 && <RoomsListTable />}
+          {select == 2 && <ProviderListTable />}
+          {select == 3 && <AptTypeListTable />}
         </div>
-      </div>
+      </CalendarSettingsContext.Provider>
     </>
   );
 }

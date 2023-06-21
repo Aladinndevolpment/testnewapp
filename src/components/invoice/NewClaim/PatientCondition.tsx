@@ -66,8 +66,8 @@ const PatientCondition = () => {
   };
 
   return (
-    <div className="border rounded-lg mt-5">
-      <div className="flex justify-between items-center border-b px-3 py-3">
+    <div>
+      <div className="flex justify-between items-center border-b px-3 py-3 bg-gray-100">
         <p className="text-[#47494b] text-base font-semibold">
           Patient Condition
         </p>
@@ -223,7 +223,7 @@ const PatientCondition = () => {
           </div>
         </div>
 
-        <div className="w-full flex justify-end items-end mt-3 px-4 border-t pt-4">
+        <div className="w-full flex justify-end items-end px-4 ">
           <button
             type="submit"
             className="  bg-newBlue font-medium py-2 text-sm  rounded-lg px-5 text-white"

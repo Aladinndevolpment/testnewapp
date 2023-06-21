@@ -72,6 +72,23 @@ import {
   Footers,
   FootersText,
 } from "@/components/Craft/widgets/prebuilt/Footer";
+import {
+  MainForm,
+  MainFormTop,
+} from "@/components/Craft/widgets/form/MainForm";
+
+import {
+  TemplateOne,
+  TemplateOneTop,
+} from "@/components/Craft/Templates/template1";
+import {
+  NavBar,
+  NavBarsText,
+} from "@/components/Craft/Templates/template1/navBar";
+import {
+  Banner,
+  BannersText,
+} from "@/components/Craft/Templates/template1/banner";
 
 export const CraftContext = createContext({
   tools: "prebuilt",
@@ -99,6 +116,10 @@ export default function Craft() {
         <Editor
           resolver={{
             App,
+            Banner,
+            BannersText,
+            NavBar,
+            NavBarsText,
             FootersText,
             Footers,
             Breadcrumbs,
@@ -148,6 +169,8 @@ export default function Craft() {
             OrderTwoStep,
             FormElements,
             //Form
+            MainForm,
+            MainFormTop,
             TextInputElement,
             TextAreaElement,
             RadioInputElement,
@@ -155,6 +178,9 @@ export default function Craft() {
             SelectBoxInputElement,
             AttachmentElement,
             DatePickerElement,
+            //Templatess
+            TemplateOne,
+            TemplateOneTop,
           }}
         >
           <Topbar />

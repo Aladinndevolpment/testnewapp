@@ -18,6 +18,67 @@ export default function SettingsSidebar() {
   const router = useRouter();
 
   const ctx = useContext(GlobalContext);
+  console.log(router, router.asPath == "/settings");
+  console.log(ctx?.open);
+
+  const handleChange = () => {
+    // if (router.pathname.startsWith("/settings")) {
+    //   ctx.setOpen(false);
+    //   router.back();
+    // }
+    if (router.asPath == "/settings") {
+      ctx.setOpen(false);
+      router.back();
+    }
+    if (router.asPath == "/settings/my-profile") {
+      ctx.setOpen(false);
+      router.back();
+    }
+    if (router.asPath == "/settings/company-profile") {
+      ctx.setOpen(false);
+      router.back();
+    }
+    if (router.asPath == "/settings/team-member") {
+      ctx.setOpen(false);
+      router.back();
+    }
+    if (router.asPath == "/settings/integrations") {
+      ctx.setOpen(false);
+      router.back();
+    }
+    if (router.asPath == "/settings/calendar") {
+      ctx.setOpen(false);
+      router.back();
+    }
+
+    if (router.asPath == "/settings/custom-fields") {
+      ctx.setOpen(false);
+      router.back();
+    }
+    if (router.asPath == "/settings/custom-value") {
+      ctx.setOpen(false);
+      router.back();
+    }
+    if (router.asPath == "/settings/tags") {
+      ctx.setOpen(false);
+      router.back();
+    }
+    if (router.asPath == "/settings/pipeline") {
+      ctx.setOpen(false);
+      router.back();
+    }
+    if (router.asPath == "/settings/phone-number") {
+      ctx.setOpen(false);
+      router.back();
+    }
+    if (router.asPath == "/settings/domain") {
+      ctx.setOpen(false);
+      router.back();
+    } else {
+      ctx.setOpen(true);
+      router.back();
+    }
+  };
 
   return (
     <>
@@ -26,13 +87,7 @@ export default function SettingsSidebar() {
       >
         <div className="pb-2.5 px-4 flex justify-start items-center w-full ">
           <div className=" h-8  items-between  px-1.5 py-2 bg-white border-[1px] border-lightGray rounded-md shadow-sm flex justify-center items-center">
-            <button
-              onClick={() => {
-                ctx.setOpen(!ctx.open);
-                router.back();
-              }}
-              className=""
-            >
+            <button onClick={() => handleChange()} className="">
               <AiOutlineLeft className="h-5 w-5 text-newBlue hover:text-secondary duration-300" />
             </button>
           </div>

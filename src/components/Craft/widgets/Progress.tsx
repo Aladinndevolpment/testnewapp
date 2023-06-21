@@ -70,7 +70,7 @@ export default function Progress({
   return (
     <div
       className={`py-2 ${
-        hovered && "hover:outline-orange-500 hover:outline"
+        hovered && "hover:outline-gray-500 hover:outline-1 hover:outline-dashed"
       } relative`}
       ref={(ref: any) => connect(drag(ref))}
       style={{
@@ -86,7 +86,7 @@ export default function Progress({
       }}
     >
       {hovered && (
-        <div className="absolute top-0 right-0 bg-orange-500 text-white text-xs px-1 z-50">
+        <div className="absolute top-0 left-0 bg-blue-500 text-white text-xs px-1 z-50">
           {elementName}
         </div>
       )}

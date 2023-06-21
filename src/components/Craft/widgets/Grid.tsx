@@ -58,7 +58,7 @@ export const GridTop = ({
       }}
     >
       {hovered && (
-        <div className="absolute top-0 right-0 bg-purple-500 text-white text-[8px] px-1">
+        <div className="absolute top-0 left-0 bg-blue-500 text-white text-[10px] px-1">
           Grid Column
         </div>
       )}
@@ -127,9 +127,9 @@ export const Grid = ({
   return (
     <div
       ref={(ref: any) => connect(drag(ref))}
-      className={`flex flex-wrap   hover:outline ${
-        hovered && "hover:outline-blue-500 hover:outline"
-      }  outline-dashed outline-1 relative ${borderType} ${shadow} shadow-[${shadowColor}]`}
+      className={`flex flex-wrap text-[12px]   ${
+        hovered && "hover:outline-blue-500  "
+      }    relative ${borderType} ${shadow} shadow-[${shadowColor}]`}
       style={{
         backgroundColor,
         borderColor,
@@ -141,12 +141,12 @@ export const Grid = ({
         marginRight: `${marginRight}px`,
         paddingTop: `${paddingTop}px`,
         paddingBottom: `${paddingBottom}px`,
-        paddingLeft: `${paddingLeft}px`,
-        paddingRight: `${paddingRight}px`,
+        // paddingLeft: `${paddingLeft}px`,
+        // paddingRight: `${paddingRight}px`,
       }}
     >
       {hovered && (
-        <div className="absolute top-0 right-0 bg-blue-500 text-white text-[10px] px-1">
+        <div className="absolute top-5 left-1 text-[10px] bg-blue-500 text-white px-4">
           {elementName}
         </div>
       )}
@@ -154,9 +154,16 @@ export const Grid = ({
         <div
           style={{ width: 100 / col + "%" }}
           key={index}
-          className="border-2 border-dotted border-green-400"
+          className="border-2 border-dotted border-gray-400 rounded-md bg-slate-100 font-bold text-gray-500 text-center"
         >
-          <Element id={`grid_${index}`} is={GridTop} canvas></Element>
+          <Element
+            className="text-[4px]"
+            id={`grid_${index}`}
+            is={GridTop}
+            canvas
+          >
+            Drop Content
+          </Element>
         </div>
       ))}
     </div>

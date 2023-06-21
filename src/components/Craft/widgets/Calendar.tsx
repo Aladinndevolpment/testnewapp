@@ -58,7 +58,7 @@ export default function CalendarElement({
   return (
     <div
       className={`py-2 ${
-        hovered && "hover:outline-orange-500 hover:outline"
+        hovered && "hover:outline-gray-500 hover:outline-1 hover:outline-dashed"
       } relative overflow-y-scroll`}
       ref={(ref: any) => connect(drag(ref))}
       style={{
@@ -78,7 +78,7 @@ export default function CalendarElement({
       onBlur={() => setSelected(false)}
     >
       {hovered && (
-        <div className="absolute top-0 right-0 bg-orange-500 text-white text-xs px-1 z-50">
+        <div className="absolute top-0 left-0 bg-blue-500 text-white text-xs px-1 z-50">
           {elementName}
         </div>
       )}

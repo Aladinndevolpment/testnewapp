@@ -54,7 +54,7 @@ export const BuilderVideo = ({
 
   return (
     <div
-      className={`relative flex justify-start hover:outline-orange-500 hover:outline ${borderType} ${shadow} shadow-[${shadowColor}]`}
+      className={`relative flex justify-start hover:outline-gray-500 hover:outline-dashed hover:outline-1  ${borderType} ${shadow} shadow-[${shadowColor}]`}
       ref={(ref: any) => connect(drag(ref))}
       style={{
         height: height + "px",
@@ -69,7 +69,7 @@ export const BuilderVideo = ({
       }}
     >
       {hovered && (
-        <div className="absolute top-0 right-0 bg-orange-500 text-white text-xs px-1 z-50">
+        <div className="absolute top-0 left-0 bg-blue-500 text-white text-xs px-2 z-50">
           {elementName}
         </div>
       )}
@@ -92,7 +92,7 @@ export const BuilderVideo = ({
           Your browser does not support HTML video.
         </video>
       ) : (
-        <div className="w-full text-center h-full flex justify-center items-center text-lg font-main border-dashed border-2 border-orange-500">
+        <div className="w-full text-center h-full flex justify-center items-center text-lg font-main border-dashed border  border-gray-500">
           Choose a video from settings
         </div>
       )}

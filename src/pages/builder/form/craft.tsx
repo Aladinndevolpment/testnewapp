@@ -1,6 +1,5 @@
 import { Button, ButtonText } from "@/components/Craft/widgets/Button";
 import Container from "@/components/Craft/widgets/Container";
-import { Text } from "@/components/Craft/widgets/Text/Text";
 
 import { Grid, GridTop } from "@/components/Craft/widgets/Grid";
 import Main from "@/components/FormCraft/Main";
@@ -18,6 +17,7 @@ import { Link, LinkText } from "@/components/Craft/widgets/Link";
 import { AttachmentElement } from "@/components/FormCraft/widgets/Attachment";
 import { DatePickerElement } from "@/components/FormCraft/widgets/DatePicker";
 import { TextInputElement } from "@/components/FormCraft/widgets/TextInput";
+import { Text } from "@/components/Craft/widgets/Text/Text";
 
 export const CraftContext = createContext({
   tools: "elements",

@@ -12,7 +12,7 @@ export default function AddCalendar({ handleChange, onClose }: any) {
     { title: "Confirmation", number: 3 },
   ];
   const [formData, setFormData] = useState<any>([]);
-
+  console.log(select);
   return (
     <div className="w-full  bg-white ">
       <div className="w-full bg-white  ">
@@ -46,7 +46,10 @@ export default function AddCalendar({ handleChange, onClose }: any) {
         {/* Main Section */}
         {select == 0 && (
           <TeamEventSetup
-            onClose={() => setSelect(0)}
+            onClose={() => {
+              setSelect(0);
+              onClose();
+            }}
             handleNewTab={() => setSelect(1)}
             handleStoreFormData={(item: any) =>
               setFormData([...formData, item])
@@ -55,7 +58,11 @@ export default function AddCalendar({ handleChange, onClose }: any) {
         )}
         {select == 1 && (
           <Availability
-            onClose={() => setSelect(1)}
+            onClose={() => {
+              setSelect(0);
+              onClose();
+            }}
+            handleBack={() => setSelect(0)}
             handleNewTab={() => setSelect(2)}
             handleStoreFormData={(item: any) =>
               setFormData([...formData, item])
@@ -64,7 +71,11 @@ export default function AddCalendar({ handleChange, onClose }: any) {
         )}
         {select == 2 && (
           <Confirmation
-            onClose={() => setSelect(3)}
+            onClose={() => {
+              setSelect(0);
+              onClose();
+            }}
+            handleBack={() => setSelect(1)}
             handleNewTab={() => {
               setSelect(0);
               onClose();

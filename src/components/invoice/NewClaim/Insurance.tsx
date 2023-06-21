@@ -73,9 +73,9 @@ const Insurance = () => {
 
   return (
     <div>
-      <div className="border rounded-lg mt-5">
-        <div className="flex justify-between items-center border-b px-3 py-3">
-          <p className="text-[#47494b] text-base font-semibold">Insurance</p>
+      <div className="  bg-white">
+        <div className="flex justify-between items-center border-b px-3 py-3 bg-gray-100">
+          <p className="text-[#47494b] text-base font-semibold ">Insurance</p>
         </div>
         <form onSubmit={handleSubmit} className=" pt-5 pb-3">
           <div className="px-4 flex flex-wrap pb-6 ">
@@ -180,7 +180,7 @@ const Insurance = () => {
             </div>
           </div>
 
-          <div className="w-full flex justify-end items-end mt-3 px-4 border-t pt-4">
+          <div className="w-full flex justify-end items-end px-4 ">
             <button
               type="submit"
               className="  bg-newBlue font-medium py-2 text-sm  rounded-lg px-5 text-white"
@@ -191,8 +191,8 @@ const Insurance = () => {
         </form>
       </div>
       {formData.alrdyInsured == "yes" ? (
-        <div className="border rounded-lg mt-5">
-          <div className="flex justify-between items-center border-b px-3 py-3">
+        <div>
+          <div className="flex justify-between items-center border-b px-3 py-3 bg-gray-100 mt-3">
             <p className="text-[#47494b] text-base font-semibold">
               Insured Information
             </p>
@@ -255,7 +255,7 @@ const Insurance = () => {
               </div>
             </div>
 
-            <div className="w-full flex justify-end items-end mt-3 px-4 border-t pt-4">
+            <div className="w-full flex justify-end items-end px-4 ">
               <button
                 type="submit"
                 className="  bg-newBlue font-medium py-2 text-sm  rounded-lg px-5 text-white"

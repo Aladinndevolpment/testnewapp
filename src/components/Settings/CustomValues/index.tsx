@@ -136,10 +136,10 @@ export default function CustomValueData() {
             <div className="h-[10vh] flex justify-between items-start border-b-[1px] pb-4 px-5">
               <div>
                 <p className="text-gray-800 font-medium md:text-lg ">
-                  Custom Fields
+                  Custom Value
                 </p>
                 <p className="text-gray-500 font-normal md:text-sm pt-1">
-                  Add New Fields
+                  Add New Value
                 </p>
               </div>
               <button onClick={() => setOpenValueModel(false)}>
@@ -154,7 +154,7 @@ export default function CustomValueData() {
                     className="block text-[#47494b] text-sm pt-1 font-semibold"
                     htmlFor=""
                   >
-                    Field Name
+                    Value Name
                   </label>
 
                   <input
@@ -246,7 +246,7 @@ export default function CustomValueData() {
       </ModalDerived>
       <div className="w-full px-2 py-2">
         <div className="flex  items-center justify-between">
-          <p className="text-[#47494b] text-base font-semibold  m-1 pl-2">
+          <p className="text-[#47494b] text-base font-semibold m-1 pl-2">
             {select == 0 && "All Field"}
             {select == 1 && "Folder"}
             {select == 2 && "Deleted Fields"}
@@ -267,12 +267,12 @@ export default function CustomValueData() {
             </button>
           </div>
         </div>
-        <div className="mt-3 text-[#34373a] font-semibold bg-gray-100 text-xs border-t border-x rounded-t-md w-[16.5rem] flex ">
+        <div className="mt-3 text-[#34373a] font-semibold bg-gray-100 text-xs border-t border-x rounded-t-md w-[17rem] flex ">
           {ValueType.map((item: any, index: number) => (
             <button
               key={index}
               onClick={() => setSelect(index)}
-              className={`px-4 py-2.5 ${
+              className={`px-4 py-2.5  ${
                 select == index ? "bg-white rounded-t-md" : ""
               } `}
             >
@@ -281,7 +281,7 @@ export default function CustomValueData() {
           ))}
         </div>
 
-        <div className="  pb-10">
+        <div className="  pb-10 ">
           {select == 0 && <ValueTableData data={data} />}
           {select == 1 && <ValueFolderTabData data={data} />}
           {select == 2 && <ValueDeletedFolderTabData data={data} />}

@@ -1,15 +1,57 @@
-import { useNode, Element, useEditor } from "@craftjs/core";
-import { Text } from "../Text/Text";
-import { createElement, useState } from "react";
+import { Text } from "../../widgets/Text/Text";
+// import { Text } from "./Text/Text";
+import { Button } from "../../widgets/Button";
+import { useNode, Element } from "@craftjs/core";
+import { BuilderImage } from "../../widgets/Image";
+import { BsSearch } from "react-icons/bs";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import Image from "next/image";
+import { FaBriefcaseMedical } from "react-icons/fa";
+import { FiPhoneCall } from "react-icons/fi";
+import { TbDental } from "react-icons/tb";
 import {
-  CommonSettings,
-  ICommonSettingsProps,
   baseDefaults,
-  getCommonSettingsProps,
-} from "../CommonSettings";
-import { BuilderImage } from "../Image";
+  ICommonSettingsProps,
+} from "../../widgets/CommonSettings";
 
-const elementName = "Carousel";
+// export const CardTop = ({ children }: any) => {
+//   const {
+//     connectors: { connect },
+//   }: any = useNode();
+//   return (
+//     <div ref={connect} className="text-only">
+//       {children}
+//     </div>
+//   );
+// };
+
+// CardTop.craft = {
+//   rules: {
+//     // Only accept Text
+//     canMoveIn: (incomingNodes: any) =>
+//       incomingNodes.every(
+//         (incomingNode: any) => incomingNode.data.type === Text
+//       ),
+//   },
+// };
+
+// export const CardBottom = ({ children }: any) => {
+//   const {
+//     connectors: { connect },
+//   }: any = useNode();
+//   return <div ref={connect}>{children}</div>;
+// };
+
+// CardBottom.craft = {
+//   rules: {
+//     // Only accept Buttons
+//     canMoveIn: (incomingNodes: any) =>
+//       incomingNodes.every(
+//         (incomingNode: any) => incomingNode.data.type === Button
+//       ),
+//   },
+// };
+const elementName = "Banner";
 
 const defaults = {
   backgroundColor: "#ffffff",
@@ -17,14 +59,31 @@ const defaults = {
   borderRadius: 10,
 };
 
-interface ICarouselsProps extends ICommonSettingsProps {
+interface IBannersProps extends ICommonSettingsProps {
   size?: string;
   backgroundColor?: string;
   borderColor?: string;
   borderRadius?: number;
 }
 
-export const CarouselsText = ({ children }: any) => {
+export const CardImage = ({ children }: any) => {
+  const {
+    connectors: { connect, drag },
+  }: any = useNode();
+  return <div ref={connect}>{children}</div>;
+};
+
+CardImage.craft = {
+  rules: {
+    // Only accept Buttons
+    canMoveIn: (incomingNodes: any) =>
+      incomingNodes.every(
+        (incomingNode: any) => incomingNode.data.type === BuilderImage || Text
+      ),
+  },
+};
+
+export const BannersText = ({ children }: any) => {
   const {
     connectors: { connect },
   }: any = useNode();
@@ -35,7 +94,7 @@ export const CarouselsText = ({ children }: any) => {
   );
 };
 
-CarouselsText.craft = {
+BannersText.craft = {
   rules: {
     // Only accept Text
     canMoveIn: (incomingNodes: any) =>
@@ -43,7 +102,7 @@ CarouselsText.craft = {
   },
 };
 
-export const Carousels = ({
+export const Banner = ({
   size,
   backgroundColor = defaults.backgroundColor,
   borderRadius = defaults.borderRadius,
@@ -60,23 +119,23 @@ export const Carousels = ({
   paddingRight = baseDefaults.paddingRight,
   shadow,
   shadowColor,
-}: ICarouselsProps) => {
-  // const [showResults, setShowResults] = useState(false);
-
-  // const handleClick = () => {
-  //   setShowResults(true);
-  // };
-
+}: IBannersProps) => {
   const {
     connectors: { connect, drag },
     hovered,
-  } = useNode((state) => ({ hovered: state.events.hovered }));
+  }: any = useNode((state) => ({ hovered: state.events.hovered }));
 
-  // console.log(showResults);
   return (
-    <div ref={(ref: any) => connect(drag(ref))}>
+    <div className="bg-white p-2 w-full" ref={(ref: any) => connect(drag(ref))}>
+      {/* <div className="card card-compact w-full bg-base-100 shadow-xl">
+        <div className="card-body">
+          <Element id="heroImage" is={CardImage} canvas>
+            <BuilderImage />
+          </Element>
+        </div>
+      </div> */}
       <div
-        className={`w-full h-[400px] ${size} mr-2 mb-2 py-4 ${
+        className={`w-full h-auto ${size} mr-2 ${
           hovered && "hover:outline-pink-500 hover:outline "
         }  relative ${shadowColor} ${shadow} ${borderType} `}
         style={{
@@ -99,12 +158,12 @@ export const Carousels = ({
             {elementName}
           </div>
         )}
-        <Element id="CarouselsText" is={CarouselsText} canvas>
+        <Element id="BannersText" is={BannersText} canvas>
           <section className="w-full h-[400px] relative isolate overflow-hidden bg-white px-6 py-24 sm:py-8 lg:px-8">
             <div className="h-full carousel w-full">
               <div id="slide1" className="carousel-item relative w-full">
                 <div
-                  className="inline-block h-10 w-10 rounded-full ring-2 ring-white object-fit justify-center"
+                  className="inline-block h-10 w-[100%] rounded-full ring-2 ring-white object-fit justify-center"
                   style={{
                     backgroundColor: "#ffffff",
                     marginTop: `${marginTop}px`,
@@ -262,46 +321,6 @@ export const Carousels = ({
   );
 };
 
-const CarouselsSettings = () => {
-  const {
-    actions: { setProp },
-    props,
-    id,
-    data,
-  } = useNode((node) => ({
-    props: node.data.props,
-    data: node.data,
-  }));
-
-  const { state } = useEditor((state) => {
-    return { state };
-  });
-
-  const textNodeSettings =
-    state.nodes[state.nodes[data.linkedNodes["CarouselsText"]].data.nodes[0]]
-      .related.settings;
-  return (
-    <div>
-      <CommonSettings />
-
-      {textNodeSettings && createElement(textNodeSettings)}
-    </div>
-  );
-};
-
-Carousels.craft = {
-  related: {
-    settings: CarouselsSettings,
-  },
-  props: {
-    ...getCommonSettingsProps(),
-    background: defaults.backgroundColor,
-    borderRadius: defaults.borderRadius,
-    borderColor: defaults.borderColor,
-    paddingRight: 10,
-    paddingLeft: 10,
-    marginTop: 0,
-    marginBottom: 0,
-  },
-  displayName: elementName,
+Banner.craft = {
+  displayName: "navBar",
 };

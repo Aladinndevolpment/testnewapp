@@ -76,7 +76,8 @@ export const FAQs = ({
     <div ref={(ref: any) => connect(drag(ref))}>
       <div
         className={`w-full h-auto ${size} mr-2 ${
-          hovered && "hover:outline-pink-500 hover:outline "
+          hovered &&
+          "hover:outline-gray-500 hover:outline hover:outline-1 hover:outline-dashed"
         }  relative ${shadowColor} ${shadow} ${borderType} `}
         style={{
           backgroundColor,
@@ -94,7 +95,7 @@ export const FAQs = ({
         }}
       >
         {hovered && (
-          <div className="absolute top-0 right-0 bg-purple-500 text-white text-[10px] px-1 capitalize">
+          <div className="absolute top-0 left-0 bg-gray-500 text-white text-[10px] px-1 capitalize">
             {elementName}
           </div>
         )}
@@ -208,8 +209,8 @@ FAQs.craft = {
     borderColor: defaults.borderColor,
     paddingRight: 10,
     paddingLeft: 10,
-    marginTop: 0,
-    marginBottom: 0,
+    marginTop: 10,
+    marginBottom: 10,
   },
   displayName: elementName,
 };

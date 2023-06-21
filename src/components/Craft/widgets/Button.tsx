@@ -90,7 +90,8 @@ export const Button = ({
     <div ref={(ref: any) => connect(drag(ref))}>
       <button
         className={`btn ${size} mr-2 ${
-          hovered && "hover:outline-pink-500 hover:outline"
+          hovered &&
+          "hover:outline-gray-500 hover:outline-1 hover:outline-dashed"
         }  relative ${shadowColor} ${shadow} ${borderType}`}
         style={{
           backgroundColor,
@@ -108,7 +109,7 @@ export const Button = ({
         }}
       >
         {hovered && (
-          <div className="absolute top-0 right-0 bg-purple-500 text-white text-[10px] px-1 capitalize">
+          <div className="absolute top-0 left-0 bg-blue-500 text-white text-[10px] px-1 capitalize">
             {elementName}
           </div>
         )}

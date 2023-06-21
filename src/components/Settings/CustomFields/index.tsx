@@ -20,7 +20,7 @@ const FieldType = [
 export default function CustomFieldsData() {
   const [select, setSelect] = useState<any>(0);
   const [fieldData, setFieldData] = useState<any>([]);
-  const [data, setdata] = useState<RowData[]>([
+  const [data, setData] = useState<RowData[]>([
     {
       id: "1",
       field_name: "Field 1",
@@ -98,7 +98,7 @@ export default function CustomFieldsData() {
       },
     ]);
 
-    setdata((prevValues: any) => [
+    setData((prevValues: any) => [
       ...data,
 
       {
@@ -268,7 +268,7 @@ export default function CustomFieldsData() {
           </div>
         </div>
 
-        <div className=" text-[#34373a] font-semibold bg-gray-100 text-xs border-t border-x rounded-t-md w-[16.5rem] flex "></div>
+        {/* <div className=" text-[#34373a] font-semibold bg-gray-100 text-xs border-t border-x rounded-t-md w-[16.5rem] flex "></div> */}
         <div className="text-[#34373a] font-semibold bg-gray-100 text-xs border-t border-x rounded-t-md w-[16.5rem] flex ">
           {FieldType.map((item: any, index: number) => (
             <button

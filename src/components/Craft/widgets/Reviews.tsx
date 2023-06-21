@@ -47,7 +47,7 @@ export const Review = ({
   return (
     <div
       ref={(ref: any) => connect(drag(ref))}
-      className={`flex flex-wrap items-center hover:outline-purple-500 hover:outline ${shadow} ${borderType} relative`}
+      className={`flex flex-wrap items-center hover:outline-gray-500 hover:outline-1 hover:outline-dashed ${shadow} ${borderType} relative`}
       style={{
         borderRadius: borderRadius + "px",
         borderColor,
@@ -64,7 +64,7 @@ export const Review = ({
       }}
     >
       {hovered && (
-        <div className="absolute top-0 right-0 bg-purple-500 text-white text-xs px-1">
+        <div className="absolute top-0 left-0 bg-blue-500 text-white text-xs px-1">
           {elementName}
         </div>
       )}
