@@ -6,6 +6,8 @@ import MaterialReactTable, { type MRT_ColumnDef } from "material-react-table";
 import { MenuItem } from "@mui/material";
 import moment from "moment";
 import { FaFolder } from "react-icons/fa";
+import { CiEdit } from "react-icons/ci";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 interface RowData {
   [key: string]: any;
@@ -87,7 +89,7 @@ const FieldTableData = ({ data }: any) => {
 
   return (
     <div>
-      <div className=" border rounded-lg mb-4 ">
+      <div className=" border rounded-lg mb-4  muiTable">
         <MaterialReactTable
           columns={columns}
           data={filteredData}
@@ -97,6 +99,34 @@ const FieldTableData = ({ data }: any) => {
           initialState={{
             showGlobalFilter: false,
           }}
+          muiTablePaginationProps={{
+            rowsPerPageOptions: [10, 50, 100, 200],
+            showFirstButton: false,
+            showLastButton: false,
+            SelectProps: {
+              native: true,
+            },
+            labelRowsPerPage: "Showing",
+          }}
+          renderRowActions={({ row, table }) => (
+            <div className="flex justify-between items-center gap-5 pr-10">
+              <button
+                onClick={() => {
+                  table.setEditingRow(row);
+                }}
+              >
+                <CiEdit className="h-4 w-4 text-gray-600" />
+              </button>
+              <button
+                onClick={() => {
+                  data.splice(row.index, 1); //assuming simple data table
+                  // setData([...data]);
+                }}
+              >
+                <RiDeleteBin5Line className="h-4 w-4 text-gray-600" />
+              </button>
+            </div>
+          )}
           positionPagination="top"
           enableToolbarInternalActions={false}
           positionToolbarAlertBanner="bottom"

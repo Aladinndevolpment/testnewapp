@@ -10,6 +10,7 @@ interface IFactCard {
   index: number;
   numberValue: number;
   numberValueData: string;
+  totalNo: number;
 }
 
 export default function ReportingStats({
@@ -21,6 +22,7 @@ export default function ReportingStats({
   index,
   numberValue,
   numberValueData,
+  totalNo,
 }: IFactCard) {
   const [count, setCount] = useState(0);
   var timesRun = numberValue - 20;
@@ -47,7 +49,7 @@ export default function ReportingStats({
 
       <div className="flex justify-between items-center">
         <div className="w-full flex justify-start flex-col items-start ">
-          <div className="mt-2 text-2xl font-bold ml-1 pl-10">{count}</div>
+          <div className="mt-2 text-2xl font-bold ml-1  pl-3">{count}</div>
           <div
             className={` ${
               index == 1
@@ -59,7 +61,7 @@ export default function ReportingStats({
                 : index == 4
                 ? "text-red-700"
                 : "text-gray-700"
-            }  mt-1 text-[12px] font-semibold ml-1 flex gap-1 items-center pr-2 pl-5`}
+            }  mt-1 text-[12px] font-semibold ml-1 flex gap-1 items-center pr-2  `}
           >
             <div>
               <span className="text-gray-600 text-[11px] pl-0.5">
@@ -71,7 +73,7 @@ export default function ReportingStats({
         </div>
       </div>
 
-      {index == 4 ? null : (
+      {index == totalNo ? null : (
         <div className="h-24 w-[1px] bg-gray-200 absolute right-0 top-5 hidden lg:block"></div>
       )}
     </div>

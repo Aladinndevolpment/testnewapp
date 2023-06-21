@@ -103,8 +103,8 @@ export default function AdsTable() {
   return (
     <div className=" pt-4">
       <div className="flex gap-4 items-center ">
-        <h1 className="p-4 font-bold text-2xl">Ads</h1>
-        <div className="flex rounded-md bg-gray-100 ">
+        <h1 className="pt-4 px-4 font-semibold text-3xl">Ads</h1>
+        {/* <div className="flex rounded-md bg-gray-100 ">
           {mAds.map((item: any, index: number) => (
             <button
               className={` py-3 text-xs px-5 ${
@@ -125,7 +125,7 @@ export default function AdsTable() {
               </span>
             </button>
           ))}
-        </div>
+        </div> */}
       </div>
 
       {/* Second Section */}

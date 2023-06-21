@@ -23,7 +23,6 @@ import { BsCardText, BsImage, BsMenuButtonWide } from "react-icons/bs";
 import { TbTextSize } from "react-icons/tb";
 import { RxDividerHorizontal } from "react-icons/rx";
 import { IoShareSocialOutline } from "react-icons/io5";
-import { AiOutlineLink, AiOutlineVideoCameraAdd } from "react-icons/ai";
 import { BuilderVideo } from "../widgets/Video";
 import { Social } from "../widgets/Social";
 import PrebuiltToolsLayout from "./tools/PrebuiltToolsLayout";
@@ -43,6 +42,28 @@ import { OrderConfirmation } from "../widgets/prebuilt/OrderConfirmation";
 import { OrderOneStep } from "../widgets/prebuilt/OrderOneStep";
 import { FaQq } from "react-icons/fa";
 import { FAQs } from "../widgets/FAQs";
+import { TextInputElement } from "../widgets/form/TextInput";
+import { TextAreaElement } from "../widgets/form/TextareaElement";
+import { RadioInputElement } from "../widgets/form/RadioElement";
+import { CheckboxInputElement } from "../widgets/form/CheckboxElement";
+import { SelectBoxInputElement } from "../widgets/form/SelectInputElement";
+import { AttachmentElement } from "../widgets/form/Attachment";
+import { DatePickerElement } from "../widgets/form/DatePicker";
+import {
+  BsCalendarDate,
+  BsTextParagraph,
+  BsTextareaResize,
+} from "react-icons/bs";
+import { MdRadioButtonChecked } from "react-icons/md";
+import { TbCheckbox, TbSelect } from "react-icons/tb";
+import { AiOutlineLink, AiOutlineVideoCameraAdd } from "react-icons/ai";
+import { IoDocumentAttachOutline } from "react-icons/io5";
+
+const tbStyles = {
+  backgroundColor: "#fff",
+  borderColor: "#d9d6d6",
+  borderWidth: 1,
+};
 
 const baseTools = [
   {
@@ -156,19 +177,7 @@ const baseTools = [
           />
         ),
       },
-      {
-        name: "Label",
-        tool: (
-          <ElementToolsLayout
-            toolName="Label"
-            tool={
-              <Text text="Enter Label..." alignment={"left"} tagName="label" />
-            }
-            image="@/../public/craft/hero.png"
-            icon={<TbTextSize className="h-5 w-5 text-gray-500" />}
-          />
-        ),
-      },
+
       {
         name: "List",
         tool: (
@@ -362,11 +371,106 @@ const baseTools = [
       },
     ],
   },
-
   {
-    index: 1,
-    question: "Form Controls",
-    answer: formControls,
+    index: 3,
+    question: "Forms",
+    answer: [
+      {
+        name: "Label",
+        tool: (
+          <ElementToolsLayout
+            toolName="Label"
+            tool={
+              <Text text="Enter Label..." alignment={"left"} tagName="label" />
+            }
+            image="@/../public/craft/hero.png"
+            icon={<TbTextSize className="h-5 w-5 text-gray-500" />}
+          />
+        ),
+      },
+      {
+        name: "Text Input",
+        tool: (
+          <ElementToolsLayout
+            toolName="Text Input"
+            tool={<TextInputElement {...tbStyles} />}
+            image="@/../public/craft/hero.png"
+            icon={<BsCardText className="h-4 w-4 text-gray-500" />}
+          />
+        ),
+      },
+
+      {
+        name: "Textarea",
+        tool: (
+          <ElementToolsLayout
+            toolName="Textarea"
+            tool={<TextAreaElement {...tbStyles} />}
+            image="@/../public/craft/hero.png"
+            icon={<BsTextareaResize className="h-4 w-4 text-gray-500" />}
+          />
+        ),
+      },
+      {
+        name: "Radio",
+        tool: (
+          <ElementToolsLayout
+            toolName="Radio"
+            tool={<RadioInputElement />}
+            image="@/../public/craft/hero.png"
+            icon={<MdRadioButtonChecked className="h-4 w-4 text-gray-500" />}
+          />
+        ),
+      },
+
+      {
+        name: "Checkbox",
+        tool: (
+          <ElementToolsLayout
+            toolName="Checkbox"
+            tool={<CheckboxInputElement {...tbStyles} />}
+            image="@/../public/craft/hero.png"
+            icon={<TbCheckbox className="h-4 w-4 text-gray-500" />}
+          />
+        ),
+      },
+
+      {
+        name: "Select",
+        tool: (
+          <ElementToolsLayout
+            toolName="Dropdown"
+            tool={<SelectBoxInputElement {...tbStyles} />}
+            image="@/../public/craft/hero.png"
+            icon={<TbSelect className="h-4 w-4 text-gray-500" />}
+          />
+        ),
+      },
+
+      {
+        name: "Attachment",
+        tool: (
+          <ElementToolsLayout
+            toolName="Attachment"
+            tool={<AttachmentElement />}
+            image="@/../public/craft/hero.png"
+            icon={<IoDocumentAttachOutline className="h-4 w-4 text-gray-500" />}
+          />
+        ),
+      },
+
+      {
+        name: "Date Picker",
+        tool: (
+          <ElementToolsLayout
+            toolName="Date Picker"
+            tool={<DatePickerElement />}
+            image="@/../public/craft/hero.png"
+            icon={<BsCalendarDate className="h-4 w-4 text-gray-500" />}
+          />
+        ),
+      },
+    ],
   },
 ];
 

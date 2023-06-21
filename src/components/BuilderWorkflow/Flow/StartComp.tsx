@@ -27,14 +27,10 @@ export default function StartComp({
       <>
         <div className="bg-white shadow-lg rounded-md w-[100%] mt-5 ">
           <div className="bg-blueHeader py-3 px-5 rounded-t-md flex justify-between items-center">
-            <div className="flex justify-between items-center">
-              <div className="bg-white h-7 w-7 rounded-full flex justify-center items-center">
-                <ClockIcon className="h-5 w-5 text-blueHeader" />
-              </div>
-              <p className="ml-2 text-lg text-white font-medium">
-                Execute When
-              </p>
+            <div className="bg-white h-7 w-7 rounded-full flex justify-center items-center">
+              <ClockIcon className="h-5 w-5 text-blueHeader" />
             </div>
+            <p className="ml-2 text-lg text-white font-medium">Execute When</p>
             <div>
               <EllipsisHorizontalIcon className="h-6 w-6 text-white" />
             </div>
@@ -69,14 +65,10 @@ export default function StartComp({
       <>
         <div className="bg-white shadow-lg rounded-md w-[55%] lg:w-[100%] mt-5 ">
           <div className="bg-blueHeader py-3 px-5 rounded-t-md flex justify-between items-center">
-            <div className="flex justify-between items-center">
-              <div className="bg-white h-7 w-7 rounded-full flex justify-center items-center">
-                <ClockIcon className="h-5 w-5 text-blueHeader" />
-              </div>
-              <p className="ml-2 text-lg text-white font-medium">
-                Execute When
-              </p>
+            <div className="bg-white h-7 w-7 rounded-full flex justify-center items-center">
+              <ClockIcon className="h-5 w-5 text-blueHeader" />
             </div>
+            <p className="ml-2 text-lg text-white font-medium">Execute When</p>
             <div>
               <EllipsisHorizontalIcon className="h-6 w-6 text-white" />
             </div>
@@ -86,10 +78,7 @@ export default function StartComp({
               Enrollment Trigger
             </p>
             <div className="border-[1px] border-lightGray bg-gray-100 rounded-md px-2 py-2 mb-4 ">
-              <p className="text-dark text-sm leading-5 text-center">
-                Contact has filled out, for
-                <strong className="text-xs">{title}</strong>
-              </p>
+              <p className="text-dark text-sm leading-5 text-center">{title}</p>
             </div>
 
             <button

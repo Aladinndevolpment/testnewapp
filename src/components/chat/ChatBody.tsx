@@ -3,7 +3,7 @@ import SMSMessage from "./SMSMessage";
 import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import DropDownData from "./DropDownData";
 import AudioPlayer, { RHAP_UI } from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
@@ -14,6 +14,7 @@ import moment from "moment";
 
 import { FaPhoneAlt } from "react-icons/fa";
 import { useRouter } from "next/router";
+import { GlobalContext } from "@/layouts/GlobalLayout";
 
 interface IChatBodyProps {
   chat: any;
@@ -178,6 +179,9 @@ export default function ChatBody({
     //   },
   ]);
 
+  const ctx = useContext(GlobalContext);
+  ctx.setTitle("Chat");
+
   const messagesEndRef = useRef<any>(null);
   // useEffect(() => {
   //   if (chatOpen) {
@@ -308,7 +312,7 @@ export default function ChatBody({
   }
 
   const router = useRouter();
-  // console.log(router);
+  console.log(ctx?.open);
   return (
     <div>
       <div
@@ -419,7 +423,11 @@ export default function ChatBody({
           className={`fixed ${
             router.asPath == "/calendar"
               ? "lg:w-[55%] bottom-[-8%] 2xl:bottom-[-1%]"
-              : "w-full lg:w-[46.4%] fixed bottom-0"
+              : ` ${
+                  ctx?.open == true
+                    ? "w-full lg:w-[46.4%] fixed bottom-0"
+                    : "w-full lg:w-[51.8%] fixed bottom-0"
+                } `
           } `}
         >
           <div className="w-full pb-3  flex  justify-start items-center border-[1px] border-lightGray px-6 bg-white">
@@ -466,19 +474,23 @@ export default function ChatBody({
 
       {chatMailOpen && (
         <div
-          className={`fixed   bg-white w-full   flex  shadow-md rounded-md  pt-3 pb-2   overflow-y-scroll scrollbar-hide   ${
+          className={`fixed border-t  bg-white w-full   flex  shadow-md rounded-md  pt-3 pb-2   overflow-y-scroll scrollbar-hide   ${
             chatMailOpen
               ? "translate-y-[0%] opacity-1"
               : "translate-y-[140%] opacity-0"
           }   ${
             router.asPath == "/calendar"
               ? "lg:w-[55%] bottom-[-7%] 2xl:bottom-[-1%]"
-              : "w-full lg:w-[46.4%] fixed bottom-0"
+              : ` ${
+                  ctx?.open == true
+                    ? "w-full lg:w-[46.4%] fixed bottom-0"
+                    : "w-full lg:w-[51.6%] fixed bottom-0"
+                } `
           } `}
         >
           <div className="  w-full bg-white">
             <div className="flex  justify-between items-center px-6  border-b-[1px] border-lightGray pb-1 mb-2 ">
-              <div className="w-full pt-4  flex  justify-start items-center  ">
+              <div className="w-full pt-2 pb-2  flex  justify-start items-center  ">
                 <button
                   onClick={() => {
                     setMessageType("sms");

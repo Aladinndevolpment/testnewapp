@@ -270,7 +270,7 @@ export default function Table({ data }: any) {
             </div>
           </div>
         </div>
-        <div className="bg-white shadow-md lg:px-2 rounded-lg">
+        <div className="bg-white shadow-md lg:px-2 rounded-lg muiTable">
           <MaterialReactTable
             columns={columns}
             data={filteredData}
@@ -281,6 +281,15 @@ export default function Table({ data }: any) {
             enableToolbarInternalActions={false}
             initialState={{
               showGlobalFilter: false,
+            }}
+            muiTablePaginationProps={{
+              rowsPerPageOptions: [10, 50, 100, 200],
+              showFirstButton: false,
+              showLastButton: false,
+              SelectProps: {
+                native: true,
+              },
+              labelRowsPerPage: "Showing",
             }}
             positionToolbarAlertBanner="bottom"
             // muiSearchTextFieldProps={{

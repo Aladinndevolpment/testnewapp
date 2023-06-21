@@ -5,6 +5,11 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import PrebuiltToolsLayout from "./tools/PrebuiltToolsLayout";
 import { HeroLayout } from "../widgets/prebuilt/HeroLayout";
 import { HeaderLayout } from "../widgets/prebuilt/Header";
+import { FAQs } from "../widgets/FAQs";
+import { Testimonials } from "../widgets/prebuilt/Testimonials";
+import { Carousels } from "../widgets/prebuilt/Carousel";
+import { Breadcrumbs } from "../widgets/prebuilt/Breadcrumbs";
+import { Footers } from "../widgets/prebuilt/Footer";
 
 const baseTools = [
   {
@@ -23,6 +28,56 @@ const baseTools = [
       <PrebuiltToolsLayout
         toolName="Hero Layout"
         tool={<HeroLayout />}
+        image={require("@/../public/craft/hero.png")}
+      />
+    ),
+  },
+  {
+    name: "FAQ layout",
+    tool: (
+      <PrebuiltToolsLayout
+        toolName="FAQ Layout"
+        tool={<FAQs />}
+        image={require("@/../public/craft/hero.png")}
+      />
+    ),
+  },
+  {
+    name: "Testimonial layout",
+    tool: (
+      <PrebuiltToolsLayout
+        toolName="Testimonial Layout"
+        tool={<Testimonials />}
+        image={require("@/../public/craft/hero.png")}
+      />
+    ),
+  },
+  {
+    name: "Carousels layout",
+    tool: (
+      <PrebuiltToolsLayout
+        toolName="Carousels Layout"
+        tool={<Carousels />}
+        image={require("@/../public/craft/hero.png")}
+      />
+    ),
+  },
+  {
+    name: "Breadcrumbs layout",
+    tool: (
+      <PrebuiltToolsLayout
+        toolName="Breadcrumbs Layout"
+        tool={<Breadcrumbs />}
+        image={require("@/../public/craft/hero.png")}
+      />
+    ),
+  },
+  {
+    name: "Footer layout",
+    tool: (
+      <PrebuiltToolsLayout
+        toolName="Footer layout"
+        tool={<Footers />}
         image={require("@/../public/craft/hero.png")}
       />
     ),

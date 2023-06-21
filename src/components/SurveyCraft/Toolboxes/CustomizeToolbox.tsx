@@ -94,7 +94,7 @@ const baseTools = [
       },
 
       {
-        name: "Dropdown",
+        name: "Select",
         tool: (
           <ElementToolsLayout
             toolName="Dropdown"

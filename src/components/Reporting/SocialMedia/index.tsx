@@ -6,10 +6,11 @@ import MaterialReactTable, { type MRT_ColumnDef } from "material-react-table";
 import { MenuItem } from "@mui/material";
 import { HiCursorClick } from "react-icons/hi";
 import { BsArrowUpRight } from "react-icons/bs";
-import { RiMoneyDollarCircleFill } from "react-icons/ri";
+import { RiDeleteBin5Line, RiMoneyDollarCircleFill } from "react-icons/ri";
 import { FiTrendingDown } from "react-icons/fi";
 import ReportingStats from "../Stats";
 import { FaBookmark } from "react-icons/fa";
+import { CiEdit } from "react-icons/ci";
 
 interface RowData {
   [key: string]: any;
@@ -152,6 +153,9 @@ export default function ReportingSocialMediaTable({ data }: any) {
 
   return (
     <div className="px-4 py-5">
+      <div className="flex gap-4 items-center ">
+        <h1 className="pb-4 px-4 font-semibold text-2xl"> Social Media </h1>
+      </div>
       <div className="flex  pl-5 items-center text-xs justify-between w-10/12 gap-5">
         <div className="w-full md:w-1/4">
           <ReportingStats
@@ -163,6 +167,7 @@ export default function ReportingSocialMediaTable({ data }: any) {
             index={1}
             numberValue={537}
             numberValueData={"+0.25%"}
+            totalNo={4}
           />
         </div>
 
@@ -176,6 +181,7 @@ export default function ReportingSocialMediaTable({ data }: any) {
             index={2}
             numberValue={537}
             numberValueData={"+0.15%"}
+            totalNo={4}
           />
         </div>
 
@@ -189,6 +195,7 @@ export default function ReportingSocialMediaTable({ data }: any) {
             index={3}
             numberValue={537}
             numberValueData={"+0.08%"}
+            totalNo={4}
           />
         </div>
 
@@ -204,11 +211,12 @@ export default function ReportingSocialMediaTable({ data }: any) {
             index={4}
             numberValue={537}
             numberValueData={"-0.08%"}
+            totalNo={4}
           />
         </div>
       </div>
 
-      <div className=" border rounded-lg mb-4 mt-5">
+      <div className=" border rounded-lg mb-4 mt-5 muiTable">
         <MaterialReactTable
           columns={columns}
           data={filteredData}
@@ -218,6 +226,34 @@ export default function ReportingSocialMediaTable({ data }: any) {
           initialState={{
             showGlobalFilter: false,
           }}
+          muiTablePaginationProps={{
+            rowsPerPageOptions: [10, 50, 100, 200],
+            showFirstButton: false,
+            showLastButton: false,
+            SelectProps: {
+              native: true,
+            },
+            labelRowsPerPage: "Showing",
+          }}
+          renderRowActions={({ row, table }) => (
+            <div className="flex justify-between items-center gap-5 pr-10">
+              <button
+                onClick={() => {
+                  table.setEditingRow(row);
+                }}
+              >
+                <CiEdit className="h-4 w-4 text-gray-600" />
+              </button>
+              <button
+                onClick={() => {
+                  data.splice(row.index, 1); //assuming simple data table
+                  // setData([...data]);
+                }}
+              >
+                <RiDeleteBin5Line className="h-4 w-4 text-gray-600" />
+              </button>
+            </div>
+          )}
           positionPagination="top"
           enableToolbarInternalActions={false}
           positionToolbarAlertBanner="bottom"

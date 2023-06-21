@@ -28,14 +28,16 @@ export const Topbar = () => {
 
   const { setDevice } = useContext(CraftContext);
 
-  return (
-    <div className="py-2 border-b bg-white flex">
-      {/* <button className="" onClick={() => setDevice("mobile")}>
+  return <></>;
+};
+{
+  /* <div className="py-2 border-b bg-white flex">
+      <button className="" onClick={() => setDevice("mobile")}>
         mobile
       </button>
       <button className="" onClick={() => setDevice("desktop")}>
         desktop
-      </button> */}
+      </button>
 
       <Grid container alignItems="center">
         <Grid item xs>
@@ -127,6 +129,5 @@ export const Topbar = () => {
           </MaterialButton>
         </Grid>
       </Grid>
-    </div>
-  );
-};
+    </div> */
+}

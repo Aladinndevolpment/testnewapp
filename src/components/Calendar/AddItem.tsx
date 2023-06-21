@@ -228,8 +228,13 @@ export default function AddItem({
           ? "translate-x-0 opacity-100 bg-opacity-30"
           : "translate-x-[100%] opacity-0 bg-opacity-0"
       }`}
-      onClick={onClose}
     >
+      <div
+        className={`${
+          !visibility && "backdrop-blur-md"
+        } absolute h-full w-full z-40 `}
+        onClick={onClose}
+      ></div>
       <div className="bg-mainBg w-full md:w-[40%] absolute right-0  h-full z-50 ">
         <div className="pt-4  px-4 md:px-6 flex justify-between items-center">
           <h3 className="font-semibold pb-3">Add new appointment</h3>

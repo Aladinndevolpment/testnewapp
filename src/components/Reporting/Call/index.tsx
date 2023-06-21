@@ -1,131 +1,209 @@
 import React, { useMemo, useState } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { RxDotFilled } from "react-icons/rx";
-import { MdLeaderboard, MdOutlineFacebook } from "react-icons/md";
+import {
+  MdCallEnd,
+  MdLeaderboard,
+  MdOutlineFacebook,
+  MdOutlineWifiCalling3,
+} from "react-icons/md";
 import MaterialReactTable, { type MRT_ColumnDef } from "material-react-table";
 import { MenuItem } from "@mui/material";
 import { HiCursorClick } from "react-icons/hi";
 import { BsArrowUpRight } from "react-icons/bs";
-import { RiMoneyDollarCircleFill } from "react-icons/ri";
-import { FiTrendingDown } from "react-icons/fi";
+import { RiDeleteBin5Line, RiMoneyDollarCircleFill } from "react-icons/ri";
+import { FiPhoneCall, FiTrendingDown } from "react-icons/fi";
 import ReportingStats from "../Stats";
 import { FaBookmark } from "react-icons/fa";
+import { DoDisturb } from "@mui/icons-material";
+import moment from "moment";
+import Image from "next/image";
+import { CiEdit } from "react-icons/ci";
+import { TbPhoneCalling } from "react-icons/tb";
 
 interface RowData {
   [key: string]: any;
 }
 
-export default function ReportingCallTable({ data }: any) {
+export default function ReportingCallTable() {
+  const [data, setData] = useState<RowData[]>([
+    {
+      id: 1,
+      name: "Robert I. Millet",
+      created_date: "2023-06-20T14:30:00.000Z",
+      duration: "2023-06-20T15:30:00.000Z",
+      answered: "yes",
+      user: {
+        name: "Clifford C. Shultz",
+        time: "",
+        image: "../../../../public/images/avatar/yellowdog.jpg",
+      },
+    },
+    {
+      id: 2,
+      name: "Robert I. Millet",
+      created_date: "2023-06-20T14:30:00.000Z",
+      duration: "2023-06-20T15:30:00.000Z",
+      answered: "yes",
+      user: {
+        name: "Clifford C. Shultz",
+        time: "",
+        image: "../../../../public/images/avatar/yellowdog.jpg",
+      },
+    },
+    {
+      id: 3,
+      name: "Robert I. Millet",
+      created_date: "2023-06-20T14:30:00.000Z",
+      duration: "2023-06-20T15:30:00.000Z",
+      answered: "no",
+      user: {
+        name: "Clifford C. Shultz",
+        time: "",
+        image: "../../../../public/images/avatar/yellowdog.jpg",
+      },
+    },
+    {
+      id: 4,
+      name: "Robert I. Millet",
+      created_date: "2023-06-20T14:30:00.000Z",
+      duration: "2023-06-20T15:30:00.000Z",
+      answered: "yes",
+      user: {
+        name: "Clifford C. Shultz",
+        time: "",
+        image: "../../../../public/images/avatar/yellowdog.jpg",
+      },
+    },
+    {
+      id: 5,
+      name: "Robert I. Millet",
+      created_date: "2023-06-20T14:30:00.000Z",
+      duration: "2023-06-20T15:30:00.000Z",
+      answered: "no",
+      user: {
+        name: "Clifford C. Shultz",
+        time: "",
+        image: "../../../../public/images/avatar/yellowdog.jpg",
+      },
+    },
+  ]);
+
   const columns = useMemo<MRT_ColumnDef<any>[]>(
     () => [
       {
-        accessorKey: "campaign_name",
-        id: "campaign_name",
-        header: "Campaign Name",
-        size: 290,
+        accessorKey: "name",
+        id: "name",
+        header: "Name",
+        size: 250,
         Cell: ({ row }) => (
           <div className="flex items-center justify-between gap-5">
             <div>
               <p className="  text-gray-700 font-medium text-[15px]">
-                {row.original.campaign_name.name}
+                {row.original.name}
               </p>
-              <div className="flex items-center gap-2">
-                <MdOutlineFacebook className="text-blue-600" />
-                <span className="  text-gray-500 font-medium text-[12px] ">
-                  {row.original.campaign_name.account}
-                </span>
-              </div>
             </div>
-            <div
-              className={`${
-                row.original.campaign_name.status === "active"
-                  ? "bg-green-100 border-green-400 text-green-600"
-                  : "bg-red-100 border-red-400 text-red-600"
+          </div>
+        ),
+        enableColumnFilter: true,
+      },
+      {
+        accessorKey: "created_date",
+        id: "created_date",
+        header: "Date",
+        size: 100,
+        Cell: ({ row }) => (
+          <div className="flex justify-start items-start gap-2">
+            <p className="  text-gray-700 font-medium text-[12px]">
+              {moment(row.original.created_date).format("MMM DD, yyy")}
+            </p>
+          </div>
+        ),
+        enableColumnFilter: true,
+      },
+      {
+        accessorKey: "duration",
+        id: "duration",
+        header: "Duration",
+        size: 100,
+        Cell: ({ row }) => (
+          <div className="flex justify-start items-start">
+            <p className="  text-gray-700 font-medium text-[12px]">
+              {moment(row.original.duration).format("hh:mm:ss")}
+            </p>
+          </div>
+        ),
+        enableColumnFilter: true,
+      },
+      {
+        accessorKey: "answered", //accessorKey used to define `data` column. `id` gets set to accessorKey automatically
+        id: "answered", //id is still required when using accessorFn instead of accessorKey
+        header: "Answered",
+        size: 100,
+        Cell: ({ row }) => (
+          <div className=" ">
+            <button
+              className={` ${
+                row.original.answered == "yes"
+                  ? " border-greenShade bg-green-100"
+                  : row.original.answered == "no"
+                  ? " border-secondary bg-red-100"
+                  : " border-gray-300 bg-gray-100"
               }
-                  flex justify-center items-center rounded-full border-[1px]  text-[10px] px-1 py-1  w-16`}
+              flex justify-start items-center border-[1px] text-center py-1 px-2 rounded-full font-normal text-dark`}
             >
               <div
                 className={`${
-                  row.original.campaign_name.status === "active"
-                    ? "bg-green-500"
-                    : "bg-red-500"
-                } h-1 w-1 rounded-full mr-1.5`}
+                  row.original.answered == "yes"
+                    ? " bg-greenShade"
+                    : row.original.answered == "no"
+                    ? " bg-secondary"
+                    : " bg-gray-500"
+                }
+
+              h-1.5 w-1.5 rounded-full   mr-2 ml-2`}
               ></div>
-              <span className="font-medium">
-                {row.original.campaign_name.status}
+              <span
+                className={`${
+                  row.original.answered == "yes"
+                    ? " text-greenShade"
+                    : row.original.answered == "no"
+                    ? " text-secondary"
+                    : " text-gray-600"
+                }  pr-3  text-gray-700 font-medium `}
+              >
+                {" "}
+                {row.original.answered}
               </span>
+            </button>
+          </div>
+        ),
+      },
+      {
+        accessorKey: "user",
+        id: "user", //id is still required when using accessorFn instead of accessorKey
+        header: "User",
+        size: 120,
+        Cell: ({ row }) => (
+          <div className="flex items-center gap-2 w-[200px]">
+            <div className="avatar-group -space-x-6">
+              <div className="avatar">
+                <div className="w-10">
+                  <Image
+                    src={require("../../../../public/images/avatar/yellowdog.jpg")}
+                    width={40}
+                    height={40}
+                    alt=""
+                    className="rounded-full"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
-        ),
-        enableColumnFilter: true,
-      },
-      {
-        accessorKey: "impression",
-        id: "impression",
-        header: "Impression",
-        size: 80,
-        Cell: ({ row }) => (
-          <div className="flex justify-start items-start gap-2">
-            <p className="  text-gray-700 font-medium text-[12px]">
-              {row.original.impression}
+            <p className=" text-gray-700 font-medium">
+              {row.original.user.name}
             </p>
           </div>
         ),
-        enableColumnFilter: true,
-      },
-      {
-        accessorKey: "clicks",
-        id: "clicks",
-        header: "Clicks",
-        size: 80,
-        Cell: ({ row }) => (
-          <div className="flex justify-start items-start">
-            <p className="  text-gray-700 font-medium text-[12px]">
-              {row.original.clicks}
-            </p>
-          </div>
-        ),
-        enableColumnFilter: true,
-      },
-      {
-        accessorKey: "totalContact",
-        id: "totalContact",
-        header: "Total Contact",
-        size: 80,
-        Cell: ({ row }) => (
-          <div className="flex justify-start items-start">
-            <p className="  text-gray-700 font-medium text-[12px]">
-              {row.original.totalContact}
-            </p>
-          </div>
-        ),
-        enableColumnFilter: true,
-      },
-      {
-        accessorKey: "costPerContact",
-        id: "costPerContact",
-        header: "Cost Per Contact",
-        size: 80,
-        Cell: ({ row }) => (
-          <div className="flex justify-start items-start gap-2 ">
-            <p className="  text-gray-700 font-medium text-[12px]">
-              {row.original.costPerContact}
-            </p>
-          </div>
-        ),
-        enableColumnFilter: true,
-      },
-      {
-        accessorKey: "amountSpent",
-        id: "amountSpent",
-        header: "Amount Spent",
-        size: 80,
-        Cell: ({ row }) => (
-          <div className="flex justify-start items-start gap-2">
-            <p className="text-gray-600 text-sm">{row.original.amountSpent}</p>
-          </div>
-        ),
-        enableColumnFilter: true,
       },
     ],
     []
@@ -140,75 +218,78 @@ export default function ReportingCallTable({ data }: any) {
 
   const filteredData = data.filter(
     (row: any) =>
-      row.campaign_name.name
-        .toLowerCase()
-        .includes(filterInput.toLowerCase()) ||
-      row.impression.toLowerCase().includes(filterInput.toLowerCase()) ||
-      row.clicks.toLowerCase().includes(filterInput.toLowerCase()) ||
-      row.totalContact.toLowerCase().includes(filterInput.toLowerCase()) ||
-      row.amountSpent.toLowerCase().includes(filterInput.toLowerCase()) ||
-      row.costPerContact.toLowerCase().includes(filterInput.toLowerCase())
+      row.name.toLowerCase().includes(filterInput.toLowerCase()) ||
+      row.duration.toLowerCase().includes(filterInput.toLowerCase()) ||
+      row.answered.toLowerCase().includes(filterInput.toLowerCase()) ||
+      row.user.name.toLowerCase().includes(filterInput.toLowerCase())
   );
 
   return (
     <div className="px-4 py-5">
+      <div className="flex gap-4 items-center ">
+        <h1 className="pb-4 px-4 font-semibold text-2xl"> Call </h1>
+      </div>
       <div className="flex  pl-5 items-center text-xs justify-between w-10/12 gap-5">
         <div className="w-full md:w-1/4">
           <ReportingStats
-            title="Impression"
+            title="Total Calls"
             currency="$"
-            titleIcon={<FaBookmark className="text-sm text-newBlue" />}
+            titleIcon={<FiPhoneCall className="text-sm text-newBlue" />}
             subSpanData={"vs Last month:"}
             subIcon={<BsArrowUpRight className="text-[8px]" />}
             index={1}
             numberValue={537}
             numberValueData={"+0.25%"}
+            totalNo={4}
           />
         </div>
 
         <div className="w-full md:w-1/4">
           <ReportingStats
-            title="Clicks"
+            title="Answered"
             currency="$"
-            titleIcon={<HiCursorClick className="h-4 w-4 text-yellow-500" />}
+            titleIcon={<TbPhoneCalling className="h-4 w-4 text-yellow-500" />}
             subSpanData={"vs Last month:"}
             subIcon={<BsArrowUpRight className="text-[8px]" />}
             index={2}
             numberValue={537}
             numberValueData={"+0.15%"}
+            totalNo={4}
           />
         </div>
 
         <div className="w-full md:w-1/4">
           <ReportingStats
-            title="Leads"
+            title="Confirmed"
             currency="$"
-            titleIcon={<MdLeaderboard className="h-4 w-4 text-greenShade" />}
+            titleIcon={
+              <MdOutlineWifiCalling3 className="h-4 w-4 text-greenShade" />
+            }
             subSpanData={"vs Last month:"}
             subIcon={<BsArrowUpRight className="text-[8px]" />}
             index={3}
             numberValue={537}
             numberValueData={"+0.08%"}
+            totalNo={4}
           />
         </div>
 
         <div className="w-full md:w-1/4">
           <ReportingStats
-            title="Amount Spent"
+            title="Not Interested"
             currency="$"
-            titleIcon={
-              <RiMoneyDollarCircleFill className="h-4 w-4 text-secondary" />
-            }
+            titleIcon={<MdCallEnd className="h-4 w-4 text-secondary" />}
             subSpanData={"vs Last month:"}
             subIcon={<FiTrendingDown className="text-[8px]" />}
             index={4}
             numberValue={537}
             numberValueData={"-0.08%"}
+            totalNo={4}
           />
         </div>
       </div>
 
-      <div className=" border rounded-lg mb-4 mt-5">
+      <div className=" border rounded-lg mb-4 mt-5 muiTable">
         <MaterialReactTable
           columns={columns}
           data={filteredData}
@@ -217,6 +298,34 @@ export default function ReportingCallTable({ data }: any) {
           enableRowSelection
           initialState={{
             showGlobalFilter: false,
+          }}
+          renderRowActions={({ row, table }) => (
+            <div className="flex justify-between items-center gap-5 pr-10">
+              <button
+                onClick={() => {
+                  table.setEditingRow(row);
+                }}
+              >
+                <CiEdit className="h-4 w-4 text-gray-600" />
+              </button>
+              <button
+                onClick={() => {
+                  data.splice(row.index, 1); //assuming simple data table
+                  // setData([...data]);
+                }}
+              >
+                <RiDeleteBin5Line className="h-4 w-4 text-gray-600" />
+              </button>
+            </div>
+          )}
+          muiTablePaginationProps={{
+            rowsPerPageOptions: [10, 50, 100, 200],
+            showFirstButton: false,
+            showLastButton: false,
+            SelectProps: {
+              native: true,
+            },
+            labelRowsPerPage: "Showing",
           }}
           positionPagination="top"
           enableToolbarInternalActions={false}

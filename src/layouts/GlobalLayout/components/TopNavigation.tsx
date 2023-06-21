@@ -21,7 +21,11 @@ import Image from "next/image";
 import HeaderTitle from "./HeaderTitle";
 import { GlobalContext } from "..";
 import { TfiAlignJustify, TfiAlignRight, TfiAngleRight } from "react-icons/tfi";
-import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+import {
+  IoCallOutline,
+  IoChevronBack,
+  IoChevronForward,
+} from "react-icons/io5";
 import Link from "next/link";
 export default function TopNavigation() {
   const router = useRouter();
@@ -63,14 +67,20 @@ export default function TopNavigation() {
           <div className=" flex items-center justify-start lg:justify-end p-1 w-full lg:w-[55%]   ">
             <Search />
             <div className="relative ml-3 bg-logoRed p-2 rounded-full shadow-sm mr-3">
-              <PlusIcon className="text-white w-4 h-4" />
+              <IoCallOutline className="text-white w-4 h-4" />
             </div>
 
             <div className="border-l border-l-[#a0a0a0] mr-3 h-full">
               <div className="relative ml-3  shadow-sm flex gap-2  py-2">
-                <ChatBubbleBottomCenterIcon className="text-[#a0a0a0] w-6 h-6" />
-                <BellIcon className="text-[#a0a0a0] w-6 h-6" />
-                <CalendarIcon className="text-[#a0a0a0] w-6 h-6" />
+                <Link href="">
+                  <ChatBubbleBottomCenterIcon className="text-[#a0a0a0] w-6 h-6" />
+                </Link>
+                <Link href="">
+                  <BellIcon className="text-[#a0a0a0] w-6 h-6" />{" "}
+                </Link>
+                <Link href="/calendar">
+                  <CalendarIcon className="text-[#a0a0a0] w-6 h-6" />
+                </Link>
               </div>
             </div>
 

@@ -71,7 +71,7 @@ const data = [
       {
         title: "Calendar",
         icon: <MdSpaceDashboard className="h-5 w-5 text-FontGray" />,
-        link: "/settings/calendar/",
+        link: "/settings/calendar",
       },
       {
         title: "Custom Fields",

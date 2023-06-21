@@ -1836,3 +1836,129 @@ input::-webkit-inner-spin-button {
   font-family: 'Strawford' !important;
   width: 100% !important;
 }
+
+
+ /* table Css  */
+
+ 
+
+.muiTable .mui-style-1omuo8w-MuiToolbar-root {
+   display: flex !important;
+     flex-wrap: nowrap !important;
+     justify-content: space-between !important;
+     align-items: center !important;
+}
+
+.mui-style-16253fi-MuiTablePagination-root {
+   width: 50% !important;
+}
+
+.muiTable .mui-style {
+width:50% !important;
+}
+
+.mui-style-qxov5u {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+ 
+.mui-style-e87xbu {
+   width: 50%;
+}
+
+.mui-style-1omuo8w-MuiToolbar-root {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+@media only screen and (max-width:768px){
+  .muiTable .mui-style-1omuo8w-MuiToolbar-root {
+    display: flex !important;
+      flex-wrap: flex-wrap !important;
+ }
+
+ .mui-style-qxov5u {
+  display: flex !important;
+  flex-wrap: flex-wrap !important;
+}
+
+ .mui-style-16253fi-MuiTablePagination-root {
+  width: 50% !important;
+}
+ .muiTable .mui-style {
+  width:100% !important;
+  }
+  .mui-style-e87xbu {
+    width: 50% !important;
+ }
+
+}
+
+
+
+.device-emulator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.device-selector {
+  margin-bottom: 20px;
+}
+
+.device-selector label {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.device-selector select {
+  padding: 5px;
+  font-size: 16px;
+}
+
+.device-preview {
+  display: flex;
+  justify-content: center;
+}
+
+.device-frame {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  width: 1440px; /* Adjust the initial width based on the default device */
+  height: 900px; /* Adjust the initial height based on the default device */
+}
+
+.device-content {
+  flex: 0 0 20%; /* Adjust the width of each item based on the device */
+  padding: 20px;
+  text-align: center;
+}
+
+/* Additional media queries for responsive behavior */
+@media  (max-width: 1024px) {
+  .device-frame .device-content {
+    flex: 0 0 30%; /* On tablets, show 2 items per line */
+  }
+}
+
+
+@media (max-width: 768px) {
+  .device-frame .device-content {
+    flex: 0 0 40%; /* On tablets, show 2 items per line */
+  }
+}
+
+@media (max-width: 480px) {
+  .device-frame .device-content {
+    flex: 0 0 100%; /* On mobile, show 1 item per line */
+  }
+}

@@ -612,7 +612,14 @@ export default function StartComponentTriggerList({
               <ul className="pt-2 ">
                 {item?.subContent?.map((mainData, mainIndex) => (
                   <li className="mb-3" key={mainIndex}>
-                    <div className="relative py-3 hover:border-[1px] hover:border-newBlue flex justify-start items-center border-[1px] border-gray-200 mb-3 p-2 rounded-lg">
+                    <div
+                      onClick={() => {
+                        setFormItem(mainData?.form);
+                        setActionData(mainData?.title);
+                        setIsOpenModal(true);
+                      }}
+                      className="relative py-3 hover:border-[1px] hover:border-newBlue flex justify-start items-center border-[1px] border-gray-200 mb-3 p-2 rounded-lg"
+                    >
                       <input
                         type="radio"
                         name="radio"
@@ -637,9 +644,9 @@ export default function StartComponentTriggerList({
                         </p>
                       </div>
 
-                      <div className="absolute top-2 right-2">
+                      {/* <div className="absolute top-2 right-2">
                         <HiOutlineExternalLink className="h-4 w-4 text-gray-400" />
-                      </div>
+                      </div> */}
                     </div>
                   </li>
                 ))}

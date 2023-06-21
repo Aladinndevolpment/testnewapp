@@ -331,10 +331,10 @@ export default function InvoicePage() {
               <div className="flex flex-wrap gap-2">
                 <Link href="/invoice/new-claim">
                   <div className=" flex justify-center items-center px-4 py-2 rounded-md text-white capitalize bg-newBlue">
-                    Claims Info
+                    <PlusIcon className="h-4 w-4 text-white" /> New Claims
                   </div>
                 </Link>
-                <button
+                {/* <button
                   className=" flex justify-center items-center px-4 py-2 rounded-md text-white capitalize bg-newBlue"
                   onClick={() => {
                     setAddFlyoutVisibility(true);
@@ -342,7 +342,7 @@ export default function InvoicePage() {
                   }}
                 >
                   <PlusIcon className="h-4 w-4 text-white" /> New Claims
-                </button>
+                </button> */}
                 <button className="px-1 shadow border rounded">
                   <MoreHorizOutlined />
                 </button>

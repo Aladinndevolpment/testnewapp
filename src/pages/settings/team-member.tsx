@@ -402,23 +402,64 @@ export default function TeamMember() {
                       </td>
                       <td>
                         <div className="flex justify-between">
-                          <div className="flex items-center">
-                            {item.role == "Admin" && (
-                              <ShieldCheckIcon className="text-newBlue h-4 w-4 mr-1" />
-                            )}
+                          <div className="dropdown">
+                            <label tabIndex={0} className=" ">
+                              <div className="flex items-center">
+                                {item.role == "Admin" && (
+                                  <ShieldCheckIcon className="text-newBlue h-4 w-4 mr-1" />
+                                )}
 
-                            {item.role == "Read Only" && (
-                              <EyeIcon className="text-newBlue h-4 w-4 mr-1" />
-                            )}
+                                {item.role == "Read Only" && (
+                                  <EyeIcon className="text-newBlue h-4 w-4 mr-1" />
+                                )}
 
-                            {item.role == "Basic" && (
-                              <UserIcon className="text-newBlue h-4 w-4 mr-1" />
-                            )}
+                                {item.role == "Basic" && (
+                                  <UserIcon className="text-newBlue h-4 w-4 mr-1" />
+                                )}
 
-                            <span className="text-newBlue text-sm font-semibold mr-2">
-                              {item.role}
-                            </span>
-                            <ChevronDownIcon className="text-newBlue h-4 w-4" />
+                                <span className="text-newBlue text-sm font-semibold mr-2">
+                                  {item.role}
+                                </span>
+                                <ChevronDownIcon className="text-newBlue h-4 w-4" />
+                              </div>
+                            </label>
+                            <div
+                              tabIndex={0}
+                              className="dropdown-content card card-compact w-44 py-2 px-4 shadow bg-white text-dark"
+                            >
+                              <div>
+                                <div className="flex justify-start items-start py-2">
+                                  <input
+                                    type="checkbox"
+                                    name="1"
+                                    className="checkbox checkbox-sm rounded-sm bg-transparent"
+                                  />
+                                  <p className=" text-[13px] font-medium  ml-2 mt-[-0.5px]">
+                                    Admin
+                                  </p>
+                                </div>
+                                <div className="flex justify-start items-start py-2">
+                                  <input
+                                    type="checkbox"
+                                    name="2"
+                                    className="checkbox checkbox-sm rounded-sm bg-transparent"
+                                  />
+                                  <p className=" text-[13px] font-medium  ml-2 mt-[-0.5px]">
+                                    User
+                                  </p>
+                                </div>
+                                <div className="flex justify-start items-start py-2">
+                                  <input
+                                    type="checkbox"
+                                    name="3"
+                                    className="checkbox checkbox-sm rounded-sm bg-transparent"
+                                  />
+                                  <p className=" text-[13px] font-medium  ml-2 mt-[-0.5px]">
+                                    View Only
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                           <div>
                             <div className="dropdown dropdown-bottom dropdown-end">

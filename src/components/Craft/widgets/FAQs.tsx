@@ -1,6 +1,6 @@
 import { useNode, Element, useEditor } from "@craftjs/core";
 import { Text } from "./Text/Text";
-import { createElement } from "react";
+import { createElement, useState } from "react";
 import {
   CommonSettings,
   ICommonSettingsProps,
@@ -15,25 +15,6 @@ const defaults = {
   borderColor: "#313641",
   borderRadius: 10,
 };
-
-// const FAQsSizes = [
-//   {
-//     value: "btn-xs",
-//     label: "Tiny",
-//   },
-//   {
-//     value: "btn-sm",
-//     label: "Small",
-//   },
-//   {
-//     value: "btn",
-//     label: "Normal",
-//   },
-//   {
-//     value: "btn-lg",
-//     label: "Large",
-//   },
-// ];
 
 interface IFAQsProps extends ICommonSettingsProps {
   size?: string;
@@ -79,25 +60,32 @@ export const FAQs = ({
   shadow,
   shadowColor,
 }: IFAQsProps) => {
+  // const [showResults, setShowResults] = useState(false);
+
+  // const handleClick = () => {
+  //   setShowResults(true);
+  // };
+
   const {
     connectors: { connect, drag },
     hovered,
   } = useNode((state) => ({ hovered: state.events.hovered }));
 
+  // console.log(showResults);
   return (
     <div ref={(ref: any) => connect(drag(ref))}>
-      <p
+      <div
         className={`w-full h-auto ${size} mr-2 ${
           hovered && "hover:outline-pink-500 hover:outline "
-        }  relative ${shadowColor} ${shadow} ${borderType}`}
+        }  relative ${shadowColor} ${shadow} ${borderType} `}
         style={{
           backgroundColor,
           marginTop: `${marginTop}px`,
           marginBottom: `${marginBottom}px`,
           marginLeft: `${marginLeft}px`,
           marginRight: `${marginRight}px`,
-          paddingTop: `${paddingTop}px`,
-          paddingBottom: `${paddingBottom}px`,
+          paddingTop: `${5}px`,
+          paddingBottom: `${5}px`,
           paddingLeft: `${paddingLeft}px`,
           paddingRight: `${paddingRight}px`,
           borderWidth: `${borderWidth}px`,
@@ -112,11 +100,11 @@ export const FAQs = ({
         )}
         <Element id="FAQsText" is={FAQsText} canvas>
           <div
-            className={`w-full h-auto ${size} mr-2 ${
+            className={`   w-full h-auto ${size} mr-2 ${
               hovered && "hover:outline-pink-500 hover:outline "
             }  relative ${shadowColor} ${shadow} ${borderType}`}
             style={{
-              backgroundColor,
+              backgroundColor: "#f8f8f8",
               marginTop: `${marginTop}px`,
               marginBottom: `${marginBottom}px`,
               marginLeft: `${marginLeft}px`,
@@ -126,68 +114,58 @@ export const FAQs = ({
               paddingLeft: `${paddingLeft}px`,
               paddingRight: `${paddingRight}px`,
               borderWidth: `${borderWidth}px`,
-              borderRadius: `${borderRadius}px`,
+              borderRadius: `2px`,
+              borderColor,
+            }}
+            // onClick={handleClick}
+            // onClick={() => setShowResults(true)}
+          >
+            <Text
+              paddingLeft={10}
+              paddingBottom={10}
+              paddingTop={10}
+              alignment="left"
+              text="Question"
+              fontSize={20}
+              bold="font-semibold"
+              color="#000000"
+              backgroundColor="#f8f8f8"
+            />
+          </div>
+          <div
+            className={` w-full h-auto ${size} mr-2 ${
+              hovered && "hover:outline-pink-500 hover:outline "
+            }  relative ${shadowColor} ${shadow} ${borderType} `}
+            style={{
+              backgroundColor: "#f8f8f8",
+              marginTop: `${marginBottom}px`,
+              marginBottom: `${marginBottom}px`,
+              marginLeft: `${marginLeft}px`,
+              marginRight: `${marginRight}px`,
+              paddingTop: `${"0px"}`,
+              paddingBottom: `${"5px"}`,
+              paddingLeft: `${paddingLeft}px`,
+              paddingRight: `${paddingRight}px`,
+              borderWidth: `${borderWidth}px`,
+              borderRadius: `2px`,
               borderColor,
             }}
           >
-            <div
-              className={`w-full h-auto ${size} mr-2 ${
-                hovered && "hover:outline-pink-500 hover:outline "
-              }  relative ${shadowColor} ${shadow} ${borderType}`}
-              style={{
-                backgroundColor,
-                marginTop: `${marginTop}px`,
-                marginBottom: `${marginBottom}px`,
-                marginLeft: `${marginLeft}px`,
-                marginRight: `${marginRight}px`,
-                paddingTop: `${paddingTop}px`,
-                paddingBottom: `${paddingBottom}px`,
-                paddingLeft: `${paddingLeft}px`,
-                paddingRight: `${paddingRight}px`,
-                borderWidth: `${borderWidth}px`,
-                borderRadius: `${borderRadius}px`,
-                borderColor,
-              }}
-            >
-              <Text
-                alignment="left"
-                text="Question"
-                fontSize={20}
-                bold="font-semibold"
-                color="#000000"
-              />
-            </div>
-            <div
-              className={`w-full h-auto ${size} mr-2 ${
-                hovered && "hover:outline-pink-500 hover:outline "
-              }  relative ${shadowColor} ${shadow} ${borderType}`}
-              style={{
-                backgroundColor,
-                marginTop: `${marginTop}px`,
-                marginBottom: `${marginBottom}px`,
-                marginLeft: `${marginLeft}px`,
-                marginRight: `${marginRight}px`,
-                paddingTop: `${paddingTop}px`,
-                paddingBottom: `${paddingBottom}px`,
-                paddingLeft: `${paddingLeft}px`,
-                paddingRight: `${paddingRight}px`,
-                borderWidth: `${borderWidth}px`,
-                borderRadius: `${borderRadius}px`,
-                borderColor,
-              }}
-            >
-              {" "}
-              <Text
-                alignment="left"
-                text="Answer"
-                fontSize={20}
-                bold="font-semibold"
-                color="#000000"
-              />
-            </div>
+            <Text
+              paddingLeft={15}
+              paddingBottom={10}
+              paddingTop={10}
+              marginTop={1}
+              alignment="left"
+              text="Answer"
+              fontSize={16}
+              bold="font-medium"
+              color="#474343"
+              backgroundColor="#f8f8f8"
+            />
           </div>
         </Element>
-      </p>
+      </div>
     </div>
   );
 };
@@ -212,38 +190,6 @@ const FAQsSettings = () => {
       .settings;
   return (
     <div>
-      {/* <div className="mb-4">
-        <TextInput
-          lefticon={<IoContract />}
-          value={props.text}
-          placeholder="Button Text"
-          onChange={(e) =>
-            setProp((props: any) => (props.text = e.target.value))
-          }
-        />
-      </div> */}
-
-      {/* <div className={`flex gap-3 flex-wrap w-full`}>
-        {FAQsSizes?.map((item, index) => (
-          <div className="form-control" key={index}>
-            <label className="cursor-pointer flex items-center gap-2">
-              <input
-                type="radio"
-                name="btn_size"
-                className="radio checked:bg-green-500"
-                checked={item.value === props.size}
-                required={true}
-                value={item.value}
-                onChange={(e) =>
-                  setProp((props: any) => (props.size = e.target.value))
-                }
-              />
-              <span className="label-text">{item.label}</span>
-            </label>
-          </div>
-        ))}
-      </div> */}
-
       <CommonSettings />
 
       {textNodeSettings && createElement(textNodeSettings)}
@@ -262,8 +208,8 @@ FAQs.craft = {
     borderColor: defaults.borderColor,
     paddingRight: 10,
     paddingLeft: 10,
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 0,
+    marginBottom: 0,
   },
   displayName: elementName,
 };

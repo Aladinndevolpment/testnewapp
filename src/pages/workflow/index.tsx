@@ -1,4 +1,7 @@
-import WorkFlowTables from "@/components/Automations/TabsComponents/TemplateSidebar/WorkflowTables";
+import RecentlyDeleteTable from "@/components/Automations/TabsComponents/TemplateSidebar/Tables/RecentlyDeleteTable";
+import UnusedWorkflowTable from "@/components/Automations/TabsComponents/TemplateSidebar/Tables/UnusedWorkflowTable";
+import WorkFlowErrorTable from "@/components/Automations/TabsComponents/TemplateSidebar/Tables/WorkFlowErrorTable";
+import WorkFlowTables from "@/components/Automations/TabsComponents/TemplateSidebar/Tables/WorkflowTables";
 import { GlobalContext } from "@/layouts/GlobalLayout";
 import Link from "next/link";
 import React, { useContext, useState } from "react";
@@ -46,17 +49,17 @@ export default function Workflow() {
     {
       id: "tab2",
       label: "Workflow with error",
-      content: " ",
+      content: <WorkFlowErrorTable />,
     },
     {
       id: "tab3",
       label: "Unused Workflow",
-      content: " ",
+      content: <UnusedWorkflowTable />,
     },
     {
       id: "tab4",
       label: "Recently Delete",
-      content: " ",
+      content: <RecentlyDeleteTable />,
     },
   ];
   // const [activeTab, setActiveTab] = useState<any>(tabs[3].id);
@@ -108,13 +111,13 @@ export default function Workflow() {
         </div>
 
         <div className="overflow-hidden ">
-          <ul className="  lg:px-5 border-b-[1px] border-[#dfdfdf] pt-4 flex justify-start items-center overflow-auto scrollbar-hide gap-6 bg-white  ">
+          <ul className="lg:px-5 border-b-[1px] border-[#dfdfdf] pt-4 flex justify-start items-center overflow-auto scrollbar-hide gap-6 bg-white  ">
             {innerTabs.map((tab: any) => (
               <li key={tab.id}>
                 <button
-                  className={`px-3 lg:px-5  transition-all duration-300 font-semibold text-[11px] md:text-base ${
+                  className={`px-3 lg:px-2 transition-all duration-300 font-semibold text-xs md:text-base ${
                     activeInnerTab === tab.id
-                      ? "border-b-[4px] border-gray-800 text-gray-800 pb-3 "
+                      ? "border-b-[4px] border-secondary text-secondary pb-3 "
                       : "text-gray-500 pb-4"
                   }`}
                   onClick={() => setActiveInnerTab(tab.id)}

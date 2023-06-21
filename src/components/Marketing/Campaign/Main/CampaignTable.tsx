@@ -16,6 +16,8 @@ import { MenuItem } from "@mui/material";
 // import { tableData } from "./Data";
 import { useRouter } from "next/router";
 import AddCampaign from "./AddCampaign";
+import { CiEdit } from "react-icons/ci";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 interface RowData {
   [key: string]: any;
@@ -361,7 +363,7 @@ const CampaignTable = () => {
         </div>
 
         {/* Third Section table */}
-        <div className="bg-white border rounded-md">
+        <div className="bg-white border rounded-md  muiTable">
           <MaterialReactTable
             columns={columns}
             data={filteredData}
@@ -370,6 +372,34 @@ const CampaignTable = () => {
             enableRowSelection
             initialState={{
               showGlobalFilter: false,
+            }}
+            renderRowActions={({ row, table }) => (
+              <div className="flex justify-between items-center gap-5 pr-10">
+                <button
+                  onClick={() => {
+                    table.setEditingRow(row);
+                  }}
+                >
+                  <CiEdit className="h-4 w-4 text-gray-600" />
+                </button>
+                <button
+                  onClick={() => {
+                    tableData.splice(row.index, 1); //assuming simple data table
+                    // setData([...data]);
+                  }}
+                >
+                  <RiDeleteBin5Line className="h-4 w-4 text-gray-600" />
+                </button>
+              </div>
+            )}
+            muiTablePaginationProps={{
+              rowsPerPageOptions: [10, 50, 100, 200],
+              showFirstButton: false,
+              showLastButton: false,
+              SelectProps: {
+                native: true,
+              },
+              labelRowsPerPage: "Showing",
             }}
             positionPagination="top"
             enableToolbarInternalActions={false}
@@ -412,22 +442,6 @@ const CampaignTable = () => {
             }}
             positionActionsColumn="last"
             enableRowActions
-            renderRowActionMenuItems={({ row }) => [
-              <MenuItem key="edit" onClick={() => console.info("Edit")}>
-                Edit
-              </MenuItem>,
-              <MenuItem key="delete" onClick={() => console.info("Delete")}>
-                Delete
-              </MenuItem>,
-            ]}
-            muiTableBodyRowProps={({ row }) => ({
-              //implement row selection click events manually
-              onClick: () => router.push(`/marketing/${row.original.id}`),
-              selected: rowSelection[row.id],
-              sx: {
-                cursor: "pointer",
-              },
-            })}
             muiTableHeadCellProps={{
               sx: {
                 borderRight: "2px solid #e9e9e9",

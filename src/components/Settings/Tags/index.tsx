@@ -76,7 +76,6 @@ export default function TagsData() {
 
     setdata((prevValues: any) => [
       ...data,
-
       {
         id: tagData?.length + 1,
         tag_Name: formValues?.tagName,

@@ -4,8 +4,10 @@ import MaterialReactTable, { type MRT_ColumnDef } from "material-react-table";
 import Link from "next/link";
 import { ExportToCsv } from "export-to-csv"; //or use your library of choice here
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { CiEdit } from "react-icons/ci";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
-export default function WorkFlowTables() {
+export default function WorkFlowErrorTable() {
   const columns = useMemo<MRT_ColumnDef<any>[]>(
     () => [
       {
@@ -232,7 +234,12 @@ export default function WorkFlowTables() {
   return (
     <>
       <div>
-        <div className="px-2 lg:px-8 py-5">
+        <div className="px-2 lg:px-3 py-5">
+          <div className="flex gap-4 items-center ">
+            <h1 className="pb-4 px-4 font-semibold text-2xl capitalize">
+              Workflow with error
+            </h1>
+          </div>
           <div className="flex flex-wrap lg:flex-nowrap justify-start lg:justify-between items-center">
             <div className="w-full lg:w-auto flex justify-between items-center mb-2">
               <div className="dropdown dropdown-bottom mr-1">
@@ -312,10 +319,8 @@ export default function WorkFlowTables() {
               </Link>
             </div>
           </div>
-          <div className="bg-white shadow-md lg:px-2 py-5 rounded-lg">
+          <div className="bg-white shadow-md lg:px-2 muiTable rounded-lg">
             <MaterialReactTable
-              positionPagination="top"
-              enableToolbarInternalActions={false}
               columns={columns}
               data={filteredData}
               enableStickyHeader
@@ -324,27 +329,57 @@ export default function WorkFlowTables() {
               initialState={{
                 showGlobalFilter: false,
               }}
+              renderRowActions={({ row, table }) => (
+                <div className="flex justify-between items-center gap-5 pr-10">
+                  <button
+                    onClick={() => {
+                      table.setEditingRow(row);
+                    }}
+                  >
+                    <CiEdit className="h-4 w-4 text-gray-600" />
+                  </button>
+                  <button
+                    onClick={() => {
+                      data.splice(row.index, 1); //assuming simple data table
+                      // setData([...data]);
+                    }}
+                  >
+                    <RiDeleteBin5Line className="h-4 w-4 text-gray-600" />
+                  </button>
+                </div>
+              )}
+              muiTablePaginationProps={{
+                rowsPerPageOptions: [10, 50, 100, 200],
+                showFirstButton: false,
+                showLastButton: false,
+                SelectProps: {
+                  native: true,
+                },
+                labelRowsPerPage: "Showing",
+              }}
+              positionPagination="top"
+              enableToolbarInternalActions={false}
               positionToolbarAlertBanner="bottom"
-              // muiSearchTextFieldProps={{
-              //   placeholder: `Search ${data.length} rows`,
-              //   sx: {
-              //     minWidth: "400px",
-              //     marginTop: "5px",
-              //     marginBottom: "10px",
-              //     padding: "1px",
-              //     paddingTop: "2px",
-              //     paddingBottom: "2px",
-              //   },
-              //   variant: "outlined",
-              // }}
-              // positionGlobalFilter="left"
+              muiSearchTextFieldProps={{
+                placeholder: `Search ${data?.length} rows`,
+                sx: {
+                  minWidth: "400px",
+                  marginTop: "5px",
+                  marginBottom: "10px",
+                  padding: "1px",
+                  paddingTop: "2px",
+                  paddingBottom: "2px",
+                },
+                variant: "outlined",
+              }}
+              positionGlobalFilter="left"
               enableSorting={true}
-              // enableGlobalFilterModes
+              enableGlobalFilterModes
               enableColumnActions={false}
               enableGlobalFilter={false}
               enableFilters={false}
               enableHiding={false}
-              renderTopToolbarCustomActions={({ table }) => {
+              renderTopToolbarCustomActions={({ table }: any) => {
                 return (
                   <>
                     <div className="mb-2 w-[300px] flex items-center shadow px-2 py-2 border-gray-200 border-[1px] bg-white rounded-md">
@@ -359,6 +394,8 @@ export default function WorkFlowTables() {
                   </>
                 );
               }}
+              positionActionsColumn="last"
+              enableRowActions
               muiTableHeadCellProps={{
                 sx: {
                   borderRight: "2px solid #e9e9e9",

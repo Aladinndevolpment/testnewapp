@@ -128,12 +128,12 @@ export default function Reporting() {
     {
       id: "tab7",
       label: "Call",
-      content: <ReportingCallTable data={data} />,
+      content: <ReportingCallTable />,
     },
     {
       id: "tab8",
       label: "Appointment",
-      content: <ReportingAppointmentTable data={data} />,
+      content: <ReportingAppointmentTable />,
     },
   ];
 

@@ -70,7 +70,7 @@ const appointmentFilter = [
     subContent: [],
   },
   {
-    title: "In Calendra",
+    title: "In Calendar",
     subContent: [],
   },
   {

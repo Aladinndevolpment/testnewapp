@@ -1,4 +1,4 @@
-import WorkFlowTables from "@/components/Automations/TabsComponents/TemplateSidebar/WorkflowTables";
+import WorkFlowTables from "@/components/Automations/TabsComponents/TemplateSidebar/Tables/WorkflowTables";
 import WebsiteBuilder from "@/components/Builders/WebsiteBuilder";
 import { GlobalContext } from "@/layouts/GlobalLayout";
 import Link from "next/link";

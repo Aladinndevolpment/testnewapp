@@ -48,14 +48,30 @@ import {
   OrderOneStep,
 } from "@/components/Craft/widgets/prebuilt/OrderOneStep";
 import { OrderTwoStep } from "@/components/Craft/widgets/prebuilt/OrderTwoStep";
-import { TextInputElement } from "@/components/FormCraft/widgets/TextInput";
-import { TextAreaElement } from "@/components/FormCraft/widgets/TextareaElement";
-import { RadioInputElement } from "@/components/FormCraft/widgets/RadioElement";
-import { CheckboxInputElement } from "@/components/FormCraft/widgets/CheckboxElement";
-import { SelectBoxInputElement } from "@/components/FormCraft/widgets/SelectInputElement";
-import { AttachmentElement } from "@/components/FormCraft/widgets/Attachment";
-import { DatePickerElement } from "@/components/FormCraft/widgets/DatePicker";
 import { FAQs, FAQsText } from "@/components/Craft/widgets/FAQs";
+import {
+  Testimonials,
+  TestimonialsText,
+} from "@/components/Craft/widgets/prebuilt/Testimonials";
+import {
+  Carousels,
+  CarouselsText,
+} from "@/components/Craft/widgets/prebuilt/Carousel";
+import { TextInputElement } from "@/components/Craft/widgets/form/TextInput";
+import { TextAreaElement } from "@/components/Craft/widgets/form/TextareaElement";
+import { RadioInputElement } from "@/components/Craft/widgets/form/RadioElement";
+import { CheckboxInputElement } from "@/components/Craft/widgets/form/CheckboxElement";
+import { SelectBoxInputElement } from "@/components/Craft/widgets/form/SelectInputElement";
+import { AttachmentElement } from "@/components/Craft/widgets/form/Attachment";
+import { DatePickerElement } from "@/components/Craft/widgets/form/DatePicker";
+import {
+  Breadcrumbs,
+  BreadcrumbsText,
+} from "@/components/Craft/widgets/prebuilt/Breadcrumbs";
+import {
+  Footers,
+  FootersText,
+} from "@/components/Craft/widgets/prebuilt/Footer";
 
 export const CraftContext = createContext({
   tools: "prebuilt",
@@ -76,12 +92,21 @@ export default function Craft() {
     device,
     setDevice,
   };
+
   return (
     <CraftContext.Provider value={value}>
       <div className="h-full overflow-hidden">
         <Editor
           resolver={{
             App,
+            FootersText,
+            Footers,
+            Breadcrumbs,
+            BreadcrumbsText,
+            Carousels,
+            CarouselsText,
+            Testimonials,
+            TestimonialsText,
             FAQs,
             FAQsText,
             Card,

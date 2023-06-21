@@ -6,6 +6,8 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { FiChevronDown } from "react-icons/fi";
 import { BsColumns, BsCalendarDate, BsThreeDots } from "react-icons/bs";
 import { MdOutlineDateRange } from "react-icons/md";
+import { CiEdit } from "react-icons/ci";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 export default function Table({ data }: any) {
   const status = [
@@ -124,17 +126,6 @@ export default function Table({ data }: any) {
         ),
         accessorKey: "published_date", //accessorKey used to define `data` column. `id` gets set to accessorKey automatically
       },
-      {
-        id: "other", //id is still required when using accessorFn instead of accessorKey
-        header: " ",
-        size: 10,
-        Cell: ({ row }) => (
-          <div className="text-center flex justify-center items-center">
-            <BsThreeDots className="text-gray-700 h-4 w-4 mr-1" />
-          </div>
-        ),
-        accessorKey: "other", //accessorKey used to define `data` column. `id` gets set to accessorKey automatically
-      },
     ],
     []
   );
@@ -251,7 +242,7 @@ export default function Table({ data }: any) {
 
             <div className="border-l-[1px] border-gray-200 ">
               <Link
-                href="/builder/survey/craft"
+                href="/builder/survey/template"
                 className="text-xs flex justify-center items-center ml-3 bg-secondary hover:bg-newBlue duration-300 m-1 py-3 px-5 2xl:px-6 text-white rounded-md "
               >
                 Create Survey
@@ -261,8 +252,6 @@ export default function Table({ data }: any) {
         </div>
         <div className="bg-white shadow-md lg:px-2 rounded-lg">
           <MaterialReactTable
-            positionPagination="top"
-            enableToolbarInternalActions={false}
             columns={columns}
             data={filteredData}
             enableStickyHeader
@@ -271,33 +260,63 @@ export default function Table({ data }: any) {
             initialState={{
               showGlobalFilter: false,
             }}
+            renderRowActions={({ row, table }) => (
+              <div className="flex justify-between items-center gap-5 pr-10">
+                <button
+                  onClick={() => {
+                    table.setEditingRow(row);
+                  }}
+                >
+                  <CiEdit className="h-4 w-4 text-gray-600" />
+                </button>
+                <button
+                  onClick={() => {
+                    data.splice(row.index, 1); //assuming simple data table
+                    // setData([...data]);
+                  }}
+                >
+                  <RiDeleteBin5Line className="h-4 w-4 text-gray-600" />
+                </button>
+              </div>
+            )}
+            muiTablePaginationProps={{
+              rowsPerPageOptions: [10, 50, 100, 200],
+              showFirstButton: false,
+              showLastButton: false,
+              SelectProps: {
+                native: true,
+              },
+              labelRowsPerPage: "Showing",
+            }}
+            positionPagination="top"
+            enableToolbarInternalActions={false}
             positionToolbarAlertBanner="bottom"
-            // muiSearchTextFieldProps={{
-            //   placeholder: `Search ${data.length} rows`,
-            //   sx: {
-            //     minWidth: "400px",
-            //     marginTop: "5px",
-            //     marginBottom: "10px",
-            //     padding: "1px",
-            //     paddingTop: "2px",
-            //     paddingBottom: "2px",
-            //   },
-            //   variant: "outlined",
-            // }}
-            // positionGlobalFilter="left"
+            muiSearchTextFieldProps={{
+              placeholder: `Search ${data?.length} rows`,
+              sx: {
+                minWidth: "400px",
+                marginTop: "5px",
+                marginBottom: "10px",
+                padding: "1px",
+                paddingTop: "2px",
+                paddingBottom: "2px",
+              },
+              variant: "outlined",
+            }}
+            positionGlobalFilter="left"
             enableSorting={true}
-            // enableGlobalFilterModes
+            enableGlobalFilterModes
             enableColumnActions={false}
             enableGlobalFilter={false}
             enableFilters={false}
             enableHiding={false}
-            renderTopToolbarCustomActions={({ table }) => {
+            renderTopToolbarCustomActions={({ table }: any) => {
               return (
                 <>
-                  <div className="mb-2 w-[300px] flex items-center shadow px-2 py-2 border-gray-200 border-[1px] bg-white rounded-md">
+                  <div className="m-2 w-[300px]  flex items-center  px-2 py-2 border-gray-200 border-[1px] bg-white rounded-md">
                     <MagnifyingGlassIcon className="w-6 h-6 text-gray-400 font-bold  " />
                     <input
-                      placeholder="Search leads..."
+                      placeholder="Search ..."
                       value={filterValue}
                       onChange={handleFilter}
                       className="w-full bg-transparent outline-none border-none pl-2 font-fontSource font-medium text-sm"
@@ -306,6 +325,8 @@ export default function Table({ data }: any) {
                 </>
               );
             }}
+            positionActionsColumn="last"
+            enableRowActions
             muiTableHeadCellProps={{
               sx: {
                 borderRight: "2px solid #e9e9e9",
@@ -315,17 +336,8 @@ export default function Table({ data }: any) {
                 borderRadius: "5px",
               },
             }}
-            muiTablePaperProps={{
-              elevation: 0,
-              sx: {
-                padding: "5px",
-              },
-            }}
             muiTableProps={{
-              sx: {
-                border: "2px solid #f2f2f2",
-                borderRadius: "5px",
-              },
+              sx: { border: "2px solid #f2f2f2", borderRadius: "5px" },
             }}
             muiTableBodyProps={{
               sx: (theme) => ({

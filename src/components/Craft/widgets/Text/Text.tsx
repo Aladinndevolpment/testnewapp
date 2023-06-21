@@ -1,5 +1,6 @@
 import TextInput from "@/components/controls/TextInput";
 import { useEditor, useNode } from "@craftjs/core";
+import { Slider } from "@mui/base";
 import { MuiColorInput } from "mui-color-input";
 import { useEffect, useState } from "react";
 import ContentEditable from "react-contenteditable";
@@ -26,6 +27,7 @@ const cases = ["normal-case", "uppercase", "lowercase", "capitalize"];
 
 const defaults = {
   fontSize: 16,
+  mobileFontSize: 16,
   color: "#000000",
   alignment: "left",
   bold: "font-normal",
@@ -50,6 +52,7 @@ const fontWeights = [
 export interface ITextProps extends ICommonSettingsProps {
   text: string;
   fontSize?: number;
+  mobileFontSize?: number;
   alignment?: "left" | "right" | "center" | "justify";
   color?: string;
   bold?:
@@ -73,6 +76,7 @@ export interface ITextProps extends ICommonSettingsProps {
 export const Text = ({
   text,
   fontSize = 16,
+  mobileFontSize = 16,
   alignment = "left",
   color = "#000000",
   bold = "font-normal",
@@ -153,6 +157,7 @@ export const Text = ({
         tagName={tagName}
         style={{
           fontSize: `${fontSize}px`,
+          mobileFontSize: `${mobileFontSize}px`,
           color: color,
           lineHeight: lineHeight,
           borderRadius: borderRadius + "px",
@@ -229,10 +234,10 @@ export const TextSettings: any = () => {
         </div>
       </div>
 
-      <div className="flex">
-        <div className="mb-2 mt-2 flex flex-col gap-1 w-1/2 pr-1">
-          <label className="text-sm text-gray-400">Font Size (PX)</label>
-          <TextInput
+      <div className="flex-col">
+        <div className="mb-2 mt-3 flex flex-col gap-1 w-full pr-1">
+          <label className="text-sm text-gray-400">Mobile Font Size (PX)</label>
+          {/* <TextInput
             value={props.fontSize}
             placeholder="Font size in px"
             onChange={(e) =>
@@ -241,10 +246,61 @@ export const TextSettings: any = () => {
             type="number"
             max={90}
             min={10}
-          />
+          /> */}
+          <div className="flex justify-between items-center gap-3">
+            <input
+              value={props.mobileFontSize}
+              placeholder="Font size in px"
+              onChange={(e) =>
+                setProp((props: any) => (props.mobileFontSize = e.target.value))
+              }
+              max={500}
+              min={10}
+              type="range"
+              className="range range-xs w-[80%]"
+            />
+            <TextInput
+              className="w-[10%]"
+              value={props.mobileFontSize}
+              placeholder="Font size in px"
+              onChange={(e) =>
+                setProp((props: any) => (props.mobileFontSize = e.target.value))
+              }
+              type="number"
+              max={500}
+              min={10}
+            />
+          </div>
+          <label className="text-sm text-gray-400">
+            Desktop Font Size (PX)
+          </label>
+          <div className="flex justify-between items-center gap-3">
+            <input
+              value={props.fontSize}
+              placeholder="Font size in px"
+              onChange={(e) =>
+                setProp((props: any) => (props.fontSize = e.target.value))
+              }
+              max={500}
+              min={10}
+              type="range"
+              className="range range-xs w-[80%]"
+            />
+            <TextInput
+              className="w-[10%]"
+              value={props.fontSize}
+              placeholder="Font size in px"
+              onChange={(e) =>
+                setProp((props: any) => (props.fontSize = e.target.value))
+              }
+              type="number"
+              max={500}
+              min={10}
+            />
+          </div>
         </div>
 
-        <div className="mb-2 mt-2 flex flex-col gap-1 w-1/2 pl-1">
+        <div className="mb-2 mt-2 flex flex-col gap-1 w-full pl-1">
           <label className="text-sm text-gray-400">Line Height</label>
           <TextInput
             value={props.lineHeight}
@@ -448,6 +504,7 @@ export const TextSettings: any = () => {
 export const textProps = {
   text: "Start writing here...",
   fontSize: defaults.fontSize,
+  mobileFontSize: defaults.mobileFontSize,
   underline: defaults.underline,
   bold: defaults.bold,
   italic: defaults.italic,

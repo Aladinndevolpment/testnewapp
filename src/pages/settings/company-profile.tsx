@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { MdOutlineClose } from "react-icons/md";
-import Availability from "@/components/Settings/CalendarSettings/availability";
-import Confirmation from "@/components/Settings/CalendarSettings/confirmation";
-import TeamEventSetup from "@/components/Settings/CalendarSettings/teamEventSetup";
 import SettingsSidebar from "@/components/SettingsSidebar/TeamsSidebar";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { RxCopy } from "react-icons/rx";

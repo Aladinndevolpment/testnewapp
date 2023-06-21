@@ -69,7 +69,27 @@ export const formControls = [
     tool: (
       <ElementToolsLayout
         toolName="Radio"
-        tool={<RadioInputElement />}
+        tool={
+          <RadioInputElement
+            radios={[
+              {
+                radioProps: {
+                  checked: true,
+                  value: "Male",
+                  required: true,
+                },
+                label: "Male",
+              },
+              {
+                radioProps: {
+                  value: "Female",
+                  required: true,
+                },
+                label: "Female",
+              },
+            ]}
+          />
+        }
         image="@/../public/craft/hero.png"
         icon={<MdRadioButtonChecked className="h-4 w-4 text-gray-500" />}
       />
@@ -246,7 +266,7 @@ export default function ElementToolbox() {
         />
       </div>
 
-      <div className="h-[60vh] overflow-y-scroll scrollbar-hide  ">
+      <div className="h-[70vh]  pb-5 overflow-y-scroll scrollbar-hide  ">
         {tools.map((item, index) => (
           <AccordionItem
             faq={item}

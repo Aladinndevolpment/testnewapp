@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { MdOutlineClose } from "react-icons/md";
-import Availability from "@/components/Settings/CalendarSettings/availability";
-import Confirmation from "@/components/Settings/CalendarSettings/confirmation";
-import TeamEventSetup from "@/components/Settings/CalendarSettings/teamEventSetup";
 import SettingsSidebar from "@/components/SettingsSidebar/TeamsSidebar";
+import TeamEventSetup from "@/components/Settings/CalendarSettings/EditCalendar.tsx/teamEventSetup";
+import Availability from "@/components/Settings/CalendarSettings/EditCalendar.tsx/availability";
+import Confirmation from "@/components/Settings/CalendarSettings/EditCalendar.tsx/confirmation";
 
-export default function CalendarSettings() {
+export default function EditCalendar() {
   const [select, setSelect] = useState(0);
   const calendarType = [
     { title: "Team & Event Setup", number: 1 },
@@ -75,7 +74,7 @@ export default function CalendarSettings() {
             />
           )}
 
-          {select == 4 && <p className="pl-10 py-4"> Formm Submitted</p>}
+          {select == 4 && <p className="pl-10 py-4"> Form Submitted</p>}
         </div>
       </div>
     </div>

@@ -32,7 +32,9 @@ export default memo(function GlobalLayout({ children }: IAdminLayoutProps) {
           }     bg-mainBg bg-cover flex flex-wrap justify-center  `}
         >
           <div
-            className={` w-full  bg-[#1F2228] py-1.5 border-b-[1px]  border-gray-200  lg:sticky top-0 z-50`}
+            className={`  ${
+              router.asPath != "/workflow/new-workflow" && "border-b-[1px]"
+            }  w-full  bg-[#1F2228] py-1.5 border-gray-200  lg:sticky top-0 z-50`}
           >
             <TopNavigation />
           </div>

@@ -1,116 +1,72 @@
-// import React, { useState } from "react";
-
-// export default function okay() {
-//   const [formData, setFormData] = useState<any>("");
-//   const [checkData, setCheckData] = useState(false);
-
-//   const handleChange = (e: any) => {
-//     const value = e.target.value;
-//     setFormData(value);
-//   };
-
-//   const handleCheck = () => {
-//     let data1 = "";
-//     let data2 = "";
-
-//     for (let i = 0; i < formData?.length; i++) {
-//       const inputString = formData[0]?.toLowerCase;
-//       if (/[a-zA-Z0-9]/.test(inputString)) {
-//         data1 += inputString;
-//         data2 = inputString + data2;
-//       }
-//     }
-//     setCheckData(data1 === data2);
-//   };
-
-//   return (
-//     <div>
-//       {formData} {checkData ? "palindrome" : "not palindrome"}
-//       <input type="text" value={formData} onChange={handleChange} />
-//       <button onClick={handleCheck}>Check</button>
-//     </div>
-//   );
-// }
-
-// import React, { useState } from "react";
-
-// export default function okay() {
-//   const [formData, setFormData] = useState<any>("");
-//   const [commaData, setCommaData] = useState([]);
-//   const handleChange = (e: any) => {
-//     //take no from user
-//     const value = e.target.value;
-//     setFormData(value);
-
-//     const separateData = value.split(`,`);
-//     console.log(separateData[0]);
-//   };
-
-//   return (
-//     <div>
-//       <input type="" value={formData} onChange={handleChange} />
-//     </div>
-//   );
-// }
 import React, { useState } from "react";
 
-function NumberOperations() {
-  const [formData, setFormData] = useState("");
-  const [totaldata, setTotalData] = useState([]);
-  const [totalDataCount, setTotalDataCount] = useState(0);
-  const [dataSum, setDataSum] = useState(0);
-  const [primeData, setprimeData] = useState([]);
+const DeviceEmulator = () => {
+  const devices = [
+    {
+      name: "Mobile",
+      width: 375,
+      height: 667,
+    },
+    {
+      name: "Tablet",
+      width: 768,
+      height: 1024,
+    },
+    {
+      name: "Desktop",
+      width: 1440,
+      height: 900,
+    },
+  ];
 
-  const [isPrimeData, setIsPrimeData] = useState(false);
+  const [selectedDevice, setSelectedDevice] = useState(devices[0]);
 
-  const handleChange = (e: any) => {
-    const value = e.target.value;
-    setFormData(value);
-
-    // Remove any existing commas from the input
-    const numberWithoutCommas = value.replace(/,/g, "");
-
-    // Add commas to the number every three digits
-    const formattedNumber = Number(numberWithoutCommas).toLocaleString();
-    console.log(formattedNumber);
-    //  setInputNumber(formattedNumber);
-
-    const totalData: any = Array.from(String(value), Number);
-    setTotalData(totalData);
-    setTotalDataCount(totalData.length);
-
-    const sum = totaldata.reduce((total, data) => total + data, 0);
-    setDataSum(sum);
-
-    const primeData = totaldata.filter((data) => isPrime(data));
-    setIsPrimeData(isPrimeData);
+  const handleDeviceChange = (event: any) => {
+    const deviceName = event.target.value;
+    const device: any = devices.find((d) => d.name === deviceName);
+    setSelectedDevice(device);
   };
-
-  const isPrime = (n: any) => {
-    if (n < 2) {
-      return false;
-    }
-    for (let i = 2; i <= n.length; i++) {
-      if (n % i === 0) {
-        return false;
-      }
-    }
-    return true;
-  };
-  console.log(totaldata);
 
   return (
-    <div>
-      <input type="number" value={formData} onChange={handleChange} />
+    <div className="flex flex-col items-center mt-6">
+      <div className="mb-4">
+        <label htmlFor="device-select" className="text-lg mr-2">
+          Select Device:
+        </label>
+        <select
+          id="device-select"
+          value={selectedDevice.name}
+          onChange={handleDeviceChange}
+          className="p-2 text-lg"
+        >
+          {devices.map((device) => (
+            <option key={device.name} value={device.name}>
+              {device.name}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="flex justify-center">
+        <div
+          className="flex flex-wrap justify-center items-center border border-gray-300 bg-gray-100"
+          style={{
+            width: `${selectedDevice.width}px`,
+            height: `${selectedDevice.height}px`,
+          }}
+        >
+          {Array.from(Array(5).keys()).map((item) => (
+            <div
+              className="w-full sm:w-1/2 lg:w-1/5 p-4 text-center"
+              key={item}
+            >
+              <h2 className="text-lg font-bold mb-2">Item {item + 1}</h2>
+              <p>This is item {item + 1} in the device preview.</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
-}
+};
 
-export default NumberOperations;
-
-// take a number from user
-// 	-- Seperate its digits by comma and print the output
-// 	-- Print count of its digits
-// 	-- Print sum of its digits
-// 	-- Print digits which are prime number
-// 	-- Check if sum of its digits is a strong number or not
+export default DeviceEmulator;
