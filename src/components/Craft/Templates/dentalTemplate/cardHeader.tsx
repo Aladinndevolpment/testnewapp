@@ -87,61 +87,13 @@ export const CardHeader = ({
   shadow,
   shadowColor,
 }: ICardHeadersProps) => {
-  const [cardSlide, setCardSlide] = useState<any>([]);
   const {
     connectors: { connect, drag },
     hovered,
   }: any = useNode((state) => ({ hovered: state.events.hovered }));
 
-  const cardItem = [
-    {
-      id: 1,
-      title: "Dental Services",
-      image: (
-        <BuilderImage
-          imageSrc={require("../../../../../public/images/dentalTemplate/dentalImplants.png")}
-        />
-      ),
-      description:
-        "Globally harness multimedia based collaboration and idea haring with backend products.",
-    },
-    {
-      id: 2,
-      title: "Dental Implants",
-      image: (
-        <BuilderImage
-          imageSrc={require("../../../../../public/images/dentalTemplate/dentalService.png")}
-        />
-      ),
-      description:
-        "Dramatically disseminate standardized metrics after resource-leveling processes.",
-    },
-    {
-      id: 3,
-      title: "Surgery",
-      image: (
-        <BuilderImage
-          imageSrc={require("../../../../../public/images/dentalTemplate/surgery.png")}
-        />
-      ),
-      description:
-        "Proactively fabricate one-to-one materials via effective e-business services processes.",
-    },
-    {
-      id: 4,
-      title: "Teeth Whitening",
-      image: (
-        <BuilderImage
-          imageSrc={require("../../../../../public/images/dentalTemplate/teethWhitening.png")}
-        />
-      ),
-      description:
-        "Distinctively re-engineer revolutionary meta-services and premium architectures.",
-    },
-  ];
-
   return (
-    <div className="bg-white p-2 w-full" ref={(ref: any) => connect(drag(ref))}>
+    <div className=" p-2 w-full" ref={(ref: any) => connect(drag(ref))}>
       {/* <div className="card card-compact w-full bg-base-100 shadow-xl">
         <div className="card-body">
           <Element id="heroImage" is={CardImage} canvas>
@@ -174,32 +126,35 @@ export const CardHeader = ({
           </div>
         )}
         <Element id="CardHeadersText" is={CardHeadersText} canvas>
-          <nav className="flex items-center justify-between flex-wrap bg-purple-500 p-6">
+          <nav className="flex items-center justify-between flex-wrap  p-6 rounded">
+            {/* <Element id="" is="" canvas></Element> */}
             <div className="flex items-center flex-shrink-0 text-white mr-6">
-              <span className="font-semibold text-xl tracking-tight">
-                <Text
-                  alignment="left"
-                  text="Committed to"
-                  fontSize={16}
-                  bold="font-semibold"
-                  color="#fffff"
-                />
-                <Text
-                  alignment="right"
-                  text="Excellence"
-                  fontSize={25}
-                  bold="font-bold"
-                  color="#F2E1CB"
-                />{" "}
-              </span>
+              <Text
+                alignment="left"
+                text="Committed to"
+                fontSize={12}
+                bold="font-semibold"
+                color="#000000"
+              />
+              <Text
+                alignment="right"
+                text="Excellence"
+                fontSize={25}
+                bold="font-bold"
+                color="#F49A07"
+              />{" "}
             </div>
             <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto justify-end">
               <div>
                 <a
                   href="#"
-                  className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+                  className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-900 hover:bg-slate-400 outline-2 outline-blue-600 mt-4 lg:mt-0 shadow bg-orange-300"
                 >
-                  View All Services
+                  <Text
+                    alignment="right"
+                    text="View All Services"
+                    bold="font-bold"
+                  />
                 </a>
               </div>
             </div>

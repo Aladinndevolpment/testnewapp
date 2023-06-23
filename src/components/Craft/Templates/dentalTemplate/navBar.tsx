@@ -7,6 +7,10 @@ import {
   ICommonSettingsProps,
 } from "../../widgets/CommonSettings";
 import { createElement } from "react";
+import { HeaderLayout } from "../../widgets/prebuilt/Header";
+import { NewNavBarLayout } from "./newNavBar";
+import emerge from "../../../../../public/images/logo/favlogo.png";
+import { BuilderImage } from "../../widgets/Image";
 
 const elementName = "NavBar";
 
@@ -66,7 +70,24 @@ export const NavBar = ({
   }: any = useNode((state) => ({ hovered: state.events.hovered }));
 
   return (
-    <div className="bg-white p-2 w-full" ref={(ref: any) => connect(drag(ref))}>
+    <div
+      className="bg-white p-2 w-full"
+      ref={(ref: any) => connect(drag(ref))}
+      style={{
+        backgroundColor,
+        marginTop: `${marginTop}px`,
+        marginBottom: `${marginBottom}px`,
+        marginLeft: `${marginLeft}px`,
+        marginRight: `${marginRight}px`,
+        paddingTop: `${paddingTop}px`,
+        paddingBottom: `${paddingBottom}px`,
+        paddingLeft: `${paddingLeft}px`,
+        paddingRight: `${paddingRight}px`,
+        borderWidth: `${borderWidth}px`,
+        borderRadius: `${borderRadius}px`,
+        borderColor,
+      }}
+    >
       {/* <div className="card card-compact w-full bg-base-100 shadow-xl">
         <div className="card-body">
           <Element id="heroImage" is={CardImage} canvas>
@@ -120,35 +141,13 @@ export const NavBar = ({
                 borderColor,
               }}
             >
-              <div className="flex-none">
-                {/* <TbDental size={50} /> */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-dental"
-                  width="60"
-                  height="60"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  {" "}
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />{" "}
-                  <path d="M12 5.5c-1.074 -.586 -2.583 -1.5 -4 -1.5c-2.1 -.001 -4 1.247 -4 5c0 4.899 1.056 8.41 2.671 10.537c.573 .756 1.97 .521 2.567 -.236c.398 -.505 .819 -1.439 1.262 -2.801c.292 -.771 .892 -1.504 1.5 -1.5c.602 .004 1.21 .737 1.5 1.5c.443 1.362 .864 2.295 1.262 2.8c.597 .759 1.994 .993 2.567 .237c1.615 -2.127 2.671 -5.637 2.671 -10.537c0 -3.74 -1.908 -4.994 -4 -5c-1.423 -.004 -2.92 .911 -4 1.5z" />{" "}
-                  <path d="M12 5.5l3 1.5" />{" "}
-                </svg>
-                <Text
-                  alignment="right"
-                  text="Dental Care"
-                  fontSize={25}
-                  bold="font-medium"
-                  color="#000000"
-                />
-              </div>
+              <BuilderImage
+                width={50}
+                height={50}
+                imageSrc={require(".././../../../../public/images/logo/favlogo.png")}
+              />
             </div>
-            <div className="navbar-end w-[70%] flex justify-end">
+            <div className="navbar-end w-[70%] flex justify-end items-center">
               <div className="flex-col  justify-center items-center mx-2">
                 <div>
                   <Text
@@ -158,13 +157,6 @@ export const NavBar = ({
                     bold="font-semibold"
                     color="#000000"
                   />
-                  <Text
-                    alignment="left"
-                    text="24/7 EMERGENCY CALL"
-                    fontSize={8}
-                    bold="font-medium"
-                    color="#000000"
-                  />
                 </div>
               </div>
               <div className="flex-col justify-center items-center w-auto">
@@ -172,18 +164,9 @@ export const NavBar = ({
                   <div>
                     <Text
                       alignment="right"
-                      text="Monday-Friday"
+                      text="example@example.com"
                       fontSize={15}
                       bold="font-bold"
-                      color="#000000"
-                    />
-                  </div>
-                  <div>
-                    <Text
-                      alignment="right"
-                      text="9:30 AM -6:30 PM"
-                      fontSize={12}
-                      bold="font-medium"
                       color="#000000"
                     />
                   </div>
@@ -194,7 +177,7 @@ export const NavBar = ({
           <div className="navbar bg-base-100 border-t mt-2 flex justify-between ">
             <div className="navbar-start border-r w-auto ">
               <div className="flex-none">
-                <ul className="menu menu-horizontal z-10">
+                {/* <ul className="menu menu-horizontal z-10">
                   <li>
                     <a>
                       <Text
@@ -425,45 +408,9 @@ export const NavBar = ({
                       </li>
                     </ul>
                   </li>
-                </ul>
-              </div>
-            </div>
-            <div className="navbar-end w-[20%] flex justify-end p-0">
-              <div>
-                <button className="btn btn-ghost btn-circle">
-                  {/* <BsSearch size={20} /> */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="25"
-                    height="25"
-                    fill="currentColor"
-                    className="bi bi-search"
-                    viewBox="0 0 16 16"
-                  >
-                    {" "}
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />{" "}
-                  </svg>
-                </button>
-              </div>
-              <div>
-                <button className="btn btn-ghost btn-circle">
-                  <div className="indicator">
-                    {/* <AiOutlineShoppingCart size={20} /> */}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      className="bi bi-cart-check"
-                      viewBox="0 0 16 16"
-                    >
-                      {" "}
-                      <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />{" "}
-                      <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />{" "}
-                    </svg>
-                    <span className="badge badge-xs badge-primary indicator-item"></span>
-                  </div>
-                </button>
+                </ul> */}
+                {/* <HeaderLayout /> */}
+                <NewNavBarLayout />
               </div>
             </div>
           </div>

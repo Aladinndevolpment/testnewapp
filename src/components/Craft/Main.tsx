@@ -11,6 +11,14 @@ import App from "./widgets/App";
 import { OrderOneStep } from "./widgets/prebuilt/OrderOneStep";
 import { OrderTwoStep } from "./widgets/prebuilt/OrderTwoStep";
 import { TemplateOne } from "./Templates/dentalTemplate";
+import { NavBar } from "./Templates/dentalTemplate/navBar";
+import { Banner } from "./Templates/dentalTemplate/banner";
+import { CardHeader } from "./Templates/dentalTemplate/cardHeader";
+import { CardBanner } from "./Templates/dentalTemplate/cards";
+import { WebTestimonial } from "./Templates/dentalTemplate/webTestimonial";
+import { CardBottomNew } from "./Templates/dentalTemplate/cardBottom";
+import { FooterWebs } from "./Templates/dentalTemplate/footer";
+import { Team } from "./Templates/dentalTemplate/team";
 
 export default function Main() {
   const { device } = useContext(CraftContext);
@@ -25,7 +33,15 @@ export default function Main() {
       <div className="w-[56%] h-full overflow-y-scroll scrollbar-hide pb-40 px-5">
         <Frame>
           <Element is={Container} canvas>
-            <TemplateOne />
+            {/* <TemplateOne /> */}
+            <NavBar />
+            <Banner />
+            <CardHeader />
+            <CardBanner />
+            <WebTestimonial />
+            <CardBottomNew />
+            <Team />
+            <FooterWebs />
           </Element>
         </Frame>
       </div>

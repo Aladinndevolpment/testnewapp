@@ -79,6 +79,7 @@ export default function Tags({ updateData, onClose, actionData }: any) {
                           placeholder="Tag"
                           type="text"
                           name="isTag"
+                          onChange={handleChange}
                           value={formValues.isTag}
                           className="px-2 rounded-lg  mb-2 py-1 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
                         />
@@ -92,6 +93,7 @@ export default function Tags({ updateData, onClose, actionData }: any) {
                           placeholder="Tag"
                           type="text"
                           name="isNotTag"
+                          onChange={handleChange}
                           value={formValues.isNotTag}
                           className="px-2 rounded-lg  mb-2 py-1 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
                         />
@@ -105,6 +107,7 @@ export default function Tags({ updateData, onClose, actionData }: any) {
                           placeholder="Tag"
                           type="text"
                           name="anyOfTag"
+                          onChange={handleChange}
                           value={formValues.anyOfTag}
                           className="px-2 rounded-lg  mb-2 py-1 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
                         />

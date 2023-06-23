@@ -71,6 +71,7 @@ export default function Assigned({ updateData, onClose, actionData }: any) {
                       {mainData?.title == "To" && (
                         <Select
                           name="toAssigned"
+                          onChange={handleChange}
                           className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
                         >
                           <MenuItem value="">Select Assigned</MenuItem>
@@ -83,6 +84,7 @@ export default function Assigned({ updateData, onClose, actionData }: any) {
                       {mainData?.title == "Not To" && (
                         <Select
                           name="toNotAssigned"
+                          onChange={handleChange}
                           className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
                         >
                           <MenuItem value="">Select Assigned</MenuItem>

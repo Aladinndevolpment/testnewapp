@@ -4,6 +4,11 @@ import React, { useState } from "react";
 
 export default function Stripe() {
   const [showLiveData, setShowLiveData] = useState<any>(false);
+  const [show, setshow] = useState(false);
+  const [stripe, selectedStripe] = useState("");
+  const handleChange = ({ target }: any) => {
+    selectedStripe(target.value);
+  };
 
   return (
     <div className="flex justify-center items-center">

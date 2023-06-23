@@ -1,6 +1,13 @@
+import Authorizemain from "@/components/Settings/Integrations/Authorizemain";
+import Nmi from "@/components/Settings/Integrations/Nmimain";
 import Stripe from "@/components/Settings/Integrations/Stripe";
+import Stripemain from "@/components/Settings/Integrations/Stripemain";
 import Authorize from "@/components/Settings/Integrations/authorize";
+import Facebook from "@/components/Settings/Integrations/facebook";
+import Google from "@/components/Settings/Integrations/google";
 import NMI from "@/components/Settings/Integrations/nmi";
+import Paypal from "@/components/Settings/Integrations/paypal";
+import Tiktok from "@/components/Settings/Integrations/tiktok";
 import SettingsSidebar from "@/components/SettingsSidebar/TeamsSidebar";
 import { GlobalContext } from "@/layouts/GlobalLayout";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/solid";
@@ -36,12 +43,13 @@ export default function Integrations() {
 
   const cardData = [
     {
-      title: "Google",
+      title: "Connect your locations Google account",
       logo: require("../../../public/images/integrations/google.png"),
       link: "/integrations/add-integration",
       status: "C",
       slug: "/integrations/google",
       component: "",
+      main: <Google />,
     },
     {
       title: "Facebook",
@@ -50,6 +58,17 @@ export default function Integrations() {
       status: "C",
       slug: "/integrations/facebook",
       component: "",
+      main: <Facebook />,
+    },
+
+    {
+      title: "Tiktok",
+      logo: require("../../../public/images/integrations/tiktok.png"),
+      link: "/integrations/add-integration",
+      status: "R",
+      slug: "/integrations/tiktok",
+      component: "",
+      main: <Tiktok />,
     },
     {
       title: "Stripe",
@@ -58,6 +77,7 @@ export default function Integrations() {
       status: "P",
       slug: "/integrations/stripe",
       component: <Stripe />,
+      main: <Stripemain />,
     },
     {
       title: "Paypal",
@@ -66,15 +86,9 @@ export default function Integrations() {
       status: "P",
       slug: "/integrations/paypal",
       component: "",
+      main: <Paypal />,
     },
-    {
-      title: "Tiktok",
-      logo: require("../../../public/images/integrations/tiktok.png"),
-      link: "/integrations/add-integration",
-      status: "R",
-      slug: "/integrations/tiktok",
-      component: "",
-    },
+
     {
       title: "NMI",
       logo: require("../../../public/images/integrations/NMI.png"),
@@ -82,6 +96,7 @@ export default function Integrations() {
       status: "R",
       slug: "/integrations/nmi",
       component: <NMI />,
+      main: <Nmi />,
     },
     {
       title: "Authorize.Net",
@@ -90,6 +105,7 @@ export default function Integrations() {
       status: "R",
       slug: "/integrations/authorize-net",
       component: <Authorize />,
+      main: <Authorizemain />,
     },
   ];
 
@@ -140,12 +156,12 @@ export default function Integrations() {
         ></div>
       </div>
 
-      <div className="flex flex-wrap justify-center  ">
-        <div className="w-full lg:w-[25%] border-r-[1px]   bg-white    ">
+      <div className="flex flex-wrap justify-center">
+        <div className="w-full lg:w-[25%] border-r-[1px]   bg-white">
           <SettingsSidebar />
         </div>
 
-        <div className="w-full lg:w-[75%]  bg-white h-[100vh] scrollbar-hide  ">
+        <div className="w-full lg:w-[75%]  bg-white h-full mb-24 scrollbar-hide">
           <header className="block w-full mb-5 h-32 lg:h-16 items-center relative z-10 border-b-[1px] border-lightGray">
             <div className="flex flex-center flex-col h-full justify-center lg:mx-auto relative  text-white z-10">
               <div className="flex flex-wrap lg:flex-nowrap justify-center items-center  relative w-full sm:ml-0 sm:pr-2  ">
@@ -226,34 +242,40 @@ export default function Integrations() {
           </div>
 
           <p
-            className={`ml-7 mt-2 capitalize text-dark   text-[16px] font-semibold  tracking-wide  `}
+            className={`ml-7 mt-2 capitalize text-dark text-[16px] font-semibold  tracking-wide`}
           >
             Connected
           </p>
 
-          <div className="flex  flex-wrap py-4 ml-2">
+          {/* final old code start */}
+
+          {/* <div className="flex  flex-wrap py-4 ml-2">
             {filteredData.map((item: any, index: any) => (
               <div className="w-full md:w-1/2 lg:w-1/3 px-5 mb-8" key={index}>
                 <div
                   className={` border-lightGray-300 bg-mainBg-50 border-2 pt-3 pb-2  rounded-lg`}
                 >
                   <div
-                    className={`border-lightGray-300  border-b-[1px]   flex justify-between items-center   px-4 pb-4 pt-1`}
+                    className={`border-lightGray-300  border-b-[1px]       px-4 pb-4 pt-1`}
                   >
-                    <div className="flex  justify-start items-center">
-                      <Image
-                        src={item?.logo}
-                        alt=""
-                        className={`${
-                          item.title == "NMI"
-                            ? "w-12"
-                            : item.title == "Authorize.Net"
-                            ? "w-12"
-                            : "w-6"
-                        } `}
-                      />
+                    <div className=" ">
+                      <div className="flex justify-center items-center ">
+                        <div className="bg-gray-100  rounded-full">
+                          <Image
+                            src={item?.logo}
+                            alt=""
+                            className={`${
+                              item.title == "NMI"
+                                ? "w-24"
+                                : item.title == "Authorize.Net"
+                                ? "w-24"
+                                : "w-24"
+                            } `}
+                          />
+                        </div>
+                      </div>
                       <p
-                        className={`ml-4 capitalize text-dark   text-[16px] font-semibold  tracking-wide  `}
+                        className={`ml-4 capitalize text-dark  pt-4 text-[12px] font-semibold  tracking-wide text-center `}
                       >
                         {item?.title}
                       </p>
@@ -281,9 +303,74 @@ export default function Integrations() {
                 </div>
               </div>
             ))}
+          </div> */}
+
+          {/* final old code end */}
+
+          {/* Old cards start */}
+          <div className="flex  flex-wrap py-4 ml-3">
+            {filteredData.map((item: any, index: any) => (
+              <div className="w-full md:w-1/2 lg:w-1/3 px-3 mb-8" key={index}>
+                {item.main}
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </>
   );
 }
+
+// {
+//   /* <div className="flex  flex-wrap py-4 ml-2">
+//   {filteredData.map((item: any, index: any) => (
+//     <div className="w-full md:w-1/2 lg:w-1/3 px-5 mb-8" key={index}>
+//       <div
+//         className={` border-lightGray-300 bg-mainBg-50 border-2 pt-3 pb-2  rounded-lg`}
+//       >
+//         <div
+//           className={`border-lightGray-300  border-b-[1px]   flex justify-between items-center   px-4 pb-4 pt-1`}
+//         >
+//           <div className="flex  justify-start items-center">
+//             <Image
+//               src={item?.logo}
+//               alt=""
+//               className={`${
+//                 item.title == "NMI"
+//                   ? "w-12"
+//                   : item.title == "Authorize.Net"
+//                   ? "w-12"
+//                   : "w-6"
+//               } `}
+//             />
+//             <p
+//               className={`ml-4 capitalize text-dark   text-[16px] font-semibold  tracking-wide  `}
+//             >
+//               {item?.title}
+//             </p>
+//           </div>
+//         </div>
+//         <div
+//           onClick={() => {
+//             setSelectedComponent(item?.component);
+//             SetShowSelectedComponent(true);
+//             setSelectedIntegration(item?.title);
+//           }}
+//         >
+//           <div className="px-4 pt-3 pb-1 flex justify-between items-center">
+//             <p
+//               className={` capitalize text-newBlue text-[14px] font-semibold  tracking-wide  `}
+//             >
+//               View Integrations
+//             </p>
+
+//             <button className="bg-gray-200 p-1 rounded-md h-8 w-8 flex justify-center items-center">
+//               <AiOutlineArrowRight className="text-dark h-5 w-5" />
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   ))}
+// </div>; */
+// }

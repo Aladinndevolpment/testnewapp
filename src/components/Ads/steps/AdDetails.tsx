@@ -53,7 +53,7 @@ export default function AdDetails({ onSubmit }: { onSubmit: Function }) {
   return (
     <div className="pl-1">
       <div>
-        <h1 className="  font-semibold text-gray-800 text-2xl">Ads Details</h1>
+        <h1 className="font-semibold text-gray-800 text-2xl">Ads Details</h1>
         <h3 className="text-xs text-gray-500 pt-0.5">
           Complete your ads details, to engage with your audience.
         </h3>

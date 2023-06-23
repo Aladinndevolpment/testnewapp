@@ -11,6 +11,13 @@ import { useEffect, useState } from "react";
 import TextInput from "@/components/controls/TextInput";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import AccordionItem from "@/components/UI/AccordionItem";
+import { Banner } from "../Templates/dentalTemplate/banner";
+import { CardHeader } from "@mui/material";
+import { CardBanner } from "../Templates/dentalTemplate/cards";
+import { WebTestimonial } from "../Templates/dentalTemplate/webTestimonial";
+import { CardBottomNew } from "../Templates/dentalTemplate/cardBottom";
+import { FooterWebs } from "../Templates/dentalTemplate/footer";
+import { Team } from "../Templates/dentalTemplate/team";
 
 const tbStyles = {
   backgroundColor: "#fff",
@@ -89,6 +96,76 @@ const baseTools = [
           <PrebuiltToolsLayout
             toolName="Footer layout"
             tool={<Footers />}
+            image={require("@/../public/craft/hero.png")}
+          />
+        ),
+      },
+      {
+        name: "Banner layout",
+        tool: (
+          <PrebuiltToolsLayout
+            toolName="Banner layout"
+            tool={<Banner />}
+            image={require("@/../public/craft/hero.png")}
+          />
+        ),
+      },
+      {
+        name: "CardHeader layout",
+        tool: (
+          <PrebuiltToolsLayout
+            toolName="CardHeader layout"
+            tool={<CardHeader />}
+            image={require("@/../public/craft/hero.png")}
+          />
+        ),
+      },
+      {
+        name: "CardBanner layout",
+        tool: (
+          <PrebuiltToolsLayout
+            toolName="CardBanner layout"
+            tool={<CardBanner />}
+            image={require("@/../public/craft/hero.png")}
+          />
+        ),
+      },
+      {
+        name: "WebTestimonial layout",
+        tool: (
+          <PrebuiltToolsLayout
+            toolName="Webtestimonial layout"
+            tool={<WebTestimonial />}
+            image={require("@/../public/craft/hero.png")}
+          />
+        ),
+      },
+      {
+        name: "CardBottom layout",
+        tool: (
+          <PrebuiltToolsLayout
+            toolName="CardBottom layout"
+            tool={<CardBottomNew />}
+            image={require("@/../public/craft/hero.png")}
+          />
+        ),
+      },
+      {
+        name: "Footer Web layout",
+        tool: (
+          <PrebuiltToolsLayout
+            toolName="Footer layout"
+            tool={<FooterWebs />}
+            image={require("@/../public/craft/hero.png")}
+          />
+        ),
+      },
+      {
+        name: "Team layout",
+        tool: (
+          <PrebuiltToolsLayout
+            toolName="Team layout"
+            tool={<Team />}
             image={require("@/../public/craft/hero.png")}
           />
         ),

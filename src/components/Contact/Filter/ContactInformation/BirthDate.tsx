@@ -79,6 +79,7 @@ export default function BirthDate({ updateData, onClose, actionData }: any) {
                         <TextField
                           variant="outlined"
                           placeholder="Birth Date"
+                          onChange={handleChange}
                           type="text"
                           name="inMonthBirthDate"
                           value={formValues.inMonthBirthDate}

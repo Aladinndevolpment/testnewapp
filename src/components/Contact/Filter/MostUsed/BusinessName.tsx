@@ -75,6 +75,7 @@ export default function BusinessName({ updateData, onClose, actionData }: any) {
                           placeholder="Business Name"
                           type="text"
                           name="isBusinessName"
+                          onChange={handleChange}
                           value={formValues.isBusinessName}
                           className="px-2 rounded-lg  mb-2 py-1 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
                         />
@@ -88,6 +89,7 @@ export default function BusinessName({ updateData, onClose, actionData }: any) {
                           placeholder="Business Name"
                           type="text"
                           name="isNotBusinessName"
+                          onChange={handleChange}
                           value={formValues.isNotBusinessName}
                           className="px-2 rounded-lg  mb-2 py-1 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
                         />

@@ -22,6 +22,24 @@ import Assigned from "./ContactInformation/Assigned";
 import BirthDate from "./ContactInformation/BirthDate";
 import City from "./ContactInformation/City";
 import Created from "./ContactInformation/Created";
+import Dnd from "./ContactInformation/Dnd";
+import Phone from "./ContactInformation/Phone";
+import PostalZipCode from "./ContactInformation/PostalZipCode";
+import Source from "./ContactInformation/Source";
+import State from "./ContactInformation/State";
+import StreetName from "./ContactInformation/StreetName";
+import TikTokLeadid from "./ContactInformation/TikTokLeadid";
+import Type from "./ContactInformation/Type";
+import Campaign from "./ContactActivity/Campaign";
+import Import from "./ContactActivity/Import";
+import LastActivity from "./ContactActivity/LastActivity";
+import LastActivityType from "./ContactActivity/LastActivityType";
+import LastAppointment from "./ContactActivity/LastAppointment";
+import Updated from "./ContactActivity/Updated";
+import WorkFlowActive from "./ContactActivity/WorkFlowActive";
+import WorkFlowFinished from "./ContactActivity/WorkFlowFinished";
+import Age from "./ContactActivity/Age";
+import PipeLine from "./ContactActivity/PipeLine";
 
 export default function ContactFilter({ onClose, updateData }: any) {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -290,6 +308,453 @@ export default function ContactFilter({ onClose, updateData }: any) {
           link: "#",
           form: (
             <Created
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Dnd ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <Dnd
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Email ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <Email
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "First Name ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <FirstName
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Last Name ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <LastName
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Phone",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <Phone
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Postal Zip Code ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <PostalZipCode
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Source ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <Source
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "State ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <State
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Street Name ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <StreetName
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Tag ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <Tags
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "TikTok Leadid ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <TikTokLeadid
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Type ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <Type
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "WildCard Name ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <WildCardName
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+      ],
+    },
+    {
+      title: "contact activity",
+      subContent: [
+        {
+          title: "Campaign ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <Campaign
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Import ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <Import
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Last Activity ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <LastActivity
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Last Activity Type ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <LastActivityType
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Last Appointment - Confirmed/Open ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <LastAppointment
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Updated ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <Updated
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "WorkFlow(Active) ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <WorkFlowActive
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "WorkFlow(Finished) ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <WorkFlowFinished
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+      ],
+    },
+    {
+      title: "Opportunity Information",
+      subContent: [
+        {
+          title: "Age ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <Age
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Pipeline ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <PipeLine
               actionData={actionData}
               onClose={() => {
                 setIsOpenModal(false);

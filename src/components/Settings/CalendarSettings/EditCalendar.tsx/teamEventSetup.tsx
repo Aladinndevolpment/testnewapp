@@ -5,6 +5,7 @@ import { BsQuestionCircleFill } from "react-icons/bs";
 import { GoPlus } from "react-icons/go";
 import { MenuItem, OutlinedInput, Select, TextField } from "@mui/material";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import Link from "next/link";
 
 const colorPalette = [
   { color: "bg-red-500", title: "Red" },
@@ -563,20 +564,22 @@ export default function TeamEventSetup({
                 </div>
               )}
             </div>
-            <div className="flex justify-end gap-3 p-4 mt-2 border-t ">
-              <button
-                onClick={onClose()}
-                className="border text-[#47494b] rounded-md px-3 py-2"
-              >
-                Close
-              </button>
-              <button
-                onSubmit={handleSubmit}
-                className="border bg-[#25992a] text-white rounded-md px-3 py-2"
-              >
-                Save & continue
-              </button>
-            </div>
+            <Link href={"/settings/calendar"}>
+              <div className="flex justify-end gap-3 p-4 mt-2 border-t ">
+                <button
+                  onClick={onClose()}
+                  className="border text-[#47494b] rounded-md px-3 py-2"
+                >
+                  Close
+                </button>
+                <button
+                  onSubmit={handleSubmit}
+                  className="border bg-[#25992a] text-white rounded-md px-3 py-2"
+                >
+                  Save & continue
+                </button>
+              </div>
+            </Link>
           </form>
         </div>
       </div>

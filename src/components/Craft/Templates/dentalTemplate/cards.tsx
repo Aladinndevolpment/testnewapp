@@ -175,7 +175,7 @@ export const CardBanner = ({
         )}
         <Element id="CardBannersText" is={CardBannersText} canvas>
           <div
-            className={`flex justify-around items-center flex-wrap shadow-lg bg-gray-300 w-full h-auto ${size} mr-2  ${
+            className={`flex justify-around items-center flex-wrap shadow-lg w-full h-auto ${size} mr-2  ${
               hovered && "hover:outline-pink-500 hover:outline "
             }  relative ${shadowColor} ${shadow} ${borderType} `}
             style={{

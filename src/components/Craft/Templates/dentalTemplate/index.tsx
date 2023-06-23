@@ -9,6 +9,7 @@ import { CardHeader } from "./cardHeader";
 import { CardBanner, CardImage } from "./cards";
 import { FooterWebs } from "./footer";
 import { NavBar } from "./navBar";
+import { Team } from "./team";
 import { WebTestimonial } from "./webTestimonial";
 
 export const TemplateOneTop = ({ children }: any) => {
@@ -54,6 +55,7 @@ export const TemplateOne = ({ padding = 20 }) => {
           <CardBanner />
           <WebTestimonial />
           <CardBottomNew />
+          <Team />
           <FooterWebs />
         </Element>
       </div>

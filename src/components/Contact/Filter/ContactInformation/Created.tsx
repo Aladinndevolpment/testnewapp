@@ -1,6 +1,6 @@
 import { DateRangePicker } from "@mui/lab";
 import "react-datepicker/dist/react-datepicker.css";
-import { TextField } from "@mui/material";
+import { MenuItem, Select, TextField } from "@mui/material";
 import React, { useState } from "react";
 export default function Created({ updateData, onClose, actionData }: any) {
   const radioData = [
@@ -12,6 +12,9 @@ export default function Created({ updateData, onClose, actionData }: any) {
   const [formValues, setFormValues] = useState<any>({
     waitFor: "",
     createdRange: "",
+    moreThanNum: "",
+    moreThanSelect: "",
+    lessThanSelect: "",
   });
   const [errors, setErrors] = useState<any>({});
 
@@ -30,6 +33,8 @@ export default function Created({ updateData, onClose, actionData }: any) {
     setFormValues({
       waitFor: "",
       createdRange: "",
+      moreThanNum: "",
+      lessThanSelect: "",
     });
     setErrors({});
     updateData(formValues);
@@ -66,9 +71,71 @@ export default function Created({ updateData, onClose, actionData }: any) {
                       {mainData?.title}
                     </p>
                   </div>
-                  {formValues.waitFor === "range" ? (
+                  {formValues.waitFor === "moreThan" ? (
+                    <>
+                      {mainData.title === "More Than" && (
+                        <div className="flex items-center ">
+                          <TextField
+                            variant="outlined"
+                            type="number"
+                            name="moreThanNum"
+                            onChange={handleChange}
+                            value={formValues.moreThanNum}
+                            className="px-2 rounded-lg  mb-2 py-1 text-sm font-medium bg-transparent focus:bg-transparent w-1/4 placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
+                          />
+                          <Select
+                            name="moreThanSelect"
+                            onChange={handleChange}
+                            className="px-2 rounded-lg  mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-3/4 placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
+                          >
+                            <MenuItem value="">Select </MenuItem>
+                            <MenuItem value="min">Minutes Ago</MenuItem>
+                            <MenuItem value="hours">Hours ago</MenuItem>
+                            <MenuItem value="days">Days Ago</MenuItem>
+                            <MenuItem value="months">Months Ago</MenuItem>
+                            <MenuItem value="years">Years Ago</MenuItem>
+                          </Select>
+                        </div>
+                      )}
+                    </>
+                  ) : formValues.waitFor === "lessThan" ? (
+                    <>
+                      {mainData.title === "Less Than" && (
+                        <div className="flex items-center">
+                          <TextField
+                            variant="outlined"
+                            type="number"
+                            name="lessThanNum"
+                            onChange={handleChange}
+                            value={formValues.lessThanNum}
+                            className="px-2 rounded-lg  mb-2 py-1 text-sm font-medium bg-transparent focus:bg-transparent w-1/4 placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
+                          />
+                          <Select
+                            name="lessThanSelect"
+                            onChange={handleChange}
+                            className="px-2 rounded-lg  mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-3/4 placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
+                          >
+                            <MenuItem value="">Select </MenuItem>
+                            <MenuItem value="min">Minutes Ago</MenuItem>
+                            <MenuItem value="hours">Hours ago</MenuItem>
+                            <MenuItem value="days">Days Ago</MenuItem>
+                            <MenuItem value="months">Months Ago</MenuItem>
+                            <MenuItem value="years">Years Ago</MenuItem>
+                          </Select>
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    ""
+                  )}
+                  {/* {formValues.waitFor === "range" ? (
                     <>
                       {mainData?.title == "Range" && (
+                         <LocalizationProvider dateAdapter={AdapterDayjs}>
+                         <DemoContainer components={['DateRangePicker']}>
+                           <DateRangePicker localeText={{ start: 'Check-in', end: 'Check-out' }} />
+                         </DemoContainer>
+                       </LocalizationProvider>
                         <DateRangePicker
                           name="createdRange"
                           className={
@@ -86,7 +153,7 @@ export default function Created({ updateData, onClose, actionData }: any) {
                     </>
                   ) : (
                     ""
-                  )}
+                  )} */}
                 </li>
               ))}
             </ul>

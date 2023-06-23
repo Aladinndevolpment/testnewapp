@@ -25,17 +25,17 @@ export default function TeamEventSetup({
 }: any) {
   const [errors, setErrors] = useState<any>({});
   const [formValues, setFormValues] = useState<any>({
-    calendarName: "calendarName",
-    description: "calendarName",
-    calendarUrl: "calendarName",
-    widgetTyp: "calendarName",
+    calendarName: "",
+    description: "",
+    calendarUrl: "",
+    widgetTyp: "",
     widgetShape: "square",
-    appointmentTitle: "calendarName",
-    meetingLocation: "calendarName",
-    linkToCalendar: "calendarName",
-    googleCalendar: "calendarName",
-    syncOption: "calendarName",
-    eventColor: "calendarName",
+    appointmentTitle: "",
+    meetingLocation: "",
+    linkToCalendar: "",
+    googleCalendar: "",
+    syncOption: "",
+    eventColor: "",
     image: null,
   });
 

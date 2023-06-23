@@ -129,7 +129,24 @@ export const Banner = ({
   }: any = useNode((state) => ({ hovered: state.events.hovered }));
 
   return (
-    <div className="bg-white p-2 w-full" ref={(ref: any) => connect(drag(ref))}>
+    <div
+      className="bg-white p-2 w-full"
+      ref={(ref: any) => connect(drag(ref))}
+      style={{
+        backgroundColor,
+        marginTop: `${marginTop}px`,
+        marginBottom: `${marginBottom}px`,
+        marginLeft: `${marginLeft}px`,
+        marginRight: `${marginRight}px`,
+        paddingTop: `${paddingTop}px`,
+        paddingBottom: `${paddingBottom}px`,
+        paddingLeft: `${paddingLeft}px`,
+        paddingRight: `${paddingRight}px`,
+        borderWidth: `${borderWidth}px`,
+        borderRadius: `${borderRadius}px`,
+        borderColor,
+      }}
+    >
       {/* <div className="card card-compact w-full bg-base-100 shadow-xl">
         <div className="card-body">
           <Element id="heroImage" is={CardImage} canvas>
@@ -162,165 +179,106 @@ export const Banner = ({
           </div>
         )}
         <Element id="BannersText" is={BannersText} canvas>
-          <section className="w-full h-[400px] relative isolate overflow-hidden  bg-white">
-            <div className="h-full carousel w-full">
-              <div id="slide1" className="carousel-item relative w-full p-1">
-                <div
-                  className="inline-block h-10 w-[100%]  rounded-full ring-2 ring-white object-fit justify-center"
-                  style={{
-                    backgroundColor: "#ffffff",
-                    marginTop: `${marginTop}px`,
-                    marginBottom: `${marginBottom}px`,
-                    marginLeft: `${marginLeft}px`,
-                    marginRight: `${marginRight}px`,
-                    paddingTop: `${paddingTop}px`,
-                    paddingBottom: `${paddingBottom}px`,
-                    paddingLeft: `${paddingLeft}px`,
-                    paddingRight: `${paddingRight}px`,
-                    borderWidth: `${borderWidth}px`,
-                    borderRadius,
-                    borderColor,
-                  }}
-                >
-                  <BuilderImage
-                    height={380}
-                    width={600}
-                    borderRadius={5}
-                    type={"contain"}
-                    imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplateforth.jpg")}
-                  />
-                </div>
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-3 right-9 top-1/2">
-                  <a href="#slide4" className="text-black">
-                    ❮
-                  </a>
-                  <a href="#slide2" className="text-black">
-                    ❯
-                  </a>
-                </div>
-              </div>
-              <div id="slide2" className="carousel-item relative w-full">
-                <div
-                  className="inline-block h-10 w-10 rounded-full ring-2 ring-white object-fit justify-center"
-                  style={{
-                    backgroundColor: "#ffffff",
-                    marginTop: `${marginTop}px`,
-                    marginBottom: `${marginBottom}px`,
-                    marginLeft: `${marginLeft}px`,
-                    marginRight: `${marginRight}px`,
-                    paddingTop: `${paddingTop}px`,
-                    paddingBottom: `${paddingBottom}px`,
-                    paddingLeft: `${paddingLeft}px`,
-                    paddingRight: `${paddingRight}px`,
-                    borderWidth: `${borderWidth}px`,
-                    borderRadius,
-                    borderColor,
-                  }}
-                >
-                  <BuilderImage
-                    height={380}
-                    width={600}
-                    borderRadius={0}
-                    // type={"fit"}
-                    imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatethird.jpg")}
-                    type={"contain"}
-                  />
-                </div>
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-9 top-1/2">
-                  <a href="#slide1" className="text-black">
-                    ❮
-                  </a>
-                  <a href="#slide3" className="text-black">
-                    ❯
-                  </a>
-                </div>
-              </div>
-              <div id="slide3" className="carousel-item relative w-full">
-                <div
-                  className="inline-block h-10 w-10 rounded-full ring-2 ring-white object-fit justify-center"
-                  style={{
-                    backgroundColor: "#ffffff",
-                    marginTop: `${marginTop}px`,
-                    marginBottom: `${marginBottom}px`,
-                    marginLeft: `${marginLeft}px`,
-                    marginRight: `${marginRight}px`,
-                    paddingTop: `${paddingTop}px`,
-                    paddingBottom: `${paddingBottom}px`,
-                    paddingLeft: `${paddingLeft}px`,
-                    paddingRight: `${paddingRight}px`,
-                    borderWidth: `${borderWidth}px`,
-                    borderRadius,
-                    borderColor,
-                  }}
-                >
-                  <BuilderImage
-                    height={380}
-                    width={600}
-                    borderRadius={0}
-                    type={"contain"}
-                    imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatesecond.jpg")}
-                  />
-                </div>
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-9 top-1/2">
-                  <a href="#slide2" className="text-black">
-                    ❮
-                  </a>
-                  <a href="#slide4" className="text-black">
-                    ❯
-                  </a>
-                </div>
-              </div>
-              <div id="slide4" className="carousel-item relative w-full">
-                <div
-                  className="inline-block h-10 w-10 rounded-full ring-2 ring-white object-fit justify-center"
-                  style={{
-                    backgroundColor: "#ffffff",
-                    marginTop: `${marginTop}px`,
-                    marginBottom: `${marginBottom}px`,
-                    marginLeft: `${marginLeft}px`,
-                    marginRight: `${marginRight}px`,
-                    paddingTop: `${paddingTop}px`,
-                    paddingBottom: `${paddingBottom}px`,
-                    paddingLeft: `${paddingLeft}px`,
-                    paddingRight: `${paddingRight}px`,
-                    borderWidth: `${borderWidth}px`,
-                    borderRadius,
-                    borderColor,
-                  }}
-                >
-                  <BuilderImage
-                    height={380}
-                    width={600}
-                    borderRadius={0}
-                    type={"contain"}
-                    imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatefirst.jpg")}
-                  />
-                </div>
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-9 top-1/2">
-                  <a href="#slide3" className="text-black">
-                    ❮
-                  </a>
-                  <a href="#slide1" className="text-black">
-                    ❯
-                  </a>
-                </div>
-              </div>
-              {/* <div className="flex justify-center w-full py-2 gap-2">
-                <a href="#slide1" className="btn btn-xs">
-                  1
+          <div className="w-full carousel rounded-box">
+            <div className="carousel-item w-full" id="slide1">
+              <BuilderImage
+                width={600}
+                imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatefirst.jpg")}
+              />
+              <div className="absolute flex justify-between transform -translate-y-1/2 left-3 right-9 top-1/2">
+                <a href="#slide7" className="text-black">
+                  ❮
                 </a>
-                <a href="#slide2" className="btn btn-xs">
-                  2
+                <a href="#slide2" className="text-black">
+                  ❯
                 </a>
-                <a href="#slide3" className="btn btn-xs">
-                  3
-                </a>
-                <a href="#slide4" className="btn btn-xs">
-                  4
-                </a>
-              </div> */}
+              </div>
             </div>
-          </section>
+            <div className="carousel-item w-full" id="slide2">
+              <BuilderImage
+                width={600}
+                imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatesecond.jpg")}
+              />
+              <div className="absolute flex justify-between transform -translate-y-1/2 left-3 right-9 top-1/2">
+                <a href="#slide1" className="text-black">
+                  ❮
+                </a>
+                <a href="#slide3" className="text-black">
+                  ❯
+                </a>
+              </div>
+            </div>
+            <div className="carousel-item w-full" id="slide3">
+              <BuilderImage
+                width={600}
+                imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatethird.jpg")}
+              />
+              <div className="absolute flex justify-between transform -translate-y-1/2 left-3 right-9 top-1/2">
+                <a href="#slide2" className="text-black">
+                  ❮
+                </a>
+                <a href="#slide4" className="text-black">
+                  ❯
+                </a>
+              </div>
+            </div>
+            <div className="carousel-item w-full" id="slide4">
+              <BuilderImage
+                width={600}
+                imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatesecond.jpg")}
+              />
+              <div className="absolute flex justify-between transform -translate-y-1/2 left-3 right-9 top-1/2">
+                <a href="#slide3" className="text-black">
+                  ❮
+                </a>
+                <a href="#slide5" className="text-black">
+                  ❯
+                </a>
+              </div>
+            </div>
+            <div className="carousel-item w-full" id="slide5">
+              <BuilderImage
+                width={600}
+                imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatethird.jpg")}
+              />
+              <div className="absolute flex justify-between transform -translate-y-1/2 left-3 right-9 top-1/2">
+                <a href="#slide4" className="text-black">
+                  ❮
+                </a>
+                <a href="#slide6" className="text-black">
+                  ❯
+                </a>
+              </div>
+            </div>
+            <div className="carousel-item w-full" id="slide6">
+              <BuilderImage
+                width={600}
+                imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatefirst.jpg")}
+              />
+              <div className="absolute flex justify-between transform -translate-y-1/2 left-3 right-9 top-1/2">
+                <a href="#slide5" className="text-black">
+                  ❮
+                </a>
+                <a href="#slide7" className="text-black">
+                  ❯
+                </a>
+              </div>
+            </div>
+            <div className="carousel-item w-full" id="slide7">
+              <BuilderImage
+                width={600}
+                imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplateforth.jpg")}
+              />
+              <div className="absolute flex justify-between transform -translate-y-1/2 left-3 right-9 top-1/2">
+                <a href="#slide6" className="text-black">
+                  ❮
+                </a>
+                <a href="#slide1" className="text-black">
+                  ❯
+                </a>
+              </div>
+            </div>
+          </div>
         </Element>
       </div>
     </div>

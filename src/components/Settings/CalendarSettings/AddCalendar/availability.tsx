@@ -23,16 +23,16 @@ export default function Availability({
   const [selectedDays, setSelectedDays] = useState<any[]>([]);
   const [currentDay, setCurrentDay] = useState<number | null>(null);
   const [formValues, setFormValues] = useState<any>({
-    slotDuration: "calendarName",
-    slotInterval: "calendarName",
-    buffer: "calendarName",
+    slotDuration: "",
+    slotInterval: "",
+    buffer: "",
     appointmentsPerSlot: "",
     appointmentsPerDay: "",
     minScheduleNotice: "",
     duration: "",
     dateRange: "",
     dateDuration: "",
-    officeHour: "standard",
+    officeHour: "",
     fromTime: "",
     toTime: "",
     recAppointment: "",

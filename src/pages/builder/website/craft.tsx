@@ -109,6 +109,11 @@ import {
   CardHeader,
   CardHeadersText,
 } from "@/components/Craft/Templates/dentalTemplate/cardHeader";
+import {
+  Team,
+  TeamsText,
+} from "@/components/Craft/Templates/dentalTemplate/team";
+import { NewNavBarLayout } from "@/components/Craft/Templates/dentalTemplate/newNavBar";
 
 export const CraftContext = createContext({
   tools: "prebuilt",
@@ -135,6 +140,9 @@ export default function Craft() {
         <Editor
           resolver={{
             App,
+            NewNavBarLayout,
+            Team,
+            TeamsText,
             CardHeader,
             CardHeadersText,
             WebTestimonial,

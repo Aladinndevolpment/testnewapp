@@ -76,6 +76,7 @@ export default function LastName({ updateData, onClose, actionData }: any) {
                           placeholder="Last Name"
                           type="text"
                           name="isLastName"
+                          onChange={handleChange}
                           value={formValues.isLastName}
                           className="px-2 rounded-lg  mb-2 py-1 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
                         />
@@ -89,6 +90,7 @@ export default function LastName({ updateData, onClose, actionData }: any) {
                           placeholder="Last Name"
                           type="text"
                           name="isNotLastName"
+                          onChange={handleChange}
                           value={formValues.isNotLastName}
                           className="px-2 rounded-lg  mb-2 py-1 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark border-[1px] border-gray-400 text-space focus:outline-none focus:border-gray-300 text-black"
                         />
