@@ -96,7 +96,7 @@ export default function AllClaimTable({ data }: any) {
         Cell: ({ row }) => (
           <div>
             <p className="  text-gray-700 font-medium text-sm">
-              {row.original.date}
+              {moment(row.original.date).format("MMM DD , YYYY")}
             </p>
           </div>
         ),
@@ -110,7 +110,7 @@ export default function AllClaimTable({ data }: any) {
         Cell: ({ row }) => (
           <div>
             <p className="  text-gray-700 font-medium text-sm">
-              {row.original.dueDate}
+              {moment(row.original.dueDate).format("MMM DD , YYYY")}
             </p>
           </div>
         ),

@@ -71,17 +71,18 @@ export const DatePickerElement = ({
         marginRight: `${marginRight}px`,
       }}
       className={`${
-        hovered && "hover:outline-green-500 hover:outline"
+        hovered &&
+        "hover:outline-gray-500 hover:outline hover:outline-1 hover:outline-dashed"
       }  relative`}
     >
       {hovered && (
-        <div className="absolute top-0 right-0 bg-green-500 text-white text-[10px] px-1 capitalize">
+        <div className="absolute top-0 left-0 bg-blue-500 text-white text-[10px] px-1 capitalize">
           {elementName}
         </div>
       )}
       <input
         disabled={!editable}
-        className={`flex shadow px-2 py-2  rounded-md w-full focus-within:outline-2 focus-within:outline-blue-400 ${shadow} ${borderType} ${borderColor}`}
+        className={`flex shadow px-2 py-2  rounded-md w-full outline-1 focus-within:outline-1 outline-dashed focus-within:outline-gray-400  ${shadow} ${borderType} ${borderColor}`}
         style={{
           color: color,
           borderRadius: borderRadius + "px",

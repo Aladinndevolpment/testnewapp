@@ -379,7 +379,7 @@ export default function AddItem({
                 <div className="flex flex-wrap justify-start items-center">
                   {statusData.map((item: any, index: any) => (
                     <div key={index} className="mr-1.5">
-                      <div
+                      <button
                         onClick={() => {
                           setFormData((prevValues: any) => ({
                             ...prevValues,
@@ -443,7 +443,7 @@ export default function AddItem({
                         >
                           {item}
                         </span>
-                      </div>
+                      </button>
                     </div>
                   ))}
                 </div>

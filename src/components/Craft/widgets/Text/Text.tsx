@@ -136,11 +136,12 @@ export const Text = ({
         marginRight: `${marginRight}px`,
       }}
       className={`${
-        hovered && "hover:outline-green-500 hover:outline"
+        hovered &&
+        "hover:outline-gray-500 hover:outline-1 hover:outline-dashed p-4"
       } relative`}
     >
       {hovered && (
-        <div className="absolute top-0 right-0 bg-green-500 text-white text-[10px] px-1 capitalize">
+        <div className="absolute top-0 left-0 bg-blue-500 text-white text-[10px] px-1 capitalize">
           {elementName}
         </div>
       )}

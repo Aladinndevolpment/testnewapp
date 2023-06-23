@@ -31,6 +31,8 @@ import { MenuItem } from "@mui/material";
 import { MdPhoneCallback } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import ContactFilter from "./Filter";
+import { itemState } from "@/atoms/item";
 
 export const StoreLeadContext = createContext({
   formValue: {},
@@ -521,6 +523,8 @@ export default function TabLeads() {
   });
 
   const [openManageColumnModal, setOpenManageColumnModal] = useState(false);
+  //modal1
+  const [isFlyOutVisible, setIsFlyOutVisible] = useState(false);
 
   return (
     <>
@@ -539,6 +543,29 @@ export default function TabLeads() {
           setFormValue({});
         }}
       />
+
+      <div
+        className={`w-full h-screen overflow-y-scroll  scrollbar-hide fixed right-0 top-0  z-50 transition-all bg-black overflow-hidden ${
+          isFlyOutVisible
+            ? "translate-x-0 opacity-100 bg-opacity-30"
+            : "translate-x-[100%] opacity-0 bg-opacity-0"
+        }`}
+      >
+        <div
+          className="absolute h-full w-full z-40 "
+          onClick={() => setIsFlyOutVisible(false)}
+        ></div>
+        <div className="bg-white w-full md:w-[50%] lg:w-[40%] absolute right-0 min-h-full h-auto z-50 overflow-y-scroll scrollbar-hide">
+          <ContactFilter
+            onClose={() => {
+              setIsFlyOutVisible(false);
+            }}
+            updateData={(item: any) => {
+              console.log(itemState);
+            }}
+          />
+        </div>
+      </div>
 
       <StoreLeadContext.Provider value={value}>
         <div className="px-4 bg-white pb-2 border-b-[1px] border-gray-200 mb-3">
@@ -613,28 +640,17 @@ export default function TabLeads() {
                   </li>
                 </ul>
               </div>
-              <div className="dropdown dropdown-bottom">
-                <label
-                  tabIndex={2}
-                  className="border-[1px] border-gray-200 m-1 py-2 px-2  2xl:px-4 2xl:py-2 rounded-md flex flex-wrap justify-between items-center"
-                >
-                  <BsFunnel className="h-5 w-5 text-darkBlack mt-1 mr-2" />
-                  <span className="text-gray-500 font-semibold text-[12px] 2xl:text-sm">
-                    More Filter
-                  </span>
-                </label>
-                <ul
-                  tabIndex={2}
-                  className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40"
-                >
-                  <li>
-                    <a>Item 1</a>
-                  </li>
-                  <li>
-                    <a>Item 2</a>
-                  </li>
-                </ul>
-              </div>
+
+              <button
+                onClick={() => setIsFlyOutVisible(!isFlyOutVisible)}
+                tabIndex={2}
+                className="border-[1px] border-gray-200 m-1 py-2 px-2  2xl:px-4 2xl:py-2 rounded-md flex flex-wrap justify-between items-center"
+              >
+                <BsFunnel className="h-5 w-5 text-darkBlack mt-1 mr-2" />
+                <span className="text-gray-500 font-semibold text-[12px] 2xl:text-sm">
+                  More Filter
+                </span>
+              </button>
             </div>
 
             <div className="w-full  lg:w-auto flex justify-between items-center mb-2">
@@ -706,15 +722,6 @@ export default function TabLeads() {
                       columnPinning: {
                         left: ["lead_name"],
                       },
-                    }}
-                    muiTablePaginationProps={{
-                      rowsPerPageOptions: [10, 50, 100, 200],
-                      showFirstButton: false,
-                      showLastButton: false,
-                      SelectProps: {
-                        native: true,
-                      },
-                      labelRowsPerPage: "Showing",
                     }}
                     positionPagination="top"
                     enableToolbarInternalActions={false}

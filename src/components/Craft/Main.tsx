@@ -10,7 +10,7 @@ import { BuilderImage } from "./widgets/Image";
 import App from "./widgets/App";
 import { OrderOneStep } from "./widgets/prebuilt/OrderOneStep";
 import { OrderTwoStep } from "./widgets/prebuilt/OrderTwoStep";
-import { TemplateOne } from "./Templates/template1";
+import { TemplateOne } from "./Templates/dentalTemplate";
 
 export default function Main() {
   const { device } = useContext(CraftContext);

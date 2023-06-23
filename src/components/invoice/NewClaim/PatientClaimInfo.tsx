@@ -141,14 +141,14 @@ const PatientClaimInfo = () => {
           </div>
         </div>
 
-        <div className="w-full flex justify-end items-end px-4 ">
+        {/* <div className="w-full flex justify-end items-end px-4 ">
           <button
             type="submit"
             className="  bg-newBlue font-medium py-2 text-sm  rounded-lg px-5 text-white"
           >
             Submit
           </button>
-        </div>
+        </div> */}
       </form>
     </div>
   );

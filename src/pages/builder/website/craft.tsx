@@ -80,15 +80,35 @@ import {
 import {
   TemplateOne,
   TemplateOneTop,
-} from "@/components/Craft/Templates/template1";
+} from "@/components/Craft/Templates/dentalTemplate";
 import {
   NavBar,
   NavBarsText,
-} from "@/components/Craft/Templates/template1/navBar";
+} from "@/components/Craft/Templates/dentalTemplate/navBar";
 import {
   Banner,
   BannersText,
-} from "@/components/Craft/Templates/template1/banner";
+} from "@/components/Craft/Templates/dentalTemplate/banner";
+import {
+  FooterWebs,
+  FooterWebsText,
+} from "@/components/Craft/Templates/dentalTemplate/footer";
+import {
+  CardBanner,
+  CardBannersText,
+} from "@/components/Craft/Templates/dentalTemplate/cards";
+import {
+  CardBottomNew,
+  CardBottomsText,
+} from "@/components/Craft/Templates/dentalTemplate/cardBottom";
+import {
+  WebTestimonial,
+  WebTestimonialsText,
+} from "@/components/Craft/Templates/dentalTemplate/webTestimonial";
+import {
+  CardHeader,
+  CardHeadersText,
+} from "@/components/Craft/Templates/dentalTemplate/cardHeader";
 
 export const CraftContext = createContext({
   tools: "prebuilt",
@@ -109,14 +129,23 @@ export default function Craft() {
     device,
     setDevice,
   };
-
   return (
     <CraftContext.Provider value={value}>
       <div className="h-full overflow-hidden">
         <Editor
           resolver={{
             App,
+            CardHeader,
+            CardHeadersText,
+            WebTestimonial,
+            WebTestimonialsText,
+            CardBottomNew,
+            CardBottomsText,
+            CardBanner,
+            CardBannersText,
             Banner,
+            FooterWebs,
+            FooterWebsText,
             BannersText,
             NavBar,
             NavBarsText,

@@ -13,7 +13,6 @@ import { RadioInputElement } from "./widgets/RadioElement";
 
 export default function Main() {
   const { device } = useContext(CraftContext);
-
   const tbStyles = {
     backgroundColor: "#f6f6fc",
     borderColor: "#d9d6d6",

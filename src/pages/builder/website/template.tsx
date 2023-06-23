@@ -105,14 +105,16 @@ export default function Template() {
       <div className="bg-white shadow-md border-b-[1px] py-4 px-5">
         <div className="flex justify-between items-center">
           <div>
-            <div className="flex justify-start items-center">
-              <div className="bg-white h-5 w-5 shadow-md rounded-full flex justify-center items-center">
-                <IoChevronBackOutline className="h-3 w-3 text-gray-900" />
+            <Link href={"/builder"}>
+              <div className="flex justify-start items-center">
+                <div className="bg-white h-5 w-5 shadow-md rounded-full flex justify-center items-center">
+                  <IoChevronBackOutline className="h-3 w-3 text-gray-900" />
+                </div>
+                <span className="ml-2 text-xs font-semibold text-gray-700">
+                  Back to Builder
+                </span>
               </div>
-              <span className="ml-2 text-xs font-semibold text-gray-700">
-                Back to workflow
-              </span>
-            </div>
+            </Link>
             <p className="mt-2 text-base font-semibold text-gray-700">
               New Website Template
             </p>

@@ -27,6 +27,7 @@ import PatientOtherDetails from "@/components/invoice/NewClaim/PatientOtherDetai
 import PaidClaimTable from "@/components/invoice/PaidClaimTable";
 import PendingClaimTable from "@/components/invoice/PendingClaimTable";
 import AllClaimTable from "@/components/invoice/AllClaimTable";
+import AllClaimsForm from "@/components/invoice/NewClaim/AllClaimForm";
 
 interface RowData {
   [key: string]: any;
@@ -49,6 +50,11 @@ export const InvoiceContext = createContext({
   setInvoiceData: (array: Array<any>) => {},
   data: null,
   setData: (array: Array<any>) => {},
+
+  claimForm: null,
+  setClaimForm: (array: Array<any>) => {},
+  addFlyoutVisibility: false,
+  setAddFlyoutVisibility: (string: string) => {},
 });
 
 export default function InvoicePage() {
@@ -130,6 +136,7 @@ export default function InvoicePage() {
     // },
   ];
 
+  const [claimForm, setClaimForm] = useState<any>({});
   const [invoiceData, setInvoiceData] = useState<any>({});
   const [addFlyoutVisibility, setAddFlyoutVisibility] = useState(false);
   const [isInvoicePreviewModalVisible, setIsInvoicePreviewModalVisible] =
@@ -137,19 +144,6 @@ export default function InvoicePage() {
   const [isInvoiceFinalDataShow, setIsInvoiceFinalDataShow] =
     useState<any>(false);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState<any>(false);
-
-  const value: any = {
-    invoiceData,
-    setInvoiceData,
-    isInvoicePreviewModalVisible,
-    setIsInvoicePreviewModalVisible,
-    isInvoiceFinalDataShow,
-    setIsInvoiceFinalDataShow,
-    isPaymentModalOpen,
-    setIsPaymentModalOpen,
-    data,
-    setData,
-  };
 
   function handleStoreInvoice(newInvoice: any, type: any) {
     if (type == "draft") {
@@ -198,6 +192,41 @@ export default function InvoicePage() {
     }
   }
 
+  // to store claim data
+  function handleStoreClaim(item: any) {
+    setData([
+      ...data,
+      {
+        id: data.length + 1,
+        invoice_no: data.length + 1,
+        customer_name: item.patientName,
+        status: "new",
+        date: new Date(),
+        dueDate: new Date(),
+        amount: item.primaryInsurance,
+        action: "",
+      },
+    ]);
+    setAddFlyoutVisibility(false);
+  }
+
+  const value: any = {
+    invoiceData,
+    setInvoiceData,
+    isInvoicePreviewModalVisible,
+    setIsInvoicePreviewModalVisible,
+    isInvoiceFinalDataShow,
+    setIsInvoiceFinalDataShow,
+    isPaymentModalOpen,
+    setIsPaymentModalOpen,
+    data,
+    setData,
+    addFlyoutVisibility,
+    setAddFlyoutVisibility,
+    claimForm,
+    setClaimForm,
+  };
+
   const ctx = useContext(GlobalContext);
   ctx.setTitle("Claims");
 
@@ -215,11 +244,10 @@ export default function InvoicePage() {
           /> */}
           <div className="bg-white  pb-10 h-[100vh] scrollbar-hide  overflow-y-scroll ">
             <div className="flex justify-start items-start gap-5 flex-col">
-              <PatientClaimInfo />
-              <Insurance />
-              <PatientCondition />
-              <ReferPhysicianData />
-              <PatientOtherDetails />
+              <AllClaimsForm
+                onClose={() => setAddFlyoutVisibility(false)}
+                handleStoreChange={(item: any) => handleStoreClaim(item)}
+              />
             </div>
           </div>
         </FlyOut>
@@ -350,7 +378,15 @@ export default function InvoicePage() {
           <div className="w-full border bg-white p-4 shadow-md rounded-lg">
             <div className="flex flex-wrap justify-between items-center pb-3">
               <div>
-                <h3 className="font-semibold text-2xl">All Claims </h3>
+                <h3 className="font-semibold text-2xl">
+                  {select == 0
+                    ? "All Claims"
+                    : select == 1
+                    ? "Paid Claims"
+                    : select == 2
+                    ? "Pending Claims"
+                    : ""}{" "}
+                </h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {/* <Link href="/invoice/new-claim">

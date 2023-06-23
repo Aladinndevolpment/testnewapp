@@ -62,7 +62,7 @@ export const Slide = ({ padding = 20 }) => {
           <Element id="text" is={SlideTop} canvas>
             <Text
               alignment="center"
-              text="Steep"
+              text="Step"
               fontSize={20}
               marginBottom={20}
               color="#fff"
@@ -70,7 +70,7 @@ export const Slide = ({ padding = 20 }) => {
               bold="font-medium"
               paddingTop={5}
               paddingBottom={5}
-            />{" "}
+            />
           </Element>
           <div className="absolute top-10 bg-gray-300 h-32 w-[1.5px] left-12"></div>
         </div>

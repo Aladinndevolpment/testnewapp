@@ -169,7 +169,7 @@ export const Social = ({
         justifyContent: `${justifyContent}`,
         alignItems: `${alignItems}`,
       }}
-      className={`flex  hover:outline-gray-500 hover:outline outline-1 hover:outline-dashed   ${borderType} ${shadow} shadow-[${shadowColor}]`}
+      className={`flex hover:outline-gray-500 hover:outline outline-1 hover:outline-dashed ${borderType} ${shadow} shadow-[${shadowColor}]`}
     >
       <a className="p-4" href={href}>
         <Icon
@@ -339,7 +339,7 @@ Social.craft = {
     settings: TextSettings,
   },
   props: {
-    text: "Start writing hersssse...",
+    text: "Start writing here...",
     fontSize: defaults.fontSize,
     underline: defaults.underline,
     bold: defaults.bold,

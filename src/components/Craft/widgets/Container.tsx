@@ -39,8 +39,8 @@ export default function Container({
   return (
     <div
       ref={(ref: any) => connect(drag(ref))}
-      className={`border-orange-500 h-screen overflow-y-scroll scrollbar-hide ${borderType} ${shadow} shadow-[${shadowColor}] ${
-        hovered && "hover:outline-orange-500 hover:outline"
+      className={`border-gray-500 h-screen overflow-y-scroll scrollbar-hide ${borderType} ${shadow} shadow-[${shadowColor}] ${
+        hovered && "hover:gray-orange-500 hover:outline-1 hover:outline-dashed"
       }`}
       style={{
         backgroundColor,

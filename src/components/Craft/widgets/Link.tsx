@@ -31,7 +31,7 @@ export const Link = ({
   return (
     <div
       ref={(ref: any) => connect(drag(ref))}
-      className={`mr-2 hover:outline-newBlue hover:outline p-1 w-fit`}
+      className={`mr-2 hover:outline-gray-500 hover:outline-dashed outline-1 p-1 w-fit`}
       style={{
         backgroundColor: backgroundColor,
       }}

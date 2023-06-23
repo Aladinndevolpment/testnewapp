@@ -6,7 +6,7 @@ import { Testimonials } from "../widgets/prebuilt/Testimonials";
 import { Carousels } from "../widgets/prebuilt/Carousel";
 import { Breadcrumbs } from "../widgets/prebuilt/Breadcrumbs";
 import { Footers } from "../widgets/prebuilt/Footer";
-import { TemplateOne } from "../Templates/template1";
+import { TemplateOne } from "../Templates/dentalTemplate";
 import { useEffect, useState } from "react";
 import TextInput from "@/components/controls/TextInput";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
