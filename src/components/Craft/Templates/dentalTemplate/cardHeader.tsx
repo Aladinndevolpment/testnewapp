@@ -93,7 +93,7 @@ export const CardHeader = ({
   }: any = useNode((state) => ({ hovered: state.events.hovered }));
 
   return (
-    <div className=" p-2 w-full" ref={(ref: any) => connect(drag(ref))}>
+    <div className="my-2 w-full" ref={(ref: any) => connect(drag(ref))}>
       {/* <div className="card card-compact w-full bg-base-100 shadow-xl">
         <div className="card-body">
           <Element id="heroImage" is={CardImage} canvas>

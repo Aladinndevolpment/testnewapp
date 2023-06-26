@@ -65,7 +65,7 @@ export const NewNavBarLayout = ({
   return (
     <div
       ref={(ref: any) => connect(drag(ref))}
-      className="relative p-4 md:py-2 md:px-8 flex flex-wrap justify-between items-center hover:outline-yellow-500 hover:outline border-b"
+      className="w-full relative p-4 md:py-2 md:px-8 flex flex-wrap justify-between items-center hover:outline-yellow-500 hover:outline border-b"
       style={{
         backgroundColor: backgroundColor,
         borderRadius: borderRadius + "px",
@@ -77,8 +77,8 @@ export const NewNavBarLayout = ({
         </div>
       )}
 
-      <div className="w-auto ml-auto justify-between flex">
-        <div className="flex gap-2 flex-wrap items-center">
+      <div className="w-[100%] justify-between flex">
+        <div className="flex gap-2 flex-wrap items-center ml-0">
           {menuItems.map((item, index) => (
             <Element
               id={`headerItem_${index}`}
@@ -92,7 +92,7 @@ export const NewNavBarLayout = ({
         </div>
         <div>
           <button className="btn btn-ghost btn-circle">
-            <BsSearch size={20} />
+            <BsSearch size={20} className="mr-2" />
             {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -105,15 +105,16 @@ export const NewNavBarLayout = ({
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />{" "}
             </svg> */}
           </button>
-        </div>
-        <div>
           <button className="btn btn-ghost btn-circle">
             <div className="indicator">
-              <AiOutlineShoppingCart size={20} />
+              <AiOutlineShoppingCart size={20} className="ml-2" />
               <span className="badge badge-xs badge-primary indicator-item"></span>
             </div>
           </button>
         </div>
+        {/* <div>
+          
+        </div> */}
       </div>
     </div>
   );

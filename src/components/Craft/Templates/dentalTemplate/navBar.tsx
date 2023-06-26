@@ -96,7 +96,7 @@ export const NavBar = ({
         </div>
       </div> */}
       <div
-        className={`w-full h-auto ${size} mr-2 ${
+        className={`w-full h-auto ${size} mr-2 mb-2 pt-2 ${
           hovered && "hover:outline-pink-500 hover:outline "
         }  relative ${shadowColor} ${shadow} ${borderType} `}
         style={{
@@ -174,10 +174,10 @@ export const NavBar = ({
               </div>
             </div>
           </div>
-          <div className="navbar bg-base-100 border-t mt-2 flex justify-between ">
-            <div className="navbar-start border-r w-auto ">
-              <div className="flex-none">
-                {/* <ul className="menu menu-horizontal z-10">
+          <div className="navbar bg-base-100 border-t mt-2 flex justify-between w-full ">
+            {/* <div className="navbar-start border-r w-auto "> */}
+            {/* <div className="flex-none"> */}
+            {/* <ul className="menu menu-horizontal z-10">
                   <li>
                     <a>
                       <Text
@@ -409,11 +409,11 @@ export const NavBar = ({
                     </ul>
                   </li>
                 </ul> */}
-                {/* <HeaderLayout /> */}
-                <NewNavBarLayout />
-              </div>
-            </div>
+            {/* <HeaderLayout /> */}
+            <NewNavBarLayout />
+            {/* </div> */}
           </div>
+          {/* </div> */}
         </Element>
       </div>
     </div>

@@ -61,6 +61,7 @@ export default function TopNavigation() {
           </div>
 
           <div className=" flex items-center justify-start lg:justify-end p-1 w-full lg:w-[55%]   ">
+            {/* <Text text="alok ranjan" /> */}
             <Search />
             <div className="relative ml-3 bg-logoRed p-2 rounded-full shadow-sm mr-3">
               <PlusIcon className="text-white w-4 h-4" />

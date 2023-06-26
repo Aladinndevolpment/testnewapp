@@ -3,9 +3,23 @@ import { useState } from "react";
 import { MenuItem, Select } from "@mui/material";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { RiAddFill } from "react-icons/ri";
 
 const AllClaimsForm = ({ handleStoreChange }: any) => {
-  const [errors, setErrors] = useState<any>({});
+  const [errors, setErrors] = useState<any>({
+    insurance: [
+      {
+        primaryInsurance: "",
+        payerAddress: "",
+        insuredID: "",
+        programTyp: "",
+        alrdyInsured: "",
+        insuredName: "",
+        insuredAddress: "",
+        relToInsured: "",
+      },
+    ],
+  });
   const [formData, setFormData] = useState({
     patientName: "",
     patientAddress: "",
@@ -17,14 +31,18 @@ const AllClaimsForm = ({ handleStoreChange }: any) => {
     unableFrom: "",
     unableTo: "",
     hospitalizationDate: "",
-    primaryInsurance: "",
-    payerAddress: "",
-    insuredID: "",
-    programTyp: "",
-    alrdyInsured: "",
-    insuredName: "",
-    insuredAddress: "",
-    relToInsured: "",
+    insurance: [
+      {
+        primaryInsurance: "",
+        payerAddress: "",
+        insuredID: "",
+        programTyp: "",
+        alrdyInsured: "",
+        insuredName: "",
+        insuredAddress: "",
+        relToInsured: "",
+      },
+    ],
     physicianName: "",
     physicianID: "",
     physicianNPI: "",
@@ -37,9 +55,37 @@ const AllClaimsForm = ({ handleStoreChange }: any) => {
 
   // console.log(ClaimForm);
 
+  const handleInputChange = (e: any, index: any) => {
+    const { name, value } = e.target;
+    const newInsurance = [...formData.insurance];
+    newInsurance[index] = { ...newInsurance[index], [name]: value };
+    setFormData((prevState: any) => ({
+      ...prevState,
+      insurance: newInsurance,
+    }));
+  };
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleAddField = () => {
+    setFormData((prevState: any) => ({
+      ...prevState,
+      insurance: [
+        ...prevState.insurance,
+        {
+          primaryInsurance: "",
+          payerAddress: "",
+          insuredID: "",
+          programTyp: "",
+          alrdyInsured: "",
+          insuredName: "",
+          insuredAddress: "",
+          relToInsured: "",
+        },
+      ],
+    }));
   };
 
   const handleSubmit = (e: any) => {
@@ -88,25 +134,25 @@ const AllClaimsForm = ({ handleStoreChange }: any) => {
       validationErrors.hospitalizationDate = "Required";
     }
 
-    if (!formData.primaryInsurance) {
-      validationErrors.primaryInsurance = "Primary Insurance is required";
-    }
+    // if (!formData.primaryInsurance) {
+    //   validationErrors.primaryInsurance = "Primary Insurance is required";
+    // }
 
-    if (!formData.payerAddress) {
-      validationErrors.payerAddress = "Payer Address is required";
-    }
+    // if (!formData.payerAddress) {
+    //   validationErrors.payerAddress = "Payer Address is required";
+    // }
 
-    if (!formData.insuredID) {
-      validationErrors.insuredID = "Insured ID is required";
-    }
+    // if (!formData.insuredID) {
+    //   validationErrors.insuredID = "Insured ID is required";
+    // }
 
-    if (!formData.programTyp) {
-      validationErrors.programTyp = "Program Typ is required";
-    }
+    // if (!formData.programTyp) {
+    //   validationErrors.programTyp = "Program Typ is required";
+    // }
 
-    if (!formData.alrdyInsured) {
-      validationErrors.alrdyInsured = "Required";
-    }
+    // if (!formData.alrdyInsured) {
+    //   validationErrors.alrdyInsured = "Required";
+    // }
 
     if (!formData.physicianName) {
       validationErrors.physicianName = "Physician Name is required";
@@ -159,14 +205,18 @@ const AllClaimsForm = ({ handleStoreChange }: any) => {
       unableFrom: "",
       unableTo: "",
       hospitalizationDate: "",
-      primaryInsurance: "",
-      payerAddress: "",
-      insuredID: "",
-      programTyp: "",
-      alrdyInsured: "",
-      insuredName: "",
-      insuredAddress: "",
-      relToInsured: "",
+      insurance: [
+        {
+          primaryInsurance: "",
+          payerAddress: "",
+          insuredID: "",
+          programTyp: "",
+          alrdyInsured: "",
+          insuredName: "",
+          insuredAddress: "",
+          relToInsured: "",
+        },
+      ],
       physicianName: "",
       physicianID: "",
       physicianNPI: "",
@@ -452,183 +502,174 @@ const AllClaimsForm = ({ handleStoreChange }: any) => {
 
         {/* Insurance */}
         <div className="my-3">
-          <div className="  bg-white">
-            <div className="flex justify-between items-center border-b px-3 py-3 bg-gray-100 mb-5">
-              <p className="text-[#47494b] text-base font-semibold ">
-                Insurance
-              </p>
-            </div>
-            <div className="px-4 flex flex-wrap pb-6 ">
-              <div className="w-full mb-2">
-                <label className="block text-[#47494b] text-sm pt-1 font-semibold">
-                  Primary Insurance
-                </label>
-                <input
-                  name="primaryInsurance"
-                  type="text"
-                  value={formData.primaryInsurance}
-                  onChange={handleChange}
-                  className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
-                ></input>
-
-                {errors.primaryInsurance && (
-                  <span className=" text-red-500 text-xs">
-                    {errors.primaryInsurance}
-                  </span>
-                )}
-              </div>
-
-              <div className="w-full mb-2">
-                <label className="block text-[#47494b] text-sm pt-1 font-semibold">
-                  Payer Address
-                </label>
-                <input
-                  type="text"
-                  name="payerAddress"
-                  value={formData.payerAddress}
-                  onChange={handleChange}
-                  className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
-                ></input>
-                {errors.payerAddress && (
-                  <span className=" text-red-500 text-xs">
-                    {errors.payerAddress}
-                  </span>
-                )}
-              </div>
-
-              <div className="w-full mb-2">
-                <label className="block text-[#47494b] text-sm pt-1 font-semibold">
-                  Insured Id
-                </label>
-
-                <input
-                  type="text"
-                  name="insuredID"
-                  value={formData.insuredID}
-                  onChange={handleChange}
-                  className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2    font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
-                ></input>
-
-                {errors.insuredID && (
-                  <span className=" text-red-500 text-xs">
-                    {errors.insuredID}
-                  </span>
-                )}
-              </div>
-
-              <div className="w-full mb-2">
-                <label className="block text-[#47494b] text-sm pt-1 font-semibold">
-                  Program Type
-                </label>
-                <Select
-                  name="programTyp"
-                  value={formData.programTyp}
-                  onChange={handleChange}
-                  className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2    font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
-                >
-                  <MenuItem value="typ">Select Program Type</MenuItem>
-                  <MenuItem value="type1">Type1</MenuItem>
-                  <MenuItem value="type2">Type2</MenuItem>
-                  <MenuItem value="type3">Type3</MenuItem>
-                </Select>
-                {errors.programTyp && (
-                  <span className=" text-red-500 text-xs">
-                    {errors.programTyp}
-                  </span>
-                )}
-              </div>
-
-              <div className="w-full">
-                <label className="block text-[#47494b] text-sm pt-1 font-semibold">
-                  Are you Insured ?
-                </label>
-                <Select
-                  name="alrdyInsured"
-                  value={formData.alrdyInsured}
-                  onChange={handleChange}
-                  className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3  rounded-md mt-2    font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
-                >
-                  <MenuItem value="">Select </MenuItem>
-                  <MenuItem value="yes">Yes</MenuItem>
-                  <MenuItem value="no">No</MenuItem>
-                </Select>
-                {errors.alrdyInsured && (
-                  <span className=" text-red-500 text-xs">
-                    {errors.alrdyInsured}
-                  </span>
-                )}
-              </div>
-            </div>
-            {/* 
-          <div className="w-full flex justify-end items-end px-4 ">
-            <button
-              type="submit"
-              className="  bg-newBlue font-medium py-2 text-sm  rounded-lg px-5 text-white"
-            >
-              Submit
-            </button>
-          </div> */}
+          <div className="flex justify-between items-center border-b px-3 py-3 bg-gray-100 mb-5">
+            <p className="text-[#47494b] text-base font-semibold ">Insurance</p>
           </div>
-          {formData.alrdyInsured == "yes" ? (
-            <div>
-              <div className="flex justify-between items-center border-b px-3 py-3 bg-gray-100 my-5">
-                <p className="text-[#47494b] text-base font-semibold">
-                  Insured Information
-                </p>
-              </div>
-              <div className="px-4 flex flex-wrap pb-6">
+          <div className="w-full flex justify-end items-end px-4">
+            <button
+              type="button"
+              className="  bg-newBlue font-medium py-2 text-sm  rounded-lg px-5 text-white flex items-center gap-1"
+              onClick={handleAddField}
+            >
+              <RiAddFill className="font-semibold" /> Add Insurance
+            </button>
+          </div>
+          {formData?.insurance.map((item: any, index: number) => (
+            <>
+              <div key={index} className="px-4 flex flex-wrap pb-6 ">
                 <div className="w-full mb-2">
                   <label className="block text-[#47494b] text-sm pt-1 font-semibold">
-                    Insured Name
+                    Primary Insurance
                   </label>
                   <input
-                    name="insuredName"
+                    name="primaryInsurance"
                     type="text"
-                    value={formData.insuredName}
-                    onChange={handleChange}
+                    value={item.primaryInsurance}
+                    onChange={(e) => handleInputChange(e, index)}
                     className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
                   ></input>
+
+                  {errors.primaryInsurance && (
+                    <span className=" text-red-500 text-xs">
+                      {errors.primaryInsurance}
+                    </span>
+                  )}
                 </div>
 
                 <div className="w-full mb-2">
                   <label className="block text-[#47494b] text-sm pt-1 font-semibold">
-                    Insured Address
+                    Payer Address
                   </label>
                   <input
                     type="text"
-                    name="insuredAddress"
-                    value={formData.insuredAddress}
-                    onChange={handleChange}
+                    name="payerAddress"
+                    value={item.payerAddress}
+                    onChange={(e) => handleInputChange(e, index)}
                     className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
                   ></input>
+                  {errors.payerAddress && (
+                    <span className=" text-red-500 text-xs">
+                      {errors.payerAddress}
+                    </span>
+                  )}
                 </div>
 
-                <div className="w-full ">
+                <div className="w-full mb-2">
                   <label className="block text-[#47494b] text-sm pt-1 font-semibold">
-                    Patient Relation to Insured
+                    Insured Id
                   </label>
+
                   <input
                     type="text"
-                    name="relToInsured"
-                    value={formData.relToInsured}
-                    onChange={handleChange}
+                    name="insuredID"
+                    value={item.insuredID}
+                    onChange={(e) => handleInputChange(e, index)}
                     className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2    font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
-                  />
+                  ></input>
+
+                  {errors.insuredID && (
+                    <span className=" text-red-500 text-xs">
+                      {errors.insuredID}
+                    </span>
+                  )}
+                </div>
+
+                <div className="w-full mb-2">
+                  <label className="block text-[#47494b] text-sm pt-1 font-semibold">
+                    Program Type
+                  </label>
+                  <Select
+                    name="programTyp"
+                    value={item.programTyp}
+                    onChange={(e) => handleInputChange(e, index)}
+                    className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 rounded-md mt-2    font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+                  >
+                    <MenuItem value="typ">Select Program Type</MenuItem>
+                    <MenuItem value="type1">Type1</MenuItem>
+                    <MenuItem value="type2">Type2</MenuItem>
+                    <MenuItem value="type3">Type3</MenuItem>
+                  </Select>
+                  {errors.programTyp && (
+                    <span className=" text-red-500 text-xs">
+                      {errors.programTyp}
+                    </span>
+                  )}
+                </div>
+
+                <div className="w-full">
+                  <label className="block text-[#47494b] text-sm pt-1 font-semibold">
+                    Are you Insured ?
+                  </label>
+                  <Select
+                    name="alrdyInsured"
+                    value={item.alrdyInsured}
+                    onChange={(e) => handleInputChange(e, index)}
+                    className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3  rounded-md mt-2    font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+                  >
+                    <MenuItem value="">Select </MenuItem>
+                    <MenuItem value="yes">Yes</MenuItem>
+                    <MenuItem value="no">No</MenuItem>
+                  </Select>
+                  {errors.alrdyInsured && (
+                    <span className=" text-red-500 text-xs">
+                      {errors.alrdyInsured}
+                    </span>
+                  )}
                 </div>
               </div>
+              {item?.alrdyInsured == "yes" ? (
+                <div>
+                  <div className="flex justify-between items-center border-b px-3 py-3 bg-gray-100 my-5">
+                    <p className="text-[#47494b] text-base font-semibold">
+                      Insured Information
+                    </p>
+                  </div>
+                  <div className="px-4 flex flex-wrap pb-6">
+                    <div className="w-full mb-2">
+                      <label className="block text-[#47494b] text-sm pt-1 font-semibold">
+                        Insured Name
+                      </label>
+                      <input
+                        name="insuredName"
+                        type="text"
+                        value={item.insuredName}
+                        onChange={(e) => handleInputChange(e, index)}
+                        className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+                      ></input>
+                    </div>
 
-              {/* <div className="w-full flex justify-end items-end px-4 ">
-              <button
-                type="submit"
-                className="  bg-newBlue font-medium py-2 text-sm  rounded-lg px-5 text-white"
-              >
-                Submit
-              </button>
-            </div> */}
-            </div>
-          ) : (
-            ""
-          )}
+                    <div className="w-full mb-2">
+                      <label className="block text-[#47494b] text-sm pt-1 font-semibold">
+                        Insured Address
+                      </label>
+                      <input
+                        type="text"
+                        name="insuredAddress"
+                        value={item.insuredAddress}
+                        onChange={(e) => handleInputChange(e, index)}
+                        className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+                      ></input>
+                    </div>
+
+                    <div className="w-full ">
+                      <label className="block text-[#47494b] text-sm pt-1 font-semibold">
+                        Patient Relation to Insured
+                      </label>
+                      <input
+                        type="text"
+                        name="relToInsured"
+                        value={item.relToInsured}
+                        onChange={(e) => handleInputChange(e, index)}
+                        className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2    font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+                      />
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
+            </>
+          ))}
         </div>
 
         {/* Refering Physician */}

@@ -1,15 +1,19 @@
-import { XMarkIcon } from "@heroicons/react/24/solid";
+import { ChevronRightIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { MenuItem, Select } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import { useState } from "react";
+import Live from "../nmi/Live";
+import Sandbox from "../nmi/Sandbox";
 
 export default function Nmi() {
   const [selectedComponent, setSelectedComponent] = useState(true);
   const [selectedIntegration, setSelectedIntegration] = useState(true);
   const [showSelectedComponent, SetShowSelectedComponent] = useState(false);
+
   const [stripe, selectedStripe] = useState("");
   const [show, setshow] = useState(false);
+  const [showLiveData, setShowLiveData] = useState<any>(false);
   const handleChange = ({ target }: any) => {
     selectedStripe(target.value);
   };
@@ -25,6 +29,7 @@ export default function Nmi() {
         <div
           className={`relative z-50 bg-white shadow-md rounded-xl w-[600px] `}
         >
+          {" "}
           <div className=" scrollbar-hide overflow-y-scroll h-96 md:h-auto md:max-h-[40rem] ">
             <div className="flex justify-between items-center px-5 py-2 border-b">
               <p className="text-gray-600  font-semibold fontStrawFord text-lg pb-2 pt-3 leading-5">
@@ -34,46 +39,32 @@ export default function Nmi() {
                 <XMarkIcon className="h-5 w-5 text-gray-600" />
               </button>
             </div>
-
-            {/* <div> {selectedComponent}</div> */}
-
-            <div className="w-full p-4">
-              <label className="block text-[#47494b] text-sm pt-1 font-semibold">
-                Which Business do you wnat to link to this location
-              </label>
-              <Select
-                name="businessLocation"
-                // value={formData.businessType}
-                onChange={handleChange}
-                className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
-              >
-                <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                  HealthSource Chiropractic of Arlington Matlock - Arlington, TX
-                </MenuItem>
-                <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                  HealthSource Chiropractic of Arlington Matlock - Arlington, TX
-                </MenuItem>
-                <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                  HealthSource Chiropractic of Arlington Matlock - Arlington, TX
-                </MenuItem>
-              </Select>
-
-              {/* {errors.businessType && (
-                <span className="mb-3 text-red-500 text-xs">
-                  {errors.businessType}
-                </span>
-              )} */}
+            <div className="pb-6 border-b border-gray-200">
+              <div className="items-center space-y-4  ">
+                <Image
+                  src={require("../../../../../public/images/integrations/NMI.png")}
+                  alt=""
+                  className="w-72 mt-7 m-auto"
+                />
+              </div>
             </div>
 
-            <div className="flex justify-end">
-              <div
-                className="bg-green-500 w-24 py-2 rounded-md  mb-3 mx-4 cursor-pointer"
-                onClick={() => {
-                  SetShowSelectedComponent(false);
-                }}
-              >
-                <p className="text-center text-white">Connect!</p>
+            <div className="pl-4 pr-4">
+              <div className=" flex justify-between text-2xl ">
+                <p className="align-top text-[15px] font-bold pl-2">Live</p>
+                <p className="text-blue-500 text-sm p-2 pr-4">
+                  How to find Authorize.net API keys?
+                </p>
               </div>
+              <Live />
+            </div>
+            <div className="w-full h-1 bg-slate-100 mt-6 "></div>
+
+            <div className="pl-4 pr-4">
+              <div className="pt-2 pb-4 flex justify-between">
+                <p className="align-top text-[15px] font-bold pl-2">Sandbox</p>
+              </div>
+              <Sandbox />
             </div>
           </div>
         </div>
@@ -83,7 +74,7 @@ export default function Nmi() {
         ></div>
       </div>
 
-      <div className="shadow shadow-gray-300 bg-white py-8 px-6">
+      <div className=" shadow-gray-300 bg-white pb-8 pt-3 px-6 rounded-md">
         <div className="flex justify-center items-center">
           <div>
             <Image
@@ -100,104 +91,38 @@ export default function Nmi() {
         </div>
 
         <div className="p-4">
-          {show ? (
+          {!show ? (
             <div>
               {/* <div className="flex justify-center">
                   <p className="text-sm text-center pt-2">{google}</p>
                 </div> */}
-              <div>
-                <label className="block text-[#47494b] text-sm pt-1 font-semibold">
-                  Which Business do you wnat to link to this location
-                </label>
-                <Select
-                  name="businessLocation"
-                  // value={formData.businessType}
-                  onChange={handleChange}
-                  className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
-                >
-                  <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                    HealthSource Chiropractic of Arlington Matlock - Arlington,
-                    TX
-                  </MenuItem>
-                  <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                    HealthSource Chiropractic of Arlington Matlock - Arlington,
-                    TX
-                  </MenuItem>
-                  <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                    HealthSource Chiropractic of Arlington Matlock - Arlington,
-                    TX
-                  </MenuItem>
-                </Select>
-              </div>
-              <div>
-                <label className="block text-[#47494b] text-sm pt-1 font-semibold">
-                  Which Business do you wnat to link to this location
-                </label>
-                <Select
-                  name="businessLocation"
-                  // value={formData.businessType}
-                  onChange={handleChange}
-                  className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
-                >
-                  <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                    HealthSource Chiropractic of Arlington Matlock - Arlington,
-                    TX
-                  </MenuItem>
-                  <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                    HealthSource Chiropractic of Arlington Matlock - Arlington,
-                    TX
-                  </MenuItem>
-                  <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                    HealthSource Chiropractic of Arlington Matlock - Arlington,
-                    TX
-                  </MenuItem>
-                </Select>
-              </div>
-
-              <div>
-                <label className="block text-[#47494b] text-sm pt-1 font-semibold">
-                  Which Business do you wnat to link to this location
-                </label>
-                <Select
-                  name="businessLocation"
-                  // value={formData.businessType}
-                  onChange={handleChange}
-                  className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
-                >
-                  <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                    HealthSource Chiropractic of Arlington Matlock - Arlington,
-                    TX
-                  </MenuItem>
-                  <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                    HealthSource Chiropractic of Arlington Matlock - Arlington,
-                    TX
-                  </MenuItem>
-                  <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                    HealthSource Chiropractic of Arlington Matlock - Arlington,
-                    TX
-                  </MenuItem>
-                </Select>
-              </div>
             </div>
           ) : (
-            <div className="flex justify-center items-center pt-7">
+            <div className="flex justify-center items-center pt-3">
               <p className="text-[12px]">
-                Connect your location&#39;s Google account
+                Connect your location&#39;s NMI account
               </p>
             </div>
           )}
         </div>
-        <div
-          onClick={() => {
-            setSelectedComponent(false);
-            SetShowSelectedComponent(true);
-            setSelectedIntegration(false);
-            setshow(true);
-          }}
-          className="bg-green-600 xl:mx-20 rounded-md mt-2 cursor-pointer"
-        >
-          <p className="text-white text-center py-2 text-sm">Connect</p>
-        </div>
+
+        {!show ? (
+          <div
+            onClick={() => {
+              setSelectedComponent(false);
+              SetShowSelectedComponent(true);
+              setSelectedIntegration(false);
+              setshow(true);
+            }}
+            className="bg-green-600 xl:mx-20 rounded-md mt-2 cursor-pointer"
+          >
+            <p className="text-white text-center py-2 text-sm">Connect</p>
+          </div>
+        ) : (
+          <button className="bg-green-50 w-full py-2 mt-2 text-green-400">
+            Connected!
+          </button>
+        )}
         <p className="text-[9px] pt-3">
           Manage Paypal Integration on payment Integration
           <span className="font-bold text-md"> &rarr; </span>

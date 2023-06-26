@@ -17,6 +17,8 @@ import {
 } from "../../widgets/CommonSettings";
 import { createElement, useState } from "react";
 import item from "@/components/Leads/dnd/styles/item";
+import { Card } from "@mui/material";
+import data from "@/layouts/GlobalLayout/components/data";
 
 const elementName = "CardBanner";
 
@@ -99,18 +101,20 @@ export const CardBanner = ({
       title: "Dental Services",
       image: (
         <BuilderImage
-          imageSrc={require("../../../../../public/images/dentalTemplate/dentalImplants.png")}
+          width={380}
+          imageSrc={require("../../../../../public/images/dentalTemplate/services1.jpg")}
         />
       ),
       description:
-        "Globally harness multimedia based collaboration and idea haring with backend products.",
+        "Globally harness multimedia based collaboration and idea haring with backend.",
     },
     {
       id: 2,
       title: "Dental Implants",
       image: (
         <BuilderImage
-          imageSrc={require("../../../../../public/images/dentalTemplate/dentalService.png")}
+          width={380}
+          imageSrc={require("../../../../../public/images/dentalTemplate/services2.jpg")}
         />
       ),
       description:
@@ -121,18 +125,20 @@ export const CardBanner = ({
       title: "Surgery",
       image: (
         <BuilderImage
-          imageSrc={require("../../../../../public/images/dentalTemplate/surgery.png")}
+          width={380}
+          imageSrc={require("../../../../../public/images/dentalTemplate/services3.jpg")}
         />
       ),
       description:
-        "Proactively fabricate one-to-one materials via effective e-business services processes.",
+        "Proactively fabricate one-to-one materials via effective e-business.",
     },
     {
       id: 4,
       title: "Teeth Whitening",
       image: (
         <BuilderImage
-          imageSrc={require("../../../../../public/images/dentalTemplate/teethWhitening.png")}
+          width={380}
+          imageSrc={require("../../../../../public/images/dentalTemplate/services4.jpg")}
         />
       ),
       description:
@@ -175,13 +181,13 @@ export const CardBanner = ({
         )}
         <Element id="CardBannersText" is={CardBannersText} canvas>
           <div
-            className={`flex justify-around items-center flex-wrap shadow-lg w-full h-auto ${size} mr-2  ${
+            className={`carousel  shadow-lg bg-gray-300 w-full h-auto ${size} mr-2 p-2 ${
               hovered && "hover:outline-pink-500 hover:outline "
             }  relative ${shadowColor} ${shadow} ${borderType} `}
             style={{
               backgroundColor,
               marginTop: `${marginTop}px`,
-              marginBottom: `${marginBottom}px`,
+              marginBottom: `${10}px`,
               marginLeft: `${marginLeft}px`,
               marginRight: `${marginRight}px`,
               paddingTop: `${paddingTop}px`,
@@ -194,82 +200,117 @@ export const CardBanner = ({
             }}
           >
             {cardItem.map((item: any) => (
+              // <div
+              //   key={item.id}
+              //   className={`w-[45%] mx-1 my-2 rounded overflow-hidden shadow-lg h-[55vh] ${size} ${
+              //     hovered && "hover:outline-pink-500 hover:outline "
+              //   }  relative ${shadowColor} ${shadow} ${borderType} `}
+              //   style={{
+              //     backgroundColor,
+              //     marginTop: `${marginTop}px`,
+              //     marginBottom: `${marginBottom}px`,
+              //     marginLeft: `${marginLeft}px`,
+              //     marginRight: `${marginRight}px`,
+              //     paddingTop: `${paddingTop}px`,
+              //     paddingBottom: `${paddingBottom}px`,
+              //     paddingLeft: `${paddingLeft}px`,
+              //     paddingRight: `${paddingRight}px`,
+              //     borderWidth: `${borderWidth}px`,
+              //     borderRadius: `${borderRadius}px`,
+              //     borderColor,
+              //   }}
+              // >
+              //   {item.image}
+              //   <div className="px-6 py-4">
+              //     <div
+              //       className={`font-bold text-xl mb-2 w-auto rounded overflow-hidden h-auto ${size} ${
+              //         hovered && "hover:outline-pink-500 hover:outline "
+              //       }  relative ${shadowColor} ${shadow} ${borderType} `}
+              //       style={{
+              //         backgroundColor,
+              //         marginTop: `${marginTop}px`,
+              //         marginBottom: `${marginBottom}px`,
+              //         marginLeft: `${marginLeft}px`,
+              //         marginRight: `${marginRight}px`,
+              //         paddingTop: `${paddingTop}px`,
+              //         paddingBottom: `${paddingBottom}px`,
+              //         paddingLeft: `${paddingLeft}px`,
+              //         paddingRight: `${paddingRight}px`,
+              //         borderWidth: `${borderWidth}px`,
+              //         borderRadius: `${borderRadius}px`,
+              //         borderColor,
+              //       }}
+              //     >
+              //       <Text
+              //         alignment="center"
+              //         text={item.title}
+              //         fontSize={20}
+              //         bold="font-bold"
+              //         color="#000000"
+              //       />
+              //     </div>
+              //     <p
+              //       className={`text-gray-700 text-base font-bold mb-2 w-auto rounded overflow-hidden  h-auto ${size} ${
+              //         hovered && "hover:outline-pink-500 hover:outline "
+              //       }  relative ${shadowColor} ${shadow} ${borderType} `}
+              //       style={{
+              //         backgroundColor,
+              //         marginTop: `${marginTop}px`,
+              //         marginBottom: `${marginBottom}px`,
+              //         marginLeft: `${marginLeft}px`,
+              //         marginRight: `${marginRight}px`,
+              //         paddingTop: `${paddingTop}px`,
+              //         paddingBottom: `${paddingBottom}px`,
+              //         paddingLeft: `${paddingLeft}px`,
+              //         paddingRight: `${paddingRight}px`,
+              //         borderWidth: `${borderWidth}px`,
+              //         borderRadius: `${borderRadius}px`,
+              //         borderColor,
+              //       }}
+              //     >
+              //       <Text
+              //         alignment="center"
+              //         text={item.description}
+              //         fontSize={17}
+              //         bold="font-medium"
+              //         color="#000000"
+              //       />
+              //     </p>
+              //   </div>
+              // </div>
               <div
                 key={item.id}
-                className={`w-[45%] mx-1 my-2 rounded overflow-hidden shadow-lg h-[55vh] ${size} ${
-                  hovered && "hover:outline-pink-500 hover:outline "
-                }  relative ${shadowColor} ${shadow} ${borderType} `}
-                style={{
-                  backgroundColor,
-                  marginTop: `${marginTop}px`,
-                  marginBottom: `${marginBottom}px`,
-                  marginLeft: `${marginLeft}px`,
-                  marginRight: `${marginRight}px`,
-                  paddingTop: `${paddingTop}px`,
-                  paddingBottom: `${paddingBottom}px`,
-                  paddingLeft: `${paddingLeft}px`,
-                  paddingRight: `${paddingRight}px`,
-                  borderWidth: `${borderWidth}px`,
-                  borderRadius: `${borderRadius}px`,
-                  borderColor,
-                }}
+                className="carousel-item w-96 relative mx-2 p-0 card h-auto glass"
               >
-                {item.image}
-                <div className="px-6 py-4">
-                  <div
-                    className={`font-bold text-xl mb-2 w-auto rounded overflow-hidden h-auto ${size} ${
-                      hovered && "hover:outline-pink-500 hover:outline "
-                    }  relative ${shadowColor} ${shadow} ${borderType} `}
-                    style={{
-                      backgroundColor,
-                      marginTop: `${marginTop}px`,
-                      marginBottom: `${marginBottom}px`,
-                      marginLeft: `${marginLeft}px`,
-                      marginRight: `${marginRight}px`,
-                      paddingTop: `${paddingTop}px`,
-                      paddingBottom: `${paddingBottom}px`,
-                      paddingLeft: `${paddingLeft}px`,
-                      paddingRight: `${paddingRight}px`,
-                      borderWidth: `${borderWidth}px`,
-                      borderRadius: `${borderRadius}px`,
-                      borderColor,
-                    }}
-                  >
+                <div className="h-auto">{item.image}</div>
+                <div className="card-body">
+                  <h2 className="card-title">
                     <Text
-                      alignment="center"
+                      alignment="left"
                       text={item.title}
                       fontSize={20}
                       bold="font-bold"
                       color="#000000"
                     />
+                  </h2>
+                  <Text
+                    alignment="left"
+                    text={item.description}
+                    fontSize={15}
+                    bold="font-medium"
+                    color="#000000"
+                  />
+                  <div className="card-actions justify-start mt-2 p-0">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                      <Text
+                        alignment="left"
+                        text="Learn now!"
+                        fontSize={15}
+                        bold="font-bold"
+                        color="#ffffff"
+                      />
+                    </button>
                   </div>
-                  <p
-                    className={`text-gray-700 text-base font-bold mb-2 w-auto rounded overflow-hidden  h-auto ${size} ${
-                      hovered && "hover:outline-pink-500 hover:outline "
-                    }  relative ${shadowColor} ${shadow} ${borderType} `}
-                    style={{
-                      backgroundColor,
-                      marginTop: `${marginTop}px`,
-                      marginBottom: `${marginBottom}px`,
-                      marginLeft: `${marginLeft}px`,
-                      marginRight: `${marginRight}px`,
-                      paddingTop: `${paddingTop}px`,
-                      paddingBottom: `${paddingBottom}px`,
-                      paddingLeft: `${paddingLeft}px`,
-                      paddingRight: `${paddingRight}px`,
-                      borderWidth: `${borderWidth}px`,
-                      borderRadius: `${borderRadius}px`,
-                      borderColor,
-                    }}
-                  >
-                    <Text
-                      alignment="center"
-                      text={item.description}
-                      fontSize={17}
-                      bold="font-medium"
-                      color="#000000"
-                    />
-                  </p>
                 </div>
               </div>
             ))}
@@ -316,8 +357,10 @@ CardBanner.craft = {
     borderRadius: defaults.borderRadius,
     borderColor: defaults.borderColor,
     paddingRight: 10,
+    paddingTop: 10,
     paddingLeft: 10,
-    marginTop: 0,
+    paddingBottom: 10,
+    marginTop: 10,
     marginBottom: 0,
   },
   displayName: "CardBanner",

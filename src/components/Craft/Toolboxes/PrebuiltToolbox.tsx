@@ -18,6 +18,7 @@ import { WebTestimonial } from "../Templates/dentalTemplate/webTestimonial";
 import { CardBottomNew } from "../Templates/dentalTemplate/cardBottom";
 import { FooterWebs } from "../Templates/dentalTemplate/footer";
 import { Team } from "../Templates/dentalTemplate/team";
+import { ContactTemp } from "../Templates/dentalTemplate/contactUs";
 
 const tbStyles = {
   backgroundColor: "#fff",
@@ -166,6 +167,16 @@ const baseTools = [
           <PrebuiltToolsLayout
             toolName="Team layout"
             tool={<Team />}
+            image={require("@/../public/craft/hero.png")}
+          />
+        ),
+      },
+      {
+        name: "Contact layout",
+        tool: (
+          <PrebuiltToolsLayout
+            toolName="Contact layout"
+            tool={<ContactTemp />}
             image={require("@/../public/craft/hero.png")}
           />
         ),

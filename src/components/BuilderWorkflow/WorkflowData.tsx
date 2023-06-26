@@ -38,7 +38,7 @@ export default function HeaderComponent({ saveDraft }: any) {
         <header className="  w-full items-center relative z-10">
           <div className="flex flex-center flex-col h-full justify-center lg:mx-auto relative  text-white z-10">
             <div className="flex flex-wrap lg:flex-nowrap justify-between lg:justify-between items-center  relative w-full sm:ml-0 sm:pr-2  ">
-              <div className="flex justify-between items-center   md:pl-2 pr-5 py-1.5 rounded-md">
+              <div className="flex justify-between items-center   md:pl-2 pr-5 py-1.5 rounded-md w-[40%]">
                 <div
                   className={`flex items-center  pl-5  w-full justify-start`}
                 >
@@ -50,27 +50,28 @@ export default function HeaderComponent({ saveDraft }: any) {
                   </p>
                 </div>
               </div>
-
-              <p
-                contentEditable={true}
-                className={`lg:w-[30%] text-center mr-0 md:mr-0 ml-6 capitalize text-gray-300   text-base font-semibold  tracking-wide  `}
-              >
-                Contact based
-              </p>
-              <div className=" flex items-center justify-start lg:justify-end  lg:p-1     ">
+              <div className="flex justify-center w-[20%]">
                 <p
-                  className={`ml-3   text-gray-400 text-[10px] md:text-xs font-medium  tracking-wide  `}
+                  contentEditable={true}
+                  className={`  capitalize text-gray-300   text-base font-semibold  tracking-wide  `}
+                >
+                  Contact based
+                </p>
+              </div>
+              <div className=" flex items-center justify-start lg:justify-end  w-[40%]">
+                <p
+                  className={`ml-3   text-gray-400 text-[10px] md:text-[12px] font-medium  tracking-wide  `}
                 >
                   Last saved : Today at {moment().format("hh:mm a")}
                 </p>
                 <button
                   onClick={saveDraft}
-                  className="text-xs md:text-sm mx-3  text-gray-300 border-[1px] border-FontGray px-3 py-1.5 rounded-md"
+                  className="text-xs md:text-[12px] mx-2  text-gray-300 border-[1px] border-FontGray px-3 py-1.5 rounded-md"
                 >
                   Save as draft
                 </button>
 
-                <button className="mr-3 text-xs md:text-sm text-gray-300 font-medium bg-secondary px-3 py-1.5 rounded-md">
+                <button className="mr-1 text-xs md:text-[12px] text-gray-300 font-medium bg-secondary px-3 py-1.5 rounded-md">
                   Save & publish
                 </button>
               </div>

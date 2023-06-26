@@ -41,7 +41,7 @@ export default function PipeLine({ updateData, onClose, actionData }: any) {
         <form onSubmit={handleSubmit} className="flex flex-wrap px-2  ">
           <div className="w-full mt-4">
             <p className="w-full mb-2 text-sm text-gray-600 font-semibold fontStrawFord">
-              FilterPipeLine
+              Filter PipeLine
             </p>
 
             <ul className="pt-2 ">

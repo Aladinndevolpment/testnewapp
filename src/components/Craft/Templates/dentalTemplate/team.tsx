@@ -18,6 +18,7 @@ import {
 import { createElement, useState } from "react";
 import item from "@/components/Leads/dnd/styles/item";
 import { BiPhoneCall } from "react-icons/bi";
+import { imageConfigDefault } from "next/dist/shared/lib/image-config";
 
 const elementName = "Team";
 
@@ -96,29 +97,54 @@ export const Team = ({
 
   const people = [
     {
+      id: 1,
       name: "Leslie Alexander",
       role: "Co-Founder / CEO",
-      //   imageUrl: require("../../../../../public/images/dentalTemplate/teamperson1.avif"),
+      imageUrl: (
+        <BuilderImage
+          imageSrc={require("../../../../../public/images/dentalTemplate/teamperson1.avif")}
+        />
+      ),
     },
     {
+      id: 2,
       name: "Leslie Alexander",
       role: "Co-Founder / CEO",
-      //   imageUrl: require("../../../../../public/images/dentalTemplate/teamperson1.avif"),
+      imageUrl: (
+        <BuilderImage
+          imageSrc={require("../../../../../public/images/dentalTemplate/teamperson1.avif")}
+        />
+      ),
     },
     {
+      id: 3,
       name: "Leslie Alexander",
       role: "Co-Founder / CEO",
-      //   imageUrl: require("../../../../../public/images/dentalTemplate/teamperson1.avif"),
+      imageUrl: (
+        <BuilderImage
+          imageSrc={require("../../../../../public/images/dentalTemplate/teamperson1.avif")}
+        />
+      ),
     },
     {
+      id: 4,
       name: "Leslie Alexander",
       role: "Co-Founder / CEO",
-      //   imageUrl: require("../../../../../public/images/dentalTemplate/teamperson1.avif"),
+      imageUrl: (
+        <BuilderImage
+          imageSrc={require("../../../../../public/images/dentalTemplate/teamperson1.avif")}
+        />
+      ),
     },
     {
+      id: 5,
       name: "Leslie Alexander",
       role: "Co-Founder / CEO",
-      //   imageUrl: require("../../../../../public/images/dentalTemplate/teamperson1.avif"),
+      imageUrl: (
+        <BuilderImage
+          imageSrc={require("../../../../../public/images/dentalTemplate/teamperson1.avif")}
+        />
+      ),
     },
   ];
 
@@ -156,111 +182,77 @@ export const Team = ({
           </div>
         )}
         <Element id="TeamsText" is={TeamsText} canvas>
-          <div
-            className="bg-white py-24 sm:py-32 "
-            style={{
-              backgroundColor,
-              marginTop: `${marginTop}px`,
-              marginBottom: `${marginBottom}px`,
-              marginLeft: `${marginLeft}px`,
-              marginRight: `${marginRight}px`,
-              paddingTop: `${paddingTop}px`,
-              paddingBottom: `${paddingBottom}px`,
-              paddingLeft: `${paddingLeft}px`,
-              paddingRight: `${paddingRight}px`,
-              borderWidth: `${borderWidth}px`,
-              borderRadius: `${borderRadius}px`,
-              borderColor,
-            }}
-          >
-            <div
-              className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3 h-[50vh] shadow-lg"
-              style={{
-                backgroundColor,
-                marginTop: `${marginTop}px`,
-                marginBottom: `${marginBottom}px`,
-                marginLeft: `${marginLeft}px`,
-                marginRight: `${marginRight}px`,
-                paddingTop: `${paddingTop}px`,
-                paddingBottom: `${paddingBottom}px`,
-                paddingLeft: `${paddingLeft}px`,
-                paddingRight: `${paddingRight}px`,
-                borderWidth: `${borderWidth}px`,
-                borderRadius: `${borderRadius}px`,
-                borderColor,
-              }}
-            >
-              <div
-                className="max-w-2xl shadow-lg"
-                style={{
-                  backgroundColor,
-                  marginTop: `${marginTop}px`,
-                  marginBottom: `${marginBottom}px`,
-                  marginLeft: `${marginLeft}px`,
-                  marginRight: `${marginRight}px`,
-                  paddingTop: `${paddingTop}px`,
-                  paddingBottom: `${paddingBottom}px`,
-                  paddingLeft: `${paddingLeft}px`,
-                  paddingRight: `${paddingRight}px`,
-                  borderWidth: `${borderWidth}px`,
-                  borderRadius: `${borderRadius}px`,
-                  borderColor,
-                }}
-              >
-                <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                  <Text
-                    alignment="center"
-                    text="Meet our leadership"
-                    fontSize={25}
-                    bold="font-medium"
-                    color="#000000"
-                  />
-                </h2>
-                <p className="mt-6 text-lg leading-8 text-gray-600">
-                  <Text
-                    alignment="center"
-                    text=" Libero fames augue nisl porttitor nisi, quis. Id ac elit odio
-                    vitae elementum enim vitae ullamcorper suspendisse."
-                    fontSize={15}
-                    bold="font-medium"
-                    color="#000000"
-                  />
-                </p>
+          {/* <!-- ====== Team Section Start --> */}
+          <section className="pt-20 pb-10 lg:pt-[120px] lg:pb-20">
+            <div className="container mx-auto">
+              <div className="-mx-4 flex flex-wrap">
+                <div className="w-full px-4">
+                  <div className="mx-auto mb-[60px] max-w-[510px] text-center">
+                    <span className="text-primary mb-2 block text-lg font-semibold">
+                      <Text
+                        alignment="center"
+                        text="Our Team"
+                        fontSize={20}
+                        bold="font-bold"
+                        color="#0A92F8"
+                      />
+                    </span>
+                    <h2 className="text-dark mb-4 text-3xl font-bold sm:text-4xl md:text-[40px]">
+                      <Text
+                        alignment="center"
+                        text="Our Awesome Team"
+                        fontSize={28}
+                        bold="font-bold"
+                      />
+                    </h2>
+                    <p className="text-body-color text-base">
+                      <Text
+                        alignment="center"
+                        fontSize={16}
+                        text="There are many variations of passages of Lorem Ipsum
+                        available but the majority have suffered alteration in
+                        some form."
+                        bold="font-medium"
+                        color="#898B8C"
+                      />
+                    </p>
+                  </div>
+                </div>
               </div>
-              <ul
-                role="list"
-                className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2"
-              >
-                {people.map((person) => (
-                  <li key={person.name}>
-                    <div className="flex items-center gap-x-8">
-                      <BuilderImage width={10} height={10} borderRadius={5} />
-                      <div>
-                        <h3 className="text-base p-2 font-semibold leading-7 tracking-tight text-gray-900">
-                          <Text
-                            alignment="center"
-                            text={person.name}
-                            fontSize={15}
-                            bold="font-medium"
-                            color="#000000"
-                          />
-                        </h3>
-                        <p className="text-sm font-semibold leading-6 text-indigo-600">
-                          <Text
-                            alignment="center"
-                            text={person.role}
-                            fontSize={12}
-                            bold="font-medium"
-                            color="#000000"
-                          />
-                        </p>
+              <div className="carousel -mx-4 justify-center">
+                {people.map((item: any, index: number) => (
+                  <div
+                    className=" px-4 w-96 carousel-item relative"
+                    key={item.id}
+                  >
+                    <div className="mx-auto mb-10 w-full max-w-[370px]">
+                      <div className="relative overflow-hidden rounded-lg">
+                        {item.imageUrl}
+                        <div className="absolute bottom-5 left-0 w-full text-center">
+                          <div className="relative mx-5 overflow-hidden rounded-lg bg-white py-5 px-3">
+                            <h3 className="text-dark text-base font-semibold">
+                              <Text
+                                alignment="center"
+                                text={item.name}
+                                bold="font-bold"
+                              />
+                            </h3>
+                            <p className="text-body-color text-sm">
+                              <Text
+                                alignment="center"
+                                text={item.role}
+                                bold="font-medium"
+                              />
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </li>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
-          </div>
+          </section>
         </Element>
       </div>
     </div>

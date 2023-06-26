@@ -11,10 +11,7 @@ import Tiktok from "@/components/Settings/Integrations/tiktok";
 import SettingsSidebar from "@/components/SettingsSidebar/TeamsSidebar";
 import { GlobalContext } from "@/layouts/GlobalLayout";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/solid";
-import Image from "next/image";
-import Link from "next/link";
 import { useContext, useState } from "react";
-import { AiOutlineArrowRight } from "react-icons/ai";
 
 export default function Integrations() {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -41,6 +38,8 @@ export default function Integrations() {
   ];
   const [active, setActive] = useState(headerData[0]?.id);
 
+  const [comHeight, setComHeight] = useState(false);
+
   const cardData = [
     {
       title: "Connect your locations Google account",
@@ -49,7 +48,13 @@ export default function Integrations() {
       status: "C",
       slug: "/integrations/google",
       component: "",
-      main: <Google />,
+      main: (
+        <Google
+          handleHChange={() => {
+            setComHeight(true);
+          }}
+        />
+      ),
     },
     {
       title: "Facebook",
@@ -58,7 +63,13 @@ export default function Integrations() {
       status: "C",
       slug: "/integrations/facebook",
       component: "",
-      main: <Facebook />,
+      main: (
+        <Facebook
+          handleHChange={() => {
+            setComHeight(true);
+          }}
+        />
+      ),
     },
 
     {
@@ -133,7 +144,7 @@ export default function Integrations() {
           showSelectedComponent
             ? "bottom-0 opacity-100 z-50"
             : "-bottom-[20px] opacity-0 -z-10"
-        }  left-0 bg-black backdrop-blur-[5px] bg-opacity-20   h-screen w-full overflow-x-hidden flex items-center justify-center scrollbar-hide `}
+        }  left-0 bg-black backdrop-blur-[5px] bg-opacity-20 h-screen w-full overflow-x-hidden flex items-center justify-center scrollbar-hide `}
       >
         <div
           className={`relative z-50 bg-white  shadow-md rounded-xl w-[600px] `}
@@ -157,7 +168,7 @@ export default function Integrations() {
       </div>
 
       <div className="flex flex-wrap justify-center">
-        <div className="w-full lg:w-[25%] border-r-[1px]   bg-white">
+        <div className="w-full lg:w-[25%] border-r-[1px] bg-white">
           <SettingsSidebar />
         </div>
 
@@ -304,14 +315,21 @@ export default function Integrations() {
               </div>
             ))}
           </div> */}
-
           {/* final old code end */}
 
           {/* Old cards start */}
           <div className="flex  flex-wrap py-4 ml-3">
             {filteredData.map((item: any, index: any) => (
-              <div className="w-full md:w-1/2 lg:w-1/3 px-3 mb-8" key={index}>
-                {item.main}
+              <div className="w-full md:w-1/2 lg:w-1/3 px-3 mb-3" key={index}>
+                <div
+                  className={`${
+                    comHeight
+                      ? "h-[100vh] overflow-y-scroll scrollbar-hide"
+                      : "h-[50vh] 2xl:h-[44vh] border "
+                  } shadow shadow-gray-300 bg-white py-8 rounded-md `}
+                >
+                  {item.main}
+                </div>
               </div>
             ))}
           </div>
@@ -321,56 +339,56 @@ export default function Integrations() {
   );
 }
 
-// {
-//   /* <div className="flex  flex-wrap py-4 ml-2">
-//   {filteredData.map((item: any, index: any) => (
-//     <div className="w-full md:w-1/2 lg:w-1/3 px-5 mb-8" key={index}>
-//       <div
-//         className={` border-lightGray-300 bg-mainBg-50 border-2 pt-3 pb-2  rounded-lg`}
-//       >
-//         <div
-//           className={`border-lightGray-300  border-b-[1px]   flex justify-between items-center   px-4 pb-4 pt-1`}
-//         >
-//           <div className="flex  justify-start items-center">
-//             <Image
-//               src={item?.logo}
-//               alt=""
-//               className={`${
-//                 item.title == "NMI"
-//                   ? "w-12"
-//                   : item.title == "Authorize.Net"
-//                   ? "w-12"
-//                   : "w-6"
-//               } `}
-//             />
-//             <p
-//               className={`ml-4 capitalize text-dark   text-[16px] font-semibold  tracking-wide  `}
-//             >
-//               {item?.title}
-//             </p>
-//           </div>
-//         </div>
-//         <div
-//           onClick={() => {
-//             setSelectedComponent(item?.component);
-//             SetShowSelectedComponent(true);
-//             setSelectedIntegration(item?.title);
-//           }}
-//         >
-//           <div className="px-4 pt-3 pb-1 flex justify-between items-center">
-//             <p
-//               className={` capitalize text-newBlue text-[14px] font-semibold  tracking-wide  `}
-//             >
-//               View Integrations
-//             </p>
+{
+  /* <div className="flex  flex-wrap py-4 ml-2">
+  {filteredData.map((item: any, index: any) => (
+    <div className="w-full md:w-1/2 lg:w-1/3 px-5 mb-8" key={index}>
+      <div
+        className={` border-lightGray-300 bg-mainBg-50 border-2 pt-3 pb-2  rounded-lg`}
+      >
+        <div
+          className={`border-lightGray-300  border-b-[1px]   flex justify-between items-center   px-4 pb-4 pt-1`}
+        >
+          <div className="flex  justify-start items-center">
+            <Image
+              src={item?.logo}
+              alt=""
+              className={`${
+                item.title == "NMI"
+                  ? "w-12"
+                  : item.title == "Authorize.Net"
+                  ? "w-12"
+                  : "w-6"
+              } `}
+            />
+            <p
+              className={`ml-4 capitalize text-dark   text-[16px] font-semibold  tracking-wide  `}
+            >
+              {item?.title}
+            </p>
+          </div>
+        </div>
+        <div
+          onClick={() => {
+            setSelectedComponent(item?.component);
+            SetShowSelectedComponent(true);
+            setSelectedIntegration(item?.title);
+          }}
+        >
+          <div className="px-4 pt-3 pb-1 flex justify-between items-center">
+            <p
+              className={` capitalize text-newBlue text-[14px] font-semibold  tracking-wide  `}
+            >
+              View Integrations
+            </p>
 
-//             <button className="bg-gray-200 p-1 rounded-md h-8 w-8 flex justify-center items-center">
-//               <AiOutlineArrowRight className="text-dark h-5 w-5" />
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   ))}
-// </div>; */
-// }
+            <button className="bg-gray-200 p-1 rounded-md h-8 w-8 flex justify-center items-center">
+              <AiOutlineArrowRight className="text-dark h-5 w-5" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>; */
+}

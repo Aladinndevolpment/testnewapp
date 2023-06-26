@@ -22,13 +22,8 @@ export default function AdminSidebar() {
       <div
         className={`${
           router.asPath == "/calendar" ? "h-[90vh]" : "h-[90vh]"
-        }  fixed top-28 lg:top-0 left-0 pt-10 lg:pt-2 flex bg-white overflow-y-scroll scrollbar-hide flex-col justify-between   pl-0 w-[50%] md:w-[30%] lg:w-full  bg-auth shadow-md    lg:relative   z-40  ease-in-out duration-300 `}
+        }  fixed top-28 lg:top-0 left-0  flex bg-white overflow-y-scroll scrollbar-hide flex-col justify-between   pl-0 w-[50%] md:w-[30%] lg:w-full  bg-auth shadow-md    lg:relative   z-40  ease-in-out duration-300 `}
       >
-        {/* <div className="absolute block lg:hidden top-10 lg:top-5 right-10">
-          <button>
-            <XMarkIcon className="h-5 w-5" />
-          </button>
-        </div> */}
         <div className="w-full pt-0">
           {data.map((item, index) => (
             <div
@@ -99,7 +94,7 @@ export default function AdminSidebar() {
             </div>
           ))}
         </div>
-        <div className={`mb-4  pl-1 w-full py-1 `}>
+        <div className={`mb-10  pl-1 w-full py-1 `}>
           <Link href="/settings">
             <div
               onClick={() => ctx?.setOpen(false)}

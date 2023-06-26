@@ -27,6 +27,11 @@ import {
   IoChevronForward,
 } from "react-icons/io5";
 import Link from "next/link";
+import {
+  MdArrowDropDown,
+  MdArrowDropUp,
+  MdKeyboardArrowUp,
+} from "react-icons/md";
 export default function TopNavigation() {
   const router = useRouter();
   const ctx = useContext(GlobalContext);
@@ -61,6 +66,43 @@ export default function TopNavigation() {
               {/* <div className="w-[90%]">
                 <HeaderTitle />
               </div> */}
+              <div className="pl-4 w-5">
+                <div className="dropdown inline-block relative group w-[20vw]">
+                  <button className="bg-gray-200 text-gray-700 font-semibold py-1 px-4 rounded-lg  justify-between inline-flex items-center w-[80%]">
+                    <span className="mr-1">Support-Emerge</span>
+                    <div className="flex-col items-end justify-center pl-1">
+                      <MdArrowDropUp className="" />
+                      <MdArrowDropDown />
+                    </div>
+                  </button>
+                  <ul className="dropdown-menu absolute  text-gray-700 pt-1 hidden group-hover:block rounded-lg w-[80%]">
+                    <li className="">
+                      <a
+                        className="rounded-t bg-gray-200 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap"
+                        href="#"
+                      >
+                        Design Support
+                      </a>
+                    </li>
+                    <li className="">
+                      <a
+                        className="bg-gray-200 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap"
+                        href="#"
+                      >
+                        Admin Suppport
+                      </a>
+                    </li>
+                    <li className="">
+                      <a
+                        className="rounded-b bg-gray-200 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap"
+                        href="#"
+                      >
+                        Other Services
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
 

@@ -109,7 +109,7 @@ const Live = () => {
           <span className="text-red-500 text-sm">{errors.signatureKey}</span>
         )}
       </div>
-      <div>
+      <div className="flex justify-center items-center">
         {isReady ? (
           <button
             disabled
@@ -120,7 +120,7 @@ const Live = () => {
         ) : (
           <button
             type="submit"
-            className="bg-greenShade h-10 w-2/5 rounded-lg text-white"
+            className="  bg-greenShade h-10 w-2/5 rounded-lg text-white"
           >
             Save
           </button>

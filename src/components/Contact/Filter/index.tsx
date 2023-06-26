@@ -38,8 +38,41 @@ import LastAppointment from "./ContactActivity/LastAppointment";
 import Updated from "./ContactActivity/Updated";
 import WorkFlowActive from "./ContactActivity/WorkFlowActive";
 import WorkFlowFinished from "./ContactActivity/WorkFlowFinished";
-import Age from "./ContactActivity/Age";
-import PipeLine from "./ContactActivity/PipeLine";
+import Age from "./OpportunityInformation/Age";
+import PipeLine from "./OpportunityInformation/PipeLine";
+import PipeLineStage from "./OpportunityInformation/PipelineStage";
+import PipeLineStatus from "./OpportunityInformation/PipeLineStatus";
+import Offer from "./MemberShip/Offer";
+import Product from "./MemberShip/Product";
+import AttributionOccurence from "./Attribution/AttributionOccuence";
+import AttributionAdGroupId from "./Attribution/AttributionAdGroupId";
+import AttributionAdId from "./Attribution/AttributionAdId";
+import AttributionCampaign from "./Attribution/AttributionCampaign";
+import AttributionCampaignId from "./Attribution/AttributionCampaignId";
+import AttributionContent from "./Attribution/AttributionContent";
+import AttributionFbId from "./Attribution/AttributionFbId";
+import AttributionGoogleId from "./Attribution/AttributionGoogleId";
+import AttributionKeyword from "./Attribution/AttributionKeyword";
+import AttributionMatchType from "./Attribution/AttributionMatchType";
+import AttributionMedium from "./Attribution/AttributionMedium";
+import AttributionSessionSource from "./Attribution/AttributionSessionSource";
+import AttributionSource from "./Attribution/AttributionSource";
+import AttributionTeam from "./Attribution/AttributionTeam";
+import BeforeWe from "./CustomFields/BeforeWe";
+import PainAffecting from "./CustomFields/PainAffecting";
+import CancellationReason from "./CustomFields/CancellationReason";
+import PhysicalTherapist from "./CustomFields/PhysicalTherapist";
+import HearAboutUs from "./CustomFields/HearAboutUs";
+import ExperiencingPain from "./CustomFields/ExperiencingPain";
+import HowOld from "./CustomFields/HowOld";
+import UnbearablePain from "./CustomFields/UnbearablePain";
+import AppointmentTime from "./CustomFields/AppointmentTime";
+import IfYes from "./CustomFields/IfYes";
+import PainCause from "./CustomFields/PainCause";
+import TicketCompletedBy from "./CustomFields/TicketCompletedBy";
+import TicketStatus from "./CustomFields/TicketStatus";
+import AlleviatePain from "./CustomFields/alleviatePain";
+import PainType from "./CustomFields/PainType";
 
 export default function ContactFilter({ onClose, updateData }: any) {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -755,6 +788,674 @@ export default function ContactFilter({ onClose, updateData }: any) {
           link: "#",
           form: (
             <PipeLine
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Pipeline Stage ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <PipeLineStage
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+
+        {
+          title: "Pipeline Status ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <PipeLineStatus
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+      ],
+    },
+    {
+      title: "MemberShip",
+      subContent: [
+        {
+          title: "Offer ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <Offer
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Product ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <Product
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+      ],
+    },
+    {
+      title: "Attribution",
+      subContent: [
+        {
+          title: "Attribution (Occurence)",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <AttributionOccurence
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Attribution Ad Group Id",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <AttributionAdGroupId
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Attribution Ad Id",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <AttributionAdId
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Attribution Campaign",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <AttributionCampaign
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Attribution Campaign Id",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <AttributionCampaignId
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Attribution Content ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <AttributionContent
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Attribution FB ClickId ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <AttributionFbId
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Attribution Google ClickId ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <AttributionGoogleId
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Attribution Keyword ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <AttributionKeyword
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Attribution Match Type ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <AttributionMatchType
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Attribution Medium ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <AttributionMedium
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Attribution Session Source ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <AttributionSessionSource
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Attribution Source ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <AttributionSource
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+
+        {
+          title: "Attribution Team ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <AttributionTeam
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+      ],
+    },
+    {
+      title: "Custom Fields",
+      subContent: [
+        {
+          title:
+            "Before we forward, I wanted to let you know this clinic does accept both cash and insurance when it comes to any future treatments you may receive. Do you have an insurance carrier you'd like me to take note of ?",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <BeforeWe
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Birth Date",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <BirthDate
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title:
+            "Can you tell me a little more about how this pain is affecting you ?",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <PainAffecting
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Cancellation Reason ?",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <CancellationReason
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title:
+            "Have you seen a Physical Therapist/Chiropractor in the past ?",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <PhysicalTherapist
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "How did you hear about us ?",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <HearAboutUs
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "How long have you been experiencing pain ?",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <ExperiencingPain
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "How old are you ?",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <HowOld
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title:
+            "How UnbearablePain is this pain , on a scale of 1-5 ? 5 being the worst?",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <UnbearablePain
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title:
+            "I have just one last thing to ask before we confirm your Appointment time. That said, our doctors and staff are committed to helping people who are committed to bettering their health and wellness. Will you be able to commit to the time I schedule with you today?",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <AppointmentTime
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "If yes , How long ago",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <IfYes
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Is this pain caused by a chronic condition ? ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <PainCause
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Ticket Completed By  ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <TicketCompletedBy
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Ticket Status Completed As  ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <TicketStatus
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "What else have you tried to alleviate your pain ? ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <AlleviatePain
+              actionData={actionData}
+              onClose={() => {
+                setIsOpenModal(false);
+                onClose();
+              }}
+              updateData={(item: any) => {
+                setIsOpenModal(false);
+                updateData(item);
+                onClose();
+              }}
+            />
+          ),
+        },
+        {
+          title: "Where are you experiencing pain ? ",
+          icon: <ArrowsRightLeftIcon className="h-5 w-5 text-white" />,
+          link: "#",
+          form: (
+            <PainType
               actionData={actionData}
               onClose={() => {
                 setIsOpenModal(false);

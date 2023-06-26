@@ -109,7 +109,7 @@ const Sandbox = () => {
           <span className="text-red-500 text-sm">{errors.signatureKey}</span>
         )}
       </div>
-      <div>
+      <div className="flex justify-center items-center pb-6">
         {isReady ? (
           <button
             disabled

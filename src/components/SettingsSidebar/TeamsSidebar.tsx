@@ -87,9 +87,11 @@ export default function SettingsSidebar() {
       >
         <div className="pb-2.5 px-4 flex justify-start items-center w-full ">
           <div className=" h-8  items-between  px-1.5 py-2 bg-white border-[1px] border-lightGray rounded-md shadow-sm flex justify-center items-center">
-            <button onClick={() => handleChange()} className="">
-              <AiOutlineLeft className="h-5 w-5 text-newBlue hover:text-secondary duration-300" />
-            </button>
+            <Link href="/">
+              <div className="" onClick={() => ctx.setOpen(false)}>
+                <AiOutlineLeft className="h-5 w-5 text-newBlue hover:text-secondary duration-300" />
+              </div>
+            </Link>
           </div>
           <p
             className={`ml-3 capitalize text-dark   text-[16px] font-semibold  tracking-wide  `}

@@ -114,6 +114,11 @@ import {
   TeamsText,
 } from "@/components/Craft/Templates/dentalTemplate/team";
 import { NewNavBarLayout } from "@/components/Craft/Templates/dentalTemplate/newNavBar";
+import {
+  ContactTemp,
+  ContactTempsText,
+} from "@/components/Craft/Templates/dentalTemplate/contactUs";
+import { FaFacebook, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa";
 
 export const CraftContext = createContext({
   tools: "prebuilt",
@@ -140,6 +145,12 @@ export default function Craft() {
         <Editor
           resolver={{
             App,
+            FaFacebook,
+            FaTwitter,
+            FaYoutube,
+            FaLinkedin,
+            ContactTemp,
+            ContactTempsText,
             NewNavBarLayout,
             Team,
             TeamsText,

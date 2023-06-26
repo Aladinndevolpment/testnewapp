@@ -6,18 +6,15 @@ import TopNavigation from "./components/TopNavigation";
 import { TfiAngleLeft, TfiAngleRight } from "react-icons/tfi";
 import { useRouter } from "next/router";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
-
 interface IAdminLayoutProps {
   children: React.ReactNode;
 }
-
 export const GlobalContext = createContext({
   title: "en",
   setTitle: (string: string) => {},
   open: true,
   setOpen: (boolean: boolean) => {},
 });
-
 export default memo(function GlobalLayout({ children }: IAdminLayoutProps) {
   const [title, setTitle] = useState("Dashboard");
   const [open, setOpen] = useState(true);
@@ -69,7 +66,7 @@ export default memo(function GlobalLayout({ children }: IAdminLayoutProps) {
                 )}
               </button>
             </div>
-
+            ​
             <AdminSidebar />
           </div>
           <div

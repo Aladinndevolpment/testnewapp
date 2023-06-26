@@ -1,14 +1,16 @@
-import { XMarkIcon } from "@heroicons/react/24/solid";
+import { ChevronRightIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { MenuItem, Select } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import { useState } from "react";
+import { BsArrowRight } from "react-icons/bs";
 
 export default function Stripemain() {
   const [selectedComponent, setSelectedComponent] = useState(true);
   const [selectedIntegration, setSelectedIntegration] = useState(true);
   const [showSelectedComponent, SetShowSelectedComponent] = useState(false);
   const [stripe, selectedStripe] = useState("");
+  const [showLiveData, setShowLiveData] = useState<any>(false);
   const [show, setshow] = useState(false);
   const handleChange = ({ target }: any) => {
     selectedStripe(target.value);
@@ -34,14 +36,12 @@ export default function Stripemain() {
                 <XMarkIcon className="h-5 w-5 text-gray-600" />
               </button>
             </div>
-            {/* <div> {selectedComponent}</div> */}
-            <div className="w-full p-4">
+            {/* <div className="w-full p-4">
               <label className="block text-[#47494b] text-sm pt-1 font-semibold">
-                Which Business do you wnat to link to this location
+                Which Business do you wnasdsat to link to this location
               </label>
               <Select
                 name="businessLocation"
-                // value={formData.businessType}
                 onChange={handleChange}
                 className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
               >
@@ -55,13 +55,94 @@ export default function Stripemain() {
                   HealthSource Chiropractic of Arlington Matlock - Arlington, TX
                 </MenuItem>
               </Select>
+            </div> */}
 
-              {/* {errors.businessType && (
-                <span className="mb-3 text-red-500 text-xs">
-                  {errors.businessType}
-                </span>
-              )} */}
+            {/* new idea start*/}
+
+            <div className="pt-5 w-full bg-white text-center h-full mb-5">
+              <div className="pb-6 border-b border-gray-200">
+                <div className="items-center space-y-4">
+                  <Image
+                    src={require("../../../../../public/images/integrations/stripeFull.png")}
+                    alt=""
+                    className="w-40 m-auto"
+                  />
+                  <p className="font-bold"> Stripe </p>
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between items-center w-full px-4 pt-5">
+                  <div className="flex justify-start items-center">
+                    <div className="form-control mr-2">
+                      <input
+                        type="checkbox"
+                        className="checkbox checkbox-success rounded-full"
+                      />
+                    </div>
+                    <p className="font-medium text-gray-600 text-[15px] pb-0.5">
+                      Stripe live mode is enable
+                    </p>
+                  </div>
+                  <div onClick={() => setShowLiveData(!showLiveData)}>
+                    <ChevronRightIcon className="h-4 w-4 text-gray-600 " />
+                  </div>
+                </div>
+                <div className="w-full">
+                  {showLiveData && (
+                    <div
+                      className={`${showLiveData ? "block" : "hidden"}  w-full`}
+                    >
+                      <p> Here Live Data</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="pt-3 pb-6">
+                <div className="flex justify-between items-center w-full px-4 pt-2">
+                  <div className="flex justify-start items-center">
+                    <div className="form-control mr-2">
+                      <input
+                        type="checkbox"
+                        className="checkbox checkbox-success rounded-full"
+                      />
+                    </div>
+                    <p className="font-medium text-gray-600 text-[15px] pb-0.5">
+                      Stripe Test mode is enable
+                    </p>
+                  </div>
+                  <div onClick={() => setShowLiveData(!showLiveData)}>
+                    <ChevronRightIcon className="h-4 w-4 text-gray-600 " />
+                  </div>
+                </div>
+                <div className="w-full">
+                  {showLiveData && (
+                    <div
+                      className={`${showLiveData ? "block" : "hidden"}  w-full`}
+                    >
+                      <p> Here Live Data</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="flex space-x-3">
+                <div className="text-center pl-4">
+                  <input type="checkbox" className="toggle toggle-md " />
+                </div>
+                <p className="font-medium text-gray-600 text-[15px] pb-0.5">
+                  Enable Google Play and Apple Play
+                </p>
+              </div>
+              <div>
+                <button className="bg-red-200 h-12 w-[30%] rounded-lg text-red-600 mb-3 mt-6 font-bold">
+                  Disconnected
+                </button>
+              </div>
             </div>
+
+            {/* new idea end*/}
 
             <div className="flex justify-end">
               <div
@@ -83,7 +164,7 @@ export default function Stripemain() {
       </div>
 
       <div>
-        <div className="shadow shadow-gray-300 bg-white py-8 px-6 ">
+        <div className=" shadow-gray-300 bg-white pb-8 pt-3 px-6 rounded-md">
           <div className="flex justify-center items-center">
             <div className="bg-gray-200 rounded-full">
               <Image
@@ -99,118 +180,37 @@ export default function Stripemain() {
             <p className="text-[12px]">Stripe Account</p>
           </div>
 
-          <div className="p-4">
+          <div>
             {show ? (
-              <div>
-                {/* <div className="flex justify-center">
-                  <p className="text-sm text-center pt-2">{google}</p>
-                </div> */}
-                <div>
-                  <label className="block text-[#47494b] text-sm pt-1 font-semibold">
-                    Which Business do you wnat to link to this location
-                  </label>
-                  <Select
-                    name="businessLocation"
-                    // value={formData.businessType}
-                    onChange={handleChange}
-                    className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
-                  >
-                    <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                      HealthSource Chiropractic of Arlington Matlock -
-                      Arlington, TX
-                    </MenuItem>
-                    <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                      HealthSource Chiropractic of Arlington Matlock -
-                      Arlington, TX
-                    </MenuItem>
-                    <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                      HealthSource Chiropractic of Arlington Matlock -
-                      Arlington, TX
-                    </MenuItem>
-                  </Select>
-                </div>
-                <div>
-                  <label className="block text-[#47494b] text-sm pt-1 font-semibold">
-                    Which Business do you wnat to link to this location
-                  </label>
-                  <Select
-                    name="businessLocation"
-                    // value={formData.businessType}
-                    onChange={handleChange}
-                    className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
-                  >
-                    <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                      HealthSource Chiropractic of Arlington Matlock -
-                      Arlington, TX
-                    </MenuItem>
-                    <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                      HealthSource Chiropractic of Arlington Matlock -
-                      Arlington, TX
-                    </MenuItem>
-                    <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                      HealthSource Chiropractic of Arlington Matlock -
-                      Arlington, TX
-                    </MenuItem>
-                  </Select>
-                </div>
-
-                <div>
-                  <label className="block text-[#47494b] text-sm pt-1 font-semibold">
-                    Which Business do you wnat to link to this location
-                  </label>
-                  <Select
-                    name="businessLocation"
-                    // value={formData.businessType}
-                    onChange={handleChange}
-                    className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
-                  >
-                    <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                      HealthSource Chiropractic of Arlington Matlock -
-                      Arlington, TX
-                    </MenuItem>
-                    <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                      HealthSource Chiropractic of Arlington Matlock -
-                      Arlington, TX
-                    </MenuItem>
-                    <MenuItem value="HealthSource Chiropractic of Arlington Matlock - Arlington, TX">
-                      HealthSource Chiropractic of Arlington Matlock -
-                      Arlington, TX
-                    </MenuItem>
-                  </Select>
-                </div>
-              </div>
+              <div></div>
             ) : (
-              <div className="flex justify-center items-center pt-7">
-                <p className="text-[12px]">
-                  Connect your location&#39;s Google account
-                </p>
+              <div className="flex justify-center items-center text-[12px] pt-3 pb-3">
+                <p>Manage Stripe on Payments Integrations</p>
               </div>
             )}
           </div>
 
-          <div
-            onClick={() => {
-              setSelectedComponent(false);
-              SetShowSelectedComponent(true);
-              setSelectedIntegration(false);
-            }}
-            className="bg-green-600 xl:mx-20 rounded-md mt-2 cursor-pointer"
-          >
-            <p className="text-white text-center py-2 text-sm">Connect</p>
-          </div>
+          {!show ? (
+            <div
+              onClick={() => {
+                setSelectedComponent(false);
+                SetShowSelectedComponent(true);
+                setSelectedIntegration(false);
+              }}
+              className="bg-green-600 xl:mx-20 rounded-md mt-2 cursor-pointer"
+            >
+              <p className="text-white text-center py-2 text-sm">Connect</p>
+            </div>
+          ) : (
+            <button className="bg-green-50 w-full py-2 mt-2 text-green-400">
+              Connected!
+            </button>
+          )}
           <p className="text-[9px] pt-3">
             Manage Stripe Integration on payment Integration
             <span className="font-bold text-md"> &rarr; </span>
             Integrations
           </p>
-
-          <div className="pt-3">
-            <p className="text-[10px]">
-              To use instagrams DM&#39;s you need to connect your instagram
-              Account with a Facebook Page.
-              <span className="text-blue-500"> Learn more</span>
-            </p>
-          </div>
         </div>
       </div>
     </>
