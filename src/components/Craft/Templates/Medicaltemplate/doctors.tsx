@@ -20,7 +20,7 @@ import item from "@/components/Leads/dnd/styles/item";
 import { Card } from "@mui/material";
 import data from "@/layouts/GlobalLayout/components/data";
 
-const elementName = "CardBanner";
+const elementName = "Doctors";
 
 const defaults = {
   backgroundColor: "#ffffff",
@@ -28,7 +28,7 @@ const defaults = {
   borderRadius: 10,
 };
 
-interface ICardBannersProps extends ICommonSettingsProps {
+interface ICardDoctorsProps extends ICommonSettingsProps {
   size?: string;
   backgroundColor?: string;
   borderColor?: string;
@@ -52,7 +52,7 @@ CardImage.craft = {
   },
 };
 
-export const CardBannersText = ({ children }: any) => {
+export const DoctorsText = ({ children }: any) => {
   const {
     connectors: { connect },
   }: any = useNode();
@@ -63,7 +63,7 @@ export const CardBannersText = ({ children }: any) => {
   );
 };
 
-CardBannersText.craft = {
+DoctorsText.craft = {
   rules: {
     // Only accept Text
     canMoveIn: (incomingNodes: any) =>
@@ -71,7 +71,7 @@ CardBannersText.craft = {
   },
 };
 
-export const CardBanner = ({
+export const Doctors = ({
   size,
   backgroundColor = defaults.backgroundColor,
   borderRadius = defaults.borderRadius,
@@ -88,7 +88,7 @@ export const CardBanner = ({
   paddingRight = baseDefaults.paddingRight,
   shadow,
   shadowColor,
-}: ICardBannersProps) => {
+}: ICardDoctorsProps) => {
   const [cardSlide, setCardSlide] = useState<any>([]);
   const {
     connectors: { connect, drag },
@@ -179,7 +179,7 @@ export const CardBanner = ({
             {elementName}
           </div>
         )}
-        <Element id="CardBannersText" is={CardBannersText} canvas>
+        <Element id="DoctorsText" is={DoctorsText} canvas>
           <div
             className={`carousel  shadow-lg bg-gray-300 w-full h-auto ${size} mr-2 p-2 ${
               hovered && "hover:outline-pink-500 hover:outline "
@@ -284,7 +284,7 @@ export const CardBanner = ({
               >
                 <div className="h-auto">{item.image}</div>
                 <div className="card-body">
-                  <div className="card-title">
+                  <h2 className="card-title">
                     <Text
                       alignment="left"
                       text={item.title}
@@ -292,7 +292,7 @@ export const CardBanner = ({
                       bold="font-bold"
                       color="#000000"
                     />
-                  </div>
+                  </h2>
                   <Text
                     alignment="left"
                     text={item.description}
@@ -301,7 +301,15 @@ export const CardBanner = ({
                     color="#000000"
                   />
                   <div className="card-actions justify-start mt-2 p-0">
-                    <Button text="Learn More!" />
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                      <Text
+                        alignment="left"
+                        text="Learn now!"
+                        fontSize={15}
+                        bold="font-bold"
+                        color="#ffffff"
+                      />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -313,7 +321,7 @@ export const CardBanner = ({
   );
 };
 
-const CardBannersSettings = () => {
+const DoctorsSettings = () => {
   const {
     actions: { setProp },
     props,
@@ -329,19 +337,18 @@ const CardBannersSettings = () => {
   });
 
   const textNodeSettings =
-    state.nodes[state.nodes[data.linkedNodes["CardBannersText"]].data.nodes[0]]
+    state.nodes[state.nodes[data.linkedNodes["DoctorsText"]].data.nodes[0]]
       .related.settings;
   return (
     <div>
       <CommonSettings />
-
       {textNodeSettings && createElement(textNodeSettings)}
     </div>
   );
 };
-CardBanner.craft = {
+Doctors.craft = {
   related: {
-    settings: CardBannersSettings,
+    settings: DoctorsSettings,
   },
   props: {
     ...getCommonSettingsProps(),
@@ -352,8 +359,8 @@ CardBanner.craft = {
     paddingTop: 10,
     paddingLeft: 10,
     paddingBottom: 10,
-    marginTop: 0,
+    marginTop: 10,
     marginBottom: 0,
   },
-  displayName: elementName,
+  displayName: "Doctors",
 };

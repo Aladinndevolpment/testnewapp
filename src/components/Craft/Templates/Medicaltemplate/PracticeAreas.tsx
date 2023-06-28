@@ -17,8 +17,10 @@ import {
 } from "../../widgets/CommonSettings";
 import { createElement, useState } from "react";
 import item from "@/components/Leads/dnd/styles/item";
+import { Card } from "@mui/material";
+import data from "@/layouts/GlobalLayout/components/data";
 
-const elementName = "CardHeader";
+const elementName = "PracticeAreas";
 
 const defaults = {
   backgroundColor: "#ffffff",
@@ -26,7 +28,7 @@ const defaults = {
   borderRadius: 10,
 };
 
-interface ICardHeadersProps extends ICommonSettingsProps {
+interface PracticeAreasProps extends ICommonSettingsProps {
   size?: string;
   backgroundColor?: string;
   borderColor?: string;
@@ -50,7 +52,7 @@ CardImage.craft = {
   },
 };
 
-export const CardHeadersText = ({ children }: any) => {
+export const DoctorsText = ({ children }: any) => {
   const {
     connectors: { connect },
   }: any = useNode();
@@ -61,7 +63,7 @@ export const CardHeadersText = ({ children }: any) => {
   );
 };
 
-CardHeadersText.craft = {
+DoctorsText.craft = {
   rules: {
     // Only accept Text
     canMoveIn: (incomingNodes: any) =>
@@ -69,7 +71,7 @@ CardHeadersText.craft = {
   },
 };
 
-export const CardHeader = ({
+export const PracticeAreas = ({
   size,
   backgroundColor = defaults.backgroundColor,
   borderRadius = defaults.borderRadius,
@@ -86,14 +88,66 @@ export const CardHeader = ({
   paddingRight = baseDefaults.paddingRight,
   shadow,
   shadowColor,
-}: ICardHeadersProps) => {
+}: PracticeAreasProps) => {
+  const [cardSlide, setCardSlide] = useState<any>([]);
   const {
     connectors: { connect, drag },
     hovered,
   }: any = useNode((state) => ({ hovered: state.events.hovered }));
 
+  const cardItem = [
+    {
+      id: 1,
+      title: "Dental Services",
+      image: (
+        <BuilderImage
+          width={380}
+          imageSrc={require("../../../../../public/images/dentalTemplate/services1.jpg")}
+        />
+      ),
+      description:
+        "Globally harness multimedia based collaboration and idea haring with backend.",
+    },
+    {
+      id: 2,
+      title: "Dental Implants",
+      image: (
+        <BuilderImage
+          width={380}
+          imageSrc={require("../../../../../public/images/dentalTemplate/services2.jpg")}
+        />
+      ),
+      description:
+        "Dramatically disseminate standardized metrics after resource-leveling processes.",
+    },
+    {
+      id: 3,
+      title: "Surgery",
+      image: (
+        <BuilderImage
+          width={380}
+          imageSrc={require("../../../../../public/images/dentalTemplate/services3.jpg")}
+        />
+      ),
+      description:
+        "Proactively fabricate one-to-one materials via effective e-business.",
+    },
+    {
+      id: 4,
+      title: "Teeth Whitening",
+      image: (
+        <BuilderImage
+          width={380}
+          imageSrc={require("../../../../../public/images/dentalTemplate/services4.jpg")}
+        />
+      ),
+      description:
+        "Distinctively re-engineer revolutionary meta-services and premium architectures.",
+    },
+  ];
+
   return (
-    <div className="my-2 w-full" ref={(ref: any) => connect(drag(ref))}>
+    <div className="bg-white p-2 w-full" ref={(ref: any) => connect(drag(ref))}>
       {/* <div className="card card-compact w-full bg-base-100 shadow-xl">
         <div className="card-body">
           <Element id="heroImage" is={CardImage} canvas>
@@ -102,7 +156,7 @@ export const CardHeader = ({
         </div>
       </div> */}
       <div
-        className={`w-full h-auto ${size} mr-2 ${
+        className={`w-full h-auto ${size} mr-2  ${
           hovered && "hover:outline-pink-500 hover:outline "
         }  relative ${shadowColor} ${shadow} ${borderType} `}
         style={{
@@ -125,38 +179,37 @@ export const CardHeader = ({
             {elementName}
           </div>
         )}
-        <Element id="CardHeadersText" is={CardHeadersText} canvas>
-          <nav className="flex items-center justify-around flex-wrap  p-6 rounded">
-            {/* <Element id="" is="" canvas></Element> */}
-            <div className="flex items-center flex-shrink-0 text-white mr-2">
-              <Text
-                alignment="left"
-                text="Committed to"
-                fontSize={15}
-                bold="font-semibold"
-                color="#000000"
-              />
+        <Element id="DoctorsText" is={DoctorsText} canvas>
+          <div
+            className={`carousel  shadow-lg bg-gray-300 w-full h-auto ${size} mr-2 p-2 ${
+              hovered && "hover:outline-pink-500 hover:outline "
+            }  relative ${shadowColor} ${shadow} ${borderType} `}
+            style={{
+              backgroundColor,
+              marginTop: `${marginTop}px`,
+              marginBottom: `${10}px`,
+              marginLeft: `${marginLeft}px`,
+              marginRight: `${marginRight}px`,
+              paddingTop: `${paddingTop}px`,
+              paddingBottom: `${paddingBottom}px`,
+              paddingLeft: `${paddingLeft}px`,
+              paddingRight: `${paddingRight}px`,
+              borderWidth: `${borderWidth}px`,
+              borderRadius: `${borderRadius}px`,
+              borderColor,
+            }}
+          >
+            <div className="flex justify-center items-center">
+              <p className="text-blue-500 text-center">Our Departments</p>
             </div>
-            <div>
-              <Text
-                alignment="right"
-                text="Excellence"
-                fontSize={25}
-                bold="font-bold"
-                color="#F49A07"
-              />{" "}
-            </div>
-            <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto justify-end">
-              <Button text="View All Services" />
-            </div>
-          </nav>
+          </div>
         </Element>
       </div>
     </div>
   );
 };
 
-const CardHeadersSettings = () => {
+const DoctorsSettings = () => {
   const {
     actions: { setProp },
     props,
@@ -172,20 +225,18 @@ const CardHeadersSettings = () => {
   });
 
   const textNodeSettings =
-    state.nodes[state.nodes[data.linkedNodes["CardHeadersText"]].data.nodes[0]]
+    state.nodes[state.nodes[data.linkedNodes["DoctorsText"]].data.nodes[0]]
       .related.settings;
   return (
     <div>
       <CommonSettings />
-
       {textNodeSettings && createElement(textNodeSettings)}
     </div>
   );
 };
-
-CardHeader.craft = {
+PracticeAreas.craft = {
   related: {
-    settings: CardHeadersSettings,
+    settings: DoctorsSettings,
   },
   props: {
     ...getCommonSettingsProps(),
@@ -193,9 +244,11 @@ CardHeader.craft = {
     borderRadius: defaults.borderRadius,
     borderColor: defaults.borderColor,
     paddingRight: 10,
+    paddingTop: 10,
     paddingLeft: 10,
-    marginTop: 0,
+    paddingBottom: 10,
+    marginTop: 10,
     marginBottom: 0,
   },
-  displayName: elementName,
+  displayName: "Doctors",
 };

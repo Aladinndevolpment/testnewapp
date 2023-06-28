@@ -97,92 +97,21 @@ export const WebTestimonial = ({
   const cardItem = [
     {
       id: 1,
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M18 16.016c1.245.529 2 1.223 2 1.984 0 1.657-3.582 3-8 3s-8-1.343-8-3c0-.76.755-1.456 2-1.984"
-          />
-          <path
-            fill="currentColor"
-            fill-rule="evenodd"
-            d="M11.262 17.675 12 17l-.738.675zm1.476 0 .005-.005.012-.014.045-.05.166-.186a38.19 38.19 0 0 0 2.348-2.957c.642-.9 1.3-1.92 1.801-2.933.49-.99.885-2.079.885-3.086C18 4.871 15.382 2 12 2S6 4.87 6 8.444c0 1.007.395 2.096.885 3.086.501 1.013 1.16 2.033 1.8 2.933a38.153 38.153 0 0 0 2.515 3.143l.045.05.012.014.005.005a1 1 0 0 0 1.476 0zM12 17l.738.674L12 17zm0-11a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"
-            clip-rule="evenodd"
-          />
-        </svg>
+
+      title: "Our Happy Customers",
+      subTitle: "Our Awesome Feedback",
+      Image: (
+        <BuilderImage
+          height={50}
+          width={50}
+          borderRadius={50}
+          imageSrc={require("../../../../../public/images/avatar/yellowdog.jpg")}
+        />
       ),
-      title: "Emergency Phone",
-      description: "415-205-5550 <br> Call us Anytime 24/7",
-    },
-    {
-      id: 2,
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M18 16.016c1.245.529 2 1.223 2 1.984 0 1.657-3.582 3-8 3s-8-1.343-8-3c0-.76.755-1.456 2-1.984"
-          />
-          <path
-            fill="currentColor"
-            fill-rule="evenodd"
-            d="M11.262 17.675 12 17l-.738.675zm1.476 0 .005-.005.012-.014.045-.05.166-.186a38.19 38.19 0 0 0 2.348-2.957c.642-.9 1.3-1.92 1.801-2.933.49-.99.885-2.079.885-3.086C18 4.871 15.382 2 12 2S6 4.87 6 8.444c0 1.007.395 2.096.885 3.086.501 1.013 1.16 2.033 1.8 2.933a38.153 38.153 0 0 0 2.515 3.143l.045.05.012.014.005.005a1 1 0 0 0 1.476 0zM12 17l.738.674L12 17zm0-11a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"
-            clip-rule="evenodd"
-          />
-        </svg>
-      ),
-      title: "Address",
       description:
-        "500 Linden Ave, South San Francisco, CA 94080, United States",
-    },
-    {
-      id: 3,
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M18 16.016c1.245.529 2 1.223 2 1.984 0 1.657-3.582 3-8 3s-8-1.343-8-3c0-.76.755-1.456 2-1.984"
-          />
-          <path
-            fill="currentColor"
-            fill-rule="evenodd"
-            d="M11.262 17.675 12 17l-.738.675zm1.476 0 .005-.005.012-.014.045-.05.166-.186a38.19 38.19 0 0 0 2.348-2.957c.642-.9 1.3-1.92 1.801-2.933.49-.99.885-2.079.885-3.086C18 4.871 15.382 2 12 2S6 4.87 6 8.444c0 1.007.395 2.096.885 3.086.501 1.013 1.16 2.033 1.8 2.933a38.153 38.153 0 0 0 2.515 3.143l.045.05.012.014.005.005a1 1 0 0 0 1.476 0zM12 17l.738.674L12 17zm0-11a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"
-            clip-rule="evenodd"
-          />
-        </svg>
-      ),
-      title: "Book By Phone",
-      description: "415-205-5550 <br> 405-222-5551",
-    },
-    {
-      id: 4,
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M18 16.016c1.245.529 2 1.223 2 1.984 0 1.657-3.582 3-8 3s-8-1.343-8-3c0-.76.755-1.456 2-1.984"
-          />
-          <path
-            fill="currentColor"
-            fill-rule="evenodd"
-            d="M11.262 17.675 12 17l-.738.675zm1.476 0 .005-.005.012-.014.045-.05.166-.186a38.19 38.19 0 0 0 2.348-2.957c.642-.9 1.3-1.92 1.801-2.933.49-.99.885-2.079.885-3.086C18 4.871 15.382 2 12 2S6 4.87 6 8.444c0 1.007.395 2.096.885 3.086.501 1.013 1.16 2.033 1.8 2.933a38.153 38.153 0 0 0 2.515 3.143l.045.05.012.014.005.005a1 1 0 0 0 1.476 0zM12 17l.738.674L12 17zm0-11a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"
-            clip-rule="evenodd"
-          />
-        </svg>
-      ),
-      title: "Email Us",
-      description: "example@example.com <br> example@example.com",
+        '"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias molestiae Numquam corrupti in laborum sed rerum et corporis."',
+      fullName: "Judith Black",
+      role: "CEO of Workcation",
     },
   ];
 
@@ -220,170 +149,194 @@ export const WebTestimonial = ({
           </div>
         )}
         <Element id="WebTestimonialsText" is={WebTestimonialsText} canvas>
-          <section className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-8 lg:px-8 shadow-lg">
-            <div className="absolute inset-0 -z-10 bg-white opacity-20 shadow-lg" />
+          <section className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-8 lg:px-8 shadow-lg flex-col justify-center items-center">
             {/* <div className="absolute  mr-16 w-[200%] origin-bottom-left  bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" /> */}
-            <div className="mx-auto max-w-2xl lg:max-w-4xl">
-              <figure className="mt-10">
-                <blockquote className="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
-                  <p
-                    className={`   w-full h-auto ${size} mr-2 ${
-                      hovered && "hover:outline-pink-500 hover:outline "
-                    }  relative ${shadowColor} ${shadow} ${borderType}`}
-                    style={{
-                      backgroundColor: "#ffffff",
-                      marginTop: `${marginTop}px`,
-                      marginBottom: `${marginBottom}px`,
-                      marginLeft: `${marginLeft}px`,
-                      marginRight: `${marginRight}px`,
-                      paddingTop: `${paddingTop}px`,
-                      paddingBottom: `${paddingBottom}px`,
-                      paddingLeft: `${paddingLeft}px`,
-                      paddingRight: `${paddingRight}px`,
-                      borderWidth: `${borderWidth}px`,
-                      borderRadius: `2px`,
-                      borderColor,
-                    }}
-                  >
-                    <Text
-                      paddingLeft={10}
-                      paddingBottom={10}
-                      paddingTop={10}
-                      alignment="center"
-                      text='"Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Nemo expedita voluptas culpa sapiente alias molestiae.
-                      Numquam corrupti in laborum sed rerum et corporis."'
-                      fontSize={18}
-                      bold="font-medium"
-                      color="#000000"
-                      backgroundColor="#ffffff"
-                    />
-                  </p>
-                </blockquote>
-                <figcaption className="mt-10">
-                  <div
-                    className={` flex justify-center w-full h-auto ${size} mr-2 ${
-                      hovered && "hover:outline-pink-500 hover:outline "
-                    }  relative ${shadowColor} ${shadow} ${borderType}`}
-                    style={{
-                      backgroundColor: "#ffffff",
-                      marginTop: `${marginTop}px`,
-                      marginBottom: `${marginBottom}px`,
-                      marginLeft: `${marginLeft}px`,
-                      marginRight: `${marginRight}px`,
-                      paddingTop: `${paddingTop}px`,
-                      paddingBottom: `${paddingBottom}px`,
-                      paddingLeft: `${paddingLeft}px`,
-                      paddingRight: `${paddingRight}px`,
-                      borderWidth: `${borderWidth}px`,
-                      borderRadius: `100px`,
-                      borderColor,
-                    }}
-                  >
-                    {/* <img
+            {cardItem.map((item: any, index: number) => (
+              <div key={item.id}>
+                <div className="-mx-4 flex flex-wrap h-[30%]">
+                  <div className="w-full px-4">
+                    <div className="mx-auto mb-[60px] max-w-[510px] text-center">
+                      <span className="text-primary mb-2 block text-lg font-semibold">
+                        <Text
+                          alignment="center"
+                          text={item.title}
+                          fontSize={20}
+                          bold="font-bold"
+                          color="#0A92F8"
+                        />
+                      </span>
+                      <div className="text-dark text-3xl font-bold sm:text-4xl md:text-[40px]">
+                        <Text
+                          alignment="center"
+                          text={item.subTitle}
+                          fontSize={28}
+                          bold="font-bold"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="flex rounded-full ring-2 ring-white object-cover absolute left-[45%]"
+                  style={{
+                    backgroundColor: "#ffffff",
+                    marginTop: `${marginTop}px`,
+                    marginBottom: `${10}px`,
+                    marginLeft: `${marginLeft}px`,
+                    marginRight: `${marginRight}px`,
+                    paddingTop: `${paddingTop}px`,
+                    paddingBottom: `${paddingBottom}px`,
+                    paddingLeft: `${paddingLeft}px`,
+                    paddingRight: `${paddingRight}px`,
+                    borderWidth: `${borderWidth}px`,
+                    borderRadius: `100px`,
+                    borderColor,
+                  }}
+                >
+                  {item.Image}
+                </div>
+                <div className="mx-auto max-w-2xl lg:max-w-4xl">
+                  <figure className="mt-10">
+                    <blockquote className="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
+                      <div
+                        className={`   w-full h-auto ${size} mr-2 ${
+                          hovered && "hover:outline-pink-500 hover:outline "
+                        }  relative ${shadowColor} ${shadow} ${borderType}`}
+                        style={{
+                          backgroundColor: "#ffffff",
+                          marginTop: `${marginTop}px`,
+                          marginBottom: `${marginBottom}px`,
+                          marginLeft: `${marginLeft}px`,
+                          marginRight: `${marginRight}px`,
+                          paddingTop: `${paddingTop}px`,
+                          paddingBottom: `${paddingBottom}px`,
+                          paddingLeft: `${paddingLeft}px`,
+                          paddingRight: `${paddingRight}px`,
+                          borderWidth: `${borderWidth}px`,
+                          borderRadius: `2px`,
+                          borderColor,
+                        }}
+                      >
+                        <Text
+                          paddingLeft={10}
+                          paddingBottom={10}
+                          paddingTop={10}
+                          alignment="center"
+                          text={item.description}
+                          fontSize={18}
+                          bold="font-medium"
+                          color="#000000"
+                          backgroundColor="#ffffff"
+                        />
+                      </div>
+                    </blockquote>
+                    <figcaption className="mt-10">
+                      <div
+                        className={` flex justify-center w-full h-auto ${size} mr-2 ${
+                          hovered && "hover:outline-pink-500 hover:outline "
+                        }  relative ${shadowColor} ${shadow} ${borderType}`}
+                        style={{
+                          backgroundColor: "#ffffff",
+                          marginTop: `${marginTop}px`,
+                          marginBottom: `${marginBottom}px`,
+                          marginLeft: `${marginLeft}px`,
+                          marginRight: `${marginRight}px`,
+                          paddingTop: `${paddingTop}px`,
+                          paddingBottom: `${paddingBottom}px`,
+                          paddingLeft: `${paddingLeft}px`,
+                          paddingRight: `${paddingRight}px`,
+                          borderWidth: `${borderWidth}px`,
+                          borderRadius: `100px`,
+                          borderColor,
+                        }}
+                      >
+                        {/* <img
                       className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
                       src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                       alt=""
                     /> */}
-                    <div
-                      className="inline-block h-10 w-10 rounded-full ring-2 ring-white object-cover justify-center"
-                      style={{
-                        backgroundColor: "#ffffff",
-                        marginTop: `${marginTop}px`,
-                        marginBottom: `${marginBottom}px`,
-                        marginLeft: `${marginLeft}px`,
-                        marginRight: `${marginRight}px`,
-                        paddingTop: `${paddingTop}px`,
-                        paddingBottom: `${paddingBottom}px`,
-                        paddingLeft: `${paddingLeft}px`,
-                        paddingRight: `${paddingRight}px`,
-                        borderWidth: `${borderWidth}px`,
-                        borderRadius: `100px`,
-                        borderColor,
-                      }}
-                    >
-                      <BuilderImage height={50} width={50} borderRadius={50} />
-                    </div>
-                  </div>
-                  <div className="mt-3 flex items-center justify-center space-x-3 text-base">
-                    <div
-                      className={`   w-full h-auto ${size} mr-2 ${
-                        hovered && "hover:outline-pink-500 hover:outline "
-                      }  relative ${shadowColor} ${shadow} ${borderType}`}
-                      style={{
-                        backgroundColor: "#ffffff",
-                        marginTop: `${marginTop}px`,
-                        marginBottom: `${marginBottom}px`,
-                        marginLeft: `${marginLeft}px`,
-                        marginRight: `${marginRight}px`,
-                        paddingTop: `${paddingTop}px`,
-                        paddingBottom: `${paddingBottom}px`,
-                        paddingLeft: `${paddingLeft}px`,
-                        paddingRight: `${paddingRight}px`,
-                        borderWidth: `${borderWidth}px`,
-                        borderRadius: `2px`,
-                        borderColor,
-                      }}
-                    >
-                      <Text
-                        paddingLeft={10}
-                        paddingBottom={10}
-                        paddingTop={10}
-                        alignment="right"
-                        text="Judith Black"
-                        fontSize={17}
-                        bold="font-semibold"
-                        color="#000000"
-                        backgroundColor="#ffffff"
-                      />
-                    </div>
-                    <div>
-                      <svg
-                        viewBox="0 0 2 2"
-                        width={3}
-                        height={3}
-                        aria-hidden="true"
-                        className="fill-gray-900"
-                      >
-                        <circle cx={1} cy={1} r={1} />
-                      </svg>
-                    </div>
-                    <div
-                      className={`  ml-2 w-full h-auto ${size} mr-2 ${
-                        hovered && "hover:outline-pink-500 hover:outline "
-                      }  relative ${shadowColor} ${shadow} ${borderType}`}
-                      style={{
-                        backgroundColor: "#ffffff",
-                        marginTop: `${marginTop}px`,
-                        marginBottom: `${marginBottom}px`,
-                        marginLeft: `${marginLeft}px`,
-                        marginRight: `${marginRight}px`,
-                        paddingTop: `${paddingTop}px`,
-                        paddingBottom: `${paddingBottom}px`,
-                        paddingLeft: `${paddingLeft}px`,
-                        paddingRight: `${paddingRight}px`,
-                        borderWidth: `${borderWidth}px`,
-                        borderRadius: `2px`,
-                        borderColor,
-                      }}
-                    >
-                      <Text
-                        paddingLeft={10}
-                        paddingBottom={10}
-                        paddingTop={10}
-                        alignment="left"
-                        text="CEO of Workcation"
-                        fontSize={12}
-                        mobileFontSize={20}
-                        bold="font-normal"
-                        color="#000000"
-                        backgroundColor="#ffffff"
-                      />
-                    </div>
-                  </div>
-                </figcaption>
-              </figure>
-            </div>
+                      </div>
+                      <div className="mt-3 flex items-center justify-center space-x-3 text-base">
+                        <div
+                          className={`   w-full h-auto ${size} mr-2 ${
+                            hovered && "hover:outline-pink-500 hover:outline "
+                          }  relative ${shadowColor} ${shadow} ${borderType}`}
+                          style={{
+                            backgroundColor: "#ffffff",
+                            marginTop: `${marginTop}px`,
+                            marginBottom: `${marginBottom}px`,
+                            marginLeft: `${marginLeft}px`,
+                            marginRight: `${marginRight}px`,
+                            paddingTop: `${paddingTop}px`,
+                            paddingBottom: `${paddingBottom}px`,
+                            paddingLeft: `${paddingLeft}px`,
+                            paddingRight: `${paddingRight}px`,
+                            borderWidth: `${borderWidth}px`,
+                            borderRadius: `2px`,
+                            borderColor,
+                          }}
+                        >
+                          <Text
+                            paddingLeft={10}
+                            paddingBottom={10}
+                            paddingTop={10}
+                            alignment="right"
+                            text={item.fullName}
+                            fontSize={17}
+                            bold="font-semibold"
+                            color="#000000"
+                            backgroundColor="#ffffff"
+                          />
+                        </div>
+                        <div>
+                          <svg
+                            viewBox="0 0 2 2"
+                            width={3}
+                            height={3}
+                            aria-hidden="true"
+                            className="fill-gray-900"
+                          >
+                            <circle cx={1} cy={1} r={1} />
+                          </svg>
+                        </div>
+                        <div
+                          className={`  ml-2 w-full h-auto ${size} mr-2 ${
+                            hovered && "hover:outline-pink-500 hover:outline "
+                          }  relative ${shadowColor} ${shadow} ${borderType}`}
+                          style={{
+                            backgroundColor: "#ffffff",
+                            marginTop: `${marginTop}px`,
+                            marginBottom: `${marginBottom}px`,
+                            marginLeft: `${marginLeft}px`,
+                            marginRight: `${marginRight}px`,
+                            paddingTop: `${paddingTop}px`,
+                            paddingBottom: `${paddingBottom}px`,
+                            paddingLeft: `${paddingLeft}px`,
+                            paddingRight: `${paddingRight}px`,
+                            borderWidth: `${borderWidth}px`,
+                            borderRadius: `2px`,
+                            borderColor,
+                          }}
+                        >
+                          <Text
+                            paddingLeft={10}
+                            paddingBottom={10}
+                            paddingTop={10}
+                            alignment="left"
+                            text={item.role}
+                            fontSize={12}
+                            mobileFontSize={20}
+                            bold="font-normal"
+                            color="#000000"
+                            backgroundColor="#ffffff"
+                          />
+                        </div>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </div>
+              </div>
+            ))}
           </section>
         </Element>
       </div>

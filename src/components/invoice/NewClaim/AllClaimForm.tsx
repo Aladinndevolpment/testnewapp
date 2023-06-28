@@ -515,8 +515,8 @@ const AllClaimsForm = ({ handleStoreChange }: any) => {
             </button>
           </div>
           {formData?.insurance.map((item: any, index: number) => (
-            <>
-              <div key={index} className="px-4 flex flex-wrap pb-6 ">
+            <div className="border-b" key={index}>
+              <div className="px-4 flex flex-wrap pb-6 ">
                 <div className="w-full mb-2">
                   <label className="block text-[#47494b] text-sm pt-1 font-semibold">
                     Primary Insurance
@@ -668,7 +668,7 @@ const AllClaimsForm = ({ handleStoreChange }: any) => {
               ) : (
                 ""
               )}
-            </>
+            </div>
           ))}
         </div>
 

@@ -36,6 +36,7 @@ import { MdPhoneCallback } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { baseUrl } from "@/config/APIConstants";
 
 interface IContactsTableProps {
   contactsData: IContact[];
@@ -52,7 +53,7 @@ async function addContactToServer(
       console.log("Doing this for tag: " + addContactData.tags[i].tagID);
       if (addContactData.tags[i].tagID !== "-1") continue;
       const tagResult = await axios.post(
-        "/api/tags",
+        baseUrl + "tags",
         {
           locationID: process.env.NEXT_PUBLIC_LOCATION_ID,
           content: addContactData.tags[i].content,
@@ -65,7 +66,6 @@ async function addContactToServer(
           },
         }
       );
-
       console.log(tagResult);
       addContactData.tags[i].tagID = tagResult.data.tagID;
     }
@@ -663,6 +663,26 @@ export default function ContactsTable({ contactsData }: IContactsTableProps) {
                 columnPinning: {
                   left: ["lead_name"],
                 },
+              }}
+              muiTablePaginationProps={{
+                labelRowsPerPage: "Showing",
+                showFirstButton: false,
+                showLastButton: false,
+                SelectProps: {
+                  native: true,
+                },
+                rowsPerPageOptions: [10, 50, 100, 200],
+              }}
+              muiSearchTextFieldProps={{
+                sx: {
+                  minWidth: "400px",
+                  marginTop: "5px",
+                  marginBottom: "10px",
+                  padding: "1px",
+                  paddingTop: "2px",
+                  paddingBottom: "2px",
+                },
+                variant: "outlined",
               }}
               positionPagination="top"
               enableToolbarInternalActions={false}

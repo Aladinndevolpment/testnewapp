@@ -91,14 +91,14 @@ export default function Template() {
     BoardsError: null,
   });
 
-  const handleCheck = () => {
-    if (workFlowData == null) {
-      setErrors((e: any) => ({
-        ...e,
-        workFlowTypeError: "Please select workflow type",
-      }));
-    }
-  };
+  // const handleCheck = () => {
+  //   if (workFlowData == null) {
+  //     setErrors((e: any) => ({
+  //       ...e,
+  //       workFlowTypeError: "Please select workflow type",
+  //     }));
+  //   }
+  // };
 
   return (
     <div>
@@ -116,7 +116,7 @@ export default function Template() {
               </div>
             </Link>
             <p className="mt-2 text-base font-semibold text-gray-700">
-              New Survey Template
+              New Website Template
             </p>
           </div>
 
@@ -144,10 +144,6 @@ export default function Template() {
                   key={index}
                   onClick={() => {
                     setWorkFlowData(item?.title);
-                    setErrors((e: any) => ({
-                      ...e,
-                      workFlowTypeError: null,
-                    }));
                   }}
                   className={` ${
                     workFlowData == item?.title
@@ -165,17 +161,34 @@ export default function Template() {
                 </li>
               ))}
             </ul>
-
-            <p className="text-red-500 text-xs pl-4">
-              {errors.workFlowTypeError}
-            </p>
           </div>
         </div>
         <div className="w-full lg:w-[75%]  bg-mainBg h-[100vh] scrollbar-hide  ">
           <div className="flex flex-wrap px-4 py-5">
             {newData.map((item, index) => (
               <>
-                {workFlowData == null ? (
+                <Link
+                  key={index}
+                  href="/builder/survey/craft"
+                  className="w-full md:w-1/2 lg:w-1/3 px-3 cursor-pointer"
+                >
+                  <div className="border-[1px] border-gray-100 hover:border-2 hover:border-newBlue bg-white shadow-md mb-4 py-2 px-2 rounded-lg">
+                    <figure className="bg-mainBg px-4 py-2 flex justify-center items-center">
+                      <Image src={item.image} alt="" />
+                    </figure>
+                    <p
+                      className={` mt-3 capitalize text-dark text-base font-semibold mb-1 tracking-wide  `}
+                    >
+                      {item?.title}
+                    </p>
+                    <p
+                      className={`  mb-3 text-gray-600 text-xs font-normal  tracking-wide  `}
+                    >
+                      {item?.paragraph}
+                    </p>
+                  </div>
+                </Link>
+                {/* {workFlowData == null ? (
                   <div
                     key={index}
                     onClick={handleCheck}
@@ -198,29 +211,8 @@ export default function Template() {
                     </div>
                   </div>
                 ) : (
-                  // eslint-disable-next-line @next/next/no-html-link-for-pages
-                  <a
-                    key={index}
-                    href="/builder/survey/craft"
-                    className="w-full md:w-1/2 lg:w-1/3 px-3 cursor-pointer"
-                  >
-                    <div className="border-[1px] border-gray-100 hover:border-2 hover:border-newBlue bg-white shadow-md mb-4 py-2 px-2 rounded-lg">
-                      <figure className="bg-mainBg px-4 py-2 flex justify-center items-center">
-                        <Image src={item.image} alt="" />
-                      </figure>
-                      <p
-                        className={` mt-3 capitalize text-dark text-base font-semibold mb-1 tracking-wide  `}
-                      >
-                        {item?.title}
-                      </p>
-                      <p
-                        className={`  mb-3 text-gray-600 text-xs font-normal  tracking-wide  `}
-                      >
-                        {item?.paragraph}
-                      </p>
-                    </div>
-                  </a>
-                )}
+                  <p>oksc</p>
+                )} */}
               </>
             ))}
           </div>

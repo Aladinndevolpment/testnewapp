@@ -1,7 +1,18 @@
 import { PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import React, { useState, MouseEventHandler, useCallback, useEffect } from "react";
+import React, {
+  useState,
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+} from "react";
 import MobileNo from "../../UI/MobileNo";
-import { IAddContactData, EContactType, IContactTag, IContactLeadSource, IOwner } from "../Interfaces";
+import {
+  IAddContactData,
+  EContactType,
+  IContactTag,
+  IContactLeadSource,
+  IOwner,
+} from "../Interfaces";
 import TagSelect from "@/components/controls/TagSelect";
 import LeadSourceSelect from "@/components/controls/LeadSourceSelect";
 import OwnerSelect from "@/components/controls/OwnerSelect";
@@ -48,23 +59,31 @@ export default function AddContact({
       setFormData((prevValues: any) => ({
         ...prevValues,
         emailAddress: value,
-      }))
-      if (formData.emailAddress.trim() && new RegExp(/\S+@\S+\.\S+/).test(formData.emailAddress)) {
+      }));
+      if (
+        formData.emailAddress.trim() &&
+        new RegExp(/\S+@\S+\.\S+/).test(formData.emailAddress)
+      ) {
         setErrors({ ...errors, emailAddress: "" });
       }
     } else if (name === "phoneNumber") {
       setFormData((prevValues: any) => ({
         ...prevValues,
         phoneNumber: value,
-      }))
-      if (formData.phoneNumber.trim() && new RegExp(/^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/).test(formData.phoneNumber)) {
+      }));
+      if (
+        formData.phoneNumber.trim() &&
+        new RegExp(/^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/).test(
+          formData.phoneNumber
+        )
+      ) {
         setErrors({ ...errors, phoneNumber: "" });
       }
     } else if (name === "status") {
       setFormData((prevValues: any) => ({
         ...prevValues,
         status: value,
-      }))
+      }));
       if (formData.status.trim()) {
         setErrors({ ...errors, status: "" });
       }
@@ -155,7 +174,12 @@ export default function AddContact({
     } else if (!/\S+@\S+\.\S+/.test(formData.emailAddress)) {
       validationErrors.emailAddress = "Enter a valid email";
     }
-    if (formData.phoneNumber !== "" && !/^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(formData.phoneNumber)) {
+    if (
+      formData.phoneNumber !== "" &&
+      !/^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(
+        formData.phoneNumber
+      )
+    ) {
       validationErrors.phoneNumber = "Enter a valid phone number";
     }
     if (!formData.owner.fullName.trim()) {
@@ -181,15 +205,17 @@ export default function AddContact({
     }
   };
 
-  const [isPhoneNumberFieldActive, setIsPhoneNumberFieldActive] = useState(false);
+  const [isPhoneNumberFieldActive, setIsPhoneNumberFieldActive] =
+    useState(false);
 
   return (
     <div>
       <div
-        className={`w-full min-h-screen  scrollbar-hide  fixed right-0 top-0  z-50 transition-all bg-black overflow-hidden ${visibility
-          ? "translate-x-0 opacity-100 bg-opacity-30"
-          : "translate-x-[100%] opacity-0 bg-opacity-0"
-          }`}
+        className={`w-full min-h-screen  scrollbar-hide  fixed right-0 top-0  z-50 transition-all bg-black overflow-hidden ${
+          visibility
+            ? "translate-x-0 opacity-100 bg-opacity-30"
+            : "translate-x-[100%] opacity-0 bg-opacity-0"
+        }`}
       >
         <div className="absolute h-full w-full z-40   " onClick={onClose}></div>
         <div className="bg-white w-full md:w-[80%] lg:w-[50%] absolute right-0  h-full z-50 ">
@@ -201,9 +227,7 @@ export default function AddContact({
             </div>
           </div>
           <div className="px-3  pt-5 h-[95vh] overflow-y-scroll scrollbar-hide pb-5">
-            <form
-              className="flex flex-wrap justify-start items-start"
-            >
+            <form className="flex flex-wrap justify-start items-start">
               <div
                 className={`px-2 flex flex-col justify-start items-start w-full mb-3`}
               >
@@ -222,8 +246,16 @@ export default function AddContact({
                 )}
               </div>
               <div className="w-full px-2 mb-3">
-                <p className="font-semibold text-gray-800 mb-2">Contact Owner</p>
-                <OwnerSelect owner={owner} setOwner={setOwner} className={"placeholder:font-semibold  placeholder:text-[#3d3c3c] px-2 rounded-md mb-2 py-3 text-sm font-medium bg-transparent focus:bg-[#F6F7FA] w-full  border-[1px] border-[#dbd9d9] text-space focus:outline-none   focus:border-[#dbd9d9] text-black "} />
+                <p className="font-semibold text-gray-800 mb-2">
+                  Contact Owner
+                </p>
+                <OwnerSelect
+                  owner={owner}
+                  setOwner={setOwner}
+                  className={
+                    "placeholder:font-semibold  placeholder:text-[#3d3c3c] px-2 rounded-md mb-2 py-3 text-sm font-medium bg-transparent focus:bg-[#F6F7FA] w-full  border-[1px] border-[#dbd9d9] text-space focus:outline-none   focus:border-[#dbd9d9] text-black "
+                  }
+                />
                 {errors.owner && (
                   <p className="text-sm text-red-500 mb-2 mt-1">
                     {errors.owner}
@@ -231,7 +263,9 @@ export default function AddContact({
                 )}
               </div>
               <div className="w-full px-2 mb-5 ">
-                <p className="font-semibold text-gray-800 mb-2">Email Address</p>
+                <p className="font-semibold text-gray-800 mb-2">
+                  Email Address
+                </p>
                 <input
                   type="email"
                   name="emailAddress"
@@ -247,11 +281,21 @@ export default function AddContact({
               </div>
 
               <div className="w-full mb-2 px-2">
-                <p className="font-semibold text-gray-800 mb-2">
-                  Phone Number
-                </p>
-                <div className={`flex placeholder:font-semibold  placeholder:text-[#3d3c3c] rounded-md mb-2 text-sm font-medium bg-transparent  w-full  border-[1px] border-[#dbd9d9] text-space focus:outline-none ${isPhoneNumberFieldActive ? "bg-[#F6F7FA] border-[#dbd9d9]" : ""} text-black`}>
-                  <span className={`py-3 px-2 ${isPhoneNumberFieldActive ? "bg-[#F6F7FA]" : ""}`}>+1</span>
+                <p className="font-semibold text-gray-800 mb-2">Phone Number</p>
+                <div
+                  className={`flex placeholder:font-semibold  placeholder:text-[#3d3c3c] rounded-md mb-2 text-sm font-medium bg-transparent  w-full  border-[1px] border-[#dbd9d9] text-space focus:outline-none ${
+                    isPhoneNumberFieldActive
+                      ? "bg-[#F6F7FA] border-[#dbd9d9]"
+                      : ""
+                  } text-black`}
+                >
+                  <span
+                    className={`py-3 px-2 ${
+                      isPhoneNumberFieldActive ? "bg-[#F6F7FA]" : ""
+                    }`}
+                  >
+                    +1
+                  </span>
                   <input
                     onFocus={() => setIsPhoneNumberFieldActive(true)}
                     onBlur={() => setIsPhoneNumberFieldActive(false)}
@@ -288,7 +332,16 @@ export default function AddContact({
 
               <div className="w-full px-2 mb-3">
                 <p className="font-semibold text-gray-800 mb-2">Lead Source</p>
-                <LeadSourceSelect className="placeholder:font-semibold  placeholder:text-[#3d3c3c] px-2 rounded-md mb-2 py-3 text-sm font-medium bg-transparent focus:bg-[#F6F7FA] w-full  border-[1px] border-[#dbd9d9] text-space focus:outline-none   focus:border-[#dbd9d9] text-black min-h-12" leadSources={leadSources} setLeadSources={setLeadSources} addNewLeadSource={(content: string): boolean => { return false; }} addExistingLeadSource={(leadSourceID: string) => { }} removeLeadSource={(leadSourceID: string) => { }} />
+                <LeadSourceSelect
+                  className="placeholder:font-semibold  placeholder:text-[#3d3c3c] px-2 rounded-md mb-2 py-3 text-sm font-medium bg-transparent focus:bg-[#F6F7FA] w-full  border-[1px] border-[#dbd9d9] text-space focus:outline-none   focus:border-[#dbd9d9] text-black min-h-12"
+                  leadSources={leadSources}
+                  setLeadSources={setLeadSources}
+                  addNewLeadSource={(content: string): boolean => {
+                    return false;
+                  }}
+                  addExistingLeadSource={(leadSourceID: string) => {}}
+                  removeLeadSource={(leadSourceID: string) => {}}
+                />
                 {errors.leadSource && (
                   <p className="text-sm text-red-500 mb-2 mt-1">
                     {errors.leadSource}
@@ -298,7 +351,16 @@ export default function AddContact({
 
               <div className="w-full px-2 mb-3">
                 <p className="font-semibold text-gray-800 mb-2">Tags</p>
-                <TagSelect className="placeholder:font-semibold  placeholder:text-[#3d3c3c] px-2 rounded-md mb-2 py-3 text-sm font-medium bg-transparent focus:bg-[#F6F7FA] w-full  border-[1px] border-[#dbd9d9] text-space focus:outline-none   focus:border-[#dbd9d9] text-black min-h-12" tags={tags} setTags={setTags} addNewTag={(content: string): boolean => { return false; }} addExistingTag={(tagID: string) => { }} removeTag={(tagID: string) => { }} />
+                <TagSelect
+                  className="placeholder:font-semibold  placeholder:text-[#3d3c3c] px-2 rounded-md mb-2 py-3 text-sm font-medium bg-transparent focus:bg-[#F6F7FA] w-full  border-[1px] border-[#dbd9d9] text-space focus:outline-none   focus:border-[#dbd9d9] text-black min-h-12"
+                  tags={tags}
+                  setTags={setTags}
+                  addNewTag={(content: string): boolean => {
+                    return false;
+                  }}
+                  addExistingTag={(tagID: string) => {}}
+                  removeTag={(tagID: string) => {}}
+                />
                 {errors.tags && (
                   <p className="text-sm text-red-500 mb-2 mt-1">
                     {errors.tags}
@@ -308,7 +370,11 @@ export default function AddContact({
 
               <div className="w-full flex justify-between items-center px-4 md:px-4 pt-4 pb-2 border-gray-200 border-t mt-4">
                 <button
-                  onClick={(e) => { e.preventDefault(); resetForm(); onClose(e); }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    resetForm();
+                    onClose(e);
+                  }}
                   className="font-semibold text-gray-800 mb-2 text-lg"
                 >
                   Cancel

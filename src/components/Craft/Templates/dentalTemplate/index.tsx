@@ -7,7 +7,7 @@ import { Banner } from "./banner";
 import { CardBottomNew } from "./cardBottom";
 import { CardHeader } from "./cardHeader";
 import { CardBanner, CardImage } from "./cards";
-import { FooterWebs } from "./footer";
+import { FooterWeb } from "./footer";
 import { NavBar } from "./navBar";
 import { Team } from "./team";
 import { WebTestimonial } from "./webTestimonial";
@@ -56,7 +56,7 @@ export const TemplateOne = ({ padding = 20 }) => {
           <WebTestimonial />
           <CardBottomNew />
           <Team />
-          <FooterWebs />
+          <FooterWeb />
         </Element>
       </div>
     </div>

@@ -281,12 +281,12 @@ export default function AddItem({
                 </div>
                 <div className="mt-3"></div>
 
-                <div className="bg-white   relative">
+                <div className="bg-white relative">
                   <div
                     className="flex items-center mt-3 justify-center ring-2 ring-gray-100 p-2 cursor-pointer"
                     onClick={() =>
                       setAppointmentTypeComboBoxVisible(
-                        !isDoctorComboBoxVisible
+                        !appointmentTypeComboBoxVisible
                       )
                     }
                   >

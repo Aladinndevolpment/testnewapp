@@ -44,7 +44,7 @@ FooterWebsText.craft = {
   },
 };
 
-export const FooterWebs = ({
+export const FooterWeb = ({
   size,
   backgroundColor = defaults.backgroundColor,
   borderRadius = defaults.borderRadius,
@@ -102,22 +102,19 @@ export const FooterWebs = ({
         )}
         <Element id="FooterWebsText" is={FooterWebsText} canvas>
           {/* <!-- ====== Footer Section Start --> */}
-          <footer className="relative z-10 bg-white lg:pt-[20px] pb-5">
+          <footer className="relative z-10 bg-white lg:pt-[20px] pb-2">
             <div className="container mx-auto flex-col">
               <div className="-mx-4 flex flex-wrap justify-between px-10 pt-10">
                 <div className="w-full px-4 sm:w-2/3 lg:w-6/12">
                   <div className="mb-10 w-full">
-                    <a
-                      href="javascript:void(0)"
-                      className="mb-6 ml-4 inline-block max-w-[160px]"
-                    >
+                    <a className="mb-6 ml-4 inline-block max-w-[160px]">
                       <BuilderImage
                         width={70}
                         height={70}
                         imageSrc={require("../../../../../public/images/logo/favlogo.png")}
                       />
                     </a>
-                    <p className="text-body-color mb-7 text-base">
+                    <div className="text-body-color mb-7 text-base">
                       <Text
                         alignment="left"
                         text="Sed ut perspiciatis undmnis is iste natus error sit amet
@@ -125,8 +122,8 @@ export const FooterWebs = ({
                         fontSize={15}
                         bold="font-medium"
                       />
-                    </p>
-                    <p className="text-dark flex items-center text-sm font-medium">
+                    </div>
+                    <div className="text-dark flex items-center text-sm font-medium">
                       <span className="text-primary mr-3">
                         <svg
                           width="19"
@@ -147,7 +144,7 @@ export const FooterWebs = ({
                           bold="font-bold"
                         />
                       </span>
-                    </p>
+                    </div>
                   </div>
                 </div>
                 {/* <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
@@ -163,7 +160,7 @@ export const FooterWebs = ({
                     <ul>
                       <li>
                         <a
-                          href="javascript:void(0)"
+                          
                           className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
                         >
                           <Text
@@ -176,7 +173,7 @@ export const FooterWebs = ({
                       </li>
                       <li>
                         <a
-                          href="javascript:void(0)"
+                          
                           className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
                         >
                           <Text
@@ -189,7 +186,7 @@ export const FooterWebs = ({
                       </li>
                       <li>
                         <a
-                          href="javascript:void(0)"
+                          
                           className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
                         >
                           <Text
@@ -202,7 +199,7 @@ export const FooterWebs = ({
                       </li>
                       <li>
                         <a
-                          href="javascript:void(0)"
+                          
                           className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
                         >
                           <Text
@@ -218,20 +215,17 @@ export const FooterWebs = ({
                 </div> */}
                 <div className="w-full px-10 sm:w-1/2 lg:w-3/12">
                   <div className="mb-10 w-full flex-col justify-center  ">
-                    <h4 className="text-dark mb-9 text-lg font-semibold">
+                    <div className="text-dark mb-9 text-lg font-semibold">
                       <Text
                         alignment="left"
                         text="Company"
                         fontSize={18}
                         bold="font-bold"
                       />
-                    </h4>
+                    </div>
                     <ul>
                       <li>
-                        <a
-                          href="javascript:void(0)"
-                          className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                        >
+                        <a className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose">
                           <Text
                             alignment="left"
                             text="About TailGrids"
@@ -241,10 +235,7 @@ export const FooterWebs = ({
                         </a>
                       </li>
                       <li>
-                        <a
-                          href="javascript:void(0)"
-                          className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                        >
+                        <a className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose">
                           <Text
                             alignment="left"
                             text="Contact & Support"
@@ -254,10 +245,7 @@ export const FooterWebs = ({
                         </a>
                       </li>
                       <li>
-                        <a
-                          href="javascript:void(0)"
-                          className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                        >
+                        <a className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose">
                           <Text
                             alignment="left"
                             text="Success History"
@@ -267,10 +255,7 @@ export const FooterWebs = ({
                         </a>
                       </li>
                       <li>
-                        <a
-                          href="javascript:void(0)"
-                          className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                        >
+                        <a className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose">
                           <Text
                             alignment="left"
                             text="Setting & Privacy"
@@ -284,20 +269,17 @@ export const FooterWebs = ({
                 </div>
                 <div className="w-full px-10 sm:w-1/2 lg:w-3/12">
                   <div className="mb-10 w-full">
-                    <h4 className="text-dark mb-9 text-lg font-semibold">
+                    <div className="text-dark mb-9 text-lg font-semibold">
                       <Text
                         alignment="left"
                         text="Quick Links"
                         fontSize={18}
                         bold="font-bold"
                       />
-                    </h4>
+                    </div>
                     <ul>
                       <li>
-                        <a
-                          href="javascript:void(0)"
-                          className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                        >
+                        <a className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose">
                           <Text
                             alignment="left"
                             text="Premium Support"
@@ -307,10 +289,7 @@ export const FooterWebs = ({
                         </a>
                       </li>
                       <li>
-                        <a
-                          href="javascript:void(0)"
-                          className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                        >
+                        <a className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose">
                           <Text
                             alignment="left"
                             text="Our Services"
@@ -320,10 +299,7 @@ export const FooterWebs = ({
                         </a>
                       </li>
                       <li>
-                        <a
-                          href="javascript:void(0)"
-                          className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                        >
+                        <a className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose">
                           <Text
                             alignment="left"
                             text="Know Our Team"
@@ -333,10 +309,7 @@ export const FooterWebs = ({
                         </a>
                       </li>
                       <li>
-                        <a
-                          href="javascript:void(0)"
-                          className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                        >
+                        <a className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose">
                           <Text
                             alignment="left"
                             text="Download App"
@@ -351,8 +324,8 @@ export const FooterWebs = ({
               </div>
               <div>
                 <div className="w-full px-4 sm:w-1/2 lg:w-full">
-                  <div className="mb-10 w-full flex justify-center items-center">
-                    <h4 className="text-dark mr-2 text-lg font-semibold flex items-center justify-center">
+                  <div className="mb-2 w-full flex justify-center items-center">
+                    <div className="text-dark mr-2 text-lg font-semibold flex items-center justify-center">
                       <Text
                         alignment="center"
                         text="
@@ -360,41 +333,29 @@ export const FooterWebs = ({
                         fontSize={18}
                         bold="font-bold"
                       />{" "}
-                    </h4>
+                    </div>
                     <div className=" flex items-center justify-between">
-                      <a
-                        href="javascript:void(0)"
-                        className="text-dark hover:bg-primary hover:border-primary mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
-                      >
+                      <a className="text-dark hover:bg-primary hover:border-primary mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] hover:text-white sm:mr-4 lg:mr-3 xl:mr-4">
                         <FaFacebook />
                       </a>
-                      <a
-                        href="javascript:void(0)"
-                        className="text-dark hover:bg-primary hover:border-primary mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
-                      >
+                      <a className="text-dark hover:bg-primary hover:border-primary mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] hover:text-white sm:mr-4 lg:mr-3 xl:mr-4">
                         <FaTwitter />
                       </a>
-                      <a
-                        href="javascript:void(0)"
-                        className="text-dark hover:bg-primary hover:border-primary mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
-                      >
+                      <a className="text-dark hover:bg-primary hover:border-primary mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] hover:text-white sm:mr-4 lg:mr-3 xl:mr-4">
                         <FaYoutube />
                       </a>
-                      <a
-                        href="javascript:void(0)"
-                        className="text-dark hover:bg-primary hover:border-primary mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
-                      >
+                      <a className="text-dark hover:bg-primary hover:border-primary mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] hover:text-white sm:mr-4 lg:mr-3 xl:mr-4">
                         <FaLinkedin />
                       </a>
                     </div>
-                    <p className="text-body-color text-base">
+                    <div className="text-body-color text-base">
                       <Text
                         alignment="center"
                         text="&copy; 2025 TailGrids"
                         fontSize={18}
                         bold="font-bold"
                       />{" "}
-                    </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -464,7 +425,7 @@ const FooterWebsSettings = () => {
   );
 };
 
-FooterWebs.craft = {
+FooterWeb.craft = {
   related: {
     settings: FooterWebsSettings,
   },
@@ -475,7 +436,7 @@ FooterWebs.craft = {
     borderColor: defaults.borderColor,
     paddingRight: 10,
     paddingLeft: 10,
-    marginTop: 0,
+    marginTop: 10,
     marginBottom: 0,
   },
   displayName: elementName,

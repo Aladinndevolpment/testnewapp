@@ -13,8 +13,6 @@ import { baseDefaults } from "../../widgets/CommonSettings";
 import { ICommonSettingsProps } from "@/components/SurveyCraft/widgets/form/CommonSettings";
 import { BsSearch } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { Button } from "../../widgets/Button";
-import { Text } from "@/components/SurveyCraft/widgets/Text/Text";
 
 const elementName = "NewNavBar Layout";
 
@@ -29,7 +27,7 @@ interface link {
   href: string;
 }
 
-interface INewNavBarLayoutsProps extends ICommonSettingsProps {
+interface HeroLayoutProps extends ICommonSettingsProps {
   size?: string;
   padding?: number;
   backgroundColor?: string;
@@ -56,7 +54,7 @@ export const NewNavBarLayout = ({
   shadow,
   shadowColor,
   menuItems = [],
-}: INewNavBarLayoutsProps) => {
+}: HeroLayoutProps) => {
   const {
     hovered,
     connectors: { connect, drag },
@@ -78,66 +76,13 @@ export const NewNavBarLayout = ({
           {elementName}
         </div>
       )}
-      <div className=" flex justify-between w-full">
-        {/* <div className="navbar-start w-[30%]  "> */}
-        <div
-          className={` navbar-start w-[30%] h-auto ${size} mr-2 ${
-            hovered && "hover:outline-pink-500 hover:outline "
-          }  relative ${shadowColor} ${shadow} ${borderType} `}
-          style={{
-            backgroundColor,
-            marginTop: `${marginTop}px`,
-            marginBottom: `${marginBottom}px`,
-            marginLeft: `${marginLeft}px`,
-            marginRight: `${marginRight}px`,
-            paddingTop: `${paddingTop}px`,
-            paddingBottom: `${paddingBottom}px`,
-            paddingLeft: `${paddingLeft}px`,
-            paddingRight: `${paddingRight}px`,
-            borderWidth: `${borderWidth}px`,
-            borderRadius: `${borderRadius}px`,
-            borderColor,
-          }}
-        >
-          <BuilderImage
-            width={50}
-            height={50}
-            imageSrc={require(".././../../../../public/images/logo/favlogo.png")}
-          />
-        </div>
-        <div className="navbar-end w-[70%] flex justify-end items-center">
-          <div className="flex-col  justify-center items-center mx-2">
-            <div>
-              <Text
-                alignment="left"
-                text="+91 00-000-000"
-                fontSize={15}
-                bold="font-semibold"
-                color="#000000"
-              />
-            </div>
-          </div>
-          <div className="flex-col justify-center items-center w-auto">
-            <div className="flex-col justify-between items-center">
-              <div>
-                <Text
-                  alignment="right"
-                  text="example@example.com"
-                  fontSize={15}
-                  bold="font-bold"
-                  color="#000000"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <div className="w-[100%] justify-between flex">
         <div className="flex gap-2 flex-wrap items-center ml-0">
           {menuItems.map((item, index) => (
             <Element
-              id={`headerItemNew_${index}`}
-              is={HeaderMenuNew}
+              id={`headerItem_${index}`}
+              is={HeaderMenu}
               key={index}
               canvas
             >
@@ -146,8 +91,19 @@ export const NewNavBarLayout = ({
           ))}
         </div>
         <div>
-          <button>
+          <button className="btn btn-ghost btn-circle">
             <BsSearch size={20} className="mr-2" />
+            {/* <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="currentColor"
+              className="bi bi-search"
+              viewBox="0 0 16 16"
+            >
+              {" "}
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />{" "}
+            </svg> */}
           </button>
           <button className="btn btn-ghost btn-circle">
             <div className="indicator">
@@ -156,12 +112,15 @@ export const NewNavBarLayout = ({
             </div>
           </button>
         </div>
+        {/* <div>
+          
+        </div> */}
       </div>
     </div>
   );
 };
 
-const NewNavBarLayoutsSettings: any = () => {
+const HeaderLayoutSettings: any = () => {
   const {
     actions: { setProp },
     props,
@@ -180,7 +139,7 @@ const NewNavBarLayoutsSettings: any = () => {
   const handleItemEdit = (index: number) => {
     setSelectedMenuItem(
       state.nodes[
-        state.nodes[data.linkedNodes[`headerItemNew_${index}`]].data.nodes[0]
+        state.nodes[data.linkedNodes[`headerItem_${index}`]].data.nodes[0]
       ].related.settings
     );
   };
@@ -273,7 +232,7 @@ const NewNavBarLayoutsSettings: any = () => {
 
 NewNavBarLayout.craft = {
   related: {
-    settings: NewNavBarLayoutsSettings,
+    settings: HeaderLayoutSettings,
   },
   props: {
     background: defaults.backgroundColor,
@@ -325,14 +284,14 @@ NewNavBarLayout.craft = {
 //   },
 // };
 
-export const HeaderMenuNew = ({ children }: any) => {
+export const HeaderMenu = ({ children }: any) => {
   const {
     connectors: { connect },
   }: any = useNode();
   return <div ref={connect}>{children}</div>;
 };
 
-HeaderMenuNew.craft = {
+HeaderMenu.craft = {
   rules: {
     // Only accept Buttons
     canMoveIn: (incomingNodes: any) =>

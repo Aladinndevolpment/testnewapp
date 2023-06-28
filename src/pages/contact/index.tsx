@@ -22,7 +22,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     count: 0,
     contacts: [],
   };
-
   const token = process.env.NEXT_PUBLIC_API_TOKEN;
 
   await axios
@@ -67,7 +66,7 @@ export default function Contacts(contactsData: IContactsData) {
 
   return (
     <div>
-      <div className="overflow-hidden ">
+      <div className="overflow-hidden">
         {/* <ul className="lg:px-5 border-b-[1px] border-[#dfdfdf] pt-4 flex justify-start items-center overflow-auto scrollbar-hide gap-6 bg-white  ">
           {innerTabs.map((tab: any) => (
             <li key={tab.id}>

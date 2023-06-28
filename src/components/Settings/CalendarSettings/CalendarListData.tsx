@@ -24,6 +24,7 @@ export const CalendarSettingsContext = createContext({
   openModal4: false,
   setOpenModal4: (string: string) => {},
 });
+
 export default function CalendarListData() {
   const [openAddTagModel, setAddTagModel] = useState<any>(false);
   const [select, setSelect] = useState<any>(0);
@@ -31,6 +32,7 @@ export default function CalendarListData() {
   const [openModal2, setOpenModal2] = useState(false);
   const [openModal3, setOpenModal3] = useState(false);
   const [openModal4, setOpenModal4] = useState(false);
+
   const value: any = {
     openModal1,
     setOpenModal1,

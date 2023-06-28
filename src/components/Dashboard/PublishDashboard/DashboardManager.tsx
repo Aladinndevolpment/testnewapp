@@ -8,9 +8,9 @@ export default function DashboardManager() {
     <div>
       {/* <Header /> */}
       <div className="flex items-start h-full w-full">
-        {/* <div>
+        <div>
           <Sidebar />
-        </div> */}
+        </div>
         <div className="w-full">
           <div className="border-b border-grey/40 px-9 py-5">
             <div className="flex items-center gap-3 mb-2">

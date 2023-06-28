@@ -1,6 +1,4 @@
 import DashboardData from "@/components/Dashboard/DashboardData";
-import AdsTable from "@/components/Marketing/Ads/AdsTable";
-import CampaignTable from "@/components/Marketing/Campaign/Main/CampaignTable";
 import { GlobalContext } from "@/layouts/GlobalLayout";
 import Link from "next/link";
 import React, { useContext, useState } from "react";
@@ -8,7 +6,7 @@ import { FiSettings } from "react-icons/fi";
 
 export default function Marketing() {
   const ctx = useContext(GlobalContext);
-  ctx.setTitle("Marketing");
+  ctx.setTitle("Dashboard");
 
   const [DropDownRole, SetDropDownRole] = useState("");
 
@@ -29,8 +27,8 @@ export default function Marketing() {
   const [activeInnerTab, setActiveInnerTab] = useState(innerTabs[0].id);
 
   return (
-    <div className="overflow-hidden ">
-      <div className="lg:px-5 border-b-[1px] border-[#dfdfdf]  bg-white flex justify-between items-center">
+    <div>
+      <div className="lg:px-5 border-b-[1px] border-[#dfdfdf]  bg-white flex sm:justify-between xs:justify-evenly  items-center">
         <ul className=" pt-4 flex justify-start items-center overflow-auto scrollbar-hide gap-6 ">
           {innerTabs.map((tab: any) => (
             <li key={tab.id}>
@@ -50,7 +48,7 @@ export default function Marketing() {
 
         <Link
           href="/builder/dashboard"
-          className="m-1 ml-2 py-2 px-2  2xl:px-4 rounded-md flex flex-wrap justify-between items-center"
+          className="m-1 ml-2 py-2 px-2  2xl:px-4 rounded-md flex  justify-between items-center"
         >
           <FiSettings className="h-4 w-4 text-gray-500   mr-2" />
           <span className="text-gray-500 font-semibold text-sm ">

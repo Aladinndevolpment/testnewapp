@@ -15,45 +15,14 @@ import {
   getCommonSettingsProps,
   ICommonSettingsProps,
 } from "../../widgets/CommonSettings";
-import { createElement } from "react";
+import { createElement, useState } from "react";
+import FlyOut from "@/components/Flyout";
+import { MuiColorInput } from "mui-color-input";
+import TextInput from "@/components/controls/TextInput";
+import { IoContract } from "react-icons/io5";
+import { PencilIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { DeleteForever } from "@mui/icons-material";
 
-// export const CardTop = ({ children }: any) => {
-//   const {
-//     connectors: { connect },
-//   }: any = useNode();
-//   return (
-//     <div ref={connect} className="text-only">
-//       {children}
-//     </div>
-//   );
-// };
-
-// CardTop.craft = {
-//   rules: {
-//     // Only accept Text
-//     canMoveIn: (incomingNodes: any) =>
-//       incomingNodes.every(
-//         (incomingNode: any) => incomingNode.data.type === Text
-//       ),
-//   },
-// };
-
-// export const CardBottom = ({ children }: any) => {
-//   const {
-//     connectors: { connect },
-//   }: any = useNode();
-//   return <div ref={connect}>{children}</div>;
-// };
-
-// CardBottom.craft = {
-//   rules: {
-//     // Only accept Buttons
-//     canMoveIn: (incomingNodes: any) =>
-//       incomingNodes.every(
-//         (incomingNode: any) => incomingNode.data.type === Button
-//       ),
-//   },
-// };
 const elementName = "Banner";
 
 const defaults = {
@@ -128,36 +97,76 @@ export const Banner = ({
     hovered,
   }: any = useNode((state) => ({ hovered: state.events.hovered }));
 
+  const data = [
+    {
+      id: 1,
+      image: (
+        <BuilderImage
+          width={1600}
+          imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatefirst.jpg")}
+        />
+      ),
+    },
+    {
+      id: 2,
+      image: (
+        <BuilderImage
+          width={1600}
+          imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatesecond.jpg")}
+        />
+      ),
+    },
+    {
+      id: 3,
+      image: (
+        <BuilderImage
+          width={1600}
+          imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatethird.jpg")}
+        />
+      ),
+    },
+    {
+      id: 4,
+      image: (
+        <BuilderImage
+          width={1600}
+          imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatesecond.jpg")}
+        />
+      ),
+    },
+    {
+      id: 5,
+      image: (
+        <BuilderImage
+          width={1600}
+          imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatethird.jpg")}
+        />
+      ),
+    },
+    {
+      id: 6,
+      image: (
+        <BuilderImage
+          width={1600}
+          imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatefirst.jpg")}
+        />
+      ),
+    },
+    {
+      id: 7,
+      image: (
+        <BuilderImage
+          width={1600}
+          imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplateforth.jpg")}
+        />
+      ),
+    },
+  ];
+
   return (
-    <div
-      className={`w-full h-auto ${size} mr-2 mb-2 ${
-        hovered && "hover:outline-pink-500 hover:outline "
-      }  relative ${shadowColor} ${shadow} ${borderType} `}
-      ref={(ref: any) => connect(drag(ref))}
-      style={{
-        backgroundColor,
-        marginTop: `${marginTop}px`,
-        marginBottom: `${marginBottom}px`,
-        marginLeft: `${marginLeft}px`,
-        marginRight: `${marginRight}px`,
-        paddingTop: `${paddingTop}px`,
-        paddingBottom: `${paddingBottom}px`,
-        paddingLeft: `${paddingLeft}px`,
-        paddingRight: `${paddingRight}px`,
-        borderWidth: `${borderWidth}px`,
-        borderRadius: `${borderRadius}px`,
-        borderColor,
-      }}
-    >
-      {/* <div className="card card-compact w-full bg-base-100 shadow-xl">
-        <div className="card-body">
-          <Element id="heroImage" is={CardImage} canvas>
-            <BuilderImage />
-          </Element>
-        </div>
-      </div> */}
-      {/* <div
-        className={`w-full h-auto ${size} mr-2 ${
+    <div className="bg-white p-2 w-full" ref={(ref: any) => connect(drag(ref))}>
+      <div
+        className={`w-full h-auto ${size} mr-2 mb-2 ${
           hovered && "hover:outline-pink-500 hover:outline "
         }  relative ${shadowColor} ${shadow} ${borderType} `}
         style={{
@@ -174,115 +183,143 @@ export const Banner = ({
           borderRadius: `${borderRadius}px`,
           borderColor,
         }}
-      > */}
-      {hovered && (
-        <div className="absolute top-0 right-0 bg-purple-500 text-white text-[10px] px-1 z-50 capitalize">
-          {elementName}
+      >
+        {hovered && (
+          <div className="absolute top-0 right-0 bg-purple-500 text-white text-[10px] px-1 z-50 capitalize">
+            {elementName}
+          </div>
+        )}
+        <Element id="BannersText" is={BannersText} canvas>
+          <div className="w-full carousel rounded-box">
+            {data.map((item: any, index: number) => (
+              <div
+                key={item.id}
+                className="carousel-item w-full"
+                id={`slide_${item.id}`}
+              >
+                {item.image}
+                <div className="absolute flex justify-between transform -translate-y-1/2 left-3 right-9 top-1/2">
+                  <a href={`#slide_${item.id - 1}`} className="text-black">
+                    ❮
+                  </a>
+                  <a href={`#slide_${item.id + 1}`} className="text-black">
+                    ❯
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Element>
+        {/* </div> */}
+      </div>
+    </div>
+  );
+};
+
+const HeaderLayoutSettings: any = () => {
+  const {
+    actions: { setProp },
+    props,
+    id,
+    data,
+  } = useNode((node) => ({
+    props: node.data.props,
+    data: node.data,
+  }));
+  const [selectedMenuItem, setSelectedMenuItem] = useState<any>(null);
+
+  const { state } = useEditor((state) => {
+    return { state };
+  });
+
+  const handleItemEdit = (index: number) => {
+    setSelectedMenuItem(
+      state.nodes[state.nodes[data.linkedNodes[`slide_${index}`]].data.nodes[0]]
+        .related.settings
+    );
+  };
+
+  const handleAddNewItem = () => {
+    setProp((props: any) =>
+      props.data.push({
+        image: <BuilderImage />,
+      })
+    );
+  };
+
+  const deleteItem = (index: number) => {
+    console.log(index);
+    setProp((props: any) => props.data.splice(index, 1));
+  };
+
+  return (
+    <div className="w-full relative">
+      <FlyOut
+        visibility={selectedMenuItem != null}
+        onClose={() => setSelectedMenuItem(null)}
+        width={25}
+        disableOverlay={true}
+      >
+        <div className="mb-4 mt-2 flex flex-col gap-1 p-4 h-screen overflow-y-scroll scrollbar-hide ">
+          {selectedMenuItem && selectedMenuItem}
         </div>
-      )}
-      <Element id="BannersText" is={BannersText} canvas>
-        <div className="w-full carousel rounded-box">
-          <div className="carousel-item w-full" id="slide1">
-            <BuilderImage
-              width={1600}
-              imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatefirst.jpg")}
-            />
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-3 right-9 top-1/2">
-              <a href="#slide7" className="text-black">
-                ❮
-              </a>
-              <a href="#slide2" className="text-black">
-                ❯
-              </a>
-            </div>
-          </div>
-          <div className="carousel-item w-full" id="slide2">
-            <BuilderImage
-              width={1600}
-              imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatesecond.jpg")}
-            />
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-3 right-9 top-1/2">
-              <a href="#slide1" className="text-black">
-                ❮
-              </a>
-              <a href="#slide3" className="text-black">
-                ❯
-              </a>
-            </div>
-          </div>
-          <div className="carousel-item w-full" id="slide3">
-            <BuilderImage
-              width={1600}
-              imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatethird.jpg")}
-            />
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-3 right-9 top-1/2">
-              <a href="#slide2" className="text-black">
-                ❮
-              </a>
-              <a href="#slide4" className="text-black">
-                ❯
-              </a>
-            </div>
-          </div>
-          <div className="carousel-item w-full" id="slide4">
-            <BuilderImage
-              width={1600}
-              imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatesecond.jpg")}
-            />
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-3 right-9 top-1/2">
-              <a href="#slide3" className="text-black">
-                ❮
-              </a>
-              <a href="#slide5" className="text-black">
-                ❯
-              </a>
-            </div>
-          </div>
-          <div className="carousel-item w-full" id="slide5">
-            <BuilderImage
-              width={1600}
-              imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatethird.jpg")}
-            />
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-3 right-9 top-1/2">
-              <a href="#slide4" className="text-black">
-                ❮
-              </a>
-              <a href="#slide6" className="text-black">
-                ❯
-              </a>
-            </div>
-          </div>
-          <div className="carousel-item w-full" id="slide6">
-            <BuilderImage
-              width={1600}
-              imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatefirst.jpg")}
-            />
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-3 right-9 top-1/2">
-              <a href="#slide5" className="text-black">
-                ❮
-              </a>
-              <a href="#slide7" className="text-black">
-                ❯
-              </a>
-            </div>
-          </div>
-          <div className="carousel-item w-full" id="slide7">
-            <BuilderImage
-              width={1600}
-              imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplateforth.jpg")}
-            />
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-3 right-9 top-1/2">
-              <a href="#slide6" className="text-black">
-                ❮
-              </a>
-              <a href="#slide1" className="text-black">
-                ❯
-              </a>
-            </div>
-          </div>
+      </FlyOut>
+      <div className="mb-4 mt-2 flex flex-col gap-1">
+        <label className="text-sm text-gray-400 ">Background Color</label>
+        <div className="">
+          <MuiColorInput
+            format="hex"
+            value={props.backgroundColor ? props.backgroundColor : "#ffffff"}
+            onChange={(e) =>
+              setProp((props: any) => (props.backgroundColor = e))
+            }
+          />
         </div>
-      </Element>
-      {/* </div> */}
+      </div>
+
+      <div className="mb-4 mt-2 flex flex-col gap-1">
+        <label className="text-sm text-gray-400 ">Border Radius</label>
+        <TextInput
+          lefticon={<IoContract />}
+          value={props.borderRadius}
+          placeholder="Border radius in px"
+          onChange={(e) =>
+            setProp((props: any) => (props.borderRadius = e.target.value))
+          }
+          type="number"
+          min={0}
+        />
+      </div>
+
+      <div className="mb-4 mt-2 flex flex-col gap-1">
+        <label className="text-sm text-gray-400 ">Banner Items</label>
+        <div className="flex flex-col gap-2">
+          {props.data.map((item: any, index: number) => (
+            <div key={index} className="flex justify-between items-center">
+              <div className="text-gray-500">{item.image}</div>
+              <div className="flex flex-wrap">
+                <button
+                  className="btn btn-xs bg-transparent border-none text-gray-500 hover:bg-gray-200 p-1"
+                  onClick={() => handleItemEdit(index)}
+                >
+                  <PencilIcon className="w-3 h-3" />
+                </button>
+                <button
+                  className="btn btn-xs bg-transparent border-none text-gray-500 hover:bg-red-300  p-1"
+                  onClick={() => deleteItem(index)}
+                >
+                  <DeleteForever className="w-3 h-3" />
+                </button>
+              </div>
+            </div>
+          ))}
+
+          <button className="btn btn-sm mt-2" onClick={handleAddNewItem}>
+            <PlusIcon className="w-4 h-4" />
+            Add Item
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
@@ -307,6 +344,7 @@ const BannersSettings = () => {
       .related.settings;
   return (
     <div>
+      <HeaderLayoutSettings />
       <CommonSettings />
 
       {textNodeSettings && createElement(textNodeSettings)}
@@ -327,6 +365,71 @@ Banner.craft = {
     paddingLeft: 10,
     marginTop: 10,
     marginBottom: 0,
+    data: [
+      {
+        id: 1,
+        image: (
+          <BuilderImage
+            width={1600}
+            imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatefirst.jpg")}
+          />
+        ),
+      },
+      {
+        id: 2,
+        image: (
+          <BuilderImage
+            width={1600}
+            imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatesecond.jpg")}
+          />
+        ),
+      },
+      {
+        id: 3,
+        image: (
+          <BuilderImage
+            width={1600}
+            imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatethird.jpg")}
+          />
+        ),
+      },
+      {
+        id: 4,
+        image: (
+          <BuilderImage
+            width={1600}
+            imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatesecond.jpg")}
+          />
+        ),
+      },
+      {
+        id: 5,
+        image: (
+          <BuilderImage
+            width={1600}
+            imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatethird.jpg")}
+          />
+        ),
+      },
+      {
+        id: 6,
+        image: (
+          <BuilderImage
+            width={1600}
+            imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatefirst.jpg")}
+          />
+        ),
+      },
+      {
+        id: 7,
+        image: (
+          <BuilderImage
+            width={1600}
+            imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplateforth.jpg")}
+          />
+        ),
+      },
+    ],
   },
   displayName: elementName,
 };

@@ -183,7 +183,7 @@ export const Team = ({
         )}
         <Element id="TeamsText" is={TeamsText} canvas>
           {/* <!-- ====== Team Section Start --> */}
-          <section className="pt-20 pb-10 lg:pt-[120px] lg:pb-20">
+          <section className="pt-5 pb-5 lg:pt-[10px]">
             <div className="container mx-auto">
               <div className="-mx-4 flex flex-wrap">
                 <div className="w-full px-4">
@@ -191,7 +191,7 @@ export const Team = ({
                     <span className="text-primary mb-2 block text-lg font-semibold">
                       <Text
                         alignment="center"
-                        text="Our Team"
+                        text="Our Specialist"
                         fontSize={20}
                         bold="font-bold"
                         color="#0A92F8"

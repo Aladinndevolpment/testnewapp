@@ -36,7 +36,7 @@ export default function TopNavigation() {
   const router = useRouter();
   const ctx = useContext(GlobalContext);
   return (
-    <header className=" block w-full  h-28 lg:h-16 items-center relative z-10">
+    <header className=" block w-full   h-28 lg:h-16 items-center relative z-10">
       {/* {ctx.open.toString()} */}
       <div className="flex flex-wrap lg:flex-nowrap items-center lg:items-start flex-col h-full justify-center mx-auto relative  text-white z-10">
         <div className="flex flex-wrap  lg:flex-nowrap lg:items-start  relative w-full sm:ml-0 sm:pr-2  ">
@@ -67,35 +67,41 @@ export default function TopNavigation() {
                 <HeaderTitle />
               </div> */}
               <div className="pl-4 w-5">
-                <div className="dropdown inline-block relative group w-[20vw]">
-                  <button className="bg-gray-200 text-gray-700 font-semibold py-1 px-4 rounded-lg  justify-between inline-flex items-center w-[80%]">
+                <div className="dropdown inline-block relative group  w-[50vw]">
+                  <button
+                    className=" text-white font-semibold py-1 sm:px-5  rounded-lg  justify-between inline-flex items-center  "
+                    style={{ backgroundColor: "#202227" }}
+                  >
                     <span className="mr-1">Support-Emerge</span>
                     <div className="flex-col items-end justify-center pl-1">
                       <MdArrowDropUp className="" />
                       <MdArrowDropDown />
                     </div>
                   </button>
-                  <ul className="dropdown-menu absolute  text-gray-700 pt-1 hidden group-hover:block rounded-lg w-[80%]">
+                  <ul className="dropdown-menu absolute z-1 text-gray-700  pt-1 hidden group-hover:block rounded-lg sm:w-48 lg:w-[95%]">
                     <li className="">
                       <a
-                        className="rounded-t bg-gray-200 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap"
+                        className="rounded-t text-white  hover:text-gray-300 py-2 px-4 block whitespace-no-wrap"
                         href="#"
+                        style={{ backgroundColor: "#202227" }}
                       >
                         Design Support
                       </a>
                     </li>
                     <li className="">
                       <a
-                        className="bg-gray-200 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap"
+                        className=" hover:text-gray-300 text-white hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap"
                         href="#"
+                        style={{ backgroundColor: "#202227" }}
                       >
-                        Admin Suppport
+                        Admin Support
                       </a>
                     </li>
                     <li className="">
                       <a
-                        className="rounded-b bg-gray-200 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap"
+                        className="rounded-b  hover:text-gray-300 text-white hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap"
                         href="#"
+                        style={{ backgroundColor: "#202227" }}
                       >
                         Other Services
                       </a>

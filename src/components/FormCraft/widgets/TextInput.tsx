@@ -81,7 +81,7 @@ export const TextInputElement = ({
       )}
       <input
         disabled={!editable}
-        className={`flex shadow px-2 py-2  rounded-md w-full focus-within:outline-2 focus-within:outline-blue-400 ${shadow} ${borderType} ${borderColor}`}
+        className={`flex shadow px-2 py-2  rounded-md w-full focus-within:outline-1 focus-within:outline-gray-400 focus-within:outline-dashed  ${shadow} ${borderType} ${borderColor}`}
         style={{
           color: color,
           borderRadius: borderRadius + "px",

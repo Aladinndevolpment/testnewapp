@@ -17,8 +17,11 @@ import {
 } from "../../widgets/CommonSettings";
 import { createElement, useState } from "react";
 import item from "@/components/Leads/dnd/styles/item";
+import { Card } from "@mui/material";
+import data from "@/layouts/GlobalLayout/components/data";
+import { TextInputElement } from "@/components/SurveyCraft/widgets/form/TextInput";
 
-const elementName = "CardHeader";
+const elementName = "About Us";
 
 const defaults = {
   backgroundColor: "#ffffff",
@@ -26,7 +29,7 @@ const defaults = {
   borderRadius: 10,
 };
 
-interface ICardHeadersProps extends ICommonSettingsProps {
+interface IAboutTempsProps extends ICommonSettingsProps {
   size?: string;
   backgroundColor?: string;
   borderColor?: string;
@@ -50,7 +53,7 @@ CardImage.craft = {
   },
 };
 
-export const CardHeadersText = ({ children }: any) => {
+export const AboutTempsText = ({ children }: any) => {
   const {
     connectors: { connect },
   }: any = useNode();
@@ -61,7 +64,7 @@ export const CardHeadersText = ({ children }: any) => {
   );
 };
 
-CardHeadersText.craft = {
+AboutTempsText.craft = {
   rules: {
     // Only accept Text
     canMoveIn: (incomingNodes: any) =>
@@ -69,7 +72,7 @@ CardHeadersText.craft = {
   },
 };
 
-export const CardHeader = ({
+export const AboutTemp = ({
   size,
   backgroundColor = defaults.backgroundColor,
   borderRadius = defaults.borderRadius,
@@ -86,23 +89,27 @@ export const CardHeader = ({
   paddingRight = baseDefaults.paddingRight,
   shadow,
   shadowColor,
-}: ICardHeadersProps) => {
+}: IAboutTempsProps) => {
+  const [cardSlide, setCardSlide] = useState<any>([]);
   const {
     connectors: { connect, drag },
     hovered,
   }: any = useNode((state) => ({ hovered: state.events.hovered }));
 
   return (
-    <div className="my-2 w-full" ref={(ref: any) => connect(drag(ref))}>
-      {/* <div className="card card-compact w-full bg-base-100 shadow-xl">
-        <div className="card-body">
+    <div
+      className="bg-white p-2 w-full my-2"
+      ref={(ref: any) => connect(drag(ref))}
+    >
+      {/* <div classNameName="card card-compact w-full bg-base-100 shadow-xl">
+        <div classNameName="card-body">
           <Element id="heroImage" is={CardImage} canvas>
             <BuilderImage />
           </Element>
         </div>
       </div> */}
       <div
-        className={`w-full h-auto ${size} mr-2 ${
+        className={`w-full h-auto ${size} mr-2  ${
           hovered && "hover:outline-pink-500 hover:outline "
         }  relative ${shadowColor} ${shadow} ${borderType} `}
         style={{
@@ -121,42 +128,73 @@ export const CardHeader = ({
         }}
       >
         {hovered && (
-          <div className="absolute top-0 right-0 bg-purple-500 text-white text-[10px] px-1 z-10 capitalize">
+          <div className="absolute top-0 right-0 bg-purple-500 text-white text-[10px] px-1 z-50 capitalize">
             {elementName}
           </div>
         )}
-        <Element id="CardHeadersText" is={CardHeadersText} canvas>
-          <nav className="flex items-center justify-around flex-wrap  p-6 rounded">
-            {/* <Element id="" is="" canvas></Element> */}
-            <div className="flex items-center flex-shrink-0 text-white mr-2">
-              <Text
-                alignment="left"
-                text="Committed to"
-                fontSize={15}
-                bold="font-semibold"
-                color="#000000"
-              />
+        <Element id="AboutTempsText" is={AboutTempsText} canvas>
+          {/* <!-- ====== About Section Start --> */}
+          <div className="2xl:container 2xl:mx-auto lg:py-8 lg:px-20 md:py-12 md:px-6 py-4 px-4">
+            <div className="flex flex-col lg:flex-row justify-between gap-8">
+              <div className="w-full lg:w-6/12 ">
+                <BuilderImage
+                  width={300}
+                  height={400}
+                  imageSrc={require("../../../../../public/images/dentalTemplate/services3.jpg")}
+                />
+              </div>
+              <div className="w-full lg:w-6/12 flex flex-col justify-center items-start">
+                <div className="py-2">
+                  <Text
+                    alignment="left"
+                    text=" Do You Have any Queries?"
+                    fontSize={15}
+                    bold="font-semibold"
+                    color="#000000"
+                  />{" "}
+                </div>
+                <div className="text-3xl lg:text-4xl font-bold leading-9 text-gray-800 pb-4">
+                  <Text
+                    alignment="left"
+                    text="Joining Hands With Dental Solutions"
+                    fontSize={25}
+                    bold="font-bold"
+                    color="#107CE8"
+                  />
+                </div>
+                <div className="font-normal text-base leading-6 text-gray-600 pb-4">
+                  <Text
+                    alignment="left"
+                    text="There are many variations of passages of Lorem Ipsum
+                      available, but the majority have suffered alteration in some
+                      form, by injected humour, or randomised words which dont
+                      look..."
+                    fontSize={15}
+                    bold="font-medium"
+                    color="#6B6C6D"
+                  />
+                </div>
+                <div className="pb-2">
+                  <Text
+                    alignment="left"
+                    text="+1 (212) 255-5511"
+                    fontSize={15}
+                    bold="font-bold"
+                    color="#6B6C6D"
+                  />
+                </div>
+                <Button text="READ MORE +" />
+              </div>
             </div>
-            <div>
-              <Text
-                alignment="right"
-                text="Excellence"
-                fontSize={25}
-                bold="font-bold"
-                color="#F49A07"
-              />{" "}
-            </div>
-            <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto justify-end">
-              <Button text="View All Services" />
-            </div>
-          </nav>
+          </div>
+          {/* <!-- ====== About Section End --> */}
         </Element>
       </div>
     </div>
   );
 };
 
-const CardHeadersSettings = () => {
+const AboutTempsSettings = () => {
   const {
     actions: { setProp },
     props,
@@ -172,7 +210,7 @@ const CardHeadersSettings = () => {
   });
 
   const textNodeSettings =
-    state.nodes[state.nodes[data.linkedNodes["CardHeadersText"]].data.nodes[0]]
+    state.nodes[state.nodes[data.linkedNodes["AboutTempsText"]].data.nodes[0]]
       .related.settings;
   return (
     <div>
@@ -182,10 +220,9 @@ const CardHeadersSettings = () => {
     </div>
   );
 };
-
-CardHeader.craft = {
+AboutTemp.craft = {
   related: {
-    settings: CardHeadersSettings,
+    settings: AboutTempsSettings,
   },
   props: {
     ...getCommonSettingsProps(),

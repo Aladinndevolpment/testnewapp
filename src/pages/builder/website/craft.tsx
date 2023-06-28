@@ -5,7 +5,6 @@ import {
   CardTop,
 } from "@/components/Craft/widgets/Card";
 import Container from "@/components/Craft/widgets/Container";
-
 import { Editor } from "@craftjs/core";
 import { Button, ButtonText } from "@/components/Craft/widgets/Button";
 import { Text } from "@/components/Craft/widgets/Text/Text";
@@ -30,7 +29,6 @@ import App, { MainApp } from "@/components/Craft/widgets/App";
 import Divider from "@/components/Craft/widgets/Divider";
 import { BuilderVideo } from "@/components/Craft/widgets/Video";
 import { Social } from "@/components/Craft/widgets/Social";
-import { Headline } from "@/components/Craft/widgets/Text/Headline";
 import { List } from "@/components/Craft/widgets/List";
 import ListItem from "@/components/Craft/widgets/ListItem";
 import CustomHTML from "@/components/Craft/widgets/CustomHTML";
@@ -77,48 +75,67 @@ import {
   MainFormTop,
 } from "@/components/Craft/widgets/form/MainForm";
 
-import {
-  TemplateOne,
-  TemplateOneTop,
-} from "@/components/Craft/Templates/dentalTemplate";
+// import {
+//   TemplateOne,
+//   TemplateOneTop,
+// } from "../../../components/Craft/Templates/dentalTemplate";
 import {
   NavBar,
   NavBarsText,
-} from "@/components/Craft/Templates/dentalTemplate/navBar";
+} from "../../../components/Craft/Templates/dentalTemplate/navBar";
 import {
   Banner,
   BannersText,
-} from "@/components/Craft/Templates/dentalTemplate/banner";
+} from "../../../components/Craft/Templates/dentalTemplate/banner";
 import {
-  FooterWebs,
+  FooterWeb,
   FooterWebsText,
-} from "@/components/Craft/Templates/dentalTemplate/footer";
+} from "../../../components/Craft/Templates/dentalTemplate/footer";
 import {
   CardBanner,
   CardBannersText,
-} from "@/components/Craft/Templates/dentalTemplate/cards";
+} from "../../../components/Craft/Templates/dentalTemplate/cards";
 import {
   CardBottomNew,
   CardBottomsText,
-} from "@/components/Craft/Templates/dentalTemplate/cardBottom";
+} from "../../../components/Craft/Templates/dentalTemplate/cardBottom";
 import {
-  WebTestimonial,
-  WebTestimonialsText,
-} from "@/components/Craft/Templates/dentalTemplate/webTestimonial";
+  AboutTemp,
+  AboutTempsText,
+} from "@/components/Craft/Templates/dentalTemplate/aboutUs";
 import {
   CardHeader,
   CardHeadersText,
 } from "@/components/Craft/Templates/dentalTemplate/cardHeader";
 import {
-  Team,
-  TeamsText,
-} from "@/components/Craft/Templates/dentalTemplate/team";
-import { NewNavBarLayout } from "@/components/Craft/Templates/dentalTemplate/newNavBar";
+  WebTestimonial,
+  WebTestimonialsText,
+} from "@/components/Craft/Templates/dentalTemplate/webTestimonial";
 import {
   ContactTemp,
   ContactTempsText,
 } from "@/components/Craft/Templates/dentalTemplate/contactUs";
+import {
+  Team,
+  TeamsText,
+} from "@/components/Craft/Templates/dentalTemplate/team";
+import {
+  HeaderMenuNew,
+  NewNavBarLayout,
+} from "@/components/Craft/Templates/dentalTemplate/newNavBar";
 import { FaFacebook, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FiHome } from "react-icons/fi";
+import { BsTelephoneOutbound } from "react-icons/bs";
+import { CiMail } from "react-icons/ci";
+import {
+  Newsletter,
+  NewsletterText,
+} from "@/components/Craft/widgets/prebuilt/Newsletter";
+import {
+  ImageOverlay,
+  ImageOverlayText,
+} from "@/components/Craft/widgets/prebuilt/ImageOverlay";
+import { Headline } from "@/components/Craft/widgets/Text/Headline";
 
 export const CraftContext = createContext({
   tools: "prebuilt",
@@ -139,6 +156,7 @@ export default function Craft() {
     device,
     setDevice,
   };
+
   return (
     <CraftContext.Provider value={value}>
       <div className="h-full overflow-hidden">
@@ -147,23 +165,30 @@ export default function Craft() {
             App,
             FaFacebook,
             FaTwitter,
-            FaYoutube,
             FaLinkedin,
+            FaYoutube,
+            FiHome,
+            BsTelephoneOutbound,
+            CiMail,
+            HeaderMenuNew,
+            Team,
+            NewNavBarLayout,
+            TeamsText,
             ContactTemp,
             ContactTempsText,
-            NewNavBarLayout,
-            Team,
-            TeamsText,
-            CardHeader,
-            CardHeadersText,
             WebTestimonial,
             WebTestimonialsText,
+            CardHeader,
+            CardHeadersText,
+            AboutTemp,
+            AboutTempsText,
             CardBottomNew,
             CardBottomsText,
             CardBanner,
             CardBannersText,
+
             Banner,
-            FooterWebs,
+            FooterWeb,
             FooterWebsText,
             BannersText,
             NavBar,
@@ -216,7 +241,7 @@ export default function Craft() {
             OrderOneStep,
             OrderTwoStep,
             FormElements,
-            //Form
+            //
             MainForm,
             MainFormTop,
             TextInputElement,
@@ -226,9 +251,12 @@ export default function Craft() {
             SelectBoxInputElement,
             AttachmentElement,
             DatePickerElement,
-            //Templatess
-            TemplateOne,
-            TemplateOneTop,
+            //sections
+            Newsletter,
+            NewsletterText,
+            ImageOverlay,
+            ImageOverlayText,
+            //template
           }}
         >
           <Topbar />

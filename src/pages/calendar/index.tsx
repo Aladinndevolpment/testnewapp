@@ -226,6 +226,7 @@ export default function Calendar() {
 
   function handleSelect(arg: any) {
     console.log("arg", arg);
+
     const title = arg.patient.name;
     if (title) {
       const newEvent = {
@@ -382,17 +383,21 @@ export default function Calendar() {
       />
       <div className="md:h-auto bg-mainBg overflow-hidden relative">
         <header className="block w-full mb-5 h-16  lg:h-16 items-center relative z-10 border-b-[1px] border-lightGray">
-          <div className="flex flex-center flex-col lg:h-full justify-center lg:mx-auto relative  text-white z-10">
-            <div className="flex  justify-center items-center  relative w-full sm:ml-0 sm:pr-2  ">
-              <div className="  flex justify-between items-center  w-full md:w-[45%] pl-2 pr-5 py-1.5 rounded-md">
-                <div className={`flex items-center pl-5  w-full justify-start`}>
-                  <CalendarDaysIcon className="h-8 w-8 text-newBlue" />
-                  <p
-                    className={`ml-3 capitalize text-dark   text-[20px] font-semibold  tracking-wide  `}
-                  >
-                    Calendar
-                  </p>
-                  <div className="lg:ml-12 flex justify-between items-center  py-1 rounded-md w-full lg:w-[35%]">
+          <div className="flex  w-full  lg:h-full  lg:mx-auto relative  text-white z-10">
+            <div className="flex   items-center justify-between relative w-full sm:ml-0 sm:pr-2  ">
+              <div className="  flex justify-between items-center  w-full  pl-2 pr-5 py-1.5 rounded-md">
+                <div
+                  className={`flex items-center pl-5   w-full lg:justify-start`}
+                >
+                  <div className="flex items-center text-[20px] gap-2">
+                    <CalendarDaysIcon className="h-8 w-8 text-newBlue" />
+                    <p
+                      className={`md:ml-3 capitalize text-dark    font-semibold  tracking-wide  `}
+                    >
+                      Calendar
+                    </p>
+                  </div>
+                  <div className="lg:ml-12 flex justify-between items-center  py-1 rounded-md w-1/2 lg:w-[35%]">
                     <button
                       onClick={handleWeekResourceTimeline}
                       className={`w-full lg:w-auto ${
@@ -437,7 +442,7 @@ export default function Calendar() {
                 </div>
               </div>
 
-              <div className=" flex items-center justify-start lg:justify-end pl-5 lg:p-1   w-full md:w-[75%]   ">
+              <div className=" flex items-center justify-end pl-5 lg:p-1   w-full md:w-[75%]   ">
                 {/* <Search /> */}
                 <div className="relative ml-3">
                   <button
@@ -540,6 +545,7 @@ export default function Calendar() {
           </div>
         </div>
       </div>
+
       <div className="bg-mainBg h-full md:h-auto">
         {currentView && (
           <FullCalendar
