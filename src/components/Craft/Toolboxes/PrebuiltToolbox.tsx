@@ -19,8 +19,8 @@ import { CardBottomNew } from "../Templates/dentalTemplate/cardBottom";
 import { FooterWeb } from "../Templates/dentalTemplate/footer";
 import { Team } from "../Templates/dentalTemplate/team";
 import { ContactTemp } from "../Templates/dentalTemplate/contactUs";
-import { Newsletter } from "../widgets/prebuilt/Newsletter";
-import { ImageOverlay } from "../widgets/prebuilt/ImageOverlay";
+import { CtaLayouts } from "../widgets/prebuilt/CtaLayout";
+import { BlogLayout } from "../widgets/prebuilt/BlogLayout";
 
 const tbStyles = {
   backgroundColor: "#fff",
@@ -93,29 +93,6 @@ const baseTools = [
           />
         ),
       },
-
-      {
-        name: "Newsletter layout",
-        tool: (
-          <PrebuiltToolsLayout
-            toolName="Newsletter Layout"
-            tool={<Newsletter />}
-            image={require("@/../public/craft/hero.png")}
-          />
-        ),
-      },
-
-      {
-        name: "Image Overlay layout",
-        tool: (
-          <PrebuiltToolsLayout
-            toolName="Image Overlay layout"
-            tool={<ImageOverlay />}
-            image={require("@/../public/craft/hero.png")}
-          />
-        ),
-      },
-
       {
         name: "Footer layout",
         tool: (
@@ -202,6 +179,26 @@ const baseTools = [
           <PrebuiltToolsLayout
             toolName="Contact layout"
             tool={<ContactTemp />}
+            image={require("@/../public/craft/hero.png")}
+          />
+        ),
+      },
+      {
+        name: "CtaLayouts",
+        tool: (
+          <PrebuiltToolsLayout
+            toolName="CTA layout"
+            tool={<CtaLayouts />}
+            image={require("@/../public/craft/hero.png")}
+          />
+        ),
+      },
+      {
+        name: "BlogLayouts",
+        tool: (
+          <PrebuiltToolsLayout
+            toolName="Blog layout"
+            tool={<BlogLayout />}
             image={require("@/../public/craft/hero.png")}
           />
         ),

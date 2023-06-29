@@ -226,7 +226,6 @@ export default function Calendar() {
 
   function handleSelect(arg: any) {
     console.log("arg", arg);
-
     const title = arg.patient.name;
     if (title) {
       const newEvent = {

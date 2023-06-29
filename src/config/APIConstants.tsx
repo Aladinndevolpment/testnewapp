@@ -10,7 +10,12 @@ export const apiHeaders = {
 };
 
 export const contactBaseUrl = `${baseUrl}/contacts/`;
+export const contactOwner = `${baseUrl}users/location/`;
 export const calendarBaseUrl = `${baseUrl}39582850/calendars/`;
+export const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbEFkZHJlc3MiOiJjb3JleS5wZGdyb3VwQGdtYWlsLmNvbSIsImV4cCI6MTY5MDQyNzI5OH0.0WF4CYCWHI7WK7FpxM_2EneIm1lvu5TILdvQLEYj_44";
+
+export const locationID = "f209ee50-96e6-4ca2-9eb5-80b93d31591f";
 
 export const APIConst = {
   contactApi: contactBaseUrl,
@@ -19,3 +24,5 @@ export const APIConst = {
   appAppointment: `${calendarBaseUrl}events/appointments`,
   allCalendar: `${calendarBaseUrl}?locationId=`,
 };
+
+export const leadSource = `${baseUrl}/contacts/{id}/lead-sources`;

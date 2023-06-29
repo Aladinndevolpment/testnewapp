@@ -67,7 +67,7 @@ export default function TopNavigation() {
                 <HeaderTitle />
               </div> */}
               <div className="pl-4 w-5">
-                <div className="dropdown inline-block relative group  w-[50vw]">
+                <div className="dropdown inline-block relative group  w-[50vw] lg:w-[14.5vw] 2xl:w-[12.5vw]">
                   <button
                     className=" text-white font-semibold py-1 sm:px-5  rounded-lg  justify-between inline-flex items-center  "
                     style={{ backgroundColor: "#202227" }}
@@ -78,7 +78,7 @@ export default function TopNavigation() {
                       <MdArrowDropDown />
                     </div>
                   </button>
-                  <ul className="dropdown-menu absolute z-1 text-gray-700  pt-1 hidden group-hover:block rounded-lg sm:w-48 lg:w-[95%]">
+                  <ul className="dropdown-menu absolute z-1 text-gray-700  pt-1 hidden group-hover:block rounded-lg sm:w-48  lg:w-[95%]">
                     <li className="">
                       <a
                         className="rounded-t text-white  hover:text-gray-300 py-2 px-4 block whitespace-no-wrap"

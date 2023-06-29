@@ -20,7 +20,7 @@ import item from "@/components/Leads/dnd/styles/item";
 import { Card } from "@mui/material";
 import data from "@/layouts/GlobalLayout/components/data";
 
-const elementName = "CardBanner";
+const elementName = "Blog";
 
 const defaults = {
   backgroundColor: "#ffffff",
@@ -28,7 +28,7 @@ const defaults = {
   borderRadius: 10,
 };
 
-interface ICardBannersProps extends ICommonSettingsProps {
+interface IBlogsProps extends ICommonSettingsProps {
   size?: string;
   backgroundColor?: string;
   borderColor?: string;
@@ -52,7 +52,7 @@ CardImage.craft = {
   },
 };
 
-export const CardBannersText = ({ children }: any) => {
+export const BlogsText = ({ children }: any) => {
   const {
     connectors: { connect },
   }: any = useNode();
@@ -63,7 +63,7 @@ export const CardBannersText = ({ children }: any) => {
   );
 };
 
-CardBannersText.craft = {
+BlogsText.craft = {
   rules: {
     // Only accept Text
     canMoveIn: (incomingNodes: any) =>
@@ -71,7 +71,7 @@ CardBannersText.craft = {
   },
 };
 
-export const CardBanner = ({
+export const Blog = ({
   size,
   backgroundColor = defaults.backgroundColor,
   borderRadius = defaults.borderRadius,
@@ -88,7 +88,7 @@ export const CardBanner = ({
   paddingRight = baseDefaults.paddingRight,
   shadow,
   shadowColor,
-}: ICardBannersProps) => {
+}: IBlogsProps) => {
   const [cardSlide, setCardSlide] = useState<any>([]);
   const {
     connectors: { connect, drag },
@@ -101,7 +101,7 @@ export const CardBanner = ({
       title: "Dental Services",
       image: (
         <BuilderImage
-          width={380}
+          width={280}
           imageSrc={require("../../../../../public/images/dentalTemplate/services1.jpg")}
         />
       ),
@@ -113,7 +113,7 @@ export const CardBanner = ({
       title: "Dental Implants",
       image: (
         <BuilderImage
-          width={380}
+          width={280}
           imageSrc={require("../../../../../public/images/dentalTemplate/services2.jpg")}
         />
       ),
@@ -125,36 +125,17 @@ export const CardBanner = ({
       title: "Surgery",
       image: (
         <BuilderImage
-          width={380}
+          width={280}
           imageSrc={require("../../../../../public/images/dentalTemplate/services3.jpg")}
         />
       ),
       description:
         "Proactively fabricate one-to-one materials via effective e-business.",
     },
-    {
-      id: 4,
-      title: "Teeth Whitening",
-      image: (
-        <BuilderImage
-          width={380}
-          imageSrc={require("../../../../../public/images/dentalTemplate/services4.jpg")}
-        />
-      ),
-      description:
-        "Distinctively re-engineer revolutionary meta-services and premium architectures.",
-    },
   ];
 
   return (
     <div className="bg-white p-2 w-full" ref={(ref: any) => connect(drag(ref))}>
-      {/* <div className="card card-compact w-full bg-base-100 shadow-xl">
-        <div className="card-body">
-          <Element id="heroImage" is={CardImage} canvas>
-            <BuilderImage />
-          </Element>
-        </div>
-      </div> */}
       <div
         className={`w-full h-auto ${size} mr-2  ${
           hovered && "hover:outline-pink-500 hover:outline "
@@ -179,37 +160,86 @@ export const CardBanner = ({
             {elementName}
           </div>
         )}
-        <Element id="CardBannersText" is={CardBannersText} canvas>
-          <div className={`carousel  shadow-lg bg-transparent w-full h-auto`}>
-            {cardItem.map((item: any) => (
-              <div
-                key={item.id}
-                className="carousel-item w-96 relative mx-2 p-0 card h-auto glass"
-              >
-                <div className="h-auto">{item.image}</div>
-                <div className="card-body">
-                  <div className="card-title">
+        <Element id="BlogsText" is={BlogsText} canvas>
+          <div
+            className={`shadow-lg bg-gray-300 w-full h-auto ${size} mr-2 ${
+              hovered && "hover:outline-pink-500 hover:outline "
+            }  relative ${shadowColor} ${shadow} ${borderType}`}
+            style={{
+              backgroundColor,
+              marginTop: `${marginTop}px`,
+              marginBottom: `${10}px`,
+              marginLeft: `${marginLeft}px`,
+              marginRight: `${marginRight}px`,
+              paddingTop: `${paddingTop}px`,
+              paddingBottom: `${paddingBottom}px`,
+              paddingLeft: `${paddingLeft}px`,
+              paddingRight: `${paddingRight}px`,
+              borderWidth: `${borderWidth}px`,
+              borderRadius: `${borderRadius}px`,
+              borderColor,
+            }}
+          >
+            <div className="mx-auto mb-[60px] max-w-[510px] text-center">
+              <span className="text-primary mb-2 block text-lg font-semibold">
+                <Text
+                  alignment="center"
+                  text="Our Blogs"
+                  fontSize={20}
+                  bold="font-bold"
+                  color="#0A92F8"
+                />
+              </span>
+              <h2 className="text-dark mb-4 text-3xl font-bold sm:text-4xl md:text-[40px]">
+                <Text
+                  alignment="center"
+                  text="Our Latest News"
+                  fontSize={28}
+                  bold="font-bold"
+                />
+              </h2>
+              <p className="text-body-color text-base">
+                <Text
+                  alignment="center"
+                  fontSize={16}
+                  text="There are many variations of passages of Lorem Ipsum
+                        available but the majority have suffered alteration in
+                        some form."
+                  bold="font-medium"
+                  color="#898B8C"
+                />
+              </p>
+            </div>
+
+            <div className=" flex justify-center items-center flex-wrap">
+              {cardItem.map((item: any) => (
+                <div key={item.id} className=" w-1/3 p-0 card h-auto">
+                  <div className="h-auto object-cover">{item.image}</div>
+                  <div className="card-body pl-1">
+                    <div className="card-title">
+                      <Text
+                        alignment="left"
+                        text={item.title}
+                        fontSize={20}
+                        bold="font-bold"
+                        color="#000000"
+                        paddingLeft={0}
+                      />
+                    </div>
                     <Text
                       alignment="left"
-                      text={item.title}
-                      fontSize={20}
-                      bold="font-bold"
+                      text={item.description}
+                      fontSize={15}
+                      bold="font-medium"
                       color="#000000"
                     />
-                  </div>
-                  <Text
-                    alignment="left"
-                    text={item.description}
-                    fontSize={15}
-                    bold="font-medium"
-                    color="#000000"
-                  />
-                  <div className="card-actions justify-start mt-2 p-0">
-                    <Button text="Learn More!" />
+                    <div className="card-actions justify-start mt-2 p-0">
+                      <Button text="Learn More!" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </Element>
       </div>
@@ -217,7 +247,7 @@ export const CardBanner = ({
   );
 };
 
-const CardBannersSettings = () => {
+const BlogsSettings = () => {
   const {
     actions: { setProp },
     props,
@@ -233,7 +263,7 @@ const CardBannersSettings = () => {
   });
 
   const textNodeSettings =
-    state.nodes[state.nodes[data.linkedNodes["CardBannersText"]].data.nodes[0]]
+    state.nodes[state.nodes[data.linkedNodes["BlogsText"]].data.nodes[0]]
       .related.settings;
   return (
     <div>
@@ -243,18 +273,18 @@ const CardBannersSettings = () => {
     </div>
   );
 };
-CardBanner.craft = {
+Blog.craft = {
   related: {
-    settings: CardBannersSettings,
+    settings: BlogsSettings,
   },
   props: {
     ...getCommonSettingsProps(),
     background: defaults.backgroundColor,
     borderRadius: defaults.borderRadius,
     borderColor: defaults.borderColor,
-    paddingRight: 10,
+    paddingRight: 0,
     paddingTop: 10,
-    paddingLeft: 10,
+    paddingLeft: 0,
     paddingBottom: 10,
     marginTop: 0,
     marginBottom: 0,

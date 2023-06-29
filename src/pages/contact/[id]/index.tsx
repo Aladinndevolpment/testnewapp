@@ -6,6 +6,7 @@ import { EContactType, IContactData } from "@/components/contacts/Interfaces";
 import axios from "axios";
 import Head from "next/head";
 import { useState } from "react";
+import { baseUrl, token } from "@/config/APIConstants";
 
 interface IProps {
   data: IContactData;
@@ -13,8 +14,9 @@ interface IProps {
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const { id } = ctx.query;
+  console.log("ushyus", ctx.query);
 
-  const token = process.env.NEXT_PUBLIC_API_TOKEN;
+  const tokens = token;
   // const token = ctx.req.cookies.jwt;
   // if (!token) {
   //   return {
@@ -58,8 +60,8 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   };
 
   await axios
-    .get(`/api/contacts/${id}`, {
-      headers: { Authorization: `Bearer ${token}` },
+    .get(`${baseUrl}contacts/${id}`, {
+      headers: { Authorization: `Bearer ${tokens}` },
     })
     .then((response) => {
       console.log("response.data", response.data);
@@ -76,8 +78,8 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   }
 
   await axios
-    .get(`/api/contacts/${id}/profile`, {
-      headers: { Authorization: `Bearer ${token}` },
+    .get(`${baseUrl}/contacts/${id}/profile`, {
+      headers: { Authorization: `Bearer ${tokens}` },
     })
     .then((response) => {
       console.log("response.data", response.data);
@@ -88,8 +90,8 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     });
 
   await axios
-    .get(`/api/contacts/${id}/address`, {
-      headers: { Authorization: `Bearer ${token}` },
+    .get(`${baseUrl}contacts/${id}/address`, {
+      headers: { Authorization: `Bearer ${tokens}` },
     })
     .then((response) => {
       console.log("response.data", response.data);
@@ -116,9 +118,10 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 }
 
 export default function ContactsID({ data }: IProps) {
+  // console.log("deta", data);
   const [showConversation, setShowConversation] = useState(false);
   const [conversationModeIndex, setConversationModeIndex] = useState(0);
-
+  console.log(data);
   return (
     <>
       <Head>

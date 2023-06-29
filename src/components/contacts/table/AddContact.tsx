@@ -217,7 +217,7 @@ export default function AddContact({
             : "translate-x-[100%] opacity-0 bg-opacity-0"
         }`}
       >
-        <div className="absolute h-full w-full z-40   " onClick={onClose}></div>
+        <div className="absolute h-full w-full z-40" onClick={onClose}></div>
         <div className="bg-white w-full md:w-[80%] lg:w-[50%] absolute right-0  h-full z-50 ">
           <div className="flex justify-between items-center   px-4 md:px-4 pt-4 pb-2  border-b-gray-200 border-b  ">
             <h3 className="font-semibold  text-2xl">Add Contact</h3>

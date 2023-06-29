@@ -11,6 +11,7 @@ import {
 } from "@/components/contacts/Interfaces";
 import axios from "axios";
 import Head from "next/head";
+import { baseUrl, locationID, token } from "@/config/APIConstants";
 
 interface IAppointmentDetailsProps {
   visibility: boolean;
@@ -22,14 +23,16 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     count: 0,
     contacts: [],
   };
-  const token = process.env.NEXT_PUBLIC_API_TOKEN;
+  // const token = process.env.NEXT_PUBLIC_API_TOKEN;
 
   await axios
-    .get(`/api/contacts/location/${process.env.NEXT_PUBLIC_LOCATION_ID}`, {
+    .get(`${baseUrl}contacts/location/${locationID}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
-    .then((response) => {
+    .then((response: any) => {
+      // console.log("resdgggdd", response);
       res.count = response.data.contacts.length;
+
       res.contacts = response.data.contacts;
     })
     .catch((err) => {
@@ -44,6 +47,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 }
 
 export default function Contacts(contactsData: IContactsData) {
+  // console.log("ppp", contactsData);
   const [DropDownRole, SetDropDownRole] = useState("");
 
   // const innerTabs = [

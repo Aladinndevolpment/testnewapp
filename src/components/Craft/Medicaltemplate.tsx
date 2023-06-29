@@ -38,14 +38,14 @@ export default function Medicaltemplate() {
           <Element is={Container} canvas>
             {/* <TemplateOne /> */}
             <NavBar />
-            {/* <Doctors />
+            <Doctors />
             <PracticeAreas />
             <CardHeader />
-            <CardBanner />
+            {/* <CardBanner />
             <WebTestimonial />
             <Team />
             <ContactTemp />
-            <FooterWeb /> */}
+            <FooterWebs />   */}
           </Element>
         </Frame>
       </div>

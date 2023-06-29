@@ -111,10 +111,10 @@ import {
   WebTestimonial,
   WebTestimonialsText,
 } from "@/components/Craft/Templates/dentalTemplate/webTestimonial";
-import {
-  ContactTemp,
-  ContactTempsText,
-} from "@/components/Craft/Templates/dentalTemplate/contactUs";
+// import {
+//   ContactTemp,
+//   ContactTempsText,
+// } from "@/components/Craft/Templates/dentalTemplate/contactUs";
 import {
   Team,
   TeamsText,
@@ -128,6 +128,19 @@ import { FiHome } from "react-icons/fi";
 import { BsTelephoneOutbound } from "react-icons/bs";
 import { CiMail } from "react-icons/ci";
 import {
+  Blog,
+  BlogsText,
+} from "@/components/Craft/Templates/dentalTemplate/blog";
+import ErrorBoundary from "@/components/Craft/Templates/dentalTemplate/errorNew";
+import MyComponent from "@/components/Craft/Templates/dentalTemplate/newDemo";
+import {
+  ContactTemp,
+  ContactTempsText,
+  ContactTempTop,
+} from "@/components/Craft/Templates/dentalTemplate/contactUs";
+
+import { Headline } from "@/components/Craft/widgets/Text/Headline";
+import {
   Newsletter,
   NewsletterText,
 } from "@/components/Craft/widgets/prebuilt/Newsletter";
@@ -135,7 +148,14 @@ import {
   ImageOverlay,
   ImageOverlayText,
 } from "@/components/Craft/widgets/prebuilt/ImageOverlay";
-import { Headline } from "@/components/Craft/widgets/Text/Headline";
+import {
+  CtaLayouts,
+  CtaLayoutsText,
+} from "@/components/Craft/widgets/prebuilt/CtaLayout";
+import {
+  BlogLayout,
+  BlogLayoutText,
+} from "@/components/Craft/widgets/prebuilt/BlogLayout";
 
 export const CraftContext = createContext({
   tools: "prebuilt",
@@ -170,12 +190,20 @@ export default function Craft() {
             FiHome,
             BsTelephoneOutbound,
             CiMail,
+            CtaLayouts,
+            CtaLayoutsText,
+            BlogLayout,
+            BlogLayoutText,
+            ContactTempsText,
+            ContactTemp,
+            ContactTempTop,
+            MyComponent,
+            Blog,
+            BlogsText,
             HeaderMenuNew,
             Team,
             NewNavBarLayout,
             TeamsText,
-            ContactTemp,
-            ContactTempsText,
             WebTestimonial,
             WebTestimonialsText,
             CardHeader,
@@ -186,7 +214,6 @@ export default function Craft() {
             CardBottomsText,
             CardBanner,
             CardBannersText,
-
             Banner,
             FooterWeb,
             FooterWebsText,
@@ -241,6 +268,7 @@ export default function Craft() {
             OrderOneStep,
             OrderTwoStep,
             FormElements,
+            //Form
             //
             MainForm,
             MainFormTop,
@@ -251,6 +279,7 @@ export default function Craft() {
             SelectBoxInputElement,
             AttachmentElement,
             DatePickerElement,
+            ErrorBoundary,
             //sections
             Newsletter,
             NewsletterText,

@@ -10,7 +10,7 @@ import {
   getCommonSettingsProps,
 } from "./CommonSettings";
 import { CraftContext } from "@/pages/builder/survey/craft";
-const elementName = "Text Input";
+const elementName = "TextInput";
 
 const textInputTypes = ["text", "number", "email", "url"];
 
