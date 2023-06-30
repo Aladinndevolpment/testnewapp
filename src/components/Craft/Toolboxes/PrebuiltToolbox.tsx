@@ -19,7 +19,7 @@ import { CardBottomNew } from "../Templates/dentalTemplate/cardBottom";
 import { FooterWeb } from "../Templates/dentalTemplate/footer";
 import { Team } from "../Templates/dentalTemplate/team";
 import { ContactTemp } from "../Templates/dentalTemplate/contactUs";
-import { CtaLayouts } from "../widgets/prebuilt/CtaLayout";
+import { CtaLayout } from "../widgets/prebuilt/CtaLayout";
 import { BlogLayout } from "../widgets/prebuilt/BlogLayout";
 
 const tbStyles = {
@@ -188,7 +188,7 @@ const baseTools = [
         tool: (
           <PrebuiltToolsLayout
             toolName="CTA layout"
-            tool={<CtaLayouts />}
+            tool={<CtaLayout />}
             image={require("@/../public/craft/hero.png")}
           />
         ),

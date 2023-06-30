@@ -1,16 +1,26 @@
+import { Text } from "../../widgets/Text/Text";
+// import { Text } from "./Text/Text";
+import { Button } from "../../widgets/Button";
 import { useNode, Element, useEditor } from "@craftjs/core";
-import { Text } from "../Text/Text";
-import { createElement, useState } from "react";
+import { BuilderImage } from "../../widgets/Image";
+import { BsSearch } from "react-icons/bs";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import Image from "next/image";
+import { FaBriefcaseMedical } from "react-icons/fa";
+import { FiPhoneCall } from "react-icons/fi";
+import { TbDental } from "react-icons/tb";
 import {
-  CommonSettings,
-  ICommonSettingsProps,
   baseDefaults,
+  CommonSettings,
   getCommonSettingsProps,
-} from "../CommonSettings";
-import { BuilderImage } from "../Image";
-import { Button } from "@/components/SurveyCraft/widgets/Button";
+  ICommonSettingsProps,
+} from "../../widgets/CommonSettings";
+import { createElement, useState } from "react";
+import item from "@/components/Leads/dnd/styles/item";
+import { Card } from "@mui/material";
+import data from "@/layouts/GlobalLayout/components/data";
 
-const elementName = "CtaLayouts";
+const elementName = "CtaLayout";
 
 const defaults = {
   backgroundColor: "#ffffff",
@@ -18,14 +28,31 @@ const defaults = {
   borderRadius: 10,
 };
 
-interface ICtaLayoutsProps extends ICommonSettingsProps {
+interface ICtaLayoutProps extends ICommonSettingsProps {
   size?: string;
   backgroundColor?: string;
   borderColor?: string;
   borderRadius?: number;
 }
 
-export const CtaLayoutsText = ({ children }: any) => {
+export const CardImage = ({ children }: any) => {
+  const {
+    connectors: { connect, drag },
+  }: any = useNode();
+  return <div ref={connect}>{children}</div>;
+};
+
+CardImage.craft = {
+  rules: {
+    // Only accept Buttons
+    canMoveIn: (incomingNodes: any) =>
+      incomingNodes.every(
+        (incomingNode: any) => incomingNode.data.type === BuilderImage || Text
+      ),
+  },
+};
+
+export const CtaLayoutText = ({ children }: any) => {
   const {
     connectors: { connect },
   }: any = useNode();
@@ -36,7 +63,7 @@ export const CtaLayoutsText = ({ children }: any) => {
   );
 };
 
-CtaLayoutsText.craft = {
+CtaLayoutText.craft = {
   rules: {
     // Only accept Text
     canMoveIn: (incomingNodes: any) =>
@@ -44,7 +71,7 @@ CtaLayoutsText.craft = {
   },
 };
 
-export const CtaLayouts = ({
+export const CtaLayout = ({
   size,
   backgroundColor = defaults.backgroundColor,
   borderRadius = defaults.borderRadius,
@@ -61,23 +88,17 @@ export const CtaLayouts = ({
   paddingRight = baseDefaults.paddingRight,
   shadow,
   shadowColor,
-}: ICtaLayoutsProps) => {
-  // const [showResults, setShowResults] = useState(false);
-
-  // const handleClick = () => {
-  //   setShowResults(true);
-  // };
-
+}: ICtaLayoutProps) => {
+  const [cardSlide, setCardSlide] = useState<any>([]);
   const {
     connectors: { connect, drag },
     hovered,
-  } = useNode((state) => ({ hovered: state.events.hovered }));
+  }: any = useNode((state) => ({ hovered: state.events.hovered }));
 
-  // console.log(showResults);
   return (
-    <div ref={(ref: any) => connect(drag(ref))}>
+    <div className=" p-2 w-full " ref={(ref: any) => connect(drag(ref))}>
       <div
-        className={`w-full h-auto ${size} mr-2 ${
+        className={`w-full h-auto ${size} mr-2  ${
           hovered && "hover:outline-pink-500 hover:outline "
         }  relative ${shadowColor} ${shadow} ${borderType} `}
         style={{
@@ -101,12 +122,12 @@ export const CtaLayouts = ({
           </div>
         )}
         <div>
-          <Element id="CtaLayoutsText" is={CtaLayoutsText} canvas>
-            <section className="relative isolate overflow-hidden  px-6 py-24 sm:py-8 sm:my-1  lg:px-8">
+          <Element id="CtaLayoutText" is={CtaLayoutText} canvas>
+            <section className="relative isolate overflow-hidden  px-6  sm:py-8 sm:my-1  lg:px-8">
               <div className="absolute inset-0 -z-10 opacity-20  " />
 
               <div className="mx-auto max-w-2xl lg:max-w-4xl ">
-                <figure className="my-10 ">
+                <figure className="my-3 ">
                   <blockquote className="text-center text-xl  font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
                     <p
                       className={`   w-full h-auto ${size} mr-2 ${
@@ -128,7 +149,7 @@ export const CtaLayouts = ({
                     >
                       <Text
                         paddingBottom={10}
-                        paddingTop={10}
+                        paddingTop={5}
                         alignment="center"
                         text="Heading"
                         fontSize={30}
@@ -168,124 +189,7 @@ export const CtaLayouts = ({
                       />
                     </p>
                   </blockquote>
-                  {/* <figcaption className="mt-10">
-                  <div
-                    className={` flex justify-center w-full h-auto ${size} mr-2 ${
-                      hovered && "hover:outline-pink-500 hover:outline "
-                    }  relative ${shadowColor} ${shadow} ${borderType}`}
-                    style={{
-                      backgroundColor: "#ffffff",
-                      marginTop: `${marginTop}px`,
-                      marginBottom: `${marginBottom}px`,
-                      marginLeft: `${marginLeft}px`,
-                      marginRight: `${marginRight}px`,
-                      paddingTop: `${paddingTop}px`,
-                      paddingBottom: `${paddingBottom}px`,
-                      paddingLeft: `${paddingLeft}px`,
-                      paddingRight: `${paddingRight}px`,
-                      borderWidth: `${borderWidth}px`,
-                      borderRadius: `100px`,
-                      borderColor,
-                    }}
-                  >
-                   
-                    <div
-                      className="inline-block h-10 w-10 rounded-full ring-2 ring-white object-cover justify-center"
-                      style={{
-                        backgroundColor: "#ffffff",
-                        marginTop: `${marginTop}px`,
-                        marginBottom: `${marginBottom}px`,
-                        marginLeft: `${marginLeft}px`,
-                        marginRight: `${marginRight}px`,
-                        paddingTop: `${paddingTop}px`,
-                        paddingBottom: `${paddingBottom}px`,
-                        paddingLeft: `${paddingLeft}px`,
-                        paddingRight: `${paddingRight}px`,
-                        borderWidth: `${borderWidth}px`,
-                        borderRadius: `100px`,
-                        borderColor,
-                      }}
-                    >
-                      <BuilderImage height={50} width={50} borderRadius={50} />
-                    </div>
-                  </div>
-                  <div className="mt-3 flex items-center justify-center space-x-3 text-base">
-                    <div
-                      className={`   w-full h-auto ${size} mr-2 ${
-                        hovered && "hover:outline-pink-500 hover:outline "
-                      }  relative ${shadowColor} ${shadow} ${borderType}`}
-                      style={{
-                        backgroundColor: "#ffffff",
-                        marginTop: `${marginTop}px`,
-                        marginBottom: `${marginBottom}px`,
-                        marginLeft: `${marginLeft}px`,
-                        marginRight: `${marginRight}px`,
-                        paddingTop: `${paddingTop}px`,
-                        paddingBottom: `${paddingBottom}px`,
-                        paddingLeft: `${paddingLeft}px`,
-                        paddingRight: `${paddingRight}px`,
-                        borderWidth: `${borderWidth}px`,
-                        borderRadius: `2px`,
-                        borderColor,
-                      }}
-                    >
-                      <Text
-                        paddingLeft={10}
-                        paddingBottom={10}
-                        paddingTop={10}
-                        alignment="right"
-                        text="Judith Black"
-                        fontSize={17}
-                        bold="font-semibold"
-                        color="#000000"
-                        backgroundColor="#ffffff"
-                      />
-                    </div>
-                    <div>
-                      <svg
-                        viewBox="0 0 2 2"
-                        width={3}
-                        height={3}
-                        aria-hidden="true"
-                        className="fill-gray-900"
-                      >
-                        <circle cx={1} cy={1} r={1} />
-                      </svg>
-                    </div>
-                    <div
-                      className={`  ml-2 w-full h-auto ${size} mr-2 ${
-                        hovered && "hover:outline-pink-500 hover:outline "
-                      }  relative ${shadowColor} ${shadow} ${borderType}`}
-                      style={{
-                        backgroundColor: "#ffffff",
-                        marginTop: `${marginTop}px`,
-                        marginBottom: `${marginBottom}px`,
-                        marginLeft: `${marginLeft}px`,
-                        marginRight: `${marginRight}px`,
-                        paddingTop: `${paddingTop}px`,
-                        paddingBottom: `${paddingBottom}px`,
-                        paddingLeft: `${paddingLeft}px`,
-                        paddingRight: `${paddingRight}px`,
-                        borderWidth: `${borderWidth}px`,
-                        borderRadius: `2px`,
-                        borderColor,
-                      }}
-                    >
-                      <Text
-                        paddingLeft={10}
-                        paddingBottom={10}
-                        paddingTop={10}
-                        alignment="left"
-                        text="CEO of Workcation"
-                        fontSize={12}
-                        mobileFontSize={20}
-                        bold="font-normal"
-                        color="#000000"
-                        backgroundColor="#ffffff"
-                      />
-                    </div>
-                  </div>
-                </figcaption> */}
+
                   <div className="flex justify-center">
                     <Button
                       text="Learn More"
@@ -305,7 +209,7 @@ export const CtaLayouts = ({
   );
 };
 
-const CtaLayoutsSettings = () => {
+const CtaLayoutSettings = () => {
   const {
     actions: { setProp },
     props,
@@ -321,7 +225,7 @@ const CtaLayoutsSettings = () => {
   });
 
   const textNodeSettings =
-    state.nodes[state.nodes[data.linkedNodes["CtaLayoutsText"]].data.nodes[0]]
+    state.nodes[state.nodes[data.linkedNodes["CtaLayoutText"]].data.nodes[0]]
       .related.settings;
   return (
     <div>
@@ -331,18 +235,19 @@ const CtaLayoutsSettings = () => {
     </div>
   );
 };
-
-CtaLayouts.craft = {
+CtaLayout.craft = {
   related: {
-    settings: CtaLayoutsSettings,
+    settings: CtaLayoutSettings,
   },
   props: {
     ...getCommonSettingsProps(),
     background: defaults.backgroundColor,
     borderRadius: defaults.borderRadius,
     borderColor: defaults.borderColor,
-    paddingRight: 10,
-    paddingLeft: 10,
+    paddingRight: 0,
+    paddingTop: 10,
+    paddingLeft: 0,
+    paddingBottom: 10,
     marginTop: 0,
     marginBottom: 0,
   },

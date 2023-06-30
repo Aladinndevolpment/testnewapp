@@ -375,16 +375,15 @@ export default function Calendar() {
         onSave={(arg) => handleSelect(arg)}
         eventArg={eventArg}
       />
-
       <AppointmentDetails
         onClose={() => setModalOpen(false)}
         visibility={modalOpen}
       />
       <div className="md:h-auto bg-mainBg overflow-hidden relative">
         <header className="block w-full mb-5 h-16  lg:h-16 items-center relative z-10 border-b-[1px] border-lightGray">
-          <div className="flex  w-full  lg:h-full  lg:mx-auto relative  text-white z-10">
-            <div className="flex   items-center justify-between relative w-full sm:ml-0 sm:pr-2  ">
-              <div className="  flex justify-between items-center  w-full  pl-2 pr-5 py-1.5 rounded-md">
+          <div className="flex w-full  lg:h-full  lg:mx-auto relative text-white z-10">
+            <div className="flex items-center justify-between relative w-full sm:ml-0 sm:pr-2">
+              <div className="flex justify-between items-center w-full  pl-2 pr-5 py-1.5 rounded-md">
                 <div
                   className={`flex items-center pl-5   w-full lg:justify-start`}
                 >

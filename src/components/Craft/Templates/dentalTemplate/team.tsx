@@ -98,7 +98,7 @@ export const Team = ({
   const people = [
     {
       id: 1,
-      name: "Leslie Alexander",
+      name: "Dr. Leslie Alexander",
       role: "Co-Founder / CEO",
       imageUrl: (
         <BuilderImage
@@ -108,8 +108,8 @@ export const Team = ({
     },
     {
       id: 2,
-      name: "Leslie Alexander",
-      role: "Co-Founder / CEO",
+      name: "Dr. Leslie Alexander",
+      role: "Senior Neurologist",
       imageUrl: (
         <BuilderImage
           imageSrc={require("../../../../../public/images/dentalTemplate/teamperson1.avif")}
@@ -118,8 +118,8 @@ export const Team = ({
     },
     {
       id: 3,
-      name: "Leslie Alexander",
-      role: "Co-Founder / CEO",
+      name: "Dr. Leslie Alexander",
+      role: "Senior Consultant",
       imageUrl: (
         <BuilderImage
           imageSrc={require("../../../../../public/images/dentalTemplate/teamperson1.avif")}
@@ -128,8 +128,8 @@ export const Team = ({
     },
     {
       id: 4,
-      name: "Leslie Alexander",
-      role: "Co-Founder / CEO",
+      name: "Dr. Leslie Alexander",
+      role: "Senior Physician",
       imageUrl: (
         <BuilderImage
           imageSrc={require("../../../../../public/images/dentalTemplate/teamperson1.avif")}
@@ -138,8 +138,8 @@ export const Team = ({
     },
     {
       id: 5,
-      name: "Leslie Alexander",
-      role: "Co-Founder / CEO",
+      name: "Dr. Leslie Alexander",
+      role: "Radiologist",
       imageUrl: (
         <BuilderImage
           imageSrc={require("../../../../../public/images/dentalTemplate/teamperson1.avif")}

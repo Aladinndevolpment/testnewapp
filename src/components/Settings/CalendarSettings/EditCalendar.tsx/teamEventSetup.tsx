@@ -23,20 +23,22 @@ export default function TeamEventSetup({
   onClose,
   handleNewTab,
   handleStoreFormData,
+  calendar,
 }: any) {
+  console.log(calendar);
   const [errors, setErrors] = useState<any>({});
   const [formValues, setFormValues] = useState<any>({
-    name: "",
-    description: "",
-    calendarUrl: "",
+    name: calendar?.name,
+    description: calendar?.description,
+    calendarUrl: calendar?.calendar?.name,
     widgetTyp: "",
     widgetShape: "square",
-    appointmentTitle: "",
-    meetingLocation: "",
+    appointmentTitle: calendar?.calendar?.name,
+    meetingLocation: calendar?.locationID,
     linkToCalendar: "",
     googleCalendar: "",
     syncOption: "",
-    eventColor: "",
+    eventColor: calendar?.eventColor,
     image: null,
   });
 

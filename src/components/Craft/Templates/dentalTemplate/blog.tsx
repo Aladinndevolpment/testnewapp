@@ -98,10 +98,10 @@ export const Blog = ({
   const cardItem = [
     {
       id: 1,
-      title: "Dental Services",
+      title: "Clinical Services",
       image: (
         <BuilderImage
-          width={280}
+          width={220}
           imageSrc={require("../../../../../public/images/dentalTemplate/services1.jpg")}
         />
       ),
@@ -110,10 +110,10 @@ export const Blog = ({
     },
     {
       id: 2,
-      title: "Dental Implants",
+      title: "Senior Doctors",
       image: (
         <BuilderImage
-          width={280}
+          width={220}
           imageSrc={require("../../../../../public/images/dentalTemplate/services2.jpg")}
         />
       ),
@@ -125,7 +125,7 @@ export const Blog = ({
       title: "Surgery",
       image: (
         <BuilderImage
-          width={280}
+          width={220}
           imageSrc={require("../../../../../public/images/dentalTemplate/services3.jpg")}
         />
       ),
@@ -211,10 +211,12 @@ export const Blog = ({
               </p>
             </div>
 
-            <div className=" flex justify-center items-center flex-wrap">
+            <div className=" flex justify-center pl-2 items-center flex-wrap">
               {cardItem.map((item: any) => (
                 <div key={item.id} className=" w-1/3 p-0 card h-auto">
-                  <div className="h-auto object-cover">{item.image}</div>
+                  <div className="h-auto overflow-hidden object-cover">
+                    {item.image}
+                  </div>
                   <div className="card-body pl-1">
                     <div className="card-title">
                       <Text

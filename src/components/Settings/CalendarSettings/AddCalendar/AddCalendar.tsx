@@ -3,6 +3,8 @@ import SettingsSidebar from "@/components/SettingsSidebar/TeamsSidebar";
 import TeamEventSetup from "./teamEventSetup";
 import Availability from "./availability";
 import Confirmation from "./confirmation";
+import axios from "axios";
+import { baseUrl, locationID, token } from "@/config/APIConstants";
 
 export default function AddCalendar({ handleChange, onClose }: any) {
   const [select, setSelect] = useState(0);
@@ -12,7 +14,54 @@ export default function AddCalendar({ handleChange, onClose }: any) {
     { title: "Confirmation", number: 3 },
   ];
   const [formData, setFormData] = useState<any>([]);
-  console.log(select);
+  console.log("ssddds", formData);
+  let obj = formData[0];
+  // console.log("dddssss", obj);
+  // let data = {
+  //   name: obj?.calendarName,
+  //   appointmentTitle: obj?.appointmentTitle,
+  //   eventColor: obj?.eventColor,
+  //   description: obj?.description,
+  // };
+  let data = {
+    appointmentPerDay: 0,
+    appointmentPerSlot: 0,
+    appointmentTitle: obj?.appointmentTitle,
+    dateRangeDays: 0,
+    description: obj?.description,
+    eventColor: obj?.eventColor,
+    isActive: true,
+    locationID: locationID,
+    minSchedulingNoticeHours: 0,
+    name: obj?.calendarName,
+    officeHours: [
+      {
+        dayOfWeek: "Tue",
+        endHour: 0,
+        endMinute: 0,
+        startHour: 0,
+        startMinute: 0,
+      },
+    ],
+    slotBuffer: 0,
+    slotDuration: 0,
+    slotInterval: 0,
+    slug: obj?.calendarUrl,
+    teamUserIDs: ["9b36de41-f652-4bf2-ba38-7a96103f09a3"],
+  };
+  const submitData = async () => {
+    await axios.post(
+      `${baseUrl}calendars`,
+
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  };
   return (
     <div className="w-full  bg-white ">
       <div className="w-full bg-white  ">
@@ -60,10 +109,12 @@ export default function AddCalendar({ handleChange, onClose }: any) {
           <Availability
             onClose={() => {
               setSelect(0);
+
               onClose();
             }}
             handleBack={() => setSelect(0)}
-            handleNewTab={() => setSelect(2)}
+            // handleNewTab={() => setSelect(2)}
+            handleNewTab={() => submitData()}
             handleStoreFormData={(item: any) =>
               setFormData([...formData, item])
             }

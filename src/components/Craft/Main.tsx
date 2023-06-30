@@ -25,18 +25,17 @@ import { NewNavBarLayout } from "./Templates/dentalTemplate/newNavBar";
 import { Blog } from "./Templates/dentalTemplate/blog";
 import MyComponent from "./Templates/dentalTemplate/newDemo";
 import { BlogLayout } from "./widgets/prebuilt/BlogLayout";
-import { CtaLayouts } from "./widgets/prebuilt/CtaLayout";
 
 export default function Main() {
   const { device } = useContext(CraftContext);
 
   return (
     <div className="flex h-full">
-      {/* <div className="w-[22%] pr-2 h-screen">
+      <div className="w-[22%] pr-2 h-screen">
         <div className="bg-white rounded-md shadow-md h-full overflow-y-scroll pb-40 scrollbar-hide">
           <Toolbox />
         </div>
-      </div> */}
+      </div>
       <div className="w-[78%] h-full overflow-y-scroll scrollbar-hide pb-40 px-5">
         <Frame>
           <Element is={Container} canvas>

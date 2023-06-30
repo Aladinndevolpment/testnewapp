@@ -149,13 +149,17 @@ import {
   ImageOverlayText,
 } from "@/components/Craft/widgets/prebuilt/ImageOverlay";
 import {
-  CtaLayouts,
-  CtaLayoutsText,
+  CtaLayout,
+  CtaLayoutText,
 } from "@/components/Craft/widgets/prebuilt/CtaLayout";
 import {
   BlogLayout,
-  BlogLayoutText,
+  BlogLayoutsText,
 } from "@/components/Craft/widgets/prebuilt/BlogLayout";
+// import {
+//   BlogLayout,
+//   BlogLayoutText,
+// } from "@/components/Craft/widgets/prebuilt/BlogLayout";
 
 export const CraftContext = createContext({
   tools: "prebuilt",
@@ -176,7 +180,6 @@ export default function Craft() {
     device,
     setDevice,
   };
-
   return (
     <CraftContext.Provider value={value}>
       <div className="h-full overflow-hidden">
@@ -190,10 +193,11 @@ export default function Craft() {
             FiHome,
             BsTelephoneOutbound,
             CiMail,
-            CtaLayouts,
-            CtaLayoutsText,
             BlogLayout,
-            BlogLayoutText,
+            BlogLayoutsText,
+            CtaLayout,
+            CtaLayoutText,
+
             ContactTempsText,
             ContactTemp,
             ContactTempTop,

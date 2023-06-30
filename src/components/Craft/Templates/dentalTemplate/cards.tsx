@@ -98,7 +98,7 @@ export const CardBanner = ({
   const cardItem = [
     {
       id: 1,
-      title: "Dental Services",
+      title: "Clinical Services",
       image: (
         <BuilderImage
           width={380}
@@ -110,7 +110,7 @@ export const CardBanner = ({
     },
     {
       id: 2,
-      title: "Dental Implants",
+      title: "Senior Doctors",
       image: (
         <BuilderImage
           width={380}
@@ -134,7 +134,7 @@ export const CardBanner = ({
     },
     {
       id: 4,
-      title: "Teeth Whitening",
+      title: "HighTech Laboratories",
       image: (
         <BuilderImage
           width={380}

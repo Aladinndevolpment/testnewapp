@@ -102,7 +102,7 @@ export const Banner = ({
       id: 1,
       image: (
         <BuilderImage
-          width={1600}
+          width={900}
           imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatefirst.jpg")}
         />
       ),
@@ -111,7 +111,7 @@ export const Banner = ({
       id: 2,
       image: (
         <BuilderImage
-          width={1600}
+          width={900}
           imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatesecond.jpg")}
         />
       ),
@@ -120,7 +120,7 @@ export const Banner = ({
       id: 3,
       image: (
         <BuilderImage
-          width={1600}
+          width={900}
           imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatethird.jpg")}
         />
       ),
@@ -129,7 +129,7 @@ export const Banner = ({
       id: 4,
       image: (
         <BuilderImage
-          width={1600}
+          width={900}
           imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatesecond.jpg")}
         />
       ),
@@ -138,7 +138,7 @@ export const Banner = ({
       id: 5,
       image: (
         <BuilderImage
-          width={1600}
+          width={900}
           imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatethird.jpg")}
         />
       ),
@@ -147,7 +147,7 @@ export const Banner = ({
       id: 6,
       image: (
         <BuilderImage
-          width={1600}
+          width={900}
           imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplatefirst.jpg")}
         />
       ),
@@ -156,7 +156,7 @@ export const Banner = ({
       id: 7,
       image: (
         <BuilderImage
-          width={1600}
+          width={900}
           imageSrc={require("../../../../../public/images/dentalTemplate/dentalTemplateforth.jpg")}
         />
       ),
@@ -193,16 +193,16 @@ export const Banner = ({
           <div className="w-full carousel rounded-box">
             {data.map((item: any, index: number) => (
               <div
-                key={item.id}
-                className="carousel-item w-full"
-                id={`slide_${item.id}`}
+                id={`slide${item.id}`}
+                className="carousel-item relative w-full"
+                key={index}
               >
                 {item.image}
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-3 right-9 top-1/2">
-                  <a href={`#slide_${item.id - 1}`} className="text-black">
+                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                  <a href={`#slide${item.id - 1}`} className="btn btn-circle">
                     ❮
                   </a>
-                  <a href={`#slide_${item.id + 1}`} className="text-black">
+                  <a href={`#slide${item.id + 1}`} className="btn btn-circle">
                     ❯
                   </a>
                 </div>

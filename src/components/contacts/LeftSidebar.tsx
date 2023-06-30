@@ -26,7 +26,6 @@ export default function LeftSidebar({
   setConversationModeIndex,
   setShowConversation,
 }: IProps) {
-  console.log("ppp", data);
   const ctx: any = useContext(GlobalContext);
   const router = useRouter();
   const [tabIndex, setTabIndex] = useState(0);
@@ -450,7 +449,7 @@ export default function LeftSidebar({
     const requestBody = {
       ssn: ssn,
     };
-    // console.log(tagsAdd);
+    // console.log("reqbody", requestBody);
     try {
       const response = await axios.put(
         `${baseUrl}contacts/${data.contact.id}/profile/ssn`,
@@ -459,7 +458,7 @@ export default function LeftSidebar({
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      console.log("res", response);
+      // console.log("resEE", response);
 
       // setIsError(null);
       // setIsReady(true);

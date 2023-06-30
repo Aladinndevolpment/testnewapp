@@ -5,9 +5,11 @@ import CalendarListTable from "./calendarListTable";
 import RoomsListTable from "./RoomsListTable";
 import ProviderListTable from "./ProvidersListTable";
 import AptTypeListTable from "./AptTypeListTable";
+
 interface RowData {
   [key: string]: any;
 }
+
 const FieldType = [
   { title: "Calendars" },
   { title: "Rooms" },
@@ -25,7 +27,8 @@ export const CalendarSettingsContext = createContext({
   setOpenModal4: (string: string) => {},
 });
 
-export default function CalendarListData() {
+export default function CalendarListData({ calendarData, calendarCount }: any) {
+  // console.log("Data", calendarData, calendarCount);
   const [openAddTagModel, setAddTagModel] = useState<any>(false);
   const [select, setSelect] = useState<any>(0);
   const [openModal1, setOpenModal1] = useState(false);
@@ -95,7 +98,12 @@ export default function CalendarListData() {
         </div>
         ​
         <div className="  pb-10 w-full">
-          {select == 0 && <CalendarListTable />}
+          {select == 0 && (
+            <CalendarListTable
+              calendarCount={calendarCount}
+              calendarData={calendarData}
+            />
+          )}
           {select == 1 && <RoomsListTable />}
           {select == 2 && <ProviderListTable />}
           {select == 3 && <AptTypeListTable />}

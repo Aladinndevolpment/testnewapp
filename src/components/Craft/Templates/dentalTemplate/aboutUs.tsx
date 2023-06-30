@@ -156,7 +156,7 @@ export const AboutTemp = ({
                 <div className="text-3xl lg:text-4xl font-bold leading-9 text-gray-800 pb-4">
                   <Text
                     alignment="left"
-                    text="Joining Hands With Dental Solutions"
+                    text="Joining Hands With Clinical Solutions"
                     fontSize={25}
                     bold="font-bold"
                     color="#107CE8"
