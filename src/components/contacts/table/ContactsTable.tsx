@@ -36,7 +36,6 @@ import { MdPhoneCallback } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import { baseUrl, locationID, token } from "../../../config/APIConstants";
 
 interface IContactsTableProps {
   contactsData: IContact[];
@@ -46,7 +45,7 @@ async function addContactToServer(
   addContactData: IAddContactData
 ): Promise<boolean> {
   let isSuccessful = true;
-  // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+  const token = process.env.NEXT_PUBLIC_API_TOKEN;
 
   try {
     for (let i = 0; i < addContactData.tags.length; i++) {
@@ -55,7 +54,7 @@ async function addContactToServer(
       const tagResult = await axios.post(
         "/api/tags",
         {
-          locationID: locationID,
+          locationID: process.env.NEXT_PUBLIC_LOCATION_ID,
           content: addContactData.tags[i].content,
           tagType: "CONTACT",
         },
@@ -78,7 +77,7 @@ async function addContactToServer(
       );
       if (addContactData.leadSources[i].leadSourceID !== "-1") continue;
       const leadSourceResult = await axios.post(
-        `${baseUrl}/lead-sources`,
+        "/api/lead-sources",
         {
           locationID: process.env.NEXT_PUBLIC_LOCATION_ID,
           content: addContactData.leadSources[i].content,
@@ -92,16 +91,15 @@ async function addContactToServer(
         }
       );
 
-      // console.log(leadSourceResult);
+      console.log(leadSourceResult);
       addContactData.leadSources[i].leadSourceID =
         leadSourceResult.data.leadSourceID;
     }
 
     const contactResult = await axios.post(
-      // "/api/contacts",
-      `${baseUrl}contacts`,
+      "/api/contacts",
       {
-        locationID: locationID,
+        locationID: process.env.NEXT_PUBLIC_LOCATION_ID,
         ownerUserID: addContactData.owner.id,
         fullName: addContactData.fullName,
         emailAddress: addContactData.emailAddress,
@@ -121,7 +119,7 @@ async function addContactToServer(
 
     for (let i = 0; i < addContactData.tags.length; i++) {
       await axios.post(
-        `${baseUrl}contacts/${contactID}/tags`,
+        `/api/contacts/${contactID}/tags`,
         {
           contactID: contactID,
           tagID: addContactData.tags[i].tagID,
@@ -137,7 +135,7 @@ async function addContactToServer(
 
     for (let i = 0; i < addContactData.leadSources.length; i++) {
       await axios.post(
-        `${baseUrl}contacts/${contactID}/lead-sources`,
+        `/api/contacts/${contactID}/lead-sources`,
         {
           contactID: contactID,
           leadSourceID: addContactData.leadSources[i].leadSourceID,
@@ -159,38 +157,9 @@ async function addContactToServer(
 }
 
 export default function ContactsTable({ contactsData }: IContactsTableProps) {
-  // console.log("uuu", contactsData);
   const [isGrid, setIsGrid] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
   const router = useRouter();
-
-  const deleteContact = async (id: any) => {
-    if (confirm("Are you sure your want to delete")) {
-      try {
-        const response = await axios.delete(`${baseUrl}contacts/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        // console.log("rttt", response);
-
-        router.reload();
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    // console.log("delete k liye id", id);
-
-    // await axios
-    //   .delete(`${baseUrl}contacts${id}`)
-
-    //   .then((response: any) => {
-    //     console.log("resdgggdd", response);
-    //   })
-    //   .catch((err) => {
-    //     console.log("error bruh:", err);
-    //   });
-  };
 
   const columns = useMemo<MRT_ColumnDef<any>[]>(
     () => [
@@ -202,7 +171,7 @@ export default function ContactsTable({ contactsData }: IContactsTableProps) {
           <div
             className="font-main flex items-center cursor-pointer"
             onClick={() => {
-              router.push("/contact/" + row.original.id);
+              router.push("/contacts/" + row.original.id);
             }}
           >
             <div className="flex-shrink-0 h-12 w-12">
@@ -314,6 +283,7 @@ export default function ContactsTable({ contactsData }: IContactsTableProps) {
               setOpen(!open);
             }
           };
+
           return (
             <div
               className="flex items-center"
@@ -505,7 +475,7 @@ export default function ContactsTable({ contactsData }: IContactsTableProps) {
   };
 
   const filteredData = data.filter((category: any) => {
-    return category.name?.toLowerCase().includes(filterValue.toLowerCase());
+    return category.name.toLowerCase().includes(filterValue.toLowerCase());
   });
 
   return (
@@ -684,7 +654,7 @@ export default function ContactsTable({ contactsData }: IContactsTableProps) {
           <div className="bg-white shadow-md lg:px-2 pb-5 rounded-lg">
             <MaterialReactTable
               columns={columns}
-              data={contactsData}
+              data={filteredData}
               enableStickyHeader
               enableColumnOrdering
               enableRowSelection
@@ -718,29 +688,7 @@ export default function ContactsTable({ contactsData }: IContactsTableProps) {
                     <MdPhoneCallback className="h-4 w-4 text-gray-600" />
                   </button>
 
-                  <button
-                    // onClick={() => {
-                    //   table.setEditingRow(row);
-                    // }}
-                    onClick={() => {
-                      router.push("/contact/" + row.original.id);
-                    }}
-                  >
-                    <CiEdit className="h-4 w-4 text-gray-600" />
-                  </button>
-
-                  <button
-                    // onClick={() => {
-                    //   table.setEditingRow(row);
-                    // }}
-                    onClick={() => {
-                      deleteContact(row.original.id);
-                    }}
-                  >
-                    <RiDeleteBin5Line className="h-4 w-4 text-gray-600" />
-                  </button>
-
-                  {/* <div className="dropdown">
+                  <div className="dropdown">
                     <label tabIndex={0}>
                       <BsThreeDots className="h-4 w-4 text-gray-600" />
                     </label>
@@ -752,7 +700,6 @@ export default function ContactsTable({ contactsData }: IContactsTableProps) {
                         <button
                           onClick={() => {
                             table.setEditingRow(row);
-                            console.log(row.original);
                           }}
                         >
                           <CiEdit className="h-4 w-4 text-gray-600" />
@@ -767,7 +714,7 @@ export default function ContactsTable({ contactsData }: IContactsTableProps) {
                         </button>
                       </div>
                     </div>
-                  </div> */}
+                  </div>
                 </div>
               )}
               enableSorting={true}

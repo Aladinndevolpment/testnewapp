@@ -9,84 +9,91 @@ import ModalDerived from "@/components/Modal";
 import { AiOutlineClose } from "react-icons/ai";
 import AddCalendar from "./AddCalendar/AddCalendar";
 import { CalendarSettingsContext } from "./CalendarListData";
-import { useRouter } from "next/router";
-import axios from "axios";
-import { baseUrl, locationID, token } from "../../../config/APIConstants";
 
 interface RowData {
   [key: string]: any;
 }
 
-const CalendarListTable = ({ calendarData, calendarCount }: any) => {
-  const router = useRouter();
-
-  const deleteContact = async (id: any) => {
-    if (confirm("Are you sure your want to delete")) {
-      try {
-        const response = await axios.delete(`${baseUrl}calendars/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        // console.log("rttt", response);
-
-        router.reload();
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  };
-
+const CalendarListTable = () => {
   const calendarForm: any = useContext(CalendarSettingsContext);
+
+  const [data, setData] = useState<RowData[]>([
+    {
+      id: "1",
+      calendar_Name: "Calendar 1",
+      createdOn: "2023-06-14T09:00:00.000Z",
+      upDatedOn: "2023-06-14T09:00:00.000Z",
+    },
+    {
+      id: "2",
+      calendar_Name: "Calendar 2",
+      createdOn: "2023-06-14T09:00:00.000Z",
+      upDatedOn: "2023-06-14T09:00:00.000Z",
+    },
+    {
+      id: "3",
+      calendar_Name: "Calendar 3",
+      createdOn: "2023-06-14T09:00:00.000Z",
+      upDatedOn: "2023-06-14T09:00:00.000Z",
+    },
+    {
+      id: "4",
+      calendar_Name: "Calendar 4",
+      createdOn: "2023-06-14T09:00:00.000Z",
+      upDatedOn: "2023-06-14T09:00:00.000Z",
+    },
+  ]);
+
   const handleStoreCalendar = (item: any) => {
     const newData = item;
-    // setData((prevValues: any) => [
-    //   ...data,
-    //   {
-    //     id: "1",
-    //     calendar_Name: item[0]?.calendarName,
-    //     createdOn: new Date(),
-    //     upDatedOn: new Date(),
-    //   },
-    // ]);
+    setData((prevValues: any) => [
+      ...data,
+      {
+        id: "1",
+        calendar_Name: item[0]?.calendarName,
+        createdOn: new Date(),
+        upDatedOn: new Date(),
+      },
+    ]);
   };
+
   const columns = useMemo<MRT_ColumnDef<any>[]>(
     () => [
       {
-        accessorKey: "name",
-        id: "name",
+        accessorKey: "calendar_Name",
+        id: "calendar_Name",
         header: "Calendar Name",
         size: 350,
         Cell: ({ row }) => (
           <p className="  text-gray-700 font-medium text-[15px]">
-            {row.original.name}
+            {row.original.calendar_Name}
           </p>
         ),
         enableColumnFilter: true,
       },
       {
-        accessorKey: "updatedOn",
-        id: "updatedOn",
-        header: "Updated On",
+        accessorKey: "createdOn",
+        id: "createdOn",
+        header: "Created On",
         size: 220,
         Cell: ({ row }) => (
           <div className="flex justify-start items-start gap-2">
             <p className="  text-gray-700 font-medium text-[12px]">
-              {moment(row.original.updatedOn).format("MMM DD, yyyy")}
+              {moment(row.original.createdOn).format("MMM DD, yyyy")}
             </p>
           </div>
         ),
         enableColumnFilter: true,
       },
       {
-        accessorKey: "addedOn",
-        id: "addedOn",
-        header: "Created On",
+        accessorKey: "upDatedOn",
+        id: "upDatedOn",
+        header: "Updated On",
         size: 220,
         Cell: ({ row }) => (
           <div className="flex justify-start items-start gap-2">
             <p className="  text-gray-700 font-medium text-[12px]">
-              {moment(row.original.addedOn).format("MMM DD, yyyy")}
+              {moment(row.original.upDatedOn).format("MMM DD, yyyy")}
             </p>
           </div>
         ),
@@ -103,12 +110,13 @@ const CalendarListTable = ({ calendarData, calendarCount }: any) => {
     setFilterInput(value);
   };
 
-  const filteredData = calendarData.filter((row: any) =>
-    row.name.toLowerCase().includes(filterInput.toLowerCase())
+  const filteredData = data.filter((row: any) =>
+    row.calendar_Name.toLowerCase().includes(filterInput.toLowerCase())
   );
 
   return (
     <>
+      {" "}
       <ModalDerived
         visibility={calendarForm?.openModal1}
         onClose={() => calendarForm?.setOpenModal1(false)}
@@ -158,29 +166,6 @@ const CalendarListTable = ({ calendarData, calendarCount }: any) => {
             }}
             renderRowActions={({ row }) => (
               <div className="flex justify-between items-center gap-5 pr-10">
-                <button
-                  // onClick={() => {
-                  //   table.setEditingRow(row);
-                  // }}
-                  onClick={() => {
-                    router.push("/settings/calendar/" + row.original.id);
-                  }}
-                >
-                  <CiEdit className="h-4 w-4 text-gray-600" />
-                </button>
-
-                <button
-                  // onClick={() => {
-                  //   table.setEditingRow(row);
-                  // }}
-                  onClick={() => {
-                    deleteContact(row.original.id);
-                  }}
-                >
-                  <RiDeleteBin5Line className="h-4 w-4 text-gray-600" />
-                </button>
-
-                {/*                   
                 <Link href="/settings/calendar/edit-calendar">
                   <div>
                     <CiEdit className="h-4 w-4 text-gray-600" />
@@ -194,14 +179,14 @@ const CalendarListTable = ({ calendarData, calendarCount }: any) => {
                   }}
                 >
                   <RiDeleteBin5Line className="h-4 w-4 text-gray-600" />
-                </button> */}
+                </button>
               </div>
             )}
             positionPagination="top"
             enableToolbarInternalActions={false}
             positionToolbarAlertBanner="bottom"
             muiSearchTextFieldProps={{
-              placeholder: `Search ${calendarCount} rows`,
+              placeholder: `Search ${data?.length} rows`,
               sx: {
                 minWidth: "400px",
                 marginTop: "5px",
@@ -256,7 +241,7 @@ const CalendarListTable = ({ calendarData, calendarCount }: any) => {
             }}
           />
         </div>
-      </div>
+      </div>{" "}
     </>
   );
 };

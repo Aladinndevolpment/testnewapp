@@ -169,7 +169,7 @@ export default function Template() {
               <>
                 <Link
                   key={index}
-                  href="/builder/form/craft"
+                  href="/builder/website/craft"
                   className="w-full md:w-1/2 lg:w-1/3 px-3 cursor-pointer"
                 >
                   <div className="border-[1px] border-gray-100 hover:border-2 hover:border-newBlue bg-white shadow-md mb-4 py-2 px-2 rounded-lg">

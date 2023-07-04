@@ -11,7 +11,6 @@ import {
 } from "@/components/contacts/Interfaces";
 import axios from "axios";
 import Head from "next/head";
-import { baseUrl, locationID, token } from "@/config/APIConstants";
 
 interface IAppointmentDetailsProps {
   visibility: boolean;
@@ -23,16 +22,15 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     count: 0,
     contacts: [],
   };
-  // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+
+  const token = process.env.NEXT_PUBLIC_API_TOKEN;
 
   await axios
-    .get(`${baseUrl}contacts/location/${locationID}`, {
+    .get(`/api/contacts/location/${process.env.NEXT_PUBLIC_LOCATION_ID}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
-    .then((response: any) => {
-      // console.log("resdgggdd", response);
+    .then((response) => {
       res.count = response.data.contacts.length;
-
       res.contacts = response.data.contacts;
     })
     .catch((err) => {
@@ -47,7 +45,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 }
 
 export default function Contacts(contactsData: IContactsData) {
-  // console.log("ppp", contactsData);
   const [DropDownRole, SetDropDownRole] = useState("");
 
   // const innerTabs = [
@@ -70,7 +67,7 @@ export default function Contacts(contactsData: IContactsData) {
 
   return (
     <div>
-      <div className="overflow-hidden">
+      <div className="overflow-hidden ">
         {/* <ul className="lg:px-5 border-b-[1px] border-[#dfdfdf] pt-4 flex justify-start items-center overflow-auto scrollbar-hide gap-6 bg-white  ">
           {innerTabs.map((tab: any) => (
             <li key={tab.id}>

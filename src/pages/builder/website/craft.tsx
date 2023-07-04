@@ -74,7 +74,6 @@ import {
   MainForm,
   MainFormTop,
 } from "@/components/Craft/widgets/form/MainForm";
-
 // import {
 //   TemplateOne,
 //   TemplateOneTop,
@@ -138,7 +137,6 @@ import {
   ContactTempsText,
   ContactTempTop,
 } from "@/components/Craft/Templates/dentalTemplate/contactUs";
-
 import { Headline } from "@/components/Craft/widgets/Text/Headline";
 import {
   Newsletter,
@@ -156,24 +154,97 @@ import {
   BlogLayout,
   BlogLayoutsText,
 } from "@/components/Craft/widgets/prebuilt/BlogLayout";
+import {
+  GlobalHeaderLayout,
+  GlobalHeaderLogo,
+  GlobalHeaderMenu,
+} from "@/components/Craft/GlobalSectionLayouts/HeaderLayout";
+import {
+  GlobalHeroButton,
+  GlobalHeroLayout,
+  GlobalHeroText,
+} from "@/components/Craft/GlobalSectionLayouts/HeroLayout";
+import {
+  GlobalFAQs,
+  GlobalFAQsText,
+} from "@/components/Craft/GlobalSectionLayouts/FaqLayout";
+import {
+  GlobalTestimonialsLayout,
+  GlobalTestimonialsText,
+} from "@/components/Craft/GlobalSectionLayouts/TestimonialLayout";
+import {
+  GlobalCarouselsLayout,
+  GlobalCarouselsText,
+} from "@/components/Craft/GlobalSectionLayouts/CarouselsLayout";
+import {
+  GlobalBreadcrumbsLayout,
+  GlobalBreadcrumbsText,
+} from "@/components/Craft/GlobalSectionLayouts/BreadcrumbsLayout";
+import {
+  GlobalFooterLayout,
+  GlobalFootersText,
+} from "@/components/Craft/GlobalSectionLayouts/FooterLayout";
+import {
+  GlobalBannerLayout,
+  GlobalBannersText,
+} from "@/components/Craft/GlobalSectionLayouts/BannerLayout";
+import {
+  GlobalCardHeader,
+  GlobalCardHeadersText,
+} from "@/components/Craft/GlobalSectionLayouts/CardHeaderLayout";
+import {
+  GlobalCardBanner,
+  GlobalCardBannersText,
+} from "@/components/Craft/GlobalSectionLayouts/CardBannerLayout";
+import {
+  GlobalWebTestimonial,
+  GlobalWebTestimonialsText,
+} from "@/components/Craft/GlobalSectionLayouts/WebTestimonialLayout";
+import {
+  GlobalCardBottom,
+  GlobalCardBottomsText,
+} from "@/components/Craft/GlobalSectionLayouts/CardBottomLayout";
+import {
+  GlobalFooterWeb,
+  GlobalFooterWebsText,
+} from "@/components/Craft/GlobalSectionLayouts/WebFooterLayout";
+import {
+  GlobalTeam,
+  GlobalTeamsText,
+} from "@/components/Craft/GlobalSectionLayouts/TeamLayout";
+import {
+  GlobalContactTemp,
+  GlobalContactTempTop,
+  GlobalContactTempsText,
+} from "@/components/Craft/GlobalSectionLayouts/ContactLayout";
+import {
+  GlobalCtaLayout,
+  GlobalCtaLayoutText,
+} from "@/components/Craft/GlobalSectionLayouts/CtaLayout";
+import {
+  GlobalBlogLayout,
+  GlobalBlogLayoutsText,
+} from "@/components/Craft/GlobalSectionLayouts/BlogLayout";
+import { TemplateOne } from "@/components/Craft/Templates/dentalTemplate";
+import {
+  TemplateOneSection,
+  TemplateOneTopSection,
+} from "@/components/Craft/TemplateSection/TemplateOne";
 // import {
 //   BlogLayout,
 //   BlogLayoutText,
 // } from "@/components/Craft/widgets/prebuilt/BlogLayout";
-
 export const CraftContext = createContext({
   tools: "prebuilt",
   setTools: (tool: string) => {},
   device: "desktop",
   setDevice: (device: string) => {},
 });
-
 export default function Craft() {
   const [tools, setTools] = useState("prebuilt");
   const [device, setDevice] = useState("desktop");
-
   const ctx = useContext(GlobalContext);
-
+  ctx.setOpen(false);
   const value: any = {
     tools,
     setTools,
@@ -197,7 +268,6 @@ export default function Craft() {
             BlogLayoutsText,
             CtaLayout,
             CtaLayoutText,
-
             ContactTempsText,
             ContactTemp,
             ContactTempTop,
@@ -289,7 +359,45 @@ export default function Craft() {
             NewsletterText,
             ImageOverlay,
             ImageOverlayText,
-            //template
+            GlobalHeaderLayout,
+            GlobalHeroLayout,
+            GlobalFAQs,
+            GlobalHeaderLogo,
+            GlobalHeaderMenu,
+            GlobalHeroText,
+            GlobalHeroButton,
+            GlobalFAQsText,
+            GlobalTestimonialsLayout,
+            GlobalTestimonialsText,
+            GlobalCarouselsLayout,
+            GlobalCarouselsText,
+            GlobalBreadcrumbsLayout,
+            GlobalBreadcrumbsText,
+            GlobalFooterLayout,
+            GlobalFootersText,
+            GlobalBannerLayout,
+            GlobalBannersText,
+            GlobalCardHeadersText,
+            GlobalCardHeader,
+            GlobalCardBanner,
+            GlobalCardBannersText,
+            GlobalWebTestimonial,
+            GlobalWebTestimonialsText,
+            GlobalCardBottom,
+            GlobalCardBottomsText,
+            GlobalFooterWeb,
+            GlobalFooterWebsText,
+            GlobalTeam,
+            GlobalTeamsText,
+            GlobalContactTemp,
+            GlobalContactTempsText,
+            GlobalContactTempTop,
+            GlobalCtaLayout,
+            GlobalCtaLayoutText,
+            GlobalBlogLayout,
+            GlobalBlogLayoutsText,
+            TemplateOneTopSection,
+            TemplateOneSection,
           }}
         >
           <Topbar />

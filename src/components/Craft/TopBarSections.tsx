@@ -36,7 +36,12 @@ import { AiFillPieChart, AiOutlineClose } from "react-icons/ai";
 import FlyOut from "../Flyout";
 import { TbDots } from "react-icons/tb";
 import { RxDragHandleDots2 } from "react-icons/rx";
-import LeftFlyOut from "../LeftLayout";
+
+import Sections from "../Craft/Element/Section";
+import Rows from "../Craft/Element/Row";
+import Elements from "./Element/elements";
+import GlobalSections from "../Craft/globalSections";
+import SectionTemplates from "../Craft/sectionTemplates";
 
 export const TopbarSection = () => {
   const { actions, query, enabled } = useEditor((state) => ({
@@ -47,22 +52,27 @@ export const TopbarSection = () => {
     {
       id: 1,
       title: "Sections",
+      content: <Sections />,
     },
     {
       id: 2,
       title: "Rows",
+      content: <Rows />,
     },
     {
       id: 3,
       title: "Elements",
+      content: <Elements />,
     },
     {
       id: 4,
       title: "Global Sections",
+      content: <GlobalSections />,
     },
     {
       id: 5,
       title: "Section Templates",
+      content: <SectionTemplates />,
     },
   ];
 
@@ -72,7 +82,7 @@ export const TopbarSection = () => {
   return (
     <>
       <div className=" bg-white rounded-lg pb-[5%]  overflow-y-hidden  scrollbar-hide z-50 flex">
-        <div className=" w-[35%] border-r-[1px]   bg-white    ">
+        <div className=" w-[35%] border-r-[1px]   bg-white shadow-lg    ">
           <div
             className={`py-3 flex bg-white overflow-y-scroll scrollbar-hide flex-col justify-start top-0 left-0 pl-0 w-[80%] md:w-[40%]  lg:w-full fixed lg:relative h-screen z-40 `}
           >
@@ -101,86 +111,23 @@ export const TopbarSection = () => {
             </ul>
           </div>
         </div>
-        <div className="w-[65%] flex-col justify-center items-start border-b border-gray-300">
-          <div className="w-full h-[100px] p-2 m-2 font-bold flex justify-between items-center">
+        <div className="w-[65%] flex-col justify-center items-start ">
+          <div className="w-full h-[60px] p-2 font-bold text-gray-500 flex justify-between items-center border-b border-gray-300">
             <div>Add A Section</div>
-            <div>
-              <AiOutlineClose className="text-gray-800 h-6 w-6" />
-            </div>
           </div>
-          <div className="overflow-scroll flex justify-around items-center flex-wrap ">
-            <div className=" ml-2 my-2 w-[45%] h-[100px] border-2 border-gray-200 px-2 pb-1 flex-col">
-              <div className=" w-full h-5 mt-2 flex justify-center items-center">
-                <RxDragHandleDots2
-                  color="gray"
-                  style={{ transform: "rotate(90deg)" }}
-                />
-              </div>
-              <div className="flex justify-center items-center">
-                <div className="bg-gray-300 w-full h-5 my-2 flex justify-between items-center">
-                  <BiArrowToLeft color="white" />
 
-                  <BiArrowToRight color="white" />
-                </div>
+          <div className="h-full  mt-2">
+            {SectionData.map((item: any) => (
+              <div
+                key={item.id}
+                className={`shadow-md transition-all duration-300 rounded-md h-[90vh] w-full flex flex-wrap ${
+                  activeSectionData === item.id ? "block" : " text-black hidden"
+                } `}
+              >
+                {item.content}
               </div>
-              <div className="mt-2 font-medium text-slate-950 text-sm flex justify-center items-center">
-                {" "}
-                Full Width
-              </div>
-            </div>
-            <div className=" ml-2 my-2 w-[45%] h-[100px] px-3 border-2 border-gray-200">
-              <div className=" w-full mt-2 h-5 flex justify-center items-center">
-                <RxDragHandleDots2
-                  color="gray"
-                  style={{ transform: "rotate(90deg)" }}
-                />
-              </div>
-              <div className="flex justify-center items-center border-x-2 border-gray-300">
-                <div className="bg-gray-300 w-[50%] h-5 my-2 flex justify-between items-center">
-                  <BiArrowToLeft color="white" />
-
-                  <BiArrowToRight color="white" />
-                </div>
-              </div>
-              <div className="mt-2 flex font-medium text-slate-950 text-sm justify-center items-center">
-                {" "}
-                Wide
-              </div>
-            </div>
-            <div className=" ml-2 my-2 w-[45%] h-[100px] px-4 border-2 border-gray-200">
-              <div className=" w-full mt-2 h-5 flex justify-center items-center">
-                <RxDragHandleDots2
-                  color="gray"
-                  style={{ transform: "rotate(90deg)" }}
-                />
-              </div>
-              <div className="flex justify-center items-center border-x-2 border-gray-300">
-                <BiArrowToRight color="gray" />
-                <div className="bg-gray-300 w-[40%] h-5 my-2 mx-1 flex justify-between items-center" />
-                <BiArrowToLeft color="gray" />
-              </div>
-              <div className="mt-2 flex font-medium text-slate-950 text-sm justify-center items-center">
-                {" "}
-                Medium
-              </div>
-            </div>
-            <div className=" mx-2 my-2 w-[45%] h-[100px] px-4 border-2 border-gray-200">
-              <div className=" w-full h-5 mt-2 flex justify-center items-center">
-                <RxDragHandleDots2
-                  color="gray"
-                  style={{ transform: "rotate(90deg)" }}
-                />
-              </div>
-              <div className="flex justify-center items-center border-x-2 border-gray-300">
-                <BiArrowToRight color="gray" />
-                <div className="bg-gray-300 w-[25%] h-5 my-2 mx-1 flex justify-between items-center" />
-                <BiArrowToLeft color="gray" />
-              </div>
-              <div className="mt-2 flex font-medium text-slate-950 text-sm justify-center items-center">
-                {" "}
-                Small
-              </div>
-            </div>
+            ))}
+            E
           </div>
         </div>
       </div>

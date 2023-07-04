@@ -43,7 +43,7 @@ export default function Main() {
             <NewNavBarLayout />
             <Banner />
             <AboutTemp />
-            <CardHeader />
+            <CardHeader />/
             <CardBanner />
             <Team />
             <Blog />

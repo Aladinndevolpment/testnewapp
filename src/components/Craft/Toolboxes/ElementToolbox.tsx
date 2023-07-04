@@ -518,7 +518,7 @@ export default function ElementToolbox() {
         />
       </div>
 
-      <div className="h-[60vh] overflow-y-scroll scrollbar-hide ">
+      <div className="h-full overflow-y-scroll scrollbar-hide ">
         {tools.map((item, index) => (
           <AccordionItem
             faq={item}

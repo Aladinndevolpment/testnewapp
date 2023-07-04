@@ -6,17 +6,15 @@ import { EContactType, IContactData } from "@/components/contacts/Interfaces";
 import axios from "axios";
 import Head from "next/head";
 import { useState } from "react";
-import { baseUrl, token } from "@/config/APIConstants";
 
 interface IProps {
   data: IContactData;
 }
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-  const { id } = ctx.query;
-  console.log("ushyus", ctx.query);
+  const { id } = ctx.query
 
-  const tokens = token;
+  const token = process.env.NEXT_PUBLIC_API_TOKEN
   // const token = ctx.req.cookies.jwt;
   // if (!token) {
   //   return {
@@ -32,7 +30,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
       id: "",
       owner: {
         id: "",
-        fullName: "",
+        fullName: ""
       },
       fullName: "",
       emailAddress: "",
@@ -41,13 +39,13 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
       addedOn: "",
       contactType: EContactType.LEAD,
       tags: [],
-      leadSources: [],
+      leadSources: []
     },
     contactProfile: {
       contactID: "",
       dateOfBirth: "",
       dateOfInjury: "",
-      ssn: "",
+      ssn: ""
     },
     contactAddress: {
       contactID: "",
@@ -55,51 +53,43 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
       city: "",
       region: "",
       postalCode: "",
-      country: "",
-    },
-  };
+      country: ""
+    }
+  }
 
-  await axios
-    .get(`${baseUrl}contacts/${id}`, {
-      headers: { Authorization: `Bearer ${tokens}` },
-    })
-    .then((response) => {
-      console.log("response.data", response.data);
-      res.contact = response.data.contact;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  await axios.get(`/api/contacts/${id}`, {
+    headers: { Authorization: `Bearer ${token}` }
+  }
+  ).then((response) => {
+    console.log("response.data", response.data)
+    res.contact = response.data.contact
+  }).catch((err) => {
+    console.log(err)
+  })
 
   if (res.contact.id === "") {
     return {
       notFound: true,
-    };
+    }
   }
 
-  await axios
-    .get(`${baseUrl}/contacts/${id}/profile`, {
-      headers: { Authorization: `Bearer ${tokens}` },
-    })
-    .then((response) => {
-      console.log("response.data", response.data);
-      res.contactProfile = response.data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  await axios.get(`/api/contacts/${id}/profile`, {
+    headers: { Authorization: `Bearer ${token}` }
+  }).then((response) => {
+    console.log("response.data", response.data)
+    res.contactProfile = response.data
+  }).catch((err) => {
+    console.log(err)
+  })
 
-  await axios
-    .get(`${baseUrl}contacts/${id}/address`, {
-      headers: { Authorization: `Bearer ${tokens}` },
-    })
-    .then((response) => {
-      console.log("response.data", response.data);
-      res.contactAddress = response.data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  await axios.get(`/api/contacts/${id}/address`, {
+    headers: { Authorization: `Bearer ${token}` }
+  }).then((response) => {
+    console.log("response.data", response.data)
+    res.contactAddress = response.data
+  }).catch((err) => {
+    console.log(err)
+  })
 
   // await axios.get(`/api/contacts/${id}/address`, {
   //   headers: { Authorization: `Bearer ${token}` }
@@ -112,38 +102,25 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 
   return {
     props: {
-      data: res,
+      data: res
     },
-  };
+  }
 }
 
 export default function ContactsID({ data }: IProps) {
-  // console.log("deta", data);
   const [showConversation, setShowConversation] = useState(false);
   const [conversationModeIndex, setConversationModeIndex] = useState(0);
-  console.log(data);
+  console.log(data)
   return (
     <>
-      <Head>
-        <title>{data.contact.fullName} - Contacts | Emerge</title>
-      </Head>
+      <Head><title>{data.contact.fullName} - Contacts | Emerge</title></Head>
       <div className="h-full w-full bg-white text-black overflow-hidden flex relative font-main">
         <div className="w-full h-full flex flex-wrap overflow-x-hidden overflow-hidden z-10">
           <div className="w-full md:w-[22%] h-full bg-white">
-            <LeftSidebar
-              setShowConversation={setShowConversation}
-              setConversationModeIndex={setConversationModeIndex}
-              data={data}
-            />
+            <LeftSidebar setShowConversation={setShowConversation} setConversationModeIndex={setConversationModeIndex} data={data} />
           </div>
           <div className="w-full md:w-[52%] h-full bg-mainBg md:border-l md:border-l-gray-200 md:border-r md:border-r-gray-200">
-            <Center
-              data={data}
-              showConversation={showConversation}
-              setShowConversation={setShowConversation}
-              conversationModeIndex={conversationModeIndex}
-              setConversationModeIndex={setConversationModeIndex}
-            />
+            <Center data={data} showConversation={showConversation} setShowConversation={setShowConversation} conversationModeIndex={conversationModeIndex} setConversationModeIndex={setConversationModeIndex} />
           </div>
           <div className="w-full md:w-[26%] h-full bg-white">
             <RightSidebar />

@@ -13,7 +13,6 @@ import LeadSourceSelect from "../controls/LeadSourceSelect";
 import { useRouter } from "next/router";
 import { BiMessageDetail } from "react-icons/bi";
 import { GlobalContext } from "@/layouts/GlobalLayout";
-import { baseUrl, locationID, token } from "@/config/APIConstants";
 
 interface IProps {
   data: IContactData;
@@ -21,12 +20,8 @@ interface IProps {
   setShowConversation: (show: boolean) => void;
 }
 
-export default function LeftSidebar({
-  data,
-  setConversationModeIndex,
-  setShowConversation,
-}: IProps) {
-  const ctx: any = useContext(GlobalContext);
+export default function LeftSidebar({ data, setConversationModeIndex, setShowConversation }: IProps) {
+  const ctx:any = useContext(GlobalContext);
   const router = useRouter();
   const [tabIndex, setTabIndex] = useState(0);
   const [fullName, setFullName] = useState(data.contact.fullName);
@@ -36,87 +31,62 @@ export default function LeftSidebar({
   const [contactType, setContactType] = useState(data.contact.contactType);
   const [tags, setTags] = useState(data.contact.tags);
   const [leadSources, setLeadSources] = useState(data.contact.leadSources);
-  const [dateOfBirth, setDateOfBirth] = useState(
-    data.contactProfile.dateOfBirth
-  );
+  const [dateOfBirth, setDateOfBirth] = useState(data.contactProfile.dateOfBirth);
   const [ssn, setSsn] = useState(data.contactProfile.ssn);
-  const [dateOfInjury, setDateOfInjury] = useState(
-    data.contactProfile.dateOfInjury
-  );
+  const [dateOfInjury, setDateOfInjury] = useState(data.contactProfile.dateOfInjury);
   const [status, setStatus] = useState(data.contact.status);
   const [street, setStreet] = useState(data.contactAddress.street);
   const [city, setCity] = useState(data.contactAddress.city);
   const [region, setRegion] = useState(data.contactAddress.region);
-  // console.log("regionss", region);
   const [postalCode, setPostalCode] = useState(data.contactAddress.postalCode);
   const [country, setCountry] = useState(data.contactAddress.country);
 
   const [prevFullName, setPrevFullName] = useState(data.contact.fullName);
   const [prevOwner, setPrevOwner] = useState(data.contact.owner);
-  const [prevEmailAddress, setPrevEmailAddress] = useState(
-    data.contact.emailAddress
-  );
-  const [prevPhoneNumber, setPrevPhoneNumber] = useState(
-    data.contact.phoneNumber
-  );
-  const [prevContactType, setPrevContactType] = useState(
-    data.contact.contactType
-  );
+  const [prevEmailAddress, setPrevEmailAddress] = useState(data.contact.emailAddress);
+  const [prevPhoneNumber, setPrevPhoneNumber] = useState(data.contact.phoneNumber);
+  const [prevContactType, setPrevContactType] = useState(data.contact.contactType);
   const [prevTags, setPrevTags] = useState(data.contact.tags);
-  const [prevLeadSources, setPrevLeadSources] = useState(
-    data.contact.leadSources
-  );
-  const [prevDateOfBirth, setPrevDateOfBirth] = useState(
-    data.contactProfile.dateOfBirth
-  );
+  const [prevLeadSources, setPrevLeadSources] = useState(data.contact.leadSources);
+  const [prevDateOfBirth, setPrevDateOfBirth] = useState(data.contactProfile.dateOfBirth);
   const [prevSsn, setPrevSsn] = useState(data.contactProfile.ssn);
-  const [prevDateOfInjury, setPrevDateOfInjury] = useState(
-    data.contactProfile.dateOfInjury
-  );
+  const [prevDateOfInjury, setPrevDateOfInjury] = useState(data.contactProfile.dateOfInjury);
   const [prevStatus, setPrevStatus] = useState(data.contact.status);
   const [prevStreet, setPrevStreet] = useState(data.contactAddress.street);
   const [prevCity, setPrevCity] = useState(data.contactAddress.city);
   const [prevRegion, setPrevRegion] = useState(data.contactAddress.region);
-  const [prevPostalCode, setPrevPostalCode] = useState(
-    data.contactAddress.postalCode
-  );
+  const [prevPostalCode, setPrevPostalCode] = useState(data.contactAddress.postalCode);
   const [prevCountry, setPrevCountry] = useState(data.contactAddress.country);
 
   const addedOnDateFormat = () => {
     let date = new Date("2023-05-31");
 
     let day = date.getDate();
-    let month = date.toLocaleString("default", { month: "long" });
+    let month = date.toLocaleString('default', { month: 'long' });
     let year = date.getFullYear();
 
     let newDate = `${day} ${month} ${year}`;
-    return newDate;
-  };
+    return newDate
+  }
 
   useEffect(() => {
-    console.log(dateOfBirth);
-  }, [dateOfBirth]);
+    console.log(dateOfBirth)
+  }, [dateOfBirth])
 
   const updateFullName = () => {
     if (fullName === prevFullName) return;
     const update = async () => {
-      // const token = process.env.NEXT_PUBLIC_API_TOKEN;
-      const tokens = token;
+      const token = process.env.NEXT_PUBLIC_API_TOKEN
 
-      await axios
-        .put(
-          `${baseUrl}contacts/${data.contact.id}/full-name`,
-          {
-            fullName: fullName,
-          },
-          {
-            headers: { Authorization: `Bearer ${tokens}` },
-          }
-        )
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+      await axios.put(`/api/contacts/${data.contact.id}/full-name`, {
+        fullName: fullName
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+      ).catch((err) => {
+        console.log(err)
+      })
+    }
 
     update();
     setPrevFullName(fullName);
@@ -125,22 +95,17 @@ export default function LeftSidebar({
   const updateEmailAddress = () => {
     if (emailAddress === prevEmailAddress) return;
     const update = async () => {
-      const tokens = token;
+      const token = process.env.NEXT_PUBLIC_API_TOKEN
 
-      await axios
-        .put(
-          `${baseUrl}contacts/${data.contact.id}/email-address`,
-          {
-            emailAddress: emailAddress,
-          },
-          {
-            headers: { Authorization: `Bearer ${tokens}` },
-          }
-        )
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+      await axios.put(`/api/contacts/${data.contact.id}/email-address`, {
+        emailAddress: emailAddress
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+      ).catch((err) => {
+        console.log(err)
+      })
+    }
 
     update();
     setPrevEmailAddress(emailAddress);
@@ -149,22 +114,17 @@ export default function LeftSidebar({
   const updatePhoneNumber = () => {
     if (phoneNumber === prevPhoneNumber) return;
     const update = async () => {
-      // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+      const token = process.env.NEXT_PUBLIC_API_TOKEN
 
-      await axios
-        .put(
-          `${baseUrl}contacts/${data.contact.id}/phone-number`,
-          {
-            phoneNumber: phoneNumber,
-          },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        )
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+      await axios.put(`/api/contacts/${data.contact.id}/phone-number`, {
+        phoneNumber: phoneNumber
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+      ).catch((err) => {
+        console.log(err)
+      })
+    }
 
     update();
     setPrevPhoneNumber(phoneNumber);
@@ -173,22 +133,17 @@ export default function LeftSidebar({
   const updateOwner = () => {
     if (owner.id === prevOwner.id) return;
     const update = async () => {
-      // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+      const token = process.env.NEXT_PUBLIC_API_TOKEN
 
-      await axios
-        .put(
-          `${baseUrl}contacts/${data.contact.id}/owner-user-id`,
-          {
-            ownerUserID: owner.id,
-          },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        )
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+      await axios.put(`/api/contacts/${data.contact.id}/owner-user-id`, {
+        ownerUserID: owner.id
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+      ).catch((err) => {
+        console.log(err)
+      })
+    }
 
     update();
     setOwner(prevOwner);
@@ -196,45 +151,34 @@ export default function LeftSidebar({
 
   const addNewTag = (content: string): boolean => {
     const add = async () => {
-      // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+      const token = process.env.NEXT_PUBLIC_API_TOKEN
 
-      const tagResult = await axios.post(
-        `${baseUrl}tags`,
-        {
-          locationID: locationID,
-          content: content,
-          tagType: "CONTACT",
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+      const tagResult = await axios.post('/api/tags', {
+        locationID: process.env.NEXT_PUBLIC_LOCATION_ID,
+        content: content,
+        tagType: "CONTACT",
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         }
-      );
+      })
 
-      await axios.post(
-        `${baseUrl}contacts/${data.contact.id}/tags`,
-        {
-          contactID: data.contact.id,
-          tagID: tagResult.data.tagID,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+      await axios.post(`/api/contacts/${data.contact.id}/tags`, {
+        contactID: data.contact.id,
+        tagID: tagResult.data.tagID,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         }
-      );
+      })
 
-      setTags([
-        ...tags,
-        {
-          tagID: tagResult.data.tagID,
-          contactID: data.contact.id,
-          content: content,
-        },
-      ]);
+      setTags([...tags, {
+        tagID: tagResult.data.tagID,
+        contactID: data.contact.id,
+        content: content,
+      }]);
     };
 
     add();
@@ -244,22 +188,18 @@ export default function LeftSidebar({
 
   const addExistingTag = (tagID: string) => {
     const add = async () => {
-      // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+      const token = process.env.NEXT_PUBLIC_API_TOKEN
 
-      console.log("adding existing tag", tagID);
-      await axios.post(
-        `${baseUrl}contacts/${data.contact.id}/tags`,
-        {
-          tagID: tagID,
-          contactID: data.contact.id,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+      console.log("adding existing tag", tagID)
+      await axios.post(`/api/contacts/${data.contact.id}/tags`, {
+        tagID: tagID,
+        contactID: data.contact.id,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         }
-      );
+      })
     };
 
     add();
@@ -267,17 +207,14 @@ export default function LeftSidebar({
 
   const removeTag = (tagID: string) => {
     const remove = async () => {
-      // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+      const token = process.env.NEXT_PUBLIC_API_TOKEN
 
-      await axios.delete(
-        `${baseUrl}contacts/${data.contact.id}/tags/${tagID}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+      await axios.delete(`/api/contacts/${data.contact.id}/tags/${tagID}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         }
-      );
+      })
     };
 
     remove();
@@ -285,45 +222,34 @@ export default function LeftSidebar({
 
   const addNewLeadSource = (content: string): boolean => {
     const add = async () => {
-      // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+      const token = process.env.NEXT_PUBLIC_API_TOKEN
 
-      const leadSourceResult = await axios.post(
-        `${baseUrl}lead-sources`,
-        {
-          locationID: locationID,
-          content: content,
-          color: "CONTACT",
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+      const leadSourceResult = await axios.post('/api/lead-sources', {
+        locationID: process.env.NEXT_PUBLIC_LOCATION_ID,
+        content: content,
+        color: "CONTACT",
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         }
-      );
+      })
 
-      await axios.post(
-        `${baseUrl}${data.contact.id}/lead-sources`,
-        {
-          contactID: data.contact.id,
-          leadSourceID: leadSourceResult.data.leadSourceID,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+      await axios.post(`/api/contacts/${data.contact.id}/lead-sources`, {
+        contactID: data.contact.id,
+        leadSourceID: leadSourceResult.data.leadSourceID,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         }
-      );
+      })
 
-      setLeadSources([
-        ...leadSources,
-        {
-          leadSourceID: leadSourceResult.data.leadSourceID,
-          contactID: data.contact.id,
-          content: content,
-        },
-      ]);
+      setLeadSources([...leadSources, {
+        leadSourceID: leadSourceResult.data.leadSourceID,
+        contactID: data.contact.id,
+        content: content,
+      }]);
     };
 
     add();
@@ -333,22 +259,18 @@ export default function LeftSidebar({
 
   const addExistingLeadSource = (leadSourceID: string) => {
     const add = async () => {
-      // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+      const token = process.env.NEXT_PUBLIC_API_TOKEN
 
-      console.log("adding existing leadSource", leadSourceID);
-      await axios.post(
-        `${baseUrl}contacts/${data.contact.id}/lead-sources`,
-        {
-          leadSourceID: leadSourceID,
-          contactID: data.contact.id,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+      console.log("adding existing leadSource", leadSourceID)
+      await axios.post(`/api/contacts/${data.contact.id}/lead-sources`, {
+        leadSourceID: leadSourceID,
+        contactID: data.contact.id,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         }
-      );
+      })
     };
 
     add();
@@ -356,41 +278,34 @@ export default function LeftSidebar({
 
   const removeLeadSource = (leadSourceID: string) => {
     const remove = async () => {
-      // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+      const token = process.env.NEXT_PUBLIC_API_TOKEN
 
-      await axios.delete(
-        `${baseUrl}contacts/${data.contact.id}/lead-sources/${leadSourceID}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+      await axios.delete(`/api/contacts/${data.contact.id}/lead-sources/${leadSourceID}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         }
-      );
+      })
     };
 
     remove();
   };
 
+
   const updateStatus = () => {
     if (status === prevStatus) return;
     const update = async () => {
-      // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+      const token = process.env.NEXT_PUBLIC_API_TOKEN
 
-      await axios
-        .put(
-          `${baseUrl}contacts/${data.contact.id}/status`,
-          {
-            status: status,
-          },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        )
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+      await axios.put(`/api/contacts/${data.contact.id}/status`, {
+        status: status
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+      ).catch((err) => {
+        console.log(err)
+      })
+    }
 
     update();
     setPrevStatus(status);
@@ -399,22 +314,17 @@ export default function LeftSidebar({
   const updateContactType = () => {
     if (contactType === prevContactType) return;
     const update = async () => {
-      // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+      const token = process.env.NEXT_PUBLIC_API_TOKEN
 
-      await axios
-        .put(
-          `${baseUrl}contacts/${data.contact.id}/contact-type`,
-          {
-            contactType: contactType,
-          },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        )
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+      await axios.put(`/api/contacts/${data.contact.id}/contact-type`, {
+        contactType: contactType
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+      ).catch((err) => {
+        console.log(err)
+      })
+    }
 
     update();
     setPrevContactType(contactType);
@@ -422,98 +332,58 @@ export default function LeftSidebar({
 
   const updateDateOfBirth = () => {
     const dateOfBirthVal = dateOfBirth === "" ? "0001-01-01" : dateOfBirth;
-    console.log("dob", dateOfBirth === prevDateOfBirth);
     if (dateOfBirth === prevDateOfBirth) return;
     const update = async () => {
-      // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+      const token = process.env.NEXT_PUBLIC_API_TOKEN
 
-      await axios
-        .put(
-          `${baseUrl}contacts/${data.contact.id}/profile/date-of-birth`,
-          {
-            dateOfBirth: dateOfBirthVal,
-          },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        )
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+      await axios.put(`/api/contacts/${data.contact.id}/profile/date-of-birth`, {
+        dateOfBirth: dateOfBirthVal
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+      ).catch((err) => {
+        console.log(err)
+      })
+    }
 
     update();
     setPrevDateOfBirth(dateOfBirth);
   };
-  const updateSsn = async () => {
-    const requestBody = {
-      ssn: ssn,
-    };
-    // console.log("reqbody", requestBody);
-    try {
-      const response = await axios.put(
-        `${baseUrl}contacts/${data.contact.id}/profile/ssn`,
-        requestBody,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      // console.log("resEE", response);
 
-      // setIsError(null);
-      // setIsReady(true);
-    } catch (error: any) {
-      console.log(error);
+  const updateSsn = () => {
+    if (ssn === prevSsn) return;
+    const update = async () => {
+      const token = process.env.NEXT_PUBLIC_API_TOKEN
+
+      await axios.put(`/api/contacts/${data.contact.id}/profile/ssn`, {
+        ssn: ssn
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+      ).catch((err) => {
+        console.log(err)
+      })
     }
+
+    update();
+    setPrevSsn(ssn);
   };
-
-  // const updateSsn = () => {
-  //   if (ssn === prevSsn) return;
-  //   const update = async () => {
-  //     // const token = process.env.NEXT_PUBLIC_API_TOKEN;
-
-  //     await axios
-  //       .put(
-  //         `${baseUrl}contacts/${data.contact.id}/profile/ssn`,
-  //         {
-  //           ssn: ssn,
-  //         },
-  //         {
-  //           headers: { Authorization: `Bearer ${token}` },
-  //         }
-  //       )
-  //       .then((response: any) => {
-  //         console.log("resdgggdd", response);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   };
-
-  //   update();
-  //   setPrevSsn(ssn);
-  // };
 
   const updateDateOfInjury = () => {
     const dateOfInjuryVal = dateOfInjury === "" ? "0001-01-01" : dateOfInjury;
     if (dateOfInjury === prevDateOfInjury) return;
     const update = async () => {
-      // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+      const token = process.env.NEXT_PUBLIC_API_TOKEN
 
-      await axios
-        .put(
-          `${baseUrl}contacts/${data.contact.id}/profile/date-of-injury`,
-          {
-            dateOfInjury: dateOfInjuryVal,
-          },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        )
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+      await axios.put(`/api/contacts/${data.contact.id}/profile/date-of-injury`, {
+        dateOfInjury: dateOfInjuryVal
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+      ).catch((err) => {
+        console.log(err)
+      })
+    }
 
     update();
     setPrevDateOfInjury(dateOfInjury);
@@ -522,22 +392,17 @@ export default function LeftSidebar({
   const updateStreet = () => {
     if (street === prevStreet) return;
     const update = async () => {
-      // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+      const token = process.env.NEXT_PUBLIC_API_TOKEN
 
-      await axios
-        .put(
-          `${baseUrl}contacts/${data.contact.id}/address/street`,
-          {
-            street: street,
-          },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        )
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+      await axios.put(`/api/contacts/${data.contact.id}/address/street`, {
+        street: street
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+      ).catch((err) => {
+        console.log(err)
+      })
+    }
 
     update();
     setPrevStreet(street);
@@ -546,22 +411,17 @@ export default function LeftSidebar({
   const updateCity = () => {
     if (city === prevCity) return;
     const update = async () => {
-      // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+      const token = process.env.NEXT_PUBLIC_API_TOKEN
 
-      await axios
-        .put(
-          `${baseUrl}contacts/${data.contact.id}/address/city`,
-          {
-            city: city,
-          },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        )
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+      await axios.put(`/api/contacts/${data.contact.id}/address/city`, {
+        city: city
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+      ).catch((err) => {
+        console.log(err)
+      })
+    }
 
     update();
     setPrevCity(city);
@@ -570,22 +430,17 @@ export default function LeftSidebar({
   const updateRegion = () => {
     if (region === prevRegion) return;
     const update = async () => {
-      // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+      const token = process.env.NEXT_PUBLIC_API_TOKEN
 
-      await axios
-        .put(
-          `${baseUrl}contacts/${data.contact.id}/address/region`,
-          {
-            region: region,
-          },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        )
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+      await axios.put(`/api/contacts/${data.contact.id}/address/region`, {
+        region: region
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+      ).catch((err) => {
+        console.log(err)
+      })
+    }
 
     update();
     setPrevRegion(region);
@@ -594,22 +449,17 @@ export default function LeftSidebar({
   const updatePostalCode = () => {
     if (postalCode === prevPostalCode) return;
     const update = async () => {
-      // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+      const token = process.env.NEXT_PUBLIC_API_TOKEN
 
-      await axios
-        .put(
-          `${baseUrl}contacts/${data.contact.id}/address/postal-code`,
-          {
-            postalCode: postalCode,
-          },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        )
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+      await axios.put(`/api/contacts/${data.contact.id}/address/postal-code`, {
+        postalCode: postalCode
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+      ).catch((err) => {
+        console.log(err)
+      })
+    }
 
     update();
     setPrevPostalCode(postalCode);
@@ -617,15 +467,12 @@ export default function LeftSidebar({
 
   return (
     <>
-      <div className="h-[100%] pb-40 overflow-y-scroll  w-full scrollbar-hide">
+      <div className="h-[100%] overflow-y-scroll  w-full scrollbar-hide">
         <div className="back-to flex ml-4 mt-4">
-          <button
-            className="bg-white hover:bg-gray-100 text-gray-500 font-bold border border-gray-200 rounded-full shadow-sm"
-            onClick={() => {
-              router.push("/contacts");
-            }}
-          >
-            <KeyboardArrowLeft fontSize="medium" className="m-1 mb-1" />
+          <button className="bg-white hover:bg-gray-100 text-gray-500 font-bold border border-gray-200 rounded-full shadow-sm" onClick={() => {
+            router.push("/contacts")
+          }}>
+            < KeyboardArrowLeft fontSize="medium" className="m-1 mb-1" />
           </button>
           <div className="font-main font-medium text-black mt-1 mx-3">
             Back to contacts
@@ -638,7 +485,7 @@ export default function LeftSidebar({
               width: 96,
               height: 96,
             }}
-            // src="/profile-img4.jpg"
+            src="/profile-img4.jpg"
           />
           <span className="text-2xl font-main font-semibold text-black mt-2">
             {fullName}
@@ -657,13 +504,10 @@ export default function LeftSidebar({
           </a> */}
           <div className="flex flex-nowrap items-center space-x-4 mt-4">
             <div className="log-button grid justify-items-center">
-              <button
-                className="hover:bg-gray-100 text-gray-500 font-bold border border-gray-200 rounded-full shadow-sm w-9 h-9 text-center justify-center flex items-center"
-                onClick={() => {
-                  setConversationModeIndex(0);
-                  setShowConversation(true);
-                }}
-              >
+              <button className="hover:bg-gray-100 text-gray-500 font-bold border border-gray-200 rounded-full shadow-sm w-9 h-9 text-center justify-center flex items-center" onClick={() => {
+                setConversationModeIndex(0);
+                setShowConversation(true);
+              }}>
                 <BiMessageDetail fontSize="medium" className="w-5 h-5 mt-0.5" />
               </button>
               <span className="m-1 text-sm font-main font-normal text-gray-600">
@@ -671,13 +515,10 @@ export default function LeftSidebar({
               </span>
             </div>
             <div className="log-button grid justify-items-center">
-              <button
-                className="hover:bg-gray-100 text-gray-500 font-bold border border-gray-200 rounded-full shadow-sm w-9 h-9"
-                onClick={() => {
-                  setConversationModeIndex(1);
-                  setShowConversation(true);
-                }}
-              >
+              <button className="hover:bg-gray-100 text-gray-500 font-bold border border-gray-200 rounded-full shadow-sm w-9 h-9" onClick={() => {
+                setConversationModeIndex(1);
+                setShowConversation(true);
+              }}>
                 <MailOutlineIcon fontSize="medium" className="p-0.5" />
               </button>
 
@@ -686,13 +527,10 @@ export default function LeftSidebar({
               </span>
             </div>
             <div className="log-button grid justify-items-center">
-              <button
-                className="hover:bg-gray-100 text-gray-500 font-bold border border-gray-200 rounded-full shadow-sm w-9 h-9"
-                onClick={() => {
-                  ctx.setDialerNumber(phoneNumber);
-                  ctx.setShowDialer(true);
-                }}
-              >
+              <button className="hover:bg-gray-100 text-gray-500 font-bold border border-gray-200 rounded-full shadow-sm w-9 h-9" onClick={() => {
+                ctx.setDialerNumber(phoneNumber);
+                ctx.setShowDialer(true);
+              }}>
                 <CallOutlinedIcon fontSize="medium" className="p-0.5" />
               </button>
               <span className="m-1 text-sm font-main font-normal text-gray-600">
@@ -712,7 +550,7 @@ export default function LeftSidebar({
             <div>
               <button
                 type="button"
-                className="text-white bg-[#1066cf] hover:bg-primary-hover focus:ring-1 focus:ring-primary font-medium rounded-lg font-main text-sm focus:outline-none px-8 py-2.5 mt-4"
+                className="text-white bg-[#1066cf] hover:bg-primary-hover focus:ring-1 focus:ring-primary font-medium rounded-lg font-main text-sm focus:outline-none text-white font-semibold px-8 py-2.5 mt-4"
               >
                 Convert lead to patient
               </button>
@@ -728,17 +566,7 @@ export default function LeftSidebar({
           </div>
           <div className="w-full grid grid-cols-2 mt-2">
             {["Leads info", "Address info"].map((item, index) => (
-              <button
-                key={index}
-                className={`text-center inline-block p-3 ${
-                  tabIndex === index
-                    ? "border-b-[3px] border-b-black font-semibold"
-                    : "text-gray-500"
-                }`}
-                onClick={() => setTabIndex(index)}
-              >
-                {item}
-              </button>
+              <button key={index} className={`text-center inline-block p-3 ${tabIndex === index ? "border-b-[3px] border-b-black font-semibold" : "text-gray-500"}`} onClick={() => setTabIndex(index)}>{item}</button>
             ))}
           </div>
           {(tabIndex === 0 && (
@@ -748,15 +576,9 @@ export default function LeftSidebar({
                   Full Name
                 </span>
                 <input
-                  onBlur={() => {
-                    updateFullName();
-                  }}
+                  onBlur={() => { updateFullName(); }}
                   onChange={(e) => setFullName(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      (e.target as HTMLInputElement).blur();
-                    }
-                  }}
+                  onKeyDown={(e) => { if (e.key === "Enter") { (e.target as HTMLInputElement).blur(); } }}
                   className="font-main tracking-wide text-black px-3 border border-gray-200 rounded-lg shadow-sm w-full h-10"
                   value={fullName}
                 />
@@ -766,15 +588,9 @@ export default function LeftSidebar({
                   Email
                 </span>
                 <input
-                  onBlur={() => {
-                    updateEmailAddress();
-                  }}
+                  onBlur={() => { updateEmailAddress(); }}
                   onChange={(e) => setEmailAddress(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      (e.target as HTMLInputElement).blur();
-                    }
-                  }}
+                  onKeyDown={(e) => { if (e.key === "Enter") { (e.target as HTMLInputElement).blur(); } }}
                   className="font-main tracking-wide text-black px-3 border border-gray-200 rounded-lg shadow-sm w-full h-10"
                   value={emailAddress}
                 />
@@ -784,15 +600,9 @@ export default function LeftSidebar({
                   Phone
                 </span>
                 <input
-                  onBlur={() => {
-                    updatePhoneNumber();
-                  }}
+                  onBlur={() => { updatePhoneNumber(); }}
                   onChange={(e) => setPhoneNumber(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      (e.target as HTMLInputElement).blur();
-                    }
-                  }}
+                  onKeyDown={(e) => { if (e.key === "Enter") { (e.target as HTMLInputElement).blur(); } }}
                   className="font-main tracking-wide text-black px-3 border border-gray-200 rounded-lg shadow-sm w-full h-10"
                   value={phoneNumber}
                 />
@@ -802,15 +612,9 @@ export default function LeftSidebar({
                   Date Of Birth
                 </span>
                 <input
-                  onBlur={() => {
-                    updateDateOfBirth();
-                  }}
+                  onBlur={() => { updateDateOfBirth(); }}
                   onChange={(e) => setDateOfBirth(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      (e.target as HTMLInputElement).blur();
-                    }
-                  }}
+                  onKeyDown={(e) => { if (e.key === "Enter") { (e.target as HTMLInputElement).blur(); } }}
                   type="date"
                   className="font-main tracking-wide text-black px-3 border border-gray-200 rounded-lg shadow-sm w-full h-10"
                   value={dateOfBirth}
@@ -821,15 +625,9 @@ export default function LeftSidebar({
                   Social Secruity Number
                 </span>
                 <input
-                  onBlur={() => {
-                    updateSsn();
-                  }}
+                  onBlur={() => { updateSsn(); }}
                   onChange={(e) => setSsn(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      (e.target as HTMLInputElement).blur();
-                    }
-                  }}
+                  onKeyDown={(e) => { if (e.key === "Enter") { (e.target as HTMLInputElement).blur(); } }}
                   className="font-main tracking-wide text-black px-3 border border-gray-200 rounded-lg shadow-sm w-full h-10"
                   value={ssn}
                 />
@@ -839,15 +637,9 @@ export default function LeftSidebar({
                   Date Of Injury
                 </span>
                 <input
-                  onBlur={() => {
-                    updateDateOfInjury();
-                  }}
+                  onBlur={() => { updateDateOfInjury(); }}
                   onChange={(e) => setDateOfInjury(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      (e.target as HTMLInputElement).blur();
-                    }
-                  }}
+                  onKeyDown={(e) => { if (e.key === "Enter") { (e.target as HTMLInputElement).blur(); } }}
                   type="date"
                   className="font-main tracking-wide text-black px-3 border border-gray-200 rounded-lg shadow-sm w-full h-10"
                   value={dateOfInjury}
@@ -857,31 +649,13 @@ export default function LeftSidebar({
                 <span className="font-main tracking-wide font-light text-gray-700">
                   Tags
                 </span>
-                <TagSelect
-                  tags={tags}
-                  setTags={setTags}
-                  addNewTag={addNewTag}
-                  addExistingTag={addExistingTag}
-                  removeTag={removeTag}
-                  className={
-                    "py-2 p-1 flex font-main tracking-wide text-black px-3 border border-gray-200 rounded-lg shadow-sm w-full min-h-10"
-                  }
-                />
+                <TagSelect tags={tags} setTags={setTags} addNewTag={addNewTag} addExistingTag={addExistingTag} removeTag={removeTag} className={"py-2 p-1 flex font-main tracking-wide text-black px-3 border border-gray-200 rounded-lg shadow-sm w-full min-h-10"} />
               </div>
               <div className="grid space-y-2 mt-4">
                 <span className="font-main tracking-wide font-light text-gray-700">
                   Lead Source
                 </span>
-                <LeadSourceSelect
-                  leadSources={leadSources}
-                  setLeadSources={setLeadSources}
-                  addNewLeadSource={addNewLeadSource}
-                  addExistingLeadSource={addExistingLeadSource}
-                  removeLeadSource={removeLeadSource}
-                  className={
-                    "py-2 p-1 flex font-main tracking-wide text-black px-3 border border-gray-200 rounded-lg shadow-sm w-full min-h-10"
-                  }
-                />
+                <LeadSourceSelect leadSources={leadSources} setLeadSources={setLeadSources} addNewLeadSource={addNewLeadSource} addExistingLeadSource={addExistingLeadSource} removeLeadSource={removeLeadSource} className={"py-2 p-1 flex font-main tracking-wide text-black px-3 border border-gray-200 rounded-lg shadow-sm w-full min-h-10"} />
               </div>
             </div>
           )) ||
@@ -892,15 +666,9 @@ export default function LeftSidebar({
                     Street Address
                   </span>
                   <input
-                    onBlur={() => {
-                      updateStreet();
-                    }}
+                    onBlur={() => { updateStreet(); }}
                     onChange={(e) => setStreet(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        (e.target as HTMLInputElement).blur();
-                      }
-                    }}
+                    onKeyDown={(e) => { if (e.key === "Enter") { (e.target as HTMLInputElement).blur(); } }}
                     className="font-main tracking-wide text-black px-3 border border-gray-200 rounded-lg shadow-sm w-full h-10"
                     value={street}
                   />
@@ -910,15 +678,9 @@ export default function LeftSidebar({
                     City
                   </span>
                   <input
-                    onBlur={() => {
-                      updateCity();
-                    }}
+                    onBlur={() => { updateCity(); }}
                     onChange={(e) => setCity(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        (e.target as HTMLInputElement).blur();
-                      }
-                    }}
+                    onKeyDown={(e) => { if (e.key === "Enter") { (e.target as HTMLInputElement).blur(); } }}
                     className="font-main tracking-wide text-black px-3 border border-gray-200 rounded-lg shadow-sm w-full h-10"
                     value={city}
                   />
@@ -934,15 +696,9 @@ export default function LeftSidebar({
                     State
                   </span>
                   <input
-                    onBlur={() => {
-                      updateRegion();
-                    }}
+                    onBlur={() => { updateRegion(); }}
                     onChange={(e) => setRegion(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        (e.target as HTMLInputElement).blur();
-                      }
-                    }}
+                    onKeyDown={(e) => { if (e.key === "Enter") { (e.target as HTMLInputElement).blur(); } }}
                     className="font-main tracking-wide text-black px-3 border border-gray-200 rounded-lg shadow-sm w-full h-10"
                     value={region}
                   />
@@ -952,15 +708,9 @@ export default function LeftSidebar({
                     Postal Code
                   </span>
                   <input
-                    onBlur={() => {
-                      updatePostalCode();
-                    }}
+                    onBlur={() => { updatePostalCode(); }}
                     onChange={(e) => setPostalCode(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        (e.target as HTMLInputElement).blur();
-                      }
-                    }}
+                    onKeyDown={(e) => { if (e.key === "Enter") { (e.target as HTMLInputElement).blur(); } }}
                     className="font-main tracking-wide text-black px-3 border border-gray-200 rounded-lg shadow-sm w-full h-10"
                     value={postalCode}
                   />

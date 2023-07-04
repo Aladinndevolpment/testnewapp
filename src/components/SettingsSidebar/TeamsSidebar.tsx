@@ -83,7 +83,7 @@ export default function SettingsSidebar() {
   return (
     <>
       <div
-        className={`py-5 flex bg-mainBg overflow-y-scroll scrollbar-hide flex-col justify-start top-0 left-0 pl-0  md:w-[40%]  lg:w-full  bg-auth shadow-md  fixed lg:relative h-screen z-40  ease-in-out duration-300 translate-x-0 `}
+        className={`py-5 flex bg-mainBg overflow-y-scroll scrollbar-hide flex-col justify-start top-0 left-0 pl-0 w-[80%] md:w-[40%]  lg:w-full  bg-auth shadow-md  fixed lg:relative h-screen z-40  ease-in-out duration-300 translate-x-0 `}
       >
         <div className="pb-2.5 px-4 flex justify-start items-center w-full ">
           <div className=" h-8  items-between  px-1.5 py-2 bg-white border-[1px] border-lightGray rounded-md shadow-sm flex justify-center items-center">

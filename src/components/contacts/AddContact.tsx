@@ -123,11 +123,10 @@ export default function AddContact({
   return (
     <div>
       <div
-        className={`w-full min-h-screen  scrollbar-hide  fixed right-0 top-0  z-50 transition-all bg-black overflow-hidden ${
-          visibility
-            ? "translate-x-0 opacity-100 bg-opacity-30"
-            : "translate-x-[100%] opacity-0 bg-opacity-0"
-        }`}
+        className={`w-full min-h-screen  scrollbar-hide  fixed right-0 top-0  z-50 transition-all bg-black overflow-hidden ${visibility
+          ? "translate-x-0 opacity-100 bg-opacity-30"
+          : "translate-x-[100%] opacity-0 bg-opacity-0"
+          }`}
       >
         <div className="absolute h-full w-full z-40   " onClick={onClose}></div>
         <div className="bg-white w-full md:w-[80%] lg:w-[50%] absolute right-0  h-full z-50 ">
@@ -191,8 +190,7 @@ export default function AddContact({
                   value={formData.phoneNumber}
                   onChange={handleChange}
                   className="placeholder:font-semibold  placeholder:text-[#3d3c3c] px-2 rounded-md mb-2 py-3 text-sm font-medium bg-transparent focus:bg-[#F6F7FA] w-full  border-[1px] border-[#dbd9d9] text-space focus:outline-none   focus:border-[#dbd9d9] text-black "
-                />{" "}
-                {errors.phone && (
+                />                {errors.phone && (
                   <p className="text-sm text-red-500 mb-2 mt-1">
                     {errors.phone}
                   </p>
@@ -228,60 +226,55 @@ export default function AddContact({
                     <div key={index} className="mr-1.5">
                       <button
                         onClick={() => handleStatusChange(item)}
-                        className={` ${
-                          item == "Open"
-                            ? " border-newBlue bg-blue-100"
-                            : item == "New"
+                        className={` ${item == "Open"
+                          ? " border-newBlue bg-blue-100"
+                          : item == "New"
                             ? " border-gray-500 bg-gray-200"
                             : item == "Deal Unqualified"
-                            ? " border-secondary bg-red-200"
-                            : item == "Attempt to a contact"
-                            ? " border-green-500 bg-green-200"
-                            : item == "Bad Timing"
-                            ? " border-orange-500 bg-orange-200"
-                            : " border-gray-300 bg-gray-100"
-                        }   ${
-                          formData.leadStatus == item
+                              ? " border-secondary bg-red-200"
+                              : item == "Attempt to a contact"
+                                ? " border-green-500 bg-green-200"
+                                : item == "Bad Timing"
+                                  ? " border-orange-500 bg-orange-200"
+                                  : " border-gray-300 bg-gray-100"
+                          }   ${formData.leadStatus == item
                             ? "border-2"
                             : " border-[1px]"
-                        }
+                          }
                     flex justify-start items-center   text-center py-1 px-2 rounded-full font-normal text-dark`}
                       >
                         <div
-                          className={`${
-                            item == "Open"
-                              ? " bg-newBlue "
-                              : item == "New"
+                          className={`${item == "Open"
+                            ? " bg-newBlue "
+                            : item == "New"
                               ? " bg-gray-600  "
                               : item == "Deal Unqualified"
-                              ? " bg-secondary"
-                              : item == "Attempt to a contact"
-                              ? " bg-green-500"
-                              : item == "Bad Timing"
-                              ? "  bg-orange-500"
-                              : " bg-gray-500"
-                          }
+                                ? " bg-secondary"
+                                : item == "Attempt to a contact"
+                                  ? " bg-green-500"
+                                  : item == "Bad Timing"
+                                    ? "  bg-orange-500"
+                                    : " bg-gray-500"
+                            }
                     
                     h-1.5 w-1.5 rounded-full   mr-2 ml-2`}
                         ></div>
                         <span
-                          className={`${
-                            item == "Open"
-                              ? " text-newBlue "
-                              : item == "New"
+                          className={`${item == "Open"
+                            ? " text-newBlue "
+                            : item == "New"
                               ? " text-gray-500  "
                               : item == "Deal Unqualified"
-                              ? " text-secondary"
-                              : item == "Attempt to a contact"
-                              ? " text-green-500"
-                              : item == "Bad Timing"
-                              ? " text-orange-500"
-                              : " text-gray-600"
-                          }  pr-3  ${
-                            formData.leadStatus == item
+                                ? " text-secondary"
+                                : item == "Attempt to a contact"
+                                  ? " text-green-500"
+                                  : item == "Bad Timing"
+                                    ? " text-orange-500"
+                                    : " text-gray-600"
+                            }  pr-3  ${formData.leadStatus == item
                               ? "font-semibold"
                               : "font-medium"
-                          }  text-sm`}
+                            }  text-sm`}
                         >
                           {item}
                         </span>

@@ -12,20 +12,15 @@ interface IProps {
   setShowConversation: (showConversation: boolean) => void;
 }
 
-export default function Center({
-  data,
-  showConversation,
-  setShowConversation,
-  conversationModeIndex,
-  setConversationModeIndex,
-}: IProps) {
+export default function Center({ data, showConversation, setShowConversation, conversationModeIndex, setConversationModeIndex }: IProps) {
   const [topTabIndex, setTopTabIndex] = useState(0);
 
   useEffect(() => {
-    if (showConversation) setTopTabIndex(2);
+    if (showConversation)
+      setTopTabIndex(2);
   }, [showConversation]);
   return (
-    <div className={`h-full pb-20 flex flex-col transition-all m-4`}>
+    <div className={`h-full flex flex-col transition-all m-4`}>
       <div className="flex flex-cols border-b border-[#E9E9E9]">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -53,15 +48,11 @@ export default function Center({
           (tab, tabIndex2) => (
             <button
               key={tabIndex2}
-              onClick={() => {
-                setTopTabIndex(tabIndex2);
-                setShowConversation(false);
-              }}
-              className={`relative h-10 font-main font-medium px-5 flex items-center ${
-                topTabIndex === tabIndex2
-                  ? "bg-white font-semibold rounded-md m-0.5 shadow-md text-black"
-                  : "text-gray-400"
-              } transition-all duration-200`}
+              onClick={() => { setTopTabIndex(tabIndex2); setShowConversation(false); }}
+              className={`relative h-10 font-main font-medium px-5 flex items-center ${topTabIndex === tabIndex2
+                ? "bg-white font-semibold rounded-md m-0.5 shadow-md text-black"
+                : "text-gray-400"
+                } transition-all duration-200`}
             >
               {tab}
             </button>
@@ -85,11 +76,7 @@ export default function Center({
         </>
       ) : topTabIndex === 2 ? (
         <div className="w-full flex-1 overflow-y-auto scrollbar-hide">
-          <Conversations
-            contact={data.contact}
-            conversationModeIndex={conversationModeIndex}
-            setConversationModeIndex={setConversationModeIndex}
-          />
+          <Conversations contact={data.contact} conversationModeIndex={conversationModeIndex} setConversationModeIndex={setConversationModeIndex} />
         </div>
       ) : topTabIndex === 4 ? (
         <>

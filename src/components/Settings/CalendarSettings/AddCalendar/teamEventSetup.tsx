@@ -5,8 +5,6 @@ import { BsQuestionCircleFill } from "react-icons/bs";
 import { GoPlus } from "react-icons/go";
 import { MenuItem, OutlinedInput, Select, TextField } from "@mui/material";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
-import axios from "axios";
-import { baseUrl, token } from "@/config/APIConstants";
 
 const colorPalette = [
   { color: "bg-red-500", title: "Red" },
@@ -72,6 +70,7 @@ export default function TeamEventSetup({
   const handleSubmit = () => {
     // Validate form fields
     const validationErrors: any = {};
+
     if (!formValues.calendarName.trim()) {
       validationErrors.calendarName = "required";
     }
@@ -123,21 +122,6 @@ export default function TeamEventSetup({
     });
 
     setErrors({});
-
-    // console.log("hhhggg", formValues);
-
-    // await axios.post(
-    //   `${baseUrl}calendars`,
-    //   {
-    //     formValues,
-    //   },
-    //   {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //   }
-    // );
 
     handleStoreFormData(formValues);
     handleNewTab();

@@ -16,6 +16,7 @@ import {
   FunnelIcon,
   PrinterIcon,
   ArrowPathIcon,
+  ChevronDownIcon,
 } from "@heroicons/react/24/solid";
 import CalendarItem from "@/components/Calendar/EventItem";
 import Search from "@/layouts/GlobalLayout/components/Search";
@@ -375,6 +376,7 @@ export default function Calendar() {
         onSave={(arg) => handleSelect(arg)}
         eventArg={eventArg}
       />
+
       <AppointmentDetails
         onClose={() => setModalOpen(false)}
         visibility={modalOpen}
@@ -385,7 +387,7 @@ export default function Calendar() {
             <div className="flex items-center justify-between relative w-full sm:ml-0 sm:pr-2">
               <div className="flex justify-between items-center w-full  pl-2 pr-5 py-1.5 rounded-md">
                 <div
-                  className={`flex items-center pl-5   w-full lg:justify-start`}
+                  className={`flex items-center pl-5 w-full lg:justify-start`}
                 >
                   <div className="flex items-center text-[20px] gap-2">
                     <CalendarDaysIcon className="h-8 w-8 text-newBlue" />
@@ -440,7 +442,7 @@ export default function Calendar() {
                 </div>
               </div>
 
-              <div className=" flex items-center justify-end pl-5 lg:p-1   w-full md:w-[75%]   ">
+              <div className=" flex items-center justify-start lg:justify-end pl-5 lg:p-1   w-full md:w-[75%]   ">
                 {/* <Search /> */}
                 <div className="relative ml-3">
                   <button
@@ -496,7 +498,24 @@ export default function Calendar() {
               </button>
             </div>
 
-            <div className="relative flex flex-wrap lg:flex-nowrap justify-center lg:justify-end items-center w-full  ">
+            <div className="  flex flex-wrap lg:flex-nowrap justify-center lg:justify-end items-center w-full">
+              {/* <div className="mt-3 lg:mt-0  mr-2 items-between  px-2 py-2 bg-white border-[1px] border-lightGray h-10 rounded-sm shadow-sm flex justify-center items-center">
+                <ChevronDownIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-300" />
+              </div> */}
+              <details className="dropdown  mr-2">
+                <summary className="mt-3 lg:mt-0  ml-2 items-between px-2 py-2 bg-white border-[1px] border-lightGray h-10 rounded-md shadow-sm flex justify-center items-center">
+                  <ChevronDownIcon className="h-5 w-5 text-FontGray cursor-pointer hover:text-secondary duration-300" />
+                </summary>
+                <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52 calendar-dropdown-content">
+                  <li>
+                    <a>Item 1</a>
+                  </li>
+                  <li>
+                    <a>Item 2</a>
+                  </li>
+                </ul>
+              </details>
+
               <div className="mt-3 lg:mt-0 relative mr-2 items-between px-3 py-2 bg-white border-[1px] border-lightGray h-10 rounded-sm shadow-sm flex justify-center items-center">
                 <UserIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-300" />
                 <p className={`ml-2 text-FontGray text-[15px] font-medium`}>
@@ -516,22 +535,22 @@ export default function Calendar() {
               <div className="dropdown">
                 <label
                   tabIndex={0}
-                  className="  mt-3 lg:mt-0  lg:ml-2 items-between  px-3 py-2 bg-white border-[1px] border-lightGray h-10 rounded-sm shadow-sm flex justify-center items-center"
+                  className="cursor-pointer mt-3 lg:mt-0  lg:ml-2 items-between  px-3 py-2 bg-white border-[1px] border-lightGray h-10 rounded-sm shadow-sm flex justify-center items-center"
                 >
                   <FunnelIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-300" />
                   <p className={`ml-2 text-FontGray text-[15px] font-medium`}>
                     Filter
-                  </p>{" "}
+                  </p>
                 </label>
                 <div
                   tabIndex={0}
-                  className="dropdown-content card card-compact w-64 p-2 shadow bg-white text-dark"
+                  className="dropdown-content calendar-dropdown-content card card-compact w-64 p-2 shadow bg-white text-dark"
                 >
                   <Filter />
                 </div>
               </div>
 
-              <Link href="/integrations">
+              <Link href="/settings/integrations">
                 <div className="mt-3 lg:mt-0  ml-2 items-between px-3 py-2 bg-white border-[1px] border-lightGray h-10 rounded-sm shadow-sm flex justify-center items-center">
                   <AdjustmentsHorizontalIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-300" />
                   <p className={`ml-2 text-FontGray text-[15px] font-medium`}>
@@ -543,7 +562,6 @@ export default function Calendar() {
           </div>
         </div>
       </div>
-
       <div className="bg-mainBg h-full md:h-auto">
         {currentView && (
           <FullCalendar

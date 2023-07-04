@@ -19,6 +19,7 @@ import { CraftContext } from "@/pages/builder/website/craft";
 import lz from "lzutf8";
 import copy from "copy-to-clipboard";
 import {
+  BiArrowBack,
   BiArrowToLeft,
   BiArrowToRight,
   BiDesktop,
@@ -28,7 +29,7 @@ import {
 import { BsTablet, BsThreeDots } from "react-icons/bs";
 import { FaFilter, FaMobileAlt } from "react-icons/fa";
 import { GroupAdd } from "@mui/icons-material";
-import { IoAddCircleOutline } from "react-icons/io5";
+import { IoAddCircleOutline, IoChevronBackCircle } from "react-icons/io5";
 import ModalDerived from "../Modal";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { RiDeleteBin6Fill } from "react-icons/ri";
@@ -38,6 +39,7 @@ import { TbDots } from "react-icons/tb";
 import { RxDragHandleDots2 } from "react-icons/rx";
 import LeftFlyOut from "../LeftLayout";
 import { TopbarSection } from "./TopBarSections";
+import Link from "next/link";
 
 export const Topbar = () => {
   const { actions, query, enabled } = useEditor((state) => ({
@@ -90,6 +92,11 @@ export const Topbar = () => {
         <div className="navbar bg-base-100 flex justify-between items-center border-b">
           <div className="flex justify-between items-center">
             <div className="flex justify-start items-center">
+              <div>
+                <Link href="/builder/website/template">
+                  <IoChevronBackCircle size={30} />
+                </Link>
+              </div>
               {headings.map((item: any, index: number) => (
                 <div
                   key={index}

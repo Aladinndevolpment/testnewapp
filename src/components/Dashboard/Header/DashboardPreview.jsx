@@ -28,11 +28,11 @@ function DashboardPreview({ SetBoxId }) {
 
   const [compactType, setCompactType] = useState('vertical');
   const [mounted, setMounted] = useState(false);
-
+  
   const selectedIndex = useSelector(state => state.WidthObj.currentIndex);
   const breakpoint = useSelector(state => state.WidthObj.currentBreakpoint);
   const comps = dashboardData;
-  const { previewing, save } = useSelector(state => state.WidthObj);
+  const {previewing, save} = useSelector(state => state.WidthObj);
 
   const router = useRouter()
 
@@ -40,23 +40,23 @@ function DashboardPreview({ SetBoxId }) {
 
   useEffect(() => {
     setMounted(true);
-    const prevewing = true;
+    const prevewing =true;
     const save = true;
-    dispatch({ type: 'PREVIEW_CHANGED', payload: prevewing });
-    dispatch({ type: 'SAVE_CHANGED', payload: save });
-    if (prevewing || save) {
+    dispatch({type: 'PREVIEW_CHANGED', payload: prevewing });
+    dispatch({type: 'SAVE_CHANGED', payload: save});
+    if(prevewing || save){
       const comps = JSON.parse(localStorage.getItem('components'));
-      dispatch({ type: 'COMPONENT_CHANGED', payload: [] });
+      dispatch({type: 'COMPONENT_CHANGED', payload: []});
       setTimeout(() => {
-        dispatch({ type: 'COMPONENT_CHANGED', payload: comps });
+        dispatch({type: 'COMPONENT_CHANGED', payload: comps});
       }, 0)
     }
   }, [])
 
   const setComps = payload => {
-    dispatch({ type: 'COMPONENT_CHANGED', payload: [] });
+    dispatch({type: 'COMPONENT_CHANGED', payload: []});
     setTimeout(() => {
-      dispatch({ type: 'COMPONENT_CHANGED', payload });
+      dispatch({type: 'COMPONENT_CHANGED', payload});
     }, 0);
   }
 
@@ -68,7 +68,7 @@ function DashboardPreview({ SetBoxId }) {
 
 
   const _onDrop = (layout, layoutItem, _event) => {
-    if (previewing || save) return;
+    if(previewing || save) return;
     const tempComps = _.cloneDeep(comps);
     const itemType = _event.dataTransfer.getData('text/plain');
     console.log(layoutItem);
@@ -77,12 +77,12 @@ function DashboardPreview({ SetBoxId }) {
         const { x, y, h, w } = o;
         tempComps[o.i].origin = { x, y, h, w };
       }
-      else if (breakpoint === 'lg') {
+      else if(breakpoint === 'lg'){
         const { x, y } = o;
         const origin = { x, y };
         if (itemType === 'numbers') {
           origin.h = 2;
-          origin.w = 3;
+          origin.w = 3; 
         }
         if (itemType === 'chart') {
           origin.h = 8;
@@ -104,7 +104,7 @@ function DashboardPreview({ SetBoxId }) {
           origin.h = 8;
           origin.w = 6;
         }
-        if (itemType === 'gantt') {
+        if(itemType === 'gantt'){
           origin.h = 8;
           origin.w = 6;
         }
@@ -112,14 +112,14 @@ function DashboardPreview({ SetBoxId }) {
           origin, component: itemType
         }
       }
-      else if (breakpoint === 'md') {
+      else if(breakpoint === 'md'){
         const { x, y } = o;
         const origin = { x, y };
         if (itemType === 'numbers') {
           origin.h = 2;
           origin.minH = 2;
           origin.maxH = 2;
-          origin.w = 3;
+          origin.w = 3; 
         }
         if (itemType === 'chart') {
           origin.h = 6;
@@ -141,7 +141,7 @@ function DashboardPreview({ SetBoxId }) {
           origin.h = 6;
           origin.w = 6;
         }
-        if (itemType === 'gantt') {
+        if(itemType === 'gantt'){
           origin.h = 6;
           origin.w = 6;
         }
@@ -149,12 +149,12 @@ function DashboardPreview({ SetBoxId }) {
           origin, component: itemType
         }
       }
-      else if (breakpoint === 'sm') {
+      else if(breakpoint === 'sm'){
         const { x, y } = o;
         const origin = { x, y };
         if (itemType === 'numbers') {
           origin.h = 2;
-          origin.w = 3;
+          origin.w = 3; 
         }
         if (itemType === 'chart') {
           origin.h = 6;
@@ -172,11 +172,11 @@ function DashboardPreview({ SetBoxId }) {
           origin.h = 6;
           origin.w = 6;
         }
-        if (itemType === 'simpledata') {
+        if(itemType === 'simpledata'){
           origin.h = 6;
           origin.w = 6;
         }
-        if (itemType === 'gantt') {
+        if(itemType === 'gantt'){
           origin.h = 6;
           origin.w = 6;
         }
@@ -184,12 +184,12 @@ function DashboardPreview({ SetBoxId }) {
           origin, component: itemType
         }
       }
-      else if (breakpoint === 'xs') {
+      else if(breakpoint === 'xs'){
         const { x, y } = o;
         const origin = { x, y };
         if (itemType === 'numbers') {
           origin.h = 2;
-          origin.w = 3;
+          origin.w = 3; 
         }
         if (itemType === 'chart') {
           origin.h = 5;
@@ -211,7 +211,7 @@ function DashboardPreview({ SetBoxId }) {
           origin.h = 5;
           origin.w = 6;
         }
-        if (itemType === 'gantt') {
+        if(itemType === 'gantt'){
           origin.h = 5;
           origin.w = 6;
         }
@@ -225,229 +225,229 @@ function DashboardPreview({ SetBoxId }) {
 
   const _makeSmall = params => {
     const tempComps = [...comps];
-    if (!tempComps[params]) return;
+    if(!tempComps[params]) return;
     tempComps[params].origin.w = 3;
     // adjust height based on breakpoint
-    if (breakpoint === 'lg') {
-      if (tempComps[params].component === 'chat')
+    if(breakpoint === 'lg'){
+      if(tempComps[params].component === 'chat')
         tempComps[params].origin.h = 9;
-      if (tempComps[params].component === 'chart')
+      if(tempComps[params].component === 'chart')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'email')
+      if(tempComps[params].component === 'email')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'gantt')
+      if(tempComps[params].component === 'gantt')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'simpledata')
+      if(tempComps[params].component === 'simpledata')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'calender')
+      if(tempComps[params].component === 'calender')
         tempComps[params].origin.h = 5;
     }
-    else if (breakpoint === 'md') {
-      if (tempComps[params].component === 'chat')
+    else if(breakpoint === 'md'){
+      if(tempComps[params].component === 'chat')
         tempComps[params].origin.h = 9;
-      if (tempComps[params].component === 'chart')
+      if(tempComps[params].component === 'chart')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'email')
+      if(tempComps[params].component === 'email')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'gantt')
+      if(tempComps[params].component === 'gantt')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'simpledata')
+      if(tempComps[params].component === 'simpledata')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'calender')
+      if(tempComps[params].component === 'calender')
         tempComps[params].origin.h = 5;
     }
-    else if (breakpoint === 'sm') {
-      if (tempComps[params].component === 'chat')
+    else if(breakpoint === 'sm'){
+      if(tempComps[params].component === 'chat')
         tempComps[params].origin.h = 9;
-      if (tempComps[params].component === 'chart')
+      if(tempComps[params].component === 'chart')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'email')
+      if(tempComps[params].component === 'email')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'gantt')
+      if(tempComps[params].component === 'gantt')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'simpledata')
+      if(tempComps[params].component === 'simpledata')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'calender')
+      if(tempComps[params].component === 'calender')
         tempComps[params].origin.h = 5;
     }
-    else if (breakpoint === 'xs') {
-      if (tempComps[params].component === 'chat')
+    else if(breakpoint === 'xs'){
+      if(tempComps[params].component === 'chat')
         tempComps[params].origin.h = 9;
-      if (tempComps[params].component === 'chart')
+      if(tempComps[params].component === 'chart')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'email')
+      if(tempComps[params].component === 'email')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'gantt')
+      if(tempComps[params].component === 'gantt')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'simpledata')
+      if(tempComps[params].component === 'simpledata')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'calender')
+      if(tempComps[params].component === 'calender')
         tempComps[params].origin.h = 5;
     }
-
+    
     setComps(tempComps);
   }
   const _makeMedium = params => {
     const tempComps = [...comps];
-    if (!tempComps[params]) return;
+    if(!tempComps[params]) return;
     tempComps[params].origin.w = 6;
-    if (breakpoint === 'lg') {
-      if (tempComps[params].component === 'chat')
+    if(breakpoint === 'lg'){
+      if(tempComps[params].component === 'chat')
         tempComps[params].origin.h = 5
-      if (tempComps[params].component === 'chart')
+      if(tempComps[params].component === 'chart')
         tempComps[params].origin.h = 8;
-      if (tempComps[params].component === 'email')
+      if(tempComps[params].component === 'email')
         tempComps[params].origin.h = 8;
-      if (tempComps[params].component === 'gantt')
+      if(tempComps[params].component === 'gantt')
         tempComps[params].origin.h = 8
-      if (tempComps[params].component === 'simpledata')
+      if(tempComps[params].component === 'simpledata')
         tempComps[params].origin.h = 8;
-      if (tempComps[params].component === 'calender')
+      if(tempComps[params].component === 'calender')
         tempComps[params].origin.h = 8;
     }
-    else if (breakpoint === 'md') {
-      if (tempComps[params].component === 'chat') {
+    else if(breakpoint === 'md'){
+      if(tempComps[params].component === 'chat'){
         tempComps[params].origin.h = 8;
         tempComps[params].origin.w = 4;
       }
-      if (tempComps[params].component === 'chart')
+      if(tempComps[params].component === 'chart')
         tempComps[params].origin.h = 6;
-      if (tempComps[params].component === 'email')
+      if(tempComps[params].component === 'email')
         tempComps[params].origin.h = 6;
-      if (tempComps[params].component === 'gantt')
+      if(tempComps[params].component === 'gantt')
         tempComps[params].origin.h = 6;
-      if (tempComps[params].component === 'simpledata')
+      if(tempComps[params].component === 'simpledata')
         tempComps[params].origin.h = 6;
-      if (tempComps[params].component === 'calender')
+      if(tempComps[params].component === 'calender')
         tempComps[params].origin.h = 6;
     }
-    else if (breakpoint === 'sm') {
-      if (tempComps[params].component === 'chat') {
+    else if(breakpoint === 'sm'){
+      if(tempComps[params].component === 'chat'){
         tempComps[params].origin.h = 8;
         tempComps[params].origin.w = 4;
       }
-      if (tempComps[params].component === 'chart')
+      if(tempComps[params].component === 'chart')
         tempComps[params].origin.h = 6;
-      if (tempComps[params].component === 'email')
+      if(tempComps[params].component === 'email')
         tempComps[params].origin.h = 6;
-      if (tempComps[params].component === 'gantt')
+      if(tempComps[params].component === 'gantt')
         tempComps[params].origin.h = 6;
-      if (tempComps[params].component === 'simpledata')
+      if(tempComps[params].component === 'simpledata')
         tempComps[params].origin.h = 6;
-      if (tempComps[params].component === 'calender')
+      if(tempComps[params].component === 'calender')
         tempComps[params].origin.h = 6;
     }
-    else if (breakpoint === 'xs') {
-      if (tempComps[params].component === 'chat') {
+    else if(breakpoint === 'xs'){
+      if(tempComps[params].component === 'chat'){
         tempComps[params].origin.h = 8;
         tempComps[params].origin.w = 4;
       }
-      if (tempComps[params].component === 'chart')
+      if(tempComps[params].component === 'chart')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'email')
+      if(tempComps[params].component === 'email')
         tempComps[params].origin.h = 4;
-      if (tempComps[params].component === 'gantt')
+      if(tempComps[params].component === 'gantt')
         tempComps[params].origin.h = 4;
-      if (tempComps[params].component === 'simpledata')
+      if(tempComps[params].component === 'simpledata')
         tempComps[params].origin.h = 4;
-      if (tempComps[params].component === 'calender')
+      if(tempComps[params].component === 'calender')
         tempComps[params].origin.h = 4;
     }
     setComps(tempComps);
   }
   const _makeLarge = params => {
     const tempComps = [...comps];
-    if (!tempComps[params]) return;
+    if(!tempComps[params]) return;
     tempComps[params].origin.w = 12;
-    if (breakpoint === 'lg') {
-      if (tempComps[params].component === 'chat')
+    if(breakpoint === 'lg'){
+      if(tempComps[params].component === 'chat')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'chart')
+      if(tempComps[params].component === 'chart')
         tempComps[params].origin.h = 14;
-      if (tempComps[params].component === 'email')
+      if(tempComps[params].component === 'email')
         tempComps[params].origin.h = 14;
-      if (tempComps[params].component === 'gantt') {
+      if(tempComps[params].component === 'gantt'){
         tempComps[params].origin.h = 14;
-        if (tempComps[params].component === 'simpledata')
-          tempComps[params].origin.h = 7;
-        if (tempComps[params].component === 'calender')
-          tempComps[params].origin.h = 7;
+      if(tempComps[params].component === 'simpledata')
+        tempComps[params].origin.h = 7;
+      if(tempComps[params].component === 'calender')
+        tempComps[params].origin.h = 7;
       }
     }
-    else if (breakpoint === 'md') {
-      if (tempComps[params].component === 'chat')
+    else if(breakpoint === 'md'){
+      if(tempComps[params].component === 'chat')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'chart')
+      if(tempComps[params].component === 'chart')
         tempComps[params].origin.h = 10;
-      if (tempComps[params].component === 'email')
+      if(tempComps[params].component === 'email')
         tempComps[params].origin.h = 10;
-      if (tempComps[params].component === 'gantt')
+      if(tempComps[params].component === 'gantt')
         tempComps[params].origin.h = 10;
-      if (tempComps[params].component === 'simpledata')
+      if(tempComps[params].component === 'simpledata')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'calender')
+      if(tempComps[params].component === 'calender')
         tempComps[params].origin.h = 5;
     }
-    else if (breakpoint === 'sm') {
-      if (tempComps[params].component === 'chat')
+    else if(breakpoint === 'sm'){
+      if(tempComps[params].component === 'chat')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'chart')
+      if(tempComps[params].component === 'chart')
         tempComps[params].origin.h = 10;
-      if (tempComps[params].component === 'email')
+      if(tempComps[params].component === 'email')
         tempComps[params].origin.h = 10;
-      if (tempComps[params].component === 'gantt')
+      if(tempComps[params].component === 'gantt')
         tempComps[params].origin.h = 10;
-      if (tempComps[params].component === 'simpledata')
+      if(tempComps[params].component === 'simpledata')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'calender')
+      if(tempComps[params].component === 'calender')
         tempComps[params].origin.h = 5;
     }
-    else if (breakpoint === 'xs') {
-      if (tempComps[params].component === 'chat')
+    else if(breakpoint === 'xs'){
+      if(tempComps[params].component === 'chat')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'chart')
+      if(tempComps[params].component === 'chart')
         tempComps[params].origin.h = 8;
-      if (tempComps[params].component === 'email')
+      if(tempComps[params].component === 'email')
         tempComps[params].origin.h = 8;
-      if (tempComps[params].component === 'gantt')
+      if(tempComps[params].component === 'gantt')
         tempComps[params].origin.h = 8;
-      if (tempComps[params].component === 'simpledata')
+      if(tempComps[params].component === 'simpledata')
         tempComps[params].origin.h = 5;
-      if (tempComps[params].component === 'calender')
+      if(tempComps[params].component === 'calender')
         tempComps[params].origin.h = 5;
     }
-
+    
     setComps(tempComps);
   }
 
 
   const _onDrag = (layout, layoutItem, _event) => {
-    if (comps.length === 0) return;
+    if(comps.length === 0) return;
     const tempComps = _.cloneDeep(comps);
     layout.map(l => {
-      const { x, y } = l;
+      const {x, y} = l;
       tempComps[l.i].origin.x = x;
       tempComps[l.i].origin.y = y;
     });
     setComps(tempComps);
   }
   const _handleClick = (e, i) => {
-    if (previewing || save) return;
-    dispatch({ type: 'CURRENT_SELECTED_INDEX', payload: i });
-    if (comps[i].component !== 'box') {
+    if(previewing || save) return;
+    dispatch({type: 'CURRENT_SELECTED_INDEX', payload: i});
+    if(comps[i].component !== 'box'){
       SetBoxId(e, i);
     }
 
   }
   const _onBreakpointChange = b => {
-    dispatch({ type: 'BREAKPOINT_CHANGED', payload: b });
-    if (comps.length === 0 || b === breakpoint) return;
+    dispatch({type: 'BREAKPOINT_CHANGED', payload: b});
+    if(comps.length === 0 || b === breakpoint) return;
     const tempComps = comps.map((o, i) => {
       const itemType = comps[i].component;
-      if (b === 'lg') {
+      if(b === 'lg'){
         if (itemType === 'numbers') {
           o.origin.h = 2;
-          o.origin.w = 3;
+          o.origin.w = 3; 
         }
         if (itemType === 'chart') {
           o.origin.h = 8;
@@ -469,16 +469,16 @@ function DashboardPreview({ SetBoxId }) {
           o.origin.h = 8;
           o.origin.w = 6;
         }
-        if (itemType === 'gantt') {
+        if(itemType === 'gantt'){
           o.origin.h = 8;
           o.origin.w = 6;
         }
         return o;
       }
-      else if (b === 'md') {
+      else if(b === 'md'){
         if (itemType === 'numbers') {
           o.origin.h = 2;
-          o.origin.w = 3;
+          o.origin.w = 3; 
         }
         if (itemType === 'chart') {
           o.origin.h = 6;
@@ -500,16 +500,16 @@ function DashboardPreview({ SetBoxId }) {
           o.origin.h = 6;
           o.origin.w = 6;
         }
-        if (itemType === 'gantt') {
+        if(itemType === 'gantt'){
           o.origin.h = 6;
           o.origin.w = 6;
         }
         return o;
       }
-      else if (b === 'sm') {
+      else if(b === 'sm'){
         if (itemType === 'numbers') {
           o.origin.h = 2;
-          o.origin.w = 3;
+          o.origin.w = 3; 
         }
         if (itemType === 'chart') {
           o.origin.h = 6;
@@ -527,20 +527,20 @@ function DashboardPreview({ SetBoxId }) {
           o.origin.h = 6;
           o.origin.w = 6;
         }
-        if (itemType === 'simpledata') {
+        if(itemType === 'simpledata'){
           o.origin.h = 6;
           o.origin.w = 6;
         }
-        if (itemType === 'gantt') {
+        if(itemType === 'gantt'){
           o.origin.h = 6;
           o.origin.w = 6;
         }
         return o;
       }
-      else if (b === 'xs') {
+      else if(b === 'xs'){
         if (itemType === 'numbers') {
           o.origin.h = 2;
-          o.origin.w = 3;
+          o.origin.w = 3; 
         }
         if (itemType === 'chart') {
           o.origin.h = 5;
@@ -562,7 +562,7 @@ function DashboardPreview({ SetBoxId }) {
           o.origin.h = 5;
           o.origin.w = 6;
         }
-        if (itemType === 'gantt') {
+        if(itemType === 'gantt'){
           o.origin.h = 5;
           o.origin.w = 6;
         }
@@ -584,24 +584,24 @@ function DashboardPreview({ SetBoxId }) {
         isDroppable={!previewing && !save}
         onDragStop={_onDrag}
         onBreakpointChange={_onBreakpointChange}
-        breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+        breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
       >
         {
           comps.map((c, i) => {
-            return <div style={selectedIndex !== i && selectedIndex !== -1 ? { zIndex: -1, opacity: 0.5 } : {}} key={i} onClick={e => _handleClick(e, i)} data-grid={{ ...c.origin, static: previewing || save }} className={selectedIndex === i ? 'border border-blue-500 rounded pb-10' : ''} >
-              {c.component === 'numbers' ? <Numbers index={i} size={c.origin.w} breakpoint={breakpoint} /> : null}
-              {c.component === 'chart' ? <ChartGrid index={i} /> : null}
-              {c.component === 'simpledata' ? <Simpledata index={i} /> : null}
-              {c.component === 'calender' ? <Calender index={i} /> : null}
-              {c.component === 'chat' ? <Charteithtext breakpoint={'md'} size={c.origin.w} index={i} /> : null}
-              {c.component === 'email' ? <Emailreport index={i} /> : null}
-              {c.component === 'gantt' ? <Gantt index={i} /> : null}
-              <div style={{ zIndex: 9 }} id={`di-${i}`} className={selectedIndex === i ? '' : "hidden"}>
+            return <div style={selectedIndex !== i && selectedIndex !== -1 ? {zIndex: -1, opacity: 0.5} : {}} key={i} onClick={e => _handleClick(e, i)} data-grid={{...c.origin, static: previewing || save}} className={selectedIndex === i ? 'border border-blue-500 rounded' : ''} >
+              {c.component === 'numbers' ? <Numbers index={ i } size={c.origin.w} breakpoint={breakpoint} /> : null}
+              {c.component === 'chart' ? <ChartGrid index={ i } /> : null}
+              {c.component === 'simpledata' ? <Simpledata index={ i } /> : null}
+              {c.component === 'calender' ? <Calender index={i}/> : null}
+              {c.component === 'chat' ? <Charteithtext breakpoint={'md'} size={c.origin.w} index={ i } /> : null}
+              {c.component === 'email' ? <Emailreport index={ i }/> : null}
+              {c.component === 'gantt' ? <Gantt index={ i } /> : null}
+              <div style={{zIndex: 9}} id={`di-${i}`} className={selectedIndex === i ? '' : "hidden"}>
                 <div className="grid grid-cols-1 sm:grid-cols-3 w-56 rounded-md gap-4 mb-2 bg-white p-2 mt-2 ">
                   <div>
                     <div
                       className="relative"
-                    >
+                      >
                       <label className="flex cursor-pointer rounded-md border border-grey/20 bg-white justify-between items-start gap-4 text-center">
                         <div className="h-8 w-4/12 bg-grey/20 rounded-md"></div>
                         <input
@@ -618,7 +618,7 @@ function DashboardPreview({ SetBoxId }) {
                   <div>
                     <div
                       className="relative"
-                    >
+                      >
                       <label className="flex cursor-pointer rounded-md border border-grey/20 bg-white justify-between items-start gap-4 text-center">
                         <div className="h-8 w-6/12 bg-grey/20 rounded-md"></div>
                         <input
@@ -635,7 +635,7 @@ function DashboardPreview({ SetBoxId }) {
                   <div>
                     <div
                       className="relative"
-                    >
+                      >
                       <label className="flex cursor-pointer rounded-md border border-grey/20 bg-white justify-between items-start gap-4 text-center">
                         <div className="h-8 w-full bg-grey/20 rounded-md"></div>
                         <input
