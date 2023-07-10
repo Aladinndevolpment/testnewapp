@@ -3,14 +3,15 @@ import { BsQuestionCircleFill } from "react-icons/bs";
 
 import { MenuItem, OutlinedInput, Select, TextField } from "@mui/material";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import item from "@/components/Contact/dnd/styles/item";
 const days = [
-  { key: "0", div: "S", day: "Sunday" },
-  { key: "1", div: "M", day: "Monday" },
-  { key: "2", div: "T", day: "Tuesday" },
-  { key: "3", div: "W", day: "Wednesday" },
-  { key: "4", div: "T", day: "Thursday" },
-  { key: "5", div: "F", day: "Friday" },
-  { key: "6", div: "S", day: "Saturday" },
+  { key: "0", div: "S", day: "SUNDAY" },
+  { key: "1", div: "M", day: "MONDAY" },
+  { key: "2", div: "T", day: "TUESDAY" },
+  { key: "3", div: "W", day: "WEDNESDAY" },
+  { key: "4", div: "T", day: "THRUSDAY" },
+  { key: "5", div: "F", day: "FRIDAY" },
+  { key: "6", div: "S", day: "SATURDAY" },
 ];
 
 export default function Availability({
@@ -42,6 +43,11 @@ export default function Availability({
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
+    let hours = value.split(":");
+    // console.log(hours[0]);
+    // console.log("fff", value.split(":"));
+
+    console.log("uhduisi", formValues);
 
     setFormValues((prevValues: any) => ({
       ...prevValues,
@@ -49,11 +55,53 @@ export default function Availability({
     }));
   };
 
+  const handleChange2 = (index: any, e: any) => {
+    const { name, value } = e.target;
+
+    // console.log("ppgpg", name);
+    let arr = selectedDays;
+
+    if (name == "toTime") {
+      let hours = value.split(":");
+      arr[index] = {
+        ...selectedDays[index],
+        endHour: parseInt(hours[0]),
+        endMinute: parseInt(hours[1]),
+      };
+    } else {
+      let hours = value.split(":");
+      arr[index] = {
+        ...selectedDays[index],
+        startHour: parseInt(hours[0]),
+        startMinute: parseInt(hours[1]),
+      };
+    }
+
+    // console.log(hours[0]);
+    // console.log("fff", value.split(":"));
+
+    // console.log("uhduisi", hours);
+
+    setFormValues((prevValues: any) => ({
+      ...prevValues,
+      officeHours: arr,
+    }));
+  };
+
   const toggleDaySelection = (dayIndex: any) => {
+    let day = days.filter((item, index) => index == dayIndex);
+    let objects = {
+      dayOfWeek: day[0].day,
+      endHour: 0,
+      endMinute: 0,
+      startHour: 0,
+      startMinute: 0,
+    };
+
     if (selectedDays.includes(dayIndex)) {
       setSelectedDays(selectedDays.filter((index) => index !== dayIndex));
     } else {
-      setSelectedDays([...selectedDays, dayIndex]);
+      setSelectedDays([...selectedDays, objects]);
     }
 
     setFormValues((prevValues: any) => ({
@@ -63,7 +111,6 @@ export default function Availability({
   };
 
   const handleSubmit = () => {
-    // Validate form fields
     console.log(formValues);
 
     const validationErrors: any = {};
@@ -98,7 +145,6 @@ export default function Availability({
     // if (!formValues.officeHour.trim()) {
     //   validationErrors.officeHour = "required";
     // }
-
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
@@ -106,48 +152,48 @@ export default function Availability({
 
     handleStoreFormData(formValues);
     handleNewTab();
-    setFormValues({
-      slotDuration: "",
-      slotInterval: "",
-      buffer: "",
-      appointmentsPerSlot: "",
-      appointmentsPerDay: "",
-      minScheduleNotice: "",
-      duration: "",
-      dateRange: "",
-      dateDuration: "",
-      officeHour: "standard",
-      fromTime: "",
-      toTime: "",
-      recAppointment: "",
-      image: null,
-    });
+    // setFormValues({
+    //   slotDuration: "",
+    //   slotInterval: "",
+    //   buffer: "",
+    //   appointmentsPerSlot: "",
+    //   appointmentsPerDay: "",
+    //   minScheduleNotice: "",
+    //   duration: "",
+    //   dateRange: "",
+    //   dateDuration: "",
+    //   officeHour: "standard",
+    //   fromTime: "",
+    //   toTime: "",
+    //   recAppointment: "",
+    //   image: null,
+    // });
 
     setErrors({});
   };
 
   return (
     <div>
-      <div className="px-2 ">
+      <div className="px-2">
         {/* form */}
-        <div className=" h-full overflow-hidden px-4">
+        <div className="h-full overflow-hidden px-4">
           <div className="lg:h-[50vh] overflow-y-scroll scrollbar-hide">
             <div className=" pb-4 pt-5">
               <h1 className="text-[#47494b] text-md font-semibold">
                 Appointment Slot Setting
               </h1>
               <p className="text-gray-400 text-sm">
-                Configure duration and intervals for the appoointment
+                Configure duration and intervals for the appointment
               </p>
 
               <div>
                 <div className="px-4 mt-5">
                   <div>
-                    <div className="py-2 grid grid-cols-3 gap-3 ">
+                    <div className="py-2 grid grid-cols-3 gap-3">
                       <div>
                         <label
                           htmlFor=""
-                          className="block text-[#47494b] text-sm   font-semibold"
+                          className="block text-[#47494b] text-sm font-semibold"
                         >
                           Slot Duration
                         </label>
@@ -160,9 +206,9 @@ export default function Availability({
                           className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
                         >
                           <MenuItem value="">Select</MenuItem>
-                          <MenuItem value="30min">30 Minutes</MenuItem>
-                          <MenuItem value="20min">20 Minutes</MenuItem>
-                          <MenuItem value="10min">10 Minutes</MenuItem>
+                          <MenuItem value="30">30 Minutes</MenuItem>
+                          <MenuItem value="20">20 Minutes</MenuItem>
+                          <MenuItem value="10">10 Minutes</MenuItem>
                         </Select>
                         {errors.slotDuration && (
                           <div className="mb-2 text-red-500 text-[12px]">
@@ -174,7 +220,7 @@ export default function Availability({
                       <div>
                         <label
                           htmlFor=""
-                          className="block text-[#47494b] text-sm    font-semibold"
+                          className="block text-[#47494b] text-sm font-semibold"
                         >
                           Slot Interval
                         </label>
@@ -183,12 +229,12 @@ export default function Availability({
                           onChange={handleChange}
                           name="slotInterval"
                           value={formValues.slotInterval}
-                          className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
+                          className="px-2 rounded-lg mt-2 mb-2 text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
                         >
                           <MenuItem value="">Select</MenuItem>
-                          <MenuItem value="min1">30 Minutes</MenuItem>
-                          <MenuItem value="min2">20 Minutes</MenuItem>
-                          <MenuItem value="min3">10 Minutes</MenuItem>
+                          <MenuItem value="30">30 Minutes</MenuItem>
+                          <MenuItem value="20">20 Minutes</MenuItem>
+                          <MenuItem value="10">10 Minutes</MenuItem>
                         </Select>
                         {errors.slotInterval && (
                           <div className="mb-2 text-red-500 text-[12px]">
@@ -200,7 +246,7 @@ export default function Availability({
                       <div className="w-full">
                         <label
                           htmlFor=""
-                          className="block text-[#47494b] text-sm   font-semibold "
+                          className="block text-[#47494b] text-sm font-semibold "
                         >
                           Buffer Duration between appointment
                         </label>
@@ -222,10 +268,10 @@ export default function Availability({
                       <div>
                         <label
                           htmlFor=""
-                          className="  flex items-center gap-2 text-[#47494b] text-sm   font-semibold"
+                          className="flex items-center gap-2 text-[#47494b] text-sm font-semibold"
                         >
                           Appointments per slot
-                          <BsQuestionCircleFill className="text-xs " />
+                          <BsQuestionCircleFill className="text-xs" />
                         </label>
                         <input
                           onChange={handleChange}
@@ -244,7 +290,7 @@ export default function Availability({
                       <div>
                         <label
                           htmlFor=""
-                          className="  text-[#47494b] text-sm   flex items-center gap-2 font-semibold"
+                          className="text-[#47494b] text-sm flex items-center gap-2 font-semibold"
                         >
                           Appointments Per Day
                           <BsQuestionCircleFill className="text-xs " />
@@ -320,10 +366,10 @@ export default function Availability({
                     </div>
                   </div>
 
-                  <div className="  w-1/2 ">
+                  <div className="w-1/2 ">
                     <label
                       htmlFor=""
-                      className="  flex items-center gap-2 text-[#47494b] text-sm   font-semibold"
+                      className="flex items-center gap-2 text-[#47494b] text-sm   font-semibold"
                     >
                       Date Range
                       <BsQuestionCircleFill className="text-xs " />
@@ -336,7 +382,7 @@ export default function Availability({
                           name="dateRange"
                           placeholder="Duration"
                           value={formValues.dateRange}
-                          className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+                          className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2 font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
                         />
                         {errors.dateRange && (
                           <div className="mb-2 text-red-500 text-[12px]">
@@ -376,7 +422,7 @@ export default function Availability({
                     Choosing the Custom option here would cause Scheduling
                     Notice to be ineffective.
                   </p>
-                  <div className="flex items-center gap-4  text-xs text-gray-600 font-semibold">
+                  <div className="flex items-center gap-4 text-xs text-gray-600 font-semibold">
                     <div className="px-2 py-3">
                       <RadioGroup
                         row
@@ -432,7 +478,7 @@ export default function Availability({
                       <div
                         key={index}
                         className={`w-10 h-10 flex items-center justify-center font-semibold rounded ${
-                          selectedDays.includes(index)
+                          selectedDays.some((it) => item.day == it.dayOfWeek)
                             ? "bg-newBlue text-white"
                             : "bg-gray-200"
                         }`}
@@ -458,14 +504,18 @@ export default function Availability({
                               htmlFor=""
                               className="  text-[#47494b] text-xs py-2 font-semibold flex justify-between"
                             >
-                              {days[dayIndex].day}
+                              {dayIndex.dayOfWeek}
                               <span className="text-blue-400">+ hours</span>
                             </label>
                             <input
                               type="time"
-                              onChange={handleChange}
+                              onChange={(e) => {
+                                handleChange2(index, e);
+                              }}
                               name="fromTime"
-                              value={formValues.fromTime}
+                              value={
+                                dayIndex.startHour + ":" + dayIndex.startMinute
+                              }
                               className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-2 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
                             />
                           </div>
@@ -478,10 +528,14 @@ export default function Availability({
                             </label>
                             <input
                               type="time"
-                              onChange={handleChange}
+                              onChange={(e) => {
+                                handleChange2(index, e);
+                              }}
                               name="toTime"
-                              value={formValues.toTime}
-                              className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-2 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
+                              value={
+                                dayIndex.endHour + ":" + dayIndex.endMinute
+                              }
+                              className="w-[100%] placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-2 rounded-md mt-2 mb-2 font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300  "
                             />
                           </div>
                         </div>
@@ -497,10 +551,10 @@ export default function Availability({
                       name="recAppointment"
                       value={formValues.recAppointment}
                       onChange={handleChange}
-                      className="toggle toggle-accent "
+                      className="toggle toggle-accent"
                     />
                     <span className="text-[#47494b] flex items-center gap-2 text-sm py-1 font-semibold">
-                      Recurring Appointments{" "}
+                      Recurring Appointments
                       <BsQuestionCircleFill className="text-xs " />
                     </span>
                   </label>
@@ -531,7 +585,7 @@ export default function Availability({
             </div>
           </div>
         </div>
-      </div>{" "}
+      </div>
     </div>
   );
 }

@@ -18,13 +18,15 @@ import {
 import { createElement, useState } from "react";
 import item from "@/components/Leads/dnd/styles/item";
 import { BiPhoneCall } from "react-icons/bi";
+import LeftFlyOut from "@/components/LeftLayout";
+import { TopbarSection } from "../../TopBarSections";
 
 const elementName = "Web Testimonials";
 
 const defaults = {
   backgroundColor: "#ffffff",
   borderColor: "#313641",
-  borderRadius: 10,
+  borderRadius: 0,
 };
 
 interface IWebTestimonialsProps extends ICommonSettingsProps {
@@ -88,6 +90,8 @@ export const WebTestimonial = ({
   shadow,
   shadowColor,
 }: IWebTestimonialsProps) => {
+  const [openCreateModal, setOpenCreateModal] = useState(false);
+
   // const [cardSlide, setCardSlide] = useState < any > [];
   const {
     connectors: { connect, drag },
@@ -116,147 +120,110 @@ export const WebTestimonial = ({
   ];
 
   return (
-    <div className="bg-white p-2 w-full" ref={(ref: any) => connect(drag(ref))}>
-      {/* <div className="card card-compact w-full bg-base-100 shadow-xl">
+    <>
+      <LeftFlyOut
+        visibility={openCreateModal}
+        onClose={() => {
+          setOpenCreateModal(false);
+        }}
+      >
+        <TopbarSection />
+      </LeftFlyOut>
+      <div
+        className="bg-white p-2 w-full"
+        ref={(ref: any) => connect(drag(ref))}
+      >
+        {/* <div className="card card-compact w-full bg-base-100 shadow-xl">
         <div className="card-body">
           <Element id="heroImage" is={CardImage} canvas>
             <BuilderImage />
           </Element>
         </div>
       </div> */}
-      <div
-        className={`w-full h-auto ${size} mr-2 shadow-lg ${
-          hovered && "hover:outline-pink-500 hover:outline "
-        }  relative ${shadowColor} ${shadow} ${borderType} `}
-        style={{
-          backgroundColor,
-          marginTop: `${marginTop}px`,
-          marginBottom: `${marginBottom}px`,
-          marginLeft: `${marginLeft}px`,
-          marginRight: `${marginRight}px`,
-          paddingTop: `${paddingTop}px`,
-          paddingBottom: `${paddingBottom}px`,
-          paddingLeft: `${paddingLeft}px`,
-          paddingRight: `${paddingRight}px`,
-          borderWidth: `${borderWidth}px`,
-          borderRadius: `${borderRadius}px`,
-          borderColor,
-        }}
-      >
-        {hovered && (
-          <div className="absolute top-0 right-0 bg-purple-500 text-white text-[10px] px-1 z-10 capitalize">
-            {elementName}
-          </div>
-        )}
-        <Element id="WebTestimonialsText" is={WebTestimonialsText} canvas>
-          <section className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-8 lg:px-8 shadow-lg flex-col justify-center items-center">
-            {/* <div className="absolute  mr-16 w-[200%] origin-bottom-left  bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" /> */}
-            {cardItem.map((item: any, index: number) => (
-              <div key={item.id}>
-                <div className="-mx-4 flex flex-wrap h-[30%]">
-                  <div className="w-full px-4">
-                    <div className="mx-auto mb-[60px] max-w-[510px] text-center">
-                      <span className="text-primary mb-2 block text-lg font-semibold">
-                        <Text
-                          alignment="center"
-                          text={item.title}
-                          fontSize={20}
-                          bold="font-bold"
-                          color="#0A92F8"
-                        />
-                      </span>
-                      <div className="text-dark text-3xl font-bold sm:text-4xl md:text-[40px]">
-                        <Text
-                          alignment="center"
-                          text={item.subTitle}
-                          fontSize={28}
-                          bold="font-bold"
-                        />
+        <div
+          className={`w-full h-auto ${size} mr-2 shadow-lg ${
+            hovered && "hover:outline-blue-500 hover:outline "
+          }  relative ${shadowColor} ${shadow} ${borderType} `}
+          style={{
+            backgroundColor,
+            marginTop: `${marginTop}px`,
+            marginBottom: `${marginBottom}px`,
+            marginLeft: `${marginLeft}px`,
+            marginRight: `${marginRight}px`,
+            paddingTop: `${paddingTop}px`,
+            paddingBottom: `${paddingBottom}px`,
+            paddingLeft: `${paddingLeft}px`,
+            paddingRight: `${paddingRight}px`,
+            borderWidth: `${borderWidth}px`,
+            borderRadius: `${borderRadius}px`,
+            borderColor,
+          }}
+        >
+          {hovered && (
+            <>
+              <div className="absolute top-0 right-0 bg-blue-500 text-white text-[10px] px-1 z-10 capitalize">
+                {elementName}
+              </div>
+              <div
+                className="absolute -bottom-2 left-[50%] bg-orange-500 text-white text-[10px] px-1 z-10 capitalize"
+                onClick={() => {
+                  setOpenCreateModal(true);
+                }}
+              >
+                +
+              </div>
+            </>
+          )}
+          <Element id="WebTestimonialsText" is={WebTestimonialsText} canvas>
+            <section className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-8 lg:px-8 shadow-lg flex-col justify-center items-center">
+              {/* <div className="absolute  mr-16 w-[200%] origin-bottom-left  bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" /> */}
+              {cardItem.map((item: any, index: number) => (
+                <div key={item.id}>
+                  <div className="-mx-4 flex flex-wrap h-[30%]">
+                    <div className="w-full px-4">
+                      <div className="mx-auto mb-[60px] max-w-[510px] text-center">
+                        <span className="text-primary mb-2 block text-lg font-semibold">
+                          <Text
+                            alignment="center"
+                            text={item.title}
+                            fontSize={20}
+                            bold="font-bold"
+                            color="#0A92F8"
+                          />
+                        </span>
+                        <div className="text-dark text-3xl font-bold sm:text-4xl md:text-[40px]">
+                          <Text
+                            alignment="center"
+                            text={item.subTitle}
+                            fontSize={28}
+                            bold="font-bold"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div
-                  className="flex rounded-full ring-2 ring-white object-cover absolute left-[45%]"
-                  style={{
-                    backgroundColor: "#ffffff",
-                    marginTop: `${marginTop}px`,
-                    marginBottom: `${10}px`,
-                    marginLeft: `${marginLeft}px`,
-                    marginRight: `${marginRight}px`,
-                    paddingTop: `${paddingTop}px`,
-                    paddingBottom: `${paddingBottom}px`,
-                    paddingLeft: `${paddingLeft}px`,
-                    paddingRight: `${paddingRight}px`,
-                    borderWidth: `${borderWidth}px`,
-                    borderRadius: `100px`,
-                    borderColor,
-                  }}
-                >
-                  {item.Image}
-                </div>
-                <div className="mx-auto max-w-2xl lg:max-w-4xl">
-                  <figure className="mt-10">
-                    <blockquote className="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
-                      <div
-                        className={`   w-full h-auto ${size} mr-2 ${
-                          hovered && "hover:outline-pink-500 hover:outline "
-                        }  relative ${shadowColor} ${shadow} ${borderType}`}
-                        style={{
-                          backgroundColor: "#ffffff",
-                          marginTop: `${marginTop}px`,
-                          marginBottom: `${marginBottom}px`,
-                          marginLeft: `${marginLeft}px`,
-                          marginRight: `${marginRight}px`,
-                          paddingTop: `${paddingTop}px`,
-                          paddingBottom: `${paddingBottom}px`,
-                          paddingLeft: `${paddingLeft}px`,
-                          paddingRight: `${paddingRight}px`,
-                          borderWidth: `${borderWidth}px`,
-                          borderRadius: `2px`,
-                          borderColor,
-                        }}
-                      >
-                        <Text
-                          paddingLeft={10}
-                          paddingBottom={10}
-                          paddingTop={10}
-                          alignment="center"
-                          text={item.description}
-                          fontSize={18}
-                          bold="font-medium"
-                          color="#000000"
-                          backgroundColor="#ffffff"
-                        />
-                      </div>
-                    </blockquote>
-                    <figcaption className="mt-10">
-                      <div
-                        className={` flex justify-center w-full h-auto ${size} mr-2 ${
-                          hovered && "hover:outline-pink-500 hover:outline "
-                        }  relative ${shadowColor} ${shadow} ${borderType}`}
-                        style={{
-                          backgroundColor: "#ffffff",
-                          marginTop: `${marginTop}px`,
-                          marginBottom: `${marginBottom}px`,
-                          marginLeft: `${marginLeft}px`,
-                          marginRight: `${marginRight}px`,
-                          paddingTop: `${paddingTop}px`,
-                          paddingBottom: `${paddingBottom}px`,
-                          paddingLeft: `${paddingLeft}px`,
-                          paddingRight: `${paddingRight}px`,
-                          borderWidth: `${borderWidth}px`,
-                          borderRadius: `100px`,
-                          borderColor,
-                        }}
-                      >
-                        {/* <img
-                      className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
-                    /> */}
-                      </div>
-                      <div className="mt-3 flex items-center justify-center space-x-3 text-base">
+                  <div
+                    className="flex rounded-full ring-2 ring-white object-cover absolute left-[45%]"
+                    style={{
+                      backgroundColor: "#ffffff",
+                      marginTop: `${marginTop}px`,
+                      marginBottom: `${10}px`,
+                      marginLeft: `${marginLeft}px`,
+                      marginRight: `${marginRight}px`,
+                      paddingTop: `${paddingTop}px`,
+                      paddingBottom: `${paddingBottom}px`,
+                      paddingLeft: `${paddingLeft}px`,
+                      paddingRight: `${paddingRight}px`,
+                      borderWidth: `${borderWidth}px`,
+                      borderRadius: `100px`,
+                      borderColor,
+                    }}
+                  >
+                    {item.Image}
+                  </div>
+                  <div className="mx-auto max-w-2xl lg:max-w-4xl">
+                    <figure className="mt-10">
+                      <blockquote className="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
                         <div
                           className={`   w-full h-auto ${size} mr-2 ${
                             hovered && "hover:outline-pink-500 hover:outline "
@@ -280,27 +247,18 @@ export const WebTestimonial = ({
                             paddingLeft={10}
                             paddingBottom={10}
                             paddingTop={10}
-                            alignment="right"
-                            text={item.fullName}
-                            fontSize={17}
-                            bold="font-semibold"
+                            alignment="center"
+                            text={item.description}
+                            fontSize={18}
+                            bold="font-medium"
                             color="#000000"
                             backgroundColor="#ffffff"
                           />
                         </div>
-                        <div>
-                          <svg
-                            viewBox="0 0 2 2"
-                            width={3}
-                            height={3}
-                            aria-hidden="true"
-                            className="fill-gray-900"
-                          >
-                            <circle cx={1} cy={1} r={1} />
-                          </svg>
-                        </div>
+                      </blockquote>
+                      <figcaption className="mt-10">
                         <div
-                          className={`  ml-2 w-full h-auto ${size} mr-2 ${
+                          className={` flex justify-center w-full h-auto ${size} mr-2 ${
                             hovered && "hover:outline-pink-500 hover:outline "
                           }  relative ${shadowColor} ${shadow} ${borderType}`}
                           style={{
@@ -314,33 +272,102 @@ export const WebTestimonial = ({
                             paddingLeft: `${paddingLeft}px`,
                             paddingRight: `${paddingRight}px`,
                             borderWidth: `${borderWidth}px`,
-                            borderRadius: `2px`,
+                            borderRadius: `100px`,
                             borderColor,
                           }}
                         >
-                          <Text
-                            paddingLeft={10}
-                            paddingBottom={10}
-                            paddingTop={10}
-                            alignment="left"
-                            text={item.role}
-                            fontSize={12}
-                            mobileFontSize={20}
-                            bold="font-normal"
-                            color="#000000"
-                            backgroundColor="#ffffff"
-                          />
+                          {/* <img
+                      className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      alt=""
+                    /> */}
                         </div>
-                      </div>
-                    </figcaption>
-                  </figure>
+                        <div className="mt-3 flex items-center justify-center space-x-3 text-base">
+                          <div
+                            className={`   w-full h-auto ${size} mr-2 ${
+                              hovered && "hover:outline-pink-500 hover:outline "
+                            }  relative ${shadowColor} ${shadow} ${borderType}`}
+                            style={{
+                              backgroundColor: "#ffffff",
+                              marginTop: `${marginTop}px`,
+                              marginBottom: `${marginBottom}px`,
+                              marginLeft: `${marginLeft}px`,
+                              marginRight: `${marginRight}px`,
+                              paddingTop: `${paddingTop}px`,
+                              paddingBottom: `${paddingBottom}px`,
+                              paddingLeft: `${paddingLeft}px`,
+                              paddingRight: `${paddingRight}px`,
+                              borderWidth: `${borderWidth}px`,
+                              borderRadius: `2px`,
+                              borderColor,
+                            }}
+                          >
+                            <Text
+                              paddingLeft={10}
+                              paddingBottom={10}
+                              paddingTop={10}
+                              alignment="right"
+                              text={item.fullName}
+                              fontSize={17}
+                              bold="font-semibold"
+                              color="#000000"
+                              backgroundColor="#ffffff"
+                            />
+                          </div>
+                          <div>
+                            <svg
+                              viewBox="0 0 2 2"
+                              width={3}
+                              height={3}
+                              aria-hidden="true"
+                              className="fill-gray-900"
+                            >
+                              <circle cx={1} cy={1} r={1} />
+                            </svg>
+                          </div>
+                          <div
+                            className={`  ml-2 w-full h-auto ${size} mr-2 ${
+                              hovered && "hover:outline-pink-500 hover:outline "
+                            }  relative ${shadowColor} ${shadow} ${borderType}`}
+                            style={{
+                              backgroundColor: "#ffffff",
+                              marginTop: `${marginTop}px`,
+                              marginBottom: `${marginBottom}px`,
+                              marginLeft: `${marginLeft}px`,
+                              marginRight: `${marginRight}px`,
+                              paddingTop: `${paddingTop}px`,
+                              paddingBottom: `${paddingBottom}px`,
+                              paddingLeft: `${paddingLeft}px`,
+                              paddingRight: `${paddingRight}px`,
+                              borderWidth: `${borderWidth}px`,
+                              borderRadius: `2px`,
+                              borderColor,
+                            }}
+                          >
+                            <Text
+                              paddingLeft={10}
+                              paddingBottom={10}
+                              paddingTop={10}
+                              alignment="left"
+                              text={item.role}
+                              fontSize={12}
+                              mobileFontSize={20}
+                              bold="font-normal"
+                              color="#000000"
+                              backgroundColor="#ffffff"
+                            />
+                          </div>
+                        </div>
+                      </figcaption>
+                    </figure>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </section>
-        </Element>
+              ))}
+            </section>
+          </Element>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

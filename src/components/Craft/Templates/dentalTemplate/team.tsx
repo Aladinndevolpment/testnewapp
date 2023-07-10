@@ -19,13 +19,15 @@ import { createElement, useState } from "react";
 import item from "@/components/Leads/dnd/styles/item";
 import { BiPhoneCall } from "react-icons/bi";
 import { imageConfigDefault } from "next/dist/shared/lib/image-config";
+import LeftFlyOut from "@/components/LeftLayout";
+import { TopbarSection } from "../../TopBarSections";
 
 const elementName = "Team";
 
 const defaults = {
   backgroundColor: "#ffffff",
   borderColor: "#313641",
-  borderRadius: 10,
+  borderRadius: 0,
 };
 
 interface ITeamsProps extends ICommonSettingsProps {
@@ -89,6 +91,8 @@ export const Team = ({
   shadow,
   shadowColor,
 }: ITeamsProps) => {
+  const [openCreateModal, setOpenCreateModal] = useState(false);
+
   // const [cardSlide, setCardSlide] = useState < any > [];
   const {
     connectors: { connect, drag },
@@ -149,113 +153,136 @@ export const Team = ({
   ];
 
   return (
-    <div className="bg-white p-2 w-full" ref={(ref: any) => connect(drag(ref))}>
-      {/* <div className="card card-compact w-full bg-base-100 shadow-xl">
+    <>
+      <LeftFlyOut
+        visibility={openCreateModal}
+        onClose={() => {
+          setOpenCreateModal(false);
+        }}
+      >
+        <TopbarSection />
+      </LeftFlyOut>
+      <div
+        className="bg-white p-2 w-full"
+        ref={(ref: any) => connect(drag(ref))}
+      >
+        {/* <div className="card card-compact w-full bg-base-100 shadow-xl">
         <div className="card-body">
           <Element id="heroImage" is={CardImage} canvas>
             <BuilderImage />
           </Element>
         </div>
       </div> */}
-      <div
-        className={`w-full  ${size} mr-2 shadow-lg ${
-          hovered && "hover:outline-pink-500 hover:outline "
-        }  relative ${shadowColor} ${shadow} ${borderType} `}
-        style={{
-          backgroundColor,
-          marginTop: `${marginTop}px`,
-          marginBottom: `${marginBottom}px`,
-          marginLeft: `${marginLeft}px`,
-          marginRight: `${marginRight}px`,
-          paddingTop: `${paddingTop}px`,
-          paddingBottom: `${paddingBottom}px`,
-          paddingLeft: `${paddingLeft}px`,
-          paddingRight: `${paddingRight}px`,
-          borderWidth: `${borderWidth}px`,
-          borderRadius: `${borderRadius}px`,
-          borderColor,
-        }}
-      >
-        {hovered && (
-          <div className="absolute top-0 right-0 bg-purple-500 text-white text-[10px] px-1 z-10 capitalize">
-            {elementName}
-          </div>
-        )}
-        <Element id="TeamsText" is={TeamsText} canvas>
-          {/* <!-- ====== Team Section Start --> */}
-          <section className="pt-5 pb-5 lg:pt-[10px]">
-            <div className="container mx-auto">
-              <div className="-mx-4 flex flex-wrap">
-                <div className="w-full px-4">
-                  <div className="mx-auto mb-[60px] max-w-[510px] text-center">
-                    <span className="text-primary mb-2 block text-lg font-semibold">
-                      <Text
-                        alignment="center"
-                        text="Our Specialist"
-                        fontSize={20}
-                        bold="font-bold"
-                        color="#0A92F8"
-                      />
-                    </span>
-                    <h2 className="text-dark mb-4 text-3xl font-bold sm:text-4xl md:text-[40px]">
-                      <Text
-                        alignment="center"
-                        text="Our Awesome Team"
-                        fontSize={28}
-                        bold="font-bold"
-                      />
-                    </h2>
-                    <p className="text-body-color text-base">
-                      <Text
-                        alignment="center"
-                        fontSize={16}
-                        text="There are many variations of passages of Lorem Ipsum
+        <div
+          className={`w-full  ${size} mr-2 shadow-lg ${
+            hovered && "hover:outline-blue-500 hover:outline "
+          }  relative ${shadowColor} ${shadow} ${borderType} `}
+          style={{
+            backgroundColor,
+            marginTop: `${marginTop}px`,
+            marginBottom: `${marginBottom}px`,
+            marginLeft: `${marginLeft}px`,
+            marginRight: `${marginRight}px`,
+            paddingTop: `${paddingTop}px`,
+            paddingBottom: `${paddingBottom}px`,
+            paddingLeft: `${paddingLeft}px`,
+            paddingRight: `${paddingRight}px`,
+            borderWidth: `${borderWidth}px`,
+            borderRadius: `${borderRadius}px`,
+            borderColor,
+          }}
+        >
+          {hovered && (
+            <>
+              <div className="absolute top-0 right-0 bg-blue-500 text-white text-[10px] px-1 z-10 capitalize">
+                {elementName}
+              </div>
+              <div
+                className="absolute -bottom-2 left-[50%] bg-orange-500 text-white text-[10px] px-1 z-10 capitalize"
+                onClick={() => {
+                  setOpenCreateModal(true);
+                }}
+              >
+                +
+              </div>
+            </>
+          )}
+          <Element id="TeamsText" is={TeamsText} canvas>
+            {/* <!-- ====== Team Section Start --> */}
+            <section className="pt-5 pb-5 lg:pt-[10px]">
+              <div className="container mx-auto">
+                <div className="-mx-4 flex flex-wrap">
+                  <div className="w-full px-4">
+                    <div className="mx-auto mb-[60px] max-w-[510px] text-center">
+                      <span className="text-primary mb-2 block text-lg font-semibold">
+                        <Text
+                          alignment="center"
+                          text="Our Specialist"
+                          fontSize={20}
+                          bold="font-bold"
+                          color="#0A92F8"
+                        />
+                      </span>
+                      <h2 className="text-dark mb-4 text-3xl font-bold sm:text-4xl md:text-[40px]">
+                        <Text
+                          alignment="center"
+                          text="Our Awesome Team"
+                          fontSize={28}
+                          bold="font-bold"
+                        />
+                      </h2>
+                      <p className="text-body-color text-base">
+                        <Text
+                          alignment="center"
+                          fontSize={16}
+                          text="There are many variations of passages of Lorem Ipsum
                         available but the majority have suffered alteration in
                         some form."
-                        bold="font-medium"
-                        color="#898B8C"
-                      />
-                    </p>
+                          bold="font-medium"
+                          color="#898B8C"
+                        />
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="carousel -mx-4 justify-center">
-                {people.map((item: any, index: number) => (
-                  <div
-                    className=" px-4 w-96 carousel-item relative"
-                    key={item.id}
-                  >
-                    <div className="mx-auto mb-10 w-full max-w-[370px]">
-                      <div className="relative overflow-hidden rounded-lg">
-                        {item.imageUrl}
-                        <div className="absolute bottom-5 left-0 w-full text-center">
-                          <div className="relative mx-5 overflow-hidden rounded-lg bg-white py-5 px-3">
-                            <h3 className="text-dark text-base font-semibold">
-                              <Text
-                                alignment="center"
-                                text={item.name}
-                                bold="font-bold"
-                              />
-                            </h3>
-                            <p className="text-body-color text-sm">
-                              <Text
-                                alignment="center"
-                                text={item.role}
-                                bold="font-medium"
-                              />
-                            </p>
+                <div className="carousel -mx-4 justify-center">
+                  {people.map((item: any, index: number) => (
+                    <div
+                      className=" px-4 w-96 carousel-item relative"
+                      key={item.id}
+                    >
+                      <div className="mx-auto mb-10 w-full max-w-[370px]">
+                        <div className="relative overflow-hidden rounded-lg">
+                          {item.imageUrl}
+                          <div className="absolute bottom-5 left-0 w-full text-center">
+                            <div className="relative mx-5 overflow-hidden rounded-lg bg-white py-5 px-3">
+                              <h3 className="text-dark text-base font-semibold">
+                                <Text
+                                  alignment="center"
+                                  text={item.name}
+                                  bold="font-bold"
+                                />
+                              </h3>
+                              <p className="text-body-color text-sm">
+                                <Text
+                                  alignment="center"
+                                  text={item.role}
+                                  bold="font-medium"
+                                />
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          </section>
-        </Element>
+            </section>
+          </Element>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

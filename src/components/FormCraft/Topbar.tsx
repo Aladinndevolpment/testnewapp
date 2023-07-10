@@ -19,6 +19,8 @@ import copy from "copy-to-clipboard";
 import { BiDesktop, BiRedo, BiUndo } from "react-icons/bi";
 import { BsTablet } from "react-icons/bs";
 import { FaMobileAlt } from "react-icons/fa";
+import Link from "next/link";
+import { IoChevronBackCircle } from "react-icons/io5";
 
 export const Topbar = () => {
   const { actions, query, enabled } = useEditor((state) => ({
@@ -50,6 +52,54 @@ export const Topbar = () => {
 
   return (
     <>
+      <div className="p-4 bg-black flex items-center justify-between">
+        <div className="w-[30vw]">
+          <Link
+            href="/builder/form/template"
+            className="flex items-center gap-1 text-white/80 text-xs"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="feather feather-chevron-left"
+            >
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            <p className="hidden md:block">Back to Form Manager</p>
+          </Link>
+        </div>
+        <h1 className="text-center font-semibold text-lg hidden sm:block text-white w-[20vw]">
+          New Form Template
+        </h1>
+        <div className="flex items-center justify-end gap-3">
+          <p className="text-white/80 text-xs hidden lg:block">
+            Last Saved: Today at 4:30PM
+          </p>
+          {
+            <button
+              onClick={() => console.log("drafted")}
+              type="button"
+              className="btn-gray bg-transparent border border-grey/50 px-4 text-sm py-2 hover:bg-grey hover:text-white hover:border-grey text-white rounded-lg"
+            >
+              Save as Draft
+            </button>
+          }
+
+          <button
+            onClick={() => console.log("published")}
+            className="btn-gray bg-orange-600 border border-orange-600 hover:bg-transparent px-4 py-2 text-sm text-white rounded-lg"
+          >
+            Save & Publish
+          </button>
+        </div>
+      </div>
       <div>
         <div className="navbar bg-base-100 flex justify-between items-center border-b">
           <div className="flex justify-between items-center">
@@ -68,21 +118,21 @@ export const Topbar = () => {
                 </div>
               ))}
             </div>
-            <div className="bg-gray-100 rounded w-auto justify-start  ml-4 border-l-1">
-              {deviceType.map((item: any, index: number) => (
-                <button
-                  className={`p-2 text-xs ${
-                    select == index
-                      ? "bg-white  text-black shadow-md font-bold rounded-md text-lg border  "
-                      : "text-gray-900   font-bold text-md"
-                  }`}
-                  onClick={() => setSelect(index)}
-                  key={index}
-                >
-                  {item.title}
-                </button>
-              ))}
-            </div>
+          </div>
+          <div className="bg-gray-100 rounded w-auto justify-start  ml-4 border-l-1">
+            {deviceType.map((item: any, index: number) => (
+              <button
+                className={`p-2 text-xs ${
+                  select == index
+                    ? "bg-white  text-black shadow-md font-bold rounded-md text-lg border  "
+                    : "text-gray-900   font-bold text-md"
+                }`}
+                onClick={() => setSelect(index)}
+                key={index}
+              >
+                {item.title}
+              </button>
+            ))}
           </div>
           <div className=" justify-end">
             <div className="flex justify-start items-center">
@@ -104,6 +154,11 @@ export const Topbar = () => {
             </div>
             <div className="flex-none">
               <ul className="menu menu-horizontal px-1">
+                <li tabIndex={0} className="ml-4 p-0">
+                  <a className="   bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow normal-case">
+                    Save
+                  </a>
+                </li>
                 <li tabIndex={0} className="mx-4 p-0">
                   <a className="   bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow normal-case">
                     Preview

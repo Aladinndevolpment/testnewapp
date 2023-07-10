@@ -5,12 +5,13 @@ import { MdLeaderboard, MdOutlineFacebook } from "react-icons/md";
 import MaterialReactTable, { type MRT_ColumnDef } from "material-react-table";
 import { MenuItem } from "@mui/material";
 import { HiCursorClick } from "react-icons/hi";
-import { BsArrowUpRight } from "react-icons/bs";
+import { BsArrowUpRight, BsSendFill } from "react-icons/bs";
 import { RiDeleteBin5Line, RiMoneyDollarCircleFill } from "react-icons/ri";
 import { FiTrendingDown } from "react-icons/fi";
 import ReportingStats from "../Stats";
 import { FaBookmark } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
+import { TbMailOpened } from "react-icons/tb";
 
 interface RowData {
   [key: string]: any;
@@ -61,14 +62,14 @@ export default function ReportingEmailTable({ data }: any) {
         enableColumnFilter: true,
       },
       {
-        accessorKey: "impression",
-        id: "impression",
-        header: "Impression",
+        accessorKey: "sent",
+        id: "sent",
+        header: "Sent",
         size: 80,
         Cell: ({ row }) => (
           <div className="flex justify-start items-start gap-2">
             <p className="  text-gray-700 font-medium text-[12px]">
-              {row.original.impression}
+              {row.original.sent}
             </p>
           </div>
         ),
@@ -116,18 +117,18 @@ export default function ReportingEmailTable({ data }: any) {
         ),
         enableColumnFilter: true,
       },
-      {
-        accessorKey: "amountSpent",
-        id: "amountSpent",
-        header: "Amount Spent",
-        size: 80,
-        Cell: ({ row }) => (
-          <div className="flex justify-start items-start gap-2">
-            <p className="text-gray-600 text-sm">{row.original.amountSpent}</p>
-          </div>
-        ),
-        enableColumnFilter: true,
-      },
+      // {
+      //   accessorKey: "amountSpent",
+      //   id: "amountSpent",
+      //   header: "Amount Spent",
+      //   size: 80,
+      //   Cell: ({ row }) => (
+      //     <div className="flex justify-start items-start gap-2">
+      //       <p className="text-gray-600 text-sm">{row.original.amountSpent}</p>
+      //     </div>
+      //   ),
+      //   enableColumnFilter: true,
+      // },
     ],
     []
   );
@@ -144,7 +145,7 @@ export default function ReportingEmailTable({ data }: any) {
       row.campaign_name.name
         .toLowerCase()
         .includes(filterInput.toLowerCase()) ||
-      row.impression.toLowerCase().includes(filterInput.toLowerCase()) ||
+      row.sent.toLowerCase().includes(filterInput.toLowerCase()) ||
       row.clicks.toLowerCase().includes(filterInput.toLowerCase()) ||
       row.totalContact.toLowerCase().includes(filterInput.toLowerCase()) ||
       row.amountSpent.toLowerCase().includes(filterInput.toLowerCase()) ||
@@ -157,11 +158,11 @@ export default function ReportingEmailTable({ data }: any) {
         <h1 className="pb-4 px-4 font-semibold text-2xl"> Email</h1>
       </div>
       <div className="flex  pl-5 items-center text-xs justify-between w-10/12 gap-5">
-        <div className="w-full md:w-1/4">
+        <div className="w-full md:w-1/3">
           <ReportingStats
-            title="Impression"
+            title="Sent"
             currency="$"
-            titleIcon={<FaBookmark className="text-sm text-newBlue" />}
+            titleIcon={<BsSendFill className="text-sm text-newBlue" />}
             subSpanData={"vs Last month:"}
             subIcon={<BsArrowUpRight className="text-[8px]" />}
             index={1}
@@ -171,7 +172,21 @@ export default function ReportingEmailTable({ data }: any) {
           />
         </div>
 
-        <div className="w-full md:w-1/4">
+        <div className="w-full md:w-1/3">
+          <ReportingStats
+            title="Opened"
+            currency="$"
+            titleIcon={<TbMailOpened className="h-4 w-4 text-greenShade" />}
+            subSpanData={"vs Last month:"}
+            subIcon={<BsArrowUpRight className="text-[8px]" />}
+            index={3}
+            numberValue={537}
+            numberValueData={"+0.08%"}
+            totalNo={4}
+          />
+        </div>
+
+        <div className="w-full md:w-1/3">
           <ReportingStats
             title="Clicks"
             currency="$"
@@ -185,21 +200,7 @@ export default function ReportingEmailTable({ data }: any) {
           />
         </div>
 
-        <div className="w-full md:w-1/4">
-          <ReportingStats
-            title="Leads"
-            currency="$"
-            titleIcon={<MdLeaderboard className="h-4 w-4 text-greenShade" />}
-            subSpanData={"vs Last month:"}
-            subIcon={<BsArrowUpRight className="text-[8px]" />}
-            index={3}
-            numberValue={537}
-            numberValueData={"+0.08%"}
-            totalNo={4}
-          />
-        </div>
-
-        <div className="w-full md:w-1/4">
+        {/* <div className="w-full md:w-1/4">
           <ReportingStats
             title="Amount Spent"
             currency="$"
@@ -213,7 +214,7 @@ export default function ReportingEmailTable({ data }: any) {
             numberValueData={"-0.08%"}
             totalNo={4}
           />
-        </div>
+        </div> */}
       </div>
 
       <div className=" border rounded-lg mb-4 mt-5 muiTable">
@@ -254,7 +255,7 @@ export default function ReportingEmailTable({ data }: any) {
               </button>
             </div>
           )}
-          positionPagination="top"
+          positionPagination="bottom"
           enableToolbarInternalActions={false}
           positionToolbarAlertBanner="bottom"
           muiSearchTextFieldProps={{

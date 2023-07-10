@@ -1,5 +1,5 @@
 import TextInput from "@/components/controls/TextInput";
-import { useNode } from "@craftjs/core";
+import { Element, useNode } from "@craftjs/core";
 import { MuiColorInput } from "mui-color-input";
 import { InputHTMLAttributes, useContext, useEffect, useState } from "react";
 import { IoContract } from "react-icons/io5";
@@ -11,6 +11,8 @@ import {
 } from "./CommonSettings";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { CraftContext } from "@/pages/builder/survey/craft";
+import SurveyContainer from "../SurveyContainer";
+import { Text } from "../Text/Text";
 const elementName = "Radio Input";
 
 interface IRadioProps extends ICommonSettingsProps {
@@ -87,6 +89,16 @@ export const RadioInputElement = ({
           {elementName}
         </div>
       )}
+      <Element is={SurveyContainer} id="demo_text" canvas>
+        <Text
+          text="Gender"
+          fontSize={17}
+          marginBottom={2}
+          alignment="left"
+          color="#4b5563"
+          bold="font-semibold"
+        />
+      </Element>
       <div onClick={() => ctx.setOpenSettings(!ctx.openSettings)}>
         <div
           className={`flex ${

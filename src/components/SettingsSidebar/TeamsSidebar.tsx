@@ -18,8 +18,8 @@ export default function SettingsSidebar() {
   const router = useRouter();
 
   const ctx = useContext(GlobalContext);
-  console.log(router, router.asPath == "/settings");
-  console.log(ctx?.open);
+  // console.log(router, router.asPath == "/settings");
+  // console.log(ctx?.open);
 
   const handleChange = () => {
     // if (router.pathname.startsWith("/settings")) {

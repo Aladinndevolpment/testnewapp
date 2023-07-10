@@ -3,7 +3,8 @@ import SettingsSidebar from "@/components/SettingsSidebar/TeamsSidebar";
 import TeamEventSetup from "./teamEventSetup";
 import Availability from "./availability";
 import Confirmation from "./confirmation";
-
+import axios from "axios";
+import { baseUrl, locationID, token } from "@/config/APIConstants";
 export default function AddCalendar({ handleChange, onClose }: any) {
   const [select, setSelect] = useState(0);
   const calendarType = [
@@ -11,24 +12,58 @@ export default function AddCalendar({ handleChange, onClose }: any) {
     { title: "Availability", number: 2 },
     { title: "Confirmation", number: 3 },
   ];
+
   const [formData, setFormData] = useState<any>([]);
-  console.log(select);
+  // console.log("formDatasss", formData);
+  const submitData = async (formDatas: any) => {
+    let obj = formDatas[0];
+    let obj1 = formDatas[1];
+    let data = {
+      appointmentPerDay: parseInt(obj1?.appointmentsPerDay),
+      appointmentPerSlot: parseInt(obj1?.appointmentsPerSlot),
+      appointmentTitle: obj?.appointmentTitle,
+      dateRangeDays: parseInt(obj1?.dateRange),
+      description: obj?.description,
+      eventColor: obj?.eventColor,
+      isActive: true,
+      locationID: locationID,
+      minSchedulingNoticeHours: parseInt(obj1?.minScheduleNotice),
+      name: obj?.calendarName,
+      officeHours: obj1 ? [...obj1?.officeHours] : [],
+      slotBuffer: parseInt(obj1?.buffer),
+      slotDuration: parseInt(obj1?.slotDuration),
+      slotInterval: parseInt(obj1?.slotInterval),
+      slug: obj?.calendarUrl,
+      teamUserIDs: ["9b36de41-f652-4bf2-ba38-7a96103f09a3"],
+    };
+    console.log("sdffsf", data);
+    await axios
+      .post(`${baseUrl}calendars`, data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(() => {
+        alert("Calender is creted successfully");
+      });
+  };
   return (
-    <div className="w-full  bg-white ">
-      <div className="w-full bg-white  ">
+    <div className="w-full bg-white">
+      <div className="w-full bg-white">
         {/* Second Section */}
+
         <div className="flex gap-3 border-b p-3">
           {calendarType.map((item: any, index: number) => (
             <button
               key={index}
-              className={`border rounded-3xl  pr-3 pl-2 gap-2 py-[7px] flex justify-around ${
+              className={`border rounded-3xl pr-3 pl-2 gap-2 py-[7px] flex justify-around ${
                 select == index
                   ? "bg-white font-semibold toggleShadow shadow-md"
                   : "text-gray-400 "
               }`}
               // onClick={() => setSelect(index)}
             >
-              {" "}
               <span
                 className={` px-2 rounded-full space-x-2 ${
                   select == index
@@ -37,7 +72,7 @@ export default function AddCalendar({ handleChange, onClose }: any) {
                 } `}
               >
                 {item.number}
-              </span>{" "}
+              </span>
               {item.title}
             </button>
           ))}
@@ -63,10 +98,11 @@ export default function AddCalendar({ handleChange, onClose }: any) {
               onClose();
             }}
             handleBack={() => setSelect(0)}
-            handleNewTab={() => setSelect(2)}
-            handleStoreFormData={(item: any) =>
-              setFormData([...formData, item])
-            }
+            handleNewTab={() => {}}
+            handleStoreFormData={(item: any) => {
+              setFormData([...formData, item]);
+              submitData([...formData, item]);
+            }}
           />
         )}
         {select == 2 && (

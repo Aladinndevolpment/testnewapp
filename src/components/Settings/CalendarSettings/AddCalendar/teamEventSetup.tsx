@@ -5,6 +5,8 @@ import { BsQuestionCircleFill } from "react-icons/bs";
 import { GoPlus } from "react-icons/go";
 import { MenuItem, OutlinedInput, Select, TextField } from "@mui/material";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import axios from "axios";
+import { baseUrl, token } from "@/config/APIConstants";
 
 const colorPalette = [
   { color: "bg-red-500", title: "Red" },
@@ -41,7 +43,6 @@ export default function TeamEventSetup({
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
-
     setFormValues((prevValues: any) => ({
       ...prevValues,
       [name]: value,
@@ -132,13 +133,13 @@ export default function TeamEventSetup({
       <div className="px-2 ">
         {/* form */}
         <div className=" h-full overflow-hidden px-4">
-          <div className="lg:h-[55vh] overflow-y-scroll scrollbar-hide">
+          <div className="lg:h-[55vh] xl:h-[40vh] overflow-y-scroll scrollbar-hide">
             <div className=" pb-4 pt-5">
               <h1 className="text-[#47494b] text-md font-semibold">Calendar</h1>
               <p className="text-gray-400 text-sm">
                 How would you describe your calendar?
               </p>
-            </div>{" "}
+            </div>
             {/* Name */}
             <div className="py-2">
               <label

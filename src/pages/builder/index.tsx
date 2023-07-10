@@ -9,6 +9,7 @@ import Craft from "./form/craft";
 import SurveyCraft from "./survey/craft";
 import FormsBuilder from "@/components/Builders/FormsBuilder";
 import SurveyBuilders from "@/components/Builders/SurveyBuilders";
+import DashboardManager from "@/components/Dashboard/PublishDashboard/DashboardManager";
 
 export default function Builder() {
   const [DropDownRole, SetDropDownRole] = useState("");
@@ -17,7 +18,7 @@ export default function Builder() {
     {
       id: "tab1",
       label: "Dashbaord",
-      content: <DashboardData />,
+      content: <DashboardManager />,
     },
     {
       id: "tab2",
@@ -61,7 +62,7 @@ export default function Builder() {
             </li>
           ))}
         </ul>
-        <div className="  bg-white w-full  overflow-hidden">
+        <div className="  bg-white w-full  overflow-hidden pb-12">
           {innerTabs.map((tab: any) => (
             <div
               key={tab.id}

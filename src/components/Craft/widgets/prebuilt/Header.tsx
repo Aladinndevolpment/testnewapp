@@ -10,6 +10,8 @@ import { Link } from "../Link";
 import { PencilIcon, PlusIcon } from "@heroicons/react/24/solid";
 import FlyOut from "@/components/Flyout";
 import { DeleteForever } from "@mui/icons-material";
+import LeftFlyOut from "@/components/LeftLayout";
+import { TopbarSection } from "../../TopBarSections";
 
 const elementName = "Header Layout";
 
@@ -36,6 +38,8 @@ export const HeaderLayout = ({
   borderRadius = defaults.borderRadius,
   menuItems = [],
 }: HeroLayoutProps) => {
+  const [openCreateModal, setOpenCreateModal] = useState(false);
+
   const {
     hovered,
     connectors: { connect, drag },
@@ -44,40 +48,60 @@ export const HeaderLayout = ({
   }));
 
   return (
-    <div
-      ref={(ref: any) => connect(drag(ref))}
-      className="relative p-4 md:py-2 md:px-8 flex flex-wrap justify-between items-center hover:outline-yellow-500 hover:outline border-b"
-      style={{
-        backgroundColor: backgroundColor,
-        borderRadius: borderRadius + "px",
-      }}
-    >
-      {hovered && (
-        <div className="absolute top-0 right-0 bg-yellow-500 text-white text-xs px-1">
-          {elementName}
-        </div>
-      )}
-      <div className="">
-        <Element id="logoImage" is={HeaderLogo} canvas>
-          <BuilderImage width={70} height={70} type="contain" />
-        </Element>
-      </div>
-
-      <div className="w-auto ml-auto">
-        <div className="flex gap-2 flex-wrap">
-          {menuItems.map((item, index) => (
-            <Element
-              id={`headerItem_${index}`}
-              is={HeaderMenu}
-              key={index}
-              canvas
+    <>
+      <LeftFlyOut
+        visibility={openCreateModal}
+        onClose={() => {
+          setOpenCreateModal(false);
+        }}
+      >
+        <TopbarSection />
+      </LeftFlyOut>
+      <div
+        ref={(ref: any) => connect(drag(ref))}
+        className="relative p-4 md:py-2 md:px-8 flex flex-wrap justify-between items-center hover:outline-blue-500 hover:outline border-b"
+        style={{
+          backgroundColor: backgroundColor,
+          borderRadius: borderRadius + "px",
+        }}
+      >
+        {hovered && (
+          <>
+            <div className="absolute top-0 right-0 bg-blue-500 text-white text-xs px-1">
+              {elementName}
+            </div>
+            <div
+              className="absolute top-20 left-[48%] bg-orange-500 text-white text-xs px-1"
+              onClick={() => {
+                setOpenCreateModal(true);
+              }}
             >
-              <Link text={item.text} href={item.href} targetData={false} />
-            </Element>
-          ))}
+              +
+            </div>
+          </>
+        )}
+        <div className="">
+          <Element id="logoImage" is={HeaderLogo} canvas>
+            <BuilderImage width={70} height={70} type="contain" />
+          </Element>
+        </div>
+
+        <div className="w-auto ml-auto">
+          <div className="flex gap-2 flex-wrap">
+            {menuItems.map((item, index) => (
+              <Element
+                id={`headerItem_${index}`}
+                is={HeaderMenu}
+                key={index}
+                canvas
+              >
+                <Link text={item.text} href={item.href} targetData={false} />
+              </Element>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -28,11 +28,11 @@ import resourceTimeGridPlugin from "@fullcalendar/resource-timegrid";
 import resourceTimelinePlugin from "@fullcalendar/resource-timeline";
 import Link from "next/link";
 import { GlobalContext } from "@/layouts/GlobalLayout";
-
+import axios from "axios";
+import { baseUrl, locationID, token } from "@/config/APIConstants";
 export default function Calendar() {
   const ctx = useContext(GlobalContext);
   ctx.setTitle("Calendar");
-
   const [title, setTitle] = useRecoilState<any>(titleState);
   const headingData = [
     {
@@ -47,9 +47,11 @@ export default function Calendar() {
   const [heightObj, setHeightObj] = useState({});
   const [isAddNewEventPopUpVisible, setIsAddNewEventPopUpVisible] =
     useState(false);
-
   const [eventArg, setEventArg] = useState<any>();
-
+  const [calendarData, setCalendarData] = useState<any>([]);
+  const [allAppointments, setallAppointments] = useState();
+  const [allProviders, setAllProviders] = useState();
+  const [allRooms, setAllRooms] = useState();
   useEffect(() => {
     if (window.innerWidth < 640) {
       setCurrentView("timeGridDay");
@@ -58,9 +60,63 @@ export default function Calendar() {
       setCurrentView("timeGridWeek");
     }
   }, []);
-
   useEffect(() => {
     setTitle(headingData);
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${baseUrl}calendars`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(({ data }) => {
+        setCalendarData(data);
+      })
+      .catch((error: any) => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${baseUrl}appointments`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(({ data }) => {
+        // console.log("appointment ka sara data", data);
+        setallAppointments(data);
+      })
+      .catch((error: any) => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${baseUrl}providers/location/${locationID}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(({ data }) => {
+        // console.log("providers ka sara data", data);
+        setAllProviders(data);
+      })
+      .catch((error: any) => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${baseUrl}rooms/location/${locationID}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(({ data }) => {
+        console.log("rooms ka sara data", data);
+        setAllRooms(data);
+      })
+      .catch((error: any) => {
+        console.log(error);
+      });
   }, []);
 
   //Resources
@@ -86,7 +142,6 @@ export default function Calendar() {
       title: "Room 5",
     },
   ];
-
   // Update this state to change data in calendar
   const [events, setEvents] = useState<any>([
     {
@@ -107,7 +162,6 @@ export default function Calendar() {
       extendedProps: { subtitle: "SCROLLING", category: 2 },
       resourceId: "125",
     },
-
     {
       title: "Willy",
       subtitle: "SCROLLING",
@@ -126,7 +180,6 @@ export default function Calendar() {
       extendedProps: { subtitle: "SCROLLING", category: 2 },
       resourceId: "127",
     },
-
     {
       title: "Willy",
       subtitle: "SCROLLING",
@@ -218,13 +271,11 @@ export default function Calendar() {
       resourceId: "123",
     },
   ]);
-
   // To post new data into calendar
   function handleAddFlyOutOpen(arg: any) {
     setIsAddNewEventPopUpVisible(true);
     setEventArg(arg);
   }
-
   function handleSelect(arg: any) {
     console.log("arg", arg);
     const title = arg.patient.name;
@@ -243,24 +294,20 @@ export default function Calendar() {
       setIsAddNewEventPopUpVisible(false);
     }
   }
-
   // Update a record from calendar
   function handleEventChange(eventChangeInfo: any) {
     const updatedEvent = eventChangeInfo.event;
-
     // prompt user for new title
     const newTitle = prompt(
       "Enter a new title for the event:",
       updatedEvent.title
     );
-
     if (newTitle) {
       // create a new event object with the updated title
       const updatedEventObject = {
         ...updatedEvent,
         title: newTitle,
       };
-
       // update the events state with the new event object
       setEvents((prevEvents: any) =>
         prevEvents.map((event: any) =>
@@ -269,13 +316,11 @@ export default function Calendar() {
       );
     }
   }
-
   // Drag Start Behavior
   function handleDragStart(eventDragInfo: any) {
     const draggableEventEl = eventDragInfo.el;
     draggableEventEl.classList.add("fc-dragging");
   }
-
   // Drag End Behavior
   function handleEventDrop(eventDropInfo: any) {
     const droppedEventEl = eventDropInfo.el;
@@ -285,7 +330,6 @@ export default function Calendar() {
       droppedEventEl.classList.remove("fc-dropped");
     }, 1000);
   }
-
   // Previous Week
   function handlePrev() {
     if (calendarRef.current) {
@@ -297,7 +341,6 @@ export default function Calendar() {
       setWeekRange(`${startDate} - ${endDate}`);
     }
   }
-
   // Next Week
   function handleNext() {
     if (calendarRef.current) {
@@ -306,11 +349,9 @@ export default function Calendar() {
       const view = calendarApi.view;
       const startDate = moment(view.activeStart).format("MMM DD");
       const endDate = moment(view.activeEnd).format("MMM DD, yyyy");
-
       setWeekRange(`${startDate} - ${endDate}`);
     }
   }
-
   // Changing View
   function handleWeekView() {
     setCurrentView("timeGridWeek");
@@ -318,7 +359,6 @@ export default function Calendar() {
       calendarRef.current.getApi().changeView("timeGridWeek");
     }
   }
-
   // Changing View
   function handleDayView() {
     setCurrentView("resourceTimeGridDay");
@@ -326,7 +366,6 @@ export default function Calendar() {
       calendarRef.current.getApi().changeView("resourceTimeGridDay");
     }
   }
-
   // Resource Week timeline
   function handleWeekResourceTimeline() {
     setCurrentView("resourceTimeline");
@@ -334,7 +373,6 @@ export default function Calendar() {
       calendarRef.current.getApi().changeView("resourceTimeline");
     }
   }
-
   // Changing View
   function handleMonthView() {
     setCurrentView("dayGridMonth");
@@ -342,7 +380,6 @@ export default function Calendar() {
       calendarRef.current.getApi().changeView("dayGridMonth");
     }
   }
-
   // Initial Calendar REF:
   useEffect(() => {
     const api = calendarRef.current?.getApi();
@@ -355,19 +392,21 @@ export default function Calendar() {
     //   setWeekRange(`${startDate} - ${endDate}`);
     // }
   }, [calendarRef]);
-
   const [modalOpen, setModalOpen] = useState(false);
+
+  const [calendarName, setCalendarName] = useState<any>({});
+
+  // console.log("gyygyg", calendarName);a
 
   const updateModal = () => {
     setModalOpen(true);
   };
-
   const renderEventContent = (eventInfo: any) => (
     <CalendarItem eventInfo={eventInfo} handleChange={updateModal} />
   );
-
   const [filterModal, setFilterModal] = useState(false);
 
+  // console.log(data)
   return (
     <>
       <AddItem
@@ -375,6 +414,8 @@ export default function Calendar() {
         visibility={isAddNewEventPopUpVisible}
         onSave={(arg) => handleSelect(arg)}
         eventArg={eventArg}
+        Allproviders={allProviders}
+        AllRooms={allRooms}
       />
 
       <AppointmentDetails
@@ -382,8 +423,8 @@ export default function Calendar() {
         visibility={modalOpen}
       />
       <div className="md:h-auto bg-mainBg overflow-hidden relative">
-        <header className="block w-full mb-5 h-16  lg:h-16 items-center relative z-10 border-b-[1px] border-lightGray">
-          <div className="flex w-full  lg:h-full  lg:mx-auto relative text-white z-10">
+        <header className="block w-full mb-5 h-16 lg:h-16 items-center relative z-10 border-b-[1px] border-lightGray">
+          <div className="flex w-full  lg:h-full lg:mx-auto relative text-white z-10">
             <div className="flex items-center justify-between relative w-full sm:ml-0 sm:pr-2">
               <div className="flex justify-between items-center w-full  pl-2 pr-5 py-1.5 rounded-md">
                 <div
@@ -392,12 +433,13 @@ export default function Calendar() {
                   <div className="flex items-center text-[20px] gap-2">
                     <CalendarDaysIcon className="h-8 w-8 text-newBlue" />
                     <p
-                      className={`md:ml-3 capitalize text-dark    font-semibold  tracking-wide  `}
+                      className={`md:ml-3 capitalize text-dark font-semibold tracking-wide`}
                     >
-                      Calendar
+                      {/* Calendar */}
+                      {calendarName.name ? calendarName.name : "Calendar"}
                     </p>
                   </div>
-                  <div className="lg:ml-12 flex justify-between items-center  py-1 rounded-md w-1/2 lg:w-[35%]">
+                  <div className="lg:ml-12 flex justify-between items-center py-1 rounded-md w-1/2 lg:w-[35%]">
                     <button
                       onClick={handleWeekResourceTimeline}
                       className={`w-full lg:w-auto ${
@@ -434,7 +476,7 @@ export default function Calendar() {
                         currentView == "timeGridWeek"
                           ? "  text-newBlue"
                           : "   text-FontGray"
-                      }   px-4 py-3   duration-300  text-[14px] font-medium text-center`}
+                      }   px-4 py-3 duration-300 text-[14px] font-medium text-center`}
                     >
                       Weekly
                     </button>
@@ -442,7 +484,7 @@ export default function Calendar() {
                 </div>
               </div>
 
-              <div className=" flex items-center justify-start lg:justify-end pl-5 lg:p-1   w-full md:w-[75%]   ">
+              <div className=" flex items-center justify-start lg:justify-end pl-5 lg:p-1 w-full md:w-[75%]   ">
                 {/* <Search /> */}
                 <div className="relative ml-3">
                   <button
@@ -458,13 +500,13 @@ export default function Calendar() {
                         resourceId: "123",
                       });
                     }}
-                    className="w-8 h-8 mr-2  bg-newBlue font-bold flex justify-center items-center rounded-full  "
+                    className="w-8 h-8 mr-2 bg-newBlue font-bold flex justify-center items-center rounded-full"
                   >
                     <PlusIcon className="h-6 w-6 text-white" />
                   </button>
                 </div>
                 <div className="relative ml-1 mr-5">
-                  <a className="w-10 h-10 mr-2  bg-white font-bold flex justify-center items-center rounded-full  ">
+                  <a className="w-10 h-10 mr-2  bg-white font-bold flex justify-center items-center rounded-full">
                     <BellIcon className="h-6 w-6 text-FontGray" />
                   </a>
                   <div className="h-2 w-2 rounded-full bg-secondary top-1 absolute right-2" />
@@ -502,20 +544,29 @@ export default function Calendar() {
               {/* <div className="mt-3 lg:mt-0  mr-2 items-between  px-2 py-2 bg-white border-[1px] border-lightGray h-10 rounded-sm shadow-sm flex justify-center items-center">
                 <ChevronDownIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-300" />
               </div> */}
-              <details className="dropdown  mr-2">
-                <summary className="mt-3 lg:mt-0  ml-2 items-between px-2 py-2 bg-white border-[1px] border-lightGray h-10 rounded-md shadow-sm flex justify-center items-center">
-                  <ChevronDownIcon className="h-5 w-5 text-FontGray cursor-pointer hover:text-secondary duration-300" />
-                </summary>
-                <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52 calendar-dropdown-content">
-                  <li>
-                    <a>Item 1</a>
-                  </li>
-                  <li>
-                    <a>Item 2</a>
-                  </li>
-                </ul>
-              </details>
 
+              <div className="flex flex-col">
+                <details className="dropdown  mr-2">
+                  <summary className="mt-3 lg:mt-0  ml-2 items-between px-2 py-2 bg-white border-[1px] border-lightGray h-10 rounded-md shadow-sm flex justify-center items-center">
+                    <CalendarDaysIcon className="h-5 w-5 text-FontGray cursor-pointer hover:text-secondary duration-300" />
+                  </summary>
+                  <ul className="scroll-hide p-2 shadow   dropdown-content z-[1] bg-base-100 rounded-box w-52 calendar-dropdown-content h-52 overflow-y-auto">
+                    {/* <li>
+                    <a>{calendarData.name}</a>
+                  </li> */}
+                    {calendarData?.calendars?.map((item: any, index: any) => (
+                      <div key={index}>
+                        <button
+                          className="py-2 cursor-pointer"
+                          onClick={() => setCalendarName(item)}
+                        >
+                          <span className="cursor-pointer">{item.name}</span>
+                        </button>
+                      </div>
+                    ))}
+                  </ul>
+                </details>
+              </div>
               <div className="mt-3 lg:mt-0 relative mr-2 items-between px-3 py-2 bg-white border-[1px] border-lightGray h-10 rounded-sm shadow-sm flex justify-center items-center">
                 <UserIcon className="h-5 w-5 text-FontGray hover:text-secondary duration-300" />
                 <p className={`ml-2 text-FontGray text-[15px] font-medium`}>
@@ -577,7 +628,7 @@ export default function Calendar() {
             ref={calendarRef}
             eventResizableFromStart={true}
             headerToolbar={{ start: "", left: "", right: "", center: "" }}
-            events={events}
+            events={allAppointments}
             dayHeaderContent={renderDate}
             eventContent={renderEventContent}
             // Change start slot time
@@ -620,7 +671,6 @@ export default function Calendar() {
             {moment(e.date).format("DD")}
           </div>
         )}
-
         <div
           className={` ${
             e.isToday ? "text-primary " : "  text-black "

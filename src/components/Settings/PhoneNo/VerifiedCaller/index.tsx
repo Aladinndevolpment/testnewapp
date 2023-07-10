@@ -75,7 +75,7 @@ const VerifiedCaller = () => {
     setOpenVerifiCaller(false);
   };
   return (
-    <div>
+    <div className="border rounded-md  m-5  bg-white  shadow-md">
       <ModalDerived
         visibility={openVerifiCaller}
         onClose={() => setOpenVerifiCaller(false)}

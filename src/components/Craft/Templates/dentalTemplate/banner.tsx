@@ -22,13 +22,15 @@ import TextInput from "@/components/controls/TextInput";
 import { IoContract } from "react-icons/io5";
 import { PencilIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { DeleteForever } from "@mui/icons-material";
+import LeftFlyOut from "@/components/LeftLayout";
+import { TopbarSection } from "../../TopBarSections";
 
 const elementName = "Banner";
 
 const defaults = {
   backgroundColor: "#ffffff",
   borderColor: "#313641",
-  borderRadius: 10,
+  borderRadius: 0,
 };
 
 interface IBannersProps extends ICommonSettingsProps {
@@ -92,6 +94,8 @@ export const Banner = ({
   shadow,
   shadowColor,
 }: IBannersProps) => {
+  const [openCreateModal, setOpenCreateModal] = useState(false);
+
   const {
     connectors: { connect, drag },
     hovered,
@@ -164,55 +168,78 @@ export const Banner = ({
   ];
 
   return (
-    <div className="bg-white p-2 w-full" ref={(ref: any) => connect(drag(ref))}>
-      <div
-        className={`w-full h-auto ${size} mr-2 mb-2 ${
-          hovered && "hover:outline-pink-500 hover:outline "
-        }  relative ${shadowColor} ${shadow} ${borderType} `}
-        style={{
-          backgroundColor,
-          marginTop: `${marginTop}px`,
-          marginBottom: `${marginBottom}px`,
-          marginLeft: `${marginLeft}px`,
-          marginRight: `${marginRight}px`,
-          paddingTop: `${paddingTop}px`,
-          paddingBottom: `${paddingBottom}px`,
-          paddingLeft: `${paddingLeft}px`,
-          paddingRight: `${paddingRight}px`,
-          borderWidth: `${borderWidth}px`,
-          borderRadius: `${borderRadius}px`,
-          borderColor,
+    <>
+      <LeftFlyOut
+        visibility={openCreateModal}
+        onClose={() => {
+          setOpenCreateModal(false);
         }}
       >
-        {hovered && (
-          <div className="absolute top-0 right-0 bg-purple-500 text-white text-[10px] px-1 z-50 capitalize">
-            {elementName}
-          </div>
-        )}
-        <Element id="BannersText" is={BannersText} canvas>
-          <div className="w-full carousel rounded-box">
-            {data.map((item: any, index: number) => (
-              <div
-                id={`slide${item.id}`}
-                className="carousel-item relative w-full"
-                key={index}
-              >
-                {item.image}
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                  <a href={`#slide${item.id - 1}`} className="btn btn-circle">
-                    ❮
-                  </a>
-                  <a href={`#slide${item.id + 1}`} className="btn btn-circle">
-                    ❯
-                  </a>
-                </div>
+        <TopbarSection />
+      </LeftFlyOut>
+      <div
+        className="bg-white p-2 w-full"
+        ref={(ref: any) => connect(drag(ref))}
+      >
+        <div
+          className={`w-full h-auto ${size} mr-2 ${
+            hovered && "hover:outline-blue-500  hover:outline "
+          }  relative ${shadowColor} ${shadow} ${borderType} `}
+          style={{
+            backgroundColor,
+            marginTop: `${marginTop}px`,
+            marginBottom: `${marginBottom}px`,
+            marginLeft: `${marginLeft}px`,
+            marginRight: `${marginRight}px`,
+            paddingTop: `${paddingTop}px`,
+            paddingBottom: `${paddingBottom}px`,
+            paddingLeft: `${paddingLeft}px`,
+            paddingRight: `${paddingRight}px`,
+            borderWidth: `${borderWidth}px`,
+            borderRadius: `${borderRadius}px`,
+            borderColor,
+          }}
+        >
+          {hovered && (
+            <>
+              <div className="absolute top-0 right-0 bg-blue-500 text-white text-[10px] px-1 z-50 capitalize">
+                {elementName}
               </div>
-            ))}
-          </div>
-        </Element>
-        {/* </div> */}
+              <div
+                className="absolute -bottom-2 left-[50%] bg-orange-500 text-white text-[10px] px-1 z-50 capitalize"
+                onClick={() => {
+                  setOpenCreateModal(true);
+                }}
+              >
+                +
+              </div>
+            </>
+          )}
+          <Element id="BannersText" is={BannersText} canvas>
+            <div className="w-full carousel rounded-box">
+              {data.map((item: any, index: number) => (
+                <div
+                  id={`slide${item.id}`}
+                  className="carousel-item relative w-full"
+                  key={index}
+                >
+                  {item.image}
+                  <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                    <a href={`#slide${item.id - 1}`} className="btn btn-circle">
+                      ❮
+                    </a>
+                    <a href={`#slide${item.id + 1}`} className="btn btn-circle">
+                      ❯
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Element>
+          {/* </div> */}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -363,7 +390,7 @@ Banner.craft = {
     borderColor: defaults.borderColor,
     paddingRight: 10,
     paddingLeft: 10,
-    marginTop: 10,
+    marginTop: 0,
     marginBottom: 0,
     data: [
       {

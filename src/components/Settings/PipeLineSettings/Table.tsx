@@ -3,49 +3,172 @@ import React, { useState } from "react";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import CreatePipLine from "./CreatePipLine";
-import { AiFillPieChart, AiOutlineClose } from "react-icons/ai";
-import { FaFilter } from "react-icons/fa";
+import {  AiOutlineClose } from "react-icons/ai";
 import { PlusIcon } from "@heroicons/react/24/solid";
-
+import axios from "axios";
+import { baseUrl, locationID, token } from "@/config/APIConstants";
+import { useEffect } from "react";
 const PipelineTable = () => {
   const [openModal, setOpenModal] = useState(false);
   const [openCreateModal, setOpenCreateModal] = useState(false);
-  const [pipeLine, setPipeLine] = useState<any>([
-    {
-      id: 1,
-      name: "Appointment",
-      subData: [
-        {
-          id: 1,
-          name: "Full Stack Developement Program",
-        },
-        { id: 2, name: "Python Automation Testing Program" },
-        { id: 3, name: "UI/UX Program" },
-        { id: 4, name: "Full Stack Developement Program" },
-        { id: 5, name: "Python Automation Testing Program" },
-        { id: 6, name: "UI/UX Program" },
-      ],
-    },
+  const [pipeLine, setPipeLine] = useState<any>([]);
+  const [stage , setStage] = useState<any>([]);
+  const [data, setData] = useState<any>();
+ 
+  const [piplineNameInputText, setPiplineNameInputText] = useState("");
 
-    {
-      id: 2,
-      name: "Leads",
-      subData: [
-        {
-          id: 1,
-          name: "Full Stack Developement Program",
+  // {console.log('ADaD',stage)}
+
+
+  // Get all Pipelines API
+  useEffect(() => {
+    axios
+    .get(`${baseUrl}pipelines/location/${locationID}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(({ data }: any) => {
+          setPipeLine(data.pipelines)      
+      })
+      .catch((error: any) => {
+        console.log(error);
+      });
+  }, []);
+
+
+// To get the single Pipeline API
+  const viewSinglePipeline = async (item: any) => { 
+      try {
+         await axios.get(`${baseUrl}pipelines/${item?.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then(({ data }: any) => {          
+          setData(data?.pipeline)          
+          // console.log(data?.pipeline?.name)         
+          setPiplineNameInputText(data?.pipeline?.name);
+  
+        })
+      } catch (error) {
+        console.error(error);
+      }
+      
+  };
+  
+  console.log(data)
+
+  // To get the single Pipeline API
+  const editSinglePipeline = async (id: any) => {
+      //  console.log(`${baseUrl}pipelines/${id}`
+    try {
+       await axios.put(`${baseUrl}pipelines/${id}`,
+       {
+        name: piplineNameInputText,
+      pipelineStageRanks: [
+          "f424c169-fbdb-431b-b77e-354434817710",
+          "2e57c41c-e577-4604-9700-2df5ecd6e756"
+      ]
+     }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-        { id: 2, name: "Python Automation Testing Program" },
-        { id: 3, name: "UI/UX Program" },
-        { id: 4, name: "Full Stack Developement Program" },
-        { id: 5, name: "Python Automation Testing Program" },
-        { id: 6, name: "UI/UX Program" },
-      ],
-    },
-  ]);
-  const [data, setData] = useState<any>([]);
+      })
+      .then(({ data }: any) => {
+        // console.log("data",data.pipeline)
+        setData(data?.pipeline)
+      })
+    } catch (error) {
+      console.error(error);
+    }
+    
+};
+
+
+
+  const ShowStages = async (id:any) => {
+    try {
+      await axios.get(`${baseUrl}pipeline-stages/pipeline/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(({ data }: any) => {
+        // console.log("DataSatges",data )
+        setStage(data?.pipelineStages )
+        
+      })
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
+  const DeleteStages = async (id:any) => {
+    if (confirm("Are you sure your want to delete")) {
+      try {
+      await axios.delete(`${baseUrl}pipeline-stages/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(({ data }: any) => {
+          // console.log("deleteData",data)
+      })
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
+  const DeletePipelines = async (id: any) => {
+    if (confirm("Are you sure your want to delete")) {
+      try {
+        await axios.delete(`${baseUrl}pipelines/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then(({ data }: any) => {
+            console.log("deletePipeline",data)
+        })
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+     
+
+
+  const UpdatePipeline = async (stages:any) => { 
+    stages.map( async(item:any) =>
+    {
+      return(
+        await axios.put(`${baseUrl}pipeline-stages/${item?.id}`, {name:item.name}, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then(({ data }: any) => {
+          // console.log(data )
+        
+        }).catch((err)=>console.log(err))
+      )
+  }
+    )
+   
+  }
+ 
+
+
+  
+
+  // console.log(stage , "StagesData")
+  // console.log(pipeLine)
+  // console.log(stage)
+
   return (
     <>
+    {/* Edit Pipeline */}
       <ModalDerived
         visibility={openModal}
         onClose={() => {
@@ -70,23 +193,36 @@ const PipelineTable = () => {
             </div>
             <div className="overflow-hidden ">
               <div className="h-[65vh] overflow-y-scroll scrollbar-hide px-4 pt-4 ">
-                {data.map((item: any) => (
-                  <div key={item.id}>
-                    <input
+              
+              <div className="flex items-center  justify-between ">
+                  <label
+                    className="block text-[#47494b] text-sm pt-1 font-semibold"
+                    htmlFor=""
+                  >
+                    Pipeline Name
+                  </label>
+                </div>
+               <div>
+
+                
+             
+               <input
                       type="text"
-                      value={item.name}
-                      onChange={(e) => {
-                        const updatedPipeLine = [...pipeLine];
-                        updatedPipeLine[item.id - 1].name = e.target.value;
-                        setPipeLine(updatedPipeLine);
+                      
+                      onChange={({target:{value}}) => {
+                        // const updatedPipeLine = [...pipeLine];
+                        // updatedPipeLine[data?.id - 1].name = e.target.value;
+                        // setPipeLine(updatedPipeLine);
+                        setPiplineNameInputText(value);
                       }}
+                      value={piplineNameInputText}
                       className=" w-full placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300   "
                     />
                     <div className="flex justify-between items-center px-2  gap-5 py-4">
                       <div className="w-full lg:w-[80%]">
                         <p className="text-gray-800 font-semibold text-base">
                           {" "}
-                          Name
+                           Stage Name
                         </p>
                       </div>
                       <div className="w-full lg:w-[20%]">
@@ -96,97 +232,66 @@ const PipelineTable = () => {
                         </p>
                       </div>
                     </div>
-                    <div className="w-full px-2">
-                      {item?.subData?.length >= 1 && (
-                        <>
-                          {item?.subData?.map((subItem: any) => (
-                            <div key={subItem.id}>
-                              <div className="flex justify-between items-center gap-5">
-                                <div className="w-full lg:w-[80%]">
-                                  <input
-                                    type="text"
-                                    value={subItem.name}
-                                    onChange={(e) => {
-                                      const updatedPipeLine = [...pipeLine];
-                                      updatedPipeLine[item.id - 1].subData[
-                                        subItem.id - 1
-                                      ].name = e.target.value;
-                                      setPipeLine(updatedPipeLine);
-                                    }}
-                                    className=" w-full placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300   "
-                                  />
-                                </div>
-                                <div className="w-full lg:w-[20%]">
-                                  <div className="flex justify-end align-center">
-                                    <AiFillPieChart className="text-green-500 text-lg" />
-                                    <FaFilter className="text-green-500 mx-4" />
-                                    <RiDeleteBin6Fill
-                                      className="text-red-400"
-                                      onClick={() => {
-                                        const updatedPipeLine = [...pipeLine];
-                                        updatedPipeLine[item.id - 1].subData =
-                                          updatedPipeLine[
-                                            item.id - 1
-                                          ].subData.filter(
-                                            (sub: any) => sub.id !== subItem.id
-                                          );
-                                        setPipeLine(updatedPipeLine);
-                                      }}
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                        </>
-                      )}
+               </div>
+
+
+{/* {console.log("stages",stage)} */}
+               {stage?.map((item:any, index:number) => {
+                  // console.log('sas', item.id);
+                  return (
+                    <div key={index} className="flex justify-between items-center gap-5">
+                      <div className="w-full lg:w-[80%]">
+                        <input
+                          type="text"
+                          value={item.name}
+                          onChange={(e) => {
+                            const updatedStage = [...stage];
+                            updatedStage[index].name = e.target.value;
+                            setStage(updatedStage);
+                          }}
+                          className="w-full placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2 font-medium bg-transparent focus:bg-transparent border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300"
+                        />
+                      </div>
+                      <div className="w-full lg:w-[20%]">
+                        <div className="flex justify-end align-center">
+                       
+                          <RiDeleteBin6Fill
+                            className="text-red-400"
+                            // onClick={() => {
+                            //   const updatedStage = [...stage];
+                            //   updatedStage.splice(index, 1);
+                            //   setStage(updatedStage);
+                            // }}
+                            onClick={()=> DeleteStages(item.id)}
+                          />
+                        </div>
+                      </div>
                     </div>
+                  );
+                })}
+
                     <div
                       onClick={() => {
                         const updatedPipeLine = [...pipeLine];
                         const lastSubItem =
-                          updatedPipeLine[item.id - 1].subData[
-                            updatedPipeLine[item.id - 1].subData.length - 1
+                          updatedPipeLine[data?.id - 1].subData[
+                            updatedPipeLine[data?.id - 1].subData.length - 1
                           ];
                         const newSubItem = {
                           id: lastSubItem.id + 1,
                           name: "",
                         };
-                        updatedPipeLine[item.id - 1].subData.push(newSubItem);
+                        updatedPipeLine[data?.id - 1].subData.push(newSubItem);
                         setPipeLine(updatedPipeLine);
                       }}
                       className="flex justify-start items-center pl-2 pt-4 text-newBlue gap-1"
                     >
                       <PlusIcon className="h-5 w-5" /> Add SubData
                     </div>
-                    <div className="w-full flex justify-between py-7 px-2 align-center ">
-                      <div className=" flex justify-start align-center">
-                        <p className="text-gray-800 font-semibold text-base text-right">
-                          Visible in Funnel chart
-                        </p>
-                        <input
-                          type="checkbox"
-                          className="toggle mx-2   toggle-info"
-                          //   checked
-                          defaultChecked
-                        />
-                      </div>
-                      <div className=" flex justify-start align-center">
-                        <p className="text-gray-800 font-semibold text-base text-right">
-                          Visible in Pie Chart
-                        </p>
-                        <input
-                          type="checkbox"
-                          className="toggle mx-2   toggle-info"
-                          //   checked
-                          defaultChecked
-                        />
-                      </div>
-                    </div>
+                    
                   </div>
-                ))}
+              
               </div>
-            </div>
             <div className="h-[10vh] flex justify-end items-center border-t-[1px] pt-3 pb-2 px-5">
               <div className=" flex justify-end items-center gap-3">
                 <button
@@ -200,18 +305,23 @@ const PipelineTable = () => {
                 </button>
                 <button
                   onClick={() => {
-                    setOpenModal(false);
-                    setData([]);
+                    // setOpenModal(false);
+                    // // setData([]);
+                    // UpdatePipeline(stage)
+                    editSinglePipeline(data?.id);
                   }}
+
                   className="text-base flex justify-start items-center bg-newBlue py-2 px-5 text-white rounded-md  "
                 >
                   Save
                 </button>
               </div>
             </div>
+            </div>
           </div>
-        </div>
       </ModalDerived>
+
+      {/* create pipeline */}
       <ModalDerived
         visibility={openCreateModal}
         onClose={() => {
@@ -223,25 +333,29 @@ const PipelineTable = () => {
             setOpenCreateModal(false);
           }}
           handleChange={(item: any) => {
-            setPipeLine([
-              ...pipeLine,
-              {
-                id: pipeLine.length + 1,
-                name: item,
-                subData: [
-                  {
-                    id: 1,
-                    name: "Record A",
-                  },
-                ],
-              },
-            ]);
+            // console.log(item)
+            // setPipeLine([
+            //   ...pipeLine,
+            //   {
+            //     id: item.locationID,
+            //     name: item.name,
+            //     subData: [
+            //       {
+            //         id: 1,
+            //         name: "Record A",
+            //       },
+            //     ],
+            //   },
+            // ]);
 
             setOpenCreateModal(false);
           }}
         />
       </ModalDerived>
+      
       <div className="flex align-center rounded justify-center flex-col">
+
+        {/* Add Button */}
         <div className="w-full">
           <div className="w-full   py-4">
             <div className=" flex items-center justify-between  px-4">
@@ -259,6 +373,8 @@ const PipelineTable = () => {
             </div>
           </div>
         </div>
+
+        {/* table */}
         <div className="flex align-center justify-center flex-col bg-white py-2  px-4 rounded">
           <div className="overflow-x-auto">
             <table className="table w-full">
@@ -271,19 +387,21 @@ const PipelineTable = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* row 1 */}
+              
 
-                {pipeLine.map((item: any, index: number) => (
+                {pipeLine?.reverse()?.map((item: any, index: number) => (
                   <tr key={index}>
-                    <td> {item.id} </td>
-                    <td className="lg:w-[80%]"> {item.name} </td>
+                    <td> {index+1} </td>
+                    <td className="lg:w-[80%] capitalize"> {item.name} </td>
                     <td>
                       <div className="w-[80%] px-4 py-4 flex justify-end align-center h-auto">
                         <div
                           className="px-3 mx-3"
                           onClick={() => {
-                            setData([...data, item]);
+                            // ShowStages(item.id)
                             setOpenModal(true);
+                            viewSinglePipeline(item)
+                            ShowStages(item.id)
                           }}
                         >
                           <MdOutlineModeEdit />
@@ -293,7 +411,9 @@ const PipelineTable = () => {
                             const updatedPipeLine = pipeLine.filter(
                               (i: any) => i.id !== item.id
                             );
-                            setPipeLine(updatedPipeLine);
+                            // console.log(item.id)
+                            // setPipeLine(updatedPipeLine);
+                            DeletePipelines(item.id)
                           }}
                           className="px-3 mx-3"
                         >

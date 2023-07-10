@@ -17,6 +17,7 @@ import { CheckboxInputElement } from "@/components/SurveyCraft/widgets/form/Chec
 import { SelectBoxInputElement } from "@/components/SurveyCraft/widgets/form/SelectInputElement";
 import { AttachmentElement } from "@/components/SurveyCraft/widgets/form/Attachment";
 import { DatePickerElement } from "@/components/SurveyCraft/widgets/form/DatePicker";
+import SurveyContainer from "@/components/SurveyCraft/widgets/SurveyContainer";
 
 export const CraftContext = createContext({
   tools: "standard",
@@ -42,7 +43,6 @@ export default function Craft() {
     openSettings,
     setOpenSettings,
   };
-
   return (
     <CraftContext.Provider value={value}>
       <div className="h-full overflow-hidden">
@@ -50,6 +50,7 @@ export default function Craft() {
           resolver={{
             App,
             Container,
+            SurveyContainer,
 
             Button,
             Text,

@@ -10,6 +10,7 @@ import {
   getCommonSettingsProps,
 } from "./CommonSettings";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
+import { Text } from "@/components/Craft/widgets/Text/Text";
 const elementName = "Checkbox Input";
 
 interface ICheckboxProps extends ICommonSettingsProps {
@@ -101,21 +102,23 @@ export const CheckboxInputElement = ({
         }}
       >
         {checks?.map((item, index) => (
-          <div className="form-control" key={index}>
-            <label className="cursor-pointer flex items-center gap-2">
-              <input
-                type="checkbox"
-                name={checkboxBasicProps?.name}
-                className="checkbox checked:bg-green-500"
-                // checked={item.checkProps.checked}
-                required={checkboxBasicProps?.required}
-                value={item.checkProps.value}
-              />
-              <span className="label-text">
-                {item.label} {checkboxBasicProps?.required && "*"}
-              </span>
-            </label>
-          </div>
+          <>
+            <div className="form-control" key={index}>
+              <label className="cursor-pointer flex-col items-center gap-2">
+                <input
+                  type="checkbox"
+                  name={checkboxBasicProps?.name}
+                  className="checkbox checked:bg-green-500"
+                  // checked={item.checkProps.checked}
+                  required={checkboxBasicProps?.required}
+                  value={item.checkProps.value}
+                />
+                <span className="label-text">
+                  {item.label} {checkboxBasicProps?.required && "*"}
+                </span>
+              </label>
+            </div>
+          </>
         ))}
       </div>
     </div>

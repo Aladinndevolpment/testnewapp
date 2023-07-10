@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 export default function SMSProvider() {
   return (
-    <>
+  
+    <div className="border rounded-md  m-5  bg-white  shadow-md">
       <div className=" text-[#47494b] text-lg font-semibold  border-b  px-3 pt-3">
         <p className="m-2">SMS Providers</p>
       </div>
@@ -50,6 +51,7 @@ export default function SMSProvider() {
           Save
         </button>
       </div>
-    </>
+      </div>
+    
   );
 }

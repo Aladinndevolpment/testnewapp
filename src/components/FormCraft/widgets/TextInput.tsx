@@ -1,8 +1,10 @@
 import TextInput from "@/components/controls/TextInput";
-import { useNode } from "@craftjs/core";
+import { Text } from "@/components/Craft/widgets/Text/Text";
+import { Element, useNode } from "@craftjs/core";
 import { MuiColorInput } from "mui-color-input";
 import { InputHTMLAttributes, useEffect, useState } from "react";
 import { IoContract } from "react-icons/io5";
+import FormContainer from "../Container";
 import {
   CommonSettings,
   ICommonSettingsProps,
@@ -79,6 +81,16 @@ export const TextInputElement = ({
           {elementName}
         </div>
       )}
+      {/* <Element is={FormContainer} id="demo_text" canvas>
+        <Text
+          text="Gender"
+          fontSize={17}
+          marginBottom={2}
+          alignment="left"
+          color="#4b5563"
+          bold="font-semibold"
+        />
+      </Element> */}
       <input
         disabled={!editable}
         className={`flex shadow px-2 py-2  rounded-md w-full focus-within:outline-2 focus-within:outline-blue-400 ${shadow} ${borderType} ${borderColor}`}

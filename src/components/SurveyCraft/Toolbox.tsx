@@ -10,6 +10,7 @@ import { Slide } from "./widgets/Slide";
 
 export const Toolbox = () => {
   const { tools, setTools } = useContext(CraftContext);
+  console.log(tools);
 
   return (
     <div>
@@ -24,17 +25,21 @@ export const Toolbox = () => {
       <div className="px-3 pt-2">
         <div className={`p-[2px] flex flex-wrap bg-[#eeeef1]  rounded-md`}>
           <button
-            className={`w-1/2 bg-transparent  px-4 py-2 text-center ${
-              tools === "standard" && "bg-white rounded-md shadow-md"
-            }  text-black font-medium btn border-none capitalize hover:bg-white`}
+            className={`w-1/2   px-4 py-2 text-center ${
+              tools == "standard"
+                ? "bg-white rounded-md shadow-md"
+                : "bg-transparent"
+            }  text-black font-medium  border-none capitalize hover:bg-white`}
             onClick={() => setTools("standard")}
           >
             Standard
           </button>
           <button
-            className={`w-1/2 bg-transparent  px-4 py-2 text-center ${
-              tools === "customize" && "bg-white rounded-md shadow-md"
-            }  text-black font-medium btn border-none capitalize hover:bg-white`}
+            className={`w-1/2   px-4 py-2 text-center ${
+              tools == "customize"
+                ? "bg-white rounded-md shadow-md"
+                : "bg-transparent"
+            }  text-black font-medium  border-none capitalize hover:bg-white`}
             onClick={() => setTools("customize")}
           >
             Custom

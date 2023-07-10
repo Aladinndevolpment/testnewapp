@@ -74,6 +74,7 @@ import {
   MainForm,
   MainFormTop,
 } from "@/components/Craft/widgets/form/MainForm";
+
 // import {
 //   TemplateOne,
 //   TemplateOneTop,
@@ -118,10 +119,10 @@ import {
   Team,
   TeamsText,
 } from "@/components/Craft/Templates/dentalTemplate/team";
-import {
-  HeaderMenuNew,
-  NewNavBarLayout,
-} from "@/components/Craft/Templates/dentalTemplate/newNavBar";
+// import {
+//   HeaderMenuNew,
+//   NewNavBarLayout,
+// } from "@/components/Craft/Templates/dentalTemplate/newNavBar";
 import { FaFacebook, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa";
 import { FiHome } from "react-icons/fi";
 import { BsTelephoneOutbound } from "react-icons/bs";
@@ -137,6 +138,7 @@ import {
   ContactTempsText,
   ContactTempTop,
 } from "@/components/Craft/Templates/dentalTemplate/contactUs";
+
 import { Headline } from "@/components/Craft/widgets/Text/Headline";
 import {
   Newsletter,
@@ -230,19 +232,33 @@ import {
   TemplateOneSection,
   TemplateOneTopSection,
 } from "@/components/Craft/TemplateSection/TemplateOne";
+import FullWidth from "@/components/Craft/SectionsLayouts/FullWidth";
+import Wide from "@/components/Craft/SectionsLayouts/Wide";
+import Medium from "@/components/Craft/SectionsLayouts/Medium";
+import Small from "@/components/Craft/SectionsLayouts/Small";
+import {
+  HeaderMenuNew,
+  NewNavBarLayout,
+} from "@/components/Craft/Templates/dentalTemplate/newNavBar";
 // import {
 //   BlogLayout,
 //   BlogLayoutText,
 // } from "@/components/Craft/widgets/prebuilt/BlogLayout";
+
 export const CraftContext = createContext({
   tools: "prebuilt",
   setTools: (tool: string) => {},
+  section: "Section",
+  setSection: (section: string) => {},
   device: "desktop",
   setDevice: (device: string) => {},
 });
+
 export default function Craft() {
   const [tools, setTools] = useState("prebuilt");
+  const [section, setSection] = useState("Sections");
   const [device, setDevice] = useState("desktop");
+
   const ctx = useContext(GlobalContext);
   ctx.setOpen(false);
   const value: any = {
@@ -250,7 +266,10 @@ export default function Craft() {
     setTools,
     device,
     setDevice,
+    section,
+    setSection,
   };
+
   return (
     <CraftContext.Provider value={value}>
       <div className="h-full overflow-hidden">
@@ -274,9 +293,9 @@ export default function Craft() {
             MyComponent,
             Blog,
             BlogsText,
-            HeaderMenuNew,
+            // HeaderMenuNew,
             Team,
-            NewNavBarLayout,
+            // NewNavBarLayout,
             TeamsText,
             WebTestimonial,
             WebTestimonialsText,
@@ -398,6 +417,12 @@ export default function Craft() {
             GlobalBlogLayoutsText,
             TemplateOneTopSection,
             TemplateOneSection,
+            FullWidth,
+            Wide,
+            Medium,
+            Small,
+            NewNavBarLayout,
+            HeaderMenuNew,
           }}
         >
           <Topbar />

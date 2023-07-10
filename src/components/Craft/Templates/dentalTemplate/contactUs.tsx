@@ -18,14 +18,16 @@ import {
   getCommonSettingsProps,
   ICommonSettingsProps,
 } from "../../widgets/CommonSettings";
-import { createElement } from "react";
+import { createElement, useState } from "react";
+import LeftFlyOut from "@/components/LeftLayout";
+import { TopbarSection } from "../../TopBarSections";
 
 const elementName = "Contact";
 
 const defaults = {
   backgroundColor: "#ffffff",
   borderColor: "#313641",
-  borderRadius: 10,
+  borderRadius: 0,
 };
 
 interface IContactTempsProps extends ICommonSettingsProps {
@@ -109,6 +111,8 @@ export const ContactTemp = ({
   shadow,
   shadowColor,
 }: IContactTempsProps) => {
+  const [openCreateModal, setOpenCreateModal] = useState(false);
+
   const {
     connectors: { connect, drag },
     hovered,
@@ -116,9 +120,17 @@ export const ContactTemp = ({
 
   return (
     <>
+      <LeftFlyOut
+        visibility={openCreateModal}
+        onClose={() => {
+          setOpenCreateModal(false);
+        }}
+      >
+        <TopbarSection />
+      </LeftFlyOut>
       <div
         className={`w-full h-auto ${size} mr-2 shadow-lg flex justify-center items-center ${
-          hovered && "hover:outline-pink-500 hover:outline "
+          hovered && "hover:outline-blue-500 hover:outline "
         }  relative ${shadowColor} ${shadow} ${borderType} `}
         style={{
           backgroundColor,
@@ -137,9 +149,19 @@ export const ContactTemp = ({
         ref={(ref: any) => connect(drag(ref))}
       >
         {hovered && (
-          <div className="absolute top-0 right-0 bg-purple-500 text-white text-[10px] px-1 z-10 capitalize">
-            {elementName}
-          </div>
+          <>
+            <div className="absolute top-0 right-0 bg-blue-500 text-white text-[10px] px-1 z-10 capitalize">
+              {elementName}
+            </div>
+            <div
+              className="absolute -bottom-2 left-[50%] bg-orange-500 text-white text-[10px] px-1 z-10 capitalize"
+              onClick={() => {
+                setOpenCreateModal(true);
+              }}
+            >
+              +
+            </div>
+          </>
         )}
         <div className="w-1/2">
           <Element id="ContactTempsText" is={ContactTempsText} canvas>
@@ -351,7 +373,7 @@ ContactTemp.craft = {
     borderColor: defaults.borderColor,
     paddingRight: 10,
     paddingLeft: 10,
-    marginTop: 10,
+    marginTop: 0,
     marginBottom: 0,
   },
   displayName: elementName,

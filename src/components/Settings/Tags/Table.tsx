@@ -110,7 +110,7 @@ const TagsTablesData = ({ data }: any) => {
               </button>
             </div>
           )}
-          positionPagination="top"
+          positionPagination="bottom"
           enableToolbarInternalActions={false}
           positionToolbarAlertBanner="bottom"
           muiSearchTextFieldProps={{

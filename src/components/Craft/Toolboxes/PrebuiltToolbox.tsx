@@ -223,7 +223,7 @@ const baseTools = [
   },
 ];
 
-export default function ElementToolbox() {
+export default function ElementToolbox({onclick}:any) {
   const [searchString, setSearchString] = useState("");
   const [tools, setTools] = useState(baseTools);
 
@@ -266,7 +266,7 @@ export default function ElementToolbox() {
         />
       </div>
 
-      <div className="h-full overflow-y-scroll scrollbar-hide ">
+      <div className="h-full overflow-y-scroll scrollbar-hide " >
         {tools.map((item, index) => (
           <AccordionItem
             faq={item}

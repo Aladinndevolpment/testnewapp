@@ -20,6 +20,7 @@ import {
 } from "./Interfaces";
 import axios from "axios";
 import { GlobalContext } from "@/layouts/GlobalLayout";
+import { baseUrl, locationID, token } from "@/config/APIConstants";
 
 interface IMessageProps {
   message: Message;
@@ -159,9 +160,9 @@ export default function Conversations({
         if (typeof window !== "undefined") {
           currentScrollPosition = window.pageYOffset;
         }
-        const token = process.env.NEXT_PUBLIC_API_TOKEN;
+
         const response = await axios.get(
-          `/api/messages?contactID=${contact.id}${
+          `${baseUrl}messages?contactID=${contact.id}${
             lastMessageID ? `&lastMessageID=${lastMessageID}` : ""
           }&limit=5`,
           {
@@ -237,11 +238,10 @@ export default function Conversations({
   const sendSMS = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const token = process.env.NEXT_PUBLIC_API_TOKEN;
       const response = await axios.post(
-        `/api/messages/sms`,
+        `${baseUrl}messages/sms`,
         {
-          locationID: process.env.NEXT_PUBLIC_LOCATION_ID,
+          locationID: locationID,
           contactID: contact.id,
           userID: process.env.NEXT_PUBLIC_USER_ID,
           message: message,
@@ -270,11 +270,10 @@ export default function Conversations({
   const sendEmail = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const token = process.env.NEXT_PUBLIC_API_TOKEN;
       const response = await axios.post(
-        `/api/messages/email`,
+        `${baseUrl}messages/email`,
         {
-          locationID: process.env.NEXT_PUBLIC_LOCATION_ID,
+          locationID: locationID,
           contactID: contact.id,
           userID: process.env.NEXT_PUBLIC_USER_ID,
           fromName: fromName,

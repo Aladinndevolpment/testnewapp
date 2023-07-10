@@ -46,15 +46,15 @@ export default function TopNavigation() {
                 onClick={() => ctx.setOpen(!ctx.open)}
                 className="text-lg font-bold mr-3"
               >
-                <button className="bg-gray-200 rounded-full h-5 w-5 p-1 flex justify-center items-center">
+                <button className="bg-[#35383E] rounded-full h-5 w-5 p-1 flex justify-center items-center">
                   {ctx.open ? (
-                    <IoChevronForward className="h-4 w-4 text-gray-700" />
+                    <IoChevronForward className="h-4 w-4 text-white" />
                   ) : (
-                    <IoChevronBack className="h-4 w-4 text-gray-700" />
+                    <IoChevronBack className="h-4 w-4 text-white" />
                   )}
                 </button>
               </div> */}
-              <div>
+              <div onClick={() => ctx.setOpen(true)}>
                 <Link href="/">
                   <Image
                     src={require("../../../../public/images/logo/logo.png")}
@@ -66,19 +66,19 @@ export default function TopNavigation() {
               {/* <div className="w-[90%]">
                 <HeaderTitle />
               </div> */}
-              <div className="pl-4 w-5">
+              <div className="pl-4 w-5 ">
                 <div className="dropdown inline-block relative group w-[20vw]">
-                  <button className="bg-gray-200 text-gray-700 font-semibold py-1 px-4 rounded-lg  justify-between inline-flex items-center w-[80%]">
+                  <button className="bg-[#35383E] text-white font-semibold py-1 px-4 rounded-lg  justify-between inline-flex items-center w-[80%]">
                     <span className="mr-1">Support-Emerge</span>
                     <div className="flex-col items-end justify-center pl-1">
                       <MdArrowDropUp className="" />
                       <MdArrowDropDown />
                     </div>
                   </button>
-                  <ul className="dropdown-menu absolute  text-gray-700 pt-1 hidden group-hover:block rounded-lg w-[80%]">
+                  <ul className="dropdown-menu absolute  text-white pt-1 hidden group-hover:block rounded-lg w-[80%]">
                     <li className="">
                       <a
-                        className="rounded-t bg-gray-200 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap"
+                        className="rounded-t bg-[#35383E] hover:bg-[#1F2228] py-2 px-4 block whitespace-no-wrap"
                         href="#"
                       >
                         Design Support
@@ -86,7 +86,7 @@ export default function TopNavigation() {
                     </li>
                     <li className="">
                       <a
-                        className="bg-gray-200 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap"
+                        className="bg-[#35383E] hover:bg-[#1F2228]  py-2 px-4 block whitespace-no-wrap"
                         href="#"
                       >
                         Admin Suppport
@@ -94,7 +94,7 @@ export default function TopNavigation() {
                     </li>
                     <li className="">
                       <a
-                        className="rounded-b bg-gray-200 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap"
+                        className="rounded-b bg-[#35383E] hover:bg-[#1F2228]  py-2 px-4 block whitespace-no-wrap"
                         href="#"
                       >
                         Other Services

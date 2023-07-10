@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import SettingsSidebar from "@/components/SettingsSidebar/TeamsSidebar";
 import { TfiPencil } from "react-icons/tfi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import ModalDerived from "@/components/Modal";
 import { AiOutlineClose } from "react-icons/ai";
+import { GlobalContext } from "@/layouts/GlobalLayout";
 
 export default function Domain() {
+  const ctx = useContext(GlobalContext);
+  ctx.setOpen(false);
   const [domainData, setDomainData] = useState<any>([
     { domainName: "www.pearland.com" },
   ]);

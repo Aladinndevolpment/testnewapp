@@ -1,7 +1,7 @@
 import TabLeads from "@/components/Contact/TabLeads";
 import { GlobalContext } from "@/layouts/GlobalLayout";
 import Image from "next/image";
-import { MouseEventHandler, useContext, useState } from "react";
+import { MouseEventHandler, useContext, useEffect, useState } from "react";
 import { GetServerSidePropsContext } from "next";
 import ContactsTable from "@/components/contacts/table/ContactsTable";
 import {
@@ -11,40 +11,42 @@ import {
 } from "@/components/contacts/Interfaces";
 import axios from "axios";
 import Head from "next/head";
+import { baseUrl, locationID, token } from "@/config/APIConstants";
 
 interface IAppointmentDetailsProps {
   visibility: boolean;
   onClose: MouseEventHandler;
 }
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const res = {
-    count: 0,
-    contacts: [],
-  };
+// export async function getServerSideProps(context: GetServerSidePropsContext) {
+//   const res = {
+//     count: 0,
+//     contacts: [],
+//   };
 
-  const token = process.env.NEXT_PUBLIC_API_TOKEN;
+//   // const token = process.env.NEXT_PUBLIC_API_TOKEN;
 
-  await axios
-    .get(`/api/contacts/location/${process.env.NEXT_PUBLIC_LOCATION_ID}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    .then((response) => {
-      res.count = response.data.contacts.length;
-      res.contacts = response.data.contacts;
-    })
-    .catch((err) => {
-      console.log("error bruh:", err);
-    });
+//   await axios
+//     .get(`${baseUrl}/contacts/location/${locationID}`, {
+//       headers: { Authorization: `Bearer ${token}` },
+//     })
+//     .then((response) => {
+//       res.count = response.data.contacts.length;
+//       res.contacts = response.data.contacts;
+//     })
+//     .catch((err) => {
+//       console.log("error bruh:", err);
+//     });
 
-  return {
-    props: {
-      ...res,
-    },
-  };
-}
+//   return {
+//     props: {
+//       ...res,
+//     },
+//   };
+// }
 
 export default function Contacts(contactsData: IContactsData) {
+  console.log(contactsData);
   const [DropDownRole, SetDropDownRole] = useState("");
 
   // const innerTabs = [
@@ -64,6 +66,24 @@ export default function Contacts(contactsData: IContactsData) {
   ctx.setTitle("Contact");
   // const [activeTab, setActiveTab] = useState<any>(tabs[3].id);
   // const [activeInnerTab, setActiveInnerTab] = useState(innerTabs[0].id);
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [contactData, setContactData] = useState<any>([]);
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    axios
+      .get(`${baseUrl}contacts/location/${locationID}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(({ data }) => {
+        // console.log("pppgpgpgpg", data);
+        setContactData(data.contacts);
+      })
+      .catch((error: any) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <div>
@@ -85,7 +105,9 @@ export default function Contacts(contactsData: IContactsData) {
           ))}
         </ul> */}
         <div className="  bg-white w-full  overflow-hidden">
-          <ContactsTable contactsData={contactsData.contacts} />
+          {/* {contactData.length > 0 && ( */}
+          <ContactsTable contactsData={contactData} />
+          {/* )} */}
           {/* {innerTabs.map((tab: any) => (
             <div
               key={tab.id}

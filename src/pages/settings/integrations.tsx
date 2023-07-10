@@ -135,6 +135,7 @@ export default function Integrations() {
   });
 
   const ctx = useContext(GlobalContext);
+  ctx.setOpen(false);
   ctx.setTitle("Integrations");
 
   return (
@@ -172,7 +173,7 @@ export default function Integrations() {
           <SettingsSidebar />
         </div>
 
-        <div className="w-full lg:w-[75%]  bg-white h-full mb-24 scrollbar-hide">
+        <div className="w-full lg:w-[75%]  bg-white h-[100vh] scrollbar-hide  overflow-y-scroll pb-20">
           <header className="block w-full mb-5 h-32 lg:h-16 items-center relative z-10 border-b-[1px] border-lightGray">
             <div className="flex flex-center flex-col h-full justify-center lg:mx-auto relative  text-white z-10">
               <div className="flex flex-wrap lg:flex-nowrap justify-center items-center  relative w-full sm:ml-0 sm:pr-2  ">

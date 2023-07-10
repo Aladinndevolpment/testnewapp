@@ -401,7 +401,7 @@ const CampaignTable = () => {
               },
               labelRowsPerPage: "Showing",
             }}
-            positionPagination="top"
+            positionPagination="bottom"
             enableToolbarInternalActions={false}
             positionToolbarAlertBanner="bottom"
             muiSearchTextFieldProps={{

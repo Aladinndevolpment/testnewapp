@@ -127,7 +127,7 @@ export default function Workflow() {
               </li>
             ))}
           </ul>
-          <div className="  bg-white">
+          <div className="pb-12  bg-white">
             {innerTabs.map((tab: any) => (
               <div
                 key={tab.id}

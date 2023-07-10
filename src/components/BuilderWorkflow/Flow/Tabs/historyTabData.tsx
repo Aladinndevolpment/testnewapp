@@ -208,7 +208,7 @@ export default function WorkFlowTables() {
           },
           labelRowsPerPage: "Showing",
         }}
-        positionPagination="top"
+        positionPagination="bottom"
         enableToolbarInternalActions={false}
         positionToolbarAlertBanner="bottom"
         muiSearchTextFieldProps={{

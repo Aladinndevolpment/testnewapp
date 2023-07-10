@@ -4,10 +4,12 @@ import Link from "next/link";
 import { ExportToCsv } from "export-to-csv"; //or use your library of choice here
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { FiChevronDown } from "react-icons/fi";
-import { BsColumns, BsCalendarDate, BsThreeDots } from "react-icons/bs";
+import { BsColumns, BsCalendarDate, BsThreeDots, BsThreeDotsVertical } from "react-icons/bs";
 import { MdOutlineDateRange } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { Menu, MenuItem, MenuProps, alpha, styled } from "@mui/material";
+import { GoLinkExternal } from "react-icons/go";
 
 export default function Table({ data }: any) {
   const status = [
@@ -167,6 +169,7 @@ export default function Table({ data }: any) {
   };
 
   const [newData, setNewData] = useState(data);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
   const [filterValue, setFilterValue] = useState("");
 
@@ -183,6 +186,59 @@ export default function Table({ data }: any) {
       category.published_date.toLowerCase().includes(filterValue.toLowerCase())
     );
   });
+
+  const StyledMenu = styled((props: MenuProps) => (
+    <Menu
+      elevation={0}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'right',
+      }}
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      {...props}
+    />
+  ))(({ theme }) => ({
+    '& .MuiPaper-root': {
+      borderRadius: 6,
+      marginTop: theme.spacing(1),
+      minWidth: 180,
+      color:
+        theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
+        boxShadow:
+        'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+      '& .MuiMenu-list': {
+        padding: '4px 0',
+      },
+      '& .MuiMenuItem-root': {
+        '& .MuiSvgIcon-root': {
+          fontSize: 18,
+          color: theme.palette.text.secondary,
+          marginRight: theme.spacing(1.5),
+        },
+        '&:active': {
+          backgroundColor: alpha(
+            theme.palette.primary.main,
+            theme.palette.action.selectedOpacity,
+          ),
+        },
+      },
+    },
+  }));
+
+  
+  const open = Boolean(anchorEl);
+  // const id = open ? 'simple-popover' : undefined;
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <>
@@ -277,6 +333,26 @@ export default function Table({ data }: any) {
                 >
                   <RiDeleteBin5Line className="h-4 w-4 text-gray-600" />
                 </button>
+                <button onClick={handleClick}>
+  <BsThreeDotsVertical/>
+</button>
+                <StyledMenu className="text-black"
+        id="demo-customized-menu"
+        MenuListProps={{
+          'aria-labelledby': 'demo-customized-button',
+        }}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose} className="flex gap-2">View Form Live <GoLinkExternal className="text-gray-500  h-4 w-4"/></MenuItem>
+        <MenuItem onClick={handleClose}>View Form Details</MenuItem>
+        <MenuItem onClick={handleClose}>Edit Form</MenuItem>
+        <MenuItem onClick={handleClose}>Duplicate Form</MenuItem>
+        <MenuItem onClick={handleClose}>Save Form as Template</MenuItem>
+        <MenuItem onClick={handleClose}>Archieve </MenuItem>
+        <MenuItem onClick={handleClose} style={{color:"red"}}>Delete Form </MenuItem>
+      </StyledMenu>
               </div>
             )}
             muiTablePaginationProps={{
@@ -288,7 +364,7 @@ export default function Table({ data }: any) {
               },
               labelRowsPerPage: "Showing",
             }}
-            positionPagination="top"
+            positionPagination="bottom"
             enableToolbarInternalActions={false}
             positionToolbarAlertBanner="bottom"
             muiSearchTextFieldProps={{

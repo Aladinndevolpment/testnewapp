@@ -9,91 +9,84 @@ import ModalDerived from "@/components/Modal";
 import { AiOutlineClose } from "react-icons/ai";
 import AddCalendar from "./AddCalendar/AddCalendar";
 import { CalendarSettingsContext } from "./CalendarListData";
+import { useRouter } from "next/router";
+import axios from "axios";
+import { baseUrl, locationID, token } from "../../../config/APIConstants";
 
 interface RowData {
   [key: string]: any;
 }
 
-const CalendarListTable = () => {
-  const calendarForm: any = useContext(CalendarSettingsContext);
+const CalendarListTable = ({ calendarData, calendarCount }: any) => {
+  const router = useRouter();
+  // console.log("ccddd", calendarData);
+  const deleteContact = async (id: any) => {
+    if (confirm("Are you sure your want to delete")) {
+      try {
+        const response = await axios.delete(`${baseUrl}calendars/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        // console.log("rttt", response);
 
-  const [data, setData] = useState<RowData[]>([
-    {
-      id: "1",
-      calendar_Name: "Calendar 1",
-      createdOn: "2023-06-14T09:00:00.000Z",
-      upDatedOn: "2023-06-14T09:00:00.000Z",
-    },
-    {
-      id: "2",
-      calendar_Name: "Calendar 2",
-      createdOn: "2023-06-14T09:00:00.000Z",
-      upDatedOn: "2023-06-14T09:00:00.000Z",
-    },
-    {
-      id: "3",
-      calendar_Name: "Calendar 3",
-      createdOn: "2023-06-14T09:00:00.000Z",
-      upDatedOn: "2023-06-14T09:00:00.000Z",
-    },
-    {
-      id: "4",
-      calendar_Name: "Calendar 4",
-      createdOn: "2023-06-14T09:00:00.000Z",
-      upDatedOn: "2023-06-14T09:00:00.000Z",
-    },
-  ]);
-
-  const handleStoreCalendar = (item: any) => {
-    const newData = item;
-    setData((prevValues: any) => [
-      ...data,
-      {
-        id: "1",
-        calendar_Name: item[0]?.calendarName,
-        createdOn: new Date(),
-        upDatedOn: new Date(),
-      },
-    ]);
+        router.reload();
+      } catch (error) {
+        console.error(error);
+      }
+    }
   };
 
+  const calendarForm: any = useContext(CalendarSettingsContext);
+  const handleStoreCalendar = (item: any) => {
+    const newData = item;
+    // setData((prevValues: any) => [
+    //   ...data,
+    //   {
+    //     id: "1",
+    //     calendar_Name: item[0]?.calendarName,
+    //     createdOn: new Date(),
+    //     upDatedOn: new Date(),
+    //   },
+    // ]);
+  };
   const columns = useMemo<MRT_ColumnDef<any>[]>(
     () => [
       {
-        accessorKey: "calendar_Name",
-        id: "calendar_Name",
+        accessorKey: "name",
+        id: "name",
         header: "Calendar Name",
         size: 350,
         Cell: ({ row }) => (
           <p className="  text-gray-700 font-medium text-[15px]">
-            {row.original.calendar_Name}
+            {row.original.name}
           </p>
         ),
         enableColumnFilter: true,
       },
       {
-        accessorKey: "createdOn",
-        id: "createdOn",
-        header: "Created On",
+        accessorKey: "updatedOn",
+        id: "updatedOn",
+        header: "Updated On",
         size: 220,
         Cell: ({ row }) => (
           <div className="flex justify-start items-start gap-2">
             <p className="  text-gray-700 font-medium text-[12px]">
-              {moment(row.original.createdOn).format("MMM DD, yyyy")}
+              {moment(row.original.updatedOn).format("MMM DD, yyyy")}
             </p>
           </div>
         ),
         enableColumnFilter: true,
       },
       {
-        accessorKey: "upDatedOn",
-        id: "upDatedOn",
-        header: "Updated On",
+        accessorKey: "addedOn",
+        id: "addedOn",
+        header: "Created On",
         size: 220,
         Cell: ({ row }) => (
           <div className="flex justify-start items-start gap-2">
             <p className="  text-gray-700 font-medium text-[12px]">
-              {moment(row.original.upDatedOn).format("MMM DD, yyyy")}
+              {moment(row.original.addedOn).format("MMM DD, yyyy")}
             </p>
           </div>
         ),
@@ -110,13 +103,12 @@ const CalendarListTable = () => {
     setFilterInput(value);
   };
 
-  const filteredData = data.filter((row: any) =>
-    row.calendar_Name.toLowerCase().includes(filterInput.toLowerCase())
+  const filteredData = calendarData.filter((row: any) =>
+    row.name.toLowerCase().includes(filterInput.toLowerCase())
   );
 
   return (
     <>
-      {" "}
       <ModalDerived
         visibility={calendarForm?.openModal1}
         onClose={() => calendarForm?.setOpenModal1(false)}
@@ -166,6 +158,29 @@ const CalendarListTable = () => {
             }}
             renderRowActions={({ row }) => (
               <div className="flex justify-between items-center gap-5 pr-10">
+                <button
+                  // onClick={() => {
+                  //   table.setEditingRow(row);
+                  // }}
+                  onClick={() => {
+                    router.push("/settings/calendar/" + row.original.id);
+                  }}
+                >
+                  <CiEdit className="h-4 w-4 text-gray-600" />
+                </button>
+
+                <button
+                  // onClick={() => {
+                  //   table.setEditingRow(row);
+                  // }}
+                  onClick={() => {
+                    deleteContact(row.original.id);
+                  }}
+                >
+                  <RiDeleteBin5Line className="h-4 w-4 text-gray-600" />
+                </button>
+
+                {/*                   
                 <Link href="/settings/calendar/edit-calendar">
                   <div>
                     <CiEdit className="h-4 w-4 text-gray-600" />
@@ -179,14 +194,14 @@ const CalendarListTable = () => {
                   }}
                 >
                   <RiDeleteBin5Line className="h-4 w-4 text-gray-600" />
-                </button>
+                </button> */}
               </div>
             )}
-            positionPagination="top"
+            positionPagination="bottom"
             enableToolbarInternalActions={false}
             positionToolbarAlertBanner="bottom"
             muiSearchTextFieldProps={{
-              placeholder: `Search ${data?.length} rows`,
+              placeholder: `Search ${calendarCount} rows`,
               sx: {
                 minWidth: "400px",
                 marginTop: "5px",
@@ -241,7 +256,7 @@ const CalendarListTable = () => {
             }}
           />
         </div>
-      </div>{" "}
+      </div>
     </>
   );
 };

@@ -329,6 +329,16 @@ export default function WorkFlowErrorTable() {
               initialState={{
                 showGlobalFilter: false,
               }}
+              positionPagination="bottom"
+              muiTablePaginationProps={{
+                rowsPerPageOptions: [10, 50, 100, 200],
+                showFirstButton: false,
+                showLastButton: false,
+                SelectProps: {
+                  native: true,
+                },
+                labelRowsPerPage: "Showing",
+              }}
               renderRowActions={({ row, table }) => (
                 <div className="flex justify-between items-center gap-5 pr-10">
                   <button
@@ -348,16 +358,6 @@ export default function WorkFlowErrorTable() {
                   </button>
                 </div>
               )}
-              muiTablePaginationProps={{
-                rowsPerPageOptions: [10, 50, 100, 200],
-                showFirstButton: false,
-                showLastButton: false,
-                SelectProps: {
-                  native: true,
-                },
-                labelRowsPerPage: "Showing",
-              }}
-              positionPagination="top"
               enableToolbarInternalActions={false}
               positionToolbarAlertBanner="bottom"
               muiSearchTextFieldProps={{

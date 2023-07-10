@@ -76,7 +76,7 @@ const NumberPool = () => {
   };
 
   return (
-    <div>
+    <div className="border rounded-md  m-5  bg-white  shadow-md">
       <ModalDerived
         visibility={openNumberPoolM}
         onClose={() => setOpenNumberPoolM(false)}

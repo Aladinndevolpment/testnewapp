@@ -25,10 +25,13 @@ import { NewNavBarLayout } from "./Templates/dentalTemplate/newNavBar";
 import { Blog } from "./Templates/dentalTemplate/blog";
 import MyComponent from "./Templates/dentalTemplate/newDemo";
 import { BlogLayout } from "./widgets/prebuilt/BlogLayout";
+import { useState } from "react";
 
 export default function Main() {
   const { device } = useContext(CraftContext);
 
+  
+ 
   return (
     <div className="flex h-full">
       <div className="w-[22%] pr-2 h-screen">
@@ -37,20 +40,21 @@ export default function Main() {
         </div>
       </div>
       <div className="w-[78%] h-full overflow-y-scroll scrollbar-hide pb-40 px-5">
+          
         <Frame>
           <Element is={Container} canvas>
             {/* <NavBar /> */}
             <NewNavBarLayout />
             <Banner />
             <AboutTemp />
-            <CardHeader />/
+            <CardHeader />
             <CardBanner />
             <Team />
             <Blog />
             <ContactTemp />
             <WebTestimonial />
             <FooterWeb />
-          </Element>
+          </Element> 
         </Frame>
       </div>
       <div className="w-[22%] pr-2 h-screen">

@@ -3,6 +3,7 @@ import React from "react";
 import { useEditor } from "@craftjs/core";
 import { Chip } from "@mui/material";
 import { MdDeleteForever } from "react-icons/md";
+import { TbHandClick } from "react-icons/tb";
 
 export const SettingsPanel = () => {
   const { actions, selected } = useEditor((state, query) => {
@@ -55,5 +56,18 @@ export const SettingsPanel = () => {
         </div>
       </div>
     </div>
-  ) : null;
+  ) : (
+    <div className="m-auto h-screen w-full text-center relative">
+      <div className="absolute flex-col justify-center items-center top-[30%]">
+        <div className="flex justify-center items-center">
+          <div className="w-[50px] h-[50px] justify-center items-center flex bg-gray-100 rounded-full my-2">
+            <TbHandClick color="#3C82F6" size={20} />
+          </div>
+        </div>
+        <div className="text-center font-semibold text-gray-400 mx-4">
+          Select Element to activate this panel
+        </div>
+      </div>
+    </div>
+  );
 };

@@ -84,7 +84,7 @@ export default function PhoneNo() {
   };
 
   return (
-    <div>
+    <div className="border rounded-md  m-5  bg-white  shadow-md">
       <ModalDerived
         visibility={openPhoneNumberModel}
         onClose={() => setOpenPhoneNumberModel(false)}

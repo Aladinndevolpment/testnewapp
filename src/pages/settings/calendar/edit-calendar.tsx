@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import SettingsSidebar from "@/components/SettingsSidebar/TeamsSidebar";
-import TeamEventSetup from "@/components/Settings/CalendarSettings/EditCalendar.tsx/teamEventSetup";
-import Availability from "@/components/Settings/CalendarSettings/EditCalendar.tsx/availability";
-import Confirmation from "@/components/Settings/CalendarSettings/EditCalendar.tsx/confirmation";
+
+import TeamEventSetup from "@/components/Settings/CalendarSettings/EditCalendar/teamEventSetup";
+import Availability from "@/components/Settings/CalendarSettings/EditCalendar/availability";
+import Confirmation from "@/components/Settings/CalendarSettings/EditCalendar/confirmation";
 
 export default function EditCalendar() {
   const [select, setSelect] = useState(0);

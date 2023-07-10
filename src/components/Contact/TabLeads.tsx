@@ -723,7 +723,7 @@ export default function TabLeads() {
                         left: ["lead_name"],
                       },
                     }}
-                    positionPagination="top"
+                    positionPagination="bottom"
                     enableToolbarInternalActions={false}
                     positionToolbarAlertBanner="bottom"
                     positionActionsColumn="last"

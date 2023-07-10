@@ -329,6 +329,15 @@ export default function RecentlyDeleteTable() {
               initialState={{
                 showGlobalFilter: false,
               }}
+              muiTablePaginationProps={{
+                rowsPerPageOptions: [10, 50, 100, 200],
+                showFirstButton: false,
+                showLastButton: false,
+                SelectProps: {
+                  native: true,
+                },
+                labelRowsPerPage: "Showing",
+              }}
               renderRowActions={({ row, table }) => (
                 <div className="flex justify-between items-center gap-5 pr-10">
                   <button
@@ -348,16 +357,7 @@ export default function RecentlyDeleteTable() {
                   </button>
                 </div>
               )}
-              muiTablePaginationProps={{
-                rowsPerPageOptions: [10, 50, 100, 200],
-                showFirstButton: false,
-                showLastButton: false,
-                SelectProps: {
-                  native: true,
-                },
-                labelRowsPerPage: "Showing",
-              }}
-              positionPagination="top"
+              positionPagination="bottom"
               enableToolbarInternalActions={false}
               positionToolbarAlertBanner="bottom"
               muiSearchTextFieldProps={{

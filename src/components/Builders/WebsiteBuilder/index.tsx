@@ -5,60 +5,61 @@ import Table from "./Table";
 export default function WebsiteBuilder() {
   const [data, setData] = useState<any[]>([
     {
-      pages_url: {
+      site_name: {
         title: "Fikri Studio Landing Page",
         url: "fikristudio.com",
       },
-      status: "Published",
-      created_by: "Darlene Robertson",
-      created_date: "12 June 2023",
-      published_date: "12 June 2023",
+      page_views: "29",
+      options: "5",
+      sales: "125",
+      revenue:"24800",
       other: "",
     },
     {
-      pages_url: {
+      site_name: {
         title: "Fikri Studio Landing Page",
         url: "fikristudio.com",
       },
-      status: "Scheduled",
-      created_by: "Darlene Robertson",
-      created_date: "12 June 2023",
-      published_date: "12 June 2023",
+      page_views: "29",
+      options: "5",
+      sales: "125",
+      revenue:"24800",
       other: "",
     },
     {
-      pages_url: {
+      site_name: {
         title: "Fikri Studio Landing Page",
         url: "fikristudio.com",
       },
-      status: "Archived",
-      created_by: "Darlene Robertson",
-      created_date: "12 June 2023",
-      published_date: "12 June 2023",
+      page_views: "29",
+      options: "5",
+      sales: "125",
+      revenue:"24800",
       other: "",
     },
     {
-      pages_url: {
+      site_name: {
         title: "Fikri Studio Landing Page",
         url: "fikristudio.com",
       },
-      status: "Scheduled",
-      created_by: "Darlene Robertson",
-      created_date: "12 June 2023",
-      published_date: "12 June 2023",
+      page_views: "29",
+      options: "5",
+      sales: "125",
+      revenue:"24800",
       other: "",
     },
     {
-      pages_url: {
+      site_name: {
         title: "Fikri Studio Landing Page",
         url: "fikristudio.com",
       },
-      status: "Archived",
-      created_by: "Darlene Robertson",
-      created_date: "12 June 2023",
-      published_date: "12 June 2023",
+      page_views: "29",
+      options: "5",
+      sales: "125",
+      revenue:"24800",
       other: "",
     },
+
   ]);
 
   return (

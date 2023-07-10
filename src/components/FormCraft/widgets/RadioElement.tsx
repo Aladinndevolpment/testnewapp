@@ -1,5 +1,5 @@
 import TextInput from "@/components/controls/TextInput";
-import { useNode } from "@craftjs/core";
+import { Element, useNode } from "@craftjs/core";
 import { MuiColorInput } from "mui-color-input";
 import { InputHTMLAttributes, useEffect, useState } from "react";
 import { IoContract } from "react-icons/io5";
@@ -10,6 +10,8 @@ import {
   getCommonSettingsProps,
 } from "./CommonSettings";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
+import { Text } from "@/components/Craft/widgets/Text/Text";
+import FormContainer from "../Container";
 const elementName = "Radio Input";
 
 interface IRadioProps extends ICommonSettingsProps {
@@ -85,6 +87,16 @@ export const RadioInputElement = ({
           {elementName}
         </div>
       )}
+      <Element is={FormContainer} id="demo_text" canvas>
+        <Text
+          text="Gender"
+          fontSize={17}
+          marginBottom={2}
+          alignment="left"
+          color="#4b5563"
+          bold="font-semibold"
+        />
+      </Element>
 
       <div
         className={`flex ${
@@ -254,6 +266,7 @@ RadioInputElement.craft = {
   props: {
     value: "",
     radiosBasicProps: {
+      label: "name",
       name: "radio-10",
       required: true,
     },

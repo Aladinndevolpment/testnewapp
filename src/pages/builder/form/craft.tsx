@@ -18,6 +18,7 @@ import { AttachmentElement } from "@/components/FormCraft/widgets/Attachment";
 import { DatePickerElement } from "@/components/FormCraft/widgets/DatePicker";
 import { TextInputElement } from "@/components/FormCraft/widgets/TextInput";
 import { Text } from "@/components/Craft/widgets/Text/Text";
+import FormContainer from "@/components/FormCraft/Container";
 
 export const CraftContext = createContext({
   tools: "elements",
@@ -39,12 +40,12 @@ export default function Craft() {
     device,
     setDevice,
   };
-
   return (
     <CraftContext.Provider value={value}>
       <div className="h-full overflow-hidden w-full">
         <Editor
           resolver={{
+            FormContainer,
             Container,
             Text,
             TextInputElement,

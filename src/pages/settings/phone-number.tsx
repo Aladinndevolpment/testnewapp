@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import SettingsSidebar from "@/components/SettingsSidebar/TeamsSidebar";
 
 import PhoneNo from "@/components/Settings/PhoneNo/PhoneNumber";
 import NumberPool from "@/components/Settings/PhoneNo/NumberPool";
 import VerifiedCaller from "@/components/Settings/PhoneNo/VerifiedCaller";
 import SMSProvider from "@/components/Settings/PhoneNo/SMSProvider";
+import { GlobalContext } from "@/layouts/GlobalLayout";
 export default function PhoneNumber() {
+  const ctx = useContext(GlobalContext);
+  ctx.setOpen(false);
   return (
     <>
       <div className="flex flex-wrap items-center">

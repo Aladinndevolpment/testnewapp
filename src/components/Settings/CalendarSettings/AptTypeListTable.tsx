@@ -13,7 +13,8 @@ interface RowData {
   [key: string]: any;
 }
 
-const AptTypListTable = () => {
+const AptTypListTable = ({ calendarAppointmentDataTable }: any) => {
+  // console.log("helo apttype", calendarAppointmentDataTable);
   const [formData, setFormData] = useState<any>({
     aptTyp: "",
   });
@@ -98,13 +99,14 @@ const AptTypListTable = () => {
     setFilterInput(value);
   };
 
-  const filteredData = data.filter((row: any) =>
+  // if (calendarAppointmentDataTable != undefined){
+  const filteredData = calendarAppointmentDataTable?.filter((row: any) =>
     row.aptTyp.toLowerCase().includes(filterInput.toLowerCase())
   );
+  // }
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
-
     setFormData((prevValues: any) => ({
       ...prevValues,
       [name]: value,
@@ -228,7 +230,7 @@ const AptTypListTable = () => {
               </button>
             </div>
           )}
-          positionPagination="top"
+          positionPagination="bottom"
           enableToolbarInternalActions={false}
           positionToolbarAlertBanner="bottom"
           muiSearchTextFieldProps={{
@@ -292,3 +294,9 @@ const AptTypListTable = () => {
 };
 
 export default AptTypListTable;
+
+// import React from "react";
+
+// export default function AptTypListTable() {
+//   return <div>AptTypeListTable</div>;
+// }

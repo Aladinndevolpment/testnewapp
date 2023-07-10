@@ -10,7 +10,7 @@ import {
   ChevronUpIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/solid";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { BsPencilSquare } from "react-icons/bs";
 import { RiDeleteBin2Line } from "react-icons/ri";
 import { createContext } from "react";
@@ -18,13 +18,18 @@ import ModalDerived from "@/components/Modal";
 import EditProfile from "@/components/Settings/TeamMember/EditProfile";
 import { AiOutlineClose } from "react-icons/ai";
 import { MenuItem, Select } from "@mui/material";
+import { GlobalContext } from "@/layouts/GlobalLayout";
 
 export const TeamMemberContext = createContext({
   editProfile: false,
   setEditProfile: (e: boolean) => {},
+  addProfile : false,
+  setAddProfile :  (e: boolean) => {},
 });
 
 export default function TeamMember() {
+  const ctx = useContext(GlobalContext);
+  ctx.setOpen(false);
   const [addProfile, setAddProfile] = useState(false);
   const [editProfile, setEditProfile] = useState(false);
   const [userData, setUserData] = useState<any>([
@@ -148,7 +153,7 @@ export default function TeamMember() {
 
   return (
     <>
-      <TeamMemberContext.Provider value={{ editProfile, setEditProfile }}>
+      <TeamMemberContext.Provider value={{ editProfile, setEditProfile , addProfile , setAddProfile}}>
         <ModalDerived
           visibility={editProfile}
           onClose={() => setEditProfile(false)}
@@ -160,120 +165,10 @@ export default function TeamMember() {
           visibility={addProfile}
           onClose={() => setAddProfile(false)}
         >
-          <div className=" bg-white rounded-lg  h-[85vh] pb-[5%]  overflow-y-hidden w-full scrollbar-hide ">
-            <form
-              className=" h-[100vh]  pt-5 pb-3 w-screen md:w-[100vh]"
-              onSubmit={handleSubmit}
-            >
-              <div className="h-[10vh] flex justify-between items-start border-b-[1px] pb-4 px-5">
-                <div>
-                  <p className="text-gray-800 font-medium md:text-lg ">
-                    Add Domain
-                  </p>
-                </div>
-                <button onClick={() => setAddProfile(false)}>
-                  <AiOutlineClose className="text-gray-800 h-6 w-6" />
-                </button>
-              </div>
-              <div className="overflow-hidden ">
-                <div className="h-[60vh]">
-                  {/*  Add Domain */}
-                  <div className="mx-5 py-2">
-                    <div className="flex items-center  justify-between ">
-                      <label
-                        className="block text-[#47494b] text-sm pt-1 font-semibold"
-                        htmlFor=""
-                      >
-                        Name
-                      </label>
-                    </div>
-                    <input
-                      type="text"
-                      id=""
-                      name="name"
-                      value={formValues.name}
-                      onChange={handleChange}
-                      placeholder="Enter Name"
-                      className=" w-full placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300   "
-                    />
-                    {errors.name && (
-                      <div className=" text-red-500 text-xs pt-1">
-                        {errors.name}
-                      </div>
-                    )}
-                  </div>
-                  <div className="mx-5 py-2">
-                    <div className="flex items-center  justify-between ">
-                      <label
-                        className="block text-[#47494b] text-sm pt-1 font-semibold"
-                        htmlFor=""
-                      >
-                        Email
-                      </label>
-                    </div>
-                    <input
-                      type="email"
-                      id=""
-                      name="email"
-                      value={formValues.email}
-                      onChange={handleChange}
-                      placeholder="Enter Email"
-                      className=" w-full placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300   "
-                    />
-                    {errors.email && (
-                      <div className=" text-red-500 text-xs pt-1">
-                        {errors.email}
-                      </div>
-                    )}
-                  </div>
-                  <div className="mx-5 py-2">
-                    <div className="flex items-center  justify-between ">
-                      <label
-                        className="block text-[#47494b] text-sm pt-1 font-semibold"
-                        htmlFor=""
-                      >
-                        Role
-                      </label>
-                    </div>
-                    <Select
-                      name="role"
-                      value={formValues.role}
-                      onChange={handleChange}
-                      className="px-2 rounded-lg mt-2 mb-2  text-sm font-medium bg-transparent focus:bg-transparent w-full placeholder-dark   text-space focus:outline-none focus:border-gray-300 text-black"
-                    >
-                      <MenuItem value="Admin">Admin</MenuItem>
-                      <MenuItem value="Basic">Basic</MenuItem>
-                      <MenuItem value="Read only">Read only</MenuItem>
-                    </Select>
-
-                    {errors.role && (
-                      <div className=" text-red-500 text-xs pt-1">
-                        {errors.role}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-              <div className="h-[10vh] flex justify-end items-center border-t-[1px] pt-3 pb-2 px-5">
-                <div className=" flex justify-end items-center gap-3">
-                  <button
-                    onClick={() => setAddProfile(false)}
-                    className="text-base text-gray-600 font-medium flex justify-start items-center border-[1px] border-gray-300 py-2 px-5 rounded-md  "
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onSubmit={handleSubmit}
-                    type="submit"
-                    className="text-base flex justify-start items-center bg-secondary py-2 px-5 text-white rounded-md  "
-                  >
-                    Save
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
+          <EditProfile />
         </ModalDerived>
+
+      
 
         <div className="flex flex-wrap justify-center ">
           <div className="w-full lg:w-[25%] border-r-[1px]   bg-white    ">

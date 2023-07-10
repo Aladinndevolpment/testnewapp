@@ -1780,14 +1780,21 @@ input::-webkit-inner-spin-button {
 }
 
 .MuiInputBase-input {
-  border: 1px solid #fff !important;
-  color: #575555;
+  border: 1px solid #cfcccc !important;
+  color: #000;
+  font-weight: 800;
+  border-radius: 8px;
   font-size: 13px;
   font-weight: 500;
+  background-color: #f3f9f9;
+
   font-family: "Strawford";
 }
+
 .MuiInputBase-input:focus {
-  border: 1px solid #fff !important;
+  border: 1px solid #cfcccc !important;
+  color: #000;
+  border-radius: 8px;
 }
 
 .mui-style-1d3z3hw-MuiOutlinedInput-notchedOutline {
@@ -1811,9 +1818,9 @@ input::-webkit-inner-spin-button {
   align-items: center !important;
 }
 
-.mui-style-16253fi-MuiTablePagination-root {
+/* .mui-style-16253fi-MuiTablePagination-root {
   width: 50% !important;
-}
+} */
 
 .muiTable .mui-style {
   width: 50% !important;
@@ -1928,4 +1935,24 @@ input::-webkit-inner-spin-button {
 .btn {
   background-color: #fff;
   border: none;
+}
+
+/* table pagination */
+
+.mui-style-e87xbu {
+  width: 100% !important;
+}
+
+/* .scroll-hide {
+} */
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scroll-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scroll-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

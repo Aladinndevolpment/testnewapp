@@ -8,7 +8,7 @@ import { BsClipboard2Check } from "react-icons/bs";
 import { TbColumns3, TbSettings } from "react-icons/tb";
 import { MenuItem, Select } from "@mui/material";
 import { CiCalendar } from "react-icons/ci";
-import AccountCard from "@/components/SuperAdmin/SubAccount/accountCard";
+import AccountCard from "../../../components/SuperAdmin/subAccount/accountCard";
 
 const data = [
   { name: "Hearing Aids Now Hiring Account" },

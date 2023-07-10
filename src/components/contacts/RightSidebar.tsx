@@ -1,20 +1,50 @@
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import AddIcon from "@mui/icons-material/Add";
 import { BsFillPencilFill, BsCashCoin } from "react-icons/bs";
-import { MdPayment } from "react-icons/md";
-import { useState, useMemo } from "react";
+import { MdOutlineAttachment, MdPayment } from "react-icons/md";
+import { useState, useMemo, useCallback } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useTable } from "react-table";
 import moment from "moment";
+import { AiOutlineFile, AiOutlinePlus } from "react-icons/ai";
+import { useDropzone } from "react-dropzone";
+import { GoPlus } from "react-icons/go";
+import { ImAttachment } from "react-icons/im";
+import { CgAttachment } from "react-icons/cg";
 
 export default function RightSidebar() {
   const [billingExpanded, setBillingExpanded] = useState(false);
   const [ordersExpanded, setOrdersExpanded] = useState(false);
   const [icdCodesExpanded, setIcdCodesExpanded] = useState(false);
   const [financialsExpanded, setFinancialsExpanded] = useState(false);
+  const [attachmentExpanded, setAttachmentExpanded] = useState(false);
+
+  const [formValues, setFormValues] = useState<any>({
+    image: null,
+  });
+
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      // Do something with the files
+      setFormValues({
+        ...formValues,
+
+        file: acceptedFiles[0],
+      });
+    },
+    [formValues, setFormValues]
+  );
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: { "file/*": [] },
+    multiple: false,
+  });
+
+  // console.log(formValues);
 
   const [insurances, setInsurances] = useState<any[]>([
     {
@@ -409,7 +439,7 @@ export default function RightSidebar() {
 
   return (
     <div
-      className={`h-full transition-all translate-x-0 fixed z-50 top-0 left-0 w-full h-full md:relative bg-white md:bg-transparentmd:block`}
+      className={` transition-all translate-x-0 fixed z-50 top-0 left-0 w-full h-full md:relative bg-white md:bg-transparentmd:block`}
     >
       <div className="h-full overflow-y-scroll pb-2 w-full  scrollbar-hide">
         <div className="my-2 font-main py-2 border-b border-gray-100 tracking-wide pb-3">
@@ -973,6 +1003,159 @@ export default function RightSidebar() {
                   </table> */}
                 </div>
               </div>
+
+              {/* <div className="mb-4 rounded-lg border border-gray-100 p-4 shadow-sm">
+                <div className="flex flex-col space-y-4 font-bold">
+                  Attachment
+                </div>
+
+                <div
+                  {...getRootProps()}
+                  className="flex flex-wrap justify-center py-3 mt-2 border-[1px] rounded-md px-4  cursor-pointer border-gray-300 text-gray-400"
+                >
+                  <AiOutlinePlus size={22} />
+                  <p className="font-bold text-gray-500 pl-1">
+                    Upload Document
+                  </p>
+                </div>
+
+                {formValues.file?.name.length > 0 && (
+                  <div className="flex flex-wrap items-center   py-1 mt-2 border-[1px] rounded-md px-4  cursor-pointer border-gray-300 text-gray-400">
+                    <AiOutlineFile
+                      className="font-bold text-gray-600"
+                      size={28}
+                    />
+                    <div className="md:pl-3">
+                      <p className="font-bold text-gray-500">Document</p>
+                      <p className="text-sm">
+                        {(formValues.file.size / 1024).toFixed(3) + "KB"}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div> */}
+
+              {/* <div className="mb-4 rounded-lg border border-gray-100 p-4 shadow-sm">
+                <div className="flex flex-col space-y-4">
+                  <span className="font-semibold align-middle">Insurance</span>
+                  <div className="flex flex-col">
+                    <div className="grid grid-cols-2 space-x-2 border-b border-gray-100 pb-2 mb-2">
+                      <span className="text-lg">Deductible</span>
+                      <span className="font-semibold text-xl text-right pr-16">
+                        {financials["insurance"]["deductible"]}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-2 space-x-2">
+                      <span className="text-lg">Co-Pay</span>
+                      <span className="font-semibold text-xl text-right pr-16">
+                        {financials["insurance"]["coPay"]}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div> */}
+            </AccordionDetails>
+          </Accordion>
+        </div>
+
+        {/* New dropdown */}
+
+        <div className="my-2 font-main py-2 border-b border-gray-100 tracking-wide pb-3">
+          <Accordion
+            sx={{
+              boxShadow: "none",
+              "&:before": {
+                backgroundColor: "transparent !important",
+              },
+            }}
+            expanded={attachmentExpanded}
+            onChange={(event, isExpanded) => {
+              setAttachmentExpanded(isExpanded);
+            }}
+          >
+            <AccordionSummary
+              expandIcon={
+                <span className="flex items-center ml-auto pt-2.5">
+                  <ChevronDownIcon className="w-3 h-3 text-gray-500" />
+                </span>
+              }
+            >
+              <div className="flex items-end justify-between w-full">
+                <div className="flex items-center space-x-2">
+                  <div className="font-semibold">Upload Document </div>
+                  <button className="hover:bg-gray-100 text-gray-500 font-bold border border-gray-200 rounded-full shadow-sm w-7 h-7">
+                    <MdOutlineAttachment className="ml-1 p-0.5" />
+                  </button>
+                </div>
+                <div className="flex items-center">
+                  <span className="font-light text-sm text-gray-400 pr-2">
+                    {attachmentExpanded ? "Close" : "View"}
+                  </span>
+                </div>
+              </div>
+            </AccordionSummary>
+            <AccordionDetails>
+              {/* <div className="mb-4 rounded-lg border border-gray-100 p-4 shadow-sm">
+                <div className="flex flex-col space-y-4">
+                  <span className="font-semibold align-middle">Payers</span>
+                  {financials["payers"].map((payer, index) => (
+                    <span
+                      className={`col-span-3 ${
+                        index + 1 === financials["payers"].length
+                          ? ""
+                          : "border-b border-gray-100 pb-4"
+                      }`}
+                    >
+                      <div className="flex space-x-4 text-sm">
+                        <img
+                          className="w-12 h-12 rounded-full p-1 object-contain border"
+                          src={payer.logo}
+                        />
+                        <div className="flex flex-col -mt-0.5">
+                          <span className="uppercase text-lg">
+                            {payer.name}
+                          </span>
+                          <span className="tracking-wider">
+                            Payer #{index + 1}
+                          </span>
+                        </div>
+                      </div>
+                    </span>
+                  ))}
+                </div>
+              </div> */}
+
+              <div className="mb-4 rounded-lg border border-gray-100 p-4 shadow-sm">
+                <div className="flex flex-col space-y-4 font-bold">
+                  Attachment
+                </div>
+
+                <div
+                  {...getRootProps()}
+                  className="flex flex-wrap justify-center py-3 mt-2 border-[1px] rounded-md px-4  cursor-pointer border-gray-300 text-gray-400"
+                >
+                  <AiOutlinePlus size={22} />
+                  <p className="font-bold text-gray-500 pl-1">
+                    Upload Document
+                  </p>
+                </div>
+
+                {formValues.file?.name.length > 0 && (
+                  <div className="flex flex-wrap items-center   py-1 mt-2 border-[1px] rounded-md px-4  cursor-pointer border-gray-300 text-gray-400">
+                    <AiOutlineFile
+                      className="font-bold text-gray-600"
+                      size={28}
+                    />
+                    <div className="md:pl-3">
+                      <p className="font-bold text-gray-500">Document</p>
+                      <p className="text-sm">
+                        {(formValues.file.size / 1024).toFixed(3) + "KB"}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+
               {/* <div className="mb-4 rounded-lg border border-gray-100 p-4 shadow-sm">
                 <div className="flex flex-col space-y-4">
                   <span className="font-semibold align-middle">Insurance</span>

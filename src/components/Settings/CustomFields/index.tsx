@@ -13,8 +13,8 @@ interface RowData {
 
 const FieldType = [
   { title: "All Field" },
-  { title: "Folder" },
-  { title: "Deleted Fields" },
+  // { title: "Folder" },
+  // { title: "Deleted Fields" },
 ];
 
 export default function CustomFieldsData() {
@@ -234,7 +234,7 @@ export default function CustomFieldsData() {
                 <button
                   onSubmit={handleSubmit}
                   type="submit"
-                  className="text-base flex justify-start items-center bg-secondary py-2 px-5 text-white rounded-md  "
+                  className="text-base flex justify-start items-center bg-[#1258FC] py-2 px-5 text-white rounded-md  "
                 >
                   Save
                 </button>
@@ -246,22 +246,22 @@ export default function CustomFieldsData() {
 
       <div className="w-full px-2 py-2">
         <div className="flex  items-center justify-between">
-          <p className="text-[#47494b] text-base font-semibold  m-1 pl-2">
+          {/* <p className="text-[#47494b] text-base font-semibold  m-1 pl-2">
             {select == 0 && "All Field"}
             {select == 1 && "Folder"}
             {select == 2 && "Deleted Fields"}
-          </p>
+          </p> */}
           <div className="flex  items-center justify-end">
-            <button
+            {/* <button
               onClick={() => setFieldModel(true)}
               className="text-xs flex justify-center gap-1 items-center border text-[#34373a]  m-1 py-2.5 px-5 2xl:px-6 font-semibold rounded-md "
             >
               <TbFolderPlus className="scale-110" />
               Add Folder
-            </button>
+            </button> */}
             <button
               onClick={() => setFieldModel(true)}
-              className="text-xs flex justify-center items-center    bg-[#25992a] hover:bg-secondary duration-300 m-1 py-2.5 px-5 2xl:px-6 text-white rounded-md "
+              className="text-xs flex justify-center items-center    bg-[#1258FC] hover:bg-secondary duration-300 m-1 py-2.5 px-5 2xl:px-6 text-white rounded-md "
             >
               + Add Field
             </button>
@@ -269,7 +269,7 @@ export default function CustomFieldsData() {
         </div>
 
         {/* <div className=" text-[#34373a] font-semibold bg-gray-100 text-xs border-t border-x rounded-t-md w-[16.5rem] flex "></div> */}
-        <div className="text-[#34373a] font-semibold bg-gray-100 text-xs border-t border-x rounded-t-md w-[16.5rem] flex ">
+        <div className="text-[#34373a] font-semibold bg-gray-100 text-xs border-t border-x rounded-t-md w-fit flex ">
           {FieldType.map((item: any, index: number) => (
             <button
               key={index}

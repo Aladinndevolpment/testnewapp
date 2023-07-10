@@ -115,23 +115,23 @@ export default function Reporting() {
       label: "Email",
       content: <ReportingEmailTable data={data} />,
     },
+    // {
+    //   id: "tab5",
+    //   label: "Social Media",
+    //   content: <ReportingSocialMediaTable data={data} />,
+    // },
     {
       id: "tab5",
-      label: "Social Media",
-      content: <ReportingSocialMediaTable data={data} />,
-    },
-    {
-      id: "tab6",
       label: "Site",
       content: <ReportingWebsiteTable data={data} />,
     },
     {
-      id: "tab7",
+      id: "tab6",
       label: "Call",
       content: <ReportingCallTable />,
     },
     {
-      id: "tab8",
+      id: "tab7",
       label: "Appointment",
       content: <ReportingAppointmentTable />,
     },
@@ -158,7 +158,7 @@ export default function Reporting() {
           </li>
         ))}
       </ul>
-      <div className="  bg-white">
+      <div className="pb-24 bg-white">
         {innerTabs.map((tab: any) => (
           <div
             key={tab.id}

@@ -8,13 +8,15 @@ import {
   getCommonSettingsProps,
 } from "../CommonSettings";
 import { BuilderImage } from "../Image";
+import LeftFlyOut from "@/components/LeftLayout";
+import { TopbarSection } from "../../TopBarSections";
 
 const elementName = "Breadcrumbs";
 
 const defaults = {
   backgroundColor: "#ffffff",
   borderColor: "#313641",
-  borderRadius: 10,
+  borderRadius: 0,
 };
 
 interface IBreadcrumbsProps extends ICommonSettingsProps {
@@ -67,6 +69,8 @@ export const Breadcrumbs = ({
   //   setShowResults(true);
   // };
 
+  const [openCreateModal, setOpenCreateModal] = useState(false);
+
   const {
     connectors: { connect, drag },
     hovered,
@@ -74,107 +78,128 @@ export const Breadcrumbs = ({
 
   // console.log(showResults);
   return (
-    <div ref={(ref: any) => connect(drag(ref))}>
-      <div
-        className={`w-full ${size} ${
-          hovered && "hover:outline-pink-500 hover:outline "
-        }  relative ${shadowColor} ${shadow} ${borderType} `}
-        style={{
-          backgroundColor,
-          marginTop: `${marginTop}px`,
-          marginBottom: `${marginBottom}px`,
-          marginLeft: `${marginLeft}px`,
-          marginRight: `${marginRight}px`,
-          paddingTop: `${paddingTop}px`,
-          paddingBottom: `${paddingBottom}px`,
-          paddingLeft: `${paddingLeft}px`,
-          paddingRight: `${paddingRight}px`,
-          borderWidth: `${borderWidth}px`,
-          borderRadius: `${borderRadius}px`,
-          borderColor,
+    <>
+      <LeftFlyOut
+        visibility={openCreateModal}
+        onClose={() => {
+          setOpenCreateModal(false);
         }}
       >
-        {hovered && (
-          <div className="absolute top-0 right-0 bg-purple-500 text-white text-[10px] px-1 z-10 capitalize">
-            {elementName}
-          </div>
-        )}
-        <Element id="BreadcrumbsText" is={BreadcrumbsText} canvas>
-          <nav className="flex m-2" aria-label="Breadcrumb">
-            <ol className="inline-flex items-center space-x-1 md:space-x-3 my-3">
-              <li className="inline-flex items-center">
-                <a
-                  href="#"
-                  className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
-                >
-                  <Text
-                    alignment="left"
-                    text="Home"
-                    fontSize={17}
-                    bold="font-semibold"
-                    color="#000000"
-                    backgroundColor="#ffffff"
-                  />
-                </a>
-              </li>
-              <li>
-                <div className="flex items-center">
-                  <Text
-                    alignment="left"
-                    text=">"
-                    fontSize={17}
-                    bold="font-semibold"
-                    color="#cfc8c8"
-                    backgroundColor="#ffffff"
-                  />
+        <TopbarSection />
+      </LeftFlyOut>
+      <div ref={(ref: any) => connect(drag(ref))}>
+        <div
+          className={`w-full ${size} ${
+            hovered && "hover:outline-blue-500 hover:outline "
+          }  relative ${shadowColor} ${shadow} ${borderType} `}
+          style={{
+            backgroundColor,
+            marginTop: `${marginTop}px`,
+            marginBottom: `${marginBottom}px`,
+            marginLeft: `${marginLeft}px`,
+            marginRight: `${marginRight}px`,
+            paddingTop: `${paddingTop}px`,
+            paddingBottom: `${paddingBottom}px`,
+            paddingLeft: `${paddingLeft}px`,
+            paddingRight: `${paddingRight}px`,
+            borderWidth: `${borderWidth}px`,
+            borderRadius: `${borderRadius}px`,
+            borderColor,
+          }}
+        >
+          {hovered && (
+            <>
+              <div className="absolute top-0 right-0 bg-blue-500 text-white text-[10px] px-1 z-10 capitalize">
+                {elementName}
+              </div>
+
+              <div
+                className="absolute bottom-[-20%] left-[48%] z-20 bg-orange-500 text-white text-xs px-1"
+                onClick={() => {
+                  setOpenCreateModal(true);
+                }}
+              >
+                +
+              </div>
+            </>
+          )}
+          <Element id="BreadcrumbsText" is={BreadcrumbsText} canvas>
+            <nav className="flex m-2" aria-label="Breadcrumb">
+              <ol className="inline-flex items-center space-x-1 md:space-x-3 my-3">
+                <li className="inline-flex items-center">
                   <a
                     href="#"
-                    className="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"
+                    className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
                   >
                     <Text
                       alignment="left"
-                      text="Projects"
+                      text="Home"
                       fontSize={17}
                       bold="font-semibold"
                       color="#000000"
                       backgroundColor="#ffffff"
                     />
                   </a>
-                </div>
-              </li>
-              <li aria-current="page">
-                <div className="flex items-center">
-                  <Text
-                    alignment="left"
-                    text=">"
-                    fontSize={17}
-                    bold="font-semibold"
-                    color="#cfc8c8"
-                    backgroundColor="#ffffff"
-                  />
-                  <a
-                    href="#"
-                    className="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"
-                  >
+                </li>
+                <li>
+                  <div className="flex items-center">
                     <Text
                       alignment="left"
-                      text="Flowbite"
+                      text=">"
                       fontSize={17}
                       bold="font-semibold"
-                      color="#000000"
+                      color="#cfc8c8"
                       backgroundColor="#ffffff"
                     />
-                  </a>
-                  {/* <span className="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">
+                    <a
+                      href="#"
+                      className="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"
+                    >
+                      <Text
+                        alignment="left"
+                        text="Projects"
+                        fontSize={17}
+                        bold="font-semibold"
+                        color="#000000"
+                        backgroundColor="#ffffff"
+                      />
+                    </a>
+                  </div>
+                </li>
+                <li aria-current="page">
+                  <div className="flex items-center">
+                    <Text
+                      alignment="left"
+                      text=">"
+                      fontSize={17}
+                      bold="font-semibold"
+                      color="#cfc8c8"
+                      backgroundColor="#ffffff"
+                    />
+                    <a
+                      href="#"
+                      className="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"
+                    >
+                      <Text
+                        alignment="left"
+                        text="Flowbite"
+                        fontSize={17}
+                        bold="font-semibold"
+                        color="#000000"
+                        backgroundColor="#ffffff"
+                      />
+                    </a>
+                    {/* <span className="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">
                     Flowbite
                   </span> */}
-                </div>
-              </li>
-            </ol>
-          </nav>
-        </Element>
+                  </div>
+                </li>
+              </ol>
+            </nav>
+          </Element>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

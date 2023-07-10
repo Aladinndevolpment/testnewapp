@@ -98,36 +98,39 @@ export const ElementSectionToolbox = () => {
           className="bg-[#eeeef1] rounded-lg p-[1px] border-none"
         >
           <Tab
-            label="Content"
+            label="Sections"
             {...a11yProps(0)}
-            className={`w-1/3 bg-transparent ${
-              value === 0 ? "bg-white text-black " : ""
-            }  px-4 py-2 text-center  text-black font-medium btn border-none capitalize hover:bg-white `}
+            style={{
+              backgroundColor: value === 0 ? "white" : "transparent",
+            }}
+            className={`w-1/3 bg-transparent   px-4 py-2 text-center  text-black font-medium btn border-none capitalize hover:bg-white `}
           />
           <Tab
             label="Row"
             {...a11yProps(1)}
-            className={`w-1/3 bg-transparent  px-4 py-2 text-center  ${
-              value === 1 ? "bg-white  " : ""
-            } text-black font-medium btn border-none capitalize hover:bg-white`}
+            style={{
+              backgroundColor: value === 1 ? "white" : "transparent",
+            }}
+            className={`w-1/3 bg-transparent  px-4 py-2 text-center   text-black font-medium btn border-none capitalize hover:bg-white`}
           />
           <Tab
-            label="Sections"
+            label="Content"
             {...a11yProps(2)}
-            className={`w-1/3 bg-transparent  px-4 py-2 text-center  ${
-              value === 2 ? "bg-white " : ""
-            } text-black font-medium btn border-none capitalize hover:bg-white`}
+            style={{
+              backgroundColor: value === 2 ? "white" : "transparent",
+            }}
+            className={`w-1/3 bg-transparent  px-4 py-2 text-center  text-black font-medium btn border-none capitalize hover:bg-white`}
           />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <ElementContent />
+        <ElementSection />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         <ElementRow />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        <ElementSection />
+        <ElementContent />
       </CustomTabPanel>
     </Box>
   );

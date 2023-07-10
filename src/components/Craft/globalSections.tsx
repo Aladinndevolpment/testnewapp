@@ -59,10 +59,7 @@ const tbStyles = {
 };
 
 const baseTools = [
-  {
-    index: 1,
-    question: "Elements",
-    answer: [
+    
       {
         name: "Header layout",
         tool: (
@@ -253,65 +250,35 @@ const baseTools = [
           />
         ),
       },
-    ],
-  },
 ];
 const GlobalSections = () => {
-  const [searchString, setSearchString] = useState("");
-  const [tools, setTools] = useState(baseTools);
+  const [filterValue, setFilterValue] = useState("");
 
-  useEffect(() => {
-    if (searchString === "") {
-      setTools(baseTools);
-      return;
-    }
-
-    const filteredTools = baseTools.map((tool) => {
-      const filteredAnswers = tool.answer.filter((answer) =>
-        answer.name.toLowerCase().includes(searchString.toLowerCase())
-      );
-
-      return {
-        ...tool,
-        answer: filteredAnswers,
-      };
-    });
-
-    setTools(filteredTools);
-  }, [searchString]);
-
-  const [clicked, setClicked] = useState(0);
-  const handleToggle = (index: any) => {
-    if (clicked === index) {
-      return setClicked(0);
-    }
-    setClicked(index);
+  const handleFilter = (event: any) => {
+    setFilterValue(event.target.value);
   };
+
+  const filteredData = baseTools.filter((item: any) => {
+    return item.name.toLowerCase().includes(filterValue.toLowerCase());
+  });
+
   return (
     <div className="overflow-y-scroll scrollbar-hide flex justify-around  flex-wrap  w-full">
       <div className="w-full">
         <div className="mb-2 px-4">
-          <TextInput
+        <TextInput
             lefticon={<MagnifyingGlassIcon className="h-6 w-6 text-gray-400" />}
-            placeholder="Search layout"
-            value={searchString}
-            onChange={({ target: { value } }) => setSearchString(value)}
+            placeholder="Search ..."
+            value={filterValue}
+            onChange={handleFilter}
           />
         </div>
 
         <div className="h-[80vh] overflow-y-scroll scrollbar-hide ">
-          {tools.map((item, index) => (
-            <AccordionItem
-              faq={item}
-              key={index}
-              onToggle={() => handleToggle(index)}
-              active={clicked === index}
-              titleBoxStyle={`py-5 rounded-sm border-t-[1px] ${
-                clicked === index ? null : "border-b-[1px]"
-              } border-gray-200 px-4 bg-white`}
-              titleStyle="text-gray-600 text-lg font-medium"
-              contentStyle="w-full mb-3 hover:border-2 border-[#cadaff] hover:rounded-lg"
-            />
+          {filteredData.map((item, index) => (
+            <div key={index} className="my-3 mx-4 rounded-lg hover:border-2">
+              {item.tool}
+            </div>
           ))}
         </div>
       </div>

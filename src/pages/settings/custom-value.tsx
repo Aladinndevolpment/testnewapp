@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import SettingsSidebar from "@/components/SettingsSidebar/TeamsSidebar";
 import CustomValueData from "@/components/Settings/CustomValues";
+import { GlobalContext } from "@/layouts/GlobalLayout";
 export default function CustomValue() {
+  const ctx = useContext(GlobalContext);
+  ctx.setOpen(false);
   return (
     <div className="flex flex-wrap items-center">
       <div className="w-full lg:w-[25%] border-r-[1px]   bg-white    ">

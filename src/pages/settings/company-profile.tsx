@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { MdOutlineClose } from "react-icons/md";
 import SettingsSidebar from "@/components/SettingsSidebar/TeamsSidebar";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
@@ -9,8 +9,11 @@ import AuthorizeRepresentative from "@/components/Settings/CompanyProfile/Author
 import BusinessInformation from "@/components/Settings/CompanyProfile/BusinessInformation";
 import General from "@/components/Settings/CompanyProfile/General";
 import Voicemail from "@/components/Settings/CompanyProfile/Voicemail";
+import { GlobalContext } from "@/layouts/GlobalLayout";
 
 export default function CompanyProfile() {
+  const ctx = useContext(GlobalContext);
+  ctx.setOpen(false);
   return (
     <div className="flex flex-wrap items-center">
       <div className="w-full lg:w-[25%] border-r-[1px]   bg-white    ">

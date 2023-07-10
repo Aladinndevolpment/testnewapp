@@ -24,7 +24,15 @@ export const CalendarSettingsContext = createContext({
   openModal4: false,
   setOpenModal4: (string: string) => {},
 });
-export default function CalendarListData() {
+
+export default function CalendarListData({
+  calendarData,
+  calendarCount,
+  calendarRoomData,
+  CaledarProviderData,
+  CaledarAppointmentData,
+}: any) {
+  // console.log("Datassss", CaledarProviderData);
   const [openAddTagModel, setAddTagModel] = useState<any>(false);
   const [select, setSelect] = useState<any>(0);
   const [openModal1, setOpenModal1] = useState(false);
@@ -46,13 +54,12 @@ export default function CalendarListData() {
       <CalendarSettingsContext.Provider value={value}>
         <div className="w-full px-2 py-2">
           <div className="flex  items-center justify-between">
-            <p className="text-[#47494b] text-base font-semibold  ">
+            <p className="text-[#47494B] text-base font-semibold  ">
               {select == 0 && "Calendars"}
               {select == 1 && "Rooms"}
               {select == 2 && "Providers"}
               {select == 3 && "Apt Type"}
             </p>
-            ​
             <button
               onClick={() => {
                 if (select == 0) {
@@ -77,8 +84,7 @@ export default function CalendarListData() {
             </button>
           </div>
         </div>
-        ​
-        <div className="text-[#34373a] font-semibold bg-gray-100 text-xs border-t border-x rounded-t-md  flex ">
+        <div className="text-[#34373A] font-semibold bg-gray-100 text-xs border-t border-x rounded-t-md  flex ">
           {FieldType.map((item: any, index: number) => (
             <button
               key={index}
@@ -91,12 +97,28 @@ export default function CalendarListData() {
             </button>
           ))}
         </div>
-        ​
         <div className="  pb-10 w-full">
-          {select == 0 && <CalendarListTable />}
-          {select == 1 && <RoomsListTable />}
-          {select == 2 && <ProviderListTable />}
-          {select == 3 && <AptTypeListTable />}
+          {select == 0 && (
+            <CalendarListTable
+              calendarCount={calendarCount}
+              calendarData={calendarData}
+            />
+          )}
+          {select == 1 && (
+            <RoomsListTable calendarRoomDataTable={calendarRoomData.rooms} />
+          )}
+          {select == 2 && (
+            <ProviderListTable
+              calendarProviderDataTable={CaledarProviderData}
+            />
+          )}
+          {select == 3 && (
+            // <AptTypeListTable
+            //   calendarAppointmentDataTable={CaledarAppointmentData}
+            // />
+
+            <AptTypeListTable />
+          )}
         </div>
       </CalendarSettingsContext.Provider>
     </>

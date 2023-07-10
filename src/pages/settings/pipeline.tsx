@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import SettingsSidebar from "@/components/SettingsSidebar/TeamsSidebar";
 import PipelineTable from "@/components/Settings/PipeLineSettings/Table";
+import { GlobalContext } from "@/layouts/GlobalLayout";
 
 export default function CompanyProfile() {
+  const ctx = useContext(GlobalContext);
+  ctx.setOpen(false);
   return (
     <div className="flex flex-wrap items-center">
       <div className="w-full lg:w-[25%] border-r-[1px]   bg-white    ">

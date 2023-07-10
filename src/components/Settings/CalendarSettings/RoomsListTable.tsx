@@ -8,12 +8,52 @@ import Link from "next/link";
 import ModalDerived from "@/components/Modal";
 import { CalendarSettingsContext } from "./CalendarListData";
 import { AiOutlineClose } from "react-icons/ai";
+import { useRouter } from "next/router";
+import { baseUrl, locationID, token } from "@/config/APIConstants";
+import axios from "axios";
 
 interface RowData {
   [key: string]: any;
 }
 
-const RoomsListTable = () => {
+const RoomsListTable = ({ calendarRoomDataTable }: any) => {
+  console.log("room", calendarRoomDataTable.id);
+  const router = useRouter();
+
+  const [editRoomModel, setEditRoomModel] = useState(false);
+  const [singleRoom, setSingleRoom] = useState<any>({});
+
+  const handleEditRoom = async (id: any) => {
+    console.log("hello", id);
+    try {
+      const response = await axios.get(`${baseUrl}rooms/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("rttt", response);
+      router.reload();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const deleteContact = async (id: any) => {
+    if (confirm("Are you sure your want to delete")) {
+      try {
+        const response = await axios.delete(`${baseUrl}rooms/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        // console.log("rttt", response);
+
+        router.reload();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
   const [formData, setFormData] = useState<any>({
     room: "",
   });
@@ -54,7 +94,7 @@ const RoomsListTable = () => {
         size: 350,
         Cell: ({ row }) => (
           <p className="  text-gray-700 font-medium text-[15px]">
-            {row.original.room}
+            {row.original.name}
           </p>
         ),
         enableColumnFilter: true,
@@ -98,8 +138,8 @@ const RoomsListTable = () => {
     setFilterInput(value);
   };
 
-  const filteredData = data.filter((row: any) =>
-    row.room.toLowerCase().includes(filterInput.toLowerCase())
+  const filteredData = calendarRoomDataTable.filter((row: any) =>
+    row.name.toLowerCase().includes(filterInput.toLowerCase())
   );
 
   const handleChange = (e: any) => {
@@ -111,17 +151,78 @@ const RoomsListTable = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log("ok");
-    setData((prevValues: any) => [
-      ...data,
-      {
-        id: data?.length + 1,
-        room: formData?.room,
-        createdOn: new Date(),
-        upDatedOn: new Date(),
-      },
-    ]);
+  const editHandleSubmit = async () => {
+    console.log("hssa", formData);
+    // setData((prevValues: any) => [
+    //   ...data,
+    //   {
+    //     id: data?.length + 1,
+    //     room: formData?.room,
+    //     createdOn: new Date(),
+    //     upDatedOn: new Date(),
+    //   },
+    // ]);
+
+    const calendarRoomTab = await axios
+      .put(
+        `${baseUrl}rooms`,
+        {
+          locationID: locationID,
+          name: formData.room,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(() => {
+        router.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // console.log("ygygyg", calendarRoomTab);
+    setFormData({
+      room: "",
+    });
+    roomAddForm?.setOpenModal2(false);
+  };
+
+  const handleSubmit = async () => {
+    // console.log("hssa", formData);
+    // setData((prevValues: any) => [
+    //   ...data,
+    //   {
+    //     id: data?.length + 1,
+    //     room: formData?.room,
+    //     createdOn: new Date(),
+    //     upDatedOn: new Date(),
+    //   },
+    // ]);
+
+    const calendarRoomTab = await axios
+      .post(
+        `${baseUrl}rooms`,
+        {
+          locationID: locationID,
+          name: formData.room,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(() => {
+        router.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // console.log("ygygyg", calendarRoomTab);
     setFormData({
       room: "",
     });
@@ -130,6 +231,70 @@ const RoomsListTable = () => {
 
   return (
     <>
+      {/* edit room table */}
+      <ModalDerived
+        visibility={editRoomModel}
+        onClose={() => setEditRoomModel(true)}
+      >
+        <div className=" bg-white rounded-lg  lg:h-[85vh] pb-[5%]  overflow-y-hidden w-[100%]  md:w-[85vh] scrollbar-hide ">
+          <div className=" h-[100vh]  pt-5 pb-3">
+            <div className="h-[10vh] flex justify-between items-start border-b-[1px] pb-4 px-5">
+              <div>
+                <p className="text-gray-800 font-medium md:text-lg ">Rooms</p>
+                <p className="text-gray-500 font-normal md:text-sm pt-1">
+                  Edit Room
+                </p>
+              </div>
+              <button onClick={() => setEditRoomModel(false)}>
+                <AiOutlineClose className="text-gray-800 h-6 w-6" />
+              </button>
+            </div>
+            <div className="overflow-hidden ">
+              <div className="w-full   bg-white  ">
+                <div className="mx-5 py-3 h-[60vh]  2xl:h-[39vh]">
+                  <div className="flex items-center  justify-between ">
+                    <label
+                      className="block text-[#47494b] text-sm pt-1 font-semibold"
+                      htmlFor=""
+                    >
+                      Edit Room
+                    </label>
+                  </div>
+                  <input
+                    type="text"
+                    id=""
+                    name="room"
+                    value={singleRoom?.name}
+                    onChange={handleChange}
+                    placeholder="Enter Room Name"
+                    className=" w-full placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300   "
+                  />
+                </div>
+                <div className="h-[10vh] flex justify-end items-center border-t-[1px] pt-3 pb-2 px-5">
+                  <div className=" flex justify-end items-center gap-3">
+                    <button
+                      onClick={() => {
+                        setEditRoomModel(true);
+                      }}
+                      className="text-base text-gray-600 font-medium flex justify-start items-center border-[1px] border-gray-300 py-2 px-5 rounded-md  "
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={() => editHandleSubmit()}
+                      className="text-base flex justify-start items-center bg-secondary py-2 px-5 text-white rounded-md  "
+                    >
+                      Save
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ModalDerived>
+      {/* edit room table */}
+
       <ModalDerived
         visibility={roomAddForm?.openModal2}
         onClose={() => roomAddForm?.setOpenModal2(false)}
@@ -148,8 +313,8 @@ const RoomsListTable = () => {
               </button>
             </div>
             <div className="overflow-hidden ">
-              <div className="w-full   bg-white  ">
-                <div className="mx-5 py-3 h-[60vh]">
+              <div className="w-full bg-white">
+                <div className="mx-5 py-3 h-[60vh]  2xl:h-[39vh]">
                   <div className="flex items-center  justify-between ">
                     <label
                       className="block text-[#47494b] text-sm pt-1 font-semibold"
@@ -189,6 +354,8 @@ const RoomsListTable = () => {
           </div>
         </div>
       </ModalDerived>
+
+      {/* {editRoomModel && <RoomsListTable />} */}
       <div className=" border rounded-lg mb-4  muiTable">
         <MaterialReactTable
           columns={columns}
@@ -210,23 +377,35 @@ const RoomsListTable = () => {
           }}
           renderRowActions={({ row }) => (
             <div className="flex justify-between items-center gap-5 pr-10">
-              <Link href="/settings/calendar/edit-calendar">
-                <div>
-                  <CiEdit className="h-4 w-4 text-gray-600" />
-                </div>
-              </Link>
+              {/* <Link href="/settings/calendar/edit-calendar"> */}
+              <div
+                // onClick={() => {
+                //   router.push("/settings/calendar/" + row.original.id);
+                // }}
+                onClick={() => {
+                  handleEditRoom(row.original.id);
+                  setEditRoomModel(true);
+                }}
+              >
+                <CiEdit className="h-4 w-4 text-gray-600 cursor-pointer" />
+              </div>
+              {/* </Link> */}
 
               <button
+                // onClick={() => {
+                //   data.splice(row.index, 1); //assuming simple data table
+                //   // setData([...data]);
+                // }}
+
                 onClick={() => {
-                  data.splice(row.index, 1); //assuming simple data table
-                  // setData([...data]);
+                  deleteContact(row.original.id);
                 }}
               >
                 <RiDeleteBin5Line className="h-4 w-4 text-gray-600" />
               </button>
             </div>
           )}
-          positionPagination="top"
+          positionPagination="bottom"
           enableToolbarInternalActions={false}
           positionToolbarAlertBanner="bottom"
           muiSearchTextFieldProps={{

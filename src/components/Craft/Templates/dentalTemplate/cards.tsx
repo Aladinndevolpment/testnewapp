@@ -19,13 +19,15 @@ import { createElement, useState } from "react";
 import item from "@/components/Leads/dnd/styles/item";
 import { Card } from "@mui/material";
 import data from "@/layouts/GlobalLayout/components/data";
+import LeftFlyOut from "@/components/LeftLayout";
+import { TopbarSection } from "../../TopBarSections";
 
 const elementName = "CardBanner";
 
 const defaults = {
   backgroundColor: "#ffffff",
   borderColor: "#313641",
-  borderRadius: 10,
+  borderRadius: 0,
 };
 
 interface ICardBannersProps extends ICommonSettingsProps {
@@ -89,6 +91,8 @@ export const CardBanner = ({
   shadow,
   shadowColor,
 }: ICardBannersProps) => {
+  const [openCreateModal, setOpenCreateModal] = useState(false);
+
   const [cardSlide, setCardSlide] = useState<any>([]);
   const {
     connectors: { connect, drag },
@@ -147,73 +151,96 @@ export const CardBanner = ({
   ];
 
   return (
-    <div className="bg-white p-2 w-full" ref={(ref: any) => connect(drag(ref))}>
-      {/* <div className="card card-compact w-full bg-base-100 shadow-xl">
+    <>
+      <LeftFlyOut
+        visibility={openCreateModal}
+        onClose={() => {
+          setOpenCreateModal(false);
+        }}
+      >
+        <TopbarSection />
+      </LeftFlyOut>
+      <div
+        className="bg-white p-2 w-full"
+        ref={(ref: any) => connect(drag(ref))}
+      >
+        {/* <div className="card card-compact w-full bg-base-100 shadow-xl">
         <div className="card-body">
           <Element id="heroImage" is={CardImage} canvas>
             <BuilderImage />
           </Element>
         </div>
       </div> */}
-      <div
-        className={`w-full h-auto ${size} mr-2  ${
-          hovered && "hover:outline-pink-500 hover:outline "
-        }  relative ${shadowColor} ${shadow} ${borderType} `}
-        style={{
-          backgroundColor,
-          marginTop: `${marginTop}px`,
-          marginBottom: `${marginBottom}px`,
-          marginLeft: `${marginLeft}px`,
-          marginRight: `${marginRight}px`,
-          paddingTop: `${paddingTop}px`,
-          paddingBottom: `${paddingBottom}px`,
-          paddingLeft: `${paddingLeft}px`,
-          paddingRight: `${paddingRight}px`,
-          borderWidth: `${borderWidth}px`,
-          borderRadius: `${borderRadius}px`,
-          borderColor,
-        }}
-      >
-        {hovered && (
-          <div className="absolute top-0 right-0 bg-purple-500 text-white text-[10px] px-1 z-10 capitalize">
-            {elementName}
-          </div>
-        )}
-        <Element id="CardBannersText" is={CardBannersText} canvas>
-          <div className={`carousel  shadow-lg bg-transparent w-full h-auto`}>
-            {cardItem.map((item: any) => (
+        <div
+          className={`w-full h-auto ${size} mr-2  ${
+            hovered && "hover:outline-blue-500 hover:outline "
+          }  relative ${shadowColor} ${shadow} ${borderType} `}
+          style={{
+            backgroundColor,
+            marginTop: `${marginTop}px`,
+            marginBottom: `${marginBottom}px`,
+            marginLeft: `${marginLeft}px`,
+            marginRight: `${marginRight}px`,
+            paddingTop: `${paddingTop}px`,
+            paddingBottom: `${paddingBottom}px`,
+            paddingLeft: `${paddingLeft}px`,
+            paddingRight: `${paddingRight}px`,
+            borderWidth: `${borderWidth}px`,
+            borderRadius: `${borderRadius}px`,
+            borderColor,
+          }}
+        >
+          {hovered && (
+            <>
+              <div className="absolute top-0 right-0 bg-blue-500 text-white text-[10px] px-1 z-10 capitalize">
+                {elementName}
+              </div>
               <div
-                key={item.id}
-                className="carousel-item w-96 relative mx-2 p-0 card h-auto glass"
+                className="absolute -bottom-2 left-[50%] bg-orange-500 text-white text-[10px] px-1 z-10 capitalize"
+                onClick={() => {
+                  setOpenCreateModal(true);
+                }}
               >
-                <div className="h-auto">{item.image}</div>
-                <div className="card-body">
-                  <div className="card-title">
+                +
+              </div>
+            </>
+          )}
+          <Element id="CardBannersText" is={CardBannersText} canvas>
+            <div className={`carousel  shadow-lg bg-transparent w-full h-auto`}>
+              {cardItem.map((item: any) => (
+                <div
+                  key={item.id}
+                  className="carousel-item w-96 relative mx-2 p-0 card h-auto glass"
+                >
+                  <div className="h-auto">{item.image}</div>
+                  <div className="card-body">
+                    <div className="card-title">
+                      <Text
+                        alignment="left"
+                        text={item.title}
+                        fontSize={20}
+                        bold="font-bold"
+                        color="#000000"
+                      />
+                    </div>
                     <Text
                       alignment="left"
-                      text={item.title}
-                      fontSize={20}
-                      bold="font-bold"
+                      text={item.description}
+                      fontSize={15}
+                      bold="font-medium"
                       color="#000000"
                     />
-                  </div>
-                  <Text
-                    alignment="left"
-                    text={item.description}
-                    fontSize={15}
-                    bold="font-medium"
-                    color="#000000"
-                  />
-                  <div className="card-actions justify-start mt-2 p-0">
-                    <Button text="Learn More!" />
+                    <div className="card-actions justify-start mt-2 p-0">
+                      <Button text="Learn More!" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </Element>
+              ))}
+            </div>
+          </Element>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

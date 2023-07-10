@@ -20,6 +20,7 @@ export default memo(function GlobalLayout({ children }: IAdminLayoutProps) {
   const [open, setOpen] = useState(true);
   const value: any = { title, setTitle, open, setOpen };
   const router = useRouter();
+
   return (
     <>
       <GlobalContext.Provider value={value}>
@@ -29,15 +30,28 @@ export default memo(function GlobalLayout({ children }: IAdminLayoutProps) {
           }     bg-mainBg bg-cover flex flex-wrap justify-center  `}
         >
           <div
-            className={`  ${
+            className={` ${console.log(router.asPath)} ${
               router.asPath != "/workflow/new-workflow" && "border-b-[1px]"
+            } ${
+              router.pathname.startsWith("/builder/form/craft") ||
+              router.pathname.startsWith("/builder/survey/craft") ||
+              router.pathname.startsWith("/builder/website/craft") ||
+              router.pathname.startsWith("/builder/dashboard/playground")
+                ? `hidden`
+                : "w-full"
             }  w-full  bg-[#1F2228] py-1.5 border-gray-200  lg:sticky top-0 z-50`}
           >
             <TopNavigation />
           </div>
+
           <div
-            className={`   ${
-              router.pathname.startsWith("/settings")
+            className={` ${
+              router.pathname.startsWith("/builder/form/craft") ||
+              router.pathname.startsWith("/builder/survey/craft") ||
+              router.pathname.startsWith("/builder/website/craft") ||
+              router.pathname.startsWith("/builder/dashboard/playground")
+                ? `hidden`
+                : router.pathname.startsWith("/settings")
                 ? `${
                     open
                       ? "w-full block lg:w-[5%]  2xl:w-[4%]"
@@ -52,7 +66,7 @@ export default memo(function GlobalLayout({ children }: IAdminLayoutProps) {
           >
             <div
               onClick={() => setOpen(!open)}
-              className={` ${
+              className={`  ${
                 open
                   ? "left-48  2xl:left-[14.5%]  bottom-5 2xl:bottom-6 "
                   : "left-[4%]  2xl:left-12  bottom-[2%] 2xl:bottom-[3%] "
@@ -69,11 +83,17 @@ export default memo(function GlobalLayout({ children }: IAdminLayoutProps) {
             ​
             <AdminSidebar />
           </div>
+
           <div
-            className={`   ${
-              router.asPath == "/calendar" ? "h-[100vh]" : null
-            } ${
-              router.pathname.startsWith("/settings")
+            className={`   ${router.asPath == "/calendar" ? "h-[100vh]" : null} 
+            
+            ${
+              router.asPath == "/builder/website/craft" ||
+              router.asPath == "/builder/form/craft" ||
+              router.asPath == "/builder/survey/craft" ||
+              router.pathname.startsWith("/builder/dashboard/playground")
+                ? "w-full h-[100vh]"
+                : router.pathname.startsWith("/settings")
                 ? `${value.open ? "lg:w-[95%]  2xl:w-[96%]" : " w-full"}`
                 : `${
                     value.open
@@ -84,7 +104,12 @@ export default memo(function GlobalLayout({ children }: IAdminLayoutProps) {
           >
             <main
               className={` ${
-                router.asPath == "/calendar"
+                router.asPath == "/builder/website/craft" ||
+                router.asPath == "/builder/form/craft" ||
+                router.asPath == "/builder/survey/craft" ||
+                router.pathname.startsWith("/builder/dashboard/playground")
+                  ? "w-full h-[100vh]"
+                  : router.pathname.startsWith("/settings")
                   ? "h-[100vh] lg:h-[90vh] 2xl:h-[100vh]"
                   : "h-[100vh] lg:h-[90vh] 2xl:h-screen"
               }  relative   overflow-y-scroll bg-bgGray scrollbar-hide w-full overflow-hidden`}

@@ -9,6 +9,7 @@ import UserPermissions from "./UserPermissions";
 
 export default function EditProfile() {
   const { editProfile, setEditProfile } = useContext(TeamMemberContext);
+  const { addProfile, setAddProfile } = useContext(TeamMemberContext);
   const innerTabs = [
     {
       id: "tab1",
@@ -47,7 +48,7 @@ export default function EditProfile() {
             <p className="text-gray-800 font-medium md:text-lg ">
               Team Management
             </p>
-            <button onClick={() => setEditProfile(false)}>
+            <button onClick={() => {setEditProfile(false) ; setAddProfile(false)} }>
               <AiOutlineClose className="text-gray-800 h-6 w-6" />
             </button>
           </div>

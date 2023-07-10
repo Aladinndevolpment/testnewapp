@@ -254,7 +254,7 @@ export default function ReportingFacebookTable({ data }: any) {
               </button>
             </div>
           )}
-          positionPagination="top"
+          positionPagination="bottom"
           enableToolbarInternalActions={false}
           positionToolbarAlertBanner="bottom"
           muiSearchTextFieldProps={{

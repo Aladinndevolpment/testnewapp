@@ -2,7 +2,6 @@ import { Button } from "../widgets/Button";
 import { Text } from "../widgets/Text/Text";
 import { Card } from "../widgets/Card";
 import { BuilderImage } from "../widgets/Image";
-import { Grid } from "../widgets/Grid";
 import { Link } from "../widgets/Link";
 
 import { useEffect, useState } from "react";
@@ -54,11 +53,21 @@ import {
   BsTextParagraph,
   BsTextareaResize,
 } from "react-icons/bs";
-import { MdRadioButtonChecked } from "react-icons/md";
+import {
+  MdRadioButtonChecked,
+  MdWidthFull,
+  MdWidthNormal,
+  MdWidthWide,
+} from "react-icons/md";
 import { TbCheckbox, TbSelect } from "react-icons/tb";
 import { AiOutlineLink, AiOutlineVideoCameraAdd } from "react-icons/ai";
 import { IoDocumentAttachOutline } from "react-icons/io5";
 import { MainForm } from "../widgets/form/MainForm";
+import { Grid } from "../widgets/Grid";
+import FullWidth from "../SectionsLayouts/FullWidth";
+import Wide from "../SectionsLayouts/Wide";
+import Medium from "../SectionsLayouts/Medium";
+import Small from "../SectionsLayouts/Small";
 
 const tbStyles = {
   backgroundColor: "#fff",
@@ -69,6 +78,56 @@ const tbStyles = {
 const baseTools = [
   {
     index: 1,
+    question: "Section",
+    answer: [
+      {
+        name: "Full Width",
+        tool: (
+          <ElementToolsLayout
+            toolName="Full Width"
+            tool={<FullWidth />}
+            icon={<MdWidthFull className="h-5 w-10 text-gray-500" />}
+            image={require("@/../public/craft/hero.png")}
+          />
+        ),
+      },
+      {
+        name: "Wide",
+        tool: (
+          <ElementToolsLayout
+            toolName="Wide"
+            tool={<Wide />}
+            icon={<MdWidthWide className="h-5 w-10 text-gray-500" />}
+            image={require("@/../public/craft/hero.png")}
+          />
+        ),
+      },
+      {
+        name: "Medium",
+        tool: (
+          <ElementToolsLayout
+            toolName="Medium"
+            tool={<Medium />}
+            icon={<MdWidthWide className="h-5 w-10 text-gray-500" />}
+            image={require("@/../public/craft/hero.png")}
+          />
+        ),
+      },
+      {
+        name: "Small",
+        tool: (
+          <ElementToolsLayout
+            toolName="Small"
+            tool={<Small />}
+            icon={<MdWidthNormal className="h-5 w-10 text-gray-500" />}
+            image={require("@/../public/craft/hero.png")}
+          />
+        ),
+      },
+    ],
+  },
+  {
+    index: 2,
     question: "Layout",
     answer: [
       {
@@ -114,7 +173,7 @@ const baseTools = [
     ],
   },
   {
-    index: 2,
+    index: 3,
     question: "Content",
     answer: [
       {

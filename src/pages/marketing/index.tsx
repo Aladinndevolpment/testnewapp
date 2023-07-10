@@ -46,7 +46,7 @@ export default function Marketing() {
   const [activeInnerTab, setActiveInnerTab] = useState(innerTabs[0].id);
 
   return (
-    <div className="overflow-hidden ">
+    <div className="overflow-hidden pb-24 ">
       <ul className="lg:px-5 border-b-[1px] border-[#dfdfdf] pt-4 flex justify-start items-center overflow-auto scrollbar-hide gap-6 bg-white  ">
         {innerTabs.map((tab: any) => (
           <li key={tab.id}>

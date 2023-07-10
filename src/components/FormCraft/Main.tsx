@@ -121,25 +121,11 @@ export default function Main() {
 
               {/* portfolio */}
               <div>
-                <Text
-                  text="Portfolio"
-                  fontSize={17}
-                  marginBottom={2}
-                  color="#4b5563"
-                  bold="font-semibold"
-                />
                 <AttachmentElement />
               </div>
 
               {/* Gender */}
               <div className="w-[48.8%]">
-                <Text
-                  text="Gender"
-                  fontSize={17}
-                  marginBottom={2}
-                  color="#4b5563"
-                  bold="font-semibold"
-                />
                 <RadioInputElement
                   radios={[
                     {

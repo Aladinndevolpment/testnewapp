@@ -14,6 +14,8 @@ interface IAddItemProps {
   onClose: MouseEventHandler;
   onSave: MouseEventHandler;
   eventArg: any;
+  Allproviders: any;
+  AllRooms: any;
 }
 
 export default function AddItem({
@@ -21,6 +23,8 @@ export default function AddItem({
   onClose,
   eventArg,
   onSave,
+  Allproviders,
+  AllRooms,
 }: IAddItemProps) {
   //patient modal & array
   const [isPatientComboBoxVisible, setIsPatientComboBoxVisible] =
@@ -65,6 +69,7 @@ export default function AddItem({
   const [isProviderComboBoxVisible, setIsProviderComboBoxVisible] =
     useState(false);
   const [selectedProvider, setSelectedProvider] = useState<any>(null);
+
   const providers = [
     {
       name: "Provider A",
@@ -343,7 +348,7 @@ export default function AddItem({
                   <ComboBox
                     isVisible={isProviderComboBoxVisible}
                     onClose={() => setIsProviderComboBoxVisible(false)}
-                    data={providers}
+                    data={Allproviders?.providers}
                     onItemSelect={(data: any) => setSelectedProvider(data)}
                   />
                 </div>
@@ -378,7 +383,7 @@ export default function AddItem({
                   <ComboBox
                     isVisible={isDoctorComboBoxVisible}
                     onClose={() => setIsDoctorComboBoxVisible(false)}
-                    data={doctors}
+                    data={AllRooms?.rooms}
                     onItemSelect={(data: any) => setSelectedDoctor(data)}
                   />
                 </div>

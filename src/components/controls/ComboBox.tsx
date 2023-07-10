@@ -31,7 +31,7 @@ export default function ComboBox({
   return (
     <div>
       <div
-        className={`absolute transition-all -bottom-15 mt-5      w-full shadow-md  scrollbar-hide ${
+        className={`absolute transition-all -bottom-15 mt-5 w-full shadow-md scrollbar-hide ${
           isVisible
             ? "translate-y-0 opacity-100 z-50"
             : "-translate-y-[2%] opacity-0 -z-50"
@@ -47,7 +47,7 @@ export default function ComboBox({
             onChange={(e) => setSearchString(e.target.value)}
           />
           <ul className="mt-2   overflow-y-scroll scrollbar-hide max-h-52 mb-20">
-            {newData.map((item, index) => (
+            {newData?.map((item, index) => (
               <li
                 key={index}
                 className="p-2 ring ring-gray-50 mb-2 cursor-pointer hover:shadow-md"

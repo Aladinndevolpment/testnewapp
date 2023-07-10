@@ -107,7 +107,7 @@ const ValueDeletedFolderTabData = ({ data }: any) => {
             },
             labelRowsPerPage: "Showing",
           }}
-          positionPagination="top"
+          positionPagination="bottom"
           enableToolbarInternalActions={false}
           positionToolbarAlertBanner="bottom"
           muiSearchTextFieldProps={{

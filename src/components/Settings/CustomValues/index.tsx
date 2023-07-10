@@ -13,8 +13,8 @@ interface RowData {
 
 const ValueType = [
   { title: "All Value" },
-  { title: "Folder" },
-  { title: "Deleted Folder" },
+  // { title: "Folder" },
+  // { title: "Deleted Folder" },
 ];
 
 export default function CustomValueData() {
@@ -235,7 +235,7 @@ export default function CustomValueData() {
                 <button
                   onSubmit={handleSubmit}
                   type="submit"
-                  className="text-base flex justify-start items-center bg-secondary py-2 px-5 text-white rounded-md  "
+                  className="text-base flex justify-start items-center bg-[#1258FC] py-2 px-5 text-white rounded-md  "
                 >
                   Save
                 </button>
@@ -246,28 +246,28 @@ export default function CustomValueData() {
       </ModalDerived>
       <div className="w-full px-2 py-2">
         <div className="flex  items-center justify-between">
-          <p className="text-[#47494b] text-base font-semibold m-1 pl-2">
-            {select == 0 && "All Field"}
+          {/* <p className="text-[#47494b] text-base font-semibold m-1 pl-2">
+            {select == 0 && "All Values"}
             {select == 1 && "Folder"}
-            {select == 2 && "Deleted Fields"}
-          </p>
+            {select == 2 && "Deleted folder"}
+          </p> */}
           <div className="flex  items-center justify-end">
-            <button
+            {/* <button
               onClick={() => setOpenValueModel(true)}
               className="text-xs flex justify-center gap-1 items-center border text-[#34373a]  m-1 py-2.5 px-5 2xl:px-6 font-semibold rounded-md "
             >
               <TbFolderPlus className="scale-110" />
               Add Folder
-            </button>
+            </button> */}
             <button
               onClick={() => setOpenValueModel(true)}
-              className="text-xs flex justify-center items-center    bg-[#25992a] hover:bg-secondary duration-300 m-1 py-2.5 px-5 2xl:px-6 text-white rounded-md "
+              className="text-xs flex justify-center items-center    bg-[#1258FC] hover:bg-secondary duration-300 m-1 py-2.5 px-5 2xl:px-6 text-white rounded-md "
             >
               + Add Field
             </button>
           </div>
         </div>
-        <div className="mt-3 text-[#34373a] font-semibold bg-gray-100 text-xs border-t border-x rounded-t-md w-[17rem] flex ">
+        <div className="mt-3 text-[#34373a] font-semibold bg-gray-100 text-xs border-t border-x rounded-t-md w-fit flex ">
           {ValueType.map((item: any, index: number) => (
             <button
               key={index}

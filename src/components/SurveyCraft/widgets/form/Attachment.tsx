@@ -1,5 +1,5 @@
 import TextInput from "@/components/controls/TextInput";
-import { useNode } from "@craftjs/core";
+import { Element, useNode } from "@craftjs/core";
 import { MuiColorInput } from "mui-color-input";
 import {
   InputHTMLAttributes,
@@ -20,6 +20,8 @@ import { BsImage } from "react-icons/bs";
 import Image from "next/image";
 import { DeleteForever } from "@mui/icons-material";
 import { CraftContext } from "@/pages/builder/survey/craft";
+import SurveyContainer from "../SurveyContainer";
+import { Text } from "../Text/Text";
 
 const elementName = "Attachment";
 
@@ -106,6 +108,16 @@ export const AttachmentElement = ({
           {elementName}
         </div>
       )}
+      <Element is={SurveyContainer} id="demo_text" canvas>
+        <Text
+          text="Portfolio"
+          fontSize={17}
+          marginBottom={2}
+          alignment="left"
+          color="#4b5563"
+          bold="font-semibold"
+        />
+      </Element>
       <div onClick={() => ctx.setOpenSettings(!ctx.openSettings)}>
         <div
           className={`border-dashed border-2 border-newBlue rounded-md bg-[#f5f6fd] ${shadow} ${borderType} ${borderColor}`}

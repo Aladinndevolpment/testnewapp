@@ -8,12 +8,51 @@ import Link from "next/link";
 import ModalDerived from "@/components/Modal";
 import { CalendarSettingsContext } from "./CalendarListData";
 import { AiOutlineClose } from "react-icons/ai";
+import axios from "axios";
+import { baseUrl, token } from "@/config/APIConstants";
+import { useRouter } from "next/router";
 
 interface RowData {
   [key: string]: any;
 }
 
-const ProvidersListTable = () => {
+const ProvidersListTable = ({ calendarProviderDataTable }: any) => {
+  // console.log("fafaffa", calendarProviderDataTable);
+  const router = useRouter();
+
+  const handleEditRoom = async (id: any) => {
+    console.log("hello", id);
+    try {
+      const response = await axios.get(`${baseUrl}rooms/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("rttt", response);
+      router.reload();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const deleteProvider = async (id: any) => {
+    // console.log("or id ", id);
+    if (confirm("Are you sure your want to delete")) {
+      try {
+        const response = await axios.delete(`${baseUrl}providers/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("rttt", response);
+
+        router.reload();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
   const [formData, setFormData] = useState<any>({
     provider: "",
   });
@@ -54,7 +93,7 @@ const ProvidersListTable = () => {
         size: 350,
         Cell: ({ row }) => (
           <p className="  text-gray-700 font-medium text-[15px]">
-            {row.original.provider}
+            {row.original.name}
           </p>
         ),
         enableColumnFilter: true,
@@ -67,7 +106,7 @@ const ProvidersListTable = () => {
         Cell: ({ row }) => (
           <div className="flex justify-start items-start gap-2">
             <p className="  text-gray-700 font-medium text-[12px]">
-              {moment(row.original.createdOn).format("MMM DD, yyyy")}
+              {moment(row.original.addedOn).format("MMM DD, yyyy")}
             </p>
           </div>
         ),
@@ -92,14 +131,15 @@ const ProvidersListTable = () => {
   );
 
   const [filterInput, setFilterInput] = useState("");
+  const [editProvider, setEditProvider] = useState(false);
 
   const handleFilterChange = (e: any) => {
     const value = e.target.value || "";
     setFilterInput(value);
   };
 
-  const filteredData = data.filter((row: any) =>
-    row.provider.toLowerCase().includes(filterInput.toLowerCase())
+  const filteredData = calendarProviderDataTable.filter((row: any) =>
+    row.name.toLowerCase().includes(filterInput.toLowerCase())
   );
 
   const handleChange = (e: any) => {
@@ -130,6 +170,72 @@ const ProvidersListTable = () => {
 
   return (
     <>
+      {/* Edit Provider start */}
+
+      <ModalDerived
+        visibility={editProvider}
+        onClose={() => setEditProvider(true)}
+      >
+        <div className=" bg-white rounded-lg  lg:h-[85vh] pb-[5%]  overflow-y-hidden w-[100%]  md:w-[85vh] scrollbar-hide ">
+          <div className=" h-[100vh]  pt-5 pb-3">
+            <div className="h-[10vh] flex justify-between items-start border-b-[1px] pb-4 px-5">
+              <div>
+                <p className="text-gray-800 font-medium md:text-lg ">
+                  Provider
+                </p>
+                <p className="text-gray-500 font-normal md:text-sm pt-1">
+                  Edit Provider
+                </p>
+              </div>
+              <button onClick={() => setEditProvider(false)}>
+                <AiOutlineClose className="text-gray-800 h-6 w-6" />
+              </button>
+            </div>
+            <div className="overflow-hidden ">
+              <div className="w-full   bg-white  ">
+                <div className="mx-5 py-3 h-[60vh]  2xl:h-[39vh]">
+                  <div className="flex items-center  justify-between ">
+                    <label
+                      className="block text-[#47494b] text-sm pt-1 font-semibold"
+                      htmlFor=""
+                    >
+                      Edit Provider Name
+                    </label>
+                  </div>
+                  <input
+                    type="text"
+                    id=""
+                    name="provider"
+                    value={formData?.provider}
+                    onChange={handleChange}
+                    placeholder="Edit Provider Name"
+                    className=" w-full placeholder:text-gray-400 text-gray-500 text-[12px] px-3 py-3 rounded-md mt-2 mb-2   font-medium bg-transparent focus:bg-transparent   border-[1px] border-gray-200 text-space focus:outline-none focus:border-gray-300   "
+                  />
+                </div>
+                <div className="h-[10vh] flex justify-end items-center border-t-[1px] pt-3 pb-2 px-5">
+                  <div className=" flex justify-end items-center gap-3">
+                    <button
+                      onClick={() => providerAddForm?.setOpenModal3(false)}
+                      className="text-base text-gray-600 font-medium flex justify-start items-center border-[1px] border-gray-300 py-2 px-5 rounded-md  "
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={() => handleSubmit()}
+                      className="text-base flex justify-start items-center bg-secondary py-2 px-5 text-white rounded-md  "
+                    >
+                      Save
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ModalDerived>
+
+      {/* Edit Provider end*/}
+
       <ModalDerived
         visibility={providerAddForm?.openModal3}
         onClose={() => providerAddForm?.setOpenModal3(false)}
@@ -151,7 +257,7 @@ const ProvidersListTable = () => {
             </div>
             <div className="overflow-hidden ">
               <div className="w-full   bg-white  ">
-                <div className="mx-5 py-3 h-[60vh]">
+                <div className="mx-5 py-3 h-[60vh]  2xl:h-[39vh]">
                   <div className="flex items-center  justify-between ">
                     <label
                       className="block text-[#47494b] text-sm pt-1 font-semibold"
@@ -212,23 +318,29 @@ const ProvidersListTable = () => {
           }}
           renderRowActions={({ row }) => (
             <div className="flex justify-between items-center gap-5 pr-10">
-              <Link href="/settings/calendar/edit-calendar">
-                <div>
-                  <CiEdit className="h-4 w-4 text-gray-600" />
-                </div>
-              </Link>
+              <div
+                onClick={() => {
+                  handleEditRoom(row.original.id);
+                  setEditProvider(true);
+                }}
+              >
+                <CiEdit className="cursor-pointer h-4 w-4 text-gray-600" />
+              </div>
 
               <button
+                // onClick={() => {
+                //   data.splice(row.index, 1); //assuming simple data table
+                //   // setData([...data]);
+                // }}
                 onClick={() => {
-                  data.splice(row.index, 1); //assuming simple data table
-                  // setData([...data]);
+                  deleteProvider(row.original.id);
                 }}
               >
                 <RiDeleteBin5Line className="h-4 w-4 text-gray-600" />
               </button>
             </div>
           )}
-          positionPagination="top"
+          positionPagination="bottom"
           enableToolbarInternalActions={false}
           positionToolbarAlertBanner="bottom"
           muiSearchTextFieldProps={{

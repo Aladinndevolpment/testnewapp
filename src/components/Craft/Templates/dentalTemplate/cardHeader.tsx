@@ -17,13 +17,15 @@ import {
 } from "../../widgets/CommonSettings";
 import { createElement, useState } from "react";
 import item from "@/components/Leads/dnd/styles/item";
+import LeftFlyOut from "@/components/LeftLayout";
+import { TopbarSection } from "../../TopBarSections";
 
 const elementName = "CardHeader";
 
 const defaults = {
   backgroundColor: "#ffffff",
   borderColor: "#313641",
-  borderRadius: 10,
+  borderRadius: 0,
 };
 
 interface ICardHeadersProps extends ICommonSettingsProps {
@@ -87,72 +89,93 @@ export const CardHeader = ({
   shadow,
   shadowColor,
 }: ICardHeadersProps) => {
+  const [openCreateModal, setOpenCreateModal] = useState(false);
   const {
     connectors: { connect, drag },
     hovered,
   }: any = useNode((state) => ({ hovered: state.events.hovered }));
 
   return (
-    <div className="my-2 w-full" ref={(ref: any) => connect(drag(ref))}>
-      {/* <div className="card card-compact w-full bg-base-100 shadow-xl">
+    <>
+      <LeftFlyOut
+        visibility={openCreateModal}
+        onClose={() => {
+          setOpenCreateModal(false);
+        }}
+      >
+        <TopbarSection />
+      </LeftFlyOut>
+      <div className=" w-full" ref={(ref: any) => connect(drag(ref))}>
+        {/* <div className="card card-compact w-full bg-base-100 shadow-xl">
         <div className="card-body">
           <Element id="heroImage" is={CardImage} canvas>
             <BuilderImage />
           </Element>
         </div>
       </div> */}
-      <div
-        className={`w-full h-auto ${size} mr-2 ${
-          hovered && "hover:outline-pink-500 hover:outline "
-        }  relative ${shadowColor} ${shadow} ${borderType} `}
-        style={{
-          backgroundColor,
-          marginTop: `${marginTop}px`,
-          marginBottom: `${marginBottom}px`,
-          marginLeft: `${marginLeft}px`,
-          marginRight: `${marginRight}px`,
-          paddingTop: `${paddingTop}px`,
-          paddingBottom: `${paddingBottom}px`,
-          paddingLeft: `${paddingLeft}px`,
-          paddingRight: `${paddingRight}px`,
-          borderWidth: `${borderWidth}px`,
-          borderRadius: `${borderRadius}px`,
-          borderColor,
-        }}
-      >
-        {hovered && (
-          <div className="absolute top-0 right-0 bg-purple-500 text-white text-[10px] px-1 z-10 capitalize">
-            {elementName}
-          </div>
-        )}
-        <Element id="CardHeadersText" is={CardHeadersText} canvas>
-          <nav className="flex items-center justify-around flex-wrap  p-6 rounded">
-            {/* <Element id="" is="" canvas></Element> */}
-            <div className="flex items-center flex-shrink-0 text-white mr-2">
-              <Text
-                alignment="left"
-                text="Committed to"
-                fontSize={15}
-                bold="font-semibold"
-                color="#000000"
-              />
-            </div>
-            <div>
-              <Text
-                alignment="right"
-                text="Excellence"
-                fontSize={25}
-                bold="font-bold"
-                color="#F49A07"
-              />{" "}
-            </div>
-            <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto justify-end">
-              <Button text="View All Services" />
-            </div>
-          </nav>
-        </Element>
+        <div
+          className={`w-full h-auto ${size} mr-2 ${
+            hovered && "hover:outline-blue-500 hover:outline "
+          }  relative ${shadowColor} ${shadow} ${borderType} `}
+          style={{
+            backgroundColor,
+            marginTop: `${marginTop}px`,
+            marginBottom: `${marginBottom}px`,
+            marginLeft: `${marginLeft}px`,
+            marginRight: `${marginRight}px`,
+            paddingTop: `${paddingTop}px`,
+            paddingBottom: `${paddingBottom}px`,
+            paddingLeft: `${paddingLeft}px`,
+            paddingRight: `${paddingRight}px`,
+            borderWidth: `${borderWidth}px`,
+            borderRadius: `${borderRadius}px`,
+            borderColor,
+          }}
+        >
+          {hovered && (
+            <>
+              <div className="absolute top-0 right-0 bg-blue-500 text-white text-[10px] px-1 z-10 capitalize">
+                {elementName}
+              </div>
+              <div
+                className="absolute -bottom-2 left-[50%] bg-orange-500 text-white text-[10px] px-1 z-10 capitalize"
+                onClick={() => {
+                  setOpenCreateModal(true);
+                }}
+              >
+                +
+              </div>
+            </>
+          )}
+          <Element id="CardHeadersText" is={CardHeadersText} canvas>
+            <nav className="flex items-center justify-around flex-wrap  p-6 rounded">
+              {/* <Element id="" is="" canvas></Element> */}
+              <div className="flex items-center flex-shrink-0 text-white mr-2">
+                <Text
+                  alignment="left"
+                  text="Committed to"
+                  fontSize={15}
+                  bold="font-semibold"
+                  color="#000000"
+                />
+              </div>
+              <div>
+                <Text
+                  alignment="right"
+                  text="Excellence"
+                  fontSize={25}
+                  bold="font-bold"
+                  color="#F49A07"
+                />{" "}
+              </div>
+              <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto justify-end">
+                <Button text="View All Services" />
+              </div>
+            </nav>
+          </Element>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

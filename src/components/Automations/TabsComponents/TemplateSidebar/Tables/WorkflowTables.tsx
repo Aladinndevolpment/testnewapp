@@ -346,6 +346,7 @@ export default function WorkflowTables() {
                   </button>
                 </div>
               )}
+              positionPagination="bottom"
               muiTablePaginationProps={{
                 rowsPerPageOptions: [10, 50, 100, 200],
                 showFirstButton: false,
@@ -355,7 +356,6 @@ export default function WorkflowTables() {
                 },
                 labelRowsPerPage: "Showing",
               }}
-              positionPagination="top"
               enableToolbarInternalActions={false}
               positionToolbarAlertBanner="bottom"
               muiSearchTextFieldProps={{

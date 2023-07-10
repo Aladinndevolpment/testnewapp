@@ -1,5 +1,5 @@
 import TextInput from "@/components/controls/TextInput";
-import { useNode } from "@craftjs/core";
+import { Element, useNode } from "@craftjs/core";
 import { MuiColorInput } from "mui-color-input";
 import { InputHTMLAttributes, useCallback, useEffect, useState } from "react";
 import { IoContract } from "react-icons/io5";
@@ -13,6 +13,8 @@ import { useDropzone } from "react-dropzone";
 import { BsImage } from "react-icons/bs";
 import Image from "next/image";
 import { DeleteForever } from "@mui/icons-material";
+import FormContainer from "../Container";
+import { Text } from "@/components/Craft/widgets/Text/Text";
 const elementName = "Attachment";
 
 interface ITextProps extends ICommonSettingsProps {
@@ -97,6 +99,17 @@ export const AttachmentElement = ({
           {elementName}
         </div>
       )}
+
+      <Element is={FormContainer} id="demo_text" canvas>
+        <Text
+          text="Portfolio"
+          fontSize={17}
+          marginBottom={2}
+          alignment="left"
+          color="#4b5563"
+          bold="font-semibold"
+        />
+      </Element>
 
       <div
         className={`border-dashed border border-gray-500 rounded-md bg-[#f5f6fd] ${shadow} ${borderType} ${borderColor}`}

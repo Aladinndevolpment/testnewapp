@@ -4,6 +4,20 @@ import Link from "next/link";
 import { ExportToCsv } from "export-to-csv"; //or use your library of choice here
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { FiChevronDown } from "react-icons/fi";
+import Menu, { MenuProps } from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+
+
+import { styled, alpha } from '@mui/material/styles';
+
+
+import EditIcon from '@mui/icons-material/Edit';
+import Divider from '@mui/material/Divider';
+import ArchiveIcon from '@mui/icons-material/Archive';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+
 import {
   BsFunnel,
   BsColumns,
@@ -12,6 +26,7 @@ import {
   BsChevronDown,
   BsCalendarDate,
   BsThreeDots,
+  BsThreeDotsVertical,
 } from "react-icons/bs";
 import {
   AiOutlineInsertRowAbove,
@@ -22,9 +37,52 @@ import {
 import { MdOutlineDateRange } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { Button, Popover, Typography } from "@mui/material";
+import { GoLinkExternal } from "react-icons/go";
+
+const StyledMenu = styled((props: MenuProps) => (
+  <Menu
+    elevation={0}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'right',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'right',
+    }}
+    {...props}
+  />
+))(({ theme }) => ({
+  '& .MuiPaper-root': {
+    borderRadius: 6,
+    marginTop: theme.spacing(1),
+    minWidth: 180,
+    color:
+      theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
+      boxShadow:
+      'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+    '& .MuiMenu-list': {
+      padding: '4px 0',
+    },
+    '& .MuiMenuItem-root': {
+      '& .MuiSvgIcon-root': {
+        fontSize: 18,
+        color: theme.palette.text.secondary,
+        marginRight: theme.spacing(1.5),
+      },
+      '&:active': {
+        backgroundColor: alpha(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity,
+        ),
+      },
+    },
+  },
+}));
 
 export default function Table({ data }: any) {
-  const status = [
+  const options = [
     {
       title: "All",
     },
@@ -39,107 +97,78 @@ export default function Table({ data }: any) {
     },
   ];
 
-  const [activeStatus, setActiveStatus] = useState(0);
+  const [activeoptions, setActiveoptions] = useState(0);
   const columns = useMemo<MRT_ColumnDef<any>[]>(
     () => [
       {
-        accessorKey: "pages_url", //accessorKey used to define `data` column. `id` gets set to accessorKey automatically
-        id: "pages_url", //id is still required when using accessorFn instead of accessorKey
-        header: "Pages & URL",
+        accessorKey: "site_name", //accessorKey used to define `data` column. `id` gets set to accessorKey automatically
+        id: "site_name", //id is still required when using accessorFn instead of accessorKey
+        header: "Site Name",
         size: 200,
         Cell: ({ row }) => (
           <div className=" ">
             <p className="text-gray-700 font-semibold text-sm">
-              {row.original.pages_url.title}
+              {row.original.site_name.title}
             </p>
             <p className="text-gray-500 font-medium text-xs pt-1">
-              {row.original.pages_url.url}
+              {row.original.site_name.url}
             </p>
           </div>
         ),
         enableColumnFilter: true, // could disable just this column's filter
       },
+     
       {
-        accessorKey: "status", //accessorKey used to define `data` column. `id` gets set to accessorKey automatically
-        id: "status", //id is still required when using accessorFn instead of accessorKey
-        header: "Status",
-        size: 150,
-        Cell: ({ row }) => (
-          <button
-            className={` ${
-              row.original.status == "Scheduled"
-                ? " border-newBlue bg-blue-100"
-                : row.original.status == "Published"
-                ? " border-green-500 bg-green-100"
-                : " border-gray-300 bg-gray-100"
-            }
-              flex justify-start items-center border-[1px] text-center py-1 px-2 rounded-full font-normal text-dark`}
-          >
-            <div
-              className={`${
-                row.original.status == "Scheduled"
-                  ? " bg-newBlue"
-                  : row.original.status == "Published"
-                  ? " bg-green-500"
-                  : " bg-gray-500"
-              }
-
-              h-1.5 w-1.5 rounded-full   mr-2 ml-2`}
-            ></div>
-            <span
-              className={`${
-                row.original.status == "Scheduled"
-                  ? " text-newBlue"
-                  : row.original.status == "Published"
-                  ? " text-green-500"
-                  : " text-gray-600"
-              }  pr-3  `}
-            >
-              {" "}
-              {row.original.status}
-            </span>
-          </button>
-        ),
-      },
-      {
-        accessorKey: "created_by", //accessorKey used to define `data` column. `id` gets set to accessorKey automatically
-        id: "created_by", //id is still required when using accessorFn instead of accessorKey
-        header: "Created By",
+        accessorKey: "page_views", //accessorKey used to define `data` column. `id` gets set to accessorKey automatically
+        id: "page_views", //id is still required when using accessorFn instead of accessorKey
+        header: "Page Views",
         size: 150,
         Cell: ({ row }) => (
           <p className="text-gray-700 font-medium text-[13px]">
-            {row.original.created_by}
+            {row.original.page_views}
           </p>
         ),
       },
       {
-        id: "created_date", //id is still required when using accessorFn instead of accessorKey
-        header: "Created At",
+        id: "options", //id is still required when using accessorFn instead of accessorKey
+        header: "Options",
         size: 150,
         Cell: ({ row }) => (
           <div className="flex justify-start items-center">
-            <MdOutlineDateRange className="text-gray-700 h-4 w-4 mr-1" />
             <p className="text-gray-700 font-medium text-[13px]">
-              {row.original.created_date}
+              {row.original.options}
             </p>
           </div>
         ),
-        accessorKey: "created_date", //accessorKey used to define `data` column. `id` gets set to accessorKey automatically
+        accessorKey: "options", //accessorKey used to define `data` column. `id` gets set to accessorKey automatically
       },
       {
-        id: "published_date", //id is still required when using accessorFn instead of accessorKey
-        header: "Published Date",
+        id: "sales", //id is still required when using accessorFn instead of accessorKey
+        header: "Sales",
         size: 150,
         Cell: ({ row }) => (
           <div className="flex justify-start items-center">
-            <MdOutlineDateRange className="text-gray-700 h-4 w-4 mr-1" />
             <p className="text-gray-700 font-medium text-[13px]">
-              {row.original.published_date}
+              {row.original.sales}
             </p>
           </div>
         ),
-        accessorKey: "published_date", //accessorKey used to define `data` column. `id` gets set to accessorKey automatically
+        accessorKey: "sales", //accessorKey used to define `data` column. `id` gets set to accessorKey automatically
       },
+      {
+        id: "revenue", //id is still required when using accessorFn instead of accessorKey
+        header: "Revenue",
+        size: 150,
+        Cell: ({ row }) => (
+          <div className="flex justify-start items-center">
+            <p className="text-gray-700 font-medium text-[13px]">
+              {row.original.revenue}
+            </p>
+          </div>
+        ),
+        accessorKey: "revenue", //accessorKey used to define `data` column. `id` gets set to accessorKey automatically
+      },
+     
     ],
     []
   );
@@ -161,7 +190,7 @@ export default function Table({ data }: any) {
     useKeysAsHeaders: false,
     headers: [
       "Workflow Name",
-      "Status",
+      "options",
       "Modules",
       "Total Enrolled",
       "Active Enrolled",
@@ -181,6 +210,7 @@ export default function Table({ data }: any) {
   };
 
   const [newData, setNewData] = useState(data);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
   const [filterValue, setFilterValue] = useState("");
 
@@ -190,18 +220,28 @@ export default function Table({ data }: any) {
 
   const filteredData = data.filter((category: any) => {
     return (
-      category.pages_url.title
-        .toLowerCase()
-        .includes(filterValue.toLowerCase()) ||
-      category.pages_url.url
-        .toLowerCase()
-        .includes(filterValue.toLowerCase()) ||
-      category.status.toLowerCase().includes(filterValue.toLowerCase()) ||
-      category.created_by.toLowerCase().includes(filterValue.toLowerCase()) ||
-      category.created_date.toLowerCase().includes(filterValue.toLowerCase()) ||
-      category.published_date.toLowerCase().includes(filterValue.toLowerCase())
+      category.site_name.title.toLowerCase().includes(filterValue.toLowerCase()) ||
+      category.site_name.url.toLowerCase().includes(filterValue.toLowerCase()) ||
+      category.options.toLowerCase().includes(filterValue.toLowerCase()) ||
+      category.page_views.toLowerCase().includes(filterValue.toLowerCase()) ||
+      category.options.toLowerCase().includes(filterValue.toLowerCase()) ||
+      category.sales.toLowerCase().includes(filterValue.toLowerCase()) ||
+      category.revenue.toLowerCase().includes(filterValue.toLowerCase()) 
     );
   });
+
+
+  
+  const open = Boolean(anchorEl);
+  // const id = open ? 'simple-popover' : undefined;
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <>
@@ -221,12 +261,12 @@ export default function Table({ data }: any) {
               </div>
             </div>
             <div className="flex justify-start items-center pl-1">
-              {status?.map((tab: any, index: any) => (
+              {options?.map((tab: any, index: any) => (
                 <div
                   key={index}
-                  onClick={() => setActiveStatus(index)}
+                  onClick={() => setActiveoptions(index)}
                   className={`py-2 px-4 duration-300   ${
-                    activeStatus == index
+                    activeoptions == index
                       ? "border-[1px] border-secondary text-secondary"
                       : " border-[1px] border-gray-300 text-gray-600 "
                   } cursor-pointer rounded-md  mr-1.5 text-[12px] font-semibold flex justify-start items-center`}
@@ -296,7 +336,27 @@ export default function Table({ data }: any) {
                 >
                   <RiDeleteBin5Line className="h-4 w-4 text-gray-600" />
                 </button>
-              </div>
+                <button onClick={handleClick}>
+  <BsThreeDotsVertical/>
+</button>
+<StyledMenu className="text-black"
+        id="demo-customized-menu"
+        MenuListProps={{
+          'aria-labelledby': 'demo-customized-button',
+        }}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose} className="flex gap-2">View Website Live <GoLinkExternal className="text-gray-500  h-4 w-4"/></MenuItem>
+        <MenuItem onClick={handleClose}>View Website Details</MenuItem>
+        <MenuItem onClick={handleClose}>Edit Website</MenuItem>
+        <MenuItem onClick={handleClose}>Duplicate Website</MenuItem>
+        <MenuItem onClick={handleClose}>Save Website as Template</MenuItem>
+        <MenuItem onClick={handleClose}>Archieve </MenuItem>
+        <MenuItem onClick={handleClose} style={{color:"red"}}>Delete Website </MenuItem>
+      </StyledMenu>
+             </div>
             )}
             muiTablePaginationProps={{
               rowsPerPageOptions: [10, 50, 100, 200],
@@ -307,7 +367,7 @@ export default function Table({ data }: any) {
               },
               labelRowsPerPage: "Showing",
             }}
-            positionPagination="top"
+            positionPagination="bottom"
             enableToolbarInternalActions={false}
             positionToolbarAlertBanner="bottom"
             muiSearchTextFieldProps={{

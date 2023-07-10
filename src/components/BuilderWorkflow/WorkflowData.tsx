@@ -171,12 +171,12 @@ export default function HeaderComponent({ saveDraft }: any) {
         </div>
       </div>
 
-      <div className="relative overflow-hidden scrollbar-hide h-[82%]  overflow-y-scroll">
-        <div className="h-full  w-full ">
+      <div className="relative overflow-hidden scrollbar-hide h-[82%] overflow-y-scroll">
+        <div className="h-full w-full">
           {tabs.map((tab: any) => (
             <div
               key={tab.id}
-              className={`shadow-md transition-all duration-300 rounded-md  ${
+              className={`shadow-md transition-all duration-300 rounded-md ${
                 activeTab === tab.id ? "block" : " text-black hidden"
               } `}
             >

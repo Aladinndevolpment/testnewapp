@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { MouseEventHandler, useState } from "react";
+import { MouseEventHandler } from "react";
 
 import Tabs from "../UI/Tabs";
 import TreatmentTimeline from "./TreatmentTimeline";
@@ -8,16 +8,139 @@ import { TfiAngleDown, TfiAngleUp } from "react-icons/tfi";
 import CustomDropDown, { CustomDropDownData } from "../controls/CustomDropDown";
 import ChatBody from "../Conversations/ChatBody";
 import { chatDataItems } from "@/pages/chat";
+import BasicInfo from "./BasicInfo";
+
+import Center from "@/components/contacts/Center";
+import RightSidebar from "@/components/contacts/RightSidebar";
+import LeftSidebar from "@/components/contacts/LeftSidebar";
+import { GetServerSidePropsContext } from "next";
+import { EContactType, IContactData } from "@/components/contacts/Interfaces";
+import axios from "axios";
+import Head from "next/head";
+import { useState } from "react";
+import { baseUrl, token } from "@/config/APIConstants";
+import Notes from "./Notes";
 
 interface IAppointmentDetailsProps {
   visibility: boolean;
   onClose: MouseEventHandler;
 }
 
-export default function AppointmentDetails({
-  visibility,
-  onClose,
-}: IAppointmentDetailsProps) {
+interface IProps {
+  data: IContactData;
+}
+
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+  const { id } = ctx.query;
+
+  // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+
+  // const token = process.env.NEXT_PUBLIC_API_TOKEN;
+  // const token = ctx.req.cookies.jwt;
+  // if (!token) {
+  //   return {
+  //     redirect: {
+  //       destination: '/login',
+  //       permanent: false,
+  //     },
+  //   };
+  // }
+
+  const res: IContactData = {
+    contact: {
+      id: "",
+      owner: {
+        id: "",
+        fullName: "",
+      },
+      fullName: "",
+      emailAddress: "",
+      phoneNumber: "",
+      status: "",
+      addedOn: "",
+      contactType: EContactType.LEAD,
+      tags: [],
+      leadSources: [],
+    },
+    contactProfile: {
+      contactID: "",
+      dateOfBirth: "",
+      dateOfInjury: "",
+      ssn: "",
+    },
+    contactAddress: {
+      contactID: "",
+      street: "",
+      city: "",
+      region: "",
+      postalCode: "",
+      country: "",
+    },
+  };
+
+  await axios
+    .get(`${baseUrl}/contacts/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((response) => {
+      console.log("response.data", response.data);
+      res.contact = response.data.contact;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  if (res.contact.id === " ") {
+    return {
+      notFound: true,
+    };
+  }
+
+  await axios
+    .get(`${baseUrl}/contacts/${id}/profile`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((response) => {
+      console.log("response.data", response.data);
+      res.contactProfile = response.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  await axios
+    .get(`${baseUrl}/contacts/${id}/address`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((response) => {
+      console.log("response.data", response.data);
+      res.contactAddress = response.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  // await axios.get(`/api/contacts/${id}/address`, {
+  //   headers: { Authorization: `Bearer ${token}` }
+  // }).then((response) => {
+  //   console.log("response.data", response.data)
+  //   res.data.contactAddress = response.data
+  // }).catch((err) => {
+  //   res.data = err
+  // })
+
+  return {
+    props: {
+      data: res,
+    },
+  };
+}
+
+export default function AppointmentDetails(
+  { visibility, onClose }: IAppointmentDetailsProps,
+  { data }: IProps
+) {
+  // console.log("app", data);
   const [isPatientComboBoxVisible, setIsPatientComboBoxVisible] =
     useState(false);
   const [selectedPatient, setSelectedPatient] = useState<any>(null);
@@ -69,7 +192,7 @@ export default function AppointmentDetails({
     {
       id: "tab1",
       label: "Basic Info",
-      content: <TreatmentTimeline />,
+      content: <BasicInfo data={data} />,
     },
     {
       id: "tab2",
@@ -94,7 +217,7 @@ export default function AppointmentDetails({
     {
       id: "tab4",
       label: "Notes",
-      content: <TreatmentTimeline />,
+      content: <Notes />,
     },
     {
       id: "tab5",
@@ -152,7 +275,9 @@ export default function AppointmentDetails({
             </div>
           </div>
         </div>
-        <Tabs tabs={tabs} />
+        <div>
+          <Tabs tabs={tabs} />
+        </div>
       </div>
     </div>
   );
